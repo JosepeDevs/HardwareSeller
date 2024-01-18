@@ -1,8 +1,8 @@
-</div>
-</div>
+</div><!--esto cierra "cta-container"-->
+</div><!--esto cierra "<div class="cuerpo"-->
 <footer>
     <div>
-        <a href="index.php"><img src="favicon.png" width="36px" alt="Logo"></a>
+        <a href="index.php"><img src="Resources/HSLogoFondoAzulGrisSinTexto.png" width="100px" alt="Logo"></a>
     </div>
     <div>
         <h3>Información</h3>

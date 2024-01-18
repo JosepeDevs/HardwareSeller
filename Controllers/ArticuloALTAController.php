@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Alta de artículo</title>
-    <link rel="stylesheet" type="text/css" href="estilosTabla.css">
-</head>
-<body>
-    <h1>Alta de artículo</h1>
 <?php
-
 //aqui va un metodo y dentro del metodo requeriremos el modelo y guardaremos en una variable lo que llamamos
+function AltaArticulo(){
+    require_once("/../")
+}
+
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("UserSession.php");
 $usuarioLogeado = UserEstablecido();

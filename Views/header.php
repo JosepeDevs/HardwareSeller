@@ -4,23 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="estilosTabla.css">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <title>MyTOPs.com</title>
+  <link rel="icon" type="image/png" href="Resources/HSLogoFondoBlancoYGrisSinTexto.png">
+  <title>Hardware Seller</title>
 </head>
 <header>
-    <div>
-        <a href="index.php"><img src="favicon.png" width="36px" alt="Logo"></a>
+    <div id="logoHeader">
+        <a href="index.php"><img src="Resources/HSLogoAzulSinPadding.png" height="110px" alt="Logo"></a>
     </div>
     <div>
       <nav>
             <ul>
                 <li><a href="index.php">Inicio</a></li>
                 <li class="dropdown">
-                    <a href="#">Ver Tops</a>
+                    <a href="#">Catalogue</a>
                     <div class="dropdown-content">
-                        <a href="#">Videjojuegos</a>
-                        <a href="#">Juegos de mesa</a>
-                        <a href="#">Libros</a>
+                        <a href="#">Pre-built computers</a>
+                        <a href="#">CPU</a>
+                        <a href="#">GPU</a>
+                        <a href="#">Mother Boards</a>
+                        <a href="#">RAM</a>
+                        <a href="#">More Hardware coming soon</a>
                     </div>
                 </li>
                 <li>
@@ -84,7 +87,7 @@
 </header>
 <body>
 <div class="cta-container">
-    <img src="arrows2.png">
+    <img src="Resources/backgroundHS.png">
     <div class="cuerpo">
 
 
