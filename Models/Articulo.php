@@ -45,6 +45,21 @@ class Articulo {
             $this->imagen = $imagen;
     }
 
+    public function GetArticuloByCodigo($codigo){
+        try{
+            $con = contectarBbddPDO();
+            $sqlQuery="SELECT * FROM  `articulos` WHERE codigo=:codigo;";
+            $statement=$con->prepare($sqlQuery);
+            $statement->bindParam(':codigo', $codigo);
+            $statement->execute();
+            $articulo=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
+            return $articulo;
+        } catch(PDOException $e) {
+            $_SESSION['ErrorGetArticulos']= true;
+            return false;
+        }
+    }
+
     public static Function getAllArticulos(){
         try {
             $con = contectarBbddPDO();
@@ -70,6 +85,7 @@ class Articulo {
             $_SESSION['ErrorGetArticulos']= true;
         }
     }
+
     public static function getDESCSortedArticulos() {
         try {
             $con= contectarBbddPDO();
@@ -82,5 +98,57 @@ class Articulo {
             $_SESSION['ErrorGetArticulos']= true;
         }
     }
-}
+
+    public static function AltaArticulo($articulo){
+        include_once("conectarBD.php");
+        include_once("Directorio.php");
+        $_SESSION["nuevoArticulo"]=false;
+
+        //rescatamos de session los datos subidos por ValidarDatos
+        $nombre = $articulo->getNombre();
+        $codigo =  $articulo->getCodigo();
+        $descripcion = $articulo->getDescripcion();
+        $categoria = $articulo->getCategoria();
+        $precio = $articulo->getPrecio();
+        $imagen = $articulo->getImagen();
+
+        try{
+            $con = contectarBbddPDO();
+            $sqlQuery="INSERT INTO `articulos` (`codigo`, `nombre`, `descripcion`, `categoria`, `precio`, `imagen`)
+                                        VALUES (:codigo, :nombre, :descripcion, :categoria, :precio, :imagen);";
+            $statement=$con->prepare($sqlQuery);
+            $statement->bindParam(':codigo', $codigo);
+            $statement->bindParam(':nombre', $nombre);
+            $statement->bindParam(':descripcion', $descripcion);
+            $statement->bindParam(':categoria', $categoria);
+            $statement->bindParam(':precio', $precio);
+            $statement->bindParam(':imagen', $imagen);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
+            $resultado = $statement->fetch();
+
+            if ($resultado !== false && $resultado->rowCount() == 0) {
+                $_SESSION['BadInsertArticulo']= true;
+                if (file_exists($imagen)) {//si no se realiza la operación borramos la imagen (aquí ya se había movido)
+                    unlink($imagen);
+                }
+            } else {
+                $_SESSION['GoodInsertArticulo']= true;
+            }
+            header("Location: ArticulosLISTAR.php");
+            exit;
+        } catch(PDOException $e) {
+            $_SESSION['BadInsertArticulo']= true;
+            header("Location: ArticuloALTA.php");
+            exit;
+        };
+    }
+
+    public function getArrayAtributos($codigoOriginal){
+        include_once("/../Models/Articulo.php");
+            $reflejo = new ReflectionClass('Articulo');
+            $arrayAtributos = $reflejo->getProperties(ReflectionProperty::IS_PRIVATE);//como hemos puesto todos private vamos a meter esos en un array
+            return $arrayAtributos;
+    }
+};
 ?>

@@ -59,8 +59,24 @@ class Cliente {
         $arrayClientes=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
         return $arrayClientes;
     }
+    public static function GetDniByEmail($email){
+        try{
+            $conPDO=contectarBbddPDO();
+            $query=("select * from clientes WHERE email='$email'");
+            $statement= $conPDO->prepare($query);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Cliente');
+            $cliente= $statement->fetch();
+            $dni= $cliente->getDni();
+            return $dni;
+        }catch(PDOException $e) {
+            $_SESSION['OperationFailed'] = true;
+            header("/../Views/Index.php");
+        }
+    }
 
-//////////////////////CUIDADO///////////////
+
+/////// /////// ////////CUIDADO////////////////
 //BuscarCliente construye dinámicamente los nombres de estos métodos (los getters), siempre deben ser getMayus nombrar con camelCase o cambiar BuscarCliente
     public function getNombre() {return $this->nombre;}
     public function getDireccion() {return $this->direccion;}
@@ -71,5 +87,7 @@ class Cliente {
     public function getDni() {return $this->dni;}
     public function getRol() {return $this->rol;}
     public function getPsswrd() {return $this->psswrd;}
+
 }
+
 ?>

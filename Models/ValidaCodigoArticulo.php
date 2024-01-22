@@ -1,4 +1,5 @@
 <?php
+//convertir en función dentro de ARTICULO
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("UserSession.php");
 $usuarioLogeado = UserEstablecido();

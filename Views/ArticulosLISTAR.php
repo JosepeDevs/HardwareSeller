@@ -1,89 +1,66 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Listar artículos</title>
-    <link rel="stylesheet" type="text/css" href="estilosTabla.css">
-</head>
-<body>
-    <h1>Gestionar artículos</h1>
-    <div>
-        <?php
-       if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-       include_once("UserSession.php");
-       $usuarioLogeado = UserEstablecido();
-       if( $usuarioLogeado == false){
-           session_destroy();
-           echo "ArticulosLISTAR dice: no está user en session";
-           header("Location: index.php");
-       }
-
-        include_once("ConectarBD.php");
-        include_once("Cliente.php");
-        include_once("ExtraeDeSession.php");
-        if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
-            echo"<h2><a class='enlace' href='ArticuloALTA.php'><img src='addAr.png' alt='añadir' /> Nuevo artículo (solo admin y editores)</h2></a>";
-        }
-        if(GetRolDeSession() == "admin" ){
-            echo"<h2><a class='enlace' href='TablaClientes.php'><img src='search.png' alt='añadir' /> Ver clientes</h2></a></a>";
-        } else {
-            try{
-                $email = GetEmailDeSession();
-                $conPDO=contectarBbddPDO();
-                $query=("select * from clientes WHERE email='$email'");
-                $statement= $conPDO->prepare($query);
-                $statement->execute();
-                $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Cliente');
-                $cliente= $statement->fetch();
-                $dni= $cliente->getDni();
-                echo"<h2><a class='enlace' href='editarcliente.php?dni=$dni'><img src='search.png' alt='añadir' /> Editar mis datos $email </h2></a></a>";
-            }catch(PDOException $e) {
-                $_SESSION['OperationFailed'] = true;
-                echo"<h2><a class='enlace' href='buscarcliente.php'><img src='search.png' alt='añadir' /> Buscar cliente </h2></a></a>";
-            };
-        }
-
-        ?>
-        <h2><a class='enlace' href='ArticulosLISTAR.php'><img src='refresh.png' alt='refrescar' /> Recargar tabla (super útil, no te lo creerás)</h2></a>
-        <h2><a class='enlace' href='ArticuloBUSCAR.php'><img src="buscaAr.png" alt="recraft icon"/> Buscar artículo</h2></a>
-
-    </div>
-    <table>
-        <tr>
-            <th>Imagen</th>
-            <th>Codigo</th>
-            <th>
-                Nombre <br><br>Ordenar:<br>
-                <a class='ordenar' href='ArticulosLISTAR.php?ordenNombres=ASC'>A->Z</a>
-                <a class='ordenar' href='ArticulosLISTAR.php?ordenNombres=DESC'>Z->A</a>
-            </th>
-            <th>Descripción</th>
-            <th>Categoría</th>
-            <th>Precio</th>
 <?php
-                if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
-                include_once("ExtraeDeSession.php");//get rol
-                include_once("Articulo.php");
-                include_once("ResetSession.php");
-                include_once("ArticulosLISTARMensajes.php");//para los mensajes de error
+if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+include_once("UserSession.php");
+$usuarioLogeado = UserEstablecido();
+if( $usuarioLogeado == false){
+    session_destroy();
+    echo "ArticulosLISTAR dice: no está user en session";
+    header("Location: index.php");
+}
 
+include_once("header.php");
+print("<h1>Gestionar artículos</h1>");
+
+include_once("/../Controllers/ExtraeDeSession.php");
+if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
+    echo"<h2><a class='enlace' href='ArticuloALTA.php'><img src='addAr.png' alt='añadir' /> Nuevo artículo (solo admin y editores)</h2></a>";
+}
+if(GetRolDeSession() == "admin" ){
+    echo"<h2><a class='enlace' href='TablaClientes.php'><img src='search.png' alt='añadir' /> Ver clientes</h2></a></a>";
+} else {
+    include_once("/../Controllers/GetEmailByDniController.php");
+    $email = GetEmailDeSession();
+    $dni=GetDniByEmail($email);
+    if($dni == null ){
+        $_SESSION['OperationFailed'] = true;
+        echo"<h2><a class='enlace' href='BuscarCliente.php'><img src='search.png' alt='añadir' /> Buscar cliente </h2></a></a>";
+    } else{
+        echo"<h2><a class='enlace' href='EditarCliente.php?dni=$dni'><img src='search.png' alt='añadir' /> Editar mis datos de usuario $email </h2></a></a>";
+    }
+}
+?>
+<h2><a class='enlace' href='ArticulosLISTAR.php'><img src='refresh.png' alt='refrescar' /> Recargar tabla (Quita ordenación y reinicia paginación)</h2></a>
+<h2><a class='enlace' href='ArticuloBUSCAR.php'><img src="buscaAr.png" alt="recraft icon"/> Buscar artículo</h2></a>
+<table>
+    <tr>
+        <th>Imagen</th>
+        <th>Codigo</th>
+        <th>
+            Nombre <br><br>Ordenar:<br>
+            <a class='ordenar' href='/../OrdenarArticulosController.php?ordenNombres=ASC'>A->Z</a>
+            <a class='ordenar' href='/../OrdenarArticulosController.php?ordenNombres=DESC'>Z->A</a>
+        </th>
+        <th>Descripción</th>
+        <th>Categoría</th>
+        <th>Precio</th>
+<?php
+                /* //estos includes creo que no hacen falta
+                if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
+                include_once("/../Controllers/ResetSession.php");
+                include_once("/../Controllers/ArticulosLISTARMensajes.php");
+*/
+                include_once("/../Controllers/ExtraeDeSession.php");//get rol
                 if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
                     echo"
-            <th>Editar</th>
-            <th>Borrar</th>";
+        <th>Editar</th>
+        <th>Borrar</th>";
                 }
-    echo"</tr>";
+echo"</tr>";
 
             //PREPARA/OBTEN DATOS DE LOS OBJETOS
             $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
-            if($orden == "ASC"){
-                $arrayArticulos= Articulo::getASCSortedArticulos();
-            } else if($orden == "DESC"){
-                $arrayArticulos= Articulo::getDESCSortedArticulos();
-            }else{
-                $arrayArticulos= Articulo::getAllArticulos();
-            }
-
-
+            include_once("/../Controllers/OrdenarArticulosController.php");
+            $arrayArticulos = getArrayArticulosOrdenados($orden);
 
             //PAGINACIÓN
             $arrayAImpimir=[];
@@ -185,9 +162,8 @@ echo
             };
 //tras los mensajes de error confirmación "reseteamos" session
             ResetSession();
-            print"<br><br>";
 
 ?>
 <h2><a class="cerrar"  href='index.php'>Cerrar sesión</a></h2>
-</body>
-</html>
+<?php
+include_once("footer.php");

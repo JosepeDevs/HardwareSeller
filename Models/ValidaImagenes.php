@@ -1,4 +1,5 @@
 <?php
+//crear metodo en ARTICULO QUE VALIDE TODO
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("UserSession.php");
 $usuarioLogeado = UserEstablecido();

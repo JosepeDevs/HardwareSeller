@@ -1,8 +1,25 @@
 <?php
 //aqui va un metodo y dentro del metodo requeriremos el modelo y guardaremos en una variable lo que llamamos
 function AltaArticulo(){
-    require_once("/../")
+
+    require_once("/../Models/Articulo.php");
+    //rescatamos de session los datos subidos por ValidarDatos
+    $nombre = ( isset($_SESSION["nombre"]) ? $_SESSION["nombre"] : null );
+    $codigo = ( isset($_SESSION["codigo"]) ? $_SESSION["codigo"] : null );
+    $descripcion = ( isset($_SESSION["descripcion"]) ? $_SESSION["descripcion"] : null );
+    $categoria = ( isset($_SESSION["categoria"]) ? $_SESSION["categoria"] : null );
+    $precio = ( isset($_SESSION["precio"]) ? $_SESSION["precio"] : null );
+    $imagen = ( isset($_SESSION["imagen"]) ? $_SESSION["imagen"] : null );
+
+    $articulo=new Articulo($codigo,$nombre,$descripcion, $categoria, $precio, $imagen);
+    Articulo::AltaArticulo($articulo);
 }
+
+
+
+
+
+
 
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("UserSession.php");

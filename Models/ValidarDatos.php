@@ -1,4 +1,5 @@
 <?php
+//meter en función de validar CLIENTE dentro de CLIENTE
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
 //NO PUEDO PROTEGER ESTO PORQUE POR AQUÍ PASA AÑADIR CLIENTE NUEVO QUE REQUIERE QUE NO HAYA LOGIN
