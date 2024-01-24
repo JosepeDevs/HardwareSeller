@@ -150,5 +150,31 @@ class Articulo {
             $arrayAtributos = $reflejo->getProperties(ReflectionProperty::IS_PRIVATE);//como hemos puesto todos private vamos a meter esos en un array
             return $arrayAtributos;
     }
+    public function borradoLogico($codigo){
+    include_once("/../config/conectarBD.php");
+    try {
+        $conPDO=contectarBbddPDO();
+        $query=("UPDATE articulos SET activo=false WHERE codigo=:codigo");
+        $statement= $conPDO->prepare($query);
+        $statement->bindParam(':codigo', $codigo);
+        $operacionConfirmada = $statement->execute();
+        /*
+        $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Articulo');
+        $operacionConfirmada= $statement->fetch();
+        */
+        if($operacionConfirmada){
+            $_SESSION['ExitoBorrandoArticulo'] = false;
+        } else {
+            $_SESSION['ExitoBorrandoArticulo'] = true;
+        }
+        return $operacionConfirmada;
+    } catch(PDOException $e) {
+        $_SESSION['BadOperation'] = true;
+        return false;
+    };
+    }
+
+
+
 };
 ?>
