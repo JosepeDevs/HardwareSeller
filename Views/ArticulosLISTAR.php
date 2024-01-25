@@ -7,10 +7,11 @@ if( $usuarioLogeado == false){
     echo "ArticulosLISTAR dice: no está user en session";
     header("Location: index.php");
 }
-
+//HEADER Y TITULO
 include_once("header.php");
 print("<h1>Gestionar artículos</h1>");
 
+//NAVEGACION
 include_once("/../Controllers/ExtraeDeSession.php");
 if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
     echo"<h2><a class='enlace' href='ArticuloALTA.php'><img src='addAr.png' alt='añadir' /> Nuevo artículo (solo admin y editores)</h2></a>";
@@ -29,105 +30,91 @@ if(GetRolDeSession() == "admin" ){
     }
 }
 ?>
+
+
 <h2><a class='enlace' href='ArticulosLISTAR.php'><img src='refresh.png' alt='refrescar' /> Recargar tabla (Quita ordenación y reinicia paginación)</h2></a>
 <h2><a class='enlace' href='ArticuloBUSCAR.php'><img src="buscaAr.png" alt="recraft icon"/> Buscar artículo</h2></a>
-<table>
-    <tr>
-        <th>Imagen</th>
-        <th>Codigo</th>
-        <th>
-            Nombre <br><br>Ordenar:<br>
-            <a class='ordenar' href='/../OrdenarArticulosController.php?ordenNombres=ASC'>A->Z</a>
-            <a class='ordenar' href='/../OrdenarArticulosController.php?ordenNombres=DESC'>Z->A</a>
-        </th>
-        <th>Descripción</th>
-        <th>Categoría</th>
-        <th>Precio</th>
+
 <?php
-                /* //estos includes creo que no hacen falta
-                if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
-                include_once("/../Controllers/ResetSession.php");
-                include_once("/../Controllers/ArticulosLISTARMensajes.php");
-*/
-                include_once("/../Controllers/ExtraeDeSession.php");//get rol
-                if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
-                    echo"
-        <th>Editar</th>
-        <th>Borrar</th>";
-                }
-echo"</tr>";
-
-            //PREPARA/OBTEN DATOS DE LOS OBJETOS
-            $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
-            include_once("/../Controllers/OrdenarArticulosController.php");
-            $arrayArticulos = getArrayArticulosOrdenados($orden);
-
-            //PAGINACIÓN
-            $arrayAImpimir=[];
-            $filasTotales = count($arrayArticulos);
-            $numPagPredeterminado=3;
-            $filasAMostrar = isset($_GET['numpag'])? $_GET['numpag'] : $numPagPredeterminado;
-            $paginaActual = isset($_GET['pag'])? $_GET['pag'] : 0;
-            if(is_numeric($paginaActual)){
-                $ultimoRegistroMostrado = $paginaActual * $filasAMostrar;
+//TABLA LISTANDO ARTICULOS
+echo"<table>";
+        echo"<tr>
+                <th>Atributos:</th>";
+            //ENCABEZADOS
+            include_once("/../Controllers/ArticulosLISTARController.php");
+            $arrayAtributos = getArrayAtributos();
+            foreach ($arrayAtributos as $atributo) {
+                $nombreAtributo = $atributo->getName();
+                echo "<th>$nombreAtributo</th>";
             }
-
-            if(is_numeric($paginaActual)){
-                $ultimoRegistroMostrado = $paginaActual * $filasAMostrar;
-                $finalRegistro = min($ultimoRegistroMostrado + $filasAMostrar, $filasTotales);
-                for($i=$ultimoRegistroMostrado ; $i < $finalRegistro; $i++){
-                    $codigo = $arrayArticulos[$i]->getCodigo();
-                    $nombre = $arrayArticulos[$i]->getNombre();
-                    $descripcion = $arrayArticulos[$i]->getDescripcion();
-                    $categoria = $arrayArticulos[$i]->getCategoria();
-                    $precio = $arrayArticulos[$i]->getPrecio();
-                    $imagen = $arrayArticulos[$i]->getImagen();
-                    $articulo = new Articulo($codigo, $nombre, $descripcion, $categoria, $precio, $imagen);
-                    $arrayAImpimir[]=$articulo;
-                }
+            include_once("/../Controllers/ExtraeDeSession.php");//get rol
+            if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
+                echo"
+                <th>Editar</th>
+                <th>Borrar</th>";
             }
-            if($paginaActual == "X"){
-                $arrayAImpimir=$arrayArticulos;
-            }
+        echo"</tr>";
 
-            //DATOS de los OBJETOS
-            foreach($arrayAImpimir as $articulo){
-                $imagen = $articulo->getImagen();//esta es la ruta relativa al recurso
-                $codigo = $articulo->getCodigo();
-                $nombre = $articulo->getNombre();
-                $descripcion = $articulo->getDescripcion();
-                $categoria = $articulo->getCategoria();
-                $precio = $articulo->getPrecio();
-                echo "
-        <tr>
-            <td><img class='imagenes' src='{$imagen}' width='200' height='200'/></td>
-            <td>$codigo</td>
-            <td>$nombre</td>
-            <td>$descripcion</td>
-            <td>$categoria</td>
-            <td>$precio</td>";
-                if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"){
-            echo"
-            <td><a class='icon' href='ArticuloEDITAR.php?codigo=$codigo'><img src='editAr.png' alt='Editar artículo' /></td>
-            <td><a class='icon' href='ArticuloBORRAR.php?codigo=$codigo'><img src='minusAr.png' alt='Borrar artículo' /></td>";
+        //PREPARA/OBTEN DATOS DE LOS OBJETOS
+        $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
+        $numPagPredeterminado=3;
+        $filasAMostrar = isset($_GET['numpag'])? $_GET['numpag'] : $numPagPredeterminado;
+        $paginaActual = isset($_GET['pag'])? $_GET['pag'] : 0;
+
+        include_once("/../Controllers/OrdenarArticulosController.php");
+        $arrayArticulos = getArrayArticulosOrdenados($orden);
+
+        //PAGINACIÓN
+        include_once("/../Controllers/ArticulosLISTARController.php");
+        $arrayAImprimir = getArrayPaginado($arrayArticulos, $filasAMostrar, $paginaActual);
+
+        //DATOS de los OBJETOS
+        //llamamos dinámicamente los getters de la clase habiendo guardado previamente el array con los nombresd de los atributos
+        //hay que recorrer todos los atributos en todos los objetos
+        foreach($arrayAImpimir as $articulo){
+            echo("<tr>");
+            foreach ($arrayAtributos as $atributo) {
+                $nombreAtributo = $atributo->getName();//p.e. codigo, nombre...
+                $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
+                $valor = call_user_func([$articulo, $nombreMetodo]);
+                if($nombreAtributo == "codigo"){
+                    $codigo = $articulo->getCodigo();//guardamos el código para que esté disponible fuerra de este bucle
+                } else if($nombreAtributo == "imagen"){
+                    echo"<td><img class='imagenes' src='{$imagen}' width='200' height='200'/></td>";
+                }else{
+                    echo "<td>$valor</td>";
                 }
             }
-echo " </tr>
-    </table>";
+            if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"){
+                echo"
+                <td><a class='icon' href='ArticuloEDITAR.php?codigo=$codigo'><img src='editAr.png' alt='Editar artículo' /></td>
+                <td><a class='icon' href='ArticuloBORRAR.php?codigo=$codigo'><img src='minusAr.png' alt='Borrar artículo' /></td>";
+            }
+        }
+        echo("</tr>
+    </table>");
 
-
-//PAGINACIÓN
+//IMPRIMIR PAGINACIÓN
 echo "<div class='paginacion'>";
+$filasTotales = count($arrayArticulos);
 $paginasTotales = ceil($filasTotales / $filasAMostrar);
+$numPagPredeterminado=3;
 if(is_numeric($paginaActual) && is_numeric($filasAMostrar)){
     //estamos viendo los registros paginados
-    for ($p = 0; $p < $paginasTotales; $p++) {
-        if($p == $paginaActual){
-            echo "<b>$p</b>";
+    for ($p = 1; $p <= $paginasTotales; $p++) {
+        if($p == 1){
+            echo "<p>Anterior</p>"; //en la primera página esto no debe ser un enlace
+        } else{
+            echo "<a href='ArticulosLISTAR.php?pag=".($p-1)."&ordenNombres=$orden&numpag=$filasAMostrar'>Anterior</a>";
+        }
+        if($p == $paginaActual + 1){
+            echo "<b>$p</b>";//la página actual no es un enlace
         }else{
-            echo "<a href='ArticulosLISTAR.php?pag=$p&ordenNombres=$orden&numpag=$filasAMostrar'>$p</a>";
+            echo "<a href='ArticulosLISTAR.php?pag=$p&ordenNombres=$orden&numpag=$filasAMostrar'>$p</a>"; //el resto de páginas (en la que no estamos actualmente serán enlaces)
         }
     }
+    //estamos al final de la lista, además de lo anterior también imprimiremos "siguiente"
+    echo "<a href='ArticulosLISTAR.php?pag=".($paginaActual+1)."&ordenNombres=$orden&numpag=$filasAMostrar'>Siguiente</a>";
 } else{
     //estamos viendo todos los registros en una página
     for ($p = 0; $p < $paginasTotales; $p++) {
@@ -136,6 +123,7 @@ if(is_numeric($paginaActual) && is_numeric($filasAMostrar)){
 }
 $opcionesNumPag=[3,4,5];
 
+//FORMULARIO PIE DE PÁGINA PARA ELEGIR LA PÁGINA A VER, Nº registros/pág
 echo "<a href='ArticulosLISTAR.php?pag=X&ordenNombres=$orden'>Ver todos</a>
 <form action='ArticulosLISTAR.php' method='GET'>
 <label for='numpag'>Registros/página</label><br>
@@ -154,13 +142,15 @@ echo
 </div>";
 
 //SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
+include_once("/../Controllers/ArticulosLISTARMensajes.php");
             $arrayMensajes=getArrayMensajesArticulos();
             if(is_array($arrayMensajes)){
                 foreach($arrayMensajes as $mensaje) {
                     echo "<h3>$mensaje</h3>";
                 }
             };
-//tras los mensajes de error confirmación "reseteamos" session
+//tras printear los mensajes de error/confirmación "reseteamos" session
+include_once("/../Controllers/ResetSession.php");
             ResetSession();
 
 ?>

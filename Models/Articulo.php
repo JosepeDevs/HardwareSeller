@@ -150,6 +150,7 @@ class Articulo {
             $arrayAtributos = $reflejo->getProperties(ReflectionProperty::IS_PRIVATE);//como hemos puesto todos private vamos a meter esos en un array
             return $arrayAtributos;
     }
+
     public function borradoLogico($codigo){
     include_once("/../config/conectarBD.php");
     try {
