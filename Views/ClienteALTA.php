@@ -1,7 +1,9 @@
 <?php
-
 if(session_status() !== PHP_SESSION_ACTIVE) { session_start(); }
 //esta página no requiere validación de rol ni autenticación, nos da igual que quien sea acceda a esta página.
+
+include("header.php");
+
 
 $_SESSION["nuevoCliente"]="true";//ponemos esto a true para que cuando vaya a validar datos lo trate como un insert
 $_SESSION['auth'] = isset($_GET['auth']) ? $_GET['auth'] : 'OK';
@@ -16,9 +18,7 @@ unset($_SESSION['email']);
 unset($_SESSION['psswrd']);
 unset($_SESSION['dni']);
 ?>
-<?php
-include("header.php");
-?>
+
     <h1>Nuevo Cliente</h1>
     <form action="ValidarDatos.php" method="post">
         <table>

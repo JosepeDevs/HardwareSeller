@@ -2,8 +2,7 @@
 if(session_status() !== PHP_SESSION_ACTIVE) { session_start(); }
 
 //NO PROTEGER ESTO, ES DONDE SE SUBE A SESSION USER Y KEY
-include_once("GetClienteBBDD.php");
-include_once("conectarBD.php");
+include_once("/../Models/Cliente.php");
 
 /**
  * Requiere usarse esta función en páginas que reciben un POST de "user" y "key".
@@ -14,7 +13,7 @@ include_once("conectarBD.php");
 if(isset($_POST['user']) &&  isset($_POST['key'])) {
     $usuario = $_POST['user'];
     $psswrdSinHashear = $_POST['key'];
-    $cliente= GetClientePorEmail($usuario);
+    $cliente= Cliente::getClientByEmail($usuario);
     if($cliente == false) {
         $_SESSION['NoExiste']=true;
     }
@@ -23,7 +22,7 @@ if(isset($_POST['user']) &&  isset($_POST['key'])) {
     if( $psswrdExiste) {
         echo "all good";
         $_SESSION['user']=$usuario;
-        $_SESSION['key'] = $psswrdSinHashear;
+        $_SESSION['key'] = $psswrdHasheada;
         print_r($_SESSION);
         echo "<script>history.back();</script>";
         exit;
@@ -36,7 +35,7 @@ if(isset($_POST['user']) &&  isset($_POST['key'])) {
 if( (isset($_SESSION['BadPsswrd']) && $_SESSION['BadPsswrd'] !== true) ||
   ( (isset($_SESSION['NoExiste']) && $_SESSION['NoExiste'] !== true) )){
     $_SESSION['UserNoSession'] = true;
-    header("Location: index.php");
+    header("Location: /../Views/index.php");
     exit;
 }
 

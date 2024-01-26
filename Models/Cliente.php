@@ -2,6 +2,8 @@
 if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
 
 //con conexión inical PDO a la BD no puedo proteger esto sin cargarme el acceso.
+//NO PROTEGER, HACE FALTA DESPROTEGIDO PARA QUE PUEDA USARLO SIN HACER LOG IN
+
 
 include_once("/../config/conectarBD.php");
 
@@ -29,18 +31,21 @@ class Cliente {
         $this->rol = $rol;
     }
 
-
     /**
      * @return  array devuelve array con todos los clientes
      *
      */
     public static function getAllClients() {
-        $con= contectarBbddPDO();
-        $sql="SELECT * FROM clientes";
-        $statement=$con->prepare($sql);
-        $statement->execute();
-        $arrayClientes=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
-        return $arrayClientes;
+        try{
+            $con= contectarBbddPDO();
+            $sql="SELECT * FROM clientes";
+            $statement=$con->prepare($sql);
+            $statement->execute();
+            $arrayClientes=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
+            return $arrayClientes;
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     public static function getClienteByDni($dni) {
@@ -58,20 +63,165 @@ class Cliente {
     }
 
     public static function getASCSortedClients() {
-        $con= contectarBbddPDO();
-        $sql="SELECT * FROM clientes ORDER BY nombre ASC";
-        $statement=$con->prepare($sql);
-        $statement->execute();
-        $arrayClientes=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
-        return $arrayClientes;
+        try{
+            $con= contectarBbddPDO();
+            $sql="SELECT * FROM clientes ORDER BY nombre ASC";
+            $statement=$con->prepare($sql);
+            $statement->execute();
+            $arrayClientes=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
+            return $arrayClientes;
+        } catch (Exception $e) {
+            return false;
+        }
     }
     public static function getDESCSortedClients() {
-        $con= contectarBbddPDO();
-        $sql="SELECT * FROM clientes ORDER BY nombre DESC";
-        $statement=$con->prepare($sql);
-        $statement->execute();
-        $arrayClientes=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
-        return $arrayClientes;
+        try {
+            $con= contectarBbddPDO();
+            $sql="SELECT * FROM clientes ORDER BY nombre DESC";
+            $statement=$con->prepare($sql);
+            $statement->execute();
+            $arrayClientes=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
+            return $arrayClientes;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+/**
+ *      * Ya sube esto a session si algo sale mal
+ * @return bool true si tiene éxito el update, false si falla.
+ */
+    public static function UpdateCliente($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $noPsswrd){
+    //hay que "reiniciar" el valor de "editando"
+        $_SESSION["editandoCliente"]="false";
+        if( $noPsswrd == true){
+            //no se posteo contraseña y no se escribió nada en la psswrd y debemos ejecutar un SQL diferente al update de todos los datos
+            try {
+                $conPDO = contectarBbddPDO();
+                $sqlQuery = " UPDATE `clientes`
+                        SET `nombre` = :nombre, `telefono` = :telefono, `direccion` = :direccion, `provincia` = :provincia, `localidad` = :localidad, `email` = :email,
+                        `dni` = :dni, `rol` = :rol
+                        WHERE `dni` = :dni "
+                ;
+                $statement= $conPDO->prepare($sqlQuery);
+                $statement->bindParam(':nombre', $nombre);
+                $statement->bindParam(':telefono', $telefono);
+                $statement->bindParam(':direccion', $direccion);
+                $statement->bindParam(':provincia', $provincia);
+                $statement->bindParam(':localidad', $localidad);
+                $statement->bindParam(':email', $email);
+                $statement->bindParam(':psswrd', $psswrd);
+
+                $statement->bindParam(':dni', $dni);
+                $statement->bindParam(':rol', $rol);
+
+                $operacionRealizada = $statement->execute();
+
+                if($operacionRealizada == false && $statement->rowCount() <=0) {
+                    $_SESSION['BadUpdateCliente']= true;
+                    return false;
+                }
+
+                return $operacionRealizada;
+            } catch(PDOException $e) {
+                $_SESSION['BadOperation'] = true;
+                return false;
+            };
+
+        } else{
+            //sí que se posteó una contraseña por lo que debemos actualizarla
+
+            try {
+                $conPDO = contectarBbddPDO();
+                $sqlQuery = " UPDATE `clientes`
+                        SET `nombre` = :nombre, `telefono` = :telefono, `direccion` = :direccion, `provincia` = :provincia, `localidad` = :localidad, `email` = :email,
+                        `dni` = :dni, `psswrd` = :psswrd, `rol` = :rol
+                        WHERE `dni` = :dni "
+                ;
+
+                $statement= $conPDO->prepare($sqlQuery);
+                $statement->bindParam(':nombre', $nombre);
+                $statement->bindParam(':telefono', $telefono);
+                $statement->bindParam(':direccion', $direccion);
+                $statement->bindParam(':provincia', $provincia);
+                $statement->bindParam(':localidad', $localidad);
+                $statement->bindParam(':email', $email);
+                $statement->bindParam(':psswrd', $psswrd);
+
+                $statement->bindParam(':dni', $dni);
+                $statement->bindParam(':rol', $rol);
+
+                $operacionRealizada = $statement->execute();
+
+                if($operacionRealizada == false && $statement->rowCount() <=0) {
+                    $_SESSION['BadUpdateCliente']= true;
+                    return false;
+                }
+
+                return $operacionRealizada;
+
+            } catch(PDOException $e) {
+                $_SESSION['BadOperation'] = true;
+                return false;
+            };
+        }
+    }
+
+    /**
+     * Ya sube esto a session si algo sale mal
+     * @return bool true si tiene éxito el update, false si falla.
+     */
+    public static function InsertCliente($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol){
+        $_SESSION["nuevoCliente"]=false;
+        $con = contectarBbddPDO();
+        //rescatamos de session los datos subidos por ValidarDatos
+        //nos llega la psswrd ya hasheada
+        try{
+                $sqlQuery="INSERT INTO `clientes` (`dni`, `nombre`, `direccion`, `localidad`, `provincia`, `telefono`, `email`, `psswrd`)
+                                        VALUES (:dni, :nombre, :direccion, :localidad, :provincia, :telefono, :email, :psswrd);";
+                $statement=$con->prepare($sqlQuery);
+                $statement->bindParam(':dni', $dni);
+                $statement->bindParam(':nombre', $nombre);
+                $statement->bindParam(':direccion', $direccion);
+                $statement->bindParam(':localidad', $localidad);
+                $statement->bindParam(':provincia', $provincia);
+                $statement->bindParam(':telefono', $telefono);
+                $statement->bindParam(':email', $email);
+                $statement->bindParam(':psswrd', $psswrd);
+                $OperacionExitosa = $statement->execute();
+                $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
+                $resultado = $statement->fetch();
+
+                if ($resultado !== false && $resultado->rowCount() == 0) {
+                    $_SESSION['BadInsertCliente']= true;
+                    return false;
+                } else if($resultado !== false && $resultado->rowCount() !== 0){
+                    return true;
+                }
+                return $OperacionExitosa;
+        } catch(PDOException $e) {
+            $_SESSION['BadInsertCliente']= true;
+            return false;
+        };
+    }
+
+    public static function GetClientByEmail($email){
+        try{
+            $conPDO=contectarBbddPDO();
+            $query=("select * from clientes WHERE email=:email");
+            $statement= $conPDO->prepare($query);
+            $statement->bindParam(':email', $email);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Cliente');
+            $cliente= $statement->fetch();
+            if($cliente !== false){
+                return $cliente;
+            } else {
+                return false;
+            }
+        }catch(PDOException $e) {
+            $_SESSION['OperationFailed'] = true;
+            return false;
+        }
     }
     public static function GetDniByEmail($email){
         try{
@@ -82,14 +232,17 @@ class Cliente {
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Cliente');
             $cliente= $statement->fetch();
-            $dni= $cliente->getDni();
-            return $dni;
+            if($cliente !== false){
+                $dni= $cliente->getDni();
+                return $dni;
+            } else {
+                return false;
+            }
         }catch(PDOException $e) {
             $_SESSION['OperationFailed'] = true;
-            header("/../Views/Index.php");
+            return false;
         }
     }
-
     public function borradoLogico($dni){
         include_once("/../config/conectarBD.php");
         try {

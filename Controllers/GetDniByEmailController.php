@@ -11,7 +11,8 @@ if( $usuarioLogeado == false){
 
 function GetDniByEmail($email){
     include_once("/../Models/Cliente.php");
-    $dni = Cliente::GetDnibyEmail($email);
+    $cliente = Cliente::GetDniByEmail($email);
+    $dni = $cliente->getDni();
     return $dni;
 }
 ?>
