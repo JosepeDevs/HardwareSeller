@@ -58,7 +58,7 @@ if(isset($_POST["dni"])) {
         $cliente= $statement->fetch();
         if($cliente == false){
             $_SESSION['DniNotFound'] = true;
-            header("Location:BuscarCliente.php");
+            header("Location:ClienteBUSCAR.php");
         }
         $nombre=$cliente->getNombre();
         $direccion=$cliente->getDireccion();
@@ -82,11 +82,11 @@ if(isset($_POST["dni"])) {
         echo "</table>";
     } catch(PDOException $e) {
         $_SESSION['OperationFailed'] = true;
-        header("Location: BuscarCliente.php");
+        header("Location: ClienteBUSCAR.php");
     };
 }
 
-include_once("BuscarClienteMensajes.php");
+include_once("/../Controllers/BuscarClienteMensajes.php");
 $arrayMensajes=getArrayMensajesBuscar();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
@@ -95,7 +95,6 @@ if(is_array($arrayMensajes)){
 };
 
 ?>
-<br><br><br>
 <h2><a class="cerrar"  href="TablaClientes.php">Volver a la tabla</a></h2>
 <?php
 include("footer.php");

@@ -57,7 +57,7 @@ include("header.php");
     </form>
 <?php
 
-include_once("ClienteNuevoMensajes.php");
+include_once("/../Controllers/ClienteALTAMensajes.php");
 $arrayMensajes=getArrayMensajesNuevo();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {

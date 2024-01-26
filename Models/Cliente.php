@@ -3,7 +3,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
 
 //con conexión inical PDO a la BD no puedo proteger esto sin cargarme el acceso.
 
-include_once("conectarBD.php");
+include_once("/../config/conectarBD.php");
 
 class Cliente {
 
@@ -43,6 +43,20 @@ class Cliente {
         return $arrayClientes;
     }
 
+    public static function getClienteByDni($dni) {
+        $con= contectarBbddPDO();
+        $sql="SELECT * FROM clientes WHERE dni=:dni";
+        $statement=$con->prepare($sql);
+        $statement->bindParam(':dni', $dni);
+        $statement->execute();
+        $cliente=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
+        if(empty($cliente)){
+            return false;
+        }else{
+            return $cliente;
+        }
+    }
+
     public static function getASCSortedClients() {
         $con= contectarBbddPDO();
         $sql="SELECT * FROM clientes ORDER BY nombre ASC";
@@ -62,8 +76,9 @@ class Cliente {
     public static function GetDniByEmail($email){
         try{
             $conPDO=contectarBbddPDO();
-            $query=("select * from clientes WHERE email='$email'");
+            $query=("select * from clientes WHERE email=:email");
             $statement= $conPDO->prepare($query);
+            $statement->bindParam(':email', $email);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Cliente');
             $cliente= $statement->fetch();
@@ -75,9 +90,33 @@ class Cliente {
         }
     }
 
+    public function borradoLogico($dni){
+        include_once("/../config/conectarBD.php");
+        try {
+            $conPDO=contectarBbddPDO();
+            $query=("UPDATE clientes SET activo=false WHERE dni=:dni");
+            $statement= $conPDO->prepare($query);
+            $statement->bindParam(':dni', $dni);
+            $operacionConfirmada = $statement->execute();
+            /*
+            $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Articulo');
+            $operacionConfirmada= $statement->fetch();
+            */
+            if($operacionConfirmada){
+                $_SESSION['ExitoBorrandoCliente'] = false;
+            } else {
+                $_SESSION['ExitoBorrandoCliente'] = true;
+            }
+            return $operacionConfirmada;
+        } catch(PDOException $e) {
+            $_SESSION['BadOperation'] = true;
+            return false;
+        };
+    }
+
 
 /////// /////// ////////CUIDADO////////////////
-//BuscarCliente construye dinámicamente los nombres de estos métodos (los getters), siempre deben ser getMayus nombrar con camelCase o cambiar BuscarCliente
+//Partes del código construyen dinámicamente los nombres de estos métodos (los getters), siempre deben ser getMayus nombrar con camelCase o cambiar BuscarCliente
     public function getNombre() {return $this->nombre;}
     public function getDireccion() {return $this->direccion;}
     public function getLocalidad() {return $this->localidad;}

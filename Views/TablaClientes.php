@@ -94,8 +94,8 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
             }
             if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"){
                 echo"
-                <td><a class='icon' href='editarcliente.php?dni=$dni&rol4consulta=administradormaestro'><img src='edit.png' alt='Editar cliente' /></td>
-                <td><a class='icon' href='borrarcliente.php?dni=$dni'><img src='delete.png' alt='Borrar cliente' /></td>";
+                <td><a class='icon' href='ClienteEDITAR.php?dni=$dni&rol4consulta=administradormaestro'><img src='edit.png' alt='Editar cliente' /></td>
+                <td><a class='icon' href='ClienteBORRAR.php?dni=$dni'><img src='delete.png' alt='Borrar cliente' /></td>";
             }
         }
         echo("</tr>

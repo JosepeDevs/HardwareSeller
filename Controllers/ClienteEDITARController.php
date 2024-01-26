@@ -4,18 +4,18 @@ include_once("UserSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ArticuloEDITAR dice: no está user en session";
-    header("Location: index.php");
+    echo "ClienteEDITARController dice: no está user en session";
+    header("Location: /../Views/index.php");
 }
 
-function getArticuloByCodigo($codigo){
-    include_once("/../Models/Articulo.php");
-    $articulo = getArticuloByCodigo($codigo);
-    return $articulo;
+function getClienteByDni($dni){
+    include_once("/../Models/Cliente.php");
+    $cliente = Cliente::getClienteByDni($dni);
+    return $cliente;
 }
 
 function getArrayAtributos(){
-    include_once("/../Models/Articulo.php");
+    include_once("/../Models/Cliente.php");
     $arrayArticulos = getArrayAtributos();
     return $arrayArticulos;
 }
