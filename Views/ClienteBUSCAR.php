@@ -31,7 +31,7 @@ if( $usuarioLogeado == false){
     //header("Location: index.php");
 }
 
-include_once("../Controllers/ClienteBUSCAR.php");
+include_once("../Controllers/ClienteBUSCARController.php");
 $arrayAtributos = getArrayAtributos();
 
 if(isset($_POST["dni"])) {

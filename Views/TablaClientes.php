@@ -1,5 +1,7 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
+
+include_once("../Controllers/UserSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
@@ -8,7 +10,6 @@ if( $usuarioLogeado == false){
 }
 
 include("header.php");
-include_once("../Controllers/UserSession.php");
 
 
 include_once("../Controllers/CheckRol.php");
@@ -69,7 +70,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
             }
         }
 
-        //include_once("/../Controllers/TablaClientesController.php");
+        //include_once("../Controllers/TablaClientesController.php");
         $arrayAImprimir = getArrayPaginado($arrayClientes,$filasAMostrar,$paginaActual);
 
         //IMPRIMIR DATOS OBJETOS

@@ -19,7 +19,7 @@ function getArrayClientesOrdenados($orden){
     }
 }
 function getArrayAtributos(){
-    include_once("/../Models/Cliente.php");
+    include_once("../Models/Cliente.php");
     $arrayArticulos = getArrayAtributos();
     return $arrayArticulos;
 }

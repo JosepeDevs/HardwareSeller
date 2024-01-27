@@ -2,7 +2,7 @@
 if(session_status() !== PHP_SESSION_ACTIVE) { session_start(); }
 
 //NO PROTEGER ESTO, ES DONDE SE SUBE A SESSION USER Y KEY
-include_once("/../Models/Cliente.php");
+include_once("../Models/Cliente.php");
 
 /**
  * Requiere usarse esta función en páginas que reciben un POST de "user" y "key".
@@ -11,13 +11,16 @@ include_once("/../Models/Cliente.php");
  */
 
 if(isset($_POST['user']) &&  isset($_POST['key'])) {
+    print_r($_SESSION)."hola";
     $usuario = $_POST['user'];
     $psswrdSinHashear = $_POST['key'];
     $cliente= Cliente::getClientByEmail($usuario);
     if($cliente == false) {
         $_SESSION['NoExiste']=true;
+        echo"<p>cliente no existe</p>";
     }
     $psswrdHasheada =$cliente->getPsswrd();
+    echo"$psswrdHasheada";
     $psswrdExiste = password_verify($psswrdSinHashear, $psswrdHasheada);
     if( $psswrdExiste) {
         echo "all good";
@@ -35,7 +38,7 @@ if(isset($_POST['user']) &&  isset($_POST['key'])) {
 if( (isset($_SESSION['BadPsswrd']) && $_SESSION['BadPsswrd'] !== true) ||
   ( (isset($_SESSION['NoExiste']) && $_SESSION['NoExiste'] !== true) )){
     $_SESSION['UserNoSession'] = true;
-    header("Location: /../Views/index.php");
+    header("Location: ../index.php");
     exit;
 }
 

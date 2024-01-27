@@ -10,13 +10,13 @@
 function contectarBbddPDO(){
 
     if (!defined('USER_DB')) {
-        define("USER_DB", "root");//esto para probar que funciona, nunca usar root
+        define("USER_DB", "if0_35787488");//esto para probar que funciona, nunca usar root
     }
     if (!defined('PASSWORD')) {
-        define("PASSWORD", "");
+        define("PASSWORD", "popolan92");
     }
     if (!defined('DBTABLA')) {
-        define("DBTABLA", "mysql:host=localhost;dbname=clientes_db");//DSN significa $DataSourceName
+        define("DBTABLA", "mysql:host=sql107.infinityfree.com;dbname=if0_35787488_clientes_db");//DSN significa $DataSourceName
     }
 
     try {
