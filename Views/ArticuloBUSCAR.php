@@ -4,7 +4,7 @@ include_once("header.php");
     <h1>
         Buscar articulo por código
     </h1>
-<form action="/../Controllers/ArticuloBUSCAR.php" method="POST">
+<form action="../Controllers/ArticuloBUSCAR.php" method="POST">
     <table>
         <tr>
             <th><label for="codigo">Código:</label></th>
@@ -24,19 +24,19 @@ include_once("header.php");
 
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("UserSession.php");
+include_once("../Controllers/UserSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "ArticuloBUSCAR dice: no está user en session";
-    header("Location: index.php");
+    header("Location: ../index.php");
 }
-include_once("/../Controllers/ArticuloBUSCAR.php");
-include_once("/../Controllers/CheckRol.php");
-include_once("/../Controllers/ExtraeDeSession.php");
-include_once("/../Controllers/ValidaCodigoArticulo.php");
-include_once("/../Controller/ArticuloBUSCARMensajes.php");
-include_once("/../GetDniByEMailController.php");
+include_once("../Controllers/ArticuloBUSCAR.php");
+include_once("../Controllers/CheckRol.php");
+include_once("../Controllers/ExtraeDeSession.php");
+include_once("../Controllers/ValidaCodigoArticulo.php");
+include_once("../Controller/ArticuloBUSCARMensajes.php");
+include_once("../GetDniByEMailController.php");
 
 if(isset($_POST["codigo"])) {
     $codigo=$_POST["codigo"];
@@ -89,7 +89,7 @@ if($rol == "admin" || $rol == "editor"){
 } else{
     $email = GetEmailDeSession();
     $dni = GetDniByEmail($email);
-    echo"<h2><a class='enlace' href='editarcliente.php?dni=$dni'><img src='edit.png' alt='editar datos user' /> Editar mis datos $email </h2></a></a>";
+    echo"<h2><a class='enlace' href='ClienteEDITAR.php?dni=$dni'><img src='edit.png' alt='editar datos user' /> Editar mis datos $email </h2></a></a>";
 }
 include_once("footer.php");
 ?>

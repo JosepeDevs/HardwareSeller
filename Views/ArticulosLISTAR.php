@@ -1,6 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("UserSession.php");
+include_once("../Controllers/UserSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
@@ -12,21 +12,21 @@ include_once("header.php");
 print("<h1>Gestionar artículos</h1>");
 
 //NAVEGACION
-include_once("/../Controllers/ExtraeDeSession.php");
+include_once("../Controllers/ExtraeDeSession.php");
 if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
     echo"<h2><a class='enlace' href='ArticuloALTA.php'><img src='addAr.png' alt='añadir' /> Nuevo artículo (solo admin y editores)</h2></a>";
 }
 if(GetRolDeSession() == "admin" ){
     echo"<h2><a class='enlace' href='TablaClientes.php'><img src='search.png' alt='añadir' /> Ver clientes</h2></a></a>";
 } else {
-    include_once("/../Controllers/GetEmailByDniController.php");
+    include_once("../Controllers/GetEmailByDniController.php");
     $email = GetEmailDeSession();
     $dni=GetDniByEmail($email);
     if($dni == null ){
         $_SESSION['OperationFailed'] = true;
-        echo"<h2><a class='enlace' href='BuscarCliente.php'><img src='search.png' alt='añadir' /> Buscar cliente </h2></a></a>";
+        echo"<h2><a class='enlace' href='ClienteBUSCAR.php'><img src='search.png' alt='añadir' /> Buscar cliente </h2></a></a>";
     } else{
-        echo"<h2><a class='enlace' href='EditarCliente.php?dni=$dni'><img src='search.png' alt='añadir' /> Editar mis datos de usuario $email </h2></a></a>";
+        echo"<h2><a class='enlace' href='ClienteEDITAR.php?dni=$dni'><img src='search.png' alt='añadir' /> Editar mis datos de usuario $email </h2></a></a>";
     }
 }
 ?>
@@ -55,7 +55,7 @@ echo"<table>";
             }
         echo"</tr>";
 
-        //PREPARA/OBTEN DATOS DE LOS OBJETOS
+        //PREPARA PAGINACIÓN Y ARRAY DE OBJETOS
         $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
         $numPagPredeterminado=3;
         $filasAMostrar = isset($_GET['numpag'])? $_GET['numpag'] : $numPagPredeterminado;
@@ -63,12 +63,10 @@ echo"<table>";
 
         include_once("/../Controllers/OrdenarArticulosController.php");
         $arrayArticulos = getArrayArticulosOrdenados($orden);
-
-        //PAGINACIÓN
         include_once("/../Controllers/ArticulosLISTARController.php");
         $arrayAImprimir = getArrayPaginado($arrayArticulos, $filasAMostrar, $paginaActual);
 
-        //DATOS de los OBJETOS
+        //DATOS DE LOS OBJETOS
         //llamamos dinámicamente los getters de la clase habiendo guardado previamente el array con los nombresd de los atributos
         //hay que recorrer todos los atributos en todos los objetos
         foreach($arrayAImpimir as $articulo){
@@ -142,7 +140,7 @@ echo
 </div>";
 
 //SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
-include_once("/../Controllers/ArticulosLISTARMensajes.php");
+include_once("../Controllers/ArticulosLISTARMensajes.php");
             $arrayMensajes=getArrayMensajesArticulos();
             if(is_array($arrayMensajes)){
                 foreach($arrayMensajes as $mensaje) {
@@ -150,10 +148,10 @@ include_once("/../Controllers/ArticulosLISTARMensajes.php");
                 }
             };
 //tras printear los mensajes de error/confirmación "reseteamos" session
-include_once("/../Controllers/ResetSession.php");
+include_once("../Controllers/ResetSession.php");
             ResetSession();
 
 ?>
-<h2><a class="cerrar"  href='index.php'>Cerrar sesión</a></h2>
+<h2><a class="cerrar"  href='/index.php'>Cerrar sesión</a></h2>
 <?php
 include_once("footer.php");

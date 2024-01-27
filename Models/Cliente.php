@@ -5,7 +5,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
 //NO PROTEGER, HACE FALTA DESPROTEGIDO PARA QUE PUEDA USARLO SIN HACER LOG IN
 
 
-include_once("/../config/conectarBD.php");
+include_once("../config/conectarBD.php");
 
 class Cliente {
 
@@ -32,7 +32,7 @@ class Cliente {
     }
 
     /**
-     * @return  array devuelve array con todos los clientes
+     * @return  array|bool devuelve array con todos los clientes
      *
      */
     public static function getAllClients() {
@@ -48,14 +48,18 @@ class Cliente {
         }
     }
 
+    /**
+     * @return Cliente|bool devuelve cliente si lo encuentra por dni, si no, devuelve false.
+     */
     public static function getClienteByDni($dni) {
         $con= contectarBbddPDO();
         $sql="SELECT * FROM clientes WHERE dni=:dni";
         $statement=$con->prepare($sql);
         $statement->bindParam(':dni', $dni);
         $statement->execute();
-        $cliente=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
+        $cliente=$statement->fetch(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
         if(empty($cliente)){
+            $_SESSION['DniNotFound'] = true;
             return false;
         }else{
             return $cliente;
@@ -267,6 +271,50 @@ class Cliente {
         };
     }
 
+    /**
+     * @return bool true si existe, false si no se encontró el cliente por dni y email
+     */
+public static function checkClientByEmailAndDni($email, $dni){
+    try{
+        $conPDO = contectarBbddPDO();
+        $query = $conPDO->prepare("SELECT * FROM clientes WHERE email = :email AND dni = :dni");
+        $query->bindParam(':email', $email);
+        $query->bindParam(':dni', $dni);
+        $query->execute();
+        $query->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Cliente');
+        $operacionExitosa = $query->fetch();
+        if($operacionExitosa == false){
+            return false;
+        } else {
+            return true;
+        }
+    } catch(Exception $e){
+        return false;
+    }
+}
+
+/**
+ * @return bool true si actualizó correctamente, false si falló algo
+ */
+    public static function updatePasswrdUsingDni($dni,$newpsswrd){
+        try {
+            $conPDO = contectarBbddPDO();
+            $query = $conPDO->prepare("UPDATE clientes SET psswrd = :newpsswrd WHERE dni = :dni");
+            $query->bindParam(':dni', $dni);
+            $query->bindParam(':newpsswrd', $newpsswrd);
+            $query->execute();
+            $query->setFetchMode(PDO::FETCH_CLASS, 'Cliente');
+
+            if ( ( $query->rowCount() ) > 0) {
+                return true;
+            } else {
+                $_SESSION['PsswrdSeQuedaIgual'] = true;
+                return false;
+            }
+        } catch(Exception $e){
+            return false;
+        }
+    }
 
 /////// /////// ////////CUIDADO////////////////
 //Partes del código construyen dinámicamente los nombres de estos métodos (los getters), siempre deben ser getMayus nombrar con camelCase o cambiar BuscarCliente

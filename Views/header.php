@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="estilosTabla.css">
-  <link rel="icon" type="image/png" href="Resources/HSLogoFondoBlancoYGrisSinTexto.png">
+  <link rel="stylesheet" type="text/css" href="/Views/estilosTabla.css">
+  <link rel="icon" type="image/png" href="../Resources/HSLogoFondoBlancoYGrisSinTexto.png">
   <title>Hardware Seller</title>
 </head>
 <header>
     <div id="logoHeader">
-        <a href="index.php"><img src="Resources/HSLogoAzulSinPadding.png" height="110px" alt="Logo"></a>
+        <a href="/index.php"><img src="/Resources/HSLogoAzulSinPadding.png" height="110px" alt="Logo"></a>
     </div>
     <div>
       <nav>
@@ -31,14 +31,14 @@
                             if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
                             if( isset($_GET['destroy']) && $_GET['destroy'] == "Y" ){
                                 if (session_status() == PHP_SESSION_ACTIVE) {session_unset();}
-                                header("index.php?destroy=false");
+                                header("../index.php?destroy=false");
                             }
                             if( ! isset($_SESSION['user'])){
                                 print('
                     <div class="tooltip-container">
                         <a class="tooltip-trigger">Ingresar/Registrarse</a>
                         <div class="tooltip-content">
-                                <form action="conexion.php" method="post">
+                                <form action="/Controllers/conexion.php" method="post">
                                     <table class="tablaLogin">
                                     <caption><h2>Ingresar:</h2></caption>
                                     <tr>
@@ -56,8 +56,8 @@
                                     </div>
                                 </form>
                                 <div id="sinAcceso">
-                                    <p><a href="clientenuevo.php?auth='."temp".'">Registrar nuevo usuario</a></p>
-                                    <p><a href="RecuperarPsswrd.php">Recuperar contraseña</a></p>
+                                    <p><a href="/Views/ClienteALTA.php?auth='."temp".'">Registrar nuevo usuario</a></p>
+                                    <p><a href="/Views/RecuperarPsswrd.php">Recuperar contraseña</a></p>
                                 </div>
                         </div>
                     </div>');
@@ -69,8 +69,8 @@
                                 <ul>
                                     <li><a href="#">Mis datos</a></li>
                                     <li><a href="#">Mis pedidos</a></li>
-                                    <li><a href="router.php">Tabla Admin</a></li>
-                                    <li><a href="DestructorSession.php">Cerrar sesión</a></li>
+                                    <li><a href="/Controllers/router.php">Tabla Admin</a></li>
+                                    <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>
                             </div>
                         </div>');
                         }
@@ -87,7 +87,7 @@
 </header>
 <body>
 <div class="cta-container">
-    <img src="Resources/backgroundHS.png">
+    <img src="/Resources/backgroundHS.png">
     <div class="cuerpo">
 
 

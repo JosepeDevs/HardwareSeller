@@ -3,34 +3,27 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "TablaClientes dice:  no está user en session";
-    header("Location: index.php");
+    echo "TablaClientes dice: no está user en session";
+    header("Location: ../index.php");
 }
 
 include("header.php");
-include_once("/../Controllers/UserSession.php");
+include_once("../Controllers/UserSession.php");
 
 
-include_once("/../Controllers/CheckRol.php");
+include_once("../Controllers/CheckRol.php");
 if( AuthYRolAdmin() == false){
     session_destroy();
     echo " el rol no era adecuado";
-    header("Location: index.php");
+    header("Location: ../index.php");
 }
-
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Listar clientes</title>
-    <link rel="stylesheet" type="text/css" href="estilosTabla.css">
-</head>
-<body>
+
     <h1>Gestionar clientes</h1>
         <div id="EnlacesArriba">
-            <h2><a class='enlace' href='clientenuevo.php'><img class='iconArribaTabla' src='add.png' alt='add user' /> Nuevo cliente</h2></a>
-            <h2><a class='enlace' href='TablaClientes.php'><img class='iconArribaTabla' src='refresh.png' alt='refresh' /> Recargar tabla (super útil, no te lo creerás)</h2></a>
-            <h2><a class='enlace' href='BuscarCliente.php'><img class='iconArribaTabla' src="search.png" alt="search user"/> Buscar cliente</h2></a>
+            <h2><a class='enlace' href='ClienteALTA.php'><img class='iconArribaTabla' src='add.png' alt='add user' /> Nuevo cliente</h2></a>
+            <h2><a class='enlace' href='TablaClientes.php'><img class='iconArribaTabla' src='refresh.png' alt='refresh' /> Recargar tabla (resetea filtros y paginación)</h2></a>
+            <h2><a class='enlace' href='ClienteBUSCAR.php'><img class='iconArribaTabla' src="search.png" alt="search user"/> Buscar cliente</h2></a>
             <h2><a class='enlace' href='ArticulosLISTAR.php'><img class='iconArribaTabla' src="buscaAr.png" alt="view products"/> Ver listado de productos</h2></a>
         </div>
 
@@ -42,7 +35,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
     echo"<table>
     <tr>";
     //ENCABEZADOS TABLA
-        include_once("/../Controllers/TablaClientesController.php");
+        include_once("../Controllers/TablaClientesController.php");
         $arrayAtributos = getArrayAtributos();
         foreach ($arrayAtributos as $atributo) {
             $nombreAtributo = $atributo->getName();
@@ -157,7 +150,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
         </div>";
 
         //SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
-        include_once("/.../Controllers/tablaClientesMensajes.php");//para ver mensajes
+        include_once("../Controllers/tablaClientesMensajes.php");//para ver mensajes
 
         $arrayMensajes=getArrayMensajesTabla();
         if(is_array($arrayMensajes)){
@@ -167,7 +160,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
         };
 
         //tras printear los mensajes de error/confirmación "reseteamos" session
-        include_once("/../Controllers/ResetSession.php");//para el reset de session
+        include_once("../Controllers/ResetSession.php");//para el reset de session
             ResetSession();
 include("footer.php");
             ?>

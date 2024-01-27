@@ -20,7 +20,7 @@ unset($_SESSION['dni']);
 ?>
 
     <h1>Nuevo Cliente</h1>
-    <form action="ValidarDatos.php" method="post">
+    <form action="../Controllers/ValidarDatosCliente.php" method="post">
         <table>
             <tr>
                 <th><label for="nombre">Nombre:</label></th>
@@ -46,6 +46,7 @@ unset($_SESSION['dni']);
                         <select id='rol' name='rol' required>
                             <option value='user'>User</option>
                             <option value='editor'>Editor</option>
+                            <option value='admin'>Administrador</option>
                         </select>
                     </td>
                 ";} ?>
@@ -57,7 +58,7 @@ unset($_SESSION['dni']);
     </form>
 <?php
 
-include_once("/../Controllers/ClienteALTAMensajes.php");
+include_once("../Controllers/ClienteALTAMensajes.php");
 $arrayMensajes=getArrayMensajesNuevo();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
@@ -65,10 +66,14 @@ if(is_array($arrayMensajes)){
     }
 };
 
+
+//todo: poner que si intentan registrar un usuario, si este está desactivado que dé la opción de activvarlo en lugar de darlo de alta de nuevo.
+
+
 if($rol == "admin"){
     echo"<button id='cerrar'><a href='TablaClientes.php'>Cancelar / volver a la tabla</a></button>";
 }else{
-    echo"<button id='cerrar'><a href='index.php'>Volver al inicio</a></button>";
+    echo"<button id='cerrar'><a href='/index.php'>Volver al inicio</a></button>";
 }
 
 include("footer.php");

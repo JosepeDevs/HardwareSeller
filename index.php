@@ -1,6 +1,6 @@
   <?php
 if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include("header.php");
+include("/Views/header.php");
 /*
 include_once("IndexMensajes.php");
   $arrayMensajes=getArrayMensajesIndex();
@@ -42,5 +42,5 @@ include_once("IndexMensajes.php");
     </div>
   </section>
 <?php
-include("footer.php");
+include("/Views/footer.php");
 ?>

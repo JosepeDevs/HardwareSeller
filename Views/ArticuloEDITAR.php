@@ -1,6 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("UserSession.php");
+include_once("../Controllers/UserSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
@@ -11,6 +11,7 @@ if( $usuarioLogeado == false){
 
 include_once("header.php");
 print("<h1>Modificar artículo</h1>");
+
 include_once("/../Controllers/ArticuloEDITARController.php");
 $codigoOriginal=$_GET["codigo"];    //el codigo ha llegado por la url
 $_SESSION["codigo"] = $codigoOriginal;
@@ -42,7 +43,7 @@ echo"<table>";
                             echo "<td>$valor</td>";
                     }
                 //FORMULARIO para EDITAR PRERELLENADO para que se mantengan los datos si no cambia nada
-                    echo '<form action="/../Controllers/ArticuloVALIDAR.php" method="POST" enctype="multipart/form-data">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
+                    echo '<form action="/Controllers/ArticuloVALIDAR.php" method="POST" enctype="multipart/form-data">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
                     echo"<tr><th>Nuevos datos</th>";
                     foreach ($arrayAtributos as $atributo) {
                         $getter = 'get' . ucfirst($atributo->getName());
@@ -62,7 +63,7 @@ echo"<table>";
     echo "<div class='finForm'><h2><input type='submit' value='Guardar'></h2>";
     echo "</form>";
 
-include_once("/../Controllers/ArticuloEDITARMensajes.php");
+include_once("../Controllers/ArticuloEDITARMensajes.php");
 $arrayMensajes=getArrayMensajesArticulos();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
@@ -71,7 +72,7 @@ if(is_array($arrayMensajes)){
 };
 
 echo("<h2><a class='cerrar' href='ArticulosLISTAR.php?editandoArticulo=false'>Volver al listado de productos</a></h2>");
-echo("<h2><a class='cerrar' href='index.php?editandoArticulo=false'> cerrar sesión</a></h2>");
+echo("<h2><a class='cerrar' href='/index.php?editandoArticulo=false'> cerrar sesión</a></h2>");
 echo("<h2><a class='cerrar' a href='ArticuloBORRAR.php?codigo=$codigoOriginal'>BORRAR ARTÍCULO</a></h2>");
 include_once("footer.php");
 ?>

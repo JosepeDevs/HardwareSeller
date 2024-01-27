@@ -4,6 +4,9 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
 //NO PUEDO PROTEGER ESTO PORQUE POR AQUÍ PASA AÑADIR CLIENTE NUEVO QUE REQUIERE QUE NO HAYA LOGIN
 
+
+
+//este archivo valida los datos de los clientes y según qué estaban haciendo los redirige si todo estaba bien
 include_once("/../Models/Cliente.php");
 
 $nombre = isset($_POST["nombre"]) ? $_POST["nombre"] : null;
@@ -124,10 +127,10 @@ $arrayDatosCliente  = array($dni, $nombre, $direccion, $localidad, $provincia, $
         include_once("CheckRol.php");
         $rolAdmin = AuthYRolAdmin();
         if($rolAdmin == true) {
-            header("Location: /../Views/TablaClientes.php");
+            header("Location: ../Views/TablaClientes.php");
             exit;
         } else {
-            header("Location: /../Views/ClienteEDITAR.php?dni=$dni");
+            header("Location: ../Views/ClienteEDITAR.php?dni=$dni");
             exit;
         }
 
@@ -143,10 +146,10 @@ $arrayDatosCliente  = array($dni, $nombre, $direccion, $localidad, $provincia, $
         include_once("CheckRol.php");
         $rolAdmin = AuthYRolAdmin();
         if($rolAdmin == true) {
-            header("Location: /../Views/TablaClientes.php");
+            header("Location: ../Views/TablaClientes.php");
             exit;
         } else {
-            header("Location: /../Views/ClienteALTA.php?dni=$dni");
+            header("Location: ../Views/ClienteALTA.php?dni=$dni");
             exit;
         }
     };

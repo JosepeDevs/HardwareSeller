@@ -25,6 +25,10 @@ Function getArrayMensajesBuscar(){
         $_SESSION['DniNotFound']=false;
         $mensajes[] = "No se encontró el DNI consultado.";
     }
+    if(isset($_SESSION['ClientNotFound']) && $_SESSION['ClientNotFound'] == true){
+        $_SESSION['ClientNotFound']=false;
+        $mensajes[] = "No se encontró el cliente consultado.";
+    }
 
     if( count($mensajes) == 0){
         return false;//si no encontró ningún mensaje a mostrar devolverá false;

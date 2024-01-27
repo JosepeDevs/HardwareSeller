@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Alta de artículo</title>
-    <link rel="stylesheet" type="text/css" href="estilosTabla.css">
-</head>
-<body>
-    <h1>Alta de artículo</h1>
+
 <?php
 //require controller y nada más, dependencia de fuera hacia dentro
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
@@ -16,6 +9,11 @@ if( $usuarioLogeado == false){
     echo "ArticulosLISTARMensajes dice: no está user en session";
     header("Location: index.php");
 }
+
+include("header.php");
+echo"<h1>Alta de artículo</h1>";
+
+
 $_SESSION["nuevoArticulo"]="true";//ponemos esto a true para que cuando vaya a validar datos lo trate como un insert
 $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
 ?>
@@ -46,7 +44,7 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
                 <td colspan=6>
                     Código debe estar formado por 3 letras (OBLIGATORIO) y algún número inferior a 99999.<br>
                     Las letras pueden ser minus o mayus (el sistema las pasa a MAYUS).<br>
-                    Puede escribir el código como "cat1", "inf253", el sistema añadirá los 0s a la izqueirda necesarios hasta que hallan 5 números.
+                    Puede escribir el código como "cat1", "inf253", el sistema añadirá los 0s a la izquierda necesarios hasta que hallan 5 números.
                 </td>
             </tr>
         </table>
@@ -67,6 +65,6 @@ if(is_array($arrayMensajes)){
 };
 
 echo"<h2><a class='cerrar'  href='ArticulosLISTAR.php'>Volver a la tabla de artículos.</a></h2>";
+
+include("footer.php");
 ?>
-</body>
-</html>

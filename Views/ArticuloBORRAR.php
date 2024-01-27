@@ -1,11 +1,11 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("UserSession.php");
+include_once("../Controllers/UserSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "ArticulosBORRARMensajes dice: no está user en session";
-    header("Location: index.php");
+    header("Location: ../index.php");
 }
 
 include_once("header.php");
@@ -17,7 +17,7 @@ if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  'false' ){
     header("Location: ArticulosLISTAR.php");
     exit;
 }else if(isset($_GET['codigo']) && isset($_GET['confirmacion']) && $_GET['confirmacion']== 'true') {
-    include_once("/../Controllers/ArticuloBORRARController.php");
+    include_once("../Controllers/ArticuloBORRARController.php");
     $operacionConfirmada = borradoLogico($codigo);
     header("Location: ArticulosLISTAR.php");
     exit;

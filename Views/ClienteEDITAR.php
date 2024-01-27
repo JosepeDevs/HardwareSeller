@@ -1,17 +1,17 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("UserSession.php");
+include_once("../Controllers/UserSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "ClienteEDITAR dice: no está user en session";
-    header("Location: index.php");
+    header("Location: ../index.php");
 }
 
 include_once("header.php");
 
 print("<h1>Modificar cliente</h1>");
-include_once("/../Controllers/ClienteEDITARController.php");
+include_once("../Controllers/ClienteEDITARController.php");
 $dniOriginal=$_GET["dni"];    //el DNI ha llegado por la url
 $_SESSION["dni"] = $dniOriginal;
 $arrayAtributos = getArrayAtributos();
@@ -20,7 +20,7 @@ echo("<h2>Bienvenido</h2>");
 //ponemos "editando" en true para que cuando lo mandemos a ValidarDatos lo trate como update
 $_SESSION["editandoCliente"]="true";
 
-include_once("/../Controllers/CheckRol.php");
+include_once("../Controllers/CheckRol.php");
 $rol4consulta = isset($_GET['rol4consulta'])? $_GET['rol4consulta'] : null;
 echo"<table>";
         echo"<tr><th>Atributos:</th>";
@@ -63,7 +63,7 @@ echo"<table>";
 
 
                 //FORMULARIO para EDITAR PRERELLENADO para que se mantengan los datos si no cambia nada
-                echo '<form action="/../Controllers/ArticuloVALIDAR.php" method="POST" enctype="multipart/form-data">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
+                echo '<form action="/Controllers/ArticuloVALIDAR.php" method="POST" enctype="multipart/form-data">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
                 echo"<tr><th>Nuevos datos</th>";
                     foreach ($arrayAtributos as $index => $atributo) {
                         $nombreAtributo = $atributo->getName();
@@ -107,7 +107,7 @@ echo"<table>";
     echo "<div class='finForm'><h2><input type='submit' value='Guardar'></h2>";
     echo "</form>";
 
-include_once("/../Controllers/ClienteEDITARMensajes.php");
+include_once("../Controllers/ClienteEDITARMensajes.php");
 $arrayMensajes=getArrayMensajes();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
@@ -120,10 +120,10 @@ if(AuthYRolAdmin() == true){
     echo("<h2><a class='cerrar' href='TablaClientes.php?editandoCliente=false'>Cancelar edición / volver a la tabla</a></h2>");
 } else {
     echo("<h2><a class='cerrar' href='ArticulosLISTAR.php?editandoArticulo=false'>Ver listado de productos</a></h2>");
-    echo("<h2><a class='cerrar' href='index.php?editandoCliente=false'>Cancelar edición / cerrar sesión</a></h2>");
+    echo("<h2><a class='cerrar' href='/index.php?editandoCliente=false'>Cancelar edición / cerrar sesión</a></h2>");
 }
 echo"<br><br><br><br><br>";
-echo("<h2><a class='cerrar' href='borrarcliente.php?dni=$dniOriginal'>BORRAR CUENTA (ELIMINA TODOS LOS DATOS)</a></h2>");
+echo("<h2><a class='cerrar' href='ClienteBORRAR.php?dni=$dniOriginal'>BORRAR CUENTA (ELIMINA TODOS LOS DATOS)</a></h2>");
 
 include_once("footer.php");
 ?>

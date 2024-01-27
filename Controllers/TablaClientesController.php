@@ -4,17 +4,17 @@
  */
 function getArrayClientesOrdenados($orden){
     //PREPARA/OBTEN DATOS DE LOS OBJETOS
-    include_once("/../Models/Cliente.php");
+    include_once("../Models/Cliente.php");
     $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
     if($orden == "ASC"){
-        $arrayClientes = Cliente::getASCSortedClientes();
+        $arrayClientes = Cliente::getASCSortedClients();
         return $arrayClientes;
     } else if($orden == "DESC"){
-        $arrayClientes = Cliente::getDESCSortedClientes();
+        $arrayClientes = Cliente::getDESCSortedClients();
         return $arrayClientes;
     }else{
         //si es null o cualquier otro caso
-        $arrayClientes= Cliente::getAllClientes();
+        $arrayClientes= Cliente::getAllClients();
         return $arrayAClientes;
     }
 }
