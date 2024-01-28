@@ -21,7 +21,7 @@ if( $usuarioLogeado == false){
 
 $dni = isset($_GET['dni']) ? $_GET['dni'] : null;
 
-include_once("../Controllers/CheckRol.php");
+include_once("../Controllers/OperacionesSession.php");
 if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  'false' ){
     $dni=$_GET["dni"];
     $_SESSION['BorradoClienteCancelado'] = true;
@@ -31,7 +31,7 @@ if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  'false' ){
     $_SESSION['BorradoArticuloCancelado'] = true;
 }
 
-include_once("../Controllers/UserSession.php");
+include_once("../Controllers/OperacionesSession.php");
 $tieneAdminYEstaLogeado = AuthYRolAdmin();
 if($tieneAdminYEstaLogeado == true &&   ( $_SESSION['BorradoArticuloCancelado'] == true || $_SESSION['BorradoArticuloCancelado'] == false) ){
     header("Location: TablaClientes.php");

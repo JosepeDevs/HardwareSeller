@@ -1,6 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("../Controllers/UserSession.php");
+include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
@@ -20,7 +20,7 @@ echo("<h2>Bienvenido</h2>");
 //ponemos "editando" en true para que cuando lo mandemos a ValidarDatos lo trate como update
 $_SESSION["editandoCliente"]="true";
 
-include_once("../Controllers/CheckRol.php");
+include_once("../Controllers/OperacionesSession.php");
 $rol4consulta = isset($_GET['rol4consulta'])? $_GET['rol4consulta'] : null;
 echo"<table>";
         echo"<tr><th>Atributos:</th>";

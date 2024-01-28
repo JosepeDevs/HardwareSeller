@@ -10,7 +10,7 @@
 include_once("conectarBD.php");
 include_once("Cliente.php");
 include_once("CheckRol.php");
-include_once("UserSession.php");
+include_once("OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();

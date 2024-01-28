@@ -1,6 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("../Controllers/UserSession.php");
+include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
@@ -12,7 +12,7 @@ include_once("header.php");
 print("<h1>Gestionar artículos</h1>");
 
 //NAVEGACION
-include_once("../Controllers/ExtraeDeSession.php");
+include_once("../Controllers/OperacionesSession.php");
 if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
     echo"<h2><a class='enlace' href='ArticuloALTA.php'><img src='addAr.png' alt='añadir' /> Nuevo artículo (solo admin y editores)</h2></a>";
 }
@@ -47,7 +47,7 @@ echo"<table>";
                 $nombreAtributo = $atributo->getName();
                 echo "<th>$nombreAtributo</th>";
             }
-            include_once("/../Controllers/ExtraeDeSession.php");//get rol
+            include_once("/../Controllers/OperacionesSession.php");//get rol
             if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
                 echo"
                 <th>Editar</th>

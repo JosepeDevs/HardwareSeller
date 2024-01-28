@@ -24,7 +24,7 @@ include_once("header.php");
 
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("../Controllers/UserSession.php");
+include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
@@ -32,8 +32,7 @@ if( $usuarioLogeado == false){
     header("Location: ../index.php");
 }
 include_once("../Controllers/ArticuloBUSCAR.php");
-include_once("../Controllers/CheckRol.php");
-include_once("../Controllers/ExtraeDeSession.php");
+include_once("../Controllers/OperacionesSession.php");
 include_once("../Controllers/ValidaCodigoArticulo.php");
 include_once("../Controller/ArticuloBUSCARMensajes.php");
 include_once("../GetDniByEMailController.php");

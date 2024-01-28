@@ -124,7 +124,7 @@ $arrayDatosCliente  = array($dni, $nombre, $direccion, $localidad, $provincia, $
         if($operacionExistosa){
             $_SESSION['GoodUpdateCliente']= true;
         }
-        include_once("CheckRol.php");
+        include_once("OperacionesSession.php");
         $rolAdmin = AuthYRolAdmin();
         if($rolAdmin == true) {
             header("Location: ../Views/TablaClientes.php");
@@ -143,7 +143,7 @@ $arrayDatosCliente  = array($dni, $nombre, $direccion, $localidad, $provincia, $
             $_SESSION['GoodInsertCliente']= true;
         }
 
-        include_once("CheckRol.php");
+        include_once("OperacionesSession.php");
         $rolAdmin = AuthYRolAdmin();
         if($rolAdmin == true) {
             header("Location: ../Views/TablaClientes.php");
