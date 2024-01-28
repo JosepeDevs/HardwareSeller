@@ -45,7 +45,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
             echo "<h3>$mensaje</h3>";
         }
     };
-    OperacionesSession();
+    ResetearSesion();
 
         //ENCABEZADOS
         echo"<table>
