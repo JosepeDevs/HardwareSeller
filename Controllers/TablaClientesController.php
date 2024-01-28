@@ -15,13 +15,13 @@ function getArrayClientesOrdenados($orden){
     }else{
         //si es null o cualquier otro caso
         $arrayClientes= Cliente::getAllClients();
-        return $arrayAClientes;
+        return $arrayClientes;
     }
 }
-function getArrayAtributos(){
+function getArrayAtributosCliente(){
     include_once("../Models/Cliente.php");
-    $arrayArticulos = getArrayAtributos();
-    return $arrayArticulos;
+    $arrayAtributosCliente = Cliente::getArrayAtributosCliente();
+    return $arrayAtributosCliente;
 }
 
 function  getArrayPaginado($arrayClientes, $filasAMostrar, $paginaActual){

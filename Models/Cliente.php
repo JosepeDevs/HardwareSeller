@@ -32,6 +32,22 @@ class Cliente {
     }
 
     /**
+     * @return array Array con los NOMBRES de los atributos de la clase, en este caseo CLIENTE
+     */
+
+    public static function getArrayAtributosCliente() {
+        $reflector = new ReflectionClass('Cliente');
+        $atributos = $reflector->getProperties(ReflectionProperty::IS_PRIVATE);
+        $arrayAtributosCliente = array();
+        foreach ($atributos as $propiedad) {
+            if ($propiedad->isPrivate()) {
+                $arrayAtributosCliente[] = $propiedad->getName();
+            }
+        }
+        return $arrayAtributosCliente;
+    }
+
+    /**
      * @return  array|bool devuelve array con todos los clientes
      *
      */

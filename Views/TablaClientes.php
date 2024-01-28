@@ -1,35 +1,30 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
 
-include_once("../Controllers/UserSession.php");
+include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "TablaClientes dice: no está user en session";
     header("Location: ../index.php");
 }
-
-include("header.php");
-
-
-include_once("../Controllers/CheckRol.php");
 if( AuthYRolAdmin() == false){
     session_destroy();
     echo " el rol no era adecuado";
     header("Location: ../index.php");
 }
-?>
 
+include("header.php");
+
+print("
     <h1>Gestionar clientes</h1>
-        <div id="EnlacesArriba">
+        <div id='EnlacesArriba'>
             <h2><a class='enlace' href='ClienteALTA.php'><img class='iconArribaTabla' src='add.png' alt='add user' /> Nuevo cliente</h2></a>
             <h2><a class='enlace' href='TablaClientes.php'><img class='iconArribaTabla' src='refresh.png' alt='refresh' /> Recargar tabla (resetea filtros y paginación)</h2></a>
-            <h2><a class='enlace' href='ClienteBUSCAR.php'><img class='iconArribaTabla' src="search.png" alt="search user"/> Buscar cliente</h2></a>
-            <h2><a class='enlace' href='ArticulosLISTAR.php'><img class='iconArribaTabla' src="buscaAr.png" alt="view products"/> Ver listado de productos</h2></a>
+            <h2><a class='enlace' href='ClienteBUSCAR.php'><img class='iconArribaTabla' src='search.png' alt='search user'/> Buscar cliente</h2></a>
+            <h2><a class='enlace' href='ArticulosLISTAR.php'><img class='iconArribaTabla' src='buscaAr.png' alt='view products'/> Ver listado de productos</h2></a>
         </div>
-
-<?php
-if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
+");
 
     //TABLA DE CLIENTES
 
@@ -37,9 +32,8 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
     <tr>";
     //ENCABEZADOS TABLA
         include_once("../Controllers/TablaClientesController.php");
-        $arrayAtributos = getArrayAtributos();
-        foreach ($arrayAtributos as $atributo) {
-            $nombreAtributo = $atributo->getName();
+        $arrayAtributos = getArrayAtributosCliente();
+        foreach ($arrayAtributos as $nombreAtributo) {
             if($nombreAtributo == "nombre"){
             echo"<th>
                     Nombre <br>Ordenar:<br>
@@ -49,10 +43,9 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
             }else{
                 echo"<th>$nombreAtributo</th>";
             }
-            echo"<th>Editar</th>
-                <th>Borrar</th>";
         }
-            echo"
+        echo"<th>Editar</th>
+            <th>Borrar</th>
     </tr>";
 
         //PREPARAR ARRAYS CON OBJETOS
@@ -70,22 +63,22 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
             }
         }
 
-        //include_once("../Controllers/TablaClientesController.php");
+        include_once("../Controllers/TablaClientesController.php");
         $arrayAImprimir = getArrayPaginado($arrayClientes,$filasAMostrar,$paginaActual);
 
         //IMPRIMIR DATOS OBJETOS
-        foreach($arrayAImpimir as $cliente){
+        foreach($arrayAImprimir as $cliente){
             echo("<tr>");
             foreach ($arrayAtributos as $atributo) {
-                $nombreAtributo = $atributo->getName();//p.e. dni, nombre...
-                $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
+                $nombreMetodo = 'get' . ucfirst($atributo); //montamos el nombre del método a llamar
                 $valor = call_user_func([$cliente, $nombreMetodo]);
-                if($nombreAtributo == "psswrd"){
+                if($atributo == "psswrd"){
                     echo"<p>****</p>";
                 }else{
                     echo "<td>$valor</td>";
                 }
             }
+            //Operaciones de session
             if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"){
                 echo"
                 <td><a class='icon' href='ClienteEDITAR.php?dni=$dni&rol4consulta=administradormaestro'><img src='edit.png' alt='Editar cliente' /></td>
