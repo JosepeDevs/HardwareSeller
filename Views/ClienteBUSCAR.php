@@ -26,13 +26,13 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
-    //session_destroy();
+    session_destroy();
     echo "ClientesBuscar dice: shit no está user en session";
-    //header("Location: index.php");
+    header("Location: index.php");
 }
 
 include_once("../Controllers/ClienteBUSCARController.php");
-$arrayAtributos = getArrayAtributos();
+$arrayAtributos = getArrayAtributosCliente();
 
 if(isset($_POST["dni"])) {
     $dni=$_POST["dni"];
@@ -47,27 +47,27 @@ if(isset($_POST["dni"])) {
             echo"<table>";
                     echo"<tr><th>Atributos:</th>";
                                 foreach ($arrayAtributos as $atributo) {
-                                    $nombreAtributo = $atributo->getName();
+                                    $nombreAtributo = $atributo;
                                     echo "<th>$nombreAtributo</th>";
                                 }
                     echo "</tr>";
                     echo"<tr><th>Datos del cliente consultado:</th>";
             //datos actuales del objeto Cliente
                         foreach ($arrayAtributos as $index => $atributo) {
-                            $nombreAtributo = $atributo->getName();
+                            $nombreAtributo = $atributo;
                             $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
-                            $valor = $articulo->$getter();//lo llamamos para obtener el valor
+                            $valor = $cliente->$getter();//lo llamamos para obtener el valor
                             if($nombreAtributo == "psswrd"){
-                                echo "<td></td>";//admin no debe poder ver contraseñas, por eso no lo ponemos.
+                                echo "<td>***</td>";//admin no debe poder ver contraseñas, por eso no lo ponemos.
                             } else {
-                                echo "<td>$valor</td>";
+                                echo "<td>1$valor</td>";
                             }
                         }
                     echo "</tr>
                 </table>";
     }
 }
-include_once("/../Controllers/ClienteBUSCARMensajes.php");
+include_once("../Controllers/ClienteBUSCARMensajes.php");
 $arrayMensajes=getArrayMensajesBuscar();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {

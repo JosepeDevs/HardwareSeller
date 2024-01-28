@@ -74,16 +74,19 @@ print("
                 $valor = call_user_func([$cliente, $nombreMetodo]);
                 if($atributo == "psswrd"){
                     print"<td>****</td>";
-                }else{
+                }else if($atributo == "dni"){
+                    print "<td>$valor</td>";
+                    $dni=$valor;
+                } else {
                     print "<td>$valor</td>";
                 }
-            }
-            //Operaciones de session
-            if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"){
+                if(next($arrayAtributos) == false && ( GetRolDeSession() == "editor" || GetRolDeSession() == "admin" )){ //si ya no quedan más atributos que imprimir y el rol es correcto
                 print"
                 <td><a class='icon' href='ClienteEDITAR.php?dni=$dni&rol4consulta=administradormaestro'><img src='../Resources/edit.png' alt='Editar cliente' /></td>
                 <td><a class='icon' href='ClienteBORRAR.php?dni=$dni'><img src='../Resources/delete.png' alt='Borrar cliente' /></td>";
+                }
             }
+
         }
         print("</tr>
     </table>");
@@ -146,7 +149,7 @@ print("
         </div>";
 
         //SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
-        include_once("../Controllers/tablaClientesMensajes.php");//para ver mensajes
+        include_once("../Controllers/TablaClientesMensajes.php");//para ver mensajes
 
         $arrayMensajes=getArrayMensajesTabla();
         if(is_array($arrayMensajes)){
@@ -157,6 +160,5 @@ print("
 
         include("footer.php");
         //tras printear los mensajes de error/confirmación "reseteamos" session
-        include_once("../Controllers/ResetSession.php");//para el reset de session
         ResetearSesion();
 ?>

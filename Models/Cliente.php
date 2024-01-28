@@ -73,7 +73,8 @@ class Cliente {
         $statement=$con->prepare($sql);
         $statement->bindParam(':dni', $dni);
         $statement->execute();
-        $cliente=$statement->fetch(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
+        $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
+        $cliente = $statement->fetch();
         if(empty($cliente)){
             $_SESSION['DniNotFound'] = true;
             return false;
