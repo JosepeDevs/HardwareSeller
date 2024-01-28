@@ -5,12 +5,12 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "TablaClientes dice: no está user en session";
+    print "TablaClientes dice: no está user en session";
     header("Location: ../index.php");
 }
 if( AuthYRolAdmin() == false){
     session_destroy();
-    echo " el rol no era adecuado";
+    print " el rol no era adecuado";
     header("Location: ../index.php");
 }
 
@@ -28,32 +28,31 @@ print("
 
     //TABLA DE CLIENTES
 
-    echo"<table>
+    print"<table>
     <tr>";
     //ENCABEZADOS TABLA
         include_once("../Controllers/TablaClientesController.php");
         $arrayAtributos = getArrayAtributosCliente();
-        print_r($arrayAtributos);
         foreach ($arrayAtributos as $nombreAtributo) {
             if($nombreAtributo == "nombre"){
-            echo"<th>
+            print"<th>
                     Nombre <br>Ordenar:<br>
                     <a class='ordenar' href='TablaClientes.php?ordenNombres=ASC'>A->Z</a>
                     <a class='ordenar' href='TablaClientes.php?ordenNombres=DESC'>Z->A</a>
                 </th>";
             }else{
-                echo"<th>$nombreAtributo</th>";
+                print"<th>$nombreAtributo</th>";
             }
         }
-        echo"<th>Editar</th>
+        print"<th>Editar</th>
             <th>Borrar</th>
     </tr>";
 
         //PREPARAR ARRAYS CON OBJETOS
         $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
         $arrayClientes = getArrayClientesOrdenados($orden);
-        $numPagPredeterminado=3;
-        $filasAMostrar = isset($_GET['numpag'])? $_GET['numpag'] : $numPagPredeterminado;
+        $itemXpagPredeterminado=3;
+        $filasAMostrar = isset($_GET['itemXpag'])? $_GET['itemXpag'] : $itemXpagPredeterminado;
         if(! isset($_GET['pag'])){
             $paginaActual = 0;
         }else{
@@ -69,77 +68,79 @@ print("
 
         //IMPRIMIR DATOS OBJETOS
         foreach($arrayAImprimir as $cliente){
-            echo("<tr>");
+            print("<tr>");
             foreach ($arrayAtributos as $atributo) {
                 $nombreMetodo = 'get' . ucfirst($atributo); //montamos el nombre del método a llamar
                 $valor = call_user_func([$cliente, $nombreMetodo]);
                 if($atributo == "psswrd"){
-                    echo"<td>****</td>";
+                    print"<td>****</td>";
                 }else{
-                    echo "<td>$valor</td>";
+                    print "<td>$valor</td>";
                 }
             }
             //Operaciones de session
             if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"){
-                echo"
-                <td><a class='icon' href='ClienteEDITAR.php?dni=$dni&rol4consulta=administradormaestro'><img src='edit.png' alt='Editar cliente' /></td>
-                <td><a class='icon' href='ClienteBORRAR.php?dni=$dni'><img src='delete.png' alt='Borrar cliente' /></td>";
+                print"
+                <td><a class='icon' href='ClienteEDITAR.php?dni=$dni&rol4consulta=administradormaestro'><img src='../Resources/edit.png' alt='Editar cliente' /></td>
+                <td><a class='icon' href='ClienteBORRAR.php?dni=$dni'><img src='../Resources/delete.png' alt='Borrar cliente' /></td>";
             }
         }
-        echo("</tr>
+        print("</tr>
     </table>");
 
         //PAGINACIÓN
-        echo "<div class='paginacion'>";
+        print "<div class='paginacion'>";
         $filasTotales = count($arrayClientes);
         $paginasTotales = ceil($filasTotales / $filasAMostrar);
         if(is_numeric($paginaActual) && is_numeric($filasAMostrar)){
             //estamos viendo los registros paginados
             //estamos al principio de la lista, además de lo anterior también imprimiremos "anterior"
-            if($paginaActual == 1){
-                echo "<p>Anterior</p>"; //en la primera página esto no debe ser un enlace
+            if($paginaActual == 0 ){
+                print "<p>Anterior</p>"; //en la primera página esto no debe ser un enlace
             } else{
-                echo "<a href='ArticulosLISTAR.php?pag=".($paginaActual-1)."&ordenNombres=$orden&numpag=$filasAMostrar'>Anterior</a>";
+                print "<a href='TablaClientes.php?pag=".($paginaActual)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Anterior</a>";
             }
-            for ($p = 1; $p <= $paginasTotales; $p++) {
-                if($p == $paginaActual +1 ){
-                    echo "<b>$p</b>";
+            for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
+                if($numeroIndicePaginacion == $paginaActual + 1 ){
+                    print "<b>$numeroIndicePaginacion</b>";
                 }else{
-                    echo "<a href='TablaClientes.php?pag=$p&ordenNombres=$orden&numpag=$filasAMostrar'>$p</a>";
+                    print "<a href='TablaClientes.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
                 }
-                if($p == $paginasTotales && $paginaActual == $p){ //si hemos llegado al final del bucle ahora NO habría que imprimir "siguiente" como enlace si la página actual  es la última
-                    echo "<p>Siguiente</p>"; //hemos llegado al final de la lista de páginas y estamos en la última página.
+                if($paginaActual +1 == $paginasTotales && $numeroIndicePaginacion == $paginasTotales){
+                    print "<p>Siguiente</p>"; //en la primera página esto no debe ser un enlace
+                }else if($numeroIndicePaginacion == $paginasTotales){
+                    print "<a href='TablaClientes.php?pag=".($paginaActual+2)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Siguiente</a>";
                 } else{
-                    echo "<a href='ArticulosLISTAR.php?pag=".($paginaActual+1)."&ordenNombres=$orden&numpag=$filasAMostrar'>Siguiente</a>";
+                    print "";//no printear nada
                 }
             }
         } else{
             //estamos viendo todos los registros en una página
-            for ($p = 1; $p <= $paginasTotales; $p++) {
-                echo "<a href='TablaClientes.php?pag=$p&ordenNombres=$orden&numpag=$filasAMostrar'>$p</a>";
+            for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
+                print "<a href='TablaClientes.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
             }
         }
 
         //FORMULARIO PIE DE PÁGINA PARA ELEGIR LA PÁGINA A VER, Nº registros/pág
-        $opcionesNumPag=[3,4,5];
+        $opcionesitemXpag=[3,4,5];
         if (isset($_GET['pag']) && ( $_GET['pag'] == "X" ) ){
-            echo "<b>Ver todos</b>";
+            print "<b>Ver todos</b>";
         } else{
-            echo "<a href='TablaClientes.php?pag=X&ordenNombres=$orden'>Ver todos</a>";
+            print "<a href='TablaClientes.php?pag=X&ordenNombres=$orden'>Ver todos</a>";
         }
-        echo "
+        print "
         <form action='TablaClientes.php' method='GET'>
-        <label for='numpag'>Registros/página</label><br>
-        <select id='numpag' name='numpag' onchange='this.form.submit()' required>
+        <label for='itemXpag'>Registros/página</label><br>
+        <select id='itemXpag' name='itemXpag' onchange='this.form.submit()' required>
             <option value='$filasAMostrar'>$filasAMostrar</option>";
-            for ($i = 1; $i < count($opcionesNumPag); $i++) {
-                if( $opcionesNumPag[$i] == $filasAMostrar){
+            for ($i = 1; $i < count($opcionesitemXpag); $i++) {
+                if( $opcionesitemXpag[$i] == $filasAMostrar){
                     continue;
                 } else{
-                    echo "<option value='$opcionesNumPag[$i]'>$opcionesNumPag[$i]</option>";
+                    print "<option value='$opcionesitemXpag[$i]'>$opcionesitemXpag[$i]</option>";
                 }
             }
-        echo
+        print
         "</select><br>
         </form>
         </div>";
@@ -150,12 +151,12 @@ print("
         $arrayMensajes=getArrayMensajesTabla();
         if(is_array($arrayMensajes)){
             foreach($arrayMensajes as $mensaje) {
-                echo "<h3>$mensaje</h3>";
+                print "<h3>$mensaje</h3>";
             }
         };
 
+        include("footer.php");
         //tras printear los mensajes de error/confirmación "reseteamos" session
         include_once("../Controllers/ResetSession.php");//para el reset de session
         ResetearSesion();
-include("footer.php");
-            ?>
+?>

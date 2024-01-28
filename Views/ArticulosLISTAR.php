@@ -99,24 +99,24 @@ $paginasTotales = ceil($filasTotales / $filasAMostrar);
 $numPagPredeterminado=3;
 if(is_numeric($paginaActual) && is_numeric($filasAMostrar)){
     //estamos viendo los registros paginados
-    for ($p = 1; $p <= $paginasTotales; $p++) {
-        if($p == 1){
+    for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
+        if($numeroIndicePaginacion == 1){
             echo "<p>Anterior</p>"; //en la primera página esto no debe ser un enlace
         } else{
-            echo "<a href='ArticulosLISTAR.php?pag=".($p-1)."&ordenNombres=$orden&numpag=$filasAMostrar'>Anterior</a>";
+            echo "<a href='ArticulosLISTAR.php?pag=".($numeroIndicePaginacion-1)."&ordenNombres=$orden&numpag=$filasAMostrar'>Anterior</a>";
         }
-        if($p == $paginaActual + 1){
-            echo "<b>$p</b>";//la página actual no es un enlace
+        if($numeroIndicePaginacion == $paginaActual + 1){
+            echo "<b>$numeroIndicePaginacion</b>";//la página actual no es un enlace
         }else{
-            echo "<a href='ArticulosLISTAR.php?pag=$p&ordenNombres=$orden&numpag=$filasAMostrar'>$p</a>"; //el resto de páginas (en la que no estamos actualmente serán enlaces)
+            echo "<a href='ArticulosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&numpag=$filasAMostrar'>$numeroIndicePaginacion</a>"; //el resto de páginas (en la que no estamos actualmente serán enlaces)
         }
     }
     //estamos al final de la lista, además de lo anterior también imprimiremos "siguiente"
     echo "<a href='ArticulosLISTAR.php?pag=".($paginaActual+1)."&ordenNombres=$orden&numpag=$filasAMostrar'>Siguiente</a>";
 } else{
     //estamos viendo todos los registros en una página
-    for ($p = 0; $p < $paginasTotales; $p++) {
-        echo "<a href='ArticulosLISTAR.php?pag=$p&ordenNombres=$orden&numpag=$filasAMostrar'>$p</a>";
+    for ($numeroIndicePaginacion = 0; $numeroIndicePaginacion < $paginasTotales; $numeroIndicePaginacion++) {
+        echo "<a href='ArticulosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&numpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
     }
 }
 $opcionesNumPag=[3,4,5];

@@ -155,17 +155,17 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
             $paginasTotales = ceil($filasTotales / $filasAMostrar);
             if(is_numeric($paginaActual) && is_numeric($filasAMostrar)){
                 //estamos viendo los registros paginados
-                for ($p = 1; $p <= $paginasTotales; $p++) {
-                    if($p == $paginaActual +1 ){
-                        echo "<b>$p</b>";
+                for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
+                    if($numeroIndicePaginacion == $paginaActual +1 ){
+                        echo "<b>$numeroIndicePaginacion</b>";
                     }else{
-                        echo "<a href='TablaClientes.php?pag=$p&ordenNombres=$orden&numpag=$filasAMostrar'>$p</a>";
+                        echo "<a href='TablaClientes.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&numpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
                     }
                 }
             } else{
                 //estamos viendo todos los registros en una página
-                for ($p = 1; $p <= $paginasTotales; $p++) {
-                    echo "<a href='TablaClientes.php?pag=$p&ordenNombres=$orden&numpag=$filasAMostrar'>$p</a>";
+                for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
+                    echo "<a href='TablaClientes.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&numpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
                 }
             }
             $opcionesNumPag=[3,4,5];
