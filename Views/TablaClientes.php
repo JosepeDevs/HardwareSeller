@@ -19,10 +19,10 @@ include("header.php");
 print("
     <h1>Gestionar clientes</h1>
         <div id='EnlacesArriba'>
-            <h2><a class='enlace' href='ClienteALTA.php'><img class='iconArribaTabla' src='add.png' alt='add user' /> Nuevo cliente</h2></a>
-            <h2><a class='enlace' href='TablaClientes.php'><img class='iconArribaTabla' src='refresh.png' alt='refresh' /> Recargar tabla (resetea filtros y paginación)</h2></a>
-            <h2><a class='enlace' href='ClienteBUSCAR.php'><img class='iconArribaTabla' src='search.png' alt='search user'/> Buscar cliente</h2></a>
-            <h2><a class='enlace' href='ArticulosLISTAR.php'><img class='iconArribaTabla' src='buscaAr.png' alt='view products'/> Ver listado de productos</h2></a>
+            <h2><a class='enlace' href='ClienteALTA.php'><img class='iconArribaTabla' src='../Resources/add.png' alt='add user' /> Nuevo cliente</h2></a>
+            <h2><a class='enlace' href='TablaClientes.php'><img class='iconArribaTabla' src='../Resources/refresh.png' alt='refresh' /> Recargar tabla (resetea filtros y paginación)</h2></a>
+            <h2><a class='enlace' href='ClienteBUSCAR.php'><img class='iconArribaTabla' src='../Resources/search.png' alt='search user'/> Buscar cliente</h2></a>
+            <h2><a class='enlace' href='ArticulosLISTAR.php'><img class='iconArribaTabla' src='../Resources/buscaAr.png' alt='view products'/> Ver listado de productos</h2></a>
         </div>
 ");
 
@@ -33,6 +33,7 @@ print("
     //ENCABEZADOS TABLA
         include_once("../Controllers/TablaClientesController.php");
         $arrayAtributos = getArrayAtributosCliente();
+        print_r($arrayAtributos);
         foreach ($arrayAtributos as $nombreAtributo) {
             if($nombreAtributo == "nombre"){
             echo"<th>
@@ -73,7 +74,7 @@ print("
                 $nombreMetodo = 'get' . ucfirst($atributo); //montamos el nombre del método a llamar
                 $valor = call_user_func([$cliente, $nombreMetodo]);
                 if($atributo == "psswrd"){
-                    echo"<p>****</p>";
+                    echo"<td>****</td>";
                 }else{
                     echo "<td>$valor</td>";
                 }
