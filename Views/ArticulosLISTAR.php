@@ -148,8 +148,8 @@ include_once("../Controllers/ArticulosLISTARMensajes.php");
                 }
             };
 //tras printear los mensajes de error/confirmación "reseteamos" session
-include_once("../Controllers/ResetSession.php");
-            ResetSession();
+include_once("../Controllers/OperacionesSession.php");
+ResetearSesion();
 
 ?>
 <h2><a class="cerrar"  href='/index.php'>Cerrar sesión</a></h2>

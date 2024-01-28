@@ -156,6 +156,6 @@ print("
 
         //tras printear los mensajes de error/confirmación "reseteamos" session
         include_once("../Controllers/ResetSession.php");//para el reset de session
-            ResetSession();
+        ResetearSesion();
 include("footer.php");
             ?>

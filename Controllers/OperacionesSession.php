@@ -95,7 +95,7 @@ if( $usuarioLogeado == false){
  * Para llamarla después de imprimir mensajes de error/confirmación, ya que solo guarda user, Auth y rol, el resto lo deja UNSET.
  *
  */
-Function ResetSession(){
+Function ResetearSesion(){
     if(session_status() !== PHP_SESSION_ACTIVE) { session_start(); }
     $user= isset($_SESSION['user']) ? $_SESSION['user'] : null;
     $usuario= isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;

@@ -37,7 +37,7 @@ if( AuthYRolAdmin() == false){
 if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
     include_once("Cliente.php");//para el PDO
     include_once("tablaClientesMensajes.php");//para ver mensajes
-    include_once("ResetSession.php");//para el reset de session
+    include_once("OperacionesSession.php");//para el reset de session
 
     $arrayMensajes=getArrayMensajesTabla();
     if(is_array($arrayMensajes)){
@@ -45,7 +45,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
             echo "<h3>$mensaje</h3>";
         }
     };
-    ResetSession();
+    OperacionesSession();
 
         //ENCABEZADOS
         echo"<table>
