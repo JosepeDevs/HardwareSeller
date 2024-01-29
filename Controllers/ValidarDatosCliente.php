@@ -26,11 +26,13 @@ if(in_array(strtolower($rol), array("user", "admin", "editor"))){
 //si no hay post de contraseña es que se dejó en blanco (no se quiere cambiar), por lo que psswrd debe ser la misma que ya tenía antes (nos llega por SESSION)
 if(isset($_POST["psswrd"]) && !empty($_POST['psswrd'])){
     $psswrd = $_POST["psswrd"];
+    $noPsswrd = false;//este bool se usa para comprobar si hay contraseña nueva o no.
     $psswrd = password_hash($psswrd, PASSWORD_DEFAULT);
     print("Contraseña ha llegado y vale:".$psswrd);
 }else{
     $psswrd = isset($_SESSION['psswrd']) ? $_SESSION['psswrd'] : null;
     $_SESSION['NoPsswrd'] = true;
+    $noPsswrd = true;
     print("Contraseña no ha llegado:".$psswrd);
 }
 
@@ -46,8 +48,8 @@ $localidadValida = ComprobarLongitud($localidad,60);
 if($localidadValida == false) {  $_SESSION['LongLocalidad']= true;}
 print("localidad valida:".$localidadValida);
 
-$provinciaValido = ComprobarLongitud($provincia,30);
-if($provinciaValido == false) { $_SESSION['LongProvincia']= true;}
+$provinciaValida = ComprobarLongitud($provincia,30);
+if($provinciaValida == false) { $_SESSION['LongProvincia']= true;}
 print("provincia valida:".$provinciaValida);
 
 $emailOriginal = isset($_SESSION['email']) ? $_SESSION['email'] : null; //aquí estamos recibiendo el email original del cliente
@@ -109,7 +111,7 @@ if(
             $_SESSION['DniBadFormat'] == true || $_SESSION['TelefonoMal'] == true || $_SESSION['EmailBadFormat'] == true || $_SESSION['EmailAlreadyExists'] == true ||
             $_SESSION['LongProvincia'] == true || $_SESSION['LongLocalidad'] == true || $_SESSION['LongDireccion']== true || $_SESSION['LongNombre'] == true || $_SESSION['BadRol'] == true
             ) {
-                print("hubo un error");
+                print("hubo un error en algun apartado ");
                 echo "<script>history.back();</script>";
                 exit;
             }
@@ -125,7 +127,7 @@ $_SESSION["email"] = $email;
 $_SESSION["psswrd"] = $psswrd;
 $_SESSION["rolCliente"] = $rol;
 
-$arrayDatosCliente  = array($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $noPsswrd);
+$arrayDatosCliente  = array($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $noPsswrd);
 print("<br> array del cliente:");
 print_r($arrayDatosCliente);
 print("<br> array session:");
@@ -136,7 +138,7 @@ print_r($_SESSION);
         $_SESSION["dni"]=$dniOriginal;
         print "<p>'actualizando cliente...espere infinito...</p>";
         print_r($_SESSION);
-        $operacionExistosa = Cliente::UpdateCliente($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $noPsswrd);
+        $operacionExistosa = Cliente::UpdateCliente($dniOriginal, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $noPsswrd);//le pasamos el DniOoriginal porque no permitimos el cambio del dni
 
         if($operacionExistosa){
             $_SESSION['GoodUpdateCliente']= true;
@@ -147,14 +149,14 @@ print_r($_SESSION);
             header("Location: ../Views/TablaClientes.php");
             exit;
         } else {
-            header("Location: ../Views/ClienteEDITAR.php?dni=$dni");
+            header("Location: ../Views/ClienteEDITAR.php?dni=$dniOriginal");
             exit;
         }
 
     }else if( isset($_SESSION["nuevoCliente"]) && $_SESSION["nuevoCliente"] == "true" ){
         $_SESSION["dni"]=$dniNuevo;
-        echo "<p>'insertando cliente...espere infinito...</p>";
-        $operacionExistosa = Cliente::InsertCliente($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol);
+        echo "<p>'insertando cliente...espere infinito...datos que estamos pasando: $dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol</p>";
+        $operacionExistosa = Cliente::InsertCliente($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol);
 
         if($operacionExistosa){
             $_SESSION['GoodInsertCliente']= true;
@@ -163,10 +165,10 @@ print_r($_SESSION);
         include_once("OperacionesSession.php");
         $rolAdmin = AuthYRolAdmin();
         if($rolAdmin == true) {
-            header("Location: ../Views/TablaClientes.php");
+           header("Location: ../Views/TablaClientes.php");
             exit;
         } else {
-            header("Location: ../Views/ClienteALTA.php?dni=$dni");
+           header("Location: ../Views/ClienteALTA.php?dni=$dniNuevo");
             exit;
         }
     };
@@ -177,13 +179,13 @@ print_r($_SESSION);
   * @param $dni . (String) con el dni a comprobar (8 numeros y 1 letra, da igual minus o mayus)
   * @return bool devuelve true si la letra se corresponde a las 8 cifras introducidas. Devuelve false si la letra no es correcta, si no cumple regex de ser 8 numeros y 1 letra (permitimos que el input esté en minusculas), también devuelve false si dni es null.
   */
-Function ValidaDni($dni){
-    if($dni == null){
+Function ValidaDni($dniNuevo){
+    if($dniNuevo == null){
         return false;
     };
-    if(preg_match("/^\d{8}\w{1}$/", $dni) == true ){
-        $numerosString=substr($dni,0,8);
-        $letra=strtoupper(substr($dni,8,9));
+    if(preg_match("/^\d{8}\w{1}$/", $dniNuevo) == true ){
+        $numerosString=substr($dniNuevo,0,8);
+        $letra=strtoupper(substr($dniNuevo,8,9));
         $arrayLetras=array("T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E");
         $numero=intval($numerosString);
         $resto=$numero%23;
