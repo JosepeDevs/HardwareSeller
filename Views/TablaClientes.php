@@ -77,6 +77,13 @@ print("
                 }else if($atributo == "dni"){
                     print "<td>$valor</td>";
                     $dni=$valor;
+                }else if($atributo == "activo"){
+                    if($valor == 0){
+                        print "<td>Inactivo</td>";
+                    }
+                    if($valor == 1){
+                        print "<td>Activo</td>";
+                    }
                 } else {
                     print "<td>$valor</td>";
                 }
@@ -86,7 +93,6 @@ print("
                 <td><a class='icon' href='ClienteBORRAR.php?dni=$dni'><img src='../Resources/delete.png' alt='Borrar cliente' /></td>";
                 }
             }
-
         }
         print("</tr>
     </table>");

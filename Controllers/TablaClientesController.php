@@ -37,19 +37,21 @@ function  getArrayPaginado($arrayClientes, $filasAMostrar, $paginaActual){
             if(is_numeric($paginaActual)){
                 $ultimoRegistroMostrado = $paginaActual * $filasAMostrar;
                 $finalRegistro = min($ultimoRegistroMostrado + $filasAMostrar, $filasTotales);
-                $j = 0; // Variable para indexar $arrayAImpimir (era para intentar solucionar no mostrar datos del admin logeado)
+                $arrayAtributos = getArrayAtributosCliente();
                 for($i=$ultimoRegistroMostrado ; $i < $finalRegistro; $i++){
-                    $nombre = $arrayClientes[$i]->getNombre();
-                    $direccion = $arrayClientes[$i]->getDireccion();//.".".$j.".".$finalRegistro;
-                    $localidad = $arrayClientes[$i]->getLocalidad();
-                    $provincia = $arrayClientes[$i]->getProvincia();
-                    $telefono = $arrayClientes[$i]->getTelefono();
-                    $email = $arrayClientes[$i]->getEmail();
-                    $dni = $arrayClientes[$i]->getDni();
-                    $rol = $arrayClientes[$i]->getRol();
-                    $psswrd=null;
-                    $cliente = new Cliente($dni,$nombre,$direccion,$localidad,$provincia,$telefono,$email,$psswrd,$rol);
+                    foreach ($arrayAtributos as $index => $atributo) {
+                        $nombreAtributo = $atributo;
+                        $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
+                        if($atributo == "psswrd"){
+                            $valor=null; //no queremos pasar la contraseña, porque no se mostrará
+                        }else{
+                            $valor = $arrayClientes[$i]->$getter();//lo llamamos para obtener el valor
+                        }
+                        $arrayValores[] = $valor;//metemos cada valor en un array, como se llaman en orden luego puedo meterlos en el constructor con ese mismo orden.
+                    }
+                    $cliente = new Cliente(...$arrayValores); //resulta que si llamo el operador de propagación mete los contenidos del array como parametros del método constructor
                     $arrayAImpimir[] = $cliente;
+                    $arrayValores=[];//reiniciamos este array
                 }
                 return $arrayAImpimir;
             }

@@ -18,8 +18,10 @@ class Cliente {
     private $email;
     private $psswrd;
     private $rol;
+    private $activo;
 
-    public function __construct($dni = null, $nombre = null, $direccion = null, $localidad = null, $provincia = null, $telefono = null, $email = null, $psswrd = null, $rol = null) {
+    ///tablaclientescontroller requiere que el constructor esté en el mismo orden en el que se declaran los atributos
+    public function __construct($dni = null, $nombre = null, $direccion = null, $localidad = null, $provincia = null, $telefono = null, $email = null, $psswrd = null, $rol = null, $activo =1) {//le ponemos que activo, de forma default sea 1 (igual que en la BBDD)
         $this->dni = $dni;
         $this->nombre = $nombre;
         $this->direccion = $direccion;
@@ -29,6 +31,7 @@ class Cliente {
         $this->email = $email;
         $this->psswrd = $psswrd;
         $this->rol = $rol;
+        $this->activo = $activo;
     }
 
     /**
@@ -111,7 +114,7 @@ class Cliente {
  *      * Ya sube esto a session si algo sale mal
  * @return bool true si tiene éxito el update, false si falla.
  */
-    public static function UpdateCliente($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $noPsswrd){
+    public static function UpdateCliente($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo, $noPsswrd){
     //hay que "reiniciar" el valor de "editando"
         $_SESSION["editandoCliente"]="false";
         if( $noPsswrd == true){
@@ -120,7 +123,7 @@ class Cliente {
                 $conPDO = contectarBbddPDO();
                 $sqlQuery = " UPDATE `clientes`
                         SET `nombre` = :nombre, `telefono` = :telefono, `direccion` = :direccion, `provincia` = :provincia, `localidad` = :localidad, `email` = :email,
-                        `dni` = :dni, `rol` = :rol
+                        `dni` = :dni, `rol` = :rol,`activo` = :activo
                         WHERE `dni` = :dni "
                 ;
                 $statement= $conPDO->prepare($sqlQuery);
@@ -134,6 +137,7 @@ class Cliente {
 
                 $statement->bindParam(':dni', $dni);
                 $statement->bindParam(':rol', $rol);
+                $statement->bindParam(':activo', $activo);
 
                 $operacionRealizada = $statement->execute();
 
@@ -155,7 +159,7 @@ class Cliente {
                 $conPDO = contectarBbddPDO();
                 $sqlQuery = " UPDATE `clientes`
                         SET `nombre` = :nombre, `telefono` = :telefono, `direccion` = :direccion, `provincia` = :provincia, `localidad` = :localidad, `email` = :email,
-                        `dni` = :dni, `psswrd` = :psswrd, `rol` = :rol
+                        `dni` = :dni, `psswrd` = :psswrd, `rol` = :rol, `activo` = :activo
                         WHERE `dni` = :dni "
                 ;
 
@@ -167,6 +171,7 @@ class Cliente {
                 $statement->bindParam(':localidad', $localidad);
                 $statement->bindParam(':email', $email);
                 $statement->bindParam(':psswrd', $psswrd);
+                $statement->bindParam(':activo', $activo);
 
                 $statement->bindParam(':dni', $dni);
                 $statement->bindParam(':rol', $rol);
@@ -191,7 +196,7 @@ class Cliente {
      * Ya sube esto a session si algo sale mal
      * @return bool true si tiene éxito el update, false si falla.
      */
-    public static function InsertCliente($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol){
+    public static function InsertCliente($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol){//activo no hace falta default = 1 (TRUE)
         $_SESSION["nuevoCliente"]=false;
         $con = contectarBbddPDO();
         //rescatamos de session los datos subidos por ValidarDatos
@@ -344,6 +349,7 @@ public static function checkClientByEmailAndDni($email, $dni){
     public function getDni() {return $this->dni;}
     public function getRol() {return $this->rol;}
     public function getPsswrd() {return $this->psswrd;}
+    public function getActivo() {return $this->activo;}
 
 }
 
