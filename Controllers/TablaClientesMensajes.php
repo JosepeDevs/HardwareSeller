@@ -125,6 +125,11 @@ Function getArrayMensajesTabla(){
         $mensajes[]= " operación falló de una forma inesperada, quizás la conexión a la base de datos no fue correcta";
     }
 
+    if(isset($_SESSION['LongActivo']) && ($_SESSION['LongActivo'] == true)) {
+        unset($_SESSION['LongActivo'] );
+        $mensajes[]= " Indicó un estado no valido (solo puede ser 0 (desactivado) o 1 (activado))";
+    }
+
     if( count($mensajes) == 0){
         return false;//si no encontró ningún mensaje a mostrar devolverá false;
     } else{

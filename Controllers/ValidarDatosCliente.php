@@ -17,6 +17,7 @@ $provincia = isset($_POST["provincia"]) ? $_POST["provincia"] : null;
 $telefono = isset($_POST["telefono"]) ? $_POST["telefono"] : null;
 $email = isset($_POST["email"]) ? $_POST["email"]:null;
 $rol = isset($_POST["rol"]) ? $_POST["rol"]: "user";
+$activo = isset($_POST["activo"]) ? $_POST["activo"]:null;
 
 if(in_array(strtolower($rol), array("user", "admin", "editor"))){
     //se ha enviado un rol correcto, no validamos longitud porque ha cumplido con el enum
@@ -51,6 +52,12 @@ print("localidad valida:".$localidadValida);
 $provinciaValida = ComprobarLongitud($provincia,30);
 if($provinciaValida == false) { $_SESSION['LongProvincia']= true;}
 print("provincia valida:".$provinciaValida);
+
+$activoValido = ComprobarLongitud($activo,1);
+if($activoValido == false && ($activo !== 1 || $activo !== 0)) { $_SESSION['LongActivo']= true;}
+print("activo valido:".$activoValido);
+
+
 
 print_r($_SESSION);
 $emailOriginal = isset($_SESSION['email']) ? $_SESSION['email'] : null; //aquí estamos recibiendo el email original del cliente
@@ -172,6 +179,7 @@ $_SESSION["nombre"] = $nombre;
 $_SESSION["email"] = $email;
 $_SESSION["psswrd"] = $psswrd;
 $_SESSION["rolCliente"] = $rol;
+$_SESSION["activo"] = $activo;
 
 $arrayDatosCliente  = array($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $noPsswrd);
 print("<br> array del cliente:");
@@ -186,7 +194,7 @@ print_r($_SESSION);
         print_r($_SESSION);
         print "<p>'editando cliente...espere infinito...datos que estamos pasando: $dniOriginal, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $noPsswrd</p>";
 
-        $operacionExistosa = Cliente::UpdateCliente($dniOriginal, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $noPsswrd);//le pasamos el DniOoriginal porque no permitimos el cambio del dni
+        $operacionExistosa = Cliente::UpdateCliente($dniOriginal, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo, $noPsswrd);//le pasamos el DniOoriginal porque no permitimos el cambio del dni
 
         if($operacionExistosa){
             $_SESSION['GoodUpdateCliente']= true;
