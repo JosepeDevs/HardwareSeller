@@ -69,8 +69,8 @@
                                 <ul>
                                     <li><a href="#">Mis datos</a></li>
                                     <li><a href="#">Mis pedidos</a></li>
-                                    <li><a href="/Controllers/router.php">Tabla Admin</a></li>
-                                    <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>
+                                    <li><a href="../Controllers/router.php">Tabla Admin</a></li>
+                                    <li><a href="../Controllers/DestructorSession.php">Cerrar sesión</a></li>
                             </div>
                         </div>');
                         }

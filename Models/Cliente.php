@@ -225,6 +225,9 @@ class Cliente {
         };
     }
 
+    /**
+     * @return Cliente|bool devuelve cliente si encuentra el correo en la BBDD, en cualquier otro caso devuelve false
+     */
     public static function GetClientByEmail($email){
         try{
             $conPDO=contectarBbddPDO();

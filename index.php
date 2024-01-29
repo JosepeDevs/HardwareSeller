@@ -1,17 +1,14 @@
   <?php
 if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include("Views/header.php");
-/*
-include_once("IndexMensajes.php");
+
+include_once("Controllers/IndexMensajes.php");
   $arrayMensajes=getArrayMensajesIndex();
   if(is_array($arrayMensajes)){
       foreach($arrayMensajes as $mensaje) {
           echo "<h3>$mensaje</h3>";
       }
-    };
-  //  si hay una sesión al llegar a esta página, nos la cargaremos.
-  //if (session_status() == PHP_SESSION_ACTIVE) {session_unset();}
-*/
+};
 
   ?>
 
