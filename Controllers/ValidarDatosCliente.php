@@ -52,12 +52,17 @@ $provinciaValida = ComprobarLongitud($provincia,30);
 if($provinciaValida == false) { $_SESSION['LongProvincia']= true;}
 print("provincia valida:".$provinciaValida);
 
+print_r($_SESSION);
 $emailOriginal = isset($_SESSION['email']) ? $_SESSION['email'] : null; //aquí estamos recibiendo el email original del cliente
 print("email sin usar :".$emailOriginal);
 
 $emailRepetido = EmailRepetido($email);
-if($emailRepetido == true && ($emailOriginal !== $email)) {//entonces es que está intentando cambiarse el correo y ha puesto uno que ya existe
-    echo" Se quiere cambiar la contraseña y estamos comparando $emailOriginal y $email";
+if($emailRepetido == true && $emailOriginal == $email){
+    //entonces es que no se ha cambiado el email, está manteniendo el mismo
+    print("<br>estamos comparando >$emailOriginal< y >$email< <br>");
+    $_SESSION['EmailAlreadyExists']= false;
+} else if($emailRepetido == true && ($emailOriginal !== $email)) {//entonces es que está intentando cambiarse el correo y ha puesto uno que ya existe
+    echo" <br>Se quiere cambiar el correo y estamos comparando $emailOriginal y $email porque el email está repetido:$emailRepetido<br>";
     $_SESSION['EmailAlreadyExists']= true;
 }
 
@@ -65,18 +70,21 @@ $emailFormato=ValidarEmail($email);
 print("email formato OK? :".$emailFormato);
 $longitudCorrectaEmail= ComprobarLongitud($email, 30);
 if($emailFormato == false || $longitudCorrectaEmail == false){
-    print("email longitud OK? : si");
+    print("email longitud OK?1");
     $_SESSION['EmailBadFormat']= true;
-};
+} else{
+    $_SESSION['EmailBadFormat']= false;
+}
 
 $telefonoValido=ValidaTelefono($telefono);
 if($telefonoValido == false){
     print("telefono mal");
     $_SESSION['TelefonoMal']= true;
 }else{
+    $_SESSION['TelefonoMal']= false;//telefono OK
     $telefono = str_replace('.', '', $telefono);
     $telefono = str_replace('-', '', $telefono);
-    print("lo dejamos bonito");
+    print("<br>telefono OK y lo dejamos bonito sin . ni , <br>");
 }
 
 //solo llegará DNI de los EDIT por SESSION
@@ -86,8 +94,11 @@ if(isset($_SESSION['dni'])) {
     print("dni original".$dniOriginal);
     $formatoDni = ValidaDni($dniOriginal);
     if($formatoDni == false) {
-        echo "el dni estaba mal";
+        echo "el dni de edit (recibido por session) estaba mal";
         $_SESSION['DniBadFormat']= true;
+    } else {
+        echo "el dni estaba bien";
+        $_SESSION['DniBadFormat']= false;
     }
 }
 
@@ -98,23 +109,58 @@ if(isset($_POST['dni'])) {
     $formatoDni = ValidaDni($dniOriginal);
     if($formatoDni == false) {
         $_SESSION['DniBadFormat']= true;
-        print("dni formal mal");
+        print("dni de nuevo cliente mal");
+    } else{
+        $_SESSION['DniBadFormat']= false;
+        print("dni format bien");
     }
 }
 
 //RETROCEDER DE DONDE VINIERAMOS SI HAY ALGÚN ERROR
-if(
-    isset($_SESSION['DniBadFormat'])|| isset($_SESSION['TelefonoMal']) || isset($_SESSION['EmailBadFormat'] )|| isset($_SESSION['EmailAlreadyExists'] )||
-    isset($_SESSION['LongProvincia'] )|| isset($_SESSION['LongLocalidad'] )||     isset($_SESSION['LongDireccion'])|| isset($_SESSION['LongNombre'] )|| isset($_SESSION['BadRol'])
-    ){
-        if(
-            $_SESSION['DniBadFormat'] == true || $_SESSION['TelefonoMal'] == true || $_SESSION['EmailBadFormat'] == true || $_SESSION['EmailAlreadyExists'] == true ||
-            $_SESSION['LongProvincia'] == true || $_SESSION['LongLocalidad'] == true || $_SESSION['LongDireccion']== true || $_SESSION['LongNombre'] == true || $_SESSION['BadRol'] == true
-            ) {
-                print("hubo un error en algun apartado ");
-                echo "<script>history.back();</script>";
-                exit;
-            }
+if(isset($_SESSION['DniBadFormat']) && ($_SESSION['DniBadFormat'] == true)){
+    print("hubo un error en Dni ");
+    echo "<script>history.back();</script>";
+    exit;
+}
+if(isset($_SESSION['TelefonoMal']) && ($_SESSION['TelefonoMal']) == true){
+    print("hubo un error en Telefono ");
+    echo "<script>history.back();</script>";
+    exit;
+}
+if(isset($_SESSION['EmailBadFormat']) && ($_SESSION['EmailBadFormat'])== true){
+    print("hubo un error en Email ");
+    //echo "<script>history.back();</script>";
+    exit;
+}
+if(isset($_SESSION['EmailAlreadyExists']) && ($_SESSION['EmailAlreadyExists'])  == true){
+    print("hubo un error EmailAlreadyExists ");
+    //echo "<script>history.back();</script>";
+    exit;
+}
+if(isset($_SESSION['LongProvincia']) && ($_SESSION['LongProvincia']) == true){
+    print("hubo un error en LongProvincia ");
+    echo "<script>history.back();</script>";
+    exit;
+}
+if(isset($_SESSION['LongLocalidad']) && ($_SESSION['LongLocalidad']) == true){
+    print("hubo un error en LongLocalidad ");
+    echo "<script>history.back();</script>";
+    exit;
+}
+if(isset($_SESSION['LongDireccion']) && ($_SESSION['LongDireccion']) == true){
+    print("hubo un error en LongDireccion ");
+    echo "<script>history.back();</script>";
+    exit;
+}
+if(isset($_SESSION['LongNombre']) && ($_SESSION['LongNombre'])  == true){
+    print("hubo un error en LongNombre ");
+    echo "<script>history.back();</script>";
+    exit;
+}
+if(isset($_SESSION['BadRol']) && ($_SESSION['BadRol']) == true){
+    print("hubo un error en BadRol ");
+    echo "<script>history.back();</script>";
+    exit;
 }
 
 //SUBIR A SESSION DATOS
@@ -138,6 +184,8 @@ print_r($_SESSION);
         $_SESSION["dni"]=$dniOriginal;
         print "<p>'actualizando cliente...espere infinito...</p>";
         print_r($_SESSION);
+        print "<p>'editando cliente...espere infinito...datos que estamos pasando: $dniOriginal, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $noPsswrd</p>";
+
         $operacionExistosa = Cliente::UpdateCliente($dniOriginal, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $noPsswrd);//le pasamos el DniOoriginal porque no permitimos el cambio del dni
 
         if($operacionExistosa){

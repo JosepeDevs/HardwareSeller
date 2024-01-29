@@ -25,7 +25,7 @@ $rol4consulta = isset($_GET['rol4consulta'])? $_GET['rol4consulta'] : null;
 echo"<table>";
         echo"<tr><th>Atributos:</th>";
                 foreach ($arrayAtributos as $index => $atributo) {
-                    $nombreAtributo = $atributo->getName();
+                    $nombreAtributo = $atributo;
                     echo "<th>$nombreAtributo</th>";
                 }
         echo "</tr>";
@@ -35,9 +35,9 @@ echo"<table>";
                 <th>Datos actuales:</th>";
                     $cliente = getClienteByDni($dniOriginal);
                     foreach ($arrayAtributos as $index => $atributo) {
-                        $nombreAtributo = $atributo->getName();
+                        $nombreAtributo = $atributo;
                         $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
-                        $valor = $articulo->$getter();//lo llamamos para obtener el valor
+                        $valor = $cliente->$getter();//lo llamamos para obtener el valor
                         if($rol4consulta == 'administradormaestro') {
                             if($nombreAtributo == "dni") {
                                 echo "<td>$dniOriginal</td>";
@@ -52,6 +52,9 @@ echo"<table>";
                                 echo "<td>$dniOriginal</td>";
                             } elseif($nombreAtributo == "rol") {
                                 //no admins no deben ver el rol
+                            }elseif($nombreAtributo == "email") {
+                                echo "<td>$valor</td>";
+                                $_SESSION['email'] =$valor; //subimos a session el email original del cliente, por si se lo intenta modificar
                             } elseif($nombreAtributo == "psswrd") {
                                 echo "<td></td>";//no required y sin imprimir
                             } else {
@@ -63,12 +66,12 @@ echo"<table>";
 
 
                 //FORMULARIO para EDITAR PRERELLENADO para que se mantengan los datos si no cambia nada
-                echo '<form action="/Controllers/ArticuloVALIDAR.php" method="POST" enctype="multipart/form-data">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
+                echo '<form action="/Controllers/ValidarDatosCliente.php" method="POST" enctype="multipart/form-data">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
                 echo"<tr><th>Nuevos datos</th>";
                     foreach ($arrayAtributos as $index => $atributo) {
-                        $nombreAtributo = $atributo->getName();
-                        $getter = 'get' . ucfirst($atributo->getName());
-                        $valor = $articulo->$getter();
+                        $nombreAtributo = $atributo;
+                        $getter = 'get' . ucfirst($atributo);
+                        $valor = $cliente->$getter();
                         if($rol4consulta == 'administradormaestro') {
                             if($nombreAtributo == "rol") {
                                 echo "
@@ -83,16 +86,23 @@ echo"<table>";
                                 echo "<td>$dniOriginal</td>";//no input, dni no se debe poder cambiar
                             } elseif( $nombreAtributo == "psswrd") {
                                 echo "<td><input type='password' id='$nombreAtributo' name='$nombreAtributo'></td>";//no required, pueden dejarlo en blanco y la psswd debe mantenerse la misma
+                            }elseif( $nombreAtributo == "email") {
+                                echo "<td><input type='email' id='$nombreAtributo' name='$nombreAtributo'  value='$valor' required></td>";//required, pueden dejarlo como esta para mantenerlo o escribir otro para cambiarlo
+                                $_SESSION['email'] =$valor; //subimos a session el email original del cliente, por si se lo intenta modificar
                             } else {
                                 echo "<td><input type='text' id='$nombreAtributo' name='$nombreAtributo' required value='$valor'></td>";
                             };
                         } else{
+                            //si no es un administrador:
                             if($nombreAtributo == "dni") {
                                 echo "<td>$dniOriginal</td>";
                             } elseif($nombreAtributo == "rol") {
                                 //no imprimir nada
                             } elseif($nombreAtributo == "psswrd") {
                                 echo "<td><input type='password' id='$nombreAtributo' name='$nombreAtributo'></td>";//no required y vacio
+                            } elseif( $nombreAtributo == "email") {
+                                echo "<td><input type='email' id='$nombreAtributo' name='$nombreAtributo' value='$valor' required></td>";//required, pueden dejarlo como esta para mantenerlo o escribir otro para cambiarlo
+                                $_SESSION['email'] =$valor; //subimos a session el email original del cliente, por si se lo intenta modificar
                             } else {
                                 echo "<td><input type='text' id='$nombreAtributo' name='$nombreAtributo'  value='$valor' required></td>";
                             }
@@ -119,7 +129,7 @@ if(is_array($arrayMensajes)){
 if(AuthYRolAdmin() == true){
     echo("<h2><a class='cerrar' href='TablaClientes.php?editandoCliente=false'>Cancelar edición / volver a la tabla</a></h2>");
 } else {
-    echo("<h2><a class='cerrar' href='ArticulosLISTAR.php?editandoArticulo=false'>Ver listado de productos</a></h2>");
+    echo("<h2><a class='cerrar' href='TablaClientes.php?editandoCliente=false'>Ver listado de productos</a></h2>");
     echo("<h2><a class='cerrar' href='/index.php?editandoCliente=false'>Cancelar edición / cerrar sesión</a></h2>");
 }
 echo"<br><br><br><br><br>";

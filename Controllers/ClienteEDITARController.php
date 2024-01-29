@@ -5,18 +5,18 @@ $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "ClienteEDITARController dice: no está user en session";
-    header("Location: /../Views/index.php");
+    header("Location: ../index.php");
 }
 
 function getClienteByDni($dni){
-    include_once("/../Models/Cliente.php");
+    include_once("../Models/Cliente.php");
     $cliente = Cliente::getClienteByDni($dni);
     return $cliente;
 }
 
 function getArrayAtributos(){
-    include_once("/../Models/Cliente.php");
-    $arrayArticulos = getArrayAtributos();
+    include_once("../Models/Cliente.php");
+    $arrayArticulos = Cliente::getArrayAtributosCliente();
     return $arrayArticulos;
 }
 ?>
