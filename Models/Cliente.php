@@ -267,18 +267,15 @@ class Cliente {
             return false;
         }
     }
-    public function borradoLogico($dni){
-        include_once("/../config/conectarBD.php");
+    public function borradoLogicoCliente($dni){
         try {
             $conPDO=contectarBbddPDO();
-            $query=("UPDATE clientes SET activo=false WHERE dni=:dni");
+            $query=("UPDATE clientes SET activo=0 WHERE dni=:dni");
             $statement= $conPDO->prepare($query);
             $statement->bindParam(':dni', $dni);
             $operacionConfirmada = $statement->execute();
-            /*
-            $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Articulo');
+            $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Cliente');
             $operacionConfirmada= $statement->fetch();
-            */
             if($operacionConfirmada){
                 $_SESSION['ExitoBorrandoCliente'] = false;
             } else {

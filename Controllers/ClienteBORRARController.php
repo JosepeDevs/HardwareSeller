@@ -5,13 +5,13 @@ $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "ClienteBorrarController dice: no está user en session";
-    header("Location: index.php");
+    header("Location: ../index.php");
 }
 
-function borradoLogico($dni){
-    include_once("/../Models/Cliente.php");
+function borradoLogicoCliente($dni){
+    include_once("../Models/Cliente.php");
     $cliente = new Cliente();
-    $operacionConfirmada = $cliente->borradoLogico($dni);
+    $operacionConfirmada = $cliente->borradoLogicoCliente($dni);
     return $operacionConfirmada;
 }
 ?>
