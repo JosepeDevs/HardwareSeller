@@ -59,6 +59,12 @@ if(isset($_POST["dni"])) {
                             $valor = $cliente->$getter();//lo llamamos para obtener el valor
                             if($nombreAtributo == "psswrd"){
                                 echo "<td>***</td>";//admin no debe poder ver contraseñas, por eso no lo ponemos.
+                            } else if($nombreAtributo == "activo"){
+                                if($valor == 1){
+                                    echo "<td>Activo (1)</td>";
+                                } else{
+                                    echo "<td>Inactivo (0) </td>";
+                                }
                             } else {
                                 echo "<td>1$valor</td>";
                             }

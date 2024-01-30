@@ -196,14 +196,14 @@ class Cliente {
      * Ya sube esto a session si algo sale mal
      * @return bool true si tiene éxito el update, false si falla.
      */
-    public static function InsertCliente($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol){//activo no hace falta default = 1 (TRUE)
+    public static function InsertCliente($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo){//activo no hace falta default = 1 (TRUE)
         $_SESSION["nuevoCliente"]=false;
         $con = contectarBbddPDO();
         //rescatamos de session los datos subidos por ValidarDatos
         //nos llega la psswrd ya hasheada
         try{
-                $sqlQuery="INSERT INTO `clientes` (`dni`, `nombre`, `direccion`, `localidad`, `provincia`, `telefono`, `email`, `psswrd`)
-                                        VALUES (:dni, :nombre, :direccion, :localidad, :provincia, :telefono, :email, :psswrd);";
+                $sqlQuery="INSERT INTO `clientes` (`dni`, `nombre`, `direccion`, `localidad`, `provincia`, `telefono`, `email`, `psswrd`, `activo`)
+                                        VALUES (:dni, :nombre, :direccion, :localidad, :provincia, :telefono, :email, :psswrd, :activo);";
                 $statement=$con->prepare($sqlQuery);
                 $statement->bindParam(':dni', $dni);
                 $statement->bindParam(':nombre', $nombre);
@@ -213,6 +213,7 @@ class Cliente {
                 $statement->bindParam(':telefono', $telefono);
                 $statement->bindParam(':email', $email);
                 $statement->bindParam(':psswrd', $psswrd);
+                $statement->bindParam(':activo', $activo);
                 $OperacionExitosa = $statement->execute();
                 $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
                 $resultado = $statement->fetch();
@@ -272,6 +273,10 @@ class Cliente {
             return false;
         }
     }
+
+    /**
+     * @return bool returns true si hay exito (y sube a session ExitoBorrandoCliente=true), si falla returns false y sube ExitoBorrandoCliente=false a session)
+     */
     public function borradoLogicoCliente($dni){
         try {
             $conPDO=contectarBbddPDO();

@@ -31,7 +31,7 @@ unset($_SESSION['dni']);
                 <th><label for="email">email:</label></th>
                 <th><label for="dni">DNI:</label></th>
                 <th><label for="psswrd">contraseña:</label></th>
-                <?php if($rol == "admin"){echo'<th><label for="rol">Rol (user/editor):</label></th>';}?>
+                <?php if($rol == "admin"){echo'<th><label for="rol">Rol (User/Editor/Admin):</label></th>';}?>
             </tr>
             <td><input type="text" name="nombre" id="nombre" required><br><br></td>
             <td><input type="text" name="direccion" id="direccion" required ><br><br></td>

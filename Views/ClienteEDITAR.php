@@ -82,6 +82,22 @@ echo"<table>";
                                             <option value='admin'>Administrador</option>
                                         </select>
                                     </td>";
+                            } elseif($nombreAtributo == "activo") {
+                                echo "
+                                    <td>
+                                        <select id='activo' name='activo' required>";
+                                        if($valor == 0){
+                                            echo"
+                                                <option value='0' selected>Inactivo</option>
+                                                <option value='1' >Activo</option>
+                                            </select>";
+                                        } else{
+                                            echo"
+                                                <option value='0' >Inactivo</option>
+                                                <option value='1' selected>Activo</option>
+                                            </select>";
+                                        }
+                                    echo"</td>";
                             } elseif($nombreAtributo == "dni") {
                                 echo "<td>$dniOriginal</td>";//no input, dni no se debe poder cambiar
                             } elseif( $nombreAtributo == "psswrd") {

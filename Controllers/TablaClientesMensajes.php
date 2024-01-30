@@ -73,11 +73,11 @@ Function getArrayMensajesTabla(){
 
     if(isset($_SESSION['ExitoBorrandoCliente']) && ($_SESSION['ExitoBorrandoCliente'] == true)) {
         unset($_SESSION['ExitoBorrandoCliente']);
-        $mensajes[]= "La cuenta se borró correctamente. ";
+        $mensajes[]= "La cuenta se desactivó correctamente. ";
 
     } elseif(isset($_SESSION['ExitoBorrandoCliente']) && ($_SESSION['ExitoBorrandoCliente'] == false)) {
         unset($_SESSION['ExitoBorrandoCliente'] );
-        $mensajes[]= "La cuenta no se borró. ";
+        $mensajes[]= "La cuenta no se desactivó. ";
     }
 
     if(isset($_SESSION['BorradoClienteCancelado']) && ($_SESSION['BorradoClienteCancelado'] == true)) {
