@@ -197,6 +197,7 @@ class Cliente {
      * @return bool true si tiene éxito el update, false si falla.
      */
     public static function InsertCliente($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo){//activo no hace falta default = 1 (TRUE)
+        if($activo == null){$activo=1;};// al dar de alta de forma predeterminada activo=true
         $_SESSION["nuevoCliente"]=false;
         $con = contectarBbddPDO();
         //rescatamos de session los datos subidos por ValidarDatos

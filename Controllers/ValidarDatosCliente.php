@@ -181,14 +181,17 @@ $_SESSION["psswrd"] = $psswrd;
 $_SESSION["rolCliente"] = $rol;
 $_SESSION["activo"] = $activo;
 
-$arrayDatosCliente  = array($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo, $noPsswrd);
-print("<br> array del cliente:");
-print_r($arrayDatosCliente);
+
 print("<br> array session:");
 print_r($_SESSION);
 
 //UPDATE o INSERT , SUBIR confirmación a SESSION y HEADER A DONDE TOQUE
     if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true" ){
+
+        $arrayDatosCliente  = array($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo, $noPsswrd);
+        print("<br> array del cliente:");
+print_r($arrayDatosCliente);
+
         $_SESSION["dni"]=$dniOriginal;
         print "<p>'actualizando cliente...espere infinito...</p>";
         print_r($_SESSION);
@@ -210,6 +213,10 @@ print_r($_SESSION);
         }
 
     }else if( isset($_SESSION["nuevoCliente"]) && $_SESSION["nuevoCliente"] == "true" ){
+        $arrayDatosCliente  = array($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
+        print("<br> array del cliente:");
+print_r($arrayDatosCliente);
+
         $_SESSION["dni"]=$dniNuevo;
         echo "<p>'insertando cliente...espere infinito...datos que estamos pasando: $dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo</p>";
         $operacionExistosa = Cliente::InsertCliente($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
