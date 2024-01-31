@@ -141,10 +141,10 @@ print("
         <form action='TablaClientes.php' method='GET'>
         <label for='itemXpag'>Registros/página</label><br>
         <select id='itemXpag' name='itemXpag' onchange='this.form.submit()' required>
-            <option value='$filasAMostrar'>$filasAMostrar</option>";
-            for ($i = 1; $i < count($opcionesitemXpag); $i++) {
+            <option value='$filasAMostrar'>$filasAMostrar</option>";//mostrar la opción actual seleccionada
+            for ($i = 0; $i < count($opcionesitemXpag); $i++) {
                 if( $opcionesitemXpag[$i] == $filasAMostrar){
-                    continue;
+                    continue;//no queremos imprimir de nuevo la opción que ya tienen seleccionada
                 } else{
                     print "<option value='$opcionesitemXpag[$i]'>$opcionesitemXpag[$i]</option>";
                 }
