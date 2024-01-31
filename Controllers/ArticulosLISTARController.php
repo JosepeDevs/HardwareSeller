@@ -2,7 +2,7 @@
 
 function getArrayAtributos(){
     include_once("../Models/Articulo.php");
-    $arrayArticulos = getArrayAtributos();
+    $arrayArticulos = Articulo::getArrayAtributos();
     return $arrayArticulos;
 }
 

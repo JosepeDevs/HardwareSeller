@@ -144,11 +144,17 @@ class Articulo {
         };
     }
 
-    public function getArrayAtributos($codigoOriginal){
+    /**
+     * @return array|bool devuelve array de atributos  del artículo (propiedades privadas), devuelve false si no sale bien
+     */
+    public static function getArrayAtributos(){
         include_once("/../Models/Articulo.php");
             $reflejo = new ReflectionClass('Articulo');
-            $arrayAtributos = $reflejo->getProperties(ReflectionProperty::IS_PRIVATE);//como hemos puesto todos private vamos a meter esos en un array
-            return $arrayAtributos;
+            if (!empty($arrayAtributos)) {
+                return $arrayAtributos;
+            } else {
+                return false;
+            }
     }
 
     public function borradoLogico($codigo){

@@ -5,7 +5,7 @@ $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "ArticulosLISTAR dice: no está user en session";
-    header("Location: ../index.php");
+    header("Location: ..//index.php");
 }
 //HEADER Y TITULO
 include_once("header.php");
@@ -14,27 +14,51 @@ print("<h1>Gestionar artículos</h1>");
 //NAVEGACION
 include_once("../Controllers/OperacionesSession.php");
 if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
-    echo"<h2><a class='enlace' href='ArticuloALTA.php'><img src='addAr.png' alt='añadir' /> Nuevo artículo (solo admin y editores)</h2></a>";
+    echo"
+    <div id='EnlacesArriba'>
+        <h2>
+            <a href='ArticuloALTA.php'>
+                <img class='iconArribaTabla' src='../Resources/addAr.png' alt='añadir' /> Nuevo artículo (solo admin y editores)
+            </a>
+        </h2>";
 }
 if(GetRolDeSession() == "admin" ){
-    echo"<h2><a class='enlace' href='TablaClientes.php'><img src='search.png' alt='añadir' /> Ver clientes</h2></a></a>";
+    echo"<h2>
+            <a href='TablaClientes.php'>
+                <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' /> Ver clientes
+            </a>
+        </h2>";
 } else {
     include_once("../Controllers/GetEmailByDniController.php");
     $email = GetEmailDeSession();
     $dni=GetDniByEmail($email);
     if($dni == null ){
         $_SESSION['OperationFailed'] = true;
-        echo"<h2><a class='enlace' href='ClienteBUSCAR.php'><img src='search.png' alt='añadir' /> Buscar cliente </h2></a></a>";
+        echo"<h2>
+                <a href='ClienteBUSCAR.php'>
+                    <img class='iconArribaTabla' src='search.png' alt='añadir' /> Buscar cliente
+                </a>
+            </h2>";
     } else{
-        echo"<h2><a class='enlace' href='ClienteEDITAR.php?dni=$dni'><img src='search.png' alt='añadir' /> Editar mis datos de usuario $email </h2></a></a>";
+        echo"<h2>
+                <a href='ClienteEDITAR.php?dni=$dni'>
+                    <img class='iconArribaTabla' src='search.png' alt='añadir' /> Editar mis datos de usuario $email
+                </a>
+            </h2>";
     }
 }
 ?>
-
-
-<h2><a class='enlace' href='ArticulosLISTAR.php'><img src='refresh.png' alt='refrescar' /> Recargar tabla (Quita ordenación y reinicia paginación)</h2></a>
-<h2><a class='enlace' href='ArticuloBUSCAR.php'><img src="buscaAr.png" alt="recraft icon"/> Buscar artículo</h2></a>
-
+<h2>
+    <a href='ArticulosLISTAR.php'>
+        <img  class='iconArribaTabla' src='../Resources/refresh.png' alt='refrescar' /> Recargar tabla (Quita ordenación y reinicia paginación)
+    </a>
+</h2>
+<h2>
+    <a href='ArticuloBUSCAR.php'>
+        <img class='iconArribaTabla'  src="../Resources/buscaAr.png" alt="recraft icon"/> Buscar artículo
+    </a>
+</h2>
+</div>
 <?php
 //TABLA LISTANDO ARTICULOS
 echo"<table>";
@@ -44,7 +68,7 @@ echo"<table>";
             include_once("../Controllers/ArticulosLISTARController.php");
             $arrayAtributos = getArrayAtributos();
             foreach ($arrayAtributos as $atributo) {
-                $nombreAtributo = $atributo->getName();
+                $nombreAtributo = $atributo;
                 echo "<th>$nombreAtributo</th>";
             }
             include_once("../Controllers/OperacionesSession.php");//get rol
@@ -72,7 +96,7 @@ echo"<table>";
         foreach($arrayAImpimir as $articulo){
             echo("<tr>");
             foreach ($arrayAtributos as $atributo) {
-                $nombreAtributo = $atributo->getName();//p.e. codigo, nombre...
+                $nombreAtributo = $atributo;//p.e. codigo, nombre...
                 $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
                 $valor = call_user_func([$articulo, $nombreMetodo]);
                 if($nombreAtributo == "codigo"){
@@ -85,8 +109,8 @@ echo"<table>";
             }
             if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"){
                 echo"
-                <td><a class='icon' href='ArticuloEDITAR.php?codigo=$codigo'><img src='editAr.png' alt='Editar artículo' /></td>
-                <td><a class='icon' href='ArticuloBORRAR.php?codigo=$codigo'><img src='minusAr.png' alt='Borrar artículo' /></td>";
+                <td><a class='icon' href='ArticuloEDITAR.php?codigo=$codigo'><img src='../Resources/editAr.png' alt='Editar artículo' /></td>
+                <td><a class='icon' href='ArticuloBORRAR.php?codigo=$codigo'><img src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
             }
         }
         echo("</tr>

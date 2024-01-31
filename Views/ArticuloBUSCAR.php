@@ -45,7 +45,7 @@ if(isset($_POST["codigo"])) {
     //ENCABEZADOS
     $arrayAtributos = getArrayAtributos();
     foreach ($arrayAtributos as $atributo) {
-        $nombreAtributo = $atributo->getName();
+        $nombreAtributo = $atributo;
         echo "<th>$nombreAtributo</th>";
     }
     echo "</tr>";

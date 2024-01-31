@@ -24,7 +24,7 @@ $rol4consulta = isset($_GET['rol4consulta'])? $_GET['rol4consulta'] : null;
 echo"<table>";
         echo"<tr><th>Atributos:</th>";
                 foreach ($arrayAtributos as $index => $atributo) {
-                    $nombreAtributo = $atributo->getName();
+                    $nombreAtributo = $atributo;
                     echo "<th>$nombreAtributo</th>";
                 }
         echo "</tr>";
@@ -35,7 +35,7 @@ echo"<table>";
                     $articulo = getArticuloByCodigo($codigoOriginal);
                     //imprimimos los valores
                     foreach ($arrayAtributos as $atributo) {
-                        $getter = 'get' . ucfirst($atributo->getName());
+                        $getter = 'get' . ucfirst($atributo);
                         $valor = $articulo->$getter();
                         if($atributo == "imagen" ){
                             echo"<td><img class='imagenes' src='{$valor}' width='200' height='200'/></td>";
@@ -46,7 +46,7 @@ echo"<table>";
                     echo '<form action="/Controllers/ArticuloVALIDAR.php" method="POST" enctype="multipart/form-data">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
                     echo"<tr><th>Nuevos datos</th>";
                     foreach ($arrayAtributos as $atributo) {
-                        $getter = 'get' . ucfirst($atributo->getName());
+                        $getter = 'get' . ucfirst($atributo);
                         $valor = $articulo->$getter();
                         if( $nombreAtributo == "precio") {
                             echo "<td><input type='number' id='$nombreAtributo' name='$nombreAtributo' required value='$valor'></td>";
