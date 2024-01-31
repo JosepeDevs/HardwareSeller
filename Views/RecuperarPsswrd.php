@@ -1,7 +1,7 @@
 <?php
 include_once("header.php");
 ?>
-    <form action="/Controllers/UpdatePsswrd.php" method="POST">
+    <form id="recuperarpsswrd" action="../Controllers/UpdatePsswrd.php" method="POST">
         <label>Email:</label> <br><input type="email" name="mail"><br><br>
         <label>Incluya su DNI para validar su identidad: </label><br><input type="text" id="dni" name="dni"><br><br><br><br>
         <div class="finForm">
@@ -11,7 +11,7 @@ include_once("header.php");
     </form>
     <br>
     <br>
-    <h3> <p><a id='cerrar' href="index.php">Cancelar</a></p></h3>
+    <h3> <p><a id='cerrar' href="../index.php">Cancelar</a></p></h3>
 
 <?php
 include_once("../Controllers/RecuperarPsswrdMensajes.php");

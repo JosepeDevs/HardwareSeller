@@ -131,6 +131,10 @@
         color:var(--hover-light);
     }
 
+    #recuperarpsswrd{
+        margin-top: 100px;
+    }
+
     /* ******************* INICIO MENU POP-UP/TOOLKIT STYLE ****************** */
         .dropdown-content {
             display: none;

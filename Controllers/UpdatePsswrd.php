@@ -1,6 +1,9 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-
+include_once("../Views/header.php");
+print_r($_SESSION);
+print_r($_POST);
+ $operacionExitosa=false;
 if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']) ) {
     $email = $_POST['mail'];
     $dni = $_POST['dni'];
@@ -12,19 +15,23 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
         echo '<br><br><input type="submit" value="Submit"></form>';
     } else {
         $_SESSION['ClienteNoExiste'] =true;
-        header("Location: ../Views/index.php");
+       header("Location: ../index.php");
     }
 } else if (isset($_POST['newpsswrd']) && !empty($_POST['newpsswrd'])){
     $newpsswrd = $_POST['newpsswrd'];
     $newpsswrd = password_hash($newpsswrd, PASSWORD_BCRYPT);
     $dni = $_SESSION['dni'];
+    echo"entramos a actualizar la contraseña";
     $operacionExitosa = updatePasswrdUsingDni($dni, $newpsswrd);
-}
-
 if ($operacionExitosa) {
+    echo"la operacion ha sido $operacionExitosa";
     $_SESSION['PsswrdActualizada'] = true;
 }
-header("Location: ../Views/index.php");
+//haya éxito o no iremos a index
+header("Location: ../index.php");
+}
+
+
 
 function checkClientByEmailAndDni($email, $dni){
     include_once("../Models/Cliente.php");
@@ -47,5 +54,5 @@ function updatePasswrdUsingDni($dni, $newpsswrd){
     }
 }
 
-
+include_once("../Views/footer.php");
 ?>

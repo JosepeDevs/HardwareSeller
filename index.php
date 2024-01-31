@@ -1,19 +1,20 @@
   <?php
-if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include("Views/header.php");
+?>
 
+<?php
+if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("Controllers/IndexMensajes.php");
-  $arrayMensajes=getArrayMensajesIndex();
-  if(is_array($arrayMensajes)){
-      foreach($arrayMensajes as $mensaje) {
-          echo "<h3>$mensaje</h3>";
-      }
+$arrayMensajes=getArrayMensajesIndex();
+if(is_array($arrayMensajes)){
+  foreach($arrayMensajes as $mensaje) {
+    echo "<h3>$mensaje</h3>";
+  }
 };
-
-  ?>
+?>
+<h1>Where hardware feels like home</h1>
 
 <section>
-  <h1>Where hardware feels like home</h1>
   <h2>Browse parts</h2>
   <ul>
     <li><a href="#">CPU</a></li>
