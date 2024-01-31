@@ -2,7 +2,7 @@
 //aqui va un metodo y dentro del metodo requeriremos el modelo y guardaremos en una variable lo que llamamos
 function AltaArticulo(){
 
-    require_once("/../Models/Articulo.php");
+    require_once("../Models/Articulo.php");
     //rescatamos de session los datos subidos por ValidarDatos
     $nombre = ( isset($_SESSION["nombre"]) ? $_SESSION["nombre"] : null );
     $codigo = ( isset($_SESSION["codigo"]) ? $_SESSION["codigo"] : null );

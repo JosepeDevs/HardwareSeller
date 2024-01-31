@@ -5,7 +5,7 @@ $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "ArticulosLISTAR dice: no está user en session";
-    header("Location: index.php");
+    header("Location: ../index.php");
 }
 //HEADER Y TITULO
 include_once("header.php");
@@ -41,13 +41,13 @@ echo"<table>";
         echo"<tr>
                 <th>Atributos:</th>";
             //ENCABEZADOS
-            include_once("/../Controllers/ArticulosLISTARController.php");
+            include_once("../Controllers/ArticulosLISTARController.php");
             $arrayAtributos = getArrayAtributos();
             foreach ($arrayAtributos as $atributo) {
                 $nombreAtributo = $atributo->getName();
                 echo "<th>$nombreAtributo</th>";
             }
-            include_once("/../Controllers/OperacionesSession.php");//get rol
+            include_once("../Controllers/OperacionesSession.php");//get rol
             if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
                 echo"
                 <th>Editar</th>
@@ -61,9 +61,9 @@ echo"<table>";
         $filasAMostrar = isset($_GET['numpag'])? $_GET['numpag'] : $numPagPredeterminado;
         $paginaActual = isset($_GET['pag'])? $_GET['pag'] : 0;
 
-        include_once("/../Controllers/OrdenarArticulosController.php");
+        include_once("../Controllers/OrdenarArticulosController.php");
         $arrayArticulos = getArrayArticulosOrdenados($orden);
-        include_once("/../Controllers/ArticulosLISTARController.php");
+        include_once("../Controllers/ArticulosLISTARController.php");
         $arrayAImprimir = getArrayPaginado($arrayArticulos, $filasAMostrar, $paginaActual);
 
         //DATOS DE LOS OBJETOS

@@ -4,7 +4,7 @@
  * $opcion puede ser "ASC" or "DESC", en función de eso devolverá los datos ordenados ASC o DESC
  */
 function getArrayArticulosOrdenados($orden){
-    include_once("/../Models/Articulos.php");
+    include_once("../Models/Articulos.php");
     $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
     if($orden == "ASC"){
         $arrayArticulos= Articulo::getASCSortedArticulos();

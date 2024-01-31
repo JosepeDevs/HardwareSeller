@@ -9,7 +9,7 @@ if( $usuarioLogeado == false){
 }
 
 function borradoLogico($codigo){
-    include_once("/../Models/Articulo.php");
+    include_once("../Models/Articulo.php");
     $articulo = new Articulo();
     $operacionConfirmada = $articulo->borradoLogico($codigo);
     return $operacionConfirmada;

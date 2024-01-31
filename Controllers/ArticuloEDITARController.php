@@ -9,13 +9,13 @@ if( $usuarioLogeado == false){
 }
 
 function getArticuloByCodigo($codigo){
-    include_once("/../Models/Articulo.php");
+    include_once("../Models/Articulo.php");
     $articulo = getArticuloByCodigo($codigo);
     return $articulo;
 }
 
 function getArrayAtributos(){
-    include_once("/../Models/Articulo.php");
+    include_once("../Models/Articulo.php");
     $arrayArticulos = getArrayAtributos();
     return $arrayArticulos;
 }

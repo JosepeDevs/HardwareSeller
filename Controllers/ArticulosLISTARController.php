@@ -1,7 +1,7 @@
 <?php
 
 function getArrayAtributos(){
-    include_once("/../Models/Articulo.php");
+    include_once("../Models/Articulo.php");
     $arrayArticulos = getArrayAtributos();
     return $arrayArticulos;
 }
