@@ -1,6 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("OperacionesSession.php");
+include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
@@ -11,7 +11,7 @@ if( $usuarioLogeado == false){
  * Funcion que se llama para comprobar si ha habido algún error o para mostrar un mensaje de operación realizada correctamente. Obtiene el resultado consultando SESSION.
  * @return array|bool Guarda todos los mensajes que encuentre en un array que devulve, si no hay coincidencias devuelve false.
  */
-Function getArrayMensajesArticulos(){
+Function getArrayMensajesAltaArticulos(){
     if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
     $mensajes=[];

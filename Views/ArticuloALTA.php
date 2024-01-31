@@ -6,7 +6,7 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ArticulosLISTARMensajes dice: no está user en session";
+    echo "Articulos alta dice: no está user en session";
     header("Location: /index.php");
 }
 
@@ -57,7 +57,7 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
 <?php
 
 include_once("../Controllers/ArticuloALTAMensajes.php");
-$arrayMensajes=getArrayMensajesArticulos();
+$arrayMensajes=getArrayMensajesAltaArticulos();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
         echo "<h3>$mensaje</h3>";
