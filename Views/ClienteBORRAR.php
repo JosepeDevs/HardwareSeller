@@ -17,13 +17,13 @@ if($dni !== null){
 
 $_SESSION['operacionCancelada'] = null;//aun no han borrado ni confirmado
 
-if(isset($_GET['confirmacion']) && isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  false ){
+if(isset($_GET['confirmacion']) && isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "false" ){
     $dni=$_GET["dni"];
-    $_SESSION['operacionCancelada'] = 1;
-} else if(isset($_GET['dni']) && isset($_GET['confirmacion']) && $_GET['confirmacion']== true) {
+    $_SESSION['operacionCancelada'] = "true";
+} else if(isset($_GET['dni']) && isset($_GET['confirmacion']) && $_GET['confirmacion']== "true") {
     include_once("../Controllers/ClienteBORRARController.php");
     $operacionConfirmada = borradoLogicoCliente($dni);
-    $_SESSION['operacionCancelada'] = 0;
+    $_SESSION['operacionCancelada'] = "false";
 } else{
     //no hay confirmación, es la primera vez que entran en la página.no hay que hacer nada
 }
@@ -31,11 +31,10 @@ if(isset($_GET['confirmacion']) && isset($_GET['confirmacion']) && $_GET['confir
 ?>
 <h1>¿Está seguro de que desea desactivar/borrar este cliente?</h1>
         <div class="finForm">
-            <h2><a href="ClienteBORRAR.php?dni=<?php echo $dni;?>&confirmacion=1">Sí, borrar el cliente (Borrado lógico).</a></h2>
-            <h2><a href="ClienteBORRAR.php?dni=<?php echo $dni;?>&confirmacion=0">Cancelar borrado.</a></h2>
+            <h2><a href="ClienteBORRAR.php?dni=<?php echo $dni;?>&confirmacion=true">Sí, borrar el cliente (Borrado lógico).</a></h2>
+            <h2><a href="ClienteBORRAR.php?dni=<?php echo $dni;?>&confirmacion=false">Cancelar borrado.</a></h2>
         </div>
 <?php
-print_r($_SESSION);
 include_once("footer.php");
 
 if(( $_SESSION['operacionCancelada'] !== null)){

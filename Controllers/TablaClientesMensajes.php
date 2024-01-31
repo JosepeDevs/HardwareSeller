@@ -130,6 +130,11 @@ Function getArrayMensajesTabla(){
         $mensajes[]= " Indicó un estado no valido (solo puede ser 0 (desactivado) o 1 (activado))";
     }
 
+    if(isset($_SESSION['operacionCancelada']) && ($_SESSION['operacionCancelada'] == true)) {
+        unset($_SESSION['operacionCancelada'] );
+        $mensajes[]= "Se ha cancelado la desactivación del usuario.";
+    }
+
     if( count($mensajes) == 0){
         return false;//si no encontró ningún mensaje a mostrar devolverá false;
     } else{
