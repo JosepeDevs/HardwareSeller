@@ -10,8 +10,10 @@ function AltaArticulo(){
     $categoria = ( isset($_SESSION["categoria"]) ? $_SESSION["categoria"] : null );
     $precio = ( isset($_SESSION["precio"]) ? $_SESSION["precio"] : null );
     $imagen = ( isset($_SESSION["imagen"]) ? $_SESSION["imagen"] : null );
+    $descuento = ( isset($_SESSION["descuento"]) ? $_SESSION["descuento"] : 0 );
+    $activo = ( isset($_SESSION["activo"]) ? $_SESSION["activo"] : 1 );
 
-    $articulo=new Articulo($codigo,$nombre,$descripcion, $categoria, $precio, $imagen);
+    $articulo=new Articulo($codigo,$nombre,$descripcion, $categoria, $precio, $imagen, $descuento, $activo);
     Articulo::AltaArticulo($articulo);
 }
 

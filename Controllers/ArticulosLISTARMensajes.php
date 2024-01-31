@@ -62,6 +62,11 @@ Function getArrayMensajesArticulos(){
         $mensajes[]= "El precio que introdujo es muy grande, por favor, revíselo y si es correcto el precio contacte con el adminsitrador de la base de datos.";
     }
 
+    if(isset($_SESSION['LongActivo']) && ($_SESSION['LongActivo'] == true)) {
+        unset($_SESSION['LongActivo']);
+        $mensajes[]= "indico un estado para activo demasiado largo (solo se permite 0 para inactivo o 1 para activo.";
+    }
+
     if(isset($_SESSION['ExitoBorrandoArticulo']) && ($_SESSION['ExitoBorrandoArticulo'] == true)) {
         unset($_SESSION['ExitoBorrandoArticulo']);
         $mensajes[]= "El artículo se borró correctamente.";
