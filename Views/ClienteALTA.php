@@ -1,4 +1,5 @@
 <?php
+//todo por algun motivo funciona si estoy logeado con un admin pero como cliente sin registrar no aparece la confirmación
 if(session_status() !== PHP_SESSION_ACTIVE) { session_start(); }
 //esta página no requiere validación de rol ni autenticación, nos da igual que quien sea acceda a esta página.
 
@@ -7,6 +8,7 @@ include("header.php");
 
 $_SESSION["nuevoCliente"]="true";//ponemos esto a true para que cuando vaya a validar datos lo trate como un insert
 $_SESSION['auth'] = isset($_GET['auth']) ? $_GET['auth'] : 'OK';
+
 $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
 unset($_SESSION['nombre']);
 unset($_SESSION['direccion']);
@@ -57,6 +59,9 @@ unset($_SESSION['dni']);
         </div>
     </form>
 <?php
+if(isset($_GET['dni']) && !empty($_GET['dni'])){
+    "<h3>Cliente añadido correctamente..</h3";
+}
 
 include_once("../Controllers/ClienteALTAMensajes.php");
 $arrayMensajes=getArrayMensajesNuevo();
@@ -67,7 +72,7 @@ if(is_array($arrayMensajes)){
 };
 
 
-//todo: poner que si intentan registrar un usuario, si este está desactivado que dé la opción de activvarlo en lugar de darlo de alta de nuevo.
+//todo: poner que si intentan registrar un usuario, si este está desactivado que dé la opción de activarlo en lugar de darlo de alta de nuevo.
 
 
 if($rol == "admin"){

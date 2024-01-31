@@ -197,9 +197,9 @@ print_r($arrayDatosCliente);
         print_r($_SESSION);
         print "<p>'editando cliente...espere infinito...datos que estamos pasando: $dniOriginal, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $noPsswrd</p>";
 
-        $operacionExistosa = Cliente::UpdateCliente($dniOriginal, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo, $noPsswrd);//le pasamos el DniOoriginal porque no permitimos el cambio del dni
+        $operacionExitosa = Cliente::UpdateCliente($dniOriginal, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo, $noPsswrd);//le pasamos el DniOoriginal porque no permitimos el cambio del dni
 
-        if($operacionExistosa){
+        if($operacionExitosa){
             $_SESSION['GoodUpdateCliente']= true;
         }
         include_once("OperacionesSession.php");
@@ -219,9 +219,9 @@ print_r($arrayDatosCliente);
 
         $_SESSION["dni"]=$dniNuevo;
         echo "<p>'insertando cliente...espere infinito...datos que estamos pasando: $dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo</p>";
-        $operacionExistosa = Cliente::InsertCliente($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
-
-        if($operacionExistosa){
+        $operacionExitosa = Cliente::InsertCliente($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
+        echo"<br>la operacion ha sido existosa??$operacionExitosa<br>";
+        if($operacionExitosa){
             $_SESSION['GoodInsertCliente']= true;
         }
 
