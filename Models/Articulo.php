@@ -148,7 +148,7 @@ class Articulo {
      * @return array|bool devuelve array de atributos  del artículo (propiedades privadas), devuelve false si no sale bien
      */
     public static function getArrayAtributos(){
-        include_once("/../Models/Articulo.php");
+        include_once("../Models/Articulo.php");
             $reflejo = new ReflectionClass('Articulo');
             if (!empty($arrayAtributos)) {
                 return $arrayAtributos;
@@ -158,7 +158,7 @@ class Articulo {
     }
 
     public function borradoLogico($codigo){
-        include_once("/../config/conectarBD.php");
+        include_once("../config/conectarBD.php");
         try {
             $conPDO=contectarBbddPDO();
             $query=("UPDATE articulos SET activo=false WHERE codigo=:codigo");

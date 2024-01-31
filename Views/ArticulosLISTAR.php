@@ -67,17 +67,22 @@ echo"<table>";
             //ENCABEZADOS
             include_once("../Controllers/ArticulosLISTARController.php");
             $arrayAtributos = getArrayAtributos();
-            foreach ($arrayAtributos as $atributo) {
-                $nombreAtributo = $atributo;
-                echo "<th>$nombreAtributo</th>";
+            if($arrayAtributos == false){
+                echo"</tr><tr><td>Sin articulos</td></tr>";
+            } else{
+
+                foreach ($arrayAtributos as $atributo) {
+                    $nombreAtributo = $atributo;
+                    echo "<th>$nombreAtributo</th>";
+                }
+                include_once("../Controllers/OperacionesSession.php");//get rol
+                if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
+                    echo"
+                    <th>Editar</th>
+                    <th>Borrar</th>";
+                }
+                echo"</tr>";
             }
-            include_once("../Controllers/OperacionesSession.php");//get rol
-            if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
-                echo"
-                <th>Editar</th>
-                <th>Borrar</th>";
-            }
-        echo"</tr>";
 
         //PREPARA PAGINACIÓN Y ARRAY DE OBJETOS
         $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
@@ -93,7 +98,7 @@ echo"<table>";
         //DATOS DE LOS OBJETOS
         //llamamos dinámicamente los getters de la clase habiendo guardado previamente el array con los nombresd de los atributos
         //hay que recorrer todos los atributos en todos los objetos
-        foreach($arrayAImpimir as $articulo){
+        foreach($arrayAImprimir as $articulo){
             echo("<tr>");
             foreach ($arrayAtributos as $atributo) {
                 $nombreAtributo = $atributo;//p.e. codigo, nombre...

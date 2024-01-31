@@ -2,12 +2,12 @@
 <?php
 //require controller y nada más, dependencia de fuera hacia dentro
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("OperacionesSession.php");
+include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "ArticulosLISTARMensajes dice: no está user en session";
-    header("Location: index.php");
+    header("Location: /index.php");
 }
 
 include("header.php");
@@ -17,7 +17,7 @@ echo"<h1>Alta de artículo</h1>";
 $_SESSION["nuevoArticulo"]="true";//ponemos esto a true para que cuando vaya a validar datos lo trate como un insert
 $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
 ?>
-    <form action="ArticuloVALIDAR.php" method="post" enctype="multipart/form-data" >
+    <form action="../Controllers/ArticuloVALIDAR.php" method="post" enctype="multipart/form-data" >
         <table>
             <tr>
                 <th>Atributos:</th>
@@ -56,7 +56,7 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
     <br><br>
 <?php
 
-include_once("ArticuloALTAMensajes.php");
+include_once("../Controllers/ArticuloALTAMensajes.php");
 $arrayMensajes=getArrayMensajesArticulos();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
