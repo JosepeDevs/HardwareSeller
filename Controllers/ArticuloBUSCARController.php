@@ -15,7 +15,6 @@ function TransformarCodigo($codigo){
 }
 
 function getArticuloByCodigo($codigo){
-    include_once("../config/conectarBD.php");
     include_once("../Models/Articulo.php");
     $articulo = Articulo::GetArticuloByCodigo($codigo);
     if($articulo == false){

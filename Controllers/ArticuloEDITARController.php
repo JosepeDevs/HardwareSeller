@@ -10,11 +10,11 @@ if( $usuarioLogeado == false){
 
 function getArticuloByCodigo($codigo){
     include_once("../Models/Articulo.php");
-    $articulo = getArticuloByCodigo($codigo);
+    $articulo = Articulo::getArticuloByCodigo($codigo);
     return $articulo;
 }
 
-function getArrayAtributosArgetArrayAtributosArticuloticulos(){
+function getArrayAtributosArticulo(){
     include_once("../Models/Articulo.php");
     $arrayArticulos = Articulo::getArrayAtributosArticulo();
     return $arrayArticulos;

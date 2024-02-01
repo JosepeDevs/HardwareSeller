@@ -12,7 +12,7 @@ if( $usuarioLogeado == false){
 include_once("header.php");
 print("<h1>Modificar artículo</h1>");
 
-include_once("/../Controllers/ArticuloEDITARController.php");
+include_once("../Controllers/ArticuloEDITARController.php");
 $codigoOriginal=$_GET["codigo"];    //el codigo ha llegado por la url
 $_SESSION["codigo"] = $codigoOriginal;
 $arrayAtributos = getArrayAtributosArticulo();
@@ -38,25 +38,33 @@ echo"<table>";
                         $getter = 'get' . ucfirst($atributo);
                         $valor = $articulo->$getter();
                         if($atributo == "imagen" ){
-                            echo"<td><img class='imagenes' src='{$valor}' width='200' height='200'/></td>";
-                        }
+                            $directorio = "/Resources/ImagenesArticulos/";
+                            $rutaAbsoluta = $directorio . $valor;
+                            echo"<td><img class='imagenes' src='{$rutaAbsoluta}' width='200' height='200'/><br>$valor</td>";
+                        } else if($atributo == "activo"){
+                            if($valor == 1){
+                                echo "<td>Activo ($valor)</td>";
+                            }else{
+                                echo "<td>Inactivo ($valor)</td>";
+                            }
+                        }else{
                             echo "<td>$valor</td>";
+                        }
                     }
                 //FORMULARIO para EDITAR PRERELLENADO para que se mantengan los datos si no cambia nada
-                    echo '<form action="/Controllers/ArticuloVALIDAR.php" method="POST" enctype="multipart/form-data">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
+                    echo '<form action="../Controllers/ArticuloVALIDAR.php" method="POST" enctype="multipart/form-data">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
                     echo"<tr><th>Nuevos datos</th>";
                     foreach ($arrayAtributos as $atributo) {
                         $getter = 'get' . ucfirst($atributo);
+                        $nombreAtributo = $atributo;
                         $valor = $articulo->$getter();
-                        if( $nombreAtributo == "precio") {
-                            echo "<td><input type='number' id='$nombreAtributo' name='$nombreAtributo' required value='$valor'></td>";
-                        } else if( $nombreAtributo == "imagen") {
-                            echo "<td><input type='file' id='$nombreAtributo' name='$nombreAtributo' accept='.jpg,.jpeg,.png,.gif' value='$valor'></td>";
-                        } else if( $nombreAtributo == "codigo") {
+                        if( $nombreAtributo == "imagen") {
+                            echo "<td>
+                                     <input type='file' name='imagen' accept='.jpg,.jpeg,.png,.gif'>
+                                </td>";
+                        } else{
                             echo "<td><input type='text' id='$nombreAtributo' name='$nombreAtributo' value='$valor'></td>";
-                        } else {
-                            echo "<td><input type='text' id='$nombreAtributo' name='$nombreAtributo' required value='$valor'></td>";
-                        };
+                        }
                     }
         echo "</tr>
    </table>";

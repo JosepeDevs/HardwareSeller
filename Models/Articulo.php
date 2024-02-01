@@ -66,8 +66,10 @@ class Articulo {
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':codigo', $codigo);
             $statement->execute();
-            $articulo=$statement->fetch(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
-            if(empty($cliente)){
+            $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
+            $articulo = $statement->fetch();
+          //  $articulo=$statement->fetch(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
+            if(empty($articulo)){
                 $_SESSION['CodigoNotFound'] = true;
                 return false;
             }else{
