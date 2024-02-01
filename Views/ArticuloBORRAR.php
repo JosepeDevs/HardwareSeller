@@ -5,10 +5,11 @@ $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "ArticulosBORRARMensajes dice: no está user en session";
-    header("Location: ../index.php");
+    header("Location: /index.php");
 }
 
 include_once("header.php");
+
 $codigo = isset($_GET['codigo']) ? $_GET['codigo'] : null;
 
 
@@ -23,7 +24,7 @@ if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  'false' ){
     exit;
 }
 ?>
-        <h1>¿Está seguro de que desea eliminar este artículo?</h1>
+        <h1>¿Está seguro de que desea desactivar este artículo?</h1>
         <div class="finForm">
             <h2><a href="ArticuloBORRAR.php?codigo=<?php echo $codigo;?>&confirmacion=true">Sí, borrar el artículo (Borrado lógico).</a></h2>
             <h2><a href="ArticuloBORRAR.php?codigo=<?php echo $codigo;?>&confirmacion=false">Cancelar borrado.</a></h2>
