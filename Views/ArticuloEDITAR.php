@@ -15,7 +15,7 @@ print("<h1>Modificar artículo</h1>");
 include_once("/../Controllers/ArticuloEDITARController.php");
 $codigoOriginal=$_GET["codigo"];    //el codigo ha llegado por la url
 $_SESSION["codigo"] = $codigoOriginal;
-$arrayAtributos = getArrayAtributos();
+$arrayAtributos = getArrayAtributosArticulo();
 
 echo("<h2>Bienvenido</h2>");
 //ponemos "editando" en true para que cuando lo mandemos a ValidarDatos lo trate como update

@@ -62,15 +62,13 @@ if(GetRolDeSession() == "admin" ){
 <?php
 //TABLA LISTANDO ARTICULOS
 echo"<table>";
-        echo"<tr>
-                <th>Atributos:</th>";
+        echo"<tr>";
             //ENCABEZADOS
             include_once("../Controllers/ArticulosLISTARController.php");
-            $arrayAtributos = getArrayAtributos();
+            $arrayAtributos = getArrayAtributosArticulo();
             if($arrayAtributos == false){
                 echo"</tr><tr><td>Sin articulos</td></tr>";
             } else{
-
                 foreach ($arrayAtributos as $atributo) {
                     $nombreAtributo = $atributo;
                     echo "<th>$nombreAtributo</th>";
@@ -88,10 +86,19 @@ echo"<table>";
         $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
         $numPagPredeterminado=3;
         $filasAMostrar = isset($_GET['numpag'])? $_GET['numpag'] : $numPagPredeterminado;
-        $paginaActual = isset($_GET['pag'])? $_GET['pag'] : 0;
+        if(! isset($_GET['pag'])){
+            $paginaActual = 0;
+        }else{
+            if( is_numeric($_GET['pag'])){
+                $paginaActual = $_GET['pag'] - 1 ;
+            } else if ($_GET['pag'] == "X" ){
+                $paginaActual = "X";
+            }
+        }
 
         include_once("../Controllers/OrdenarArticulosController.php");
         $arrayArticulos = getArrayArticulosOrdenados($orden);
+
         include_once("../Controllers/ArticulosLISTARController.php");
         $arrayAImprimir = getArrayPaginadoArticulos($arrayArticulos, $filasAMostrar, $paginaActual);
 
@@ -106,8 +113,9 @@ echo"<table>";
                 $valor = call_user_func([$articulo, $nombreMetodo]);
                 if($nombreAtributo == "codigo"){
                     $codigo = $articulo->getCodigo();//guardamos el código para que esté disponible fuerra de este bucle
+                    echo "<td>$valor</td>";
                 } else if($nombreAtributo == "imagen"){
-                    echo"<td><img class='imagenes' src='{$imagen}' width='200' height='200'/></td>";
+                    echo"<td><img class='imagenes' src='{$valor}' width='200' height='200'/></td>";
                 }else{
                     echo "<td>$valor</td>";
                 }

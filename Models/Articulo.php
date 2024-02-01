@@ -168,16 +168,20 @@ class Articulo {
     }
 
     /**
-     * @return array|bool devuelve array de atributos  del artículo (propiedades privadas), devuelve false si no sale bien
+     * @return array devuelve array de atributos  del artículo (propiedades privadas)
      */
-    public static function getArrayAtributos(){
-            $reflejo = new ReflectionClass('Articulo');//podemos obtener los atributos también sin especificar los que son private (Que lo son en este caso)
-            if (!empty($arrayAtributos)) {
-                return $arrayAtributos;
-            } else {
-                return false;
+    public static function getArrayAtributosArticulo() {
+        $reflector = new ReflectionClass('Articulo');
+        $atributos = $reflector->getProperties(ReflectionProperty::IS_PRIVATE);
+        $arrayAtributosArticulo = array();
+        foreach ($atributos as $propiedad) {
+            if ($propiedad->isPrivate()) {
+                $arrayAtributosArticulo[] = $propiedad->getName();
             }
+        }
+        return $arrayAtributosArticulo;
     }
+
 
     public function borradoLogico($codigo){
         try {

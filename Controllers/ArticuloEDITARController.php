@@ -14,9 +14,9 @@ function getArticuloByCodigo($codigo){
     return $articulo;
 }
 
-function getArrayAtributos(){
+function getArrayAtributosArgetArrayAtributosArticuloticulos(){
     include_once("../Models/Articulo.php");
-    $arrayArticulos = Articulo::getArrayAtributos();
+    $arrayArticulos = Articulo::getArrayAtributosArticulo();
     return $arrayArticulos;
 }
 ?>
