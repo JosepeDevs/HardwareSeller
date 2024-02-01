@@ -16,8 +16,8 @@
 }
 
 h1{
-    margin-top: 80px;
     margin-left: 50px;
+    margin-bottom: 20px;
     font-size: 3em;
 }
 
@@ -305,6 +305,11 @@ header nav ul li a:hover{
 /************* FIN PARALLAX***********************/
 /*********** INICIO BODY*****************************/
 
+body{
+    margin-top: var(--altoHeader);
+    margin-bottom: var(--altoHeader);
+}
+
 #EnlacesArriba{
     display: flex;
     flex-direction: row;
@@ -416,6 +421,7 @@ footer{
     color: white;
     position: fixed;
     width: 100%;
+    height: var(--altoHeader);
     bottom: 0;
     z-index: 1;
 }

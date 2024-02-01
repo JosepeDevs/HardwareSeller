@@ -132,52 +132,62 @@ echo"<table>";
         echo("</tr>
     </table>");
 
-//IMPRIMIR PAGINACIÓN
-echo "<div class='paginacion'>";
-$filasTotales = count($arrayArticulos);
-$paginasTotales = ceil($filasTotales / $filasAMostrar);
-$numPagPredeterminado=3;
-if(is_numeric($paginaActual) && is_numeric($filasAMostrar)){
-    //estamos viendo los registros paginados
-    for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
-        if($numeroIndicePaginacion == 1){
-            echo "<p>Anterior</p>"; //en la primera página esto no debe ser un enlace
-        } else{
-            echo "<a href='ArticulosLISTAR.php?pag=".($numeroIndicePaginacion-1)."&ordenNombres=$orden&numpag=$filasAMostrar'>Anterior</a>";
-        }
-        if($numeroIndicePaginacion == $paginaActual + 1){
-            echo "<b>$numeroIndicePaginacion</b>";//la página actual no es un enlace
-        }else{
-            echo "<a href='ArticulosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&numpag=$filasAMostrar'>$numeroIndicePaginacion</a>"; //el resto de páginas (en la que no estamos actualmente serán enlaces)
-        }
-    }
-    //estamos al final de la lista, además de lo anterior también imprimiremos "siguiente"
-    echo "<a href='ArticulosLISTAR.php?pag=".($paginaActual+1)."&ordenNombres=$orden&numpag=$filasAMostrar'>Siguiente</a>";
-} else{
-    //estamos viendo todos los registros en una página
-    for ($numeroIndicePaginacion = 0; $numeroIndicePaginacion < $paginasTotales; $numeroIndicePaginacion++) {
-        echo "<a href='ArticulosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&numpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
-    }
-}
-$opcionesNumPag=[3,4,5];
+   //PAGINACIÓN
+   print "<div class='paginacion'>";
+   $filasTotales = count($arrayArticulos);
+   $paginasTotales = ceil($filasTotales / $filasAMostrar);
+   if(is_numeric($paginaActual) && is_numeric($filasAMostrar)){
+       //estamos viendo los registros paginados
+       //estamos al principio de la lista, además de lo anterior también imprimiremos "anterior"
+       if($paginaActual == 0 ){
+           print "<p>Anterior</p>"; //en la primera página esto no debe ser un enlace
+       } else{
+           print "<a href='ArticulosLISTAR.php?pag=".($paginaActual)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Anterior</a>";
+       }
+       for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
+           if($numeroIndicePaginacion == $paginaActual + 1 ){
+               print "<b>$numeroIndicePaginacion</b>";
+           }else{
+               print "<a href='ArticulosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
+           }
+           if($paginaActual +1 == $paginasTotales && $numeroIndicePaginacion == $paginasTotales){
+               print "<p>Siguiente</p>"; //en la primera página esto no debe ser un enlace
+           }else if($numeroIndicePaginacion == $paginasTotales){
+               print "<a href='ArticulosLISTAR.php?pag=".($paginaActual+2)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Siguiente</a>";
+           } else{
+               print "";//no printear nada
+           }
+       }
+   } else{
+       //estamos viendo todos los registros en una página
+       for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
+           print "<a href='ArticulosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
+       }
+   }
 
-//FORMULARIO PIE DE PÁGINA PARA ELEGIR LA PÁGINA A VER, Nº registros/pág
-echo "<a href='ArticulosLISTAR.php?pag=X&ordenNombres=$orden'>Ver todos</a>
-<form action='ArticulosLISTAR.php' method='GET'>
-<label for='numpag'>Registros/página</label><br>
-<select id='numpag' name='numpag' onchange='this.form.submit()' required>
-    <option value='$filasAMostrar'>$filasAMostrar</option>";
-    for ($i = 0; $i < count($opcionesNumPag); $i++) {
-        if( $opcionesNumPag[$i] == $filasAMostrar){
-            continue;
-        } else{
-            echo "<option value='$opcionesNumPag[$i]'>$opcionesNumPag[$i]</option>";
-        }
-    }
-echo
-"</select><br>
-</form>
-</div>";
+   //FORMULARIO PIE DE PÁGINA PARA ELEGIR LA PÁGINA A VER, Nº registros/pág
+   $opcionesitemXpag=[3,4,5];
+   if (isset($_GET['pag']) && ( $_GET['pag'] == "X" ) ){
+       print "<b>Ver todos</b>";
+   } else{
+       print "<a href='ArticulosLISTAR.php?pag=X&ordenNombres=$orden'>Ver todos</a>";
+   }
+   print "
+   <form action='ArticulosLISTAR.php' method='GET'>
+   <label for='itemXpag'>Registros/página</label><br>
+   <select id='itemXpag' name='itemXpag' onchange='this.form.submit()' required>
+       <option value='$filasAMostrar'>$filasAMostrar</option>";//mostrar la opción actual seleccionada
+       for ($i = 0; $i < count($opcionesitemXpag); $i++) {
+           if( $opcionesitemXpag[$i] == $filasAMostrar){
+               continue;//no queremos imprimir de nuevo la opción que ya tienen seleccionada
+           } else{
+               print "<option value='$opcionesitemXpag[$i]'>$opcionesitemXpag[$i]</option>";
+           }
+       }
+   print
+   "</select><br>
+   </form>
+   </div>";
 
 //SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
 include_once("../Controllers/ArticulosLISTARMensajes.php");
