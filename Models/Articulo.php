@@ -56,15 +56,23 @@ class Articulo {
             $this->activo = $activo;
     }
 
-    public function GetArticuloByCodigo($codigo){
+    /**
+     * @return bool|Articulo devuelve false si falla, devuelve el articulo si lo encuentra consultando el código
+     */
+    public static function GetArticuloByCodigo($codigo){
         try{
             $con = contectarBbddPDO();
             $sqlQuery="SELECT * FROM  `articulos` WHERE codigo=:codigo;";
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':codigo', $codigo);
             $statement->execute();
-            $articulo=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
-            return $articulo;
+            $articulo=$statement->fetch(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
+            if(empty($cliente)){
+                $_SESSION['CodigoNotFound'] = true;
+                return false;
+            }else{
+                return $articulo;
+            }
         } catch(PDOException $e) {
             $_SESSION['ErrorGetArticulos']= true;
             return false;

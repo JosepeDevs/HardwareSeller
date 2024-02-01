@@ -106,18 +106,22 @@ if(isset($_FILES["imagen"]) && $_FILES["imagen"]["size"] !== 0){
     }
 
     if( $_FILES["imagen"]["size"] == 0 ){
-        $articulo = $articulo->GetArticuloByCodigo($codigoOriginal);
+        $articulo = Articulo::GetArticuloByCodigo($codigoOriginal);
         //si no seleccionan imagen, entonces quieren conservar la que tenían, recuperar de BBDD (ya se comprobó, así que no hay nada que comprobar)
-
-        if($_SESSION['codigo'] == null){
-            $codigoOriginal= $articulo->getCodigo();
-            $_SESSION['codigo'] = $codigoOriginal;
+        if($articulo !== false){
+            if($_SESSION['codigo'] == null){
+                $codigoOriginal= $articulo->getCodigo();
+                $_SESSION['codigo'] = $codigoOriginal;
+            }
+            $imagen= $articulo->getImagen();
+            $_SESSION['imagenReciclada'] = $imagen;
+            $nombreArchivoDestino=$imagen;
+            echo "<br>articuloValidar dice: imagen vale= ".$imagen;
+        } else{
+            $_SESSION['CodigoNotFound'] = true;
+            echo "<script>history.back();</script>";
+            exit;
         }
-
-        $imagen= $articulo->getImagen();
-        $_SESSION['imagenReciclada'] = $imagen;
-        $nombreArchivoDestino=$imagen;
-        echo "<br>articuloValidar dice: imagen vale= ".$imagen;
     }
 }
 
@@ -132,6 +136,7 @@ if(
     ( isset($_SESSION['ImagenPesada']) && $_SESSION['ImagenPesada'] == true ) ||
     ( isset( $_SESSION['FileAlreadyExists']) && $_SESSION['FileAlreadyExists']== true ) ||
     ( isset( $_SESSION['ImagenGrande']) && $_SESSION['ImagenGrande']== true ) ||
+    ( isset( $_SESSION['ActivoGrande']) && $_SESSION['ActivoGrande']== true ) ||
     ( isset( $_SESSION['FileBadFormat']) && $_SESSION['FileBadFormat']== true )
 ){
     //algo dio error, go back para que allí de donde venga se muestre el error
@@ -142,6 +147,8 @@ if(
     $_SESSION["descripcion"] = $descripcion;
     $_SESSION["categoria"] = $categoria;
     $_SESSION["precio"] = $precio;
+    $_SESSION["descuento"] = $descuento;
+    $_SESSION["activo"] = $activo;
 }
 
 if( isset($_SESSION["editandoArticulo"]) && $_SESSION["editandoArticulo"] == "true"){

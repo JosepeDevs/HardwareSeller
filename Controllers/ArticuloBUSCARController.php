@@ -18,8 +18,7 @@ function TransformarCodigo($codigo){
 function getArticuloByCodigo($codigo){
     include_once("../config/conectarBD.php");
     include_once("../Models/Articulo.php");
-    $articulo = new Articulo();
-    $articulo->GetArticuloByCodigo($codigo);
+    $articulo = Articulo::GetArticuloByCodigo($codigo);
     if($articulo == false){
         $_SESSION['CodigoNotFound'] = true;
         return false;
