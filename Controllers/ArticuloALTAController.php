@@ -17,12 +17,6 @@ function AltaArticulo(){
     Articulo::AltaArticulo($articulo);
 }
 
-
-
-
-
-
-
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();

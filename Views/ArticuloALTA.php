@@ -16,17 +16,20 @@ echo"<h1>Alta de artículo</h1>";
 
 $_SESSION["nuevoArticulo"]="true";//ponemos esto a true para que cuando vaya a validar datos lo trate como un insert
 $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
+//ENCABEZADOS
 ?>
     <form action="../Controllers/ArticuloVALIDAR.php" method="post" enctype="multipart/form-data" >
         <table>
             <tr>
                 <th>Atributos:</th>
                 <th><label for="nombre">Nombre</label></th>
-                <th><label for="codigo">Código (3 letras, 5 números)</label></th>
+                <th><label for="codigo">Código* (3 letras, 5 números)</label></th>
                 <th><label for="descripcion">Descripción</label></th>
                 <th><label for="categoria">Categoría</label></th>
                 <th><label for="precio">Precio (€)</label></th>
-                <th><label for="imagen">Imagen*</label></th>
+                <th><label for="imagen">Imagen</label></th>
+                <th><label for="descuento">Descuento</label></th>
+                <th><label for="activo">Activo</label></th>
             </tr>
             <tr>
                 <th>Datos del artículo nuevo:</th>
@@ -36,12 +39,17 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
                 <td><input type="text" name="categoria" id="categoria" required><br><br>
                 <td><input type="number" name="precio" id="precio" required><br><br>
                 <td><input type="file" name="imagen" accept=".jpg,.jpeg,.png,.gif" required><br><br></td>
+                <td><input type="number" name="descuento" id="descuento" required><br><br></td>
+                    <td><select name="activo" id="activo" required>
+                        <option value="0">Desactivado</option>
+                        <option value="1">Activado</option>
+                    </td></select>
             </tr>
             <tr>
                 <th>
                     Consejos:
                 </th>
-                <td colspan=6>
+                <td colspan=8>
                     Código debe estar formado por 3 letras (OBLIGATORIO) y algún número inferior a 99999.<br>
                     Las letras pueden ser minus o mayus (el sistema las pasa a MAYUS).<br>
                     Puede escribir el código como "cat1", "inf253", el sistema añadirá los 0s a la izquierda necesarios hasta que hallan 5 números.

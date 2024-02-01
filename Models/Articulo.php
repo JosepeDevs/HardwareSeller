@@ -5,7 +5,7 @@ $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "Articulo dice: no está user en session";
-    header("Location: ../index.php");
+    header("Location: /index.php");
 }
 include_once("../config/conectarBD.php");
 include_once("../Controllers/Directorio.php");
@@ -79,6 +79,12 @@ class Articulo {
         }
     }
 
+    public static function ComprobarLongitud($string, $longitud) {
+        if(strlen($string) > $longitud) {
+            return false;
+        }
+        return true;
+    }
     public static Function getAllArticulos(){
         try {
             $con = contectarBbddPDO();
@@ -121,19 +127,8 @@ class Articulo {
     /**
      * @return bool returns true si la inserción es exitosa, si no, false
      */
-    public static function AltaArticulo($articulo){
+    public static function AltaArticulo($codigo, $nombre,$descripcion, $categoria, $precio, $nombreArchivoDestino, $descuento, $activo){
         $_SESSION["nuevoArticulo"]=false;
-
-        //rescatamos de session los datos subidos por ValidarDatos
-        $nombre = $articulo->getNombre();
-        $codigo =  $articulo->getCodigo();
-        $descripcion = $articulo->getDescripcion();
-        $categoria = $articulo->getCategoria();
-        $precio = $articulo->getPrecio();
-        $imagen = $articulo->getImagen();
-        $descuento = $articulo->getDescuento();
-        $activo = $articulo->getActivo();
-
         try{
             $con = contectarBbddPDO();
             $sqlQuery="INSERT INTO `articulos` (`codigo`, `nombre`, `descripcion`, `categoria`, `precio`, `imagen`, `descuento`, `activo`)
@@ -144,7 +139,7 @@ class Articulo {
             $statement->bindParam(':descripcion', $descripcion);
             $statement->bindParam(':categoria', $categoria);
             $statement->bindParam(':precio', $precio);
-            $statement->bindParam(':imagen', $imagen);
+            $statement->bindParam(':imagen', $nombreArchivoDestino);
             $statement->bindParam(':descuento', $descuento);
             $statement->bindParam(':activo', $activo);
             $statement->execute();
@@ -153,8 +148,8 @@ class Articulo {
 
             if ($resultado !== false && $resultado->rowCount() == 0) {
                 $_SESSION['BadInsertArticulo']= true;
-                if (file_exists($imagen)) {//si no se realiza la operación borramos la imagen (aquí ya se había movido)
-                    unlink($imagen);
+                if (file_exists($nombreArchivoDestino)) {//si no se realiza la operación borramos la imagen (aquí ya se había movido)
+                    unlink($nombreArchivoDestino);
                 }
                 return false;
             } else {
@@ -163,6 +158,11 @@ class Articulo {
             }
         } catch(PDOException $e) {
             $_SESSION['BadInsertArticulo']= true;
+            if (file_exists($nombreArchivoDestino)) {//si no se realiza la operación borramos la imagen (aquí ya se había movido)
+                unlink($nombreArchivoDestino);
+            }
+           // $_SESSION['error_message'] = $e->getMessage();
+            //$error= $_SESSION['error_message'];
             return false;
         };
     }

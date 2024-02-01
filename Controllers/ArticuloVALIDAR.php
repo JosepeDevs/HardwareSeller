@@ -7,7 +7,7 @@ $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "ArticuloVALIDAR dice: no está user en session";
-    header("Location: /index.php");
+   header("Location: /index.php");
 }
 
 include_once("../Models/Articulo.php");
@@ -19,6 +19,8 @@ $categoria = isset($_POST["categoria"]) ? $_POST["categoria"] : null;
 $precio = isset($_POST["precio"]) ? $_POST["precio"] : null;
 $codigo = isset($_POST["codigo"]) ? $_POST["codigo"] : null;
 $codigoOriginal = isset($_SESSION["codigo"]) ? $_SESSION["codigo"] : null;
+$descuento = isset($_POST["descuento"]) ? $_POST["descuento"] : null;
+$activo = isset($_POST["activo"]) ? $_POST["activo"] : null;
 
 if($codigo == $codigoOriginal ){//si el código escrito es el mismo --> es que estaban editando y no lo quieren cambiar
     $mantenemosCodigo= true;
@@ -26,25 +28,24 @@ if($codigo == $codigoOriginal ){//si el código escrito es el mismo --> es que e
     $mantenemosCodigo= false;
 }
 
-include_once("ValidarDatosCliente.php");
-$nombreValido = ComprobarLongitud($nombre,50);
+$nombreValido = Articulo::ComprobarLongitud($nombre,50);
 if($nombreValido == false) {    $_SESSION['LongNombre']= true; }
 
-$descripcionValida = ComprobarLongitud($descripcion,60);
+$descripcionValida = Articulo::ComprobarLongitud($descripcion,60);
 if($descripcionValida == false) { $_SESSION['LongDescripcion']= true;}
 
-$categoriaValido = ComprobarLongitud($categoria,30);
+$categoriaValido = Articulo::ComprobarLongitud($categoria,30);
 if($categoriaValido == false) { $_SESSION['LongCategoria']= true;}
 
-$precioValido = ComprobarLongitud($precio,11);
+$precioValido = Articulo::ComprobarLongitud($precio,11);
 if($precioValido == false) { $_SESSION['LongPrecio']= true;}
 
-$activoValido = ComprobarLongitud($activo,11);
+$activoValido = Articulo::ComprobarLongitud($activo,11);
 if($activoValido == false) { $_SESSION['LongActivo']= true;}
 
 if( isset($_SESSION["editandoArticulo"]) && $_SESSION["editandoArticulo"] == "true" ){
     if($_SESSION['codigo'] !== null){
-        //tanto si mantienen codigo como si lo cambian hay que comprobar que el original exista
+        //no han escrito código, quieren que se mantega el que ya tenía
         $codigoOriginal = $_SESSION["codigo"];
         $codigoOriginal = Articulo::TransformarCodigo($codigoOriginal);
         $codigoOriginalLibre = Articulo::CodigoLibre($codigoOriginal);
@@ -91,8 +92,9 @@ if(isset($_FILES["imagen"]) && $_FILES["imagen"]["size"] !== 0){
     //$nombreArchivoDestino = $hemerotecaBD . $nombreArchivo;//esto es lo que vamos a guardar en BBDD
     $nombreArchivoDestino =  $nombreArchivo;//ya dejo la carpeta bien identificada en prepararDirectorio
 
-    $nombreDirectorioValido = ComprobarLongitud($nombreArchivoDestino,260);
+    $nombreDirectorioValido = Articulo::ComprobarLongitud($nombreArchivoDestino,260);
     if($nombreDirectorioValido == false) { $_SESSION['LongImagen']= true;}
+    print"nombre directorio valido =$nombreDirectorioValido";
 }else{
     //no han subido imagen, necesitamos el nombre del archivo ya subido
     print_r($_FILES);
@@ -100,6 +102,8 @@ if(isset($_FILES["imagen"]) && $_FILES["imagen"]["size"] !== 0){
         //si suben una imagen con formato correcto pero el peso=0 hay que controlarlo.
         if($arrayInfoImagen == false) {
             $imagenValida = Articulo::ValidaImagen();//comprobamos peso, tamaño y formato aquí, se sube a session los errores encontrados
+            print"imagen valid@ =$imagenValida";
+
             echo "<script>history.back();</script>";
             exit;
         }
@@ -119,7 +123,9 @@ if(isset($_FILES["imagen"]) && $_FILES["imagen"]["size"] !== 0){
             echo "<br>articuloValidar dice: imagen vale= ".$imagen;
         } else{
             $_SESSION['CodigoNotFound'] = true;
-            echo "<script>history.back();</script>";
+            print"<br>no se encontro el codigo <br>";
+
+           echo "<script>history.back();</script>";
             exit;
         }
     }
@@ -140,6 +146,8 @@ if(
     ( isset( $_SESSION['FileBadFormat']) && $_SESSION['FileBadFormat']== true )
 ){
     //algo dio error, go back para que allí de donde venga se muestre el error
+    print"nombre ={$_SESSION['LongNombre']},BadCodigo ={$_SESSION['BadCodigo']},CodigoAlreadyExists ={$_SESSION['CodigoAlreadyExists']},LongDescripcion ={$_SESSION['LongDescripcion']},LongCategoria ={$_SESSION['LongCategoria']},LongPrecio ={$_SESSION['LongPrecio']},LongImagen ={$_SESSION['LongImagen']},ImagenPesada ={$_SESSION['ImagenPesada']},FileAlreadyExists ={$_SESSION['FileAlreadyExists']},ImagenGrande ={$_SESSION['ImagenGrande']},ActivoGrande ={$_SESSION['ActivoGrande']},FileBadFormat ={$_SESSION['FileBadFormat']},";
+
        echo "<script>history.back();</script>";
         exit;
 } else {
@@ -183,7 +191,7 @@ if( isset($_SESSION["editandoArticulo"]) && $_SESSION["editandoArticulo"] == "tr
     $activo = ( isset($_SESSION["activo"]) ? $_SESSION["activo"] : 1 );
 
     $codigo = ( isset($_GET["codigo"]) ? $_GET["codigo"] : null ); //por la URL llega el código NUEVO
-    $operacionExitosa = $articulo->updateArticulo($nombre,$codigo, $codigoOriginal, $descripcion, $categoria, $precio, $imagen, $imagenReciclada, $descuento, $activo);
+    $operacionExitosa = $articulo->updateArticulo($nombre, $codigo, $codigoOriginal, $descripcion, $categoria, $precio, $imagen, $imagenReciclada, $descuento, $activo);
     if($operacionExitosa){
         $_SESSION['GoodUpdateArticulo']= true;
     }
@@ -202,12 +210,16 @@ if( isset($_SESSION["editandoArticulo"]) && $_SESSION["editandoArticulo"] == "tr
         }
 
     $_SESSION["codigo"]=$codigo;
-    $articulo=new Articulo($codigo,$nombre,$descripcion, $categoria, $precio, $imagen, $descuento, $activo);
-    $operacionExitosa = Articulo::AltaArticulo($articulo);
+    $articulo=new Articulo($codigo, $nombre,$descripcion, $categoria, $precio, $nombreArchivoDestino, $descuento, $activo);
+    //$operacionExitosa = Articulo::AltaArticulo($articulo);
+    $operacionExitosa = Articulo::AltaArticulo($codigo, $nombre,$descripcion, $categoria, $precio, $nombreArchivoDestino, $descuento, $activo);
     if($operacionExitosa){
         $_SESSION['GoodInsertArticulo']= true;
+        print"all good $operacionExitosa";
+    } else{
+        print"all bad $operacionExitosa";
     }
-    header("Location: ../Views/ArticulosLISTAR.php");
+   header("Location: ../Views/ArticulosLISTAR.php");
     exit;
 };
 
