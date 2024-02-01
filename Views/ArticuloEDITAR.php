@@ -58,7 +58,9 @@ echo"<table>";
                         $getter = 'get' . ucfirst($atributo);
                         $nombreAtributo = $atributo;
                         $valor = $articulo->$getter();
-                        if( $nombreAtributo == "imagen") {
+                        if( $nombreAtributo == "descuento" || $nombreAtributo == "precio") {
+                            echo "<td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='$nombreAtributo' name='$nombreAtributo' value='$valor'></td>";
+                        } else if( $nombreAtributo == "imagen") {
                             echo "<td>
                                      <input type='file' name='imagen' accept='.jpg,.jpeg,.png,.gif'>
                                 </td>";

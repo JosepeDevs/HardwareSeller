@@ -121,6 +121,10 @@ Function getArrayMensajesArticulos(){
         unset($_SESSION['BorradoArticuloCancelado']);
         $mensajes[] =  "Borrado cancelado.";
     }
+    if(isset($_SESSION['BadDescuento']) && ($_SESSION['BadDescuento'] == false)) {
+        unset($_SESSION['BadDescuento'] );
+        $mensajes[]= "El descuento introdducido no se detectó como numérico-decimal y no se pudo procesar correctamente.";
+    }
 
     if( count($mensajes) == 0){
         return false;//si no encontró ningún mensaje a mostrar devolverá false;

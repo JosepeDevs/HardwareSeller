@@ -37,9 +37,9 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
                 <td><input type="text" name="codigo" id="codigo" required><br><br></td>
                 <td><input type="text" name="descripcion" id="descripcion" required ><br><br></td>
                 <td><input type="text" name="categoria" id="categoria" required><br><br>
-                <td><input type="number" name="precio" id="precio" required><br><br>
+                <td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='precio' name='precio' required></td>";
                 <td><input type="file" name="imagen" accept=".jpg,.jpeg,.png,.gif" required><br><br></td>
-                <td><input type="number" name="descuento" id="descuento" required><br><br></td>
+                <td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='descuento' name='descuento' required></td>";
                     <td><select name="activo" id="activo" required>
                         <option value="0">Desactivado</option>
                         <option value="1">Activado</option>

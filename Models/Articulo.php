@@ -205,10 +205,10 @@ class Articulo {
             return false;
         };
     }
-/**
- * @return bool true si hay éxito, false si no es el caso.
- */
-public function updateArticulo($nombre, $codigo, $codigoOriginal, $descripcion, $categoria, $precio, $nombreArchivoDestino, $imagenReciclada, $descuento, $activo){
+    /**
+     * @return bool true si hay éxito, false si no es el caso.
+     */
+    public function updateArticulo($nombre, $codigo, $codigoOriginal, $descripcion, $categoria, $precio, $nombreArchivoDestino, $imagenReciclada, $descuento, $activo){
     //una vez aquí dentro hay que "reiniciar" el valor de "editando"
     $_SESSION["editandoArticulo"]="false";
     $conPDO = contectarBbddPDO();
@@ -274,7 +274,7 @@ public function updateArticulo($nombre, $codigo, $codigoOriginal, $descripcion, 
         $_SESSION['OperationFailed'] = true;
         return false;
     };
-}
+    }
 
 
         /**
@@ -348,60 +348,75 @@ public function updateArticulo($nombre, $codigo, $codigoOriginal, $descripcion, 
         };
     }
 
-/** Función que DEBE ser llamada tras un formulario (p.e. un POST), ya que consulta >>>>>>>>>>>>$_FILES['imagen']<<<<<<<<<<<<. Comprueba si la imagen subida cumple los criterios especificados.
- * @return bool Devulve true si archivo cumple: 1 ser jpg, png, jpeg o gif ; 2 pesar menos de 300Kb ; 3 dimensiones máximas 200 x 200 px ; 4 no existe ya una imagen con ese nombre. Si CUALQUIER de las anteriores condiciones no se cumple devuelve false.
- */
-public static function ValidaImagen(){
-    if (isset($_FILES['imagen'])) {
-        if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-
-        $nombreArchivo = $_FILES['imagen']['name'];//este es el nombre con el que se sube el archivo (como lo nombra el usuario)
-        //@ delante impide mensajes de error (ya lo estamos controlando con mensajes en el sistema)
-        $arrayInfoImagen = @getimagesize($_FILES['imagen']['tmp_name']);//con esto no nos colarán cosas que no sean imágenes. si no tiene dimensiones es que no es imagen.
-        if($arrayInfoImagen == false) {
-            $_SESSION['FileBadFormat']= true;
-        }
-
-        $formatoImagen = preg_match("/\.(jpg|gif|png|jpeg)$/", $nombreArchivo);
-        if ($formatoImagen == false) {
-            $_SESSION['FileBadFormat']= true;
-        }
-
-        if($arrayInfoImagen[0] > 200 || $arrayInfoImagen[1] > 200) { //en el indice 0 tenemos el ancho y en el indice 1 tenemos el alto
-            echo"<br>ValidaImagenes says: el ancho es $arrayInfoImagen[0] y el alto es $arrayInfoImagen[1]";
-            $_SESSION['ImagenGrande'] = true;
-        }
-
-        include_once("../Controllers/Directorio.php");
-        $directorio=PrepararDirectorio();
-        $directorioDestino = $directorio ."/". $nombreArchivo;
-
-        if (file_exists($directorioDestino)) {
-            $_SESSION['FileAlreadyExists']= true;
-        }
-        $tamaño = $_FILES['imagen']['size'];
-        if($_FILES['imagen']['size'] > 300 * 1024) { //el 1024 es para pasar los Bits a Kilobits
-            echo"<br>ValidaImagenes says: el tamaño del archivo es $tamaño";
-            $_SESSION['ImagenPesada'] = true;
-        }
-
-        if(
-            isset($_SESSION['ImagenPesada']) && $_SESSION['ImagenPesada'] == true ||
-            isset( $_SESSION['FileAlreadyExists']) && $_SESSION['FileAlreadyExists']== true ||
-            isset( $_SESSION['ImagenGrande']) && $_SESSION['ImagenGrande']== true ||
-            isset( $_SESSION['FileBadFormat']) && $_SESSION['FileBadFormat']== true
-        ){
-            return false;
+    /**
+     * @return float|bool devuelve como float el texto comprobado, si no se pudo transformar o si finalmente no tiene valor de float se devuelve false. P.e. 55,6 devolverá 55.6 al igual que 11.5 devolverá 11.5 mientras que a22,5 devolverá false.
+    */
+    public static function ValorFloat($float){
+        //si son españoles y escriben la coma como una coma hay que cambiarla por un punto
+        $float = str_replace( "," , "." , $float);
+        $float = (float)$float;
+        $float = floatval($float);//según manual parece que a esta función se la pela si llega una coma o un punto, mientras no empiece por letras we are good.
+        if(is_float($float)){
+            return $float;
         } else{
-            return true;
+            return false;
         }
-
-    } else{
-        return false;
     }
+
+    /** Función que DEBE ser llamada tras un formulario (p.e. un POST), ya que consulta >>>>>>>>>>>>$_FILES['imagen']<<<<<<<<<<<<. Comprueba si la imagen subida cumple los criterios especificados.
+     * @return bool Devulve true si archivo cumple: 1 ser jpg, png, jpeg o gif ; 2 pesar menos de 300Kb ; 3 dimensiones máximas 200 x 200 px ; 4 no existe ya una imagen con ese nombre. Si CUALQUIER de las anteriores condiciones no se cumple devuelve false.
+     */
+    public static function ValidaImagen(){
+        if (isset($_FILES['imagen'])) {
+            if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+
+            $nombreArchivo = $_FILES['imagen']['name'];//este es el nombre con el que se sube el archivo (como lo nombra el usuario)
+            //@ delante impide mensajes de error (ya lo estamos controlando con mensajes en el sistema)
+            $arrayInfoImagen = @getimagesize($_FILES['imagen']['tmp_name']);//con esto no nos colarán cosas que no sean imágenes. si no tiene dimensiones es que no es imagen.
+            if($arrayInfoImagen == false) {
+                $_SESSION['FileBadFormat']= true;
+            }
+
+            $formatoImagen = preg_match("/\.(jpg|gif|png|jpeg)$/", $nombreArchivo);
+            if ($formatoImagen == false) {
+                $_SESSION['FileBadFormat']= true;
+            }
+
+            if($arrayInfoImagen[0] > 200 || $arrayInfoImagen[1] > 200) { //en el indice 0 tenemos el ancho y en el indice 1 tenemos el alto
+                echo"<br>ValidaImagenes says: el ancho es $arrayInfoImagen[0] y el alto es $arrayInfoImagen[1]";
+                $_SESSION['ImagenGrande'] = true;
+            }
+
+            include_once("../Controllers/Directorio.php");
+            $directorio=PrepararDirectorio();
+            $directorioDestino = $directorio ."/". $nombreArchivo;
+
+            if (file_exists($directorioDestino)) {
+                $_SESSION['FileAlreadyExists']= true;
+            }
+            $tamaño = $_FILES['imagen']['size'];
+            if($_FILES['imagen']['size'] > 300 * 1024) { //el 1024 es para pasar los Bits a Kilobits
+                echo"<br>ValidaImagenes says: el tamaño del archivo es $tamaño";
+                $_SESSION['ImagenPesada'] = true;
+            }
+
+            if(
+                isset($_SESSION['ImagenPesada']) && $_SESSION['ImagenPesada'] == true ||
+                isset( $_SESSION['FileAlreadyExists']) && $_SESSION['FileAlreadyExists']== true ||
+                isset( $_SESSION['ImagenGrande']) && $_SESSION['ImagenGrande']== true ||
+                isset( $_SESSION['FileBadFormat']) && $_SESSION['FileBadFormat']== true
+            ){
+                return false;
+            } else{
+                return true;
+            }
+
+        } else{
+            return false;
+        }
+    }
+
 }
-
-
     /*
     //tests, si aparece "1" junto a good/bad es que el test ha funcionado bien.
     $codigo1="INF00001";
@@ -438,7 +453,15 @@ public static function ValidaImagen(){
         if(EsFormatoCodigoCorrecto($codigo7)==false){echo "good1a ";}else{echo "bad ";};// test OK(NO SE EJECUTA)=OK
         if(CodigoLibre($codigo6)==true){echo "good1a ";}else{echo "bad ";};// test OK(NO SE EJECUTA)=OK
         if(CodigoLibre($codigo7)==true){echo "good1a ";}else{echo "bad ";};// test OK(NO SE EJECUTA)=OK
-        */
 
-}
+        $float1 ="55.2";
+        $float2 ="55,2";
+        $float3 ="a55,2";
+        $float = Articulo::ValorFloat($float1);
+        print"$float";
+        $float = Articulo::ValorFloat($float2);
+        print"$float";
+        $float = Articulo::ValorFloat($float3);
+        print"$float";
+        */
         ?>

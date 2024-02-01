@@ -40,6 +40,9 @@ if($categoriaValido == false) { $_SESSION['LongCategoria']= true;}
 $precioValido = Articulo::ComprobarLongitud($precio,11);
 if($precioValido == false) { $_SESSION['LongPrecio']= true;}
 
+$descuento = Articulo::ValorFloat($descuento);
+if($descuento == false) { $_SESSION['BadDescuento']= true;}
+
 $activoValido = Articulo::ComprobarLongitud($activo,11);
 if($activoValido == false) { $_SESSION['LongActivo']= true;}
 
@@ -97,39 +100,25 @@ if(isset($_FILES["imagen"]) && $_FILES["imagen"]["size"] !== 0){
     print"nombre directorio valido =$nombreDirectorioValido";
 }else{
     //no han subido imagen, necesitamos el nombre del archivo ya subido
-    print_r($_FILES);
-    if(isset($_FILES['imagen'])){
-        //si suben una imagen con formato correcto pero el peso=0 hay que controlarlo.
-        if($arrayInfoImagen == false) {
-            $imagenValida = Articulo::ValidaImagen();//comprobamos peso, tamaño y formato aquí, se sube a session los errores encontrados
-            print"imagen valid@ =$imagenValida";
-
-            echo "<script>history.back();</script>";
-            exit;
+    $articulo = Articulo::GetArticuloByCodigo($codigoOriginal);
+    //si no seleccionan imagen, entonces quieren conservar la que tenían, recuperar de BBDD (ya se comprobó, así que no hay nada que comprobar)
+    if($articulo !== false){
+        if($_SESSION['codigo'] == null){
+            $codigoOriginal= $articulo->getCodigo();
+            $_SESSION['codigo'] = $codigoOriginal;
         }
-    }
-
-    if( $_FILES["imagen"]["size"] == 0 ){
-        $articulo = Articulo::GetArticuloByCodigo($codigoOriginal);
-        //si no seleccionan imagen, entonces quieren conservar la que tenían, recuperar de BBDD (ya se comprobó, así que no hay nada que comprobar)
-        if($articulo !== false){
-            if($_SESSION['codigo'] == null){
-                $codigoOriginal= $articulo->getCodigo();
-                $_SESSION['codigo'] = $codigoOriginal;
-            }
-            $imagen= $articulo->getImagen();
-            $_SESSION['imagenReciclada'] = $imagen;
-            $nombreArchivoDestino=$imagen;
-            echo "<br>articuloValidar dice: imagen vale= ".$imagen;
-        } else{
-            $_SESSION['CodigoNotFound'] = true;
-            print"<br>no se encontro el codigo <br>";
-
-           echo "<script>history.back();</script>";
-            exit;
-        }
+        $imagen= $articulo->getImagen();
+        $_SESSION['imagenReciclada'] = $imagen;
+        $nombreArchivoDestino=$imagen;
+        echo "<br>articuloValidar dice: imagen vale= ".$imagen;
+    } else{
+        $_SESSION['CodigoNotFound'] = true;
+        print"<br>no se encontro el codigo <br>";
+        echo "<script>history.back();</script>";
+        exit;
     }
 }
+
 
 if(
     ( isset($_SESSION['LongNombre']) && $_SESSION['LongNombre'] == true) ||
@@ -143,10 +132,11 @@ if(
     ( isset( $_SESSION['FileAlreadyExists']) && $_SESSION['FileAlreadyExists']== true ) ||
     ( isset( $_SESSION['ImagenGrande']) && $_SESSION['ImagenGrande']== true ) ||
     ( isset( $_SESSION['ActivoGrande']) && $_SESSION['ActivoGrande']== true ) ||
+    ( isset( $_SESSION['BadDescuento']) && $_SESSION['BadDescuento']== true ) ||
     ( isset( $_SESSION['FileBadFormat']) && $_SESSION['FileBadFormat']== true )
 ){
     //algo dio error, go back para que allí de donde venga se muestre el error
-    print"nombre ={$_SESSION['LongNombre']},BadCodigo ={$_SESSION['BadCodigo']},CodigoAlreadyExists ={$_SESSION['CodigoAlreadyExists']},LongDescripcion ={$_SESSION['LongDescripcion']},LongCategoria ={$_SESSION['LongCategoria']},LongPrecio ={$_SESSION['LongPrecio']},LongImagen ={$_SESSION['LongImagen']},ImagenPesada ={$_SESSION['ImagenPesada']},FileAlreadyExists ={$_SESSION['FileAlreadyExists']},ImagenGrande ={$_SESSION['ImagenGrande']},ActivoGrande ={$_SESSION['ActivoGrande']},FileBadFormat ={$_SESSION['FileBadFormat']},";
+    print"nombre ={$_SESSION['LongNombre']},BadCodigo ={$_SESSION['BadCodigo']},CodigoAlreadyExists ={$_SESSION['CodigoAlreadyExists']},LongDescripcion ={$_SESSION['LongDescripcion']},LongCategoria ={$_SESSION['LongCategoria']},LongPrecio ={$_SESSION['LongPrecio']},LongImagen ={$_SESSION['LongImagen']},ImagenPesada ={$_SESSION['ImagenPesada']},FileAlreadyExists ={$_SESSION['FileAlreadyExists']},ImagenGrande ={$_SESSION['ImagenGrande']},ActivoGrande ={$_SESSION['ActivoGrande']},FileBadFormat ={$_SESSION['FileBadFormat']},,BadDescuento ={$_SESSION['BadDescuento']},";
 
        echo "<script>history.back();</script>";
         exit;
