@@ -4,7 +4,7 @@ include_once("header.php");
     <h1>
         Buscar articulo por código
     </h1>
-<form action="../Controllers/ArticuloBUSCAR.php" method="POST">
+<form action="ArticuloBUSCAR.php" method="POST">
     <table>
         <tr>
             <th><label for="codigo">Código:</label></th>
@@ -15,10 +15,10 @@ include_once("header.php");
     </table>
     <br>
     <div>
-        <h2><input type="submit" value="Consultar"></h2>
+        <h2><input type="submit" value="Consultar"></h2><br><br><br>
     </div>
 </form>
-<br><br><br>
+<br><br><br><br><br><br><br>
 
 
 <?php
@@ -30,17 +30,18 @@ if( $usuarioLogeado == false){
     echo "ArticuloBUSCAR dice: no está user en session";
     header("Location: /index.php");
 }
-include_once("../Controllers/ArticuloBUSCARController.php");
-include_once("../Controllers/ArticuloBUSCARMensajes.php");
-include_once("../Controllers/GetDniByEmailController.php");
 
 if(isset($_POST["codigo"])) {
     $codigo=$_POST["codigo"];
+
+    include_once("../Controllers/ArticuloBUSCARController.php");
     $codigo = TransformarCodigo($codigo);
+    $arrayAtributos = getArrayAtributosArticulo();
+
     echo"<table>";
     echo"<tr><th>Atributos:</th>";
     //ENCABEZADOS
-    $arrayAtributos = getArrayAtributosArticulo();
+
     foreach ($arrayAtributos as $atributo) {
         $nombreAtributo = $atributo;
         echo "<th>$nombreAtributo</th>";
@@ -59,7 +60,9 @@ if(isset($_POST["codigo"])) {
         $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
         $valor = $articulo->$getter();//lo llamamos para obtener el valor
         if($nombreAtributo == "imagen"){
-            echo " <td><img class='imagenes' src='{$imagen}' width='200' height='200'/></td>";
+            $directorio = "/Resources/ImagenesArticulos/";
+            $ruta=$directorio.$valor;
+            echo " <td><img class='imagenes' src='{$ruta}' width='200' height='200'/><br>$valor</td>";
         } else if($nombreAtributo == "activo"){
             if($valor == 1){
                 echo "<td>Activo (1)</td>";
@@ -69,17 +72,18 @@ if(isset($_POST["codigo"])) {
         } else {
             echo "<td>$valor</td>";
         }
+    }
     echo "</tr>";
     echo "</table>";
-    }
 
+    include_once("../Controllers/ArticuloBUSCARMensajes.php");
     $arrayMensajes=getArrayMensajesArticulos();
     if(is_array($arrayMensajes)){
         foreach($arrayMensajes as $mensaje) {
             echo "<h3>$mensaje</h3>";
         }
     };
-
+}
     echo'
     <h2><a class="cerrar" href="ArticulosLISTAR.php"><img src="../Resources/arrow.png" alt="listar articulos" />Volver a la tabla de artículos</a></h2>';
     $rol = GetRolDeSession();
@@ -90,10 +94,10 @@ if(isset($_POST["codigo"])) {
         $dni = GetDniByEmail($email);
         echo"<h2>
                 <a class='enlace' href='ClienteEDITAR.php?dni=$dni'>
-                    <img src='../Resources/edit.png' alt='editar datos user' /> Editar mis datos $email
+                    <img src='../Resources/edit.png' alt='editar datos user'/> Editar mis datos $email
                 </a>
             </h2>";
     }
-}
+
 include_once("footer.php");
 ?>

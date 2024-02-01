@@ -64,7 +64,23 @@ echo"<table>";
                             echo "<td>
                                      <input type='file' name='imagen' accept='.jpg,.jpeg,.png,.gif'>
                                 </td>";
-                        } else{
+                        } else if($nombreAtributo == "activo") {
+                            echo "
+                                <td>
+                                    <select id='activo' name='activo' required>";
+                                    if($valor == 0){
+                                        echo"
+                                            <option value='0' selected>Inactivo</option>
+                                            <option value='1' >Activo</option>
+                                        </select>";
+                                    } else{
+                                        echo"
+                                            <option value='0' >Inactivo</option>
+                                            <option value='1' selected>Activo</option>
+                                        </select>";
+                                    }
+                                echo"</td>";
+                        }else{
                             echo "<td><input type='text' id='$nombreAtributo' name='$nombreAtributo' value='$valor'></td>";
                         }
                     }

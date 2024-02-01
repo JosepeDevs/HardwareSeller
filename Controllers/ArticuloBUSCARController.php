@@ -24,4 +24,10 @@ function getArticuloByCodigo($codigo){
         return $articulo;
     }
 }
+
+function getArrayAtributosArticulo(){
+    include_once("../Models/Articulo.php");
+    $arrayArticulos = Articulo::getArrayAtributosArticulo();
+    return $arrayArticulos;
+}
 ?>
