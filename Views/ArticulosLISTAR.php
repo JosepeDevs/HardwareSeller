@@ -82,10 +82,12 @@ echo"<table>";
                 echo"</tr>";
             }
 
-        //PREPARA PAGINACIÓN Y ARRAY DE OBJETOS
+        //PREPARAR ARRAYS CON OBJETOS
         $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
-        $numPagPredeterminado=3;
-        $filasAMostrar = isset($_GET['numpag'])? $_GET['numpag'] : $numPagPredeterminado;
+        include_once("../Controllers/OrdenarArticulosController.php");
+        $arrayArticulos = getArrayArticulosOrdenados($orden);
+        $itemXpagPredeterminado=3;
+        $filasAMostrar = isset($_GET['itemXpag'])? $_GET['itemXpag'] : $itemXpagPredeterminado;
         if(! isset($_GET['pag'])){
             $paginaActual = 0;
         }else{
@@ -95,9 +97,6 @@ echo"<table>";
                 $paginaActual = "X";
             }
         }
-
-        include_once("../Controllers/OrdenarArticulosController.php");
-        $arrayArticulos = getArrayArticulosOrdenados($orden);
 
         include_once("../Controllers/ArticulosLISTARController.php");
         $arrayAImprimir = getArrayPaginadoArticulos($arrayArticulos, $filasAMostrar, $paginaActual);
