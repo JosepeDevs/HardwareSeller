@@ -13,8 +13,7 @@ function AltaArticulo(){
     $descuento = ( isset($_SESSION["descuento"]) ? $_SESSION["descuento"] : 0 );
     $activo = ( isset($_SESSION["activo"]) ? $_SESSION["activo"] : 1 );
 
-    $articulo=new Articulo($codigo,$nombre,$descripcion, $categoria, $precio, $imagen, $descuento, $activo);
-    Articulo::AltaArticulo($articulo);
+    Articulo::AltaArticulo($codigo,$nombre,$descripcion, $categoria, $precio, $imagen, $descuento, $activo);
 }
 
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}

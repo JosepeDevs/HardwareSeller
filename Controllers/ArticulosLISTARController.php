@@ -6,7 +6,7 @@ function getArrayAtributos(){
     return $arrayArticulos;
 }
 
-function  getArrayPaginado($arrayObjetos, $filasAMostrar, $paginaActual){
+function  getArrayPaginadoArticulos($arrayObjetos, $filasAMostrar, $paginaActual){
     //return de qué indice a qué indice debe imprimir en el $arrayArticulos que nos llega aquí
      //PAGINACIÓN
      $arrayAImpimir=[];

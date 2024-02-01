@@ -93,7 +93,7 @@ echo"<table>";
         include_once("../Controllers/OrdenarArticulosController.php");
         $arrayArticulos = getArrayArticulosOrdenados($orden);
         include_once("../Controllers/ArticulosLISTARController.php");
-        $arrayAImprimir = getArrayPaginado($arrayArticulos, $filasAMostrar, $paginaActual);
+        $arrayAImprimir = getArrayPaginadoArticulos($arrayArticulos, $filasAMostrar, $paginaActual);
 
         //DATOS DE LOS OBJETOS
         //llamamos dinámicamente los getters de la clase habiendo guardado previamente el array con los nombresd de los atributos
