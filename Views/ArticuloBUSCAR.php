@@ -16,7 +16,6 @@ include_once("header.php");
     <br>
     <div>
         <h2><input type="submit" value="Consultar"></h2>
-
     </div>
 </form>
 <br><br><br>
@@ -33,7 +32,7 @@ if( $usuarioLogeado == false){
 }
 include_once("../Controllers/ArticuloBUSCARController.php");
 include_once("../Controllers/ArticuloBUSCARMensajes.php");
-include_once("../Controllers/GetDniByEMailController.php");
+include_once("../Controllers/GetDniByEmailController.php");
 
 if(isset($_POST["codigo"])) {
     $codigo=$_POST["codigo"];
@@ -65,7 +64,7 @@ if(isset($_POST["codigo"])) {
             if($valor == 1){
                 echo "<td>Activo (1)</td>";
             } else{
-                echo "<td>Inactivo (0) </td>";
+                echo "<td>Inactivo (0)</td>";
             }
         } else {
             echo "<td>$valor</td>";
@@ -97,3 +96,4 @@ if(isset($_POST["codigo"])) {
     }
 }
 include_once("footer.php");
+?>

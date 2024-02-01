@@ -18,5 +18,3 @@ function GetDniByEmail($email){
     return $dni;
 }
 ?>
-
-?>
