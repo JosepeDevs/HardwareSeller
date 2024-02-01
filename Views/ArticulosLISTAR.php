@@ -118,7 +118,7 @@ echo"<table>";
                     include_once("../Controllers/Directorio.php");
                     $directorio = "/Resources/ImagenesArticulos/";
                     $rutaAbsoluta = $directorio . $valor;
-                    echo"<td><img class='imagenes' src='{$rutaAbsoluta}' width='200' height='200'/>$rutaAbsoluta</td>";
+                    echo"<td><img class='imagenes' src='{$rutaAbsoluta}' width='200' height='200'/></td>";
                 }else{
                     echo "<td>$valor</td>";
                 }
