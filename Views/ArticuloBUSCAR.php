@@ -29,13 +29,11 @@ $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "ArticuloBUSCAR dice: no está user en session";
-    header("Location: ../index.php");
+    header("Location: /index.php");
 }
-include_once("../Controllers/ArticuloBUSCAR.php");
-include_once("../Controllers/OperacionesSession.php");
-include_once("../Controllers/ValidaCodigoArticulo.php");
-include_once("../Controller/ArticuloBUSCARMensajes.php");
-include_once("../GetDniByEMailController.php");
+include_once("../Controllers/ArticuloBUSCARController.php");
+include_once("../Controllers/ArticuloBUSCARMensajes.php");
+include_once("../Controllers/GetDniByEMailController.php");
 
 if(isset($_POST["codigo"])) {
     $codigo=$_POST["codigo"];
@@ -56,39 +54,46 @@ if(isset($_POST["codigo"])) {
         $_SESSION['CodigoNotFound'] = true;
         header("Location:ArticuloBUSCAR.php");
     }
-    $nombre=$articulo->getNombre();
-    $codigo=$articulo->getCodigo();
-    $descripcion=$articulo->getDescripcion();
-    $categoria=$articulo->getCategoria();
-    $precio=$articulo->getPrecio();
-    $imagen=$articulo->getImagen();
 
-    echo "  <td>$codigo</td>
-            <td>$nombre</td>
-            <td>$descripcion</td>
-            <td>$categoria</td>
-            <td>$precio</td>
-            <td><img class='imagenes' src='{$imagen}' width='200' height='200'/></td>";
+    foreach ($arrayAtributos as $index => $atributo) {
+        $nombreAtributo = $atributo;
+        $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
+        $valor = $articulo->$getter();//lo llamamos para obtener el valor
+        if($nombreAtributo == "imagen"){
+            echo " <td><img class='imagenes' src='{$imagen}' width='200' height='200'/></td>";
+        } else if($nombreAtributo == "activo"){
+            if($valor == 1){
+                echo "<td>Activo (1)</td>";
+            } else{
+                echo "<td>Inactivo (0) </td>";
+            }
+        } else {
+            echo "<td>$valor</td>";
+        }
     echo "</tr>";
     echo "</table>";
-}
-
-$arrayMensajes=getArrayMensajesArticulos();
-if(is_array($arrayMensajes)){
-    foreach($arrayMensajes as $mensaje) {
-        echo "<h3>$mensaje</h3>";
     }
-};
 
-echo'
-<h2><a class="cerrar" href="ArticulosLISTAR.php"><img src="arrow.png" alt="listar articulos" />Volver a la tabla de artículos</a></h2>';
-$rol = GetRolDeSession();
-if($rol == "admin" || $rol == "editor"){
-    echo '<h2><a class="cerrar"  href="TablaClientes.php">Ver usuarios</a></h2>';
-} else{
-    $email = GetEmailDeSession();
-    $dni = GetDniByEmail($email);
-    echo"<h2><a class='enlace' href='ClienteEDITAR.php?dni=$dni'><img src='edit.png' alt='editar datos user' /> Editar mis datos $email </h2></a></a>";
+    $arrayMensajes=getArrayMensajesArticulos();
+    if(is_array($arrayMensajes)){
+        foreach($arrayMensajes as $mensaje) {
+            echo "<h3>$mensaje</h3>";
+        }
+    };
+
+    echo'
+    <h2><a class="cerrar" href="ArticulosLISTAR.php"><img src="../Resources/arrow.png" alt="listar articulos" />Volver a la tabla de artículos</a></h2>';
+    $rol = GetRolDeSession();
+    if($rol == "admin" || $rol == "editor"){
+        echo '<h2><a class="cerrar"  href="TablaClientes.php">Ver usuarios</a></h2>';
+    } else{
+        $email = GetEmailDeSession();
+        $dni = GetDniByEmail($email);
+        echo"<h2>
+                <a class='enlace' href='ClienteEDITAR.php?dni=$dni'>
+                    <img src='../Resources/edit.png' alt='editar datos user' /> Editar mis datos $email
+                </a>
+            </h2>";
+    }
 }
 include_once("footer.php");
-?>

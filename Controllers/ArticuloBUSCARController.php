@@ -8,6 +8,13 @@ if( $usuarioLogeado == false){
     header("Location: ../Views/index.php");
 }
 
+function TransformarCodigo($codigo){
+    include_once("../Models/Articulo.php");
+    $codigo = Articulo::TransformarCodigo($codigo);
+    return $codigo;
+}
+
+    $codigo = TransformarCodigo($codigo);
 function getArticuloByCodigo($codigo){
     include_once("../config/conectarBD.php");
     include_once("../Models/Articulo.php");

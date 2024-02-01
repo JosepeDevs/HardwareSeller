@@ -66,7 +66,7 @@ if(isset($_POST["dni"])) {
                                     echo "<td>Inactivo (0) </td>";
                                 }
                             } else {
-                                echo "<td>1$valor</td>";
+                                echo "<td>$valor</td>";
                             }
                         }
                     echo "</tr>
