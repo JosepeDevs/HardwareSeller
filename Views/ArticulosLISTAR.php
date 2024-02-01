@@ -115,7 +115,10 @@ echo"<table>";
                     $codigo = $articulo->getCodigo();//guardamos el código para que esté disponible fuerra de este bucle
                     echo "<td>$valor</td>";
                 } else if($nombreAtributo == "imagen"){
-                    echo"<td><img class='imagenes' src='{$valor}' width='200' height='200'/></td>";
+                    include_once("../Controllers/Directorio.php");
+                    $directorio = "/Resources/ImagenesArticulos/";
+                    $rutaAbsoluta = $directorio . $valor;
+                    echo"<td><img class='imagenes' src='{$rutaAbsoluta}' width='200' height='200'/>$rutaAbsoluta</td>";
                 }else{
                     echo "<td>$valor</td>";
                 }

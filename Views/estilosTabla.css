@@ -370,6 +370,8 @@ header nav ul li a:hover{
 
 .imagenes{
     border-radius: 10px;
+    width:70px;
+    height: 70px;
 }
 
 .icon{

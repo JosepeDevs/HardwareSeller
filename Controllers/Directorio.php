@@ -15,8 +15,8 @@ if( $usuarioLogeado == false){
  */
 function PrepararDirectorio() {
     $actualPath = __DIR__;//esto es controllers
-    $parentDirectory = dirname($actualPath);//esto es donde está index (no acaba en "/")
-    $rutaCarpeta = $parentDirectory . '/Resources/ImagenesArticulos/';//entramos en Resources y ahí creamos carpeta donde guardaremos las imágenes
+    $parentDirectory = dirname($actualPath);//parent directory es algo asi /home/vol8_4/infinityfree.com/if0_35787488/htdocs/
+    $rutaCarpeta =$parentDirectory.'/Resources/ImagenesArticulos/';
     if (!file_exists($rutaCarpeta)) {//si no existe el directorio lo crea con permisos totales
         mkdir($rutaCarpeta, 0777, true);
     }

@@ -206,7 +206,7 @@ class Articulo {
 /**
  * @return bool true si hay éxito, false si no es el caso.
  */
-public function updateArticulo($nombre, $codigo, $codigoOriginal, $descripcion, $categoria, $precio, $imagen, $imagenReciclada, $descuento, $activo){
+public function updateArticulo($nombre, $codigo, $codigoOriginal, $descripcion, $categoria, $precio, $nombreArchivoDestino, $imagenReciclada, $descuento, $activo){
     //una vez aquí dentro hay que "reiniciar" el valor de "editando"
     $_SESSION["editandoArticulo"]="false";
     $conPDO = contectarBbddPDO();
