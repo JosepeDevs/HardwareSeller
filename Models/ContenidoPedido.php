@@ -19,7 +19,7 @@ private $cantidad;
 private $precio;
 private $descuento;
 
-public function __construct($numPedido, $numLinea, $codArticulo, $cantidad, $precio, $descuento) {
+public function __construct($numPedido=null, $numLinea=null, $codArticulo=null, $cantidad=null, $precio=null, $descuento=null) {
     $this->numPedido = $numPedido;
     $this->numLinea = $numLinea;
     $this->codArticulo = $codArticulo;

@@ -19,7 +19,7 @@ private $estado;
 private $codUsuario;
 private $activo;
 
-public function __construct($idPedido, $fecha, $total, $estado, $codUsuario, $activo) {
+public function __construct($idPedido=null, $fecha=null, $total=null, $estado=null, $codUsuario=null, $activo=null) {
     $this->idPedido = $idPedido;
     $this->fecha = $fecha;
     $this->total = $total;

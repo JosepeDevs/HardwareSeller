@@ -51,7 +51,7 @@ public function setCodCategoriaPadre($codCategoriaPadre) {
 }
 
 
- public function __construct($codigo, $nombre, $activo, $coCategoriaPadre) {
+ public function __construct($codigo = null, $nombre = null, $activo = null, $coCategoriaPadre = null) {
     $this->codigo = $codigo;
     $this->nombre = $nombre;
     $this->activo = $activo;
