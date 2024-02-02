@@ -58,6 +58,30 @@ public function setCodCategoriaPadre($codCategoriaPadre) {
     $this->coCategoriaPadre = $coCategoriaPadre;
 }
 
+        /**
+     * @return bool|array devuelve false si falla, devuelve el Categoria o array de Categorias si  encuentra 1 o más Categorias que coincida el texto buscado (en nombre)
+     */
+    public static function GetCategoriasByBusquedaNombre($nombre){
+        try{
+            $con = contectarBbddPDO();
+            $sqlQuery="SELECT * FROM  `categorias` WHERE nombre LIKE CONCAT('%', :nombre, '%');";
+            $statement=$con->prepare($sqlQuery);
+            $statement->bindParam(':nombre', $nombre);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Categoria");
+            $arrayCategoria = $statement->fetchAll();
+            if(empty($arrayCategoria)){
+                $_SESSION['NombreNotFound'] = true;
+                return false;
+            }else{
+                return $arrayCategoria;
+            }
+        } catch(PDOException $e) {
+            $_SESSION['ErrorGetCategorias']= true;
+            return false;
+        }
+    }
+
     /**
      * @return bool|Categoria devuelve false si falla, devuelve el Categoria si lo encuentra consultando el código
      */

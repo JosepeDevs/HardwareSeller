@@ -27,7 +27,7 @@ if(GetRolDeSession() == "admin" ){
                 <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' /> Administrar clientes
             </a>
             <a href='CategoriasLISTAR.php'>
-                <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' /> Administrar Artículos
+                <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' /> Administrar Categorias
             </a>
         </h2>";
 } else {
@@ -46,7 +46,7 @@ if(GetRolDeSession() == "admin" ){
 </h2>
 <h2>
     <a href='CategoriaBUSCAR.php'>
-        <img class='iconArribaTabla'  src="../Resources/buscaAr.png" alt="recraft icon"/> Buscar artículo
+        <img class='iconArribaTabla'  src="../Resources/buscaAr.png" alt="recraft icon"/> Buscar Categoria
     </a>
 </h2>
 </div>
@@ -101,15 +101,20 @@ echo"<table>";
                 $nombreAtributo = $atributo;//p.e. codigo, nombre...
                 $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
                 $valor = call_user_func([$Categoria, $nombreMetodo]);
-                if($nombreAtributo !== ""){
-
+                if($nombreAtributo == "activo"){
+                    if($valor == 1){
+                        echo "<td>Activo (1)</td>";
+                    } else{
+                        echo "<td>Inactivo (0)</td>";
+                    }
+                } else {
                     echo "<td>$valor</td>";
                 }
             }
             if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"){
                 echo"
-                <td><a class='icon' href='CategoriaEDITAR.php?codigo=$codigo'><img src='../Resources/editAr.png' alt='Editar artículo' /></td>
-                <td><a class='icon' href='CategoriaBORRAR.php?codigo=$codigo'><img src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
+                <td><a class='icon' href='CategoriaEDITAR.php?codigo=$codigo'><img src='../Resources/editAr.png' alt='Editar Categoria' /></td>
+                <td><a class='icon' href='CategoriaBORRAR.php?codigo=$codigo'><img src='../Resources/minusAr.png' alt='Borrar Categoria' /></td>";
             }
         }
         echo("</tr>

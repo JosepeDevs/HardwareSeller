@@ -4,14 +4,14 @@ include_once("OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ArticulosLISTARMensajes dice: no está user en session";
+    echo "CategoriasLISTARMensajes dice: no está user en session";
     header("Location: index.php");
 }
 
 function borradoLogico($codigo){
-    include_once("../Models/Articulo.php");
-    $articulo = new Articulo();
-    $operacionConfirmada = $articulo->borradoLogico($codigo);
+    include_once("../Models/Categoria.php");
+    $Categoria = new Categoria();
+    $operacionConfirmada = $Categoria->borradoLogico($codigo);
     return $operacionConfirmada;
 }
 ?>
