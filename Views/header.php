@@ -11,7 +11,7 @@
     <div id="logoHeader">
         <a href="/index.php"><img src="/Resources/HSLogoAzulSinPadding.png" height="110px" alt="Logo"></a>
     </div>
-    <div>
+    <div id="navegacion">
       <nav>
             <ul>
                 <li><a href="/index.php">Inicio</a></li>
@@ -50,7 +50,7 @@
                                         <td><input type="password" name="key" placeholder="***********"></td>
                                     </tr>
                                     </table>
-                                    <div>
+                                    <div id="IngresarYReiniciarHeader">
                                         <br> <input type="submit" value="Ingresar">
                                         <br> <input type="reset" value="Reiniciar">
                                     </div>
@@ -105,11 +105,13 @@
             </ul>
         </nav>
     </div>
+    <form action="Busqueda.php">
     <div class="search">
-        <input type="text" placeholder="Buscar..." autofocus>
-        <button>🔎︎</button>
-        <button class="hamburger">☰</button>
+            <input type="text" name="textoBuscado" placeholder="Buscar..." autofocus>
+            <button type="submit">🔎︎</button>
+            <button id="hamburger">☰</button>
     </div>
+    </form>
 </header>
 <body>
 <div class="cta-container">
