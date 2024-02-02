@@ -164,7 +164,11 @@ print("
             }
         };
 
-        include("footer.php");
         //tras printear los mensajes de error/confirmación "reseteamos" session
         ResetearSesion();
+
+        ?>
+<h2><a class="cerrar"  href='/index.php'>Cerrar sesión</a></h2>
+<?php
+include("footer.php");
 ?>
