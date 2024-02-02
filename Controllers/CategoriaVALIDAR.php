@@ -93,7 +93,8 @@ if( isset($_SESSION["editandoCategoria"]) && $_SESSION["editandoCategoria"] == "
     $codCategoriaPadre = ( isset($_SESSION["codCategoriaPadre"]) ? $_SESSION["codCategoriaPadre"] : null );//por session llega el código ORIGINAL
 
     $codigo = ( isset($_GET["codigo"]) ? $_GET["codigo"] : null ); //por la URL llega el código NUEVO
-    $operacionExitosa = $Categoria->updateCategoria($nombre, $codigo, $codigoOriginal, $activo, $codCategoriaPadre);
+    $categoria = new Categoria();
+    $operacionExitosa = $categoria->updateCategoria($nombre, $codigo, $codigoOriginal, $activo, $codCategoriaPadre);
     if($operacionExitosa){
         $_SESSION['GoodUpdateCategoria']= true;
     }

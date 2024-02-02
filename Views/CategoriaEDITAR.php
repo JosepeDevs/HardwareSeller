@@ -79,7 +79,7 @@ echo"<table>";
     echo "<div class='finForm'><h2><input type='submit' value='Guardar'></h2>";
     echo "</form>";
 
-include_once("../Controllers/CategoriaEDITARMensajes.php");
+include_once("../Controllers/CategoriaMensajes.php");
 $arrayMensajes=getArrayMensajesCategorias();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
@@ -87,7 +87,7 @@ if(is_array($arrayMensajes)){
     }
 };
 
-echo("<h2><a class='cerrar' href='CategoriasLISTAR.php?editandoCategoria=false'>Volver al listado de productos</a></h2>");
+echo("<h2><a class='cerrar' href='CategoriasLISTAR.php?editandoCategoria=false'>Volver al listado de categorias</a></h2>");
 echo("<h2><a class='cerrar' href='/index.php?editandoCategoria=false'> cerrar sesión</a></h2>");
 echo("<h2><a class='cerrar' a href='CategoriaBORRAR.php?codigo=$codigoOriginal'>BORRAR Categoria</a></h2>");
 include_once("footer.php");
