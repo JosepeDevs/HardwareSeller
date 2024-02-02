@@ -26,7 +26,7 @@ if(GetRolDeSession() == "admin" ){
             <a href='TablaClientes.php'>
                 <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' /> Administrar clientes
             </a>
-            <a href='ArticulosLISTAR.php'>
+            <a href='CategoriasLISTAR.php'>
                 <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' /> Administrar Artículos
             </a>
         </h2>";
@@ -40,25 +40,25 @@ if(GetRolDeSession() == "admin" ){
 }
 ?>
 <h2>
-    <a href='ArticulosLISTAR.php'>
+    <a href='CategoriasLISTAR.php'>
         <img  class='iconArribaTabla' src='../Resources/refresh.png' alt='refrescar' /> Recargar tabla (Quita ordenación y reinicia paginación)
     </a>
 </h2>
 <h2>
-    <a href='ArticuloBUSCAR.php'>
+    <a href='CategoriaBUSCAR.php'>
         <img class='iconArribaTabla'  src="../Resources/buscaAr.png" alt="recraft icon"/> Buscar artículo
     </a>
 </h2>
 </div>
 <?php
-//TABLA LISTANDO ARTICULOS
+//TABLA LISTANDO CategoriaS
 echo"<table>";
         echo"<tr>";
             //ENCABEZADOS
-            include_once("../Controllers/ArticulosLISTARController.php");
-            $arrayAtributos = getArrayAtributosArticulo();
+            include_once("../Controllers/CategoriasLISTARController.php");
+            $arrayAtributos = getArrayAtributosCategoria();
             if($arrayAtributos == false){
-                echo"</tr><tr><td>Sin articulos</td></tr>";
+                echo"</tr><tr><td>Sin Categorias</td></tr>";
             } else{
                 foreach ($arrayAtributos as $atributo) {
                     $nombreAtributo = $atributo;
@@ -75,8 +75,8 @@ echo"<table>";
 
         //PREPARAR ARRAYS CON OBJETOS
         $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
-        include_once("../Controllers/OrdenarArticulosController.php");
-        $arrayArticulos = getArrayArticulosOrdenados($orden);
+        include_once("../Controllers/OrdenarCategoriasController.php");
+        $arrayCategorias = getArrayCategoriasOrdenados($orden);
         $itemXpagPredeterminado=3;
         $filasAMostrar = isset($_GET['itemXpag'])? $_GET['itemXpag'] : $itemXpagPredeterminado;
         if(! isset($_GET['pag'])){
@@ -89,34 +89,27 @@ echo"<table>";
             }
         }
 
-        include_once("../Controllers/ArticulosLISTARController.php");
-        $arrayAImprimir = getArrayPaginadoArticulos($arrayArticulos, $filasAMostrar, $paginaActual);
+        include_once("../Controllers/CategoriasLISTARController.php");
+        $arrayAImprimir = getArrayPaginadoCategorias($arrayCategorias, $filasAMostrar, $paginaActual);
 
         //DATOS DE LOS OBJETOS
         //llamamos dinámicamente los getters de la clase habiendo guardado previamente el array con los nombresd de los atributos
         //hay que recorrer todos los atributos en todos los objetos
-        foreach($arrayAImprimir as $articulo){
+        foreach($arrayAImprimir as $Categoria){
             echo("<tr>");
             foreach ($arrayAtributos as $atributo) {
                 $nombreAtributo = $atributo;//p.e. codigo, nombre...
                 $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
-                $valor = call_user_func([$articulo, $nombreMetodo]);
-                if($nombreAtributo == "codigo"){
-                    $codigo = $articulo->getCodigo();//guardamos el código para que esté disponible fuerra de este bucle
-                    echo "<td>$valor</td>";
-                } else if($nombreAtributo == "imagen"){
-                    include_once("../Controllers/Directorio.php");
-                    $directorio = "/Resources/ImagenesArticulos/";
-                    $rutaAbsoluta = $directorio . $valor;
-                    echo"<td><img class='imagenes' src='{$rutaAbsoluta}' width='200' height='200'/></td>";
-                }else{
+                $valor = call_user_func([$Categoria, $nombreMetodo]);
+                if($nombreAtributo !== ""){
+
                     echo "<td>$valor</td>";
                 }
             }
             if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"){
                 echo"
-                <td><a class='icon' href='ArticuloEDITAR.php?codigo=$codigo'><img src='../Resources/editAr.png' alt='Editar artículo' /></td>
-                <td><a class='icon' href='ArticuloBORRAR.php?codigo=$codigo'><img src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
+                <td><a class='icon' href='CategoriaEDITAR.php?codigo=$codigo'><img src='../Resources/editAr.png' alt='Editar artículo' /></td>
+                <td><a class='icon' href='CategoriaBORRAR.php?codigo=$codigo'><img src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
             }
         }
         echo("</tr>
@@ -124,7 +117,7 @@ echo"<table>";
 
    //PAGINACIÓN
    print "<div class='paginacion'>";
-   $filasTotales = count($arrayArticulos);
+   $filasTotales = count($arrayCategorias);
    $paginasTotales = ceil($filasTotales / $filasAMostrar);
    if(is_numeric($paginaActual) && is_numeric($filasAMostrar)){
        //estamos viendo los registros paginados
@@ -132,18 +125,18 @@ echo"<table>";
        if($paginaActual == 0 ){
            print "<p>Anterior</p>"; //en la primera página esto no debe ser un enlace
        } else{
-           print "<a href='ArticulosLISTAR.php?pag=".($paginaActual)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Anterior</a>";
+           print "<a href='CategoriasLISTAR.php?pag=".($paginaActual)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Anterior</a>";
        }
        for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
            if($numeroIndicePaginacion == $paginaActual + 1 ){
                print "<b>$numeroIndicePaginacion</b>";
            }else{
-               print "<a href='ArticulosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
+               print "<a href='CategoriasLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
            }
            if($paginaActual +1 == $paginasTotales && $numeroIndicePaginacion == $paginasTotales){
                print "<p>Siguiente</p>"; //en la primera página esto no debe ser un enlace
            }else if($numeroIndicePaginacion == $paginasTotales){
-               print "<a href='ArticulosLISTAR.php?pag=".($paginaActual+2)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Siguiente</a>";
+               print "<a href='CategoriasLISTAR.php?pag=".($paginaActual+2)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Siguiente</a>";
            } else{
                print "";//no printear nada
            }
@@ -151,7 +144,7 @@ echo"<table>";
    } else{
        //estamos viendo todos los registros en una página
        for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
-           print "<a href='ArticulosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
+           print "<a href='CategoriasLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
        }
    }
 
@@ -160,10 +153,10 @@ echo"<table>";
    if (isset($_GET['pag']) && ( $_GET['pag'] == "X" ) ){
        print "<b>Ver todos</b>";
    } else{
-       print "<a href='ArticulosLISTAR.php?pag=X&ordenNombres=$orden'>Ver todos</a>";
+       print "<a href='CategoriasLISTAR.php?pag=X&ordenNombres=$orden'>Ver todos</a>";
    }
    print "
-   <form action='ArticulosLISTAR.php' method='GET'>
+   <form action='CategoriasLISTAR.php' method='GET'>
    <label for='itemXpag'>Registros/página</label><br>
    <select id='itemXpag' name='itemXpag' onchange='this.form.submit()' required>
        <option value='$filasAMostrar'>$filasAMostrar</option>";//mostrar la opción actual seleccionada
@@ -180,8 +173,8 @@ echo"<table>";
    </div>";
 
 //SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
-include_once("../Controllers/ArticulosLISTARMensajes.php");
-            $arrayMensajes=getArrayMensajesArticulos();
+include_once("../Controllers/CategoriasLISTARMensajes.php");
+            $arrayMensajes=getArrayMensajesCategorias();
             if(is_array($arrayMensajes)){
                 foreach($arrayMensajes as $mensaje) {
                     echo "<h3>$mensaje</h3>";
