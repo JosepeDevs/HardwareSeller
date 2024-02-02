@@ -77,7 +77,7 @@ echo"<table>";
                 if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
                     echo"
                     <th>Editar</th>
-                    <th>Borrar</th>";
+                    <th>Desactivar</th>";
                 }
                 echo"</tr>";
             }

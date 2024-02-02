@@ -117,7 +117,7 @@ echo"<table>";
             if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"){
                 echo"
                 <td><a class='icon' href='CategoriaEDITAR.php?codigo=$codigo'><img src='../Resources/editAr.png' alt='Editar Categoria' /></td>
-                <td><a class='icon' href='CategoriaBORRAR.php?codigo=$codigo'><img src='../Resources/minusAr.png' alt='Borrar Categoria' /></td>";
+                <td><a class='icon' href='CategoriaBORRAR.php?codigo=$codigo'><img src='../Resources/minusAr.png' alt='Desactivar Categoria' /></td>";
             }
         }
         echo("</tr>

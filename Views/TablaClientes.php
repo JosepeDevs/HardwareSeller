@@ -45,7 +45,7 @@ print("
             }
         }
         print"<th>Editar</th>
-            <th>Borrar</th>
+            <th>Desactivar</th>
     </tr>";
 
         //PREPARAR ARRAYS CON OBJETOS
