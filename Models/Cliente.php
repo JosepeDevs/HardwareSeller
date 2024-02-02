@@ -5,7 +5,9 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
 //NO PROTEGER, HACE FALTA DESPROTEGIDO PARA QUE PUEDA USARLO SIN HACER LOG IN
 
 
-include_once("../config/conectarBD.php");
+$raiz= dirname(__DIR__);
+$ruta = $raiz.'/config/conectarBD.php';
+include_once("$ruta");
 
 class Cliente {
 

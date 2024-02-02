@@ -12,11 +12,21 @@ include_once("header.php");
 
 print("<h1>Modificar cliente</h1>");
 include_once("../Controllers/ClienteEDITARController.php");
-$dniOriginal=$_GET["dni"];    //el DNI ha llegado por la url
+if(isset($_GET['dni'])){
+    //el DNI ha llegado por la url
+    $dniOriginal=$_GET["dni"];
+} else{
+    //hemos llegado con la url vacia
+    $raiz= dirname(__DIR__);
+    $rutaDniByEmail=$raiz.'/Controllers/GetDniByEmailController.php';
+    include_once("$rutaDniByEmail");
+    $email=  GetEmailDeSession();
+    $dniOriginal=GetDniByEmail($email);
+}
 $_SESSION["dni"] = $dniOriginal;
 $arrayAtributos = getArrayAtributos();
 
-echo("<h2>Bienvenido</h2>");
+echo("<h2>Bienvenido $email</h2>");
 //ponemos "editando" en true para que cuando lo mandemos a ValidarDatos lo trate como update
 $_SESSION["editandoCliente"]="true";
 

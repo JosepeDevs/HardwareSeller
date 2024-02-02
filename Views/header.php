@@ -67,15 +67,18 @@
                             <a class="tooltip-trigger-logged">Hola ' . $_SESSION['user'] . '</a>
                             <div class="tooltip-content-logged ">
                                 <ul>');
-                            include_once("../Controllers/OperacionesSession.php");
-                            include_once("../Controllers/GetDniByEmailController.php");
+                            $raiz= dirname(__DIR__);
+                            $rutaOperaciones = $raiz.'/Controllers/OperacionesSession.php';
+                            include_once("$rutaOperaciones");
+                            $rutaDniByEmail=$raiz.'/Controllers/GetDniByEmailController.php';
+                            include_once("$rutaDniByEmail");
                             $email=  GetEmailDeSession();
                             $dni=GetDniByEmail($email);
                             $esEditor = AuthYRolEditor();
                             $esAdmin = AuthYRolAdmin();
                             if($esAdmin){
                                 print ('
-                                <li><a href="/Views/ClienteEDITAR.php?dni=$dni">Ver/editar mis datos</a></li>
+                                <li><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></li>
                                 <li><a href="/Views/PedidosLISTAR.php">Administrar PEDIDOS</a></li>
                                 <li><a href="/Views/TablaClientes.php">Administrar CLIENTES</a></li>
                                 <li><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></li>
@@ -83,13 +86,13 @@
                                 <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
                             } else if ($esEditor){
                                 print ('
-                                <li><a href="/Views/ClienteEDITAR.php?dni=$dni">Ver/editar mis datos</a></li>
+                                <li><a href="/Views/ClienteEDITAR.php?dni='.$dni.'">Ver/editar mis datos</a></li>
                                 <li><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></li>
                                 <li><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></li>
                                 <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
                             } else{
                                 print ('
-                                <li><a href="/Views/ClienteEDITAR.php?dni=$dni">Ver/editar mis datos</a></li>
+                                <li><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></li>
                                 <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
                             }
                             print ('

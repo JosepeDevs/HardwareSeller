@@ -1,7 +1,7 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) { session_start(); }
 
-//NO PROTEGER ESTO, ES DONDE SE SUBE A SESSION USER Y KEY
+//NO PROTEGER ESTO, ES DONDE SE SUBE A SESSION USER Y KEY Y ROL
 include_once("../Models/Cliente.php");
 
 /**
@@ -10,12 +10,13 @@ include_once("../Models/Cliente.php");
  *
  */
 
+
+
 if(isset($_POST['user']) &&  isset($_POST['key'])) {
-    print_r($_SESSION)."hola";
     $usuario = $_POST['user'];
+    $cliente = Cliente::GetClientByEmail($usuario);
+    $rol = $cliente->getRol();
     $psswrdSinHashear = $_POST['key'];
-    $cliente = new Cliente();
-    $cliente = Cliente::getClientByEmail($usuario);
     if($cliente == false) {
         $_SESSION['NoExiste']=true;
         echo"<p>cliente no existe</p>";
@@ -27,6 +28,9 @@ if(isset($_POST['user']) &&  isset($_POST['key'])) {
             echo "all good";
             $_SESSION['user']=$usuario;
             $_SESSION['key'] = $psswrdHasheada;
+            $_SESSION['usuario']=$usuario; //no es lo mismo que session de user
+            $_SESSION['auth'] = "OK";
+            $_SESSION['rol'] = $rol;
             print_r($_SESSION);
             echo "<script>history.back();</script>";
             exit;
