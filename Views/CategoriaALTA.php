@@ -23,15 +23,14 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
             <tr>
                 <th>Atributos:</th>
                 <th><label for="nombre">Nombre</label></th>
-                <th><label for="codigo">Código* (3 letras, 5 números)</label></th>
+                <th><label for="codigo">Código numerico</label></th>
                 <th><label for="activo">Activo</label></th>
-                <th><label for="codCategoriaPadre">Codigo de la categiría padre</label></th>
+                <th><label for="codCategoriaPadre">Codigo de la categoría padre</label></th>
             </tr>
             <tr>
                 <th>Datos del Categoria nuevo:</th>
                 <td><input type="text" name="nombre" id="nombre" required><br><br></td>
                 <td><input type="text" name="codigo" id="codigo" required><br><br></td>
-                <td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='descuento' name='descuento' required></td>";
                 <td><select name="activo" id="activo" required>
                     <option value="0">Desactivado</option>
                     <option value="1">Activado</option>

@@ -8,7 +8,7 @@ if( $usuarioLogeado == false){
 }
 //HEADER Y TITULO
 include_once("header.php");
-print("<h1>Gestionar categoorias</h1>");
+print("<h1>Administrar categorias</h1>");
 
 //NAVEGACION
 include_once("../Controllers/OperacionesSession.php");
@@ -107,6 +107,9 @@ echo"<table>";
                     } else{
                         echo "<td>Inactivo (0)</td>";
                     }
+                } else if( $nombreAtributo == "codigo"){
+                    $codigo=$valor;
+                    echo "<td>$valor</td>";
                 } else {
                     echo "<td>$valor</td>";
                 }
@@ -178,7 +181,7 @@ echo"<table>";
    </div>";
 
 //SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
-include_once("../Controllers/CategoriasMensajes.php");
+include_once("../Controllers/CategoriaMensajes.php");
             $arrayMensajes=getArrayMensajesCategorias();
             if(is_array($arrayMensajes)){
                 foreach($arrayMensajes as $mensaje) {
