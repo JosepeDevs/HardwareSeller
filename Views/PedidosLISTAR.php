@@ -4,78 +4,54 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ArticulosLISTAR dice: no está user en session";
+    echo "PedidosLISTAR dice: no está user en session";
     header("Location: ../index.php");
 }
 //HEADER Y TITULO
 include_once("header.php");
-print("<h1>Gestionar artículos</h1>");
+print("<h1>Gestionar Pedidos</h1>");
 
 //NAVEGACION
-include_once("../Controllers/OperacionesSession.php");
-if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
-    echo"
-    <div id='EnlacesArriba'>
-        <h2>
-            <a href='ArticuloALTA.php'>
-                <img class='iconArribaTabla' src='../Resources/addAr.png' alt='añadir' /> Nuevo artículo (solo admin y editores)
-            </a>
-        </h2>";
-}
-if(GetRolDeSession() == "admin" ){
-    echo"<h2>
-            <a href='CategoriasLISTAR.php'>
-                <img class='iconArribaTabla' src='../Resources/buscaAr.png' alt='añadir' /> Ver categorías
-            </a>
-        </h2>";
-} else {
-    include_once("../Controllers/GetEmailByDniController.php");
-    $email = GetEmailDeSession();
-    $dni=GetDniByEmail($email);
-    if($dni == null ){
-        $_SESSION['OperationFailed'] = true;
-        echo"<h2>
-                <a href='ClienteBUSCAR.php'>
-                    <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' /> Buscar cliente
-                </a>
-            </h2>";
-    } else{
-        echo"<h2>
-                <a href='ClienteEDITAR.php?dni=$dni'>
-                    <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' /> Editar mis datos de usuario $email
-                </a>
-            </h2>";
-    }
-}
 ?>
-<h2>
-    <a href='ArticulosLISTAR.php'>
-        <img  class='iconArribaTabla' src='../Resources/refresh.png' alt='refrescar' /> Recargar tabla (Quita ordenación y reinicia paginación)
-    </a>
-</h2>
-<h2>
-    <a href='ArticuloBUSCAR.php'>
-        <img class='iconArribaTabla'  src="../Resources/buscaAr.png" alt="recraft icon"/> Buscar artículo
-    </a>
-</h2>
+<div id='EnlacesArriba'>
+    <h2>
+        <a href='TablaClientes.php'>
+            <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' /> Ver Clientes
+        </a>
+    </h2>
+    <h2>
+        <a href='PedidosLISTAR.php'>
+            <img  class='iconArribaTabla' src='../Resources/refresh.png' alt='refrescar' /> Limpiar filtros
+        </a>
+    </h2>
+    <h2>
+        <a href='PedidoBUSCAR.php'>
+            <img class='iconArribaTabla'  src="../Resources/buscaAr.png" alt="recraft icon"/> Buscar Pedido
+        </a>
+    </h2>
 </div>
 <?php
-//TABLA LISTANDO ARTICULOS
+//TABLA LISTANDO Pedidos
 echo"<table>";
         echo"<tr>";
             //ENCABEZADOS
-            include_once("../Controllers/ArticulosLISTARController.php");
-            $arrayAtributos = getArrayAtributosArticulo();
+            include_once("../Controllers/PedidosLISTARController.php");
+            $arrayAtributos = getArrayAtributosPedido();
             if($arrayAtributos == false){
-                echo"</tr><tr><td>Sin articulos</td></tr>";
+                echo"</tr><tr><td>Sin Pedidos</td></tr>";
             } else{
                 foreach ($arrayAtributos as $atributo) {
                     $nombreAtributo = $atributo;
-                    echo "<th>$nombreAtributo</th>";
+                    echo"<th>
+                            $nombreAtributo <br>Ordenar por este atributo:<br>
+                            <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
+                            <a class='ordenar' href='PedidosLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
+                        </th>";
                 }
                 include_once("../Controllers/OperacionesSession.php");//get rol
                 if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
                     echo"
+                    <th>Ver contenido</th>
                     <th>Editar</th>
                     <th>Desactivar</th>";
                 }
@@ -83,9 +59,10 @@ echo"<table>";
             }
 
         //PREPARAR ARRAYS CON OBJETOS
-        $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
-        include_once("../Controllers/OrdenarArticulosController.php");
-        $arrayArticulos = getArrayArticulosOrdenados($orden);
+        $orden = isset($_GET['orden']) ? $_GET['orden']:null;
+        $atributoElegido = isset($_GET["atributo"])?$_GET["atributo"]:"idPedido";
+        include_once("../Controllers/OrdenarPedidosController.php");
+        $arrayPedidos = getArrayPedidosOrdenadosByAtributo($orden,$atributoElegido);
         $itemXpagPredeterminado=3;
         $filasAMostrar = isset($_GET['itemXpag'])? $_GET['itemXpag'] : $itemXpagPredeterminado;
         if(! isset($_GET['pag'])){
@@ -98,34 +75,29 @@ echo"<table>";
             }
         }
 
-        include_once("../Controllers/ArticulosLISTARController.php");
-        $arrayAImprimir = getArrayPaginadoArticulos($arrayArticulos, $filasAMostrar, $paginaActual);
+        include_once("../Controllers/PedidosLISTARController.php");
+        $arrayAImprimir = getArrayPaginadoPedidos($arrayPedidos, $filasAMostrar, $paginaActual);
 
         //DATOS DE LOS OBJETOS
         //llamamos dinámicamente los getters de la clase habiendo guardado previamente el array con los nombresd de los atributos
         //hay que recorrer todos los atributos en todos los objetos
-        foreach($arrayAImprimir as $articulo){
+        foreach($arrayAImprimir as $Pedido){
             echo("<tr>");
             foreach ($arrayAtributos as $atributo) {
                 $nombreAtributo = $atributo;//p.e. codigo, nombre...
                 $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
-                $valor = call_user_func([$articulo, $nombreMetodo]);
-                if($nombreAtributo == "codigo"){
-                    $codigo = $articulo->getCodigo();//guardamos el código para que esté disponible fuerra de este bucle
+                $valor = call_user_func([$Pedido, $nombreMetodo]);
+                if($nombreAtributo == "idPedido"){
+                    $idPedido = $Pedido->getidPedido();//guardamos el código para que esté disponible fuerra de este bucle
                     echo "<td>$valor</td>";
-                } else if($nombreAtributo == "imagen"){
-                    include_once("../Controllers/Directorio.php");
-                    $directorio = "/Resources/ImagenesArticulos/";
-                    $rutaAbsoluta = $directorio . $valor;
-                    echo"<td><img class='imagenes' src='{$rutaAbsoluta}' width='200' height='200'/></td>";
-                }else{
+                } else{
                     echo "<td>$valor</td>";
                 }
             }
-            if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"){
+            if(GetRolDeSession() == "admin"){
                 echo"
-                <td><a href='ArticuloEDITAR.php?codigo=$codigo'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
-                <td><a href='ArticuloBORRAR.php?codigo=$codigo'><img class='icon' src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
+                <td><a href='PedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
+                <td><a href='PedidoBORRAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
             }
         }
         echo("</tr>
@@ -133,7 +105,7 @@ echo"<table>";
 
    //PAGINACIÓN
    print "<div class='paginacion'>";
-   $filasTotales = count($arrayArticulos);
+   $filasTotales = count($arrayPedidos);
    $paginasTotales = ceil($filasTotales / $filasAMostrar);
    if(is_numeric($paginaActual) && is_numeric($filasAMostrar)){
        //estamos viendo los registros paginados
@@ -141,18 +113,18 @@ echo"<table>";
        if($paginaActual == 0 ){
            print "<p>Anterior</p>"; //en la primera página esto no debe ser un enlace
        } else{
-           print "<a href='ArticulosLISTAR.php?pag=".($paginaActual)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Anterior</a>";
+           print "<a href='PedidosLISTAR.php?pag=".($paginaActual)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Anterior</a>";
        }
        for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
            if($numeroIndicePaginacion == $paginaActual + 1 ){
                print "<b>$numeroIndicePaginacion</b>";
            }else{
-               print "<a href='ArticulosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
+               print "<a href='PedidosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
            }
            if($paginaActual +1 == $paginasTotales && $numeroIndicePaginacion == $paginasTotales){
                print "<p>Siguiente</p>"; //en la primera página esto no debe ser un enlace
            }else if($numeroIndicePaginacion == $paginasTotales){
-               print "<a href='ArticulosLISTAR.php?pag=".($paginaActual+2)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Siguiente</a>";
+               print "<a href='PedidosLISTAR.php?pag=".($paginaActual+2)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Siguiente</a>";
            } else{
                print "";//no printear nada
            }
@@ -160,7 +132,7 @@ echo"<table>";
    } else{
        //estamos viendo todos los registros en una página
        for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
-           print "<a href='ArticulosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
+           print "<a href='PedidosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
        }
    }
 
@@ -169,10 +141,10 @@ echo"<table>";
    if (isset($_GET['pag']) && ( $_GET['pag'] == "X" ) ){
        print "<b>Ver todos</b>";
    } else{
-       print "<a href='ArticulosLISTAR.php?pag=X&ordenNombres=$orden'>Ver todos</a>";
+       print "<a href='PedidosLISTAR.php?pag=X&ordenNombres=$orden'>Ver todos</a>";
    }
    print "
-   <form action='ArticulosLISTAR.php' method='GET'>
+   <form action='PedidosLISTAR.php' method='GET'>
    <label for='itemXpag'>Registros/página</label><br>
    <select id='itemXpag' name='itemXpag' onchange='this.form.submit()' required>
        <option value='$filasAMostrar'>$filasAMostrar</option>";//mostrar la opción actual seleccionada
@@ -189,8 +161,8 @@ echo"<table>";
    </div>";
 
 //SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
-include_once("../Controllers/ArticulosLISTARMensajes.php");
-            $arrayMensajes=getArrayMensajesArticulos();
+include_once("../Controllers/PedidosMensajes.php");
+            $arrayMensajes=getArrayMensajesPedidos();
             if(is_array($arrayMensajes)){
                 foreach($arrayMensajes as $mensaje) {
                     echo "<h3>$mensaje</h3>";
