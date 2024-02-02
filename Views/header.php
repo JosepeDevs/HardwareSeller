@@ -68,8 +68,9 @@
                             <div class="tooltip-content-logged ">
                                 <ul>
                                     <li><a href="#">Mis datos</a></li>
-                                    <li><a href="#">Mis pedidos</a></li>
-                                    <li><a href="/Controllers/router.php">Tabla Admin</a></li>
+                                    <li><a href="#">Administrar PEDIDOS</a></li>
+                                    <li><a href="/Controllers/router.php">Administrar CLIENTES</a></li>
+                                    <li><a href="/Controllers/router.php">Administrar ARTÍCULOS</a></li>
                                     <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>
                             </div>
                         </div>');
