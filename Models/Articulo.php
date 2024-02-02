@@ -81,6 +81,30 @@ class Articulo {
         }
     }
 
+        /**
+     * @return bool|array devuelve false si falla, devuelve el articulo o array de articulos si  encuentra 1 o más articulos que coincida el texto buscado (en nombre)
+     */
+    public static function GetArticulosByBusquedaNombre($nombre){
+        try{
+            $con = contectarBbddPDO();
+            $sqlQuery="SELECT * FROM  `articulos` WHERE nombre LIKE CONCAT('%', :nombre, '%');";
+            $statement=$con->prepare($sqlQuery);
+            $statement->bindParam(':nombre', $nombre);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
+            $arrayArticulo = $statement->fetchAll();
+            if(empty($arrayArticulo)){
+                $_SESSION['NombreNotFound'] = true;
+                return false;
+            }else{
+                return $arrayArticulo;
+            }
+        } catch(PDOException $e) {
+            $_SESSION['ErrorGetArticulos']= true;
+            return false;
+        }
+    }
+
     public static function ComprobarLongitud($string, $longitud) {
         if(strlen($string) > $longitud) {
             return false;

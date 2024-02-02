@@ -30,4 +30,10 @@ function getArrayAtributosArticulo(){
     $arrayArticulos = Articulo::getArrayAtributosArticulo();
     return $arrayArticulos;
 }
+
+function GetArticulosByBusquedaNombre($nombre){
+    include_once("../Models/Articulo.php");
+    $arrayArticulos = Articulo::GetArticulosByBusquedaNombre($nombre);
+    return $arrayArticulos;
+}
 ?>

@@ -25,6 +25,10 @@ Function getArrayMensajesArticulos(){
         $_SESSION['CodigoNotFound']=false;
         $mensajes[] = "No se encontró el código consultado.";
     }
+    if(isset($_SESSION['NombreNotFound']) && $_SESSION['NombreNotFound'] == true){
+        $_SESSION['NombreNotFound']=false;
+        $mensajes[] = "No se encontró ningún artículo que contenga su consulta en el nombre.";
+    }
 
     if( count($mensajes) == 0){
         return false;//si no encontró ningún mensaje a mostrar devolverá false;
