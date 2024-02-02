@@ -5,7 +5,7 @@ $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "CategoriaEDITAR dice: no está user en session";
-    header("Location: index.php");
+    header("Location: ../index.php");
 }
 
 
