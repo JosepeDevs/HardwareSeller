@@ -1,21 +1,45 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("OperacionesSession.php");
+include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "CategoriasLISTARMensajes dice: no está user en session";
     header("Location: index.php");
 }
-
 /**
  * Funcion que se llama para comprobar si ha habido algún error o para mostrar un mensaje de operación realizada correctamente. Obtiene el resultado consultando SESSION.
- * @$mensajes[]= string|bool Devuelve texto si detecta algún mensaje de confirmación/error, si no, devuelve false.
+ * @return array|bool Guarda todos los mensajes que encuentre en un array que devulve, si no hay coincidencias devuelve false.
  */
 Function getArrayMensajesCategorias(){
     if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
     $mensajes=[];
+
+    if(isset($_SESSION['GoodInsertCategoria']) && $_SESSION['GoodInsertCategoria'] == true){
+        $mensajes[] =  "Categoria añadido correctamente.";
+        unset($_SESSION['GoodInsertCategoria']);
+    };
+
+    if(isset($_SESSION['CodigoAlreadyExists']) && $_SESSION['CodigoAlreadyExists'] == true){
+        $mensajes[] =  "Lo sentimos, el  código indicado ya está en uso, por favor, seleccione otro.";
+        unset($_SESSION['CodigoAlreadyExists']);
+    }
+
+    if(isset($_SESSION['BadOperation']) && $_SESSION['BadOperation'] == true){
+        $mensajes[] =  "Hubo algún problema con la conexión a la base de datos.";
+        unset($_SESSION['BadOperation']);
+    }
+
+    if(isset($_SESSION['BadInsertCategoria']) && $_SESSION['BadInsertCategoria'] == true){
+        $mensajes[] =  "Fallo al insertar sus datos, la operación no tuvo lugar. Puede ser un fallo de la base de datos. La imagen subida no ha persistido en nuestros servidores.";
+        unset($_SESSION['BadInsertCategoria']);
+    }
+
+    if(isset($_SESSION['LongNombre']) && $_SESSION['LongNombre'] == true){
+        $mensajes[] =  "Introdujo un nombre demasiado largo. Abrévielo por favor.";
+        unset($_SESSION['LongNombre']);
+    }
 
     if(isset($_SESSION['GoodUpdateCategoria']) && ($_SESSION['GoodUpdateCategoria'] == true)) {
         unset($_SESSION['GoodUpdateCategoria']);
@@ -132,6 +156,7 @@ Function getArrayMensajesCategorias(){
         unset($_SESSION['LongPadre'] );
         $mensajes[]= "El codigo padre indicado era demasiado largo.";
     }
+
 
     if( count($mensajes) == 0){
         return false;//si no encontró ningún mensaje a mostrar devolverá false;

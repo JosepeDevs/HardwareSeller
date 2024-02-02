@@ -173,7 +173,7 @@ echo"<table>";
    </div>";
 
 //SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
-include_once("../Controllers/CategoriasLISTARMensajes.php");
+include_once("../Controllers/CategoriasMensajes.php");
             $arrayMensajes=getArrayMensajesCategorias();
             if(is_array($arrayMensajes)){
                 foreach($arrayMensajes as $mensaje) {
