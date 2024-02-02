@@ -66,12 +66,34 @@
                             <div class="tooltip-container-logged">
                             <a class="tooltip-trigger-logged">Hola ' . $_SESSION['user'] . '</a>
                             <div class="tooltip-content-logged ">
-                                <ul>
-                                    <li><a href="#">Mis datos (más adelante enlace directo a editar el cliente logeado)</a></li>
-                                    <li><a href="#">Administrar PEDIDOS</a></li>
-                                    <li><a href="/Controllers/router.php">Administrar CLIENTES</a></li>
-                                    <li><a href="/Controllers/router.php">Administrar ARTÍCULOS</a></li>
-                                    <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>
+                                <ul>');
+                            include_once("../Controllers/OperacionesSession.php");
+                            include_once("../Controllers/GetDniByEmailController.php");
+                            $email=  GetEmailDeSession();
+                            $dni=GetDniByEmail($email);
+                            $esEditor = AuthYRolEditor();
+                            $esAdmin = AuthYRolAdmin();
+                            if($esAdmin){
+                                print ('
+                                <li><a href="/Views/ClienteEDITAR.php?dni=$dni">Ver/editar mis datos</a></li>
+                                <li><a href="/Views/PedidosLISTAR.php">Administrar PEDIDOS</a></li>
+                                <li><a href="/Views/TablaClientes.php">Administrar CLIENTES</a></li>
+                                <li><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></li>
+                                <li><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></li>
+                                <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
+                            } else if ($esEditor){
+                                print ('
+                                <li><a href="/Views/ClienteEDITAR.php?dni=$dni">Ver/editar mis datos</a></li>
+                                <li><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></li>
+                                <li><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></li>
+                                <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
+                            } else{
+                                print ('
+                                <li><a href="/Views/ClienteEDITAR.php?dni=$dni">Ver/editar mis datos</a></li>
+                                <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
+                            }
+                            print ('
+                            </ul>
                             </div>
                         </div>');
                         }

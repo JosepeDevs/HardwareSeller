@@ -80,17 +80,6 @@ Function GetEmailDeSession(){
     }
 }
 
-//esto antes era resetsession
-/*
-include_once("UserSession.php");
-$usuarioLogeado = UserEstablecido();
-if( $usuarioLogeado == false){
-    session_destroy();
-    echo "ResetSession dice: shit no está user en session";
-    header("Location: index.php");
-}*/
-
-//no entiendo porque esta función si la intento proteger no puedo acceder. edito:estaba protegida y funcionado comentario quizas sobre
 /**
  * Para llamarla después de imprimir mensajes de error/confirmación, ya que solo guarda user, Auth y rol, el resto lo deja UNSET.
  *
