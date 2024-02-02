@@ -96,7 +96,7 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
     }
 
 
-    include_once("../Controllers/CategoriaBUSCARMensajes.php");
+    include_once("../Controllers/CategoriaMensajes.php");
     $arrayMensajes=getArrayMensajesCategorias();
     if(is_array($arrayMensajes)){
         foreach($arrayMensajes as $mensaje) {

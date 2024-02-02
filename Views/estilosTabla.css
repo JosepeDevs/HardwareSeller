@@ -35,6 +35,14 @@ td {
     border: 1px solid #000;
     padding: 8px;
     align-content: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+td img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 div input{
@@ -279,7 +287,7 @@ header nav ul li a:hover{
 .cta-container{
     display: flex;
     flex-direction: column;
-    background-image: url("/Resources/PCs.png");
+    background-image: url("/Resources/HapPcs.png");
     width: auto;
     position: relative;
     background-repeat: no-repeat;
@@ -317,8 +325,8 @@ body{
 
 .iconArribaTabla{
     border-radius: 10px;
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
 }
 
 .finForm{
@@ -381,12 +389,9 @@ body{
 
 .icon{
     border-radius: 10px;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+    width: 80px;
+    height: 80px;
+    padding: 5px;
 }
 
 .cerrar{

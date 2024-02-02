@@ -24,8 +24,8 @@ if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
 }
 if(GetRolDeSession() == "admin" ){
     echo"<h2>
-            <a href='TablaClientes.php'>
-                <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' /> Ver clientes
+            <a href='CategoriasLISTAR.php'>
+                <img class='iconArribaTabla' src='../Resources/buscaAr.png' alt='añadir' /> Ver categorías
             </a>
         </h2>";
 } else {
@@ -36,13 +36,13 @@ if(GetRolDeSession() == "admin" ){
         $_SESSION['OperationFailed'] = true;
         echo"<h2>
                 <a href='ClienteBUSCAR.php'>
-                    <img class='iconArribaTabla' src='search.png' alt='añadir' /> Buscar cliente
+                    <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' /> Buscar cliente
                 </a>
             </h2>";
     } else{
         echo"<h2>
                 <a href='ClienteEDITAR.php?dni=$dni'>
-                    <img class='iconArribaTabla' src='search.png' alt='añadir' /> Editar mis datos de usuario $email
+                    <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' /> Editar mis datos de usuario $email
                 </a>
             </h2>";
     }
@@ -124,8 +124,8 @@ echo"<table>";
             }
             if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"){
                 echo"
-                <td><a class='icon' href='ArticuloEDITAR.php?codigo=$codigo'><img src='../Resources/editAr.png' alt='Editar artículo' /></td>
-                <td><a class='icon' href='ArticuloBORRAR.php?codigo=$codigo'><img src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
+                <td><a href='ArticuloEDITAR.php?codigo=$codigo'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
+                <td><a href='ArticuloBORRAR.php?codigo=$codigo'><img class='icon' src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
             }
         }
         echo("</tr>
