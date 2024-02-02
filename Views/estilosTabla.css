@@ -279,12 +279,12 @@ header nav ul li a:hover{
 .cta-container{
     display: flex;
     flex-direction: column;
-    background-image: url("arrows2.png");
+    background-image: url("/Resources/PCs.png");
     width: auto;
     position: relative;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center calc(var(--altoHeader)-30px);
+    background-position: center calc(var(--altoHeader)-100px);
     background-size: cover;
     z-index: 0;
 }

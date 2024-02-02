@@ -31,23 +31,12 @@ if(GetRolDeSession() == "admin" ){
             </a>
         </h2>";
 } else {
-    include_once("../Controllers/GetEmailByDniController.php");
-    $email = GetEmailDeSession();
-    $dni=GetDniByEmail($email);
-    if($dni == null ){
-        $_SESSION['OperationFailed'] = true;
-        echo"<h2>
-                <a href='ClienteBUSCAR.php'>
-                    <img class='iconArribaTabla' src='search.png' alt='añadir' /> Buscar cliente
-                </a>
-            </h2>";
-    } else{
-        echo"<h2>
-                <a href='ClienteEDITAR.php?dni=$dni'>
-                    <img class='iconArribaTabla' src='search.png' alt='añadir' /> Editar mis datos de usuario $email
-                </a>
-            </h2>";
-    }
+    //solo entrará aquí si es editor
+    echo"<h2>
+            <a href='CategoriaALTA.php'>
+                <img class='iconArribaTabla' src='search.png' alt='añadir' /> Crear categoría nueva
+            </a>
+        </h2>";
 }
 ?>
 <h2>
