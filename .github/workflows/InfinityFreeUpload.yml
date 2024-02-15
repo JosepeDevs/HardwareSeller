@@ -18,6 +18,7 @@ jobs:
           server: ftpupload.net
           username: if0_35787488
           password: ${{ secrets.password }}
+          server-dir: /htdocs/
           protocol: ftps
           port: 21 
           exclude: |
