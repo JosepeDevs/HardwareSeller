@@ -30,12 +30,7 @@ if($numPedido == $numPedidoOriginal ){//si el código escrito es el mismo --> es
 
 $codArticuloValido = ContenidoPedido::ComprobarLongitud($codArticulo,50);
 if($codArticuloValido == false) {    $_SESSION['LongcodArticulo']= true; }
-
-$codPadreValido = ContenidoPedido::ComprobarLongitud($codContenidoPedidoPadre,50);
-if($codPadreValido == false) {    $_SESSION['LongPadre']= true; }
-
-$codPadreExiste = ContenidoPedido::numPedidoPadreExiste($codContenidoPedidoPadre);
-if($codPadreExiste == false) {    $_SESSION['codPadreNoExiste']= true; }
+adsdad
 
 $activoValido = ContenidoPedido::ComprobarLongitud($activo,11);
 if($activoValido == false) { $_SESSION['LongActivo']= true;}
