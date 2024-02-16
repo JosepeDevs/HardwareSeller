@@ -104,12 +104,12 @@ public function setDescuento($descuento) {
         /**
      * @return bool|array devuelve false si falla, devuelve el ContenidoPedido o array de ContenidoPedidos si  encuentra 1 o más ContenidoPedidos que coincida el texto buscado (en codArticulo)
      */
-    public static function GetContenidoPedidosByBusquedaNumPedido($numPedido){
+    public static function GetContenidoPedidosByBusquedaCodArticulo($numPedido){
         try{
             $con = contectarBbddPDO();
-            $sqlQuery="SELECT * FROM  `contenidopedido` WHERE numPedido =:numPedido";
+            $sqlQuery="SELECT * FROM  `contenidopedido` WHERE CodArticulo =:CodArticulo";
             $statement=$con->prepare($sqlQuery);
-            $statement->bindParam(':numPedido', $numPedido);
+            $statement->bindParam(':CodArticulo', $CodArticulo);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
             $arrayContenidoPedido = $statement->fetchAll();
