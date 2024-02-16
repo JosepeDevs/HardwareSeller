@@ -105,7 +105,7 @@
             </ul>
         </nav>
     </div>
-    <form action="Busqueda.php" method="post">
+    <form action="Views/Busqueda.php" method="post">
     <div class="search">
             <input type="text" name="textoBuscado" placeholder="Buscar..." autofocus>
             <button type="submit">🔎︎</button>
