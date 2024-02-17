@@ -173,12 +173,12 @@ public function setDescuento($descuento) {
     /**
      * @return bool returns true si la inserción es exitosa, si no, false
      */
-    public static function AltaContenidoPedido($numPedido, $numLinea,$codArticulo, $cantidad, $precio, $descuento){
+    public static function AltaContenidoPedido($numPedido, $numLinea,$codArticulo, $cantidad, $precio, $descuento, $activo){
         $_SESSION["nuevoContenidoPedido"]=false;
         try{
             $con = contectarBbddPDO();
-            $sqlQuery="INSERT INTO `ContenidoPedidos` (`numPedido`, `numLinea`, `codArticulo`, `cantidad`, `precio`, `descuento`)
-                                        VALUES (:numPedido, :numLinea, :codArticulo, :cantidad, :precio, :descuento);";
+            $sqlQuery="INSERT INTO `ContenidoPedidos` (`numPedido`, `numLinea`, `codArticulo`, `cantidad`, `precio`, `descuento`, `activo` )
+                                        VALUES (:numPedido, :numLinea, :codArticulo, :cantidad, :precio, :descuento, :activo);";
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':numPedido', $numPedido);
             $statement->bindParam(':numLinea', $numLinea);
@@ -186,6 +186,7 @@ public function setDescuento($descuento) {
             $statement->bindParam(':cantidad', $cantidad);
             $statement->bindParam(':precio', $precio);
             $statement->bindParam(':descuento', $descuento);
+            $statement->bindParam(':activo', $activo);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
             $resultado = $statement->fetch();
@@ -245,7 +246,7 @@ public function setDescuento($descuento) {
     /**
      * @return bool true si hay éxito, false si no es el caso.
      */
-    public function updateContenidoPedido($numPedido, $numPedidoOriginal, $numLinea, $codArticulo, $cantidad, $precio, $descuento){
+    public function updateContenidoPedido($numPedido, $numPedidoOriginal, $numLinea, $codArticulo, $cantidad, $precio, $descuento, $activo){
     //una vez aquí dentro hay que "reiniciar" el valor de "editando"
     $_SESSION["editandoContenidoPedido"]="false";
     $conPDO = contectarBbddPDO();
@@ -256,12 +257,12 @@ public function setDescuento($descuento) {
         $conPDO = contectarBbddPDO();
         if( $mantienennumPedido){
             $sqlQuery = " UPDATE `ContenidoPedidos`
-                    SET `numPedido` = :numPedidoOriginal, `numLinea` = :numLinea, `codArticulo` = :codArticulo, `cantidad` = :cantidad, `precio` = :precio,`descuento` = :descuento
+                    SET `numPedido` = :numPedidoOriginal, `numLinea` = :numLinea, `codArticulo` = :codArticulo, `cantidad` = :cantidad, `precio` = :precio,`descuento` = :descuento, `activo` = :activo
                     WHERE `numPedido` = :numPedidoOriginal "
             ;
         } else{
             $sqlQuery = " UPDATE `ContenidoPedidos`
-                    SET `numPedido` = :numPedido, `numLinea` = :numLinea,  `codArticulo` = :codArticulo, `cantidad` = :cantidad, `precio` = :precio, `descuento` = :descuento
+                    SET `numPedido` = :numPedido, `numLinea` = :numLinea,  `codArticulo` = :codArticulo, `cantidad` = :cantidad, `precio` = :precio, `descuento` = :descuento, `activo` = :activo
                     WHERE `numPedido` = :numPedidoOriginal "
             ;
         }
@@ -281,6 +282,7 @@ public function setDescuento($descuento) {
         $statement->bindParam(':cantidad', $cantidad);
         $statement->bindParam(':precio', $precio);
         $statement->bindParam(':descuento', $descuento);
+        $statement->bindParam(':activo', $activo);
 
         $operacionRealizada = $statement->execute();
 
