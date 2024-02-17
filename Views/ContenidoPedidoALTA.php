@@ -79,7 +79,7 @@ function addLineaPedido() {
     var newRow = lastRow.cloneNode(true);
     
     // guardams todos los inputs  
-    var numLineaInput = newRow.querySelector('input[name="numLinea"]');
+    var numLineaInput = newRow.querySelector('input[name^="numLinea"]'); //hacemos que seleccione el input cuyo nombre empiece por numLinea
     
     // lo aumentamos en  1
     var nuevoNumLineaInput = parseInt(numLineaInput.value) +  1;
