@@ -91,14 +91,14 @@ include("footer.php");
         var nombreBase = null
         if (inputs[i].name == 'numLinea') {
             nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); //quitamos los números del final, para evitar fila1 y luego fila12 y luego fila123, etc.
-            inputs[i].name = nombreBase + numeroLinea;//numlinea 1..numlinea2 ,etc
-            inputs[i].value = numeroLinea;
+            inputs[i].name = nombreBase + numLineaInput.value;//numlinea 1..numlinea2 ,etc
+            inputs[i].value = numLineaInput.value;
         } else {
             inputs[i].value = '';
             inputs[i].removeAttribute('required');// quitar atributos como clase, o en este caso, el required, es que si dejamos el required solo deja añadir 1 línea
             //modifica el valor del input "name" añadiendole el número de la línea para poder mandar varias lineas y cada dato tenga un identificador único
             nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); //quitamos los números y ponemos nada, para evitar fila1 y luego fila12 y luego fila123, etc.
-            inputs[i].name = nombreBase + numeroLinea;
+            inputs[i].name = nombreBase + numLineaInput.value;
         }
     }
     
