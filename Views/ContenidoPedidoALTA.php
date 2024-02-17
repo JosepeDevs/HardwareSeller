@@ -21,8 +21,8 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
     <form action="../Controllers/ContenidoPedidoVALIDAR.php" method="post" enctype="multipart/form-data" >
         <table>
             <tr>
-                <th><label  colspan="3" for="numPedido">Número de pedido <br> (todas las líneas serán para este numero de pedido)</label></th>
-                <td><input colspan="3" type="text" name="numPedido" id="numPedido" required><br><br></td>
+                <th colspan="3"><label for="numPedido">Número de pedido <br> (todas las líneas serán para este numero de pedido)</label></th>
+                <td colspan="4"><input type="text" name="numPedido" id="numPedido" required></td>
             </tr>
             <tr>
                 <th>Atributos:</th>
@@ -38,8 +38,8 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
                 <td><input type="text" name="numLinea" id="numLinea" value="1" disabled><br><br></td>
                 <td><input type="text" name="codArticulo" id="codArticulo" required><br><br></td>
                 <td><input type="number" name="cantidad" id="cantidad" required><br><br></td>
-                <td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='precio' name='precio' required></td>
-                <td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='descuento' name='descuento' required></td>
+                <td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='precio' name='precio' required><br><br></td>
+                <td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='descuento' name='descuento' required><br><br></td>
                 <td><select name="activo" id="activo" required>
                         <option value="1">Activado</option>
                         <option value="0">Desactivado</option>
