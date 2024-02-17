@@ -14,16 +14,16 @@ class ContenidoPedido {
 
 private $numPedido;
 private $numLinea;
-private $codContenidoPedido;
+private $codArticulo;
 private $cantidad;
 private $precio;
 private $descuento;
 private $activo;
 
-public function __construct($numPedido=null, $numLinea=null, $codContenidoPedido=null, $cantidad=null, $precio=null, $descuento=null, $activo=null) {
+public function __construct($numPedido=null, $numLinea=null, $codArticulo=null, $cantidad=null, $precio=null, $descuento=null, $activo=null) {
     $this->numPedido = $numPedido;
     $this->numLinea = $numLinea;
-    $this->codContenidoPedido = $codContenidoPedido;
+    $this->codArticulo = $codArticulo;
     $this->cantidad = $cantidad;
     $this->precio = $precio;
     $this->descuento = $descuento;
@@ -46,12 +46,12 @@ public function setNumLinea($numLinea) {
     $this->numLinea = $numLinea;
 }
 
-public function getCodContenidoPedido() {
-    return $this->codContenidoPedido;
+public function getcodArticulo() {
+    return $this->codArticulo;
 }
 
-public function setCodContenidoPedido($codContenidoPedido) {
-    $this->codContenidoPedido = $codContenidoPedido;
+public function setcodArticulo($codArticulo) {
+    $this->codArticulo = $codArticulo;
 }
 
 public function getCantidad() {
