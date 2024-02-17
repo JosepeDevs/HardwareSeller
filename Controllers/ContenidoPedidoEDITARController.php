@@ -10,7 +10,7 @@ if( $usuarioLogeado == false){
 
 function GetContenidoPedidoByBusquedaNumPedido($numPedido){
     include_once("../Models/ContenidoPedido.php");
-    $ContenidoPedido = ContenidoPedido::GetContenidoPedidoByBusquedaNumPedido($numPedido);
+    $ContenidoPedido = ContenidoPedido::GetContenidoPedidoByNumPedido($numPedido);
     return $ContenidoPedido;
 }
 
