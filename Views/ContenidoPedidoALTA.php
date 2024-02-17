@@ -39,13 +39,14 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
                 <td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='precio' name='precio' required></td>
                 <td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='descuento' name='descuento' required></td>
                 <td><select name="activo" id="activo" required>
-                        <option value="0">Desactivado</option>
                         <option value="1">Activado</option>
+                        <option value="0">Desactivado</option>
                 </td></select>
             </tr>
         </table>
         <div class="finForm">
-            <button onclick="addLineaPedido()">Añadir una fila</button>
+            <button onclick="addLineaPedido()">Añadir una fila al pedido</button>
+            <button onclick="removeLineaPedido()">Quitar una fila al pedido</button>
             <h2><input type="submit" value="Guardar"></h2><br><br><br>
             <h2><input type="reset" value="Reiniciar formulario"></h2>
         </div>
@@ -90,13 +91,21 @@ include("footer.php");
         //si no es el de numLinea, lo vaciamos
         if (inputs[i].name !== 'numLinea') {
             inputs[i].value = '';
+            inputs[i].removeAttribute('required');// quitar atributos como clase, o en este caso, el required, es que si dejamos el required solo deja añadir 1 línea
         }
         //modifica el valor del input "name" añadiendole el número de la línea para poder mandar varias lineas y cada dato tenga un identificador único
-            nombreAtributo = inputs[i].name  
-            inputs[i].name = nombreAtributo+nuevoNumLineaInput  
+        nombreAtributo = inputs[i].name
+        inputs[i].name = nombreAtributo+nuevoNumLineaInput
     }
     
     // añadimos la linea preparada al final
     table.appendChild(newRow);
+}
+
+function removeLineaPedido() {
+    var table = document.querySelector('table');
+    if (table.rows.length > 2) { //no borraremos la linea 1 ni los encabezados
+        table.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
+    }
 }
 </script>
