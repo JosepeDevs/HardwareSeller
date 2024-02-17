@@ -161,7 +161,7 @@ public function setActivo($activo) {
         try {
             $con = contectarBbddPDO();
             $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
-            $sql = "SELECT * FROM contenidoPedido ORDER BY {$nombreAtributoLimpio} ASC";
+            $sql = "SELECT * FROM contenidopedido ORDER BY {$nombreAtributoLimpio} ASC";
             $statement = $con->prepare($sql);
             $statement->execute();
             $arrayContenidoPedido = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
@@ -175,7 +175,7 @@ public function setActivo($activo) {
         try {
             $con = contectarBbddPDO();
             $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
-            $sql = "SELECT * FROM contenidoPedido ORDER BY {$nombreAtributoLimpio} DESC";
+            $sql = "SELECT * FROM contenidopedido ORDER BY {$nombreAtributoLimpio} DESC";
             $statement = $con->prepare($sql);
             $statement->execute();
             $arrayContenidoPedido = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
