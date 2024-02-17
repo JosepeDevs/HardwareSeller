@@ -68,7 +68,7 @@ include("footer.php");
 ?>
 
 <script>
-    function addLineaPedido() {
+function addLineaPedido() {
     // pillamos la tabla
     var table = document.querySelector('table');
     
@@ -78,31 +78,30 @@ include("footer.php");
     // clonamos la última línea arrastra todos los atributos e hijos (tds, inputs, contenido...)
     var newRow = lastRow.cloneNode(true);
     
-    // guardams todos los inputs 
+    // guardams todos los inputs  
     var numLineaInput = newRow.querySelector('input[name="numLinea"]');
     
-    // lo aumentamos en 1
-    nuevoNumLineaInput = parseInt(numLineaInput.value) +  1
+    // lo aumentamos en  1
+    var nuevoNumLineaInput = parseInt(numLineaInput.value) +  1;
     numLineaInput.value = nuevoNumLineaInput;
-    //vaciamos los campos excepto el de numLinea
-    var inputs = newRow.querySelectorAll('input'); //cogemos TODOS los inputs, lo coge como array qeu podemos recorrer
+    
+    // vaciamos los campos excepto el de numLinea
+    var inputs = newRow.querySelectorAll('input'); // cogemos TODOS los inputs, lo coge como array que podemos recorrer
     for (var i =  0; i < inputs.length; i++) {
-        //si no es el de numLinea, lo vaciamos
+        // si no es el de numLinea, lo vaciamos
         if (inputs[i].name !== 'numLinea') {
             inputs[i].value = '';
-            inputs[i].removeAttribute('required');// quitar atributos como clase, o en este caso, el required, es que si dejamos el required solo deja añadir 1 línea
-            //modifica el valor del input "name" añadiendole el número de la línea para poder mandar varias lineas y cada dato tenga un identificador único
-            var nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); //quitamos los números y ponemos nada, para evitar fila1 y luego fila12 y luego fila123, etc.
+            inputs[i].removeAttribute('required'); // quitar atributos como clase, o en este caso, el required, es que si dejamos el required solo deja añadir  1 línea
+            // modifica el valor del input "name" añadiendole el número de la línea para poder mandar varias lineas y cada dato tenga un identificador único
+            var nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); // quitamos los números y ponemos nada, para evitar fila1 y luego fila12 y luego fila123, etc.
             inputs[i].name = nombreBase + nuevoNumLineaInput;
         }
-        var nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); //quitamos los números y ponemos nada, para evitar fila1 y luego fila12 y luego fila123, etc.
-        inputs[i].name = nombreBase + nuevoNumLineaInput;
     }
 
     // añadimos la linea preparada al final
-    table.appendChild(newRow);
+    var tbody = table.querySelector('tbody'); // Select the tbody element
+    tbody.appendChild(newRow); // Append the new row to the tbody
 }
-
 function removeLineaPedido() {
     var table = document.querySelector('table');
     if (table.rows.length > 2) { //no borraremos la linea 1 ni los encabezados
