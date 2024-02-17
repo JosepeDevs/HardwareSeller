@@ -73,7 +73,7 @@ if(isset($_POST["numPedido"]) || isset($_POST["codArticulo"])) {
         foreach($arrayContenidoPedidos as $ContenidoPedido) {
             echo"<tr><th>Datos del ContenidoPedido encontrado:</th>";
             foreach ($arrayAtributos as $index => $atributo) {
-                $codArticuloAtributo = lcfirst($atributo);
+                $codArticuloAtributo = $atributo;
                 $getter = 'get' . ucfirst($codArticuloAtributo);//montamos dinámicamente el getter
                 $valor = $ContenidoPedido->$getter();//lo llamamos para obtener el valor
                 echo "<td>$valor</td>";

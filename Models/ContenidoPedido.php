@@ -30,27 +30,27 @@ public function __construct($numPedido=null, $numLinea=null, $codArticulo=null, 
     $this->activo = $activo;
 }
 
-public function getnumPedido() {
+public function getNumPedido() {
     return $this->numPedido;
 }
 
-public function setnumPedido($numPedido) {
+public function setNumPedido($numPedido) {
     $this->numPedido = $numPedido;
 }
 
-public function getnumLinea() {
+public function getNumLinea() {
     return $this->numLinea;
 }
 
-public function setnumLinea($numLinea) {
+public function setNumLinea($numLinea) {
     $this->numLinea = $numLinea;
 }
 
-public function getcodArticulo() {
+public function getCodArticulo() {
     return $this->codArticulo;
 }
 
-public function setcodArticulo($codArticulo) {
+public function setCodArticulo($codArticulo) {
     $this->codArticulo = $codArticulo;
 }
 
