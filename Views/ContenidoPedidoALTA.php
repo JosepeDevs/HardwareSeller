@@ -82,8 +82,9 @@ include("footer.php");
     var numLineaInput = newRow.querySelector('input[name="numLinea"]');
     
     // lo aumentamos en 1
-    NumLineaInput = parseInt(numLineaInput.value) 
+    numeroLinea = parseInt(numLineaInput.value) 
     NumLineaInput = NumLineaInput + 1
+    //numLineaInput.value = NumLineaInput;
 
     //vaciamos los campos excepto el de numLinea
     var inputs = newRow.querySelectorAll('input'); //cogemos TODOS los inputs, lo coge como array qeu podemos recorrer
@@ -93,7 +94,7 @@ include("footer.php");
         if (inputs[i].name == 'numLinea') {
             nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); //quitamos los números del final, para evitar fila1 y luego fila12 y luego fila123, etc.
             inputs[i].name = nombreBase + NumLineaInput;//numlinea 1..numlinea2 ,etc
-            inputs[i].value = NumLineaInput;
+            inputs[i].value = numeroLinea;
         } else {
             inputs[i].value = '';
             inputs[i].removeAttribute('required');// quitar atributos como clase, o en este caso, el required, es que si dejamos el required solo deja añadir 1 línea
