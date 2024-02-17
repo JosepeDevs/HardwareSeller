@@ -79,22 +79,20 @@ include("footer.php");
     var newRow = lastRow.cloneNode(true);
     
     // guardams todos los inputs 
-    var numLineaInput = newRow.querySelector('input[name="numLinea"]');
+    var arrayInputs = newRow.querySelectorAll('input');
     
-    // aumentamos value en 1
-    numLineaInput.value = parseInt(numLineaInput.value) +  1; //sumamos 1 al value de la linea clonada
-    numLineaInput.name = "numLinea" + numLineaInput.value;//numlinea2 ,etc
-
-    //vaciamos los campos excepto el de numLinea
-    var inputs = newRow.querySelectorAll('input'); //cogemos TODOS los inputs, lo coge como array qeu podemos recorrer
-    for (var i =  0; i < inputs.length; i++) {
-        //si no es el de numLinea, lo vaciamos
-        if (inputs[i].name !== 'numLinea') {
-            inputs[i].value = '';
-            inputs[i].removeAttribute('required');// quitar atributos como clase, o en este caso, el required, es que si dejamos el required solo deja añadir 1 línea
+    for (var i =  0; i < arrayInputs.length; i++) {
+        if (arrayInputs[i].name == 'numLinea') {        
+            // aumentamos value en 1
+            arrayInputs[i].value = ( parseInt(arrayInputs[i].value) +  1); //sumamos 1 al value de la linea clonada
+            arrayInputs[i].name = "numLinea" + ( parseInt(arrayInputs[i].value) + 1);//numlinea2 ,etc
+        } else{
+            //vaciamos los campos excepto el de numLinea
+            arrayInputs[i].value = '';
+            arrayInputs[i].removeAttribute('required');// quitar atributos como clase, o en este caso, el required, es que si dejamos el required solo deja añadir 1 línea
             //modifica el valor del input "name" añadiendole el número de la línea para poder mandar varias lineas y cada dato tenga un identificador único
-            var nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); //quitamos los números y ponemos nada, para evitar fila1 y luego fila12 y luego fila123, etc.
-            inputs[i].name = nombreBase + numLineaInput.value;
+            var nombreBase = arrayInputs[i].name.replace(/[0-9]+$/, ''); //quitamos los números y ponemos nada, para evitar fila1 y luego fila12 y luego fila123, etc.
+            arrayInputs[i].name = nombreBase + parseInt(numLineaInput.value);
         }
     }
     
