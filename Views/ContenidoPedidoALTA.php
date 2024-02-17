@@ -21,8 +21,11 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
     <form action="../Controllers/ContenidoPedidoVALIDAR.php" method="post" enctype="multipart/form-data" >
         <table>
             <tr>
+                <th><label for="numPedido">Número de pedido <br> (todas las líneas serán para este numero de pedido)</label></th>
+                <td><input type="text" name="numPedido" id="numPedido" required><br><br></td>
+            </tr>
+            <tr>
                 <th>Atributos:</th>
-                <th><label for="numPedido">Número de pedido</label></th>
                 <th><label for="numLinea">Número de la línea</label></th>
                 <th><label for="codArticulo">codArticulo</label></th>
                 <th><label for="cantidad">cantidad</label></th>
@@ -32,7 +35,6 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
             </tr>
             <tr>
                 <th>Artículos en esta linea:</th>
-                <td><input type="text" name="numPedido" id="numPedido" required><br><br></td>
                 <td><input type="text" name="numLinea" id="numLinea" value="1" disabled><br><br></td>
                 <td><input type="text" name="codArticulo" id="codArticulo" required><br><br></td>
                 <td><input type="number" name="cantidad" id="cantidad" required><br><br></td>
@@ -111,5 +113,5 @@ function removeLineaPedido() {
     if (table.rows.length > 2) { //no borraremos la linea 1 ni los encabezados
         table.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
     }
-}
+} 
 </script>
