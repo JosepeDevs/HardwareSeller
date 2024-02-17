@@ -151,7 +151,7 @@ public function setActivo($activo) {
     public static function getASCSortedPedidosByAtributo($nombreAtributo) {
         try {
             $con = contectarBbddPDO();
-            $nombreAtributoLimpio = filter_var($nombreAtributo, FILTER_SANITIZE_STRING);//quitamos cosas que nos intente inyectarSQL
+            $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
             $sql = "SELECT * FROM pedidos ORDER BY {$nombreAtributoLimpio} ASC";
             $statement = $con->prepare($sql);
             $statement->execute();
@@ -165,7 +165,7 @@ public function setActivo($activo) {
     public static function getDESCSortedPedidosByAtributo($nombreAtributo) {
         try {
             $con = contectarBbddPDO();
-            $nombreAtributoLimpio = filter_var($nombreAtributo, FILTER_SANITIZE_STRING);//quitamos cosas que nos intente inyectarSQL
+            $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
             $sql = "SELECT * FROM pedidos ORDER BY {$nombreAtributoLimpio} DESC";
             $statement = $con->prepare($sql);
             $statement->execute();

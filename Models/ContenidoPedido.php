@@ -160,12 +160,12 @@ public function setActivo($activo) {
     public static function getASCSortedContenidoPedidoByAtributo($nombreAtributo) {
         try {
             $con = contectarBbddPDO();
-            $nombreAtributoLimpio = filter_var($nombreAtributo, FILTER_SANITIZE_STRING);//quitamos cosas que nos intente inyectarSQL
-            $sql = "SELECT * FROM ContenidoPedido ORDER BY {$nombreAtributoLimpio} ASC";
+            $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
+            $sql = "SELECT * FROM contenidoPedido ORDER BY {$nombreAtributoLimpio} ASC";
             $statement = $con->prepare($sql);
             $statement->execute();
-            $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
-            return $arrayPedidos;
+            $arrayContenidoPedido = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
+            return $arrayContenidoPedido;
         } catch (PDOException $e) {
             $_SESSION['ErrorGetContenidoPedido'] = true;
         }
@@ -174,8 +174,8 @@ public function setActivo($activo) {
     public static function getDESCSortedContenidoPedidoByAtributo($nombreAtributo) {
         try {
             $con = contectarBbddPDO();
-            $nombreAtributoLimpio = filter_var($nombreAtributo, FILTER_SANITIZE_STRING);//quitamos cosas que nos intente inyectarSQL,aunque solo debería llegar nuestros propios atributos
-            $sql = "SELECT * FROM ContenidoPedido ORDER BY {$nombreAtributoLimpio} DESC";
+            $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
+            $sql = "SELECT * FROM contenidoPedido ORDER BY {$nombreAtributoLimpio} DESC";
             $statement = $con->prepare($sql);
             $statement->execute();
             $arrayContenidoPedido = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");

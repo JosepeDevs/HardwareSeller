@@ -72,7 +72,7 @@ echo"<table>";
     echo "</form>";
 
 include_once("../Controllers/ContenidoPedidoMensajes.php");
-$arrayMensajes=getArrayMensajesContenidoPedidos();
+$arrayMensajes=getArrayMensajesContenidoPedido();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
         echo "<h3>$mensaje</h3>";
