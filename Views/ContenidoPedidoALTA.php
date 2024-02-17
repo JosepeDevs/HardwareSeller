@@ -45,8 +45,8 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
             </tr>
         </table>
         <div class="finForm">
-            <button onclick="addLineaPedido()">Añadir una fila al pedido</button>
-            <button onclick="removeLineaPedido()">Quitar una fila al pedido</button>
+        <button type="button" onclick="addLineaPedido()">Añadir una fila al pedido</button>
+        <button type="button" onclick="removeLineaPedido()">Quitar una fila al pedido</button><!--resulta que si no le ponemos type entenderá que es el botón de submit-->
             <h2><input type="submit" value="Guardar"></h2><br><br><br>
             <h2><input type="reset" value="Reiniciar formulario"></h2>
         </div>
