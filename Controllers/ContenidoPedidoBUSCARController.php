@@ -13,7 +13,7 @@ function getContenidoPedidoByNumPedido($numPedido){
     include_once("../Models/ContenidoPedido.php");
     $ContenidoPedido = ContenidoPedido::GetContenidoPedidoBynumPedido($numPedido);
     if($ContenidoPedido == false){
-        $_SESSION['numPedidoNotFound'] = true;
+       // $_SESSION['numPedidoNotFound'] = true;
         return false;
     } else{
         return $ContenidoPedido;

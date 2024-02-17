@@ -45,7 +45,6 @@ if(isset($_POST["numPedido"]) || isset($_POST["codArticulo"])) {
         if($ContenidoPedido == false){
             $_SESSION['numPedidoNotFound'] = true;
         }
-        $arrayContenidoPedidos[] = $ContenidoPedido;
     }
 
     if(!empty(($_POST["codArticulo"]))){
