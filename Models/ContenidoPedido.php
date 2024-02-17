@@ -18,14 +18,16 @@ private $codContenidoPedido;
 private $cantidad;
 private $precio;
 private $descuento;
+private $activo;
 
-public function __construct($numPedido=null, $numLinea=null, $codContenidoPedido=null, $cantidad=null, $precio=null, $descuento=null) {
+public function __construct($numPedido=null, $numLinea=null, $codContenidoPedido=null, $cantidad=null, $precio=null, $descuento=null, $activo=null) {
     $this->numPedido = $numPedido;
     $this->numLinea = $numLinea;
     $this->codContenidoPedido = $codContenidoPedido;
     $this->cantidad = $cantidad;
     $this->precio = $precio;
     $this->descuento = $descuento;
+    $this->activo = $activo;
 }
 
 public function getNumPedido() {
@@ -75,6 +77,16 @@ public function getDescuento() {
 public function setDescuento($descuento) {
     $this->descuento = $descuento;
 }
+
+
+public function getActivo() {
+    return $this->activo;
+}
+
+public function setActivo($activo) {
+    $this->activo = $activo;
+}
+
 
 
     /**
@@ -131,6 +143,7 @@ public function setDescuento($descuento) {
         }
         return true;
     }
+
     public static Function getAllContenidoPedidos(){
         try {
             $con = contectarBbddPDO();
@@ -144,29 +157,31 @@ public function setDescuento($descuento) {
         }
     }
 
-    public static function getASCSortedContenidoPedidos() {
-        try{
-            $con= contectarBbddPDO();
-            $sql="SELECT * FROM contenidopedido ORDER BY codArticulo ASC";
-            $statement=$con->prepare($sql);
+    public static function getASCSortedContenidoPedidosByAtributo($nombreAtributo) {
+        try {
+            $con = contectarBbddPDO();
+            $nombreAtributoLimpio = filter_var($nombreAtributo, FILTER_SANITIZE_STRING);//quitamos cosas que nos intente inyectarSQL
+            $sql = "SELECT * FROM contenidopedidos ORDER BY {$nombreAtributoLimpio} ASC";
+            $statement = $con->prepare($sql);
             $statement->execute();
-            $arrayContenidoPedidos=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
-            return $arrayContenidoPedidos;
-        }catch(PDOException $e) {
-            $_SESSION['ErrorGetContenidoPedidos']= true;
+            $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
+            return $arrayPedidos;
+        } catch (PDOException $e) {
+            $_SESSION['ErrorGetContenidoPedidos'] = true;
         }
     }
 
-    public static function getDESCSortedContenidoPedidos() {
+    public static function getDESCSortedContenidoPedidosByAtributo($nombreAtributo) {
         try {
-            $con= contectarBbddPDO();
-            $sql="SELECT * FROM contenidopedido ORDER BY codArticulo DESC";
-            $statement=$con->prepare($sql);
+            $con = contectarBbddPDO();
+            $nombreAtributoLimpio = filter_var($nombreAtributo, FILTER_SANITIZE_STRING);//quitamos cosas que nos intente inyectarSQL,aunque solo debería llegar nuestros propios atributos
+            $sql = "SELECT * FROM contenidopedidos ORDER BY {$nombreAtributoLimpio} DESC";
+            $statement = $con->prepare($sql);
             $statement->execute();
-            $arrayContenidoPedidos=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
+            $arrayContenidoPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
             return $arrayContenidoPedidos;
-        }catch(PDOException $e) {
-            $_SESSION['ErrorGetContenidoPedidos']= true;
+        } catch (PDOException $e) {
+            $_SESSION['ErrorGetContenidoPedidos'] = true;
         }
     }
 
