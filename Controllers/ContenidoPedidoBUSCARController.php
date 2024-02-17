@@ -26,9 +26,9 @@ function getArrayAtributosContenidoPedido(){
     return $arrayContenidoPedido;
 }
 
-function GetContenidoPedidoByBusquedacodArticulo($codArticulo){
+function GetContenidoPedidoByCodArticulo($codArticulo){
     include_once("../Models/ContenidoPedido.php");
-    $arrayContenidoPedido = ContenidoPedido::GetContenidoPedidoByBusquedacodArticulo($codArticulo);
+    $arrayContenidoPedido = ContenidoPedido::GetContenidoPedidoByCodArticulo($codArticulo);
     return $arrayContenidoPedido;
 }
 ?>

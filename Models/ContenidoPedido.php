@@ -136,29 +136,6 @@ public function setActivo($activo) {
         }
     }
 
-        /**
-     * @return bool|array devuelve false si falla, devuelve el ContenidoPedido o array de ContenidoPedido si  encuentra 1 o más ContenidoPedido que coincida el texto buscado (en codArticulo)
-     */
-    public static function GetContenidoPedidoByBusquedaCodArticulo($numPedido){
-        try{
-            $con = contectarBbddPDO();
-            $sqlQuery="SELECT * FROM  `contenidopedido` WHERE CodArticulo =:CodArticulo";
-            $statement=$con->prepare($sqlQuery);
-            $statement->bindParam(':CodArticulo', $CodArticulo);
-            $statement->execute();
-            $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
-            $arrayContenidoPedido = $statement->fetchAll();
-            if(empty($arrayContenidoPedido)){
-                $_SESSION['codArticuloNotFound'] = true;
-                return false;
-            }else{
-                return $arrayContenidoPedido;
-            }
-        } catch(PDOException $e) {
-            $_SESSION['ErrorGetContenidoPedido']= true;
-            return false;
-        }
-    }
 
     public static function ComprobarLongitud($string, $longitud) {
         if(strlen($string) > $longitud) {
