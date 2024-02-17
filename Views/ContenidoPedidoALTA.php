@@ -84,6 +84,7 @@ function addLineaPedido() {
     // lo aumentamos en  1
     var nuevoNumLineaInput = parseInt(numLineaInput.value) +  1;
     numLineaInput.value = nuevoNumLineaInput;
+    numLineaInput.name = "numLinea"+ nuevoNumLineaInput
     
     // vaciamos los campos excepto el de numLinea
     var inputs = newRow.querySelectorAll('input'); // cogemos TODOS los inputs, lo coge como array que podemos recorrer
@@ -95,9 +96,7 @@ function addLineaPedido() {
             // modifica el valor del input "name" añadiendole el número de la línea para poder mandar varias lineas y cada dato tenga un identificador único
             var nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); // quitamos los números y ponemos nada, para evitar fila1 y luego fila12 y luego fila123, etc.
             inputs[i].name = nombreBase + nuevoNumLineaInput;
-        } else{
-            inputs[i].name = "numLinea" + numLineaInput.value
-        }
+        } 
     }
 
     // añadimos la linea preparada al final
