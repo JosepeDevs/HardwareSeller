@@ -9,7 +9,7 @@ if( $usuarioLogeado == false){
 }
 
 
-function getContenidoPedidoBynumPedido($numPedido){
+function getContenidoPedidoByNumPedido($numPedido){
     include_once("../Models/ContenidoPedido.php");
     $ContenidoPedido = ContenidoPedido::GetContenidoPedidoBynumPedido($numPedido);
     if($ContenidoPedido == false){

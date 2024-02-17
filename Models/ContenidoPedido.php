@@ -87,6 +87,29 @@ public function setActivo($activo) {
     $this->activo = $activo;
 }
 
+    /**
+     * @return bool|ContenidoPedido devuelve false si falla, devuelve el ContenidoPedido si lo encuentra consultando el código
+     */
+    public static function GetContenidoPedidoByCodArticulo($codArticulo){
+        try{
+            $con = contectarBbddPDO();
+            $sqlQuery="SELECT * FROM  `contenidopedido` WHERE codArticulo=:codArticulo;";
+            $statement=$con->prepare($sqlQuery);
+            $statement->bindParam(':codArticulo', $codArticulo);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
+            $ContenidoPedido = $statement->fetch();
+            if(empty($ContenidoPedido)){
+                $_SESSION['codArticuloNotFound'] = true;
+                return false;
+            }else{
+                return $ContenidoPedido;
+            }
+        } catch(PDOException $e) {
+            $_SESSION['ErrorGetContenidoPedido']= true;
+            return false;
+        }
+    }
 
 
     /**

@@ -50,7 +50,7 @@ if(isset($_POST["numPedido"]) || isset($_POST["codArticulo"])) {
 
     if(!empty(($_POST["codArticulo"]))){
         $codArticulo=$_POST["codArticulo"];
-        $arrayContenidoPedidos = GetContenidoPedidosByBusquedacodArticulo($codArticulo);
+        $arrayContenidoPedidos = GetContenidoPedidoByBusquedacodArticulo($codArticulo);
         if($arrayContenidoPedidos == false){
             $_SESSION['codArticuloNotFound'] = true;
         }

@@ -32,7 +32,7 @@ echo"<table>";
         //datos ACTUALES OBJETO (estaticos, para que se vean siempre los actuales)
         echo"<tr>
                 <th>Datos actuales:</th>";
-                    $ContenidoPedido = GetContenidoPedidosByBusquedaNumPedido($numPedido);
+                    $ContenidoPedido = GetContenidoPedidoByBusquedaNumPedido($numPedido);
                     //imprimimos los valores
                     foreach ($arrayAtributos as $atributo) {
                         $getter = 'get' . ucfirst($atributo);
