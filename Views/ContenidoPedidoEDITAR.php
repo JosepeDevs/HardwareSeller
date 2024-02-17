@@ -30,11 +30,11 @@ echo"<table>";
         echo "</tr>";
 
         //datos ACTUALES OBJETO (estaticos, para que se vean siempre los actuales) PUEDEN SER VARIAS LINEAS
-        echo"<tr>
-                <th>Datos actuales:</th>";
                     $arrayContenidoPedido = GetContenidoPedidoByBusquedaNumPedido($numPedidoOriginal);
                     //arrayContenidoPedido puede conntener de 0 a vete tu a saber cuantos ContenidoPedido
                     foreach($arrayContenidoPedido as $numLinea) {
+                        echo"<tr>
+                        <th>Datos actuales:</th>";
                         foreach ($arrayAtributos as $index => $atributo) {
                             $nombreAtributo = $atributo;
                             $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
