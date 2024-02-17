@@ -82,8 +82,8 @@ include("footer.php");
     var numLineaInput = newRow.querySelector('input[name="numLinea"]');
     
     // lo aumentamos en 1
-    nuevoNumLineaInput = parseInt(numLineaInput.value) +  1
-    numLineaInput.value = nuevoNumLineaInput;
+    NumLineaInput = parseInt(numLineaInput.value) 
+    NumLineaInput = NumLineaInput + 1
 
     //vaciamos los campos excepto el de numLinea
     var inputs = newRow.querySelectorAll('input'); //cogemos TODOS los inputs, lo coge como array qeu podemos recorrer
@@ -99,6 +99,8 @@ include("footer.php");
         }
         nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); //quitamos los números del final, para evitar fila1 y luego fila12 y luego fila123, etc.
         inputs[i].name = nombreBase + nuevoNumLineaInput;
+        
+        inputs[i].value = NumLineaInput;
     }
     
     // añadimos la linea preparada al final
