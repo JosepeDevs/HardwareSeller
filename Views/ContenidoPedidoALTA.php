@@ -6,7 +6,7 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ContenidoPedidos alta dice: no está user en session";
+    echo "ContenidoPedido alta dice: no está user en session";
     header("Location: /index.php");
 }
 
@@ -64,7 +64,7 @@ if(is_array($arrayMensajes)){
     }
 };
 
-echo"<h2><a class='cerrar'  href='ContenidoPedidosLISTAR.php'>Volver a la tabla de ContenidoPedidos.</a></h2>";
+echo"<h2><a class='cerrar'  href='ContenidoPedidoLISTAR.php'>Volver a la tabla de ContenidoPedido.</a></h2>";
 
 include("footer.php");
 ?>
