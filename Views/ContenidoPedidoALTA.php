@@ -31,7 +31,7 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
                 <th><label for="activo">Activo</label></th>
             </tr>
             <tr>
-                <th>Artículos en linea 1:</th>
+                <th>Artículos en esta linea:</th>
                 <td><input type="text" name="numPedido" id="numPedido" required><br><br></td>
                 <td><input type="text" name="numLinea" id="numLinea" value="1" disabled><br><br></td>
                 <td><input type="text" name="codArticulo" id="codArticulo" required><br><br></td>
