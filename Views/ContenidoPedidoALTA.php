@@ -82,9 +82,7 @@ include("footer.php");
     var numLineaInput = newRow.querySelector('input[name="numLinea"]');
     
     // lo aumentamos en 1
-    NumLineaInput = parseInt(numLineaInput.value) 
-    var numeroLinea = parseInt(numLineaInput.value) + 1
-    numLineaInput.value = numeroLinea;
+    numLineaInput.value = parseInt(numLineaInput.value) +  1; //sumamos 1 al value de la linea clonada
 
     //vaciamos los campos excepto el de numLinea
     var inputs = newRow.querySelectorAll('input'); //cogemos TODOS los inputs, lo coge como array qeu podemos recorrer
