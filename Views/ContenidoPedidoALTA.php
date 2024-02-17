@@ -88,17 +88,14 @@ include("footer.php");
     var inputs = newRow.querySelectorAll('input'); //cogemos TODOS los inputs, lo coge como array qeu podemos recorrer
     for (var i =  0; i < inputs.length; i++) {
         //si no es el de numLinea, lo vaciamos
-        var nombreBase = null
         if (inputs[i].name !== 'numLinea') {
             inputs[i].value = '';
             inputs[i].removeAttribute('required');// quitar atributos como clase, o en este caso, el required, es que si dejamos el required solo deja añadir 1 línea
             //modifica el valor del input "name" añadiendole el número de la línea para poder mandar varias lineas y cada dato tenga un identificador único
             var nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); //quitamos los números y ponemos nada, para evitar fila1 y luego fila12 y luego fila123, etc.
-            nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); //quitamos los números y ponemos nada, para evitar fila1 y luego fila12 y luego fila123, etc.
             inputs[i].name = nombreBase + nuevoNumLineaInput;
         }
         var nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); //quitamos los números y ponemos nada, para evitar fila1 y luego fila12 y luego fila123, etc.
-        nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); //quitamos los números del final, para evitar fila1 y luego fila12 y luego fila123, etc.
         inputs[i].name = nombreBase + nuevoNumLineaInput;
     }
 
