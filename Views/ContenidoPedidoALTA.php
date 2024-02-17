@@ -84,7 +84,7 @@ function addLineaPedido() {
     // lo aumentamos en  1
     var nuevoNumLineaInput = parseInt(numLineaInput.value) +  1;
     numLineaInput.value = nuevoNumLineaInput;
-    numLineaInput.name = "numLinea"+ nuevoNumLineaInput
+    
     
     // vaciamos los campos excepto el de numLinea
     var inputs = newRow.querySelectorAll('input'); // cogemos TODOS los inputs, lo coge como array que podemos recorrer
