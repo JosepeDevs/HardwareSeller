@@ -108,15 +108,15 @@ public function setActivo($activo) {
                 return $ContenidoPedido;
             }
         } catch(PDOException $e) {
-            $_SESSION['ErrorGetContenidoPedidos']= true;
+            $_SESSION['ErrorGetContenidoPedido']= true;
             return false;
         }
     }
 
         /**
-     * @return bool|array devuelve false si falla, devuelve el ContenidoPedido o array de ContenidoPedidos si  encuentra 1 o más ContenidoPedidos que coincida el texto buscado (en codArticulo)
+     * @return bool|array devuelve false si falla, devuelve el ContenidoPedido o array de ContenidoPedido si  encuentra 1 o más ContenidoPedido que coincida el texto buscado (en codArticulo)
      */
-    public static function GetContenidoPedidosByBusquedaCodArticulo($numPedido){
+    public static function GetContenidoPedidoByBusquedaCodArticulo($numPedido){
         try{
             $con = contectarBbddPDO();
             $sqlQuery="SELECT * FROM  `contenidopedido` WHERE CodArticulo =:CodArticulo";
@@ -132,7 +132,7 @@ public function setActivo($activo) {
                 return $arrayContenidoPedido;
             }
         } catch(PDOException $e) {
-            $_SESSION['ErrorGetContenidoPedidos']= true;
+            $_SESSION['ErrorGetContenidoPedido']= true;
             return false;
         }
     }
@@ -144,44 +144,44 @@ public function setActivo($activo) {
         return true;
     }
 
-    public static Function getAllContenidoPedidos(){
+    public static Function getAllContenidoPedido(){
         try {
             $con = contectarBbddPDO();
             $sqlQuery="SELECT * FROM  `contenidopedido`;";
             $statement=$con->prepare($sqlQuery);
             $statement->execute();
-            $arrayContenidoPedidos=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
-            return $arrayContenidoPedidos;
+            $arrayContenidoPedido=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
+            return $arrayContenidoPedido;
         } catch(PDOException $e) {
-            $_SESSION['ErrorGetContenidoPedidos']= true;
+            $_SESSION['ErrorGetContenidoPedido']= true;
         }
     }
 
-    public static function getASCSortedContenidoPedidosByAtributo($nombreAtributo) {
+    public static function getASCSortedContenidoPedidoByAtributo($nombreAtributo) {
         try {
             $con = contectarBbddPDO();
             $nombreAtributoLimpio = filter_var($nombreAtributo, FILTER_SANITIZE_STRING);//quitamos cosas que nos intente inyectarSQL
-            $sql = "SELECT * FROM contenidopedidos ORDER BY {$nombreAtributoLimpio} ASC";
+            $sql = "SELECT * FROM ContenidoPedido ORDER BY {$nombreAtributoLimpio} ASC";
             $statement = $con->prepare($sql);
             $statement->execute();
             $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
             return $arrayPedidos;
         } catch (PDOException $e) {
-            $_SESSION['ErrorGetContenidoPedidos'] = true;
+            $_SESSION['ErrorGetContenidoPedido'] = true;
         }
     }
 
-    public static function getDESCSortedContenidoPedidosByAtributo($nombreAtributo) {
+    public static function getDESCSortedContenidoPedidoByAtributo($nombreAtributo) {
         try {
             $con = contectarBbddPDO();
             $nombreAtributoLimpio = filter_var($nombreAtributo, FILTER_SANITIZE_STRING);//quitamos cosas que nos intente inyectarSQL,aunque solo debería llegar nuestros propios atributos
-            $sql = "SELECT * FROM contenidopedidos ORDER BY {$nombreAtributoLimpio} DESC";
+            $sql = "SELECT * FROM ContenidoPedido ORDER BY {$nombreAtributoLimpio} DESC";
             $statement = $con->prepare($sql);
             $statement->execute();
-            $arrayContenidoPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
-            return $arrayContenidoPedidos;
+            $arrayContenidoPedido = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
+            return $arrayContenidoPedido;
         } catch (PDOException $e) {
-            $_SESSION['ErrorGetContenidoPedidos'] = true;
+            $_SESSION['ErrorGetContenidoPedido'] = true;
         }
     }
 
@@ -192,7 +192,7 @@ public function setActivo($activo) {
         $_SESSION["nuevoContenidoPedido"]=false;
         try{
             $con = contectarBbddPDO();
-            $sqlQuery="INSERT INTO `ContenidoPedidos` (`numPedido`, `numLinea`, `codArticulo`, `cantidad`, `precio`, `descuento`, `activo` )
+            $sqlQuery="INSERT INTO `ContenidoPedido` (`numPedido`, `numLinea`, `codArticulo`, `cantidad`, `precio`, `descuento`, `activo` )
                                         VALUES (:numPedido, :numLinea, :codArticulo, :cantidad, :precio, :descuento, :activo);";
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':numPedido', $numPedido);
@@ -240,7 +240,7 @@ public function setActivo($activo) {
     public function borradoLogico($numPedido){
         try {
             $conPDO=contectarBbddPDO();
-            $query=("UPDATE ContenidoPedidos SET activo=false WHERE numPedido=:numPedido");
+            $query=("UPDATE ContenidoPedido SET activo=false WHERE numPedido=:numPedido");
             $statement= $conPDO->prepare($query);
             $statement->bindParam(':numPedido', $numPedido);
             $operacionConfirmada = $statement->execute();
@@ -271,12 +271,12 @@ public function setActivo($activo) {
     try{
         $conPDO = contectarBbddPDO();
         if( $mantienennumPedido){
-            $sqlQuery = " UPDATE `ContenidoPedidos`
+            $sqlQuery = " UPDATE `ContenidoPedido`
                     SET `numPedido` = :numPedidoOriginal, `numLinea` = :numLinea, `codArticulo` = :codArticulo, `cantidad` = :cantidad, `precio` = :precio,`descuento` = :descuento, `activo` = :activo
                     WHERE `numPedido` = :numPedidoOriginal "
             ;
         } else{
-            $sqlQuery = " UPDATE `ContenidoPedidos`
+            $sqlQuery = " UPDATE `ContenidoPedido`
                     SET `numPedido` = :numPedido, `numLinea` = :numLinea,  `codArticulo` = :codArticulo, `cantidad` = :cantidad, `precio` = :precio, `descuento` = :descuento, `activo` = :activo
                     WHERE `numPedido` = :numPedidoOriginal "
             ;
@@ -324,7 +324,7 @@ public function setActivo($activo) {
     public static function numPedidoLibre($numPedido){
         try {
             $conPDO = contectarBbddPDO();
-            $numPedidoCheck = "SELECT * FROM `ContenidoPedidos` WHERE numPedido = :numPedido";
+            $numPedidoCheck = "SELECT * FROM `ContenidoPedido` WHERE numPedido = :numPedido";
             $statement = $conPDO->prepare($numPedidoCheck);
             $statement->bindParam(':numPedido', $numPedido);
             $statement->execute();

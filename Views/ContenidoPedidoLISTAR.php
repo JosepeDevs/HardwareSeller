@@ -4,7 +4,7 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ContenidoPedidosLISTAR dice: no está user en session";
+    echo "ContenidoPedidoLISTAR dice: no está user en session";
     header("Location: ../index.php");
 }
 //HEADER Y TITULO
@@ -20,7 +20,7 @@ print("<h1>Gestionar Contenido de los Pedidos</h1>");
         </a>
     </h2>
     <h2>
-        <a href='ContenidoPedidosLISTAR.php'>
+        <a href='ContenidoPedidoLISTAR.php'>
             <img  class='iconArribaTabla' src='../Resources/refresh.png' alt='refrescar' /> Limpiar filtros
         </a>
     </h2>
@@ -31,11 +31,11 @@ print("<h1>Gestionar Contenido de los Pedidos</h1>");
     </h2>
 </div>
 <?php
-//TABLA LISTANDO ContenidoPedidos
+//TABLA LISTANDO ContenidoPedido
 echo"<table>";
         echo"<tr>";
             //ENCABEZADOS
-            include_once("../Controllers/ContenidoPedidosLISTARController.php");
+            include_once("../Controllers/ContenidoPedidoLISTARController.php");
             $arrayAtributos = getArrayAtributosContenidoPedido();
             if($arrayAtributos == false){
                 echo"</tr><tr><td>Sin Contenido de pedidos</td></tr>";
@@ -44,8 +44,8 @@ echo"<table>";
                     $nombreAtributo = $atributo;
                     echo"<th>
                             $nombreAtributo <br>Ordenar por este atributo:<br>
-                            <a class='ordenar' href='ContenidoPedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
-                            <a class='ordenar' href='ContenidoPedidosLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
+                            <a class='ordenar' href='ContenidoPedidoLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
+                            <a class='ordenar' href='ContenidoPedidoLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
                         </th>";
                 }
                 include_once("../Controllers/OperacionesSession.php");//get rol
@@ -60,8 +60,8 @@ echo"<table>";
         //PREPARAR ARRAYS CON OBJETOS
         $orden = isset($_GET['orden']) ? $_GET['orden']:null;
         $atributoElegido = isset($_GET["atributo"])?$_GET["atributo"]:"idContenidoPedido";
-        include_once("../Controllers/OrdenarContenidoPedidosController.php");
-        $arrayContenidoPedidos = getArrayContenidoPedidosOrdenadosByAtributo($orden,$atributoElegido);
+        include_once("../Controllers/OrdenarContenidoPedidoController.php");
+        $arrayContenidoPedido = getArrayContenidoPedidoOrdenadosByAtributo($orden,$atributoElegido);
         $itemXpagPredeterminado=3;
         $filasAMostrar = isset($_GET['itemXpag'])? $_GET['itemXpag'] : $itemXpagPredeterminado;
         if(! isset($_GET['pag'])){
@@ -74,8 +74,8 @@ echo"<table>";
             }
         }
 
-        include_once("../Controllers/ContenidoPedidosLISTARController.php");
-        $arrayAImprimir = getArrayPaginadoContenidoPedidos($arrayContenidoPedidos, $filasAMostrar, $paginaActual);
+        include_once("../Controllers/ContenidoPedidoLISTARController.php");
+        $arrayAImprimir = getArrayPaginadoContenidoPedido($arrayContenidoPedido, $filasAMostrar, $paginaActual);
 
         //DATOS DE LOS OBJETOS
         //llamamos dinámicamente los getters de la clase habiendo guardado previamente el array con los nombresd de los atributos
@@ -104,7 +104,7 @@ echo"<table>";
 
    //PAGINACIÓN
    print "<div class='paginacion'>";
-   $filasTotales = count($arrayContenidoPedidos);
+   $filasTotales = count($arrayContenidoPedido);
    $paginasTotales = ceil($filasTotales / $filasAMostrar);
    if(is_numeric($paginaActual) && is_numeric($filasAMostrar)){
        //estamos viendo los registros paginados
@@ -112,18 +112,18 @@ echo"<table>";
        if($paginaActual == 0 ){
            print "<p>Anterior</p>"; //en la primera página esto no debe ser un enlace
        } else{
-           print "<a href='ContenidoPedidosLISTAR.php?pag=".($paginaActual)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Anterior</a>";
+           print "<a href='ContenidoPedidoLISTAR.php?pag=".($paginaActual)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Anterior</a>";
        }
        for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
            if($numeroIndicePaginacion == $paginaActual + 1 ){
                print "<b>$numeroIndicePaginacion</b>";
            }else{
-               print "<a href='ContenidoPedidosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
+               print "<a href='ContenidoPedidoLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
            }
            if($paginaActual +1 == $paginasTotales && $numeroIndicePaginacion == $paginasTotales){
                print "<p>Siguiente</p>"; //en la primera página esto no debe ser un enlace
            }else if($numeroIndicePaginacion == $paginasTotales){
-               print "<a href='ContenidoPedidosLISTAR.php?pag=".($paginaActual+2)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Siguiente</a>";
+               print "<a href='ContenidoPedidoLISTAR.php?pag=".($paginaActual+2)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Siguiente</a>";
            } else{
                print "";//no printear nada
            }
@@ -131,7 +131,7 @@ echo"<table>";
    } else{
        //estamos viendo todos los registros en una página
        for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
-           print "<a href='ContenidoPedidosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
+           print "<a href='ContenidoPedidoLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
        }
    }
 
@@ -140,10 +140,10 @@ echo"<table>";
    if (isset($_GET['pag']) && ( $_GET['pag'] == "X" ) ){
        print "<b>Ver todos</b>";
    } else{
-       print "<a href='ContenidoPedidosLISTAR.php?pag=X&ordenNombres=$orden'>Ver todos</a>";
+       print "<a href='ContenidoPedidoLISTAR.php?pag=X&ordenNombres=$orden'>Ver todos</a>";
    }
    print "
-   <form action='ContenidoPedidosLISTAR.php' method='GET'>
+   <form action='ContenidoPedidoLISTAR.php' method='GET'>
    <label for='itemXpag'>Registros/página</label><br>
    <select id='itemXpag' name='itemXpag' onchange='this.form.submit()' required>
        <option value='$filasAMostrar'>$filasAMostrar</option>";//mostrar la opción actual seleccionada
@@ -160,8 +160,8 @@ echo"<table>";
    </div>";
 
 //SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
-include_once("../Controllers/ContenidoPedidosMensajes.php");
-            $arrayMensajes=getArrayMensajesContenidoPedidos();
+include_once("../Controllers/ContenidoPedidoMensajes.php");
+            $arrayMensajes=getArrayMensajesContenidoPedido();
             if(is_array($arrayMensajes)){
                 foreach($arrayMensajes as $mensaje) {
                     echo "<h3>$mensaje</h3>";
