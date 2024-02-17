@@ -22,7 +22,7 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
         <table>
             <tr>
                 <th><label  colspan="3" for="numPedido">Número de pedido <br> (todas las líneas serán para este numero de pedido)</label></th>
-                <td><input colspan="3" type="text" name="numPedido" id="numPedido" required><br><br></td>
+                <td><input colspan="4" type="text" name="numPedido" id="numPedido" required><br><br></td>
             </tr>
             <tr>
                 <th>Atributos:</th>
