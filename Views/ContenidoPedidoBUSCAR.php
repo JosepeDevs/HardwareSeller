@@ -41,8 +41,8 @@ if(isset($_POST["numPedido"]) || isset($_POST["codArticulo"])) {
     include_once("../Controllers/ContenidoPedidoBUSCARController.php");
     if(!empty(($_POST["numPedido"]))){
         $numPedido=$_POST["numPedido"];
-        $ContenidoPedido = getContenidoPedidoBynumPedido($numPedido);
-        if($ContenidoPedido == false){
+        $arrayContenidoPedidos = getContenidoPedidoBynumPedido($numPedido);
+        if($arrayContenidoPedidos == false){
             $_SESSION['numPedidoNotFound'] = true;
         }
     }
