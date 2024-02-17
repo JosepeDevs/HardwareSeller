@@ -25,10 +25,10 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
                 <th><label for="numPedido">Número de pedido</label></th>
                 <th><label for="numLinea">Número de la línea</label></th>
                 <th><label for="codArticulo">codArticulo</label></th>
-                <th><label for="codArticulo">cantidad</label></th>
-                <th><label for="codArticulo">precio</label></th>
-                <th><label for="codArticulo">descuento</label></th>
-                <th><label for="linea">1</label></th>
+                <th><label for="cantidad">cantidad</label></th>
+                <th><label for="precio">precio</label></th>
+                <th><label for="descuento">descuento</label></th>
+                <th><label for="activo">Activo</label></th>
             </tr>
             <tr>
                 <th>Artículos en linea 1:</th>
@@ -36,12 +36,16 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
                 <td><input type="text" name="numLinea" id="numLinea" value="1" disabled><br><br></td>
                 <td><input type="text" name="codArticulo" id="codArticulo" required><br><br></td>
                 <td><input type="number" name="cantidad" id="cantidad" required><br><br></td>
-                <td><input type="number" step="0.01" name="precio" id="precio" required><br><br></td>
-                <td><input type="text" name="descuento" id="descuento" required><br><br></td>
+                <td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='precio' name='precio' required></td>";
+                <td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='descuento' name='descuento' required></td>";
+                <td><select name="activo" id="activo" required>
+                        <option value="0">Desactivado</option>
+                        <option value="1">Activado</option>
+                </td></select>
             </tr>
         </table>
-        <button onclick="addLineaPedido()">Añadir una fila</button>
         <div class="finForm">
+            <button onclick="addLineaPedido()">Añadir una fila</button>
             <h2><input type="submit" value="Guardar"></h2><br><br><br>
             <h2><input type="reset" value="Reiniciar formulario"></h2>
         </div>
@@ -77,14 +81,19 @@ include("footer.php");
     var numLineaInput = newRow.querySelector('input[name="numLinea"]');
     
     // lo aumentamos en 1
-    numLineaInput.value = parseInt(numLineaInput.value) +  1;
+    nuevoNumLineaInput = parseInt(numLineaInput.value) +  1
+    numLineaInput.value = nuevoNumLineaInput;
 
     //vaciamos los campos excepto el de numLinea
-    var inputs = newRow.querySelectorAll('input'); //cogemos TODOS los inputs
+    var inputs = newRow.querySelectorAll('input'); //cogemos TODOS los inputs, lo coge como array qeu podemos recorrer
     for (var i =  0; i < inputs.length; i++) {
-        if (inputs[i].name !== 'numLinea') {//si no es el de numLinea, lo vaciamos
+        //si no es el de numLinea, lo vaciamos
+        if (inputs[i].name !== 'numLinea') {
             inputs[i].value = '';
         }
+        //modifica el valor del input "name" añadiendole el número de la línea para poder mandar varias lineas y cada dato tenga un identificador único
+            nombreAtributo = inputs[i].name  
+            inputs[i].name = nombreAtributo+nuevoNumLineaInput  
     }
     
     // añadimos la linea preparada al final

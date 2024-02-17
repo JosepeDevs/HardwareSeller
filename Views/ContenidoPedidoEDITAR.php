@@ -45,8 +45,8 @@ echo"<table>";
                     }
                 //FORMULARIO para EDITAR PRERELLENADO para que se mantengan los datos si no cambia nada
                     echo '<form action="../Controllers/ContenidoPedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
-                    foreach($arrayContenidoPedido as $numLinea) {
-                        echo"<tr><th>Nuevos datos</th>";
+                    foreach($arrayContenidoPedido as $index => $numLinea) {
+                        echo"<tr><th>Nuevos datos:</th>";
                         foreach ($arrayAtributos as $atributo) {
                             $nombreAtributo = $atributo;
                             $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
@@ -67,16 +67,20 @@ echo"<table>";
                                             </select>";
                                         }
                                     echo"</td>";
-                            }else{
-                                echo "<td><input type='text' id='$nombreAtributo' name='$nombreAtributo' value='$valor'></td>";
+                            }else if($nombreAtributo == "cantidad"){
+                                echo "<td><input type='number' id='$nombreAtributo' name='".$nombreAtributo.$index."' value='$valor'></td>";
+                            }else if($nombreAtributo == "precio" || $nombreAtributo == "descuento"){
+                                echo "<td><input type='number' step='0.01' id='$nombreAtributo' name='".$nombreAtributo.$index."' value='$valor'></td>";
+                            } else {
+                                echo "<td><input type='text' id='$nombreAtributo' name='".$nombreAtributo.$index."' value='$valor'></td>";
                             }
                         }
                         echo "</tr>";
                     }
         echo "</table>";
-    echo "<div class='finForm'><h2><input type='submit' value='Guardar'></h2>";
+    echo "<div class='finForm'><h2><input type='submit' value='Guardar'></h2></div>";
     echo "</form>";
-
+echo"<div>";
 include_once("../Controllers/ContenidoPedidoMensajes.php");
 $arrayMensajes=getArrayMensajesContenidoPedido();
 if(is_array($arrayMensajes)){
@@ -84,9 +88,12 @@ if(is_array($arrayMensajes)){
         echo "<h3>$mensaje</h3>";
     }
 };
+echo"</div>";
 
-echo("<h2><a class='cerrar' href='ContenidoPedidoLISTAR.php?editandoContenidoPedido=false'>Volver al listado de ContenidoPedido</a></h2>");
-echo("<h2><a class='cerrar' href='/index.php?editandoContenidoPedido=false'> cerrar sesión</a></h2>");
-echo("<h2><a class='cerrar' a href='ContenidoPedidoBORRAR.php?numPedido=$numPedidoOriginal'>BORRAR ContenidoPedido</a></h2>");
+echo"<div>";
+    echo("<h2><a class='cerrar' href='ContenidoPedidoLISTAR.php?editandoContenidoPedido=false'>Volver al listado de ContenidoPedido</a></h2>");
+    echo("<h2><a class='cerrar' href='/index.php?editandoContenidoPedido=false'> cerrar sesión</a></h2>");
+    echo("<h2><a class='cerrar' a href='ContenidoPedidoBORRAR.php?numPedido=$numPedidoOriginal'>BORRAR ContenidoPedido</a></h2>");
+echo"</div>";
 include_once("footer.php");
 ?>
