@@ -88,7 +88,7 @@ public function setActivo($activo) {
 }
 
     /**
-     * @return bool|ContenidoPedido devuelve false si falla, devuelve el ContenidoPedido si lo encuentra consultando el código
+     * @return bool|array devuelve false si falla, devuelve el ContenidoPedido si lo encuentra consultando el código
      */
     public static function GetContenidoPedidoByCodArticulo($codArticulo){
         try{
@@ -98,7 +98,7 @@ public function setActivo($activo) {
             $statement->bindParam(':codArticulo', $codArticulo);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
-            $ContenidoPedido = $statement->fetch();
+            $ContenidoPedido = $statement->fetchAll();
             if(empty($ContenidoPedido)){
                 $_SESSION['codArticuloNotFound'] = true;
                 return false;
@@ -113,7 +113,7 @@ public function setActivo($activo) {
 
 
     /**
-     * @return bool|ContenidoPedido devuelve false si falla, devuelve el ContenidoPedido si lo encuentra consultando el código
+     * @return bool|array devuelve false si falla, devuelve el ContenidoPedido si lo encuentra consultando el código
      */
     public static function GetContenidoPedidoByNumPedido($numPedido){
         try{
@@ -123,7 +123,7 @@ public function setActivo($activo) {
             $statement->bindParam(':numPedido', $numPedido);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
-            $ContenidoPedido = $statement->fetch();
+            $ContenidoPedido = $statement->fetchAll();
             if(empty($ContenidoPedido)){
                 $_SESSION['numPedidoNotFound'] = true;
                 return false;
