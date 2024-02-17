@@ -84,8 +84,10 @@ function addLineaPedido() {
     // lo aumentamos en  1
     var nuevoNumLineaInput = parseInt(numLineaInput.value) +  1;
     numLineaInput.value = nuevoNumLineaInput;
-    
-    
+
+    //cambiamos el nombre 
+    numLineaInput.name = "numLinea" + nuevoNumLineaInput;
+
     // vaciamos los campos excepto el de numLinea
     var inputs = newRow.querySelectorAll('input'); // cogemos TODOS los inputs, lo coge como array que podemos recorrer
     for (var i =  0; i < inputs.length; i++) {
@@ -98,8 +100,6 @@ function addLineaPedido() {
             inputs[i].name = nombreBase + nuevoNumLineaInput;
         } 
     }
-    numLineaInput.name = "numLinea" + nuevoNumLineaInput;
-
 
     // añadimos la linea preparada al final
     var tbody = table.querySelector('tbody'); // Select the tbody element
