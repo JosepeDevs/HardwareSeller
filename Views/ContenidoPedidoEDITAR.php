@@ -10,14 +10,13 @@ if( $usuarioLogeado == false){
 
 
 include_once("header.php");
-print("<h1>Modificar ContenidoPedido</h1>");
+print("<h1>Modificar Contenido del Pedido</h1>");
 
 include_once("../Controllers/ContenidoPedidoEDITARController.php");
-$codigoOriginal=$_GET["codigo"];    //el codigo ha llegado por la url
-$_SESSION["codigo"] = $codigoOriginal;
+$numPedidoOriginal=$_GET["numPedido"];    //el numPedido ha llegado por la url
+$_SESSION["numPedido"] = $numPedidoOriginal;
 $arrayAtributos = getArrayAtributosContenidoPedido();
 
-echo("<h2>Bienvenido</h2>");
 //ponemos "editando" en true para que cuando lo mandemos a ValidarDatos lo trate como update
 $_SESSION["editandoContenidoPedido"]="true";
 $rol4consulta = isset($_GET['rol4consulta'])? $_GET['rol4consulta'] : null;
@@ -79,8 +78,8 @@ if(is_array($arrayMensajes)){
     }
 };
 
-echo("<h2><a class='cerrar' href='ContenidoPedidosLISTAR.php?editandoContenidoPedido=false'>Volver al listado de ContenidoPedidos</a></h2>");
+echo("<h2><a class='cerrar' href='ContenidoPedidoLISTAR.php?editandoContenidoPedido=false'>Volver al listado de ContenidoPedido</a></h2>");
 echo("<h2><a class='cerrar' href='/index.php?editandoContenidoPedido=false'> cerrar sesión</a></h2>");
-echo("<h2><a class='cerrar' a href='ContenidoPedidoBORRAR.php?codigo=$codigoOriginal'>BORRAR ContenidoPedido</a></h2>");
+echo("<h2><a class='cerrar' a href='ContenidoPedidoBORRAR.php?numPedido=$numPedidoOriginal'>BORRAR ContenidoPedido</a></h2>");
 include_once("footer.php");
 ?>
