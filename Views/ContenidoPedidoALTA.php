@@ -81,23 +81,19 @@ include("footer.php");
     // guardams todos los inputs 
     var numLineaInput = newRow.querySelector('input[name="numLinea"]');
     
-    // lo aumentamos en 1
+    // aumentamos value en 1
     numLineaInput.value = parseInt(numLineaInput.value) +  1; //sumamos 1 al value de la linea clonada
+    numLineaInput.name = "numLinea" + numLineaInput.value;//numlinea2 ,etc
 
     //vaciamos los campos excepto el de numLinea
     var inputs = newRow.querySelectorAll('input'); //cogemos TODOS los inputs, lo coge como array qeu podemos recorrer
     for (var i =  0; i < inputs.length; i++) {
         //si no es el de numLinea, lo vaciamos
-        var nombreBase = null
-        if (inputs[i].name == 'numLinea') {
-            nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); //quitamos los números del final, para evitar fila1 y luego fila12 y luego fila123, etc.
-            inputs[i].name = nombreBase + numLineaInput.value;//numlinea 1..numlinea2 ,etc
-            inputs[i].value = numLineaInput.value;
-        } else {
+        if (inputs[i].name !== 'numLinea') {
             inputs[i].value = '';
             inputs[i].removeAttribute('required');// quitar atributos como clase, o en este caso, el required, es que si dejamos el required solo deja añadir 1 línea
             //modifica el valor del input "name" añadiendole el número de la línea para poder mandar varias lineas y cada dato tenga un identificador único
-            nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); //quitamos los números y ponemos nada, para evitar fila1 y luego fila12 y luego fila123, etc.
+            var nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); //quitamos los números y ponemos nada, para evitar fila1 y luego fila12 y luego fila123, etc.
             inputs[i].name = nombreBase + numLineaInput.value;
         }
     }
