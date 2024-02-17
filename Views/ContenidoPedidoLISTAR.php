@@ -95,8 +95,8 @@ echo"<table>";
             }
             if(GetRolDeSession() == "admin"){
                 echo"
-                <td><a href='ContenidoPedidoEDITAR.php?idContenidoPedido=$idContenidoPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
-                <td><a href='ContenidoPedidoBORRAR.php?idContenidoPedido=$idContenidoPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
+                <td><a href='ContenidoPedidoEDITAR.php?numPedido=$numPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
+                <td><a href='ContenidoPedidoBORRAR.php?numPedido=$numPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
             }
         }
         echo("</tr>
