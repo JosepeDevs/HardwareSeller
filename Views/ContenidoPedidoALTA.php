@@ -98,6 +98,8 @@ function addLineaPedido() {
             inputs[i].name = nombreBase + nuevoNumLineaInput;
         } 
     }
+    numLineaInput.name = "numLinea" + nuevoNumLineaInput;
+
 
     // añadimos la linea preparada al final
     var tbody = table.querySelector('tbody'); // Select the tbody element
