@@ -69,7 +69,6 @@ if(isset($_POST["numPedido"]) || isset($_POST["codArticulo"])) {
         //DATOS DEL OBJETO O LOS OBJETOS
         echo "</tr>";
 
-        //todo hay que hacer que se impriman tantas lineas como numLineas haya!!
         //arrayContenidoPedidos puede conntener de 0 a vete tu a saber cuantos ContenidoPedidos
         foreach($arrayContenidoPedidos as $ContenidoPedido) {
             echo"<tr><th>Datos del ContenidoPedido encontrado:</th>";
