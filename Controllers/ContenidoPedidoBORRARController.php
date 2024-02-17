@@ -4,7 +4,7 @@ include_once("OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ContenidoPedidosLISTARMensajes dice: no está user en session";
+    echo "ContenidoPedidoLISTARMensajes dice: no está user en session";
     header("Location: index.php");
 }
 

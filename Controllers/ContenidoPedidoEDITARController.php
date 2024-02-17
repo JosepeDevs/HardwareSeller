@@ -8,15 +8,15 @@ if( $usuarioLogeado == false){
     header("Location: index.php");
 }
 
-function GetContenidoPedidosByBusquedaNumPedido($numPedido){
+function GetContenidoPedidoByBusquedaNumPedido($numPedido){
     include_once("../Models/ContenidoPedido.php");
-    $ContenidoPedido = ContenidoPedido::GetContenidoPedidosByBusquedaNumPedido($numPedido);
+    $ContenidoPedido = ContenidoPedido::GetContenidoPedidoByBusquedaNumPedido($numPedido);
     return $ContenidoPedido;
 }
 
 function getArrayAtributosContenidoPedido(){
     include_once("../Models/ContenidoPedido.php");
-    $arrayContenidoPedidos = ContenidoPedido::getArrayAtributosContenidoPedido();
-    return $arrayContenidoPedidos;
+    $arrayContenidoPedido = ContenidoPedido::getArrayAtributosContenidoPedido();
+    return $arrayContenidoPedido;
 }
 ?>

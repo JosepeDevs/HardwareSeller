@@ -2,15 +2,15 @@
 
 function getArrayAtributosContenidoPedido(){
     include_once("../Models/ContenidoPedido.php");
-    $arrayContenidoPedidos = ContenidoPedido::getArrayAtributosContenidoPedido();
-    return $arrayContenidoPedidos;
+    $arrayContenidoPedido = ContenidoPedido::getArrayAtributosContenidoPedido();
+    return $arrayContenidoPedido;
 }
 
 /**
  * @return array|bool devuelve array con los contenidos si tiene éxito, devuelve false si no tiene éxito
  */
-function  getArrayPaginadoContenidoPedidos($arrayObjetos, $filasAMostrar, $paginaActual){
-    //return de qué indice a qué indice debe imprimir en el $arrayContenidoPedidos que nos llega aquí
+function  getArrayPaginadoContenidoPedido($arrayObjetos, $filasAMostrar, $paginaActual){
+    //return de qué indice a qué indice debe imprimir en el $arrayContenidoPedido que nos llega aquí
      //PAGINACIÓN
      $arrayAImpimir=[];
      $filasTotales = count($arrayObjetos);

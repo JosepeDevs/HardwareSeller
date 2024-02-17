@@ -22,13 +22,13 @@ function getContenidoPedidoBynumPedido($numPedido){
 
 function getArrayAtributosContenidoPedido(){
     include_once("../Models/ContenidoPedido.php");
-    $arrayContenidoPedidos = ContenidoPedido::getArrayAtributosContenidoPedido();
-    return $arrayContenidoPedidos;
+    $arrayContenidoPedido = ContenidoPedido::getArrayAtributosContenidoPedido();
+    return $arrayContenidoPedido;
 }
 
-function GetContenidoPedidosByBusquedacodArticulo($codArticulo){
+function GetContenidoPedidoByBusquedacodArticulo($codArticulo){
     include_once("../Models/ContenidoPedido.php");
-    $arrayContenidoPedidos = ContenidoPedido::GetContenidoPedidosByBusquedacodArticulo($codArticulo);
-    return $arrayContenidoPedidos;
+    $arrayContenidoPedido = ContenidoPedido::GetContenidoPedidoByBusquedacodArticulo($codArticulo);
+    return $arrayContenidoPedido;
 }
 ?>
