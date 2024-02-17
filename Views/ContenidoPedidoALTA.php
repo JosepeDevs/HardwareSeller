@@ -36,8 +36,8 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
                 <td><input type="text" name="numLinea" id="numLinea" value="1" disabled><br><br></td>
                 <td><input type="text" name="codArticulo" id="codArticulo" required><br><br></td>
                 <td><input type="number" name="cantidad" id="cantidad" required><br><br></td>
-                <td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='precio' name='precio' required></td>";
-                <td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='descuento' name='descuento' required></td>";
+                <td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='precio' name='precio' required></td>
+                <td><input type='number' accept='^(\d+\.\d+|\d+)$'step='0.01' id='descuento' name='descuento' required></td>
                 <td><select name="activo" id="activo" required>
                         <option value="0">Desactivado</option>
                         <option value="1">Activado</option>
