@@ -21,8 +21,8 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
     <form action="../Controllers/ContenidoPedidoVALIDAR.php" method="post" enctype="multipart/form-data" >
         <table>
             <tr>
-                <th><label for="numPedido">Número de pedido <br> (todas las líneas serán para este numero de pedido)</label></th>
-                <td><input type="text" name="numPedido" id="numPedido" required><br><br></td>
+                <th><label  colspan="3" for="numPedido">Número de pedido <br> (todas las líneas serán para este numero de pedido)</label></th>
+                <td><input colspan="3" type="text" name="numPedido" id="numPedido" required><br><br></td>
             </tr>
             <tr>
                 <th>Atributos:</th>
