@@ -20,6 +20,7 @@ $arrayAtributos = getArrayAtributosContenidoPedido();
 //ponemos "editando" en true para que cuando lo mandemos a ValidarDatos lo trate como update
 $_SESSION["editandoContenidoPedido"]="true";
 $rol4consulta = isset($_GET['rol4consulta'])? $_GET['rol4consulta'] : null;
+//ENCABEZADOS
 echo"<table>";
         echo"<tr><th>Atributos:</th>";
                 foreach ($arrayAtributos as $index => $atributo) {
@@ -28,45 +29,51 @@ echo"<table>";
                 }
         echo "</tr>";
 
-        //datos ACTUALES OBJETO (estaticos, para que se vean siempre los actuales)
+        //datos ACTUALES OBJETO (estaticos, para que se vean siempre los actuales) PUEDEN SER VARIAS LINEAS
         echo"<tr>
                 <th>Datos actuales:</th>";
-                    $ContenidoPedido = GetContenidoPedidoByBusquedaNumPedido($numPedidoOriginal);
-                    //imprimimos los valores
-                    foreach ($arrayAtributos as $atributo) {
-                        $getter = 'get' . ucfirst($atributo);
-                        $valor = $ContenidoPedido->$getter();
-                        echo "<td>$valor</td>";
+                    $arrayContenidoPedido = GetContenidoPedidoByBusquedaNumPedido($numPedidoOriginal);
+                    //arrayContenidoPedido puede conntener de 0 a vete tu a saber cuantos ContenidoPedido
+                    foreach($arrayContenidoPedido as $numLinea) {
+                        foreach ($arrayAtributos as $index => $atributo) {
+                            $nombreAtributo = $atributo;
+                            $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
+                            $valor = $numLinea->$getter();//lo llamamos para obtener el valor
+                            echo "<td>$valor</td>";
+                        }
+                        echo "</tr>";
                     }
                 //FORMULARIO para EDITAR PRERELLENADO para que se mantengan los datos si no cambia nada
                     echo '<form action="../Controllers/ContenidoPedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
                     echo"<tr><th>Nuevos datos</th>";
-                    foreach ($arrayAtributos as $atributo) {
-                        $getter = 'get' . ucfirst($atributo);
-                        $nombreAtributo = $atributo;
-                        $valor = $ContenidoPedido->$getter();
-                        if($nombreAtributo == "activo") {
-                            echo "
-                                <td>
-                                    <select id='activo' name='activo' required>";
-                                    if($valor == 0){
-                                        echo"
-                                            <option value='0' selected>Inactivo</option>
-                                            <option value='1' >Activo</option>
-                                        </select>";
-                                    } else{
-                                        echo"
-                                            <option value='0' >Inactivo</option>
-                                            <option value='1' selected>Activo</option>
-                                        </select>";
-                                    }
-                                echo"</td>";
-                        }else{
-                            echo "<td><input type='text' id='$nombreAtributo' name='$nombreAtributo' value='$valor'></td>";
+                    foreach($arrayContenidoPedido as $numLinea) {
+                        foreach ($arrayAtributos as $index => $atributo) {
+                            $nombreAtributo = $atributo;
+                            $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
+                            $valor = $numLinea->$getter();//lo llamamos para obtener el valor
+                            if($nombreAtributo == "activo") {
+                                echo "
+                                    <td>
+                                        <select id='activo' name='activo' required>";
+                                        if($valor == 0){
+                                            echo"
+                                                <option value='0' selected>Inactivo</option>
+                                                <option value='1' >Activo</option>
+                                            </select>";
+                                        } else{
+                                            echo"
+                                                <option value='0' >Inactivo</option>
+                                                <option value='1' selected>Activo</option>
+                                            </select>";
+                                        }
+                                    echo"</td>";
+                            }else{
+                                echo "<td><input type='text' id='$nombreAtributo' name='$nombreAtributo' value='$valor'></td>";
+                            }
                         }
+                        echo "</tr>";
                     }
-        echo "</tr>
-   </table>";
+        echo "</table>";
     echo "<div class='finForm'><h2><input type='submit' value='Guardar'></h2>";
     echo "</form>";
 
