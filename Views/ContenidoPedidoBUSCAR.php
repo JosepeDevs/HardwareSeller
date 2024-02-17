@@ -41,22 +41,22 @@ if(isset($_POST["numPedido"]) || isset($_POST["codArticulo"])) {
     include_once("../Controllers/ContenidoPedidoBUSCARController.php");
     if(!empty(($_POST["numPedido"]))){
         $numPedido=$_POST["numPedido"];
-        $arrayContenidoPedidos = getContenidoPedidoBynumPedido($numPedido);
-        if($arrayContenidoPedidos == false){
+        $arrayContenidoPedido = getContenidoPedidoBynumPedido($numPedido);
+        if($arrayContenidoPedido == false){
             $_SESSION['numPedidoNotFound'] = true;
         }
     }
 
     if(!empty(($_POST["codArticulo"]))){
         $codArticulo=$_POST["codArticulo"];
-        $arrayContenidoPedidos = GetContenidoPedidoByCodArticulo($codArticulo);
-        if($arrayContenidoPedidos == false){
+        $arrayContenidoPedido = GetContenidoPedidoByCodArticulo($codArticulo);
+        if($arrayContenidoPedido == false){
             $_SESSION['codArticuloNotFound'] = true;
         }
     }
 
     $arrayAtributos = getArrayAtributosContenidoPedido();
-    if( $arrayContenidoPedidos !== false){
+    if( $arrayContenidoPedido !== false){
         echo"<table>";
         echo"<tr><th>Atributos:</th>";
         //ENCABEZADOS
@@ -68,8 +68,8 @@ if(isset($_POST["numPedido"]) || isset($_POST["codArticulo"])) {
         //DATOS DEL OBJETO O LOS OBJETOS
         echo "</tr>";
 
-        //arrayContenidoPedidos puede conntener de 0 a vete tu a saber cuantos ContenidoPedidos
-        foreach($arrayContenidoPedidos as $ContenidoPedido) {
+        //arrayContenidoPedido puede conntener de 0 a vete tu a saber cuantos ContenidoPedido
+        foreach($arrayContenidoPedido as $ContenidoPedido) {
             echo"<tr><th>Datos del ContenidoPedido encontrado:</th>";
             foreach ($arrayAtributos as $index => $atributo) {
                 $codArticuloAtributo = $atributo;
@@ -94,7 +94,7 @@ if(isset($_POST["numPedido"]) || isset($_POST["codArticulo"])) {
     };
 }
     echo'
-    <h2><a class="cerrar" href="ContenidoPedidosLISTAR.php"><img src="../Resources/arrow.png" alt="listar ContenidoPedidos" />Volver a la tabla de ContenidoPedidos</a></h2>';
+    <h2><a class="cerrar" href="ContenidoPedidoLISTAR.php"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Volver a la tabla de ContenidoPedido</a></h2>';
     $rol = GetRolDeSession();
     if($rol == "admin" || $rol == "editor"){
         echo '<h2><a class="cerrar"  href="TablaClientes.php">Ver usuarios</a></h2>';
