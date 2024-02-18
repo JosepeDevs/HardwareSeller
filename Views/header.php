@@ -128,9 +128,9 @@
             <button id="hamburger">☰</button>
     </div>
     </form>
-    <div>
+    <div id="carrito">
         <small>Este texto será el precio con AJAX<small>
-        <a href="/Views/Carrito.php" class="btn"><i class="lni lni-cart"></i></a>
+        <a href="/Views/Carrito.php"><i class="lni lni-cart"></i></a>
     </div>
 </header>
 <body>

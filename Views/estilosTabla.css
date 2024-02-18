@@ -309,18 +309,25 @@ header nav ul li a:hover{
 }
 
 
-.btn a{
+#carrito a{
     font-size: 3em;
     text-decoration: none;
     color:var(--background-light)
 }
 
-.btn i{
+#carrito a:hover{
     font-size: 3em;
+    text-decoration: underline;
+    color:var(--hover-light)
+}
+
+#carrito a i{
+    font-size: 3em;
+    text-decoration: none;
     color:var(--background-light)
 }
 
-.btn i:hover{
+#carrito a i:hover{
     font-size: 3em;
     text-decoration: underline;
     color:var(--hover-light)
