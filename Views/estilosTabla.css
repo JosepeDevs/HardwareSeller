@@ -310,28 +310,27 @@ header nav ul li a:hover{
 
 
 #carrito a{
-    font-size: 3em;
+    font-size: 2em;
     text-decoration: none;
     color:var(--background-light)
 }
 
 #carrito a:hover{
-    font-size: 3em;
+    font-size: 2em;
     text-decoration: underline;
     color:var(--hover-light)
 }
 
 #carrito a i{
-    font-size: 3em;
+    font-size: 2em;
     text-decoration: none;
     color:var(--background-light)
 }
 
 #carrito a i:hover{
-    font-size: 3em;
+    font-size: 2em;
     text-decoration: underline;
     color:var(--hover-light)
-
 }
 
 /************* INICIO PARALLAX***********************/
