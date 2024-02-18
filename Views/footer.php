@@ -22,48 +22,29 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-12">
-                        <!-- Single Widget -->
-                        <div class="f-about single-footer">
-                            <div class="logo">
-                                <a href="index.html"><img src="../template/assets/images/HSLogoFondoAzulGrisSinTexto.png" alt="Logo"></a>
-                            </div>
-                            <p>Donde el hardware se siente como en casa.</p>
-                            <div class="footer-social">
-                                <ul>
-                                    <li><a href="#"><i class="lni lni-facebook-original"></i></a></li>
-                                    <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
-                                    <li><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
-                                    <li><a href="#"><i class="lni lni-google"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- End Single Widget -->
                     </div>
                     <div class="col-lg-8 col-md-8 col-12">
                         <div class="row">
                             <div class="col-lg-3 col-md-6 col-12">
                                 <!-- Single Widget -->
                                 <div class="single-footer sm-custom-border f-link">
-                                    <h3>LEGAL</h3>
                                     <ul>
                                         <li><a href="/Views/cookies.php">Cookies</a></li>
                                         <li><a href="/Views/Privacidad.php">Privacidad</a></li>
                                         <li><a href="/Views/AvisoLegal.php">Aviso legal</a></li>
                                     </ul>
                                 </div>
-                                <!-- End Single Widget -->
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <!-- Single Widget -->
-                                <div class="single-footer sm-custom-border f-link">
-                                    <h3>Legal</h3>
+                                <div class="footer-social">
                                     <ul>
-                                        <li><a href="#">Cookies</a></li>
-                                        <li><a href="#">Privacidad</a></li>
-                                        <li><a href="#">Aviso legal</a></li>
+                                        <li><a href="#"><i class="lni lni-facebook-original"></i></a></li>
+                                        <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
+                                        <li><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
+                                        <li><a href="#"><i class="lni lni-google"></i></a></li>
                                     </ul>
                                 </div>
                                 <!-- End Single Widget -->
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-12">
                             </div>
                             <div class="col-lg-3 col-md-6 col-12">
                                 <!-- Single Widget -->
