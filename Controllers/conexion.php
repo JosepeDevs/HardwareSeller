@@ -4,14 +4,12 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start(); }
 //NO PROTEGER ESTO, ES DONDE SE SUBE A SESSION USER Y KEY Y ROL
 include_once("../Models/Cliente.php");
 
+
 /**
  * Requiere usarse esta función en páginas que reciben un POST de "user" y "key".
  * @return void|bool Devuelve TRUE Y ESTABLECE "user" y "key" en SESSION si para el email del cliente la contraseña posteada y la hasheada en la BBDD coincide. Si no lo consigue devuelve FALSE.
  *
  */
-
-
-
 if(isset($_POST['user']) &&  isset($_POST['key'])) {
     $usuario = $_POST['user'];
     $cliente = Cliente::GetClientByEmail($usuario);
