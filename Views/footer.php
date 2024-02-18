@@ -15,11 +15,9 @@
     </div>
     <div>
         <h3>Legal</h3>
-        <ul>
-            <li><a href="/Views/cookies.php">Cookies</a></li>
-            <li><a href="/Views/Privacidad.php">Privacidad</a></li>
-            <li><a href="/Views/AvisoLegal.php">Aviso legal</a></li>
-        </ul>
+            <a href="/Views/cookies.php">Cookies</a>
+            <a href="/Views/Privacidad.php">Privacidad</a>
+            <a href="/Views/AvisoLegal.php">Aviso legal</a>
     </div>
     <div class="row">
         <a href="#"><i class="lni lni-facebook-original"></i></a>
