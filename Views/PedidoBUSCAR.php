@@ -50,9 +50,12 @@ if(isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQ
         }
     }
     
-    if( !empty(($_REQUEST["fechaInicio"]) && !empty(($_REQUEST["fechaFin"]) )) ) {
-        $fechaInicio=$_REQUEST["fechaInicio"];
-        $fechaFin=$_REQUEST["fechaFin"];
+    if( isset($_REQUEST['fechaInicio']) && isset($_REQUEST['fechaFin'])) {
+        $fechaInicioPredeterminada = "01/01/1990";
+        $fechaFinPredeterminada = "01/01/2100";
+        empty($_REQUEST["fechaInicio"]) ? $fechaInicio = $fechaInicioPredeterminada : $fechaInicio = $_REQUEST['fechaInicio'] ; 
+        empty($_REQUEST["fechaFin"]) ? $fechaFin = $fechaFinPredeterminada : $fechaFin = $_REQUEST['fechaFin'] ; 
+        
         $arrayPedido = GetPedidosByRangoFecha($fechaInicio,$fechaFin);
         if($arrayPedido == false){
             $_SESSION['fechaNotFound'] = true;
