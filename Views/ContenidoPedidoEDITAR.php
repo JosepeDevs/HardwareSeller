@@ -171,4 +171,5 @@ function addLineaPedidoTodoDisponible() {
             table.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
         }
     }
+    echo "<h2>".$ultimaFIla."</h2>"
 </script>
