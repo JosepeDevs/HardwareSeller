@@ -175,6 +175,8 @@ function addLineaPedidoTodoDisponible() {
         console.log("hola"+initialRows);
         if (table.rows.length -1 >= initialRows) {//no borrar más allá de lo que había inicialmente
             table.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
+        } else{
+            echo "<h3>No se pueden borrar las líneas que actualmente contiene el pedido.</h3>"
         }
     }
 </script>
