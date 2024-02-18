@@ -21,11 +21,11 @@
             <li><a href="/Views/AvisoLegal.php">Aviso legal</a></li>
         </ul>
     </div>
-    <div>
+    <div class="row">
         <ul>
             <li><a href="#"><i class="lni lni-facebook-original"></i></a></li>
             <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
-            <li><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/josepedronavarro/"><i class="lni lni-linkedin-original"></i></a></li>
             <li><a href="#"><i class="lni lni-google"></i></a></li>
         </ul>
     </div>
