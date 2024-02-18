@@ -171,8 +171,8 @@ function addLineaPedidoTodoDisponible() {
             ultimoTh.textContent="comeme los huevos";
             return;
         } else{
-            if (tabla.rows.length > 4) { 
-                tabla.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
+            if (table.rows.length > 4) { 
+                table.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
             }
         }
     }
