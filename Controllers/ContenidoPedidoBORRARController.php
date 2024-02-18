@@ -8,10 +8,10 @@ if( $usuarioLogeado == false){
     header("Location: index.php");
 }
 
-function borradoLogico($numPedido){
+function borradoLogicoContenidoPedido($numPedido){
     include_once("../Models/ContenidoPedido.php");
     $ContenidoPedido = new ContenidoPedido();
-    $operacionConfirmada = $ContenidoPedido->borradoLogico($numPedido);
+    $operacionConfirmada = $ContenidoPedido->borradoLogicoContenidoPedido($numPedido);
     return $operacionConfirmada;
 }
 ?>

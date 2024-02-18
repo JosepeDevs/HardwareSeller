@@ -19,14 +19,14 @@ if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  'false' ){
     exit;
 }else if(isset($_GET['numPedido']) && isset($_GET['confirmacion']) && $_GET['confirmacion']== 'true') {
     include_once("../Controllers/ContenidoPedidoBORRARController.php");
-    $operacionConfirmada = borradoLogico($numPedido);
+    $operacionConfirmada = borradoLogicoContenidoPedido($numPedido);
     header("Location: ContenidoPedidoLISTAR.php");
     exit;
 }
 ?>
         <h1>¿Está seguro de que desea desactivar el contenido de este pedido?</h1>
         <div class="finForm">
-            <h2><a href="ContenidoPedidoBORRAR.php?numPedido=<?php echo $numPedido;?>&confirmacion=true">Sí, desactivar todo el contenido de este pedido (Borrado lógico).</a></h2>
+            <h2><a href="ContenidoPedidoBORRAR.php?numPedido=<?php echo $numPedido;?>&confirmacion=true">Sí, desactivar la linea del pedido seleccionada (Borrado lógico).</a></h2>
             <h2><a href="ContenidoPedidoBORRAR.php?numPedido=<?php echo $numPedido;?>&confirmacion=false">Cancelar desactivación.</a></h2>
         </div>
 <?php

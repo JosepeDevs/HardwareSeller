@@ -237,7 +237,7 @@ public function setActivo($activo) {
     }
 
 
-    public function borradoLogico($numPedido){
+    public function borradoLogicoContenidoPedido($numPedido){
         try {
             $conPDO=contectarBbddPDO();
             $query=("UPDATE ContenidoPedido SET activo=false WHERE numPedido=:numPedido");
