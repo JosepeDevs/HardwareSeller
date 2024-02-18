@@ -19,7 +19,7 @@
             <a href="/Views/Privacidad.php">Privacidad</a>
             <a href="/Views/AvisoLegal.php">Aviso legal</a>
     </div>
-    <div class="row">
+    <div class="social">
         <a href="#"><i class="lni lni-facebook-original"></i></a>
         <a href="#"><i class="lni lni-twitter-original"></i></a>
         <a href="https://www.linkedin.com/in/josepedronavarro/"><i class="lni lni-linkedin-original"></i></a>

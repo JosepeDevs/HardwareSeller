@@ -529,4 +529,11 @@ footer div a{
     text-decoration: underline;
 }
 
+.social{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: space-between;
+}
+
 /**********************FIN FOOTER**************************/
