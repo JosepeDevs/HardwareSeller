@@ -348,9 +348,10 @@ header nav ul li a:hover{
 
 aside{
     position:absolute;
-    float: left;
-    height: calc(100% - var(--altoHeader));
     top: var(--altoHeader);
+    left: 0;
+    float: left;
+    height: calc(90% - var(--altoHeader));
     width: 12%;
     background-color: var(--primary);
     color: white;
@@ -358,7 +359,6 @@ aside{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    left: 0;
     z-index: 1;
     border: 5px solid red;
     
@@ -533,7 +533,7 @@ footer div a{
     display: flex;
     flex-direction: column;
     justify-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 /**********************FIN FOOTER**************************/
