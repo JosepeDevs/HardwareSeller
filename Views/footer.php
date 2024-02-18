@@ -15,7 +15,7 @@
     </div>
     <div>
         <h3>Legal</h3>
-            <a href="/Views/cookies.php">Cookies</a>
+            <a href="/Views/Cookies.php">Cookies</a>
             <a href="/Views/Privacidad.php">Privacidad</a>
             <a href="/Views/AvisoLegal.php">Aviso legal</a>
     </div>

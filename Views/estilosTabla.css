@@ -9,6 +9,7 @@
 
 :root {
     --primary: darkcyan;
+    --secondary: #41a5a5;
     --dark-blue: #143548;
     --background-light: #ffebd9;
     --hover-light: #CCB299;
@@ -372,7 +373,7 @@ aside{
     float: left;
     height: calc(87% - var(--altoHeader));
     width: 10%;
-    background-color: var(--primary);
+    background-color: var(--secondary);
     color: white;
     position: fixed;
     display: flex;
