@@ -134,3 +134,6 @@ página del portal durante la presente sesión.
 cookies, conocer la Política de cookies de www.miempresa.es y modificar la
 configuración de su navegador
 </p>
+<?php
+include("footer.php");
+?>
