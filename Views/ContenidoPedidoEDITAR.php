@@ -26,10 +26,10 @@ echo"<table>";
         foreach ($arrayAtributos as $index => $atributo) {
             $nombreAtributo = $atributo;
             if($nombreAtributo == "numPedido"){
-                echo'<th colspan="2"><label for="numPedido">Número de pedido <br> (todas las líneas sustituirán el contenido de este numero de pedido)</label></th>';
-                echo'<td colspan="3"><input type="text" name="numPedido" id="numPedido" ></td></tr>';
-                echo'<tr><th colspan="1">Número de pedido <br> (todas las líneas son de este numero de pedido)</th>';
-                echo'<td colspan="1">'.$numPedidoOriginal.'</td>';
+                echo'<tr><th colspan="2"><label for="numPedido">Número de pedido <br> (todas las líneas sustituirán el contenido de este numero de pedido)</label></th>';
+                echo'<td colspan="3"><input type="text" name="numPedido" id="numPedido" ></td>';
+                echo'<th colspan="1">Número de pedido <br> (todas las líneas son de este numero de pedido)</th>';
+                echo'<td colspan="1">'.$numPedidoOriginal.'</td></tr>';
             } else if( $index == 1) {
                 echo"<tr><th>Atributos:</th>";
                 echo "<th>$nombreAtributo</th>";
@@ -118,16 +118,16 @@ include_once("footer.php");
 <script>
 function addLineaPedidoTodoDisponible() {
     // pillamos la tabla
-    var table = document.querySelector('table');
+    var tabla = document.querySelector('table');
     
     // nos vamos a la que actualmente es la última fila de dicha tabla
-    var lastRow = table.rows[table.rows.length -  1];
+    var ultimaFila = tabla.rows[tabla.rows.length -  1];
     
     // clonamos la última línea arrastra todos los atributos e hijos (tds, inputs, contenido...)
-    var newRow = lastRow.cloneNode(true);
+    var nuevaFila = ultimaFila.cloneNode(true);
     
     // guardams todos los inputs  
-    var numLineaInput = newRow.querySelector('input[name^="numLinea"]'); //hacemos que seleccione el input cuyo nombre empiece por numLinea
+    var numLineaInput = nuevaFila.querySelector('input[name^="numLinea"]'); //hacemos que seleccione el input cuyo nombre empiece por numLinea
     
     // lo aumentamos en  1
     var nuevoNumLineaInput = parseInt(numLineaInput.value) +  1;
@@ -137,7 +137,7 @@ function addLineaPedidoTodoDisponible() {
     numLineaInput.name = "numLinea" + nuevoNumLineaInput;
 
     // vaciamos los campos excepto el de numLinea
-    var inputs = newRow.querySelectorAll('input'); // cogemos TODOS los inputs, lo coge como array que podemos recorrer
+    var inputs = nuevaFila.querySelectorAll('input'); // cogemos TODOS los inputs, lo coge como array que podemos recorrer
     for (var i =  0; i < inputs.length; i++) {
         // si no es el de numLinea, lo vaciamos
         if (inputs[i].name !== 'numLinea') {
@@ -151,13 +151,20 @@ function addLineaPedidoTodoDisponible() {
     numLineaInput.value = nuevoNumLineaInput;
 
     // añadimos la linea preparada al final
-    var tbody = table.querySelector('tbody'); // Select the tbody element
-    tbody.appendChild(newRow); // Append the new row to the tbody
+    var tbody = tabla.querySelector('tbody'); // Select the tbody element
+    tbody.appendChild(nuevaFila); // Append the new row to the tbody
 }
-function removeLineaPedido() {
-    var table = document.querySelector('table');
-    if (table.rows.length > 2) { //no borraremos la linea 1 ni los encabezados
-        table.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
+    function removeLineaPedido() {
+        var tabla = document.querySelector('table');
+        var ultimaFila = tabla.rows[tabla.rows.length - 1];
+        var ultimoTh = ultimaFila.querySelector('th');
+        if (ultimoTh && ultimoTh.textContent.trim() === "datos actuales:") {
+            // no hacer nada
+            return;
+        } else{
+            if (tabla.rows.length > 3) { 
+                tabla.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
+            }
+        }
     }
-} 
 </script>
