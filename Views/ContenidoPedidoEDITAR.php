@@ -26,7 +26,7 @@ echo"<table>";
         foreach ($arrayAtributos as $index => $atributo) {
             $nombreAtributo = $atributo;
             if($nombreAtributo == "numPedido"){
-                echo'<tr><th colspan="2"><label for="numPedido">Número de pedido <br> (todas las líneas sustituirán el contenido de este numero de pedido)</label></th>';
+                echo'<tr><th colspan="2"><label for="numPedido">Número de pedido <br> (Se aplicará a todas las lineas y se sobrescribirán las que tenga)</label></th>';
                 echo'<td colspan="3"><input type="text" name="numPedido" id="numPedido" ></td>';
                 echo'<th colspan="1">Número de pedido <br> (todas las líneas son de este numero de pedido)</th>';
                 echo'<td colspan="1">'.$numPedidoOriginal.'</td></tr>';
@@ -44,7 +44,7 @@ echo"<table>";
                     //arrayContenidoPedido puede conntener de 0 a vete tu a saber cuantos ContenidoPedido
                     echo '<form action="../Controllers/ContenidoPedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
                     foreach($arrayContenidoPedido as $index => $numLinea) {
-                        echo"<tr><th>Nuevos datos:</th>";
+                        echo"<tr><th>Datos actuales:</th>";
                         foreach ($arrayAtributos as $atributo) {
                             $nombreAtributo = $atributo;
                             $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
@@ -166,7 +166,7 @@ function addLineaPedidoTodoDisponible() {
         var tabla = document.querySelector('table');
         var ultimaFila = tabla.rows[tabla.rows.length - 1];
         var ultimoTh = ultimaFila.querySelector('th');
-        if (ultimoTh && ultimoTh.textContent.trim() === "datos actuales:") {
+        if (ultimoTh.textContent.includes("datos actuales")) {
             // no hacer nada
             return;
         } else{
