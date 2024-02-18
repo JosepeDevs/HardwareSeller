@@ -361,7 +361,7 @@ aside{
 }
 
 aside a{
-    font-size: 1.3em;
+    font-size: 1.5em;
     color:var(--background-light);
     text-decoration: none;
     display: flex;
