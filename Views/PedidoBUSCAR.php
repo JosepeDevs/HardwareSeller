@@ -28,7 +28,6 @@ include_once("header.php");
 </form>
 <br><br><br><br><br><br><br>
 
-
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Controllers/OperacionesSession.php");

@@ -93,25 +93,19 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
         }
     };
 }
+if(isset($_REQUEST['numPedido'])){
     echo'
-    <h2><a class="cerrar" href="ContenidoPedidoLISTAR.php"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Ver los contenidos de todos los pedidos</a></h2>
     <h2><a class="cerrar" href="ContenidoPedidoEDITAR.php?numPedido='.$numPedido.'""><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Editar el contenido de este pedido</a></h2>
+    <h2><a class="cerrar" href="PedidoBUSCAR.php?idPedido='.$numPedido.'"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Volver al PEDIDO</a></h2>
     ';
-    if(isset($_REQUEST['numPedido'])){
-    echo'<h2><a class="cerrar" href="PedidoBUSCAR.php?numPedido='.$numPedido.'"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Volver al PEDIDO</a></h2>';
-    }
-    $rol = GetRolDeSession();
-    if($rol == "admin" || $rol == "editor"){
-        echo '<h2><a class="cerrar"  href="TablaClientes.php">Ver usuarios</a></h2>';
-    } else{
-        $email = GetEmailDeSession();
-        $dni = GetDniByEmail($email);
-        echo"<h2>
-                <a class='enlace' href='ClienteEDITAR.php?dni=$dni'>
-                    <img src='../Resources/edit.png' alt='editar datos user'/> Editar mis datos $email
-                </a>
-            </h2>";
-    }
+}
+echo'
+<h2><a class="cerrar" href="ContenidoPedidoLISTAR.php"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Ver los contenidos de todos los pedidos</a></h2>
+';
+$rol = GetRolDeSession();
+if($rol == "admin" || $rol == "editor"){
+    echo '<h2><a class="cerrar"  href="TablaClientes.php">Ver usuarios</a></h2>';
+} 
 
 include_once("footer.php");
 ?>
