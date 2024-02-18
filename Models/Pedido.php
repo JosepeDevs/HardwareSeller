@@ -101,21 +101,20 @@ public function setActivo($activo) {
         }
     }
 
-        /**
-     * @return bool|array devuelve false si falla, devuelve el Pedido o array de Pedidos si  encuentra 1 o más Pedidos que coincida el texto buscado (en fecha)
+    /**
+     * @return bool|array devuelve false si falla, devuelve el Pedido si lo encuentra consultando el código
      */
-    public static function GetPedidosByBusquedafecha($fecha){
+    public static function getPedidosByCodUsuario($codUsuario){
         try{
             $con = contectarBbddPDO();
-            $sqlQuery="SELECT * FROM pedidos WHERE fecha >= :fechaInicial AND fecha <= :fechaFinal;";
+            $sqlQuery="SELECT * FROM  `pedidos` WHERE codUsuario=:codUsuario;";
             $statement=$con->prepare($sqlQuery);
-            $statement->bindParam(':fechaInicial', $fechaInicial);
-            $statement->bindParam(':fechaFinal', $fechaFinal);
+            $statement->bindParam(':codUsuario', $codUsuario);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
             $arrayPedidos = $statement->fetchAll();
             if(empty($arrayPedidos)){
-                $_SESSION['fechaNotFound'] = true;
+                $_SESSION['codUsuarioNotFound'] = true;
                 return false;
             }else{
                 return $arrayPedidos;
@@ -126,12 +125,38 @@ public function setActivo($activo) {
         }
     }
 
+    /**
+     * @return bool|array devuelve false si falla, devuelve el Pedido si lo encuentra consultando el código
+     */
+    public static function GetPedidosByRangoFecha($fechaInicio,$fechaFin){
+        try{
+            $con = contectarBbddPDO();
+            $sqlQuery="SELECT * FROM  `pedidos` WHERE fecha >= :fechaInicio AND fecha <= :fechaFin;";
+            $statement=$con->prepare($sqlQuery);
+            $statement->bindParam(':fechaInicio', $fechaInicio);
+            $statement->bindParam(':fechaFin', $fechaFin);
+            $statement->execute();
+            $resultados = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
+            if(empty($resultados)){
+                $_SESSION['idPedidoNotFound'] = true;
+                return false;
+            }else{
+                return $resultados;
+            }
+        } catch(PDOException $e) {
+            $_SESSION['ErrorGetPedidos']= true;
+            return false;
+        }
+    }
+
+
     public static function ComprobarLongitud($string, $longitud) {
         if(strlen($string) > $longitud) {
             return false;
         }
         return true;
     }
+
     public static Function getAllPedidos(){
         try {
             $con = contectarBbddPDO();
