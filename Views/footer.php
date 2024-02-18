@@ -13,11 +13,11 @@
         <h3>Contacto</h3>
         <a href="mailto:info@josepedevs.infinityfreeapp.com">Escribenos un correo</a>
     </div>
-    <div><img alt="Deployed with FTP Deploy Action" src="https://img.shields.io/badge/Deployed With-FTP DEPLOY ACTION-%3CCOLOR%3E?style=for-the-badge&color=0077b6">
-    <a href=https://github.com/SamKirkland/FTP-Deploy-Action>Házlo tú mismo. Credit @SamKirkland</a>
-</div>
+    <div>
+        <img alt="Deployed with FTP Deploy Action" src="https://img.shields.io/badge/Deployed With-FTP DEPLOY ACTION-%3CCOLOR%3E?style=for-the-badge&color=0077b6">
+        <a href=https://github.com/SamKirkland/FTP-Deploy-Action>Házlo tú mismo. Credit @SamKirkland</a>
+    </div>
     <!-- Start Footer Area -->
-
         <div class="footer-middle">
             <div class="container">
                 <div class="row">
