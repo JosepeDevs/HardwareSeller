@@ -192,7 +192,7 @@ public function setActivo($activo) {
         $_SESSION["nuevoContenidoPedido"]=false;
         try{
             $con = contectarBbddPDO();
-            $sqlQuery="INSERT INTO `ContenidoPedido` (`numPedido`, `numLinea`, `codArticulo`, `cantidad`, `precio`, `descuento`, `activo` )
+            $sqlQuery="INSERT INTO `contenidopedido` (`numPedido`, `numLinea`, `codArticulo`, `cantidad`, `precio`, `descuento`, `activo` )
                                         VALUES (:numPedido, :numLinea, :codArticulo, :cantidad, :precio, :descuento, :activo);";
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':numPedido', $numPedido);
@@ -237,10 +237,10 @@ public function setActivo($activo) {
     }
 
 
-    public function borradoLogicoContenidoPedido($numPedido){
+    public static function borradoLogicoContenidoPedido($numPedido){
         try {
             $conPDO=contectarBbddPDO();
-            $query=("UPDATE ContenidoPedido SET activo=false WHERE numPedido=:numPedido");
+            $query=("UPDATE contenidopedido SET activo=false WHERE numPedido=:numPedido");
             $statement= $conPDO->prepare($query);
             $statement->bindParam(':numPedido', $numPedido);
             $operacionConfirmada = $statement->execute();
@@ -271,12 +271,12 @@ public function setActivo($activo) {
     try{
         $conPDO = contectarBbddPDO();
         if( $mantienennumPedido){
-            $sqlQuery = " UPDATE `ContenidoPedido`
+            $sqlQuery = " UPDATE `contenidopedido`
                     SET `numPedido` = :numPedidoOriginal, `numLinea` = :numLinea, `codArticulo` = :codArticulo, `cantidad` = :cantidad, `precio` = :precio,`descuento` = :descuento, `activo` = :activo
                     WHERE `numPedido` = :numPedidoOriginal "
             ;
         } else{
-            $sqlQuery = " UPDATE `ContenidoPedido`
+            $sqlQuery = " UPDATE `contenidopedido`
                     SET `numPedido` = :numPedido, `numLinea` = :numLinea,  `codArticulo` = :codArticulo, `cantidad` = :cantidad, `precio` = :precio, `descuento` = :descuento, `activo` = :activo
                     WHERE `numPedido` = :numPedidoOriginal "
             ;
@@ -324,7 +324,7 @@ public function setActivo($activo) {
     public static function numPedidoLibre($numPedido){
         try {
             $conPDO = contectarBbddPDO();
-            $numPedidoCheck = "SELECT * FROM `ContenidoPedido` WHERE numPedido = :numPedido";
+            $numPedidoCheck = "SELECT * FROM `contenidopedido` WHERE numPedido = :numPedido";
             $statement = $conPDO->prepare($numPedidoCheck);
             $statement->bindParam(':numPedido', $numPedido);
             $statement->execute();

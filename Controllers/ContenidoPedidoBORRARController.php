@@ -10,8 +10,7 @@ if( $usuarioLogeado == false){
 
 function borradoLogicoContenidoPedido($numPedido){
     include_once("../Models/ContenidoPedido.php");
-    $ContenidoPedido = new ContenidoPedido();
-    $operacionConfirmada = $ContenidoPedido->borradoLogicoContenidoPedido($numPedido);
+    $operacionConfirmada = ContenidoPedido::borradoLogicoContenidoPedido($numPedido);
     return $operacionConfirmada;
 }
 ?>
