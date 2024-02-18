@@ -1,30 +1,6 @@
-<!DOCTYPE html>
-<html class="no-js" lang="zxx">
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Hardware Seller.</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href="../template/assets/images/HSLogoFondoAzulGrisSinTexto.png">
-    <link rel="icon" type="image/png" href="https://josepedevs.infinityfreeapp.com/Resources/ImagenesArticulos/Captura%20de%20pantalla%202024-02-06%20195252.png">
-    <!-- Place favicon.ico in the root directory -->
-
-    <!-- Web Font -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-
-    <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/LineIcons.2.0.css" />
-    <link rel="stylesheet" href="assets/css/animate.css" />
-    <link rel="stylesheet" href="assets/css/tiny-slider.css" />
-    <link rel="stylesheet" href="assets/css/glightbox.min.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-
-</head>
+<?php
+include("Views/header.php");
+?>
     <!-- Start Hero Area -->
     <section id="hero-area" class="hero-area">
         <!-- Single Slider -->
@@ -163,77 +139,6 @@
 </section>
 <!-- End Achivement Area -->
 
-    <!-- Start Footer Area -->
-    <footer class="footer">
-        <div class="footer-middle">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <!-- Single Widget -->
-                        <div class="f-about single-footer">
-                            <div class="logo">
-                                <a href="index.html"><img src="../template/assets/images/HSLogoFondoAzulGrisSinTexto.png" alt="Logo"></a>
-                            </div>
-                            <p>Donde el hardware se siente como en casa.</p>
-                            <div class="footer-social">
-                                <ul>
-                                    <li><a href="#"><i class="lni lni-facebook-original"></i></a></li>
-                                    <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
-                                    <li><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
-                                    <li><a href="#"><i class="lni lni-google"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- End Single Widget -->
-                    </div>
-                    <div class="col-lg-8 col-md-8 col-12">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <!-- Single Widget -->
-                                <div class="single-footer sm-custom-border f-link">
-                                    <h3>Hardware seller</h3>
-                                    <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">Sobre nosotros</a></li>
-                                        <li><a href="#">Nuestro equipo</a></li>
-                                    </ul>
-                                </div>
-                                <!-- End Single Widget -->
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <!-- Single Widget -->
-                                <div class="single-footer sm-custom-border f-link">
-                                    <h3>Legal</h3>
-                                    <ul>
-                                        <li><a href="#">Cookies</a></li>
-                                        <li><a href="#">Privacidad</a></li>
-                                        <li><a href="#">Aviso legal</a></li>
-                                    </ul>
-                                </div>
-                                <!-- End Single Widget -->
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <!-- Single Widget -->
-                                <div class="single-footer md-custom-border sm-custom-border f-contact">
-                                    <h3>Contacto</h3>
-                                    <ul>
-                                        <li><i class="lni lni-map-marker"></i> Calle española original, 00000, Spain
-                                        </li>
-                                        <li><i class="lni lni-envelope"></i> info@hardwareseller.com</li>
-                                        <li><i class="lni lni-phone"></i> +34-666555111</li>
-                                    </ul>
-                                </div>
-                                <!-- End Single Widget -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/ End Footer Middle -->
-    </footer>
-    <!--/ End Footer Area -->   
-
     <!-- ========================= scroll-top ========================= -->
     <a href="#" class="scroll-top btn-hover">
         <i class="lni lni-chevron-up"></i>
@@ -250,3 +155,6 @@
     <script src="assets/js/main.js"></script>
     <!-- Keep the scripts as they are, they don't need to change -->
 </html>
+<?php
+include("Views/footer.php");
+?>
