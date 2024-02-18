@@ -338,6 +338,14 @@ header nav ul li a:hover{
     width: 0;
 }
 /************* FIN PARALLAX***********************/
+
+aside{
+    position:fixed;
+    top:(var(--altoHeader));
+    left:0;
+    display: flex;
+    flex-direction: column;
+}
 /*********** INICIO BODY*****************************/
 
 body{

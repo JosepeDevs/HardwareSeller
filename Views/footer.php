@@ -22,12 +22,10 @@
         </ul>
     </div>
     <div class="row">
-        <ul>
-            <li><a href="#"><i class="lni lni-facebook-original"></i></a></li>
-            <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/josepedronavarro/"><i class="lni lni-linkedin-original"></i></a></li>
-            <li><a href="#"><i class="lni lni-google"></i></a></li>
-        </ul>
+        <a href="#"><i class="lni lni-facebook-original"></i></a>
+        <a href="#"><i class="lni lni-twitter-original"></i></a>
+        <a href="https://www.linkedin.com/in/josepedronavarro/"><i class="lni lni-linkedin-original"></i></a>
+        <a href="#"><i class="lni lni-google"></i></a>
     </div>
     <div>
         <img alt="Deployed with FTP Deploy Action" src="https://img.shields.io/badge/Deployed With-FTP DEPLOY ACTION-%3CCOLOR%3E?style=for-the-badge&color=0077b6">
