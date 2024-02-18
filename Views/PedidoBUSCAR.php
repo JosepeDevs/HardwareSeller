@@ -53,14 +53,14 @@ if(isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQ
     if( !empty(($_REQUEST["fechaInicio"]) && !empty(($_REQUEST["fechaFin"]) )) ) {
         $fechaInicio=$_REQUEST["fechaInicio"];
         $fechaFin=$_REQUEST["fechaFin"];
-        $arrayPedido = GetPedidoByRangoFecha($fechaInicio,$fechaFin);
+        $arrayPedido = GetPedidosByRangoFecha($fechaInicio,$fechaFin);
         if($arrayPedido == false){
             $_SESSION['fechaNotFound'] = true;
         }
     }
     if(!empty(($_REQUEST["codUsuario"]))){
         $codUsuario=$_REQUEST["codUsuario"];
-        $arrayPedido = getPedidoByCodUsuario($codUsuario);
+        $arrayPedido = getPedidosByCodUsuario($codUsuario);
         if($arrayPedido == false){
             $_SESSION['codUsuarioNotFound'] = true;
         }
