@@ -346,11 +346,8 @@ header nav ul li a:hover{
 aside{
     float: left;
     top: var(--altoHeader);
-    width: 100%;
+    width: 30%;
     height: 100% - var(--altoHeader);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
     background-color: var(--primary);
     color: white;
     position: fixed;
