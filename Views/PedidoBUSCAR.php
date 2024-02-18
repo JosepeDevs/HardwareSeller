@@ -26,7 +26,7 @@ include_once("header.php");
         <h2><input type="submit" value="Consultar"></h2><br><br><br>
     </div>
 </form>
-<br><br><br><br><br><br><br>
+<br><br><br>
 
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
@@ -105,16 +105,16 @@ if(isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQ
 }
 if(isset($_REQUEST['idPedido'])){
     echo'
-    <h2><a class="cerrar" href="PedidoEDITAR.php?idPedido='.$idPedido.'""><img src="../Resources/arrow.png" alt="listar Pedido" />Editar pedido</a></h2>
-    <h2><a class="cerrar" href="ContenidoPedidoBUSCAR.php?numPedido='.$idPedido.'"><img src="../Resources/arrow.png" alt="listar Pedido" />Ver contenidos de este pedido</a></h2>
+    <h2><a class="finForm" href="PedidoEDITAR.php?idPedido='.$idPedido.'""><img src="../Resources/arrow.png" alt="listar Pedido" />Editar pedido</a></h2>
+    <h2><a class="finForm" href="ContenidoPedidoBUSCAR.php?numPedido='.$idPedido.'"><img src="../Resources/arrow.png" alt="listar Pedido" />Ver contenidos de este pedido</a></h2>
     ';
 }
 echo'
-<h2><a class="cerrar" href="PedidoLISTAR.php"><img src="../Resources/arrow.png" alt="listar Pedido" />Ver los contenidos de todos los pedidos</a></h2>
+<h2><a class="finForm" href="PedidosLISTAR.php"><img src="../Resources/arrow.png" alt="listar Pedido" />Ver todos los pedidos</a></h2>
 ';
 $rol = GetRolDeSession();
 if($rol == "admin" || $rol == "editor"){
-    echo '<h2><a class="cerrar"  href="TablaClientes.php">Ver usuarios</a></h2>';
+    echo '<h2><a class="finForm"  href="TablaClientes.php">Ver usuarios</a></h2>';
 } 
 
 include_once("footer.php");
