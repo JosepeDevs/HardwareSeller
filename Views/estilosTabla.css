@@ -352,12 +352,10 @@ aside{
     background-color: var(--primary);
     color: white;
     position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
     left: 0;
     z-index: 1;
     border: 5px solid red;
+
 }
 
 aside a{
