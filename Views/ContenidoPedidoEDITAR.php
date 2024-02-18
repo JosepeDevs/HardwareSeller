@@ -143,6 +143,7 @@ function addLineaPedidoTodoDisponible() {
 
     //cambiamos el nombre 
     numLineaInput.name = "numLinea" + nuevoNumLineaInput;
+    numLineaInput.id = "numLinea" + nuevoNumLineaInput;
 
     // vaciamos los campos excepto el de numLinea
     var inputs = nuevaFila.querySelectorAll('input'); // cogemos TODOS los inputs, lo coge como array que podemos recorrer
@@ -154,6 +155,7 @@ function addLineaPedidoTodoDisponible() {
             // modifica el valor del input "name" añadiendole el número de la línea para poder mandar varias lineas y cada dato tenga un identificador único
             var nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); // quitamos los números y ponemos nada, para evitar fila1 y luego fila12 y luego fila123, etc.
             inputs[i].name = nombreBase + nuevoNumLineaInput;
+            inputs[i].id = nombreBase + nuevoNumLineaInput;
         } 
     }
     numLineaInput.value = nuevoNumLineaInput;
