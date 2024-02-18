@@ -92,7 +92,10 @@ echo"<table>";
                         echo "</tr>";
                     }
         echo "</table>";
-    echo "<div class='finForm'><h2><input type='submit' value='Guardar'></h2></div>";
+    echo "<div class='finForm'>";
+    echo'<button type="button" onclick="addLineaPedidoTodoDisponible()">Añadir una fila al pedido</button>
+    <button type="button" onclick="removeLineaPedido()">Quitar una fila al pedido</button><!--resulta que si no le ponemos type entenderá que es el botón de submit-->';
+    echo"<h2><input type='submit' value='Guardar'></h2></div>";
     echo "</form>";
 echo"<div>";
 include_once("../Controllers/ContenidoPedidoMensajes.php");
@@ -111,3 +114,50 @@ echo"<div>";
 echo"</div>";
 include_once("footer.php");
 ?>
+
+<script>
+function addLineaPedidoTodoDisponible() {
+    // pillamos la tabla
+    var table = document.querySelector('table');
+    
+    // nos vamos a la que actualmente es la última fila de dicha tabla
+    var lastRow = table.rows[table.rows.length -  1];
+    
+    // clonamos la última línea arrastra todos los atributos e hijos (tds, inputs, contenido...)
+    var newRow = lastRow.cloneNode(true);
+    
+    // guardams todos los inputs  
+    var numLineaInput = newRow.querySelector('input[name^="numLinea"]'); //hacemos que seleccione el input cuyo nombre empiece por numLinea
+    
+    // lo aumentamos en  1
+    var nuevoNumLineaInput = parseInt(numLineaInput.value) +  1;
+    numLineaInput.value = nuevoNumLineaInput;
+
+    //cambiamos el nombre 
+    numLineaInput.name = "numLinea" + nuevoNumLineaInput;
+
+    // vaciamos los campos excepto el de numLinea
+    var inputs = newRow.querySelectorAll('input'); // cogemos TODOS los inputs, lo coge como array que podemos recorrer
+    for (var i =  0; i < inputs.length; i++) {
+        // si no es el de numLinea, lo vaciamos
+        if (inputs[i].name !== 'numLinea') {
+            inputs[i].value = '';
+            inputs[i].removeAttribute('required'); // quitar atributos como clase, o en este caso, el required, es que si dejamos el required solo deja añadir  1 línea
+            // modifica el valor del input "name" añadiendole el número de la línea para poder mandar varias lineas y cada dato tenga un identificador único
+            var nombreBase = inputs[i].name.replace(/[0-9]+$/, ''); // quitamos los números y ponemos nada, para evitar fila1 y luego fila12 y luego fila123, etc.
+            inputs[i].name = nombreBase + nuevoNumLineaInput;
+        } 
+    }
+    numLineaInput.value = nuevoNumLineaInput;
+
+    // añadimos la linea preparada al final
+    var tbody = table.querySelector('tbody'); // Select the tbody element
+    tbody.appendChild(newRow); // Append the new row to the tbody
+}
+function removeLineaPedido() {
+    var table = document.querySelector('table');
+    if (table.rows.length > 2) { //no borraremos la linea 1 ni los encabezados
+        table.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
+    }
+} 
+</script>
