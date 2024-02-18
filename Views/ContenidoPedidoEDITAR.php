@@ -42,14 +42,22 @@ echo"<table>";
         //datos ACTUALES OBJETO (estaticos, para que se vean siempre los actuales) PUEDEN SER VARIAS LINEAS
                     $arrayContenidoPedido = GetContenidoPedidoByBusquedaNumPedido($numPedidoOriginal);
                     //arrayContenidoPedido puede conntener de 0 a vete tu a saber cuantos ContenidoPedido
-                    foreach($arrayContenidoPedido as $numLinea) {
-                        echo"<tr>
-                        <th>Datos actuales:</th>";
-                        foreach ($arrayAtributos as $index => $atributo) {
-                            if($nombreAtributo !== "numPedido"){
-                                $nombreAtributo = $atributo;
-                                $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
-                                $valor = $numLinea->$getter();//lo llamamos para obtener el valor
+                    echo '<form action="../Controllers/ContenidoPedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
+                    foreach($arrayContenidoPedido as $index => $numLinea) {
+                        echo"<tr><th>Nuevos datos:</th>";
+                        foreach ($arrayAtributos as $atributo) {
+                            $nombreAtributo = $atributo;
+                            $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
+                            $valor = $numLinea->$getter();//lo llamamos para obtener el valor
+                            if( $nombreAtributo == "numPedido"){
+                                echo "";//no queremos mostrar nada porque numpedido aparece encima de la tabla
+                            } else if($nombreAtributo == "activo") {
+                                if($valor==0){
+                                    echo"<td>Desactivado</td>";
+                                }else{
+                                   echo"<td>Activado</td>";
+                                }
+                            } else {
                                 echo "<td>$valor</td>";
                             }
                         }
