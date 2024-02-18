@@ -359,7 +359,6 @@ aside{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    padding: 0% 1% 0% 1%;
     z-index: 1;
 }
 
