@@ -81,7 +81,21 @@ class Articulo {
         }
     }
 
-        /**
+
+    public static function getDesgloseCategoriasArticulo($categoria){
+        //para saber todas las catagorias relacionadas de este producto hay que recorrer de forma acumulativa las etiquetas
+        //ejemplo: cateogira= 21124
+        $longitudCategoria= strlen((string)$categoria);
+
+        for($i= 0; $i<$longitudCategoria; $i++ ){
+            $categoria=substr($categoria,0,$i);//ejemplo:2 piezas de pc
+            $arrayRelacionados[]=$categoria;
+        }
+        return $arrayRelacionados;
+    } 
+
+
+    /**
      * @return bool|array devuelve false si falla, devuelve el articulo o array de articulos si  encuentra 1 o más articulos que coincida el texto buscado (en nombre)
      */
     public static function GetArticulosByBusquedaNombre($nombre){
