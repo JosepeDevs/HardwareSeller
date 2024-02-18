@@ -22,11 +22,18 @@ $_SESSION["editandoContenidoPedido"]="true";
 $rol4consulta = isset($_GET['rol4consulta'])? $_GET['rol4consulta'] : null;
 //ENCABEZADOS
 echo"<table>";
-        echo"<tr><th>Atributos:</th>";
-                foreach ($arrayAtributos as $index => $atributo) {
-                    $nombreAtributo = $atributo;
-                    echo "<th>$nombreAtributo</th>";
-                }
+        foreach ($arrayAtributos as $index => $atributo) {
+            $nombreAtributo = $atributo;
+            if($nombreAtributo == "numPedido"){
+                echo'<tr><th colspan="3"><label for="numPedido">Número de pedido <br> (todas las líneas serán de/para este numero de pedido)</label></th>';
+                echo'<td colspan="4"><input type="text" name="numPedido" id="numPedido" ></td></tr>';
+            } else if( $index == 1) {
+                echo"<tr><th>Atributos:</th>";
+                echo "<th>$nombreAtributo</th>";
+            } else {
+                echo "<th>$nombreAtributo</th>";
+            }
+        }
         echo "</tr>";
 
         //datos ACTUALES OBJETO (estaticos, para que se vean siempre los actuales) PUEDEN SER VARIAS LINEAS
