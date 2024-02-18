@@ -27,8 +27,8 @@ echo"<table>";
             $nombreAtributo = $atributo;
             if($nombreAtributo == "numPedido"){
                 echo'<tr><th colspan="1">Número de pedido <br> (todas las líneas son de este numero de pedido)</th>';
-                echo'<td colspan="1">'.$numPedidoOriginal.'</td></tr>';
-                echo'<tr><th colspan="2"><label for="numPedido">Número de pedido <br> (todas las líneas sustituirán el contenido de este numero de pedido)</label></th>';
+                echo'<td colspan="1">'.$numPedidoOriginal.'</td>';
+                echo'<th colspan="2"><label for="numPedido">Número de pedido <br> (todas las líneas sustituirán el contenido de este numero de pedido)</label></th>';
                 echo'<td colspan="1"><input type="text" name="numPedido" id="numPedido" ></td></tr>';
             } else if( $index == 1) {
                 echo"<tr><th>Atributos:</th>";
