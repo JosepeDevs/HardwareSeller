@@ -31,7 +31,7 @@
             <ul>
                 <li><a href="/index.php">Inicio</a></li>
                 <li class="dropdown">
-                    <a href="#">Catalogue</a>
+                    <a href="/Views/Catalogo.php">Catalogue</a>
                     <div class="dropdown-content">
                         <a href="#">Pre-built computers</a>
                         <a href="#">Pantallas</a>
