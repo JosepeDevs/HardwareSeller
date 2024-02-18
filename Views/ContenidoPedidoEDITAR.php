@@ -170,5 +170,6 @@ function addLineaPedidoTodoDisponible() {
         if (table.rows.length > $ultimaFila) { 
             table.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
         }
+        console.log($ultimaFila);
     }
 </script>
