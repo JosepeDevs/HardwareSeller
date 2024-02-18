@@ -458,7 +458,7 @@ body{
 /****************FIN BODY*******************************/
 
 /**********************INICIO FOOTER**************************/
-/*
+
 footer{
     background-color: var(--primary);
     display: flex;
@@ -488,6 +488,6 @@ footer div h3{
 footer div a{
     color: white;
     text-decoration: underline;
-}*/
+}
 
 /**********************FIN FOOTER**************************/
