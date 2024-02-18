@@ -167,6 +167,7 @@ function addLineaPedidoTodoDisponible() {
         function removeLineaPedido() {
             var table = document.querySelector('table');
             var initialRows = table.rows.length; // filas en la tabla al principio
+            console.log("hola"+initialRows);
             if (table.rows.length -1 >= initialRows) {//no borrar más allá de lo que había inicialmente
                 table.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
             }
