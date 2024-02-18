@@ -26,9 +26,9 @@ echo"<table>";
         foreach ($arrayAtributos as $index => $atributo) {
             $nombreAtributo = $atributo;
             if($nombreAtributo == "numPedido"){
-                echo'<tr><th colspan="2"><label for="numPedido">Número de pedido <br> (Se aplicará a todas las lineas y se sobrescribirán las que tenga)</label></th>';
+                echo'<tr><th colspan="2"><label for="numPedido">Número de pedido NUEVO <br> (Se aplicará a todas las lineas, si el pedido existe éstas se añadirán a dicho numero de pedido)</label></th>';
                 echo'<td colspan="3"><input type="text" name="numPedido" id="numPedido" ></td>';
-                echo'<th colspan="1">Número de pedido <br> (todas las líneas son de este numero de pedido)</th>';
+                echo'<th colspan="1">Número ACTUAL del pedido <br> (todas las líneas son de este numero de pedido)</th>';
                 echo'<td colspan="1">'.$numPedidoOriginal.'</td></tr>';
             } else if( $index == 1) {
                 echo"<tr><th>Atributos:</th>";
@@ -168,9 +168,10 @@ function addLineaPedidoTodoDisponible() {
         var ultimoTh = ultimaFila.querySelector('th');
         if (ultimoTh.textContent.includes("datos actuales")) {
             // no hacer nada
+            ultimoTh.textContent="comeme los huevos";
             return;
         } else{
-            if (tabla.rows.length > 3) { 
+            if (tabla.rows.length > 4) { 
                 tabla.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
             }
         }
