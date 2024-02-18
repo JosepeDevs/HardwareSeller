@@ -101,6 +101,7 @@ if(
     $_SESSION["activo"] = $activo;
 }
 
+//sda
 if( isset($_SESSION["editandoContenidoPedido"]) && $_SESSION["editandoContenidoPedido"] == "true"){
     //llegamos aquí si está todo OK y estamos editando
     $_SESSION["numPedido"]=$numPedidoOriginal;
