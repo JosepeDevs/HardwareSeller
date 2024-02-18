@@ -309,6 +309,10 @@ header nav ul li a:hover{
 }
 
 
+.lni-cart{
+    font-size: 3em;
+}
+
 /************* INICIO PARALLAX***********************/
 
 .cta-container{
@@ -342,11 +346,10 @@ header nav ul li a:hover{
 /*********** INICIO BODY*****************************/
 
 
-
 aside{
     position:absolute;
     float: left;
-    height: calc(100% - 80px);
+    height: calc(100% - var(--altoHeader));
     top: var(--altoHeader);
     width: 12%;
     background-color: var(--primary);
