@@ -127,6 +127,10 @@
             <button id="hamburger">☰</button>
     </div>
     </form>
+    <div>
+        <a href="/Views/Carrito.php"><<i class="lni lni-cart"></i></a>
+        <small>Esto será el precio con AJAX<small>
+    </div>
 </header>
 <body>
 <div class="cta-container">

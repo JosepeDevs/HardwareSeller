@@ -3,7 +3,7 @@ include("header.php");
 ?>
 
 <h1>Catálogo</h1>
-<div class="aside">
+<div>
     <aside class="col-lg-3 col-md-1 col-12">
         <a href="?prebuilt">Pre-built computers</a>
         <a href="?Pantallas">Pantallas</a>
