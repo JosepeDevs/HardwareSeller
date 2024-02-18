@@ -93,9 +93,6 @@ echo"<table>";
                                 echo "<td><input type='number' id='$nombreAtributo' name='".$nombreAtributo.$index."' value='$valor'></td>";
                             }else if($nombreAtributo == "precio" || $nombreAtributo == "descuento"){
                                 echo "<td><input type='number' step='0.01' id='$nombreAtributo' name='".$nombreAtributo.$index."' value='$valor'></td>";
-                            } else if( $nombreAtributo == "numLinea") {
-                                $ultimaFila= ( $valor * 2 ) + 4; // el *2 es porque hay tantos datos actuales como datos nuevos, el +2 son las filas iniciales
-                                echo "<td><input type='text' id='$nombreAtributo' name='".$nombreAtributo.$index."' value='$valor'></td>";
                             } else{
                                 echo "<td><input type='text' id='$nombreAtributo' name='".$nombreAtributo.$index."' value='$valor'></td>";
                             }
@@ -165,11 +162,11 @@ function addLineaPedidoTodoDisponible() {
     var tbody = tabla.querySelector('tbody'); // Select the tbody element
     tbody.appendChild(nuevaFila); // Append the new row to the tbody
 }
-    function removeLineaPedido() {
-        var table = document.querySelector('table');
-        if (table.rows.length > $ultimaFila) { 
-            table.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
+        function removeLineaPedido() {
+            var table = document.querySelector('table');
+            var initialRows = table.rows.length; // filas en la tabla al principio
+            if (table.rows.length -1 >= initialRows) {//no borrar más allá de lo que había inicialmente
+                table.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
+            }
         }
-        console.log($ultimaFila);
-    }
 </script>
