@@ -35,20 +35,20 @@ if( $usuarioLogeado == false){
 }
 
 
-if(isset($_POST["numPedido"]) || isset($_POST["codArticulo"])) {
+if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
     $numPedido=null;//mejor null que sin declarar
     $codArticulo=null;//mejor null que sin declarar
     include_once("../Controllers/ContenidoPedidoBUSCARController.php");
-    if(!empty(($_POST["numPedido"]))){
-        $numPedido=$_POST["numPedido"];
+    if(!empty(($_REQUEST["numPedido"]))){
+        $numPedido=$_REQUEST["numPedido"];
         $arrayContenidoPedido = getContenidoPedidoBynumPedido($numPedido);
         if($arrayContenidoPedido == false){
             $_SESSION['numPedidoNotFound'] = true;
         }
     }
 
-    if(!empty(($_POST["codArticulo"]))){
-        $codArticulo=$_POST["codArticulo"];
+    if(!empty(($_REQUEST["codArticulo"]))){
+        $codArticulo=$_REQUEST["codArticulo"];
         $arrayContenidoPedido = GetContenidoPedidoByCodArticulo($codArticulo);
         if($arrayContenidoPedido == false){
             $_SESSION['codArticuloNotFound'] = true;
@@ -94,7 +94,12 @@ if(isset($_POST["numPedido"]) || isset($_POST["codArticulo"])) {
     };
 }
     echo'
-    <h2><a class="cerrar" href="ContenidoPedidoLISTAR.php"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Volver a la tabla de ContenidoPedido</a></h2>';
+    <h2><a class="cerrar" href="ContenidoPedidoLISTAR.php"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Ver los contenidos de todos los pedidos</a></h2>
+    <h2><a class="cerrar" href="ContenidoPedidoEDITAR.php?numPedido='.$numPedido.'""><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Editar el contenido de este pedido</a></h2>
+    ';
+    if(isset($_REQUEST['numPedido'])){
+    echo'<h2><a class="cerrar" href="PedidoBUSCAR.php?numPedido='.$numPedido.'"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Volver al PEDIDO</a></h2>';
+    }
     $rol = GetRolDeSession();
     if($rol == "admin" || $rol == "editor"){
         echo '<h2><a class="cerrar"  href="TablaClientes.php">Ver usuarios</a></h2>';
