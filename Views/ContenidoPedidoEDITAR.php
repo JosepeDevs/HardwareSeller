@@ -163,8 +163,8 @@ function addLineaPedidoTodoDisponible() {
     tbody.appendChild(nuevaFila); // Append the new row to the tbody
 }
     function removeLineaPedido() {
-        var tabla = document.querySelector('table');
-        var ultimaFila = tabla.rows[tabla.rows.length - 1];
+        var table = document.querySelector('table');
+        var ultimaFila = table.rows[table.rows.length - 1];
         var ultimoTh = ultimaFila.querySelector('th');
         if (ultimoTh.textContent.includes("datos actuales")) {
             // no hacer nada
