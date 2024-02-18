@@ -129,8 +129,8 @@
     </div>
     </form>
     <div>
-        <a href="/Views/Carrito.php" class="btn"><i class="lni lni-cart"></i></a>
         <small>Este texto será el precio con AJAX<small>
+        <a href="/Views/Carrito.php" class="btn"><i class="lni lni-cart"></i></a>
     </div>
 </header>
 <body>
