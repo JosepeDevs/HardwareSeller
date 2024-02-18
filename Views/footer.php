@@ -1,6 +1,6 @@
 </div><!--esto cierra "cta-container"-->
 </div><!--esto cierra "<div class="cuerpo"-->
-<footer class="footer col-lg-3 col-md-6 col-12">
+<footer class="footer col-lg-12 col-md-6 col-12">
     <div>
         <a href="/index.php"><img src="/Resources/HSLogoFondoAzulGrisSinTexto.png" width="100px" alt="Logo"></a>
     </div>
