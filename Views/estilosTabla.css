@@ -348,7 +348,7 @@ aside{
     float: left;
     top: var(--altoHeader);
     width: 15%;
-    height: 100% - var(--altoHeader);
+    height: 900px;
     background-color: var(--primary);
     color: white;
     position: fixed;
