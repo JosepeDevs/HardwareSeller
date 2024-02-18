@@ -6,8 +6,8 @@
     </div>
     <div>
         <h3>Información</h3>
-        <a href="#">Sobre nosotros</a>
-        <a href="#">Nuestro equipo</a>
+        <a href="https://www.linkedin.com/in/josepedronavarro/">Sobre nosotros</a>
+        <a href="https://www.linkedin.com/in/josepedronavarro/">Nuestro equipo</a>
     </div>
     <div>
         <h3>Contacto</h3>

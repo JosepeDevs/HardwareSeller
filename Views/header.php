@@ -34,9 +34,9 @@
                     <a href="#">Catalogue</a>
                     <div class="dropdown-content">
                         <a href="#">Pre-built computers</a>
-                        <a href="#">CPU</a>
-                        <a href="#">GPU</a>
-                        <a href="#">Mother Boards</a>
+                        <a href="#">Pantallas</a>
+                        <a href="#">Gráficas</a>
+                        <a href="#">Placas base</a>
                         <a href="#">RAM</a>
                         <a href="#">More Hardware coming soon</a>
                     </div>
