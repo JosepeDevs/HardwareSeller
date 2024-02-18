@@ -1,6 +1,6 @@
 </div><!--esto cierra "cta-container"-->
 </div><!--esto cierra "<div class="cuerpo"-->
-<footer>
+<footer class="footer">
     <div>
         <a href="/index.php"><img src="/Resources/HSLogoFondoAzulGrisSinTexto.png" width="100px" alt="Logo"></a>
     </div>
@@ -8,12 +8,6 @@
         <h3>Información</h3>
         <a href="#">Sobre nosotros</a>
         <a href="#">Nuestro equipo</a>
-    </div>
-        <div>
-        <h3>Legal</h3>
-        <a href="/Views/cookies.php">Cookies</a>
-        <a href="/Views/Privacidad.php">Privacidad</a>
-        <a href="/Views/AvisoLegal.php">Aviso legal</a>
     </div>
     <div>
         <h3>Contacto</h3>
@@ -23,7 +17,7 @@
     <a href=https://github.com/SamKirkland/FTP-Deploy-Action>Házlo tú mismo. Credit @SamKirkland</a>
 </div>
     <!-- Start Footer Area -->
-    <footer class="footer">
+
         <div class="footer-middle">
             <div class="container">
                 <div class="row">
@@ -50,11 +44,11 @@
                             <div class="col-lg-3 col-md-6 col-12">
                                 <!-- Single Widget -->
                                 <div class="single-footer sm-custom-border f-link">
-                                    <h3>Hardware seller</h3>
+                                    <h3>LEGAL</h3>
                                     <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">Sobre nosotros</a></li>
-                                        <li><a href="#">Nuestro equipo</a></li>
+                                        <li><a href="/Views/cookies.php">Cookies</a></li>
+                                        <li><a href="/Views/Privacidad.php">Privacidad</a></li>
+                                        <li><a href="/Views/AvisoLegal.php">Aviso legal</a></li>
                                     </ul>
                                 </div>
                                 <!-- End Single Widget -->

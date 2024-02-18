@@ -96,7 +96,7 @@ echo"<table>";
             }
             if(GetRolDeSession() == "admin"){
                 echo"
-                <td><a href='PedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
+                <td><a href='ContenidoPedidoLISTAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
                 <td><a href='PedidoBORRAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
             }
         }
