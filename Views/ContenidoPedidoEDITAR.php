@@ -126,25 +126,18 @@ include_once("footer.php");
 
 <script>
 function addLineaPedidoTodoDisponible() {
-    // pillamos la tabla
-    var tabla = document.querySelector('table');
-    
-    // nos vamos a la que actualmente es la última fila de dicha tabla
-    var ultimaFila = tabla.rows[tabla.rows.length -  1];
-    
-    // clonamos la última línea arrastra todos los atributos e hijos (tds, inputs, contenido...)
-    var nuevaFila = ultimaFila.cloneNode(true);
-    
-    // guardams todos los inputs  
+
+    document.getElementById("errores").innerHTML =  ""
+    var tabla = document.querySelector('table');    // pillamos la tabla
+    var ultimaFila = tabla.rows[tabla.rows.length -  1];    // nos vamos a la que actualmente es la última fila de dicha tabla
+    var nuevaFila = ultimaFila.cloneNode(true);    // clonamos la última línea arrastra todos los atributos e hijos (tds, inputs, contenido...)
     var numLineaInput = nuevaFila.querySelector('input[name^="numLinea"]'); //hacemos que seleccione el input cuyo nombre empiece por numLinea
     
-    // lo aumentamos en  1
-    var nuevoNumLineaInput = parseInt(numLineaInput.value) +  1;
+    var nuevoNumLineaInput = parseInt(numLineaInput.value) +  1;    // lo aumentamos en  1
     numLineaInput.value = nuevoNumLineaInput;
 
-    //cambiamos el nombre 
-    numLineaInput.name = "numLinea" + nuevoNumLineaInput;
-    numLineaInput.id = "numLinea" + nuevoNumLineaInput;
+    numLineaInput.name = "numLinea" + nuevoNumLineaInput;    //cambiamos el nombre 
+    numLineaInput.id = "numLinea" + nuevoNumLineaInput;    //cambiamos el id 
 
     // vaciamos los campos excepto el de numLinea
     var inputs = nuevaFila.querySelectorAll('input'); // cogemos TODOS los inputs, lo coge como array que podemos recorrer
