@@ -105,7 +105,7 @@ echo"<table>";
     <button type="button" onclick="removeLineaPedido()">Quitar una fila al pedido</button><!--resulta que si no le ponemos type entenderá que es el botón de submit-->';
     echo"<h2><input type='submit' value='Guardar'></h2></div>";
     echo "</form>";
-echo"<div>";
+echo"<div id='errores'>";
 include_once("../Controllers/ContenidoPedidoMensajes.php");
 $arrayMensajes=getArrayMensajesContenidoPedido();
 if(is_array($arrayMensajes)){
@@ -176,7 +176,7 @@ function addLineaPedidoTodoDisponible() {
         if (table.rows.length -1 >= initialRows) {//no borrar más allá de lo que había inicialmente
             table.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
         } else{
-            echo "<h3>No se pueden borrar las líneas que actualmente contiene el pedido.</h3>"
+            document.getElementById("errores").innerHTML = "<h3>No se pueden borrar las líneas que actualmente contiene el pedido.</h3>";
         }
     }
 </script>
