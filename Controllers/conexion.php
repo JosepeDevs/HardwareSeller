@@ -15,7 +15,11 @@ include_once("../Models/Cliente.php");
 if(isset($_POST['user']) &&  isset($_POST['key'])) {
     $usuario = $_POST['user'];
     $cliente = Cliente::GetClientByEmail($usuario);
-    $rol = $cliente->getRol();
+    if($cliente !== false){
+        $rol = $cliente->getRol();
+    } else{
+        header("Location:/index.php");
+    }
     $psswrdSinHashear = $_POST['key'];
     if($cliente == false) {
         $_SESSION['NoExiste']=true;
