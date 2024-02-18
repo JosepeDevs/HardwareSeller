@@ -365,7 +365,7 @@ aside{
     left: 0;
     float: left;
     height: calc(87% - var(--altoHeader));
-    width: 12%;
+    width: 10%;
     background-color: var(--primary);
     color: white;
     position: fixed;
