@@ -344,9 +344,10 @@ header nav ul li a:hover{
 
 
 aside{
+    position:absolute;
     float: left;
     top: var(--altoHeader);
-    width: 30%;
+    width: 15%;
     height: 100% - var(--altoHeader);
     background-color: var(--primary);
     color: white;
