@@ -10,13 +10,14 @@ include_once("header.php");
             <th><h2><label for="idPedido">Id pedido</label></h2></th>
             <th><h2><label for="fecha">Fecha inicio</label></h2></th>
             <th><h2><label for="fecha">Fecha fin</label></h2></th>
-            <th><h2><label for="estado">Busqueda por estado<br>(0=En Carrito, 1=Pedido, 2=Enviado, 3=recibido, 4=Entrega fallida, 5=completado)</label></h2></th>
+            <th><h2><label for="estado">Busqueda por estado<br>(0=En Carrito, 1=Pedido Pago Pendiente, 2=Pedido Pago Aceptado, 3=Enviado, 4=Recibido, 5=Entrega con incidencia, 6=Completado)</label></h2></th>
             <th><h2><label for="codUsuario">Codigo usuario (DNI)</label></h2></th>
         </tr>
         <tr>
             <td><input type="text" name="idPedido" ><br><br></td>
             <td><input type="date" name="fechaInicio" autofocus><br><br></td>
             <td><input type="date" name="fechaFin" ><br><br></td>
+            <td><input type="number" name="estado" min="0" max="5" ><br><br></td>
             <td><input type="text" name="codUsuario" ><br><br></td>
         </tr>
     </table>
