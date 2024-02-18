@@ -11,7 +11,7 @@
     </div>
     <div>
         <h3>Contacto</h3>
-        <a href="mailto:info@josepedevs.infinityfreeapp.com">Escribenos un correo</a>
+        <a href="mailto:info@josepedevs.infinityfreeapp.com">Escríbenos un correo</a>
     </div>
     <div>
         <h3>Legal</h3>
