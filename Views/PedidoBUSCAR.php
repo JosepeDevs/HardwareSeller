@@ -51,8 +51,8 @@ if(isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQ
     }
     
     if( isset($_REQUEST['fechaInicio']) && isset($_REQUEST['fechaFin'])) {
-        $fechaInicioPredeterminada = "01/01/1990";
-        $fechaFinPredeterminada = "01/01/2100";
+        $fechaInicioPredeterminada = "1990/01/01";
+        $fechaFinPredeterminada = "2100/01/01";
         empty($_REQUEST["fechaInicio"]) ? $fechaInicio = $fechaInicioPredeterminada : $fechaInicio = $_REQUEST['fechaInicio'] ; 
         empty($_REQUEST["fechaFin"]) ? $fechaFin = $fechaFinPredeterminada : $fechaFin = $_REQUEST['fechaFin'] ; 
         
