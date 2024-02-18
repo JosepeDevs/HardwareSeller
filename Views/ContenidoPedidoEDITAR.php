@@ -20,13 +20,16 @@ $arrayAtributos = getArrayAtributosContenidoPedido();
 //ponemos "editando" en true para que cuando lo mandemos a ValidarDatos lo trate como update
 $_SESSION["editandoContenidoPedido"]="true";
 $rol4consulta = isset($_GET['rol4consulta'])? $_GET['rol4consulta'] : null;
+
 //ENCABEZADOS
 echo"<table>";
         foreach ($arrayAtributos as $index => $atributo) {
             $nombreAtributo = $atributo;
             if($nombreAtributo == "numPedido"){
-                echo'<tr><th colspan="3"><label for="numPedido">Número de pedido <br> (todas las líneas serán de/para este numero de pedido)</label></th>';
-                echo'<td colspan="4"><input type="text" name="numPedido" id="numPedido" ></td></tr>';
+                echo'<tr><th colspan="1">Número de pedido <br> (todas las líneas son de este numero de pedido)</th>';
+                echo'<td colspan="1">'.$numPedidoOriginal.'</td></tr>';
+                echo'<tr><th colspan="2"><label for="numPedido">Número de pedido <br> (todas las líneas sustituirán el contenido de este numero de pedido)</label></th>';
+                echo'<td colspan="1"><input type="text" name="numPedido" id="numPedido" ></td></tr>';
             } else if( $index == 1) {
                 echo"<tr><th>Atributos:</th>";
                 echo "<th>$nombreAtributo</th>";
@@ -58,7 +61,9 @@ echo"<table>";
                             $nombreAtributo = $atributo;
                             $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
                             $valor = $numLinea->$getter();//lo llamamos para obtener el valor
-                            if($nombreAtributo == "activo") {
+                            if( $nombreAtributo == "numPedido"){
+                                echo "";//no queremos mostrar nada porque numpedido aparece encima de la tabla
+                            } else if($nombreAtributo == "activo") {
                                 echo "
                                     <td>
                                         <select id='activo' name='activo' required>";
