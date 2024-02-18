@@ -346,6 +346,7 @@ header nav ul li a:hover{
 aside{
     top: var(--altoHeader);
     width: 100%;
+    height: 100% - var(--altoHeader);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
