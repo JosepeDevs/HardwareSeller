@@ -348,7 +348,7 @@ aside{
     float: left;
     height:100%;
     top: var(--altoHeader);
-    width: 13%;
+    width: 12%;
     background-color: var(--primary);
     color: white;
     position: fixed;
@@ -499,6 +499,7 @@ footer{
     position: fixed;
     width: 100%;
     height: var(--altoHeader);
+    left:0;
     bottom: 0;
     z-index: 1;
 }
