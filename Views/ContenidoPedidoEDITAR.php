@@ -27,7 +27,7 @@ echo"<table>";
             $nombreAtributo = $atributo;
             if($nombreAtributo == "numPedido"){
                 echo'<tr><th colspan="2"><label for="numPedido">Número de pedido NUEVO <br> (Se aplicará a todas las lineas, si el pedido existe éstas se añadirán a dicho numero de pedido)</label></th>';
-                echo'<td colspan="3"><input type="text" name="numPedido" id="numPedido" ></td>';
+                echo'<td colspan="3"><input type="text" name="numPedido" id="numPedido" >'.$numPedidoOriginal.'</td>';
                 echo'<th colspan="1">Número ACTUAL del pedido <br> (todas las líneas son de este numero de pedido)</th>';
                 echo'<td colspan="1">'.$numPedidoOriginal.'</td></tr>';
             } else if( $index == 1) {
