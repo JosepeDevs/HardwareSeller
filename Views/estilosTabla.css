@@ -350,7 +350,7 @@ aside{
     top: var(--altoHeader);
     left: 0;
     float: left;
-    height: calc(86% - var(--altoHeader));
+    height: calc(87% - var(--altoHeader));
     width: 12%;
     background-color: var(--primary);
     color: white;
@@ -358,8 +358,9 @@ aside{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
+    padding: 5%;
     z-index: 1;
-    
 }
 
 aside a{
