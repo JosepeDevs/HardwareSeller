@@ -123,6 +123,7 @@ echo"</div>";
 include_once("footer.php");
 ?>
 
+
 <script>
 function addLineaPedidoTodoDisponible() {
     // pillamos la tabla
@@ -177,3 +178,4 @@ function addLineaPedidoTodoDisponible() {
         }
     }
 </script>
+ 
