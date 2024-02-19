@@ -63,21 +63,64 @@ $_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito
     </table>
     <div class="shipAddr">
         <h4>Datos usuario y dirección de envío</h4>
-        <?php
+    <?php
+        include_once('../Controllers/OperacionesSession.php');
+        $estaClienteRegistrado = UserEstablecido();
+        $usuario = getClienteByemail($_SESSION['user']);
+        if($estaClienteRegistrado){
+            //NOTHING LIKE A GOOD RETURNING CLIENT!
+            echo"
+            <p>".$usuario->getNombre()."</p>
+            <p>".$usuario->getEmail()."</p>
+            <p>".$usuario->getTelefono()."</p>
+            <p>".$usuario->getDireccion()."</p>
+            <p>".$usuario->getLocalidad()."</p>
+            <p>".$usuario->getProvincia()."</p>
+            ";
+        } else{
+            //ESTABAN COMPRANDO SIN REGISTRARSE LOS MUY TRUANES
+            $_SESSION['RegistroInSitu'] = 1;
+            echo '
+            <form action="../Controllers/ValidarDatosCliente.php" method="post">
+                <table>
+                    <tr>
+                        <th><label for="nombre">Nombre:</label></th>
+                        <th><label for="direccion">direccion:</label></th>
+                        <th><label for="localidad">localidad:</label></th>
+                        <th><label for="provincia">provincia:</label></th>
+                        <th><label for="telefono">telefono:</label></th>
+                        <th><label for="email">email:</label></th>
+                        <th><label for="dni">DNI:</label></th>
+                        <th><label for="psswrd">contraseña:</label></th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="nombre" id="nombre" required><br><br></td>
+                        <td><input type="text" name="direccion" id="direccion" required ><br><br></td>
+                        <td><input type="text" name="localidad" id="localidad" required ><br><br></td>
+                        <td><input type="text" name="provincia" id="provincia" required><br><br>
+                        <td><input type="tel" name="telefono" id="telefono" required><br><br>
+                        <td><input type="email" name="email" id="email" required><br><br>
+                        <td><input type="text" name="dni" id="dni" required pattern="^\d{8}\w{1}$"><br><br></td>
+                        <td><input type="password" name="psswrd" id="pssword" required><br><br>
+                    </tr>
+                </table>
+                <h2><input type="submit" value="Guardar"></h2>
+            </form>
+            ';
+        }
 
-        echo"
-        <p> Nombre</p>
-        <p>email</p>
-        <p>telefono</p>
-        <p>direccion</p>
-        <p>localidad</p>
-        <p>provincia</p>
-        <p>CP</p>
-        ";
+        //SECCION ERRORES EN EL ALTA DE USER
+        include_once("../Controllers/ClienteALTAMensajes.php");
+        $arrayMensajes=getArrayMensajesNuevo();
+        if(is_array($arrayMensajes)){
+            foreach($arrayMensajes as $mensaje) {
+                echo "<h3>$mensaje</h3>";
+            }
+        };
         ?>
     </div>
     <div class="footBtn">
-        <a href="index.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Continue Comprando</a>
-        <a href="AccionCarta.php?action=placeOrder" class="btn btn-success orderBtn">Realizar pedido <i class="glyphicon glyphicon-menu-right"></i></a>
+        <a href="index.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Seguir navegando </a>
+        <a href="AccionCarta.php?action=placeOrder" class="btn btn-success orderBtn">Continuar con el pedido <i class="glyphicon glyphicon-menu-right"></i></a>
     </div>
 </div>

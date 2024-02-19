@@ -230,7 +230,10 @@ print_r($arrayDatosCliente);
         if($rolAdmin == true) {
            header("Location: ../Views/TablaClientes.php");
             exit;
-        } else {
+        } else if( isset($_SESSION["RegistroInSitu"]) && $_SESSION["RegistroInSitu"] == 1){
+            header("Location: ../Views/Carrito.php");
+            exit;
+        } else{
            header("Location: ../Views/ClienteALTA.php?dni=$dniNuevo");
             exit;
         }
