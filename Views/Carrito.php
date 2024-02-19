@@ -32,26 +32,31 @@ $_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito
     include_once('../Controllers/ArticuloBUSCARController.php');
         if(count($_SESSION['productos']) > 0){
             $arrayItems = array($_SESSION['productos']);//array asociativo con codigo del articulo y cantidad
+            print_r($arrayItems);
             foreach($arrayItems as $codigo => $cantidad){//aquí los indices al ser asociativo son los propios codigos de artículo
                 $articulo = getArticuloByCodigo($codigo);
-                $precio=$articulo->getPrecio();
-                $descuento=$articulo->getDescuento();
-                $cantidad = $arrayItems[$codigo];
-                $subTotal=($precio*(1-($descuento/100)))*$cantidad;
-                echo'
-                <tr>
-                    <td>'.$articulo->getNombre().'</td>
-                    <td>'.$precio.' €'.'</td>
-                    <td>'.$descuento.'</td>
-                    <td>'.$cantidad.'</td>
-                    <td>'.$subTotal.' €'.'</td>
-                </tr>
-                ';
-                $arraySubtotales [] = $subTotal;
-                $total = array_sum($arraySubtotales);
+                if($articulo !== false){
+                    $precio=$articulo->getPrecio();
+                    $descuento=$articulo->getDescuento();
+                    $cantidad = $arrayItems[$codigo];
+                    $subTotal=($precio*(1-($descuento/100)))*$cantidad;
+                    echo'
+                    <tr>
+                        <td>'.$articulo->getNombre().'</td>
+                        <td>'.$precio.' €'.'</td>
+                        <td>'.$descuento.'</td>
+                        <td>'.$cantidad.'</td>
+                        <td>'.$subTotal.' €'.'</td>
+                    </tr>
+                    ';
+                    $arraySubtotales [] = $subTotal;
+                    $total = array_sum($arraySubtotales);
+                } else{
+                    echo '<tr><td colspan="5"><p>Carrito sin artículos que mostrar</p></td>';
+                }
             } 
         }else{
-            echo '<tr><td colspan="4"><p>Carrito sin artículos (carrito vacío)</p></td>';
+            echo '<tr><td colspan="5"><p>Carrito sin artículos (carrito vacío)</p></td>';
         } 
     ?>
     </tbody>
