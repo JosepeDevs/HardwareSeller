@@ -223,6 +223,8 @@ $_SESSION["activo"] = $activo;
        // echo"<br>la operacion ha sido existosa??$operacionExitosa<br>";
         if($operacionExitosa == true){
             $_SESSION['GoodInsertCliente']= true;
+        } else{
+            $_SESSION['GoodInsertCliente']= false;
         }
         include_once("OperacionesSession.php");
         $rolAdmin = AuthYRolAdmin();
