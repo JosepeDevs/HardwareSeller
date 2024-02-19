@@ -56,8 +56,20 @@ td a {
     font-size: 1.3em;
 }
 
+td a:hover {
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    color: var(--hover-light);
+}
+
 td a i {
     color:black;
+    font-size: 1.3em;
+}
+
+td a i:hover {
+    color: var(--hover-light);
     font-size: 1.3em;
 }
 

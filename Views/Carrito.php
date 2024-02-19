@@ -2,6 +2,8 @@
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //ESTA PÁGINA NO SE DEBE PROTEGER, ACCESIBLE A TODOS LOS NAVEGANTES
 
+//HEADER Y TITULO
+include_once("header.php");
 
 $codigoParaCarrito = isset($_GET["codigo"]) ? $_GET["codigo"] : "";
 
@@ -125,3 +127,7 @@ $_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito
         <a href="AccionCarta.php?action=placeOrder" class="btn btn-success orderBtn">Continuar con el pedido <i class="glyphicon glyphicon-menu-right"></i></a>
     </div>
 </div>
+<?php
+include_once("footer.php");
+?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
