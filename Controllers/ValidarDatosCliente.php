@@ -181,15 +181,13 @@ $_SESSION["psswrd"] = $psswrd;
 $_SESSION["rolCliente"] = $rol;
 $_SESSION["activo"] = $activo;
 
-print("0-->");
-print_r($_SESSION);
 
 //print("<br> array session:");
 //print_r($_SESSION);
 
 //UPDATE o INSERT , SUBIR confirmación a SESSION y HEADER A DONDE TOQUE
 if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true" ){
-    
+
     $arrayDatosCliente  = array($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo, $noPsswrd);
     //print("<br> array del cliente:");
     //print_r($arrayDatosCliente);
@@ -218,8 +216,7 @@ if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true
     $arrayDatosCliente  = array($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
     // print("<br> array del cliente:");
     //print_r($arrayDatosCliente);
-    print("1-->");
-    print_r($_SESSION);
+
     
     $_SESSION["dni"]=$dniNuevo;
     //echo "<p>'insertando cliente...espere infinito...datos que estamos pasando: $dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo</p>";
@@ -230,13 +227,10 @@ if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true
     } else{
         $_SESSION['GoodInsertCliente']= false;
     }
-    print("2-->");
-    print_r($_SESSION);
-    
+
     include_once("OperacionesSession.php");
     $rolAdmin = AuthYRolAdmin();
-    print("3-->");
-    print_r($_SESSION);
+
     
     if($rolAdmin == true) {
            header("Location: ../Views/TablaClientes.php");
