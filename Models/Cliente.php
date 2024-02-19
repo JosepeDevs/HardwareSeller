@@ -241,10 +241,10 @@ class Cliente {
                 //$resultado = $statement->fetch();
 
                 if ($OperacionExitosa) {
+                    return true;
+                } else {
                     $_SESSION['BadInsertCliente']= true;
                     return false;
-                } else {
-                    return true;
                 }
         } catch(PDOException $e) {
             $_SESSION['BadInsertCliente']= true;
