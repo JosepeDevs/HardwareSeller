@@ -14,7 +14,6 @@ if(isset($_GET["codigo"])) {
     $_SESSION['productos']["$codigoParaCarrito"] = array_key_exists($codigoParaCarrito, $_SESSION['productos']) ? $_SESSION['productos']["$codigoParaCarrito"] + 1 : 1;
 }
 
-print_r($_SESSION);
 
 
 
@@ -37,6 +36,7 @@ print('<h1>Catálogo</h1>
         </aside>
     <div>
 ');
+print_r($_SESSION);
 
 //PREPARAR ARRAYS CON OBJETOS
 $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;

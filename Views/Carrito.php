@@ -31,7 +31,7 @@ $_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito
         <?php
     include_once('../Controllers/ArticuloBUSCARController.php');
         if(count($_SESSION['productos']) > 0){
-            $arrayItems = array($_SESSION['productos']);//array asociativo con codigo del articulo y cantidad
+            $arrayItems = $_SESSION['productos'];//array asociativo con codigo del articulo y cantidad
             print_r($arrayItems);
             foreach($arrayItems as $codigo => $cantidad){//aquí los indices al ser asociativo son los propios codigos de artículo
                 $articulo = getArticuloByCodigo($codigo);
