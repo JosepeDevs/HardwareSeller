@@ -6,7 +6,6 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("header.php");
 
 ?>
-<div class="panel-body">
     <h1>Vista previa del pedido</h1>
     <table class="table">
     <thead>
@@ -23,7 +22,6 @@ include_once("header.php");
     include_once('../Controllers/ArticuloBUSCARController.php');
         if(count($_SESSION['productos']) > 0){
             $arrayItems = $_SESSION['productos'];//array asociativo con codigo del articulo y cantidad
-            print_r($arrayItems);
             foreach($arrayItems as $codigo => $cantidad){//aquí los indices al ser asociativo son los propios codigos de artículo
                 $articulo = getArticuloByCodigo($codigo);
                 if($articulo !== false){
@@ -61,7 +59,6 @@ include_once("header.php");
         </tr>
     </tfoot>
     </table>
-    <div class="shipAddr">
     <?php
         if(isset($_SESSION['user'])) {
             include_once('../Controllers/ClienteBUSCARController.php');
@@ -69,12 +66,18 @@ include_once("header.php");
             //NOTHING LIKE A GOOD RETURNING CLIENT!
             echo"
             <h2>Datos usuario y dirección de envío</h2>
-            <p>".$usuario->getNombre()."</p>
-            <p>".$usuario->getEmail()."</p>
-            <p>".$usuario->getTelefono()."</p>
-            <p>".$usuario->getDireccion()."</p>
-            <p>".$usuario->getLocalidad()."</p>
-            <p>".$usuario->getProvincia()."</p>
+            <p>Nombre: ".$usuario->getNombre()."</p>
+            <p>Email: ".$usuario->getEmail()."</p>
+            <p>Teléfono: ".$usuario->getTelefono()."</p>
+            <p>Dirección: ".$usuario->getDireccion()."</p>
+            <p>Localidad: ".$usuario->getLocalidad()."</p>
+            <p>Provincia: ".$usuario->getProvincia()."</p>
+            <br>
+            <div class='finForm'>
+                <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
+                <button type='submit' class='submit-button'><span>Proceder al método de pago </span><i class='lni lni-chevron-right'></i></button> 
+                </form> 
+            </div>
             ";
         } else{
             //ESTABAN COMPRANDO SIN REGISTRARSE LOS MUY TRUANES
@@ -105,6 +108,12 @@ include_once("header.php");
                         <td><input type="password" name="psswrd" id="pssword" required><br><br>
                     </tr>
                 </table>
+                <br>
+                <div class="finForm">
+                    <button type="button"><a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Seguir navegando </a></button>
+                    <button type="submit" class="submit-button"><span>Proceder al método de pago </span><i class="lni lni-chevron-right"></i></button> 
+                    </form>
+                </div>
             ';
         }
 
@@ -116,15 +125,11 @@ include_once("header.php");
                 echo "<h3>$mensaje</h3>";
             }
         };
+        print_r($arrayItems);
+
         //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
         ?>
-    </div>
-    <div class="finForm">
-        <button type="button"><a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Seguir navegando </a></button>
-        <button type="submit" class="submit-button"><span>Proceder al método de pago </span><i class="lni lni-chevron-right"></i></button> 
-        </form>
-    </div>
-</div>
+
 <?php
 include_once("footer.php");
 ?>
