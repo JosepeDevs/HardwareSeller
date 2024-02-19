@@ -71,13 +71,13 @@ $_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito
     </tfoot>
     </table>
     <div class="shipAddr">
-        <h4>Datos usuario y dirección de envío</h4>
     <?php
         if(isset($_SESSION['user'])) {
             include_once('../Controllers/ClienteBUSCARController.php');
             $usuario = getClienteByemail($_SESSION['user']);
             //NOTHING LIKE A GOOD RETURNING CLIENT!
             echo"
+            <h2>Datos usuario y dirección de envío</h2>
             <p>".$usuario->getNombre()."</p>
             <p>".$usuario->getEmail()."</p>
             <p>".$usuario->getTelefono()."</p>
@@ -89,6 +89,8 @@ $_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito
             //ESTABAN COMPRANDO SIN REGISTRARSE LOS MUY TRUANES
             $_SESSION['RegistroInSitu'] = 1;
             echo '
+            <h2>Datos usuario y dirección de envío no encontrados, por favor indicar a continuación</h2>
+            <br>
             <form action="../Controllers/ValidarDatosCliente.php" method="post">
                 <table>
                     <tr>
@@ -112,7 +114,7 @@ $_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito
                         <td><input type="password" name="psswrd" id="pssword" required><br><br>
                     </tr>
                 </table>
-                <h2><input type="submit" value="Guardar"></h2>
+                <button><input type="submit" value="Guardar"></button>
             </form>
             ';
         }
