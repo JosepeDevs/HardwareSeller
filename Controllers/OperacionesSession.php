@@ -1,13 +1,7 @@
 
 <?php
 //antes esto era usersession
-if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
-$usuarioLogeado = UserEstablecido();
-if( $usuarioLogeado == false){
-    session_destroy();
-    echo "operacionesSession dice: shit, no está user en session";
-    //header("Location: index.php");
-}
+//si protejo esto validarclientes no funciona y el alta de clientes no va
 
 /**
  * @return bool Devuelve TRUE si existe user en session (solo ocurre si la contraseña era correcta). Devuelve FALSE si no encuentr

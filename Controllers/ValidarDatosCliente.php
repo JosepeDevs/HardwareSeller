@@ -228,6 +228,8 @@ $_SESSION["activo"] = $activo;
         }
         include_once("OperacionesSession.php");
         $rolAdmin = AuthYRolAdmin();
+        print_r($_SESSION);
+
         if($rolAdmin == true) {
            header("Location: ../Views/TablaClientes.php");
             exit;

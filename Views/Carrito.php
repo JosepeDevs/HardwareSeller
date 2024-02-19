@@ -118,14 +118,14 @@ include_once("header.php");
         }
 
         //SECCION ERRORES EN EL ALTA DE USER
-       // include_once("../Controllers/ClienteALTAMensajes.php");
-        //$arrayMensajes=getArrayMensajesNuevo();
-        /*if(is_array($arrayMensajes)){
+        include_once("../Controllers/ClienteALTAMensajes.php");
+        $arrayMensajes=getArrayMensajesNuevo();
+        if(is_array($arrayMensajes)){
             foreach($arrayMensajes as $mensaje) {
                 echo "<h3>$mensaje</h3>";
             }
-        };*/
-
+        };
+        print_r($_SESSION);
         //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
         ?>
 
