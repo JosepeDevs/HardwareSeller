@@ -2,17 +2,19 @@
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //ESTA PÁGINA NO SE DEBE PROTEGER, ACCESIBLE A TODOS LOS NAVEGANTES
 
+//si no existe la key productos la crea en session (productos será un array asociativo)
+if(!array_key_exists('productos', $_SESSION)) {
+    $_SESSION['productos'] = []; 
+}
+
 //AÑADIR AL CARRITO
 if(isset($_GET["codigo"])) {
     $codigoParaCarrito = $_GET["codigo"] ;
+    //mira si existe ya el producto, si ya existe añade 1 , si no existe, guarda 1
+    $_SESSION['productos']["$codigoParaCarrito"] = array_key_exists($codigoParaCarrito, $_SESSION['productos']) ? $_SESSION['productos']["$codigoParaCarrito"] + 1 : 1;
 }
 
-if(!array_key_exists('productos', $_SESSION)) {
-    $_SESSION['productos'] = []; // declara que dentro de la key "productos" vamos a guardar un array
-}
 
-//mira si existe ya el producto, si ya existe añade 1 , si no existe, guarda 1
-$_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito, $_SESSION['productos']) ? $_SESSION['productos'][$codigoParaCarrito] + 1 : 1;
 
 
 
