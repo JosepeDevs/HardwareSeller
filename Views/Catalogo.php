@@ -3,8 +3,9 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //ESTA PÁGINA NO SE DEBE PROTEGER, ACCESIBLE A TODOS LOS NAVEGANTES
 
 //AÑADIR AL CARRITO
-
-$codigoParaCarrito = isset($_GET["codigo"]) ? $_GET["codigo"] : "";
+if(isset($_GET["codigo"])) {
+    $codigoParaCarrito = $_GET["codigo"] ;
+}
 
 if(!array_key_exists('productos', $_SESSION)) {
     $_SESSION['productos'] = []; // declara que dentro de la key "productos" vamos a guardar un array
