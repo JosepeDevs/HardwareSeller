@@ -46,7 +46,7 @@ $arrayAImprimir = getArrayPaginadoArticulos($arrayArticulos, $articulosAMostrar,
 echo"<div class='col-lg-9 col-md-11 col-12'>
         <table>";
             for( $i = 0; $i < count($arrayAImprimir); $i++ ){
-                if($i==0 || ($i % 3) == 0 ){ //si es un múltiplo de 3 crear línea nueva
+                if($i==0 || $i==3 || $i==6 || $i==9 ){ //si es un múltiplo de 3 crear línea nueva
                     echo'<tr>';
                 }
                 echo'
@@ -56,15 +56,16 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
                             <div class="col-sm">
                                 <img src="'.$directorio .$arrayAImprimir[$i]->getImagen().'" class="img-fluid" alt="'.$arrayAImprimir[$i]->getImagen().'">
                                 <br>
-                                <h2>'.$arrayAImprimir[$i]->getNombre().'</h2>: <h3>'.$arrayAImprimir[$i]->getPrecio().' € </h3>
-                                <p>'.$arrayAImprimir[$i]->getDescripcion().'</p>
-                                <a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'">Placas base</a>
+                                <h2>Nombre:'.$arrayAImprimir[$i]->getNombre().'</h2>
+                                <h3 style="text-decoration: line-through;">Precio:'.$arrayAImprimir[$i]->getPrecio().' € </h3>
+                                <h2>Precio:'. $arrayAImprimir[$i]->getPrecio() * (1 - ($arrayAImprimir[$i]->getDescuento()/100)).' € </h2>
+                                <a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'"><i class="lni lni-cart-full" alt="Añadir al carrito"></i></a>
                             </div>
                         </div>
                     </div>
                 <td>
                 ';
-                if($i==0 || ($i % 3) == 0 ){ //si es un múltiplo de 3 crear línea nueva
+                if($i==0 || $i==3 || $i==6 || $i==9 ){ //si es un múltiplo de 3 crear línea nueva
                     echo'</tr>';
                 }
                 if($i==count( $arrayAImprimir) -1){
