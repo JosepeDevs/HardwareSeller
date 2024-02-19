@@ -46,9 +46,19 @@ td img{
     margin-right: auto;
 }
 
+td p{
+    font-size: 1.3em;
+}
+
 td a {
     align-items: center;
     justify-content: center;
+    font-size: 1.3em;
+}
+
+td a i {
+    color:black;
+    font-size: 1.3em;
 }
 
 div input{
