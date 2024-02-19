@@ -65,9 +65,9 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
                                 </div>
                             <td>
                 ';
-                if($i==0 || $i==3 || $i==6 || $i==9 ){ //si es un múltiplo de 3 crear línea nueva
+                if($i==2 || $i==5 || $i==8 ){ //si es un múltiplo de 3 crear línea nueva
                         echo'</tr>
-                        </div>';
+                        </div>';//fin del div row
                 }
                 if($i==count( $arrayAImprimir) -1){
                      echo '</table>';
