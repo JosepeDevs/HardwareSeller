@@ -47,26 +47,27 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
         <table>";
             for( $i = 0; $i < count($arrayAImprimir); $i++ ){
                 if($i==0 || $i==3 || $i==6 || $i==9 ){ //si es un múltiplo de 3 crear línea nueva
-                    echo'<tr>';
+                    echo'<div class="container">
+                        <tr>';
                 }
                 echo'
-                <td>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm">
-                                <img src="'.$directorio .$arrayAImprimir[$i]->getImagen().'" class="img-fluid" alt="'.$arrayAImprimir[$i]->getImagen().'">
-                                <br>
-                                <h2>Nombre:'.$arrayAImprimir[$i]->getNombre().'</h2>
-                                <h3 style="text-decoration: line-through;">Precio:'.$arrayAImprimir[$i]->getPrecio().' € </h3>
-                                <h2>Precio:'. $arrayAImprimir[$i]->getPrecio() * (1 - ($arrayAImprimir[$i]->getDescuento()/100)).' € </h2>
-                                <a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'"><i class="lni lni-cart-full" alt="Añadir al carrito"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                <td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <img src="'.$directorio .$arrayAImprimir[$i]->getImagen().'" class="img-fluid" alt="'.$arrayAImprimir[$i]->getImagen().'">
+                                        <br>
+                                        <h2>Nombre:'.$arrayAImprimir[$i]->getNombre().'</h2>
+                                        <h3 style="text-decoration: line-through;">Precio:'.$arrayAImprimir[$i]->getPrecio().' € </h3>
+                                        <h3">Descuento:'.$arrayAImprimir[$i]->getDescuento().' € </h3>
+                                        <h2>Precio:'. $arrayAImprimir[$i]->getPrecio() * (1 - ($arrayAImprimir[$i]->getDescuento()/100)).' € </h2>
+                                        <a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'">Añadir al carrito<i class="lni lni-cart-full" alt="Añadir al carrito"></i></a>
+                                    </div>
+                                </div>
+                            <td>
                 ';
                 if($i==0 || $i==3 || $i==6 || $i==9 ){ //si es un múltiplo de 3 crear línea nueva
-                    echo'</tr>';
+                        echo'</tr>
+                        </div>';
                 }
                 if($i==count( $arrayAImprimir) -1){
                      echo '</table>';
