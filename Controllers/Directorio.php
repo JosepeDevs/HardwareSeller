@@ -1,13 +1,7 @@
 
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("OperacionesSession.php");
-$usuarioLogeado = UserEstablecido();
-if( $usuarioLogeado == false){
-    session_destroy();
-    echo "Directorio dice: no está user en session";
-    header("Location: /index.php");
-}
+//si protejo esto los usuarios no pueden ver las imágenes del catálogo
 
 /**
  * Crea en la carpeta actual una carpeta llamada "hemeroteca", si no existe la crea(permisos 777). Si ya existe devuelve su PATH. A esto hay que añadirle al final el nombre del archivo para guardarlo en el sitio y con el nombre deseado.
