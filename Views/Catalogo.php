@@ -21,64 +21,60 @@ print('<h1>Catálogo</h1>
     <div>
 ');
 
+//PREPARAR ARRAYS CON OBJETOS
+$orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
+include_once("../Controllers/OrdenarArticulosController.php");
+$arrayArticulos = getArrayArticulosOrdenados($orden);
+$itemXpagPredeterminado=9;
+$filasAMostrar = 3;
+if(! isset($_GET['pag'])){
+    $paginaActual = 0;
+}else{
+    if( is_numeric($_GET['pag'])){
+        $paginaActual = $_GET['pag'] - 1 ;
+    } else if ($_GET['pag'] == "X" ){
+        $paginaActual = "X";
+    }
+}
+
+$directorio = "/Resources/ImagenesArticulos/";
+
+include_once("../Controllers/ArticulosLISTARController.php");
+$arrayAImprimir = getArrayPaginadoArticulos($arrayArticulos, $filasAMostrar, $paginaActual);
+
 //TABLA LISTANDO ARTICULOS
 include_once("../Controllers/CatalogoController.php");
 echo"<div class='col-lg-9 col-md-11 col-12'>
         <table>";
-            echo"<tr>";
-            //PREPARAR ARRAYS CON OBJETOS
-            $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
-            include_once("../Controllers/OrdenarArticulosController.php");
-            $arrayArticulos = getArrayArticulosOrdenados($orden);
-            $itemXpagPredeterminado=3;
-            $filasAMostrar = isset($_GET['itemXpag'])? $_GET['itemXpag'] : $itemXpagPredeterminado;
-            if(! isset($_GET['pag'])){
-                $paginaActual = 0;
-            }else{
-                if( is_numeric($_GET['pag'])){
-                    $paginaActual = $_GET['pag'] - 1 ;
-                } else if ($_GET['pag'] == "X" ){
-                    $paginaActual = "X";
+            for( $i = 0; $i < count($arrayAImprimir); $i++ ){
+                if($i==0 || ($i % 3) == 0 ){ //si es un múltiplo de 3 crear línea nueva
+                    echo'<tr>';
+                }
+                echo'
+                <td>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <img src="'.$directorio .$arrayAImprimir[$i]->getImagen.'" class="img-fluid" alt="'.$arrayAImprimir[$i]->getImagen.'">
+                                <br>
+                                <h2>'.$arrayAImprimir[$i]->getNombre.'</h2>: <h3>'.$arrayAImprimir[$i]->getPrecio.' € </h3>
+                                <p>'.$arrayAImprimir[$i]->getDescripcion.'</p>
+                                <a href="?codigo='.$arrayAImprimir[$i]->getCodigo.'">Placas base</a>
+                            </div>
+                        </div>
+                    </div>
+                <td>
+                ';
+                if($i==0 || ($i % 3) == 0 ){ //si es un múltiplo de 3 crear línea nueva
+                    echo'</tr>';
+                }
+                if($i==count( $arrayAImprimir) -1){
+                     echo '</table>';
                 }
             }
-
-            include_once("../Controllers/ArticulosLISTARController.php");
-            $arrayAImprimir = getArrayPaginadoArticulos($arrayArticulos, $filasAMostrar, $paginaActual);
-
-            //DATOS DE LOS OBJETOS
-            //llamamos dinámicamente los getters de la clase habiendo guardado previamente el array con los nombresd de los atributos
-            //hay que recorrer todos los atributos en todos los objetos
-            foreach($arrayAImprimir as $articulo){
-                echo("<tr>");
-                foreach ($arrayAtributos as $atributo) {
-                    $nombreAtributo = $atributo;//p.e. codigo, nombre...
-                    $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
-                    $valor = call_user_func([$articulo, $nombreMetodo]);
-                    if($nombreAtributo == "codigo"){
-                        $codigo = $articulo->getCodigo();//guardamos el código para que esté disponible fuerra de este bucle
-                        echo "<td>$valor</td>";
-                    } else if($nombreAtributo == "imagen"){
-                        include_once("../Controllers/Directorio.php");
-                        $directorio = "/Resources/ImagenesArticulos/";
-                        $rutaAbsoluta = $directorio . $valor;
-                        echo"<td><img class='imagenes' src='{$rutaAbsoluta}' width='200' height='200'/></td>";
-                    }else{
-                        echo "<td>$valor</td>";
-                    }
-                }
-                if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"){
-                    echo"
-                    <td><a href='ArticuloEDITAR.php?codigo=$codigo'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
-                    <td><a href='ArticuloBORRAR.php?codigo=$codigo'><img class='icon' src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
-                }
-            }
-            echo("</tr>
-        </table>
-    </div>");
-
    //PAGINACIÓN
    print "<div class='paginacion'>";
-   $filasTotales = count($arrayArticulos);
+   $filasTotales = count($arrayArticulos)/3;
    $paginasTotales = ceil($filasTotales / $filasAMostrar);
    if(is_numeric($paginaActual) && is_numeric($filasAMostrar)){
        //estamos viendo los registros paginados
@@ -86,18 +82,18 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
        if($paginaActual == 0 ){
            print "<p>Anterior</p>"; //en la primera página esto no debe ser un enlace
        } else{
-           print "<a href='ArticulosLISTAR.php?pag=".($paginaActual)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Anterior</a>";
+           print "<a href='?pag=".($paginaActual)."&ordenNombres=$orden'>Anterior</a>";
        }
        for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
            if($numeroIndicePaginacion == $paginaActual + 1 ){
                print "<b>$numeroIndicePaginacion</b>";
            }else{
-               print "<a href='ArticulosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
+               print "<a href='?pag=$numeroIndicePaginacion&ordenNombres=$orden'>$numeroIndicePaginacion</a>";
            }
            if($paginaActual +1 == $paginasTotales && $numeroIndicePaginacion == $paginasTotales){
                print "<p>Siguiente</p>"; //en la primera página esto no debe ser un enlace
            }else if($numeroIndicePaginacion == $paginasTotales){
-               print "<a href='ArticulosLISTAR.php?pag=".($paginaActual+2)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Siguiente</a>";
+               print "<a href='?pag=".($paginaActual+2)."&ordenNombres=$orden'>Siguiente</a>";
            } else{
                print "";//no printear nada
            }
@@ -105,7 +101,7 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
    } else{
        //estamos viendo todos los registros en una página
        for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
-           print "<a href='ArticulosLISTAR.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
+           print "<a href='?pag=$numeroIndicePaginacion&ordenNombres=$orden'>$numeroIndicePaginacion</a>";
        }
    }
 
@@ -116,37 +112,8 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
    } else{
        print "<a href='ArticulosLISTAR.php?pag=X&ordenNombres=$orden'>Ver todos</a>";
    }
-   print "
-   <form action='ArticulosLISTAR.php' method='GET'>
-   <label for='itemXpag'>Registros/página</label><br>
-   <select id='itemXpag' name='itemXpag' onchange='this.form.submit()' required>
-       <option value='$filasAMostrar'>$filasAMostrar</option>";//mostrar la opción actual seleccionada
-       for ($i = 0; $i < count($opcionesitemXpag); $i++) {
-           if( $opcionesitemXpag[$i] == $filasAMostrar){
-               continue;//no queremos imprimir de nuevo la opción que ya tienen seleccionada
-           } else{
-               print "<option value='$opcionesitemXpag[$i]'>$opcionesitemXpag[$i]</option>";
-           }
-       }
-   print
-   "</select><br>
-   </form>
-   </div>";
-
-//SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
-include_once("../Controllers/ArticulosLISTARMensajes.php");
-            $arrayMensajes=getArrayMensajesArticulos();
-            if(is_array($arrayMensajes)){
-                foreach($arrayMensajes as $mensaje) {
-                    echo "<h3>$mensaje</h3>";
-                }
-            };
-//tras printear los mensajes de error/confirmación "reseteamos" session
-include_once("../Controllers/OperacionesSession.php");
-ResetearSesion();
-
+   print "</div>";//final del div de paginación
 ?>
-<h2><a class="cerrar"  href='/index.php'>Cerrar sesión</a></h2>
 <?php
 include_once("footer.php");
 ?>
