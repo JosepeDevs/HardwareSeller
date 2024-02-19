@@ -181,59 +181,64 @@ $_SESSION["psswrd"] = $psswrd;
 $_SESSION["rolCliente"] = $rol;
 $_SESSION["activo"] = $activo;
 
-print_r("0-->".$_SESSION);
+print("0-->");
+print_r($_SESSION);
 
 //print("<br> array session:");
 //print_r($_SESSION);
 
 //UPDATE o INSERT , SUBIR confirmación a SESSION y HEADER A DONDE TOQUE
-    if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true" ){
-
-        $arrayDatosCliente  = array($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo, $noPsswrd);
-        //print("<br> array del cliente:");
-//print_r($arrayDatosCliente);
-
-        $_SESSION["dni"]=$dniOriginal;
-        //print "<p>'actualizando cliente...espere infinito...</p>";
-        //print_r($_SESSION);
-        //print "<p>'editando cliente...espere infinito...datos que estamos pasando: $dniOriginal, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $noPsswrd</p>";
-
-        $operacionExitosa = Cliente::UpdateCliente($dniOriginal, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo, $noPsswrd);//le pasamos el DniOoriginal porque no permitimos el cambio del dni
-
-        if($operacionExitosa){
-            $_SESSION['GoodUpdateCliente']= true;
-        }
-        include_once("OperacionesSession.php");
-        $rolAdmin = AuthYRolAdmin();
-        if($rolAdmin == true) {
-            header("Location: ../Views/TablaClientes.php");
-            exit;
-        } else {
-            header("Location: ../Views/ClienteEDITAR.php?dni=$dniOriginal");
-            exit;
-        }
-
-    }else if( isset($_SESSION["nuevoCliente"]) && $_SESSION["nuevoCliente"] == "true" ){
-        $arrayDatosCliente  = array($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
-       // print("<br> array del cliente:");
-        //print_r($arrayDatosCliente);
-        print_r("3-->".$_SESSION);
-
-        $_SESSION["dni"]=$dniNuevo;
-        //echo "<p>'insertando cliente...espere infinito...datos que estamos pasando: $dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo</p>";
-        $operacionExitosa = Cliente::InsertCliente($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
-       // echo"<br>la operacion ha sido existosa??$operacionExitosa<br>";
-        if($operacionExitosa == true){
-            $_SESSION['GoodInsertCliente']= true;
-        } else{
-            $_SESSION['GoodInsertCliente']= false;
-        }
-        print_r("1-->".$_SESSION);
-        include_once("OperacionesSession.php");
-        $rolAdmin = AuthYRolAdmin();
-        print_r("2-->".$_SESSION);
-
-        if($rolAdmin == true) {
+if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true" ){
+    
+    $arrayDatosCliente  = array($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo, $noPsswrd);
+    //print("<br> array del cliente:");
+    //print_r($arrayDatosCliente);
+    
+    $_SESSION["dni"]=$dniOriginal;
+    //print "<p>'actualizando cliente...espere infinito...</p>";
+    //print_r($_SESSION);
+    //print "<p>'editando cliente...espere infinito...datos que estamos pasando: $dniOriginal, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $noPsswrd</p>";
+    
+    $operacionExitosa = Cliente::UpdateCliente($dniOriginal, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo, $noPsswrd);//le pasamos el DniOoriginal porque no permitimos el cambio del dni
+    
+    if($operacionExitosa){
+        $_SESSION['GoodUpdateCliente']= true;
+    }
+    include_once("OperacionesSession.php");
+    $rolAdmin = AuthYRolAdmin();
+    if($rolAdmin == true) {
+        header("Location: ../Views/TablaClientes.php");
+        exit;
+    } else {
+        header("Location: ../Views/ClienteEDITAR.php?dni=$dniOriginal");
+        exit;
+    }
+    
+}else if( isset($_SESSION["nuevoCliente"]) && $_SESSION["nuevoCliente"] == "true" ){
+    $arrayDatosCliente  = array($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
+    // print("<br> array del cliente:");
+    //print_r($arrayDatosCliente);
+    print("1-->");
+    print_r($_SESSION);
+    
+    $_SESSION["dni"]=$dniNuevo;
+    //echo "<p>'insertando cliente...espere infinito...datos que estamos pasando: $dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo</p>";
+    $operacionExitosa = Cliente::InsertCliente($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
+    // echo"<br>la operacion ha sido existosa??$operacionExitosa<br>";
+    if($operacionExitosa == true){
+        $_SESSION['GoodInsertCliente']= true;
+    } else{
+        $_SESSION['GoodInsertCliente']= false;
+    }
+    print("2-->");
+    print_r($_SESSION);
+    
+    include_once("OperacionesSession.php");
+    $rolAdmin = AuthYRolAdmin();
+    print("3-->");
+    print_r($_SESSION);
+    
+    if($rolAdmin == true) {
            header("Location: ../Views/TablaClientes.php");
             exit;
         } else if( isset($_SESSION["RegistroInSitu"]) && $_SESSION["RegistroInSitu"] == 1){
