@@ -5,15 +5,6 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //HEADER Y TITULO
 include_once("header.php");
 
-$codigoParaCarrito = isset($_GET["codigo"]) ? $_GET["codigo"] : "";
-
-if(!array_key_exists('productos', $_SESSION)) {
-    $_SESSION['productos'] = []; // declara que dentro de la key "productos" vamos a guardar un array
-}
-
-//mira si existe ya el producto, si ya existe añade 1 , si no existe, guarda 1
-$_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito, $_SESSION['productos']) ? $_SESSION['productos'][$codigoParaCarrito] + 1 : 1;
-
 ?>
 <div class="panel-body">
     <h1>Vista previa del pedido</h1>
