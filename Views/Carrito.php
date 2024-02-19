@@ -65,6 +65,7 @@ $_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito
         <tr>
             <?php if(count($_SESSION['productos']) > 0){ ?>
                 <td class="text-center" colspan="5"><b>Total <?php echo $total.' €'; ?></b></td>
+                <br>
             <?php } ?>
         </tr>
     </tfoot>
