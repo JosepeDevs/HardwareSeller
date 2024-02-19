@@ -117,10 +117,11 @@ $_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito
                 echo "<h3>$mensaje</h3>";
             }
         };
+        //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
         ?>
     </div>
     <div class="footBtn">
-        <a href="index.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Seguir navegando </a>
+        <a href="../Views/Catalogo.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Seguir navegando </a>
         <a href="AccionCarta.php?action=placeOrder" class="btn btn-success orderBtn">Continuar con el pedido <i class="glyphicon glyphicon-menu-right"></i></a>
     </div>
 </div>

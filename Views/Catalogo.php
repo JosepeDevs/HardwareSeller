@@ -70,10 +70,10 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
                                     <div class="col-12 col-lg-6 col-sm-1">
                                         <img src="'.$directorio .$arrayAImprimir[$i]->getImagen().'" class="img-fluid" alt="'.$arrayAImprimir[$i]->getImagen().'">
                                         <br>
-                                        <h2>Nombre:'.$arrayAImprimir[$i]->getNombre().'</h2>
-                                        <h3 style="text-decoration: line-through;">Precio:'.$arrayAImprimir[$i]->getPrecio().' € </h3>
-                                        <h3">Descuento:'.$arrayAImprimir[$i]->getDescuento().' % </h3>
-                                        <h2>Precio:'. round($arrayAImprimir[$i]->getPrecio() * (1 - ($arrayAImprimir[$i]->getDescuento()/100)), 2).' € </h2>
+                                        <h2>Nombre: '.$arrayAImprimir[$i]->getNombre().'</h2>
+                                        <h4 style="text-decoration: line-through;">Precio:'.$arrayAImprimir[$i]->getPrecio().' € </h4>
+                                        <h2">Descuento: '.$arrayAImprimir[$i]->getDescuento().' % </h2>
+                                        <h2>Precio: '. round($arrayAImprimir[$i]->getPrecio() * (1 - ($arrayAImprimir[$i]->getDescuento()/100)), 2).' € </h2>
                                         <a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'">Añadir al carrito  <i class="lni lni-cart-full" alt="Añadir al carrito"></i></a>
                                     </div>
                                 </div>
