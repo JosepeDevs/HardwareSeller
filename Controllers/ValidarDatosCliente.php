@@ -215,7 +215,8 @@ $_SESSION["activo"] = $activo;
     }else if( isset($_SESSION["nuevoCliente"]) && $_SESSION["nuevoCliente"] == "true" ){
         $arrayDatosCliente  = array($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
        // print("<br> array del cliente:");
-//print_r($arrayDatosCliente);
+        //print_r($arrayDatosCliente);
+        print_r("3-->".$_SESSION);
 
         $_SESSION["dni"]=$dniNuevo;
         //echo "<p>'insertando cliente...espere infinito...datos que estamos pasando: $dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo</p>";
@@ -226,9 +227,10 @@ $_SESSION["activo"] = $activo;
         } else{
             $_SESSION['GoodInsertCliente']= false;
         }
+        print_r("1-->".$_SESSION);
         include_once("OperacionesSession.php");
         $rolAdmin = AuthYRolAdmin();
-        print_r($_SESSION);
+        print_r("2-->".$_SESSION);
 
         if($rolAdmin == true) {
            header("Location: ../Views/TablaClientes.php");
