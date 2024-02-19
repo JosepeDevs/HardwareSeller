@@ -82,7 +82,6 @@ include_once("header.php");
         } else{
             //ESTABAN COMPRANDO SIN REGISTRARSE LOS MUY TRUANES
             $_SESSION['RegistroInSitu'] = 1;
-            print_r($_SESSION);
             echo '
             <h2>Datos usuario y dirección de envío no encontrados, por favor indicar a continuación</h2>
             <br>
@@ -117,7 +116,6 @@ include_once("header.php");
                 </div>
             ';
         }
-        print_r($_SESSION);
 
         //SECCION ERRORES EN EL ALTA DE USER
        // include_once("../Controllers/ClienteALTAMensajes.php");
@@ -127,7 +125,6 @@ include_once("header.php");
                 echo "<h3>$mensaje</h3>";
             }
         };*/
-        print_r($arrayItems);
 
         //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
         ?>
