@@ -52,6 +52,7 @@ $_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito
                     $arraySubtotales [] = $subTotal;
                     $total = array_sum($arraySubtotales);
                 } else{
+                    $total=0;
                     echo '<tr><td colspan="5"><p>Carrito sin artículos que mostrar</p></td>';
                 }
             } 
