@@ -221,7 +221,7 @@ $_SESSION["activo"] = $activo;
         //echo "<p>'insertando cliente...espere infinito...datos que estamos pasando: $dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo</p>";
         $operacionExitosa = Cliente::InsertCliente($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
        // echo"<br>la operacion ha sido existosa??$operacionExitosa<br>";
-        if($operacionExitosa){
+        if($operacionExitosa == true){
             $_SESSION['GoodInsertCliente']= true;
         }
 
