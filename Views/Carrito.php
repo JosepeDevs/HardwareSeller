@@ -121,7 +121,7 @@ include_once("header.php");
 
         //SECCION ERRORES EN EL ALTA DE USER
         include_once("../Controllers/ClienteALTAMensajes.php");
-        $arrayMensajes=getArrayMensajesNuevo();
+        //$arrayMensajes=getArrayMensajesNuevo();
         if(is_array($arrayMensajes)){
             foreach($arrayMensajes as $mensaje) {
                 echo "<h3>$mensaje</h3>";
