@@ -114,7 +114,7 @@ $_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito
                         <td><input type="password" name="psswrd" id="pssword" required><br><br>
                     </tr>
                 </table>
-                <button><input type="submit" value="Guardar"></button>
+                <button><input type="submit" value="Proceder al método de pago"></button>
             </form>
             ';
         }
@@ -130,9 +130,8 @@ $_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito
         //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
         ?>
     </div>
-    <div class="footBtn">
-        <a href="../Views/Catalogo.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Seguir navegando </a>
-        <a href="AccionCarta.php?action=placeOrder" class="btn btn-success orderBtn">Continuar con el pedido <i class="glyphicon glyphicon-menu-right"></i></a>
+    <div class="finForm">
+        <a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-reply"></i> Seguir navegando </a>
     </div>
 </div>
 <?php
