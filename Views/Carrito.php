@@ -120,9 +120,9 @@ include_once("header.php");
         ?>
     </div>
     <div class="finForm">
-        <button><input type="submit" value="Proceder al método de pago"><i class="lni lni-chevron-right"></i></button>
-        </form>
         <a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Seguir navegando </a>
+        <button type="submit" class="submit-button"><span>Proceder al método de pago </span><i class="lni lni-chevron-right"></i></button> 
+        </form>
     </div>
 </div>
 <?php
