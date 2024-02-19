@@ -181,6 +181,7 @@ $_SESSION["psswrd"] = $psswrd;
 $_SESSION["rolCliente"] = $rol;
 $_SESSION["activo"] = $activo;
 
+print_r("0-->".$_SESSION);
 
 //print("<br> array session:");
 //print_r($_SESSION);
