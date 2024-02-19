@@ -14,6 +14,14 @@ function getClienteByDni($dni){
     return $cliente;
 }
 
+function getClienteByemail($email){
+    include_once("../Models/Cliente.php");
+    $cliente = Cliente::getClienteByEmail($email);
+    return $cliente;
+}
+
+
+
 function getArrayAtributosCliente(){
     include_once("../Models/Cliente.php");
     $arrayArticulos = Cliente::getArrayAtributosCliente();

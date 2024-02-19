@@ -1,6 +1,20 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //ESTA PÁGINA NO SE DEBE PROTEGER, ACCESIBLE A TODOS LOS NAVEGANTES
+
+//AÑADIR AL CARRITO
+
+$codigoParaCarrito = isset($_GET["codigo"]) ? $_GET["codigo"] : "";
+
+if(!array_key_exists('productos', $_SESSION)) {
+    $_SESSION['productos'] = []; // declara que dentro de la key "productos" vamos a guardar un array
+}
+
+//mira si existe ya el producto, si ya existe añade 1 , si no existe, guarda 1
+$_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito, $_SESSION['productos']) ? $_SESSION['productos'][$codigoParaCarrito] + 1 : 1;
+
+
+
 //HEADER Y TITULO
 include_once("header.php");
 print('<h1>Catálogo</h1>
@@ -58,8 +72,8 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
                                         <br>
                                         <h2>Nombre:'.$arrayAImprimir[$i]->getNombre().'</h2>
                                         <h3 style="text-decoration: line-through;">Precio:'.$arrayAImprimir[$i]->getPrecio().' € </h3>
-                                        <h3">Descuento:'.$arrayAImprimir[$i]->getDescuento().' € </h3>
-                                        <h2>Precio:'. $arrayAImprimir[$i]->getPrecio() * (1 - ($arrayAImprimir[$i]->getDescuento()/100)).' % </h2>
+                                        <h3">Descuento:'.$arrayAImprimir[$i]->getDescuento().' % </h3>
+                                        <h2>Precio:'. round($arrayAImprimir[$i]->getPrecio() * (1 - ($arrayAImprimir[$i]->getDescuento()/100)), 2).' € </h2>
                                         <a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'">Añadir al carrito  <i class="lni lni-cart-full" alt="Añadir al carrito"></i></a>
                                     </div>
                                 </div>
