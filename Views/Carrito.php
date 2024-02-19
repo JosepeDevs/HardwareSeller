@@ -82,6 +82,7 @@ include_once("header.php");
         } else{
             //ESTABAN COMPRANDO SIN REGISTRARSE LOS MUY TRUANES
             $_SESSION['RegistroInSitu'] = 1;
+            print_r($_SESSION);
             echo '
             <h2>Datos usuario y dirección de envío no encontrados, por favor indicar a continuación</h2>
             <br>
