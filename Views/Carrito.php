@@ -90,7 +90,7 @@ include_once("header.php");
             <br>
             <div class='finForm'>
                 <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
-                <button type='submit' class='submit-button'><span>Proceder al método de pago </span><i class='lni lni-chevron-right'></i></button> 
+                <button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
                 </form> 
             </div>
             ";
