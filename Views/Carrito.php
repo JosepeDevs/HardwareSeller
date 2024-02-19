@@ -117,6 +117,7 @@ include_once("header.php");
                 </div>
             ';
         }
+        print_r($_SESSION);
 
         //SECCION ERRORES EN EL ALTA DE USER
         include_once("../Controllers/ClienteALTAMensajes.php");
