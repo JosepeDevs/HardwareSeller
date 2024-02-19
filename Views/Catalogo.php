@@ -43,7 +43,6 @@ include_once("../Controllers/ArticulosLISTARController.php");
 $arrayAImprimir = getArrayPaginadoArticulos($arrayArticulos, $articulosAMostrar, $paginaActual);
 
 //TABLA LISTANDO ARTICULOS
-include_once("../Controllers/CatalogoController.php");
 echo"<div class='col-lg-9 col-md-11 col-12'>
         <table>";
             for( $i = 0; $i < count($arrayAImprimir); $i++ ){
@@ -55,11 +54,11 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
                     <div class="container">
                         <div class="row">
                             <div class="col-sm">
-                                <img src="'.$directorio .$arrayAImprimir[$i]->getImagen.'" class="img-fluid" alt="'.$arrayAImprimir[$i]->getImagen.'">
+                                <img src="'.$directorio .$arrayAImprimir[$i]->getImagen().'" class="img-fluid" alt="'.$arrayAImprimir[$i]->getImagen().'">
                                 <br>
-                                <h2>'.$arrayAImprimir[$i]->getNombre.'</h2>: <h3>'.$arrayAImprimir[$i]->getPrecio.' € </h3>
-                                <p>'.$arrayAImprimir[$i]->getDescripcion.'</p>
-                                <a href="?codigo='.$arrayAImprimir[$i]->getCodigo.'">Placas base</a>
+                                <h2>'.$arrayAImprimir[$i]->getNombre().'</h2>: <h3>'.$arrayAImprimir[$i]->getPrecio().' € </h3>
+                                <p>'.$arrayAImprimir[$i]->getDescripcion().'</p>
+                                <a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'">Placas base</a>
                             </div>
                         </div>
                     </div>
