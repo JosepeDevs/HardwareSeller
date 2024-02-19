@@ -68,6 +68,7 @@ $_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito
         echo"
         <p> Nombre</p>
         <p>email</p>
+        <p>telefono</p>
         <p>direccion</p>
         <p>localidad</p>
         <p>provincia</p>

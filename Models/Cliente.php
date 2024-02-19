@@ -87,6 +87,24 @@ class Cliente {
             return $cliente;
         }
     }
+    /**
+     * @return Cliente|bool devuelve cliente si lo encuentra por email, si no, devuelve false.
+     */
+    public static function getClienteByEmail($email) {
+        $con= contectarBbddPDO();
+        $sql="SELECT * FROM clientes WHERE email=:email";
+        $statement=$con->prepare($sql);
+        $statement->bindParam(':email', $email);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
+        $cliente = $statement->fetch();
+        if(empty($cliente)){
+            $_SESSION['DniNotFound'] = true;
+            return false;
+        }else{
+            return $cliente;
+        }
+    }
 
     public static function getASCSortedClients() {
         try{
