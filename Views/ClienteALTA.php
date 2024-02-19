@@ -71,7 +71,9 @@ if(is_array($arrayMensajes)){
         echo "<h3>$mensaje</h3>";
     }
 };
-
+if(isset($_GET["dni"]) && !empty($_GET["dni"])){
+    echo "<h3>Usuario añadido correctamente.</h3>";
+}
 
 //todo: poner que si intentan registrar un usuario, si este está desactivado que dé la opción de activarlo en lugar de darlo de alta de nuevo.
 
