@@ -105,8 +105,6 @@ include_once("header.php");
                         <td><input type="password" name="psswrd" id="pssword" required><br><br>
                     </tr>
                 </table>
-                <button><input type="submit" value="Proceder al método de pago"></button>
-            </form>
             ';
         }
 
@@ -122,7 +120,9 @@ include_once("header.php");
         ?>
     </div>
     <div class="finForm">
-        <a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-reply"></i> Seguir navegando </a>
+        <button><input type="submit" value="Proceder al método de pago"><i class="lni lni-chevron-right"></i></button>
+        </form>
+        <a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Seguir navegando </a>
     </div>
 </div>
 <?php
