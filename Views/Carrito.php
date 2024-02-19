@@ -72,10 +72,9 @@ $_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito
     <div class="shipAddr">
         <h4>Datos usuario y dirección de envío</h4>
     <?php
-        include_once('../Controllers/OperacionesSession.php');
-        $estaClienteRegistrado = UserEstablecido();
-        $usuario = getClienteByemail($_SESSION['user']);
-        if($estaClienteRegistrado){
+        if(isset($_SESSION['user'])) {
+            include_once('../Controllers/ClienteBUSCARController.php');
+            $usuario = getClienteByemail($_SESSION['user']);
             //NOTHING LIKE A GOOD RETURNING CLIENT!
             echo"
             <p>".$usuario->getNombre()."</p>
