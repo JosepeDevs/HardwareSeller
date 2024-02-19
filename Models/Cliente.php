@@ -237,16 +237,15 @@ class Cliente {
                 $statement->bindParam(':psswrd', $psswrd);
                 $statement->bindParam(':activo', $activo);
                 $OperacionExitosa = $statement->execute();
-                $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
-                $resultado = $statement->fetch();
+              //  $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
+                //$resultado = $statement->fetch();
 
-                if ($resultado !== false && $resultado->rowCount() == 0) {
+                if ($OperacionExitosa) {
                     $_SESSION['BadInsertCliente']= true;
                     return false;
-                } else if($resultado !== false && $resultado->rowCount() !== 0){
+                } else {
                     return true;
                 }
-                return $OperacionExitosa;
         } catch(PDOException $e) {
             $_SESSION['BadInsertCliente']= true;
             return false;

@@ -224,7 +224,6 @@ $_SESSION["activo"] = $activo;
         if($operacionExitosa == true){
             $_SESSION['GoodInsertCliente']= true;
         }
-
         include_once("OperacionesSession.php");
         $rolAdmin = AuthYRolAdmin();
         if($rolAdmin == true) {
