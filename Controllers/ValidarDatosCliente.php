@@ -17,7 +17,7 @@ $provincia = isset($_POST["provincia"]) ? $_POST["provincia"] : null;
 $telefono = isset($_POST["telefono"]) ? $_POST["telefono"] : null;
 $email = isset($_POST["email"]) ? $_POST["email"]:null;
 $rol = isset($_POST["rol"]) ? $_POST["rol"]: "user";
-$activo = isset($_POST["activo"]) ? $_POST["activo"]:null;
+$activo = isset($_POST["activo"]) ? $_POST["activo"]:1;
 
 if(in_array(strtolower($rol), array("user", "admin", "editor"))){
     //se ha enviado un rol correcto, no validamos longitud porque ha cumplido con el enum
