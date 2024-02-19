@@ -26,7 +26,7 @@ $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
 include_once("../Controllers/OrdenarArticulosController.php");
 $arrayArticulos = getArrayArticulosOrdenados($orden);
 $itemXpagPredeterminado=9;
-$filasAMostrar = 3;
+$articulosAMostrar = 9;
 if(! isset($_GET['pag'])){
     $paginaActual = 0;
 }else{
@@ -40,7 +40,7 @@ if(! isset($_GET['pag'])){
 $directorio = "/Resources/ImagenesArticulos/";
 
 include_once("../Controllers/ArticulosLISTARController.php");
-$arrayAImprimir = getArrayPaginadoArticulos($arrayArticulos, $filasAMostrar, $paginaActual);
+$arrayAImprimir = getArrayPaginadoArticulos($arrayArticulos, $articulosAMostrar, $paginaActual);
 
 //TABLA LISTANDO ARTICULOS
 include_once("../Controllers/CatalogoController.php");
@@ -75,8 +75,8 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
    //PAGINACIÓN
    print "<div class='paginacion'>";
    $filasTotales = count($arrayArticulos)/3;
-   $paginasTotales = ceil($filasTotales / $filasAMostrar);
-   if(is_numeric($paginaActual) && is_numeric($filasAMostrar)){
+   $paginasTotales = ceil($filasTotales / $articulosAMostrar);
+   if(is_numeric($paginaActual) && is_numeric($articulosAMostrar)){
        //estamos viendo los registros paginados
        //estamos al principio de la lista, además de lo anterior también imprimiremos "anterior"
        if($paginaActual == 0 ){

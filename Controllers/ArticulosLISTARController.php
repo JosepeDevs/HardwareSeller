@@ -7,21 +7,21 @@ function getArrayAtributosArticulo(){
 }
 
 /**
- * @return array|bool devuelve array con clientes si tiene éxito, devuelve false si no tiene éxito
+ * @return array|bool devuelve array con artículos si tiene éxito, devuelve false si no tiene éxito
  */
-function  getArrayPaginadoArticulos($arrayObjetos, $filasAMostrar, $paginaActual){
+function  getArrayPaginadoArticulos($arrayObjetos, $articulosAMostrar, $paginaActual){
     //return de qué indice a qué indice debe imprimir en el $arrayArticulos que nos llega aquí
      //PAGINACIÓN
      $arrayAImpimir=[];
      $filasTotales = count($arrayObjetos);
 
      if(is_numeric($paginaActual)){
-        $ultimoRegistroMostrado = $paginaActual * $filasAMostrar;
+        $ultimoRegistroMostrado = $paginaActual * $articulosAMostrar;
     }
 
     if(is_numeric($paginaActual)){
-        $ultimoRegistroMostrado = $paginaActual * $filasAMostrar;
-        $finalRegistro = min($ultimoRegistroMostrado + $filasAMostrar, $filasTotales);
+        $ultimoRegistroMostrado = $paginaActual * $articulosAMostrar;
+        $finalRegistro = min($ultimoRegistroMostrado + $articulosAMostrar, $filasTotales);
         $arrayAtributos = Articulo::getArrayAtributosArticulo();
         for($i=$ultimoRegistroMostrado ; $i < $finalRegistro; $i++){
             foreach ($arrayAtributos as $index => $atributo) {
