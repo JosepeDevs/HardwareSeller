@@ -136,12 +136,12 @@ if(isset($_SESSION['TelefonoMal']) && ($_SESSION['TelefonoMal']) == true){
 }
 if(isset($_SESSION['EmailBadFormat']) && ($_SESSION['EmailBadFormat'])== true){
     print("hubo un error en Email ");
-    //echo "<script>history.back();</script>";
+    echo "<script>history.back();</script>";
     exit;
 }
 if(isset($_SESSION['EmailAlreadyExists']) && ($_SESSION['EmailAlreadyExists'])  == true){
     print("hubo un error EmailAlreadyExists ");
-    //echo "<script>history.back();</script>";
+    echo "<script>history.back();</script>";
     exit;
 }
 if(isset($_SESSION['LongProvincia']) && ($_SESSION['LongProvincia']) == true){
