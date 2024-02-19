@@ -241,6 +241,8 @@ class Cliente {
                 //$resultado = $statement->fetch();
 
                 if ($OperacionExitosa) {
+                    $_SESSION['BadInsertCliente']= false;
+                    $_SESSION['GoodInsertCliente']= true;
                     return true;
                 } else {
                     $_SESSION['BadInsertCliente']= true;
