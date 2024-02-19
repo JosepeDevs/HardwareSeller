@@ -55,7 +55,7 @@ include_once("header.php");
     <tfoot>
         <tr>
             <?php if(count($_SESSION['productos']) > 0){ ?>
-                <td class="text-center" colspan="5"><b>Total <?php echo $total.' €'; ?></b></td>
+                <td class="text-center" colspan="5"><h2><b>Total <?php echo $total.' €'; ?></b></h2></td>
                 <br>
             <?php } ?>
         </tr>
