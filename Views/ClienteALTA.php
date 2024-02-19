@@ -22,6 +22,7 @@ unset($_SESSION['dni']);
 ?>
 
     <h1>Nuevo Cliente</h1>
+    <?php print_r($_SESSION);?>
     <form action="../Controllers/ValidarDatosCliente.php" method="post">
         <table>
             <tr>
