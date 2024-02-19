@@ -29,17 +29,18 @@ $_SESSION['productos'][$codigoParaCarrito] = array_key_exists($codigoParaCarrito
     </thead>
     <tbody>
         <?php
-
+    include_once('../Controllers/ArticuloBUSCARController.php');
         if(count($_SESSION['productos']) > 0){
-            $arrayItems = array($_SESSION['productos']);
-            foreach($arrayItems as $item){
-                $precio=$item->getPrecio();
-                $descuento=$item->getDescuento();
-                $cantidad=$item["$codigoParaCarrito"];
+            $arrayItems = array($_SESSION['productos']);//array asociativo con codigo del articulo y cantidad
+            foreach($arrayItems as $codigo => $cantidad){//aquí los indices al ser asociativo son los propios codigos de artículo
+                $articulo = getArticuloByCodigo($codigo);
+                $precio=$articulo->getPrecio();
+                $descuento=$articulo->getDescuento();
+                $cantidad = $arrayItems[$codigo];
                 $subTotal=($precio*(1-($descuento/100)))*$cantidad;
                 echo'
                 <tr>
-                    <td>'.$item->getNombre().'</td>
+                    <td>'.$articulo->getNombre().'</td>
                     <td>'.$precio.' €'.'</td>
                     <td>'.$descuento.'</td>
                     <td>'.$cantidad.'</td>

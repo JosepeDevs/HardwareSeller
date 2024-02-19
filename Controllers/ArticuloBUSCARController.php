@@ -1,12 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("OperacionesSession.php");
-$usuarioLogeado = UserEstablecido();
-if( $usuarioLogeado == false){
-    session_destroy();
-    echo "ArticuloBUSCAR dice: no está user en session";
-    header("Location: /index.php");
-}
+//si lo protejo en el carrito de la compra no pueden buscar los datos del artículo
 
 function TransformarCodigo($codigo){
     include_once("../Models/Articulo.php");
