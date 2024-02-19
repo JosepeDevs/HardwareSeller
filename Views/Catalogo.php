@@ -60,7 +60,7 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
                                         <h3 style="text-decoration: line-through;">Precio:'.$arrayAImprimir[$i]->getPrecio().' € </h3>
                                         <h3">Descuento:'.$arrayAImprimir[$i]->getDescuento().' € </h3>
                                         <h2>Precio:'. $arrayAImprimir[$i]->getPrecio() * (1 - ($arrayAImprimir[$i]->getDescuento()/100)).' € </h2>
-                                        <a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'">Añadir al carrito<i class="lni lni-cart-full" alt="Añadir al carrito"></i></a>
+                                        <a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'">Añadir al carrito  <i class="lni lni-cart-full" alt="Añadir al carrito"></i></a>
                                     </div>
                                 </div>
                             <td>
@@ -111,7 +111,7 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
    if (isset($_GET['pag']) && ( $_GET['pag'] == "X" ) ){
        print "<b>Ver todos</b>";
    } else{
-       print "<a href='ArticulosLISTAR.php?pag=X&ordenNombres=$orden'>Ver todos</a>";
+       print "<a href='?pag=X&ordenNombres=$orden'>Ver todos</a>";
    }
    print "</div>";//final del div de paginación
 ?>
