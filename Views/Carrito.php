@@ -7,38 +7,30 @@ include_once("header.php");
 
 ?>
     <h1>Vista previa del pedido</h1>
-    <div  class="col-lg-3 col-md-1 col-12">
-        <aside>
-            <a href="ArticuloBUSCAR.php">
-                <img class="iconArribaTabla"  src="../Resources/buscaAr.png" alt="recraft icon"/> Buscar artículo
-            </a>
-            <a href="ArticulosLISTAR.php">
-            <img  class="iconArribaTabla" src="../Resources/refresh.png" alt="refrescar" /> Recargar tabla (Quita ordenación y reinicia paginación)
-        </a>
-            <a href="?prebuilt">Pre-built computers</a>
-            <a href="?Pantallas">Pantallas</a>
-            <a href="?Graficas">Gráficas</a>
-            <a href="?Mobo">Placas base</a>
-            <a href="?RAM">RAM</a>
-        </aside>
-    <div>
+    <?php include_once("aside.php");?>
     <table class="table">
     <thead>
         <tr>
-            <th>Producto</th>
-            <th>Precio</th>
-            <th>Descuento</th>
-            <th>Cantidad</th>
+            <th><label for="numLinea">Nº linea del pedido</label><th>
+            <th><label for="codigo">Código del producto</label></th>
+            <th><label for="nombre">Producto</label></th>
+            <th><label for="precio">Precio</label></th>
+            <th><label for="descuento">Descuento</label></th>
+            <th><label for="cantidad">Cantidad</label></th>
             <th>Sub total</th>
         </tr>
     </thead>
     <tbody>
+        <form action="DireccionPedido.php" method="post">
+
         <?php
-    include_once('../Controllers/ArticuloBUSCARController.php');
+        include_once('../Controllers/ArticuloBUSCARController.php');
         if(count($_SESSION['productos']) > 0){
             $arrayItems = $_SESSION['productos'];//array asociativo con codigo del articulo y cantidad
             foreach($arrayItems as $codigo => $cantidad){//aquí los indices al ser asociativo son los propios codigos de artículo
+                $indice=0;
                 $articulo = getArticuloByCodigo($codigo);
+                $arrayArticulos[] = $articulo;
                 if($articulo !== false){
                     $precio=$articulo->getPrecio();
                     $descuento=$articulo->getDescuento();
@@ -46,11 +38,18 @@ include_once("header.php");
                     $subTotal=($precio*(1-($descuento/100)))*$cantidad;
                     echo'
                     <tr>
-                        <td>'.$articulo->getNombre().'</td>
-                        <td>'.$precio.' €'.'</td>
-                        <td>'.$descuento.'</td>
-                        <td>'.$cantidad.'</td>
-                        <td>'.$subTotal.' €'.'</td>
+                        <td><input name="numLinea'.$indice.'" disabled>'.$indice.'</input></td>
+                        <td><input name="codigo'.$indice.'" disabled>'.$codigo.'</input></td>
+                        <td><input name="nombre'.$indice.'" disabled>'.$articulo->getNombre().'</input></td>
+                        <td><input name="codigo'.$indice.'" disabled>'.$articulo->getCodigo().'</input></td>
+                        <td><input name="precio'.$indice.'" disabled>'.$precio.'</input> €'.'</td>
+                        <td><input name="descuento'.$indice.'" disabled>'.$descuento.'</input> %</td>
+                        <td>
+                            <button class="reducir" type="button"><i class="lni lni-minus"></i></button>
+                            <span class="cantidad"><input type="number" name="cantidad'.$indice.'">'.$articulo.'</input></span>
+                            <button class="aumentar" type="button"><i class="lni lni-plus"></i></button>
+                        </td>
+                        <td class=subTotal>'.$subTotal.' €'.'</td>
                     </tr>
                     ';
                     $arraySubtotales [] = $subTotal;
@@ -59,93 +58,42 @@ include_once("header.php");
                     $total=0;
                     echo '<tr><td colspan="5"><p>Carrito sin artículos que mostrar</p></td>';
                 }
+                $indice+=1;
             } 
         }else{
             echo '<tr><td colspan="5"><p>Carrito sin artículos (carrito vacío)</p></td>';
         } 
     ?>
+        </form>
     </tbody>
     <tfoot>
         <tr>
             <?php if(count($_SESSION['productos']) > 0){ ?>
-                <td class="text-center" colspan="5"><h2><b>Total <?php echo $total.' €'; ?></b></h2></td>
+                <td class="text-center total" colspan="5"><h2><b>Total <?php echo $total.' €'; ?></b></h2></td>
                 <br>
             <?php } ?>
         </tr>
     </tfoot>
     </table>
-    <?php
-        if(isset($_SESSION['user'])) {
-            include_once('../Controllers/ClienteBUSCARController.php');
-            $usuario = getClienteByemail($_SESSION['user']);
-            //NOTHING LIKE A GOOD RETURNING CLIENT!
-            echo"
-            <h2>Datos usuario y dirección de envío</h2>
-            <p>Nombre: ".$usuario->getNombre()."</p>
-            <p>Email: ".$usuario->getEmail()."</p>
-            <p>Teléfono: ".$usuario->getTelefono()."</p>
-            <p>Dirección: ".$usuario->getDireccion()."</p>
-            <p>Localidad: ".$usuario->getLocalidad()."</p>
-            <p>Provincia: ".$usuario->getProvincia()."</p>
-            <br>
-            <div class='finForm'>
-                <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
-                <button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
-                </form> 
-            </div>
-            ";
-        } else{
-            //ESTABAN COMPRANDO SIN REGISTRARSE LOS MUY TRUANES
-            $_SESSION['RegistroInSitu'] = 1;
-            $_SESSION["nuevoCliente"] = "true";
-            echo '
-            <h2>Datos usuario y dirección de envío no encontrados, por favor indicar a continuación</h2>
-            <br>
-            <form action="../Controllers/ValidarDatosCliente.php" method="post">
-                <table>
-                    <tr>
-                        <th><label for="nombre">Nombre:</label></th>
-                        <th><label for="direccion">direccion:</label></th>
-                        <th><label for="localidad">localidad:</label></th>
-                        <th><label for="provincia">provincia:</label></th>
-                        <th><label for="telefono">telefono:</label></th>
-                        <th><label for="email">email:</label></th>
-                        <th><label for="dni">DNI:</label></th>
-                        <th><label for="psswrd">contraseña:</label></th>
-                    </tr>
-                    <tr>
-                        <td><input type="text" name="nombre" id="nombre" required><br><br></td>
-                        <td><input type="text" name="direccion" id="direccion" required ><br><br></td>
-                        <td><input type="text" name="localidad" id="localidad" required ><br><br></td>
-                        <td><input type="text" name="provincia" id="provincia" required><br><br>
-                        <td><input type="tel" name="telefono" id="telefono" required><br><br>
-                        <td><input type="email" name="email" id="email" required><br><br>
-                        <td><input type="text" name="dni" id="dni" required pattern="^\d{8}\w{1}$"><br><br></td>
-                        <td><input type="password" name="psswrd" id="pssword" required><br><br>
-                    </tr>
-                </table>
-                <br>
-                <div class="finForm">
-                    <button type="button"><a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Seguir navegando </a></button>
-                    <button type="submit" class="submit-button"><span>Proceder al método de pago </span><i class="lni lni-chevron-right"></i></button> 
-                    </form>
-                </div>
-            ';
-        }
+    <button type="button"><a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Seguir navegando </a></button>
+    <button type="submit" class="submit-button"><span>Dirección de envío del pedido</span><i class="lni lni-chevron-right"></i></button> 
+   
+<?php include_once("footer.php");?>
 
-        //SECCION ERRORES EN EL ALTA DE USER
-        include_once("../Controllers/ClienteALTAMensajes.php");
-        $arrayMensajes=getArrayMensajesNuevo();
-        if(is_array($arrayMensajes)){
-            foreach($arrayMensajes as $mensaje) {
-                echo "<h3>$mensaje</h3>";
-            }
-        };
-        print_r($_SESSION);
-        //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
-        ?>
-
-<?php
-include_once("footer.php");
-?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector(".reducir").addEventListener("click", ReducirCantidad);
+    document.querySelector(".reducir").addEventListener("click", RecalcularTotal);
+    document.querySelector(".aumentar").addEventListener("click", AumentarCantidad);
+    document.querySelector(".aumentar").addEventListener("click", RecalcularTotal);
+    
+    function ReducirCantidad() {
+        var elementos = document.querySelectorAll(".cantidad");
+        elementos.forEach(function(elemento) {
+            var valorActual = parseInt(elemento.textContent);
+            elemento.textContent = valorActual - 1;
+        });
+    }
+});
+</script>

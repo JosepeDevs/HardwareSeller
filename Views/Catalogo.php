@@ -19,23 +19,9 @@ if(isset($_GET["codigo"])) {
 
 //HEADER Y TITULO
 include_once("header.php");
-print('<h1>Catálogo</h1>
-    <div  class="col-lg-3 col-md-1 col-12">
-        <aside>
-            <a href="ArticuloBUSCAR.php">
-                <img class="iconArribaTabla"  src="../Resources/buscaAr.png" alt="recraft icon"/> Buscar artículo
-            </a>
-            <a href="ArticulosLISTAR.php">
-            <img  class="iconArribaTabla" src="../Resources/refresh.png" alt="refrescar" /> Recargar tabla (Quita ordenación y reinicia paginación)
-        </a>
-            <a href="?prebuilt">Pre-built computers</a>
-            <a href="?Pantallas">Pantallas</a>
-            <a href="?Graficas">Gráficas</a>
-            <a href="?Mobo">Placas base</a>
-            <a href="?RAM">RAM</a>
-        </aside>
-    <div>
-');
+print('<h1>Catálogo</h1>');
+include_once("aside.php");
+
 print_r($_SESSION);
 
 //PREPARAR ARRAYS CON OBJETOS
