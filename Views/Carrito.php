@@ -46,7 +46,7 @@ include_once("header.php");
                         <td>
                             <div class="row">
                                 <button class="reducir" type="button"><i class="lni lni-minus"></i></button>
-                                <span class="cantidad"><input type="number" name="cantidad'.$indice.'" value="'.$cantidad.'" onchange="CalcularTotales()"></input></span>
+                                <span class="cantidad"><input type="number" name="cantidad'.$indice.'" value="'.$cantidad.'"></input></span>
                                 <button class="aumentar" type="button"><i class="lni lni-plus"></i></button>
                             </div>
                         </td>
@@ -84,12 +84,16 @@ include_once("header.php");
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll(".reducir").forEach(function(button) {
+    document.querySelectorAll(".reducir").forEach(function(button) {//con esto seleccionamos todos los elements de la clase reducir
         button.addEventListener("click", ReducirCantidad); //añadir el listener a todos los botones
     });
     document.querySelectorAll(".aumentar").forEach(function(button) {
         button.addEventListener("click", AumentarCantidad);//añadir el listener a todos los botones
     });
+    document.querySelectorAll(".cantidad input").forEach(function(input) {//a cada uno de los elementos seleccionados aplicar↓
+        input.addEventListener("change", CalcularTotales);//esto es como poner en el html "onchange"
+    });
+
 
     function ReducirCantidad() {
         var inputCantidad = this.nextElementSibling.querySelector(".cantidad");//seleccionar justo el siguiente elemento, siempre que sea de la clase .cantidad
