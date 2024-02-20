@@ -14,9 +14,9 @@ include_once("header.php");
             <th><label for="numLinea">Nº linea del pedido</label></th>
             <th><label for="codigo">Código del producto</label></th>
             <th><label for="nombre">Producto</label></th>
-            <th><label for="precio">Precio</label></th>
-            <th><label for="descuento">Descuento</label></th>
-            <th><label for="cantidad">Cantidad</label></th>
+            <th><label for="precio">Precio (€)</label></th>
+            <th><label for="descuento">Descuento (%)</label></th>
+            <th><label for="cantidad">Cantidad </label></th>
             <th>Sub total</th>
         </tr>
     </thead>
@@ -41,12 +41,12 @@ include_once("header.php");
                         <td><input name="numLinea'.$indice.'" value="'.$indice.'" disabled></input></td>
                         <td><input name="codigo'.$indice.'" disabled value="'.$codigo.'"></input></td>
                         <td><input name="nombre'.$indice.'" disabled value="'.$articulo->getNombre().'"></input></td>
-                        <td><input name="precio'.$indice.'" disabled value="'.$precio.'"></input> €'.'</td>
-                        <td><input name="descuento'.$indice.'" disabled value="'.$descuento.'"></input> %</td>
+                        <td><input name="precio'.$indice.'" disabled value="'.$precio.'"></input></td>
+                        <td><input name="descuento'.$indice.'" disabled value="'.$descuento.'"></input></td>
                         <td>
                             <div class="row">
                                 <button class="reducir" type="button"><i class="lni lni-minus"></i></button>
-                                <span class="cantidad"><input type="number" name="cantidad'.$indice.'">'.$cantidad.'</input></span>
+                                <span class="cantidad"><input type="number" name="cantidad'.$indice.'" value="'.$cantidad.'"></input></span>
                                 <button class="aumentar" type="button"><i class="lni lni-plus"></i></button>
                             </div>
                         </td>
@@ -77,7 +77,7 @@ include_once("header.php");
     </tfoot>
     </table>
     <button type="button"><a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Seguir navegando </a></button>
-    <button type="submit" class="submit-button"><span>Dirección de envío del pedido</span><i class="lni lni-chevron-right"></i></button> 
+    <button type="submit" class="submit-button"><span>Proceder a DIRECCIÓN DE ENVÍO</span><i class="lni lni-chevron-right"></i></button> 
    
 <?php include_once("footer.php");?>
 
