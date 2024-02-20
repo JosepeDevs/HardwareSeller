@@ -11,7 +11,7 @@ include_once("header.php");
     <table class="table">
     <thead>
         <tr>
-            <th><label for="numLinea">Nº linea del pedido</label><th>
+            <th><label for="numLinea">Nº linea del pedido</label></th>
             <th><label for="codigo">Código del producto</label></th>
             <th><label for="nombre">Producto</label></th>
             <th><label for="precio">Precio</label></th>
