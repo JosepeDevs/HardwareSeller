@@ -42,6 +42,15 @@ echo"<table>";
             } else{
                 foreach ($arrayAtributos as $atributo) {
                     $nombreAtributo = $atributo;
+                    if($nombreAtributo == "estado"){
+                        echo"<th>
+                            $nombreAtributo 
+                            <br>(0=pedido en carrito)(1=pedido realizado, pago pendiente)(2=pedido realizado, pago realizado)(3=pedido enviado)(4=pedido recibido)(5=finalizado)
+                            <br>Ordenar por este atributo:<br>
+                            <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
+                            <a class='ordenar' href='PedidosLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
+                        </th>";
+                    }
                     echo"<th>
                             $nombreAtributo <br>Ordenar por este atributo:<br>
                             <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
