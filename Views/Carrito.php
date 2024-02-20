@@ -46,7 +46,7 @@ include_once("header.php");
                         <td><input name="descuento'.$indice.'" disabled>'.$descuento.'</input> %</td>
                         <td>
                             <button class="reducir" type="button"><i class="lni lni-minus"></i></button>
-                            <span class="cantidad"><input type="number" name="cantidad'.$indice.'">'.$articulo.'</input></span>
+                            <span class="cantidad"><input type="number" name="cantidad'.$indice.'">'.$cantidad.'</input></span>
                             <button class="aumentar" type="button"><i class="lni lni-plus"></i></button>
                         </td>
                         <td class=subTotal>'.$subTotal.' €'.'</td>
