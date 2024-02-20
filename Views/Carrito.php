@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function ReducirCantidad() {
-        var inputCantidad = this.nextElementSibling.querySelector(".cantidad']");//seleccionar justo el siguiente elemento, siempre que sea de la clase .cantidad
+        var inputCantidad = this.nextElementSibling.querySelector(".cantidad");//seleccionar justo el siguiente elemento, siempre que sea de la clase .cantidad
         var valorActual = parseInt(inputCantidad.value);
         if (valorActual >  1) {
             inputCantidad.value = valorActual -  1;
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function AumentarCantidad() {
-        var inputCantidad = this.previousElementSibling.querySelector(".cantidad']");//seleccionar justo el elemento previo, siempre que sea de la clase .cantidad
+        var inputCantidad = this.previousElementSibling.querySelector(".cantidad");//seleccionar justo el elemento previo, siempre que sea de la clase .cantidad
         var valorActual = parseInt(inputCantidad.value);
         inputCantidad.value = valorActual +  1;
         CalcularTotales(); //llamamos a la función que actualiza total y subtotal
