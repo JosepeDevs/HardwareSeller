@@ -41,13 +41,14 @@ include_once("header.php");
                         <td><input name="numLinea'.$indice.'" value="'.$indice.'" disabled></input></td>
                         <td><input name="codigo'.$indice.'" disabled value="'.$codigo.'"></input></td>
                         <td><input name="nombre'.$indice.'" disabled value="'.$articulo->getNombre().'"></input></td>
-                        <td><input name="codigo'.$indice.'" disabled value="'.$articulo->getCodigo().'"></input></td>
                         <td><input name="precio'.$indice.'" disabled value="'.$precio.'"></input> €'.'</td>
                         <td><input name="descuento'.$indice.'" disabled value="'.$descuento.'"></input> %</td>
                         <td>
-                            <button class="reducir" type="button"><i class="lni lni-minus"></i></button>
-                            <span class="cantidad"><input type="number" name="cantidad'.$indice.'">'.$cantidad.'</input></span>
-                            <button class="aumentar" type="button"><i class="lni lni-plus"></i></button>
+                            <div class="row">
+                                <button class="reducir" type="button"><i class="lni lni-minus"></i></button>
+                                <span class="cantidad"><input type="number" name="cantidad'.$indice.'">'.$cantidad.'</input></span>
+                                <button class="aumentar" type="button"><i class="lni lni-plus"></i></button>
+                            </div>
                         </td>
                         <td class=subTotal>'.$subTotal.' €'.'</td>
                     </tr>
