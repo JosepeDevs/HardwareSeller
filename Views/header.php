@@ -134,6 +134,6 @@
     </div>
 </header>
 <body>
-<div class="cta-container">
-    <img src="/Resources/backgroundHS.png">
     <div class="cuerpo">
+    <div class="cta-container">
+    <img src="/Resources/backgroundHS.png">
