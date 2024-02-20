@@ -62,7 +62,7 @@ include_once("header.php");
                 $indice+=1;
             } 
         }else{
-            echo '<tr><td colspan="5"><p>Carrito sin artículos (carrito vacío)</p></td>';
+            echo '<tr><td colspan="7"><p>Carrito sin artículos (carrito vacío)</p></td>';
         } 
     ?>
         </form>
@@ -70,7 +70,7 @@ include_once("header.php");
     <tfoot>
         <tr>
             <?php if(count($_SESSION['productos']) > 0){ ?>
-                <td class="text-center total" colspan="5"><h2><b>Total (€) <?php echo $total ?></b></h2></td>
+                <td class="text-center total" colspan="7"><h2><b>Total (€) <?php echo $total ?></b></h2></td>
                 <br>
             <?php } ?>
         </tr>
