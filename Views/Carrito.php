@@ -50,7 +50,7 @@ include_once("header.php");
                                 <button class="aumentar" type="button"><i class="lni lni-plus"></i></button>
                             </div>
                         </td>
-                        <td class=subTotal>'.$subTotal.'</td>
+                        <td class="subTotal">'.$subTotal.'</td>
                     </tr>
                     ';
                     $arraySubtotales [] = $subTotal;
@@ -84,17 +84,53 @@ include_once("header.php");
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector(".reducir").addEventListener("click", ReducirCantidad);
-    document.querySelector(".reducir").addEventListener("click", RecalcularTotal);
-    document.querySelector(".aumentar").addEventListener("click", AumentarCantidad);
-    document.querySelector(".aumentar").addEventListener("click", RecalcularTotal);
-    
+    document.querySelectorAll(".reducir").forEach(function(button) {
+        button.addEventListener("click", ReducirCantidad); //añadir el listener a todos los botones
+    });
+    document.querySelectorAll(".aumentar").forEach(function(button) {
+        button.addEventListener("click", AumentarCantidad);//añadir el listener a todos los botones
+    });
+
     function ReducirCantidad() {
-        var elementos = document.querySelectorAll(".cantidad");
-        elementos.forEach(function(elemento) {
-            var valorActual = parseInt(elemento.textContent);
-            elemento.textContent = valorActual - 1;
+        var inputCantidad = this.nextElementSibling.querySelector(".cantidad']");//seleccionar justo el siguiente elemento, siempre que sea de la clase .cantidad
+        var valorActual = parseInt(inputCantidad.value);
+        if (valorActual >  1) {
+            inputCantidad.value = valorActual -  1;
+            CalcularTotales(); //llamamos a la función que actualiza total y subtotal
+        }
+    }
+
+    function AumentarCantidad() {
+        var inputCantidad = this.previousElementSibling.querySelector(".cantidad']");//seleccionar justo el elemento previo, siempre que sea de la clase .cantidad
+        var valorActual = parseInt(inputCantidad.value);
+        inputCantidad.value = valorActual +  1;
+        CalcularTotales(); //llamamos a la función que actualiza total y subtotal
+    }
+
+    function CalcularTotales() {
+        var subtotales = []; // Array donde guadaremos los subtotales
+        var total =  0; 
+
+        // Loop todas las filas
+        document.querySelectorAll("tbody tr").forEach(function(row) {//en cada fila dentro de tbody
+            var cantidad = parseInt(row.querySelector("input[name^='cantidad']").value);//cogems el input por el nombre de la varibale con un poco de regex
+            var precio = parseFloat(row.querySelector("input[name^='precio']").value); // ^=  es para seleccionar elementos que empiecen por lo que se indique
+            var descuento = parseFloat(row.querySelector("input[name^='descuento']").value); // así cogemos descuento1, descuento2, etc.
+
+            var subtotal = (precio * (1 - (descuento /  100))) * cantidad;
+
+            row.querySelector(".subTotal").textContent = subtotal.toFixed(2);//cambiamos el subtotal y nos aseguramos que esté redondeado a 2 cifras decimales
+
+            subtotales.push(subtotal);//metemos el subtotal en el array
         });
+        
+        //reduce un array a un único valor. aplica una función definida in situ a cada elemento del array y lo va añadiendo al total, que es lo que devuelve
+        total = subtotales.reduce(function(a, b) { //aquí b) es subtotal y a) es el total o return final 
+            return a + b;
+        },  0);// este 0 es el acumulador, le dice por donde debe empezar, en este caso desde el índice 0 p'alante
+
+        //metemos redondeado el total donde le coresponde
+        document.querySelector(".total").textContent = total.toFixed(2);
     }
 });
 </script>
