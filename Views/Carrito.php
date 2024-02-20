@@ -17,7 +17,7 @@ include_once("header.php");
             <th><label for="precio">Precio (€)</label></th>
             <th><label for="descuento">Descuento (%)</label></th>
             <th><label for="cantidad">Cantidad </label></th>
-            <th>Sub total</th>
+            <th>Sub total (€)</th>
         </tr>
     </thead>
     <tbody>
@@ -50,7 +50,7 @@ include_once("header.php");
                                 <button class="aumentar" type="button"><i class="lni lni-plus"></i></button>
                             </div>
                         </td>
-                        <td class=subTotal>'.$subTotal.' €'.'</td>
+                        <td class=subTotal>'.$subTotal.'</td>
                     </tr>
                     ';
                     $arraySubtotales [] = $subTotal;
@@ -70,7 +70,7 @@ include_once("header.php");
     <tfoot>
         <tr>
             <?php if(count($_SESSION['productos']) > 0){ ?>
-                <td class="text-center total" colspan="5"><h2><b>Total <?php echo $total.' €'; ?></b></h2></td>
+                <td class="text-center total" colspan="5"><h2><b>Total (€) <?php echo $total ?></b></h2></td>
                 <br>
             <?php } ?>
         </tr>
