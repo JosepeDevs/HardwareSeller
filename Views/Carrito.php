@@ -46,7 +46,9 @@ include_once("header.php");
                         <td>
                             <div class="row">
                                 <button class="reducir" type="button"><i class="lni lni-minus"></i></button>
-                                <span class="cantidad"><input type="number" name="cantidad'.$indice.'" value="'.$cantidad.'"></input></span>
+                                <span class="cantidad">
+                                    <input type="number" name="cantidad'.$indice.'" value="'.$cantidad.'"/>
+                                </span>
                                 <button class="aumentar" type="button"><i class="lni lni-plus"></i></button>
                             </div>
                         </td>
@@ -94,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function() {
         input.addEventListener("change", CalcularTotales);//esto es como poner en el html "onchange"
     });
 
-
     function ReducirCantidad() {
         var inputCantidad = this.parentElement.querySelector(".cantidad input");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
         var valorActual = parseInt(inputCantidad.value);
@@ -116,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var total =  0; 
 
         // Loop todas las filas
-        document.querySelectorAll("tbody tr").forEach(function(row) {//en cada fila dentro de tbody
+        document.querySelectorAll("td div span").forEach(function(row) {//en cada fila dentro de tbody
             var cantidad = parseInt(row.querySelector("input[name^='cantidad']").value);//cogems el input por el nombre de la varibale con un poco de regex
             var precio = parseFloat(row.querySelector("input[name^='precio']").value); // ^=  es para seleccionar elementos que empiecen por lo que se indique
             var descuento = parseFloat(row.querySelector("input[name^='descuento']").value); // así cogemos descuento1, descuento2, etc.
