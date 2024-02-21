@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelector(".total").textContent = total.toFixed(2);
     }
 
-    function HabilitarInputs(){
+    function HabilitarInputs(event){
         event.preventDefault(); //no dejamos que se envie
         document.querySelectorAll(".disabled").forEach(function(input) {//a cada uno de los elementos seleccionados aplicar↓
         input.removeAttribute("disabled"); //quitamos el disabled para que se envíe
