@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var subTotalTd = row.querySelector(".subTotal")
             var subTotal = parseFloat(subTotalTd.textContent)
             subTotal = (precio * (1 - (descuento /  100))) * cantidad;
-
+ 
             subTotalTd.textContent = subTotal.toFixed(2);//cambiamos el subtotal y nos aseguramos que esté redondeado a 2 cifras decimales
 
             subtotales.push(subtotal);//metemos el subtotal en el array
