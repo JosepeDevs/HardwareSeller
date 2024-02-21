@@ -32,8 +32,8 @@ include_once("header.php");
                 $articulo = getArticuloByCodigo($codigo);
                 $arrayArticulos[] = $articulo;
                 if($articulo !== false){
-                    $precio=$articulo->getPrecio();
-                    $descuento=$articulo->getDescuento();
+                    $precio=round($articulo->getPrecio(), 2);
+                    $descuento=round($articulo->getDescuento(), 2);
                     $cantidad = $arrayItems[$codigo];
                     $subTotal=($precio*(1-($descuento/100)))*$cantidad;
                     echo'
@@ -65,8 +65,10 @@ include_once("header.php");
             <tfoot>
                 <tr>';
                     if(count($_SESSION['productos']) > 0){ 
-                        echo' <td class="text-center total" colspan="7"><h2><b>Total (€) <?php echo $total ?></b></h2></td>
-                        <br>';
+                        echo'
+                            <td colspan="3"><h4> TOTAL (€): </h4></td>
+                            <td colspan="4" class="total" ><h2><b>'.$total.'</b></h2></td>
+                         <br>';
                     } 
                 echo'
                 </tr>

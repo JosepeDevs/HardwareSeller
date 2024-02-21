@@ -91,6 +91,7 @@ $_SESSION['productosCarrito'] = $productosYCantidadesConfirmadas; //guardamos lo
                 <br>
                 <div class="finForm">
                     <button type="button"><a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Seguir navegando </a></button>
+                    <button type="button"><a href="../Views/Carrito.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Volver a carrito</a></button>
                     <button type="submit" class="submit-button"><span>Proceder al método de pago </span><i class="lni lni-chevron-right"></i></button> 
                     </form>
                 </div>
