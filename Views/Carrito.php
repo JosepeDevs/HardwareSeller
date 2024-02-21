@@ -80,7 +80,7 @@ include_once("header.php");
     </tbody>
     </table>
     <button type="button"><a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Seguir navegando </a></button>
-    <button type="submit" class="submit"><span>Proceder a DIRECCIÓN DE ENVÍO</span><i class="lni lni-chevron-right"></i></button> 
+    <button type="submit" class="submit-carrito"><span>Proceder a DIRECCIÓN DE ENVÍO</span><i class="lni lni-chevron-right"></i></button> 
     </form>
 <?php include_once("footer.php");?>
 
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
         input.addEventListener("change", CalcularTotales);//esto es como poner en el html "onchange"
     });
 
-    const submitButton = document.querySelectorAll(".submit") 
+    const submitButton = document.querySelector(".submit-carrito"); 
     submitButton.addEventListener("click", HabilitarInputs);
 
     function ReducirCantidad() {
