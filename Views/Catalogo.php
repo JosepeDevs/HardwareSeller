@@ -55,7 +55,7 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
                             <td>
                                 <div class="row">
                                     <div class="col-12 col-lg-6 col-sm-1">
-                                        <img src="'.$directorio .$arrayAImprimir[$i]->getImagen().'" class="img-fluid" alt="'.$arrayAImprimir[$i]->getImagen().'">
+                                        <a href="FichaArticulo.php?codigo='.$arrayAImprimir[$i]->getCodigo().'"><img src="'.$directorio .$arrayAImprimir[$i]->getImagen().'" class="img-fluid" alt="'.$arrayAImprimir[$i]->getImagen().'"></a>
                                         <br>
                                         <h2>Nombre: '.$arrayAImprimir[$i]->getNombre().'</h2>
                 ';
