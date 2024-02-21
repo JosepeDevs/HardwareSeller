@@ -19,7 +19,7 @@ foreach ($_POST as $AtributoYNumero => $valor) {
             
             $atributo = substr($AtributoYNumero, 0, $posicionNumeros); //coge del principio hasta donde aparece el primer número, eso es el nombre del atributo
             print"<br>atributo:<br>";
-            print_r($atributoatributo);
+            print_r($atributo);
             $numLinea = intval(substr($AtributoYNumero, $posicionNumeros)); // en AtributoYNumero buscamos desde donde empiezan los números hasta el final (hacemos 0 offset cuando llegue al final)
             print"<br>numLinea:<br>";
             print_r($numLinea);
