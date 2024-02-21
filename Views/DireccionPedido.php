@@ -15,7 +15,7 @@ foreach ($_POST as $AtributoYNumero => $valor) {
     if (preg_match('/^(codigo|cantidad|precio|descuento)\d+$/', $AtributoYNumero)) {
         $hayNumeros = preg_match('/(\d+)$/', $AtributoYNumero, $matches, PREG_OFFSET_CAPTURE); //mete en $matches si encuentra el regex, es un array multidimensional 
         $posicionNumeros=$matches[0][1];//$matches[0][0] es lo que ha encontrado que coincide con el regex, mientras que $matches[0][1] es donde lo ha encontrado
-        print$posicionNumero;
+        print$posicionNumeros;
         if ($hayNumeros) {
 
             $atributo = substr($AtributoYNumero, 0, $posicionNumeros); //coge del principio hasta donde aparece el primer número, eso es el nombre del atributo
