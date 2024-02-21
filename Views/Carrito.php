@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function() {
  
             subTotalTd.textContent = subTotal.toFixed(2);//cambiamos el subtotal y nos aseguramos que esté redondeado a 2 cifras decimales
 
-            subtotales.push(subtotal);//metemos el subtotal en el array
+            subtotales.push(subTotal);//metemos el subtotal en el array
         });
         
         //reduce un array a un único valor. aplica una función definida in situ a cada elemento del array y lo va añadiendo al total, que es lo que devuelve
