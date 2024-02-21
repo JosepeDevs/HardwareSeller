@@ -41,8 +41,8 @@ include_once("header.php");
                         <td><input name="numLinea'.$indice.'" value="'.$indice.'" disabled></input></td>
                         <td><input name="codigo'.$indice.'" disabled value="'.$codigo.'"></input></td>
                         <td><input name="nombre'.$indice.'" disabled value="'.$articulo->getNombre().'"></input></td>
-                        <td><input name="precio'.$indice.'" disabled value="'.$precio.'"></input></td>
-                        <td><input name="descuento'.$indice.'" disabled value="'.$descuento.'"></input></td>
+                        <td><input  id= "precio'.$indice.'" name="precio'.$indice.'" disabled value="'.$precio.'"></input></td>
+                        <td><input id= "descuento'.$indice.'" name="descuento'.$indice.'" disabled value="'.$descuento.'"></input></td>
                         <td>
                             <div class="row">
                                 <button class="reducir" type="button"><i class="lni lni-minus"></i></button>
@@ -119,13 +119,13 @@ document.addEventListener("DOMContentLoaded", function() {
         // Loop todas las filas
         var filas= document.querySelectorAll("tbody tr")
         filas.forEach(function(row) {//metemos todas las filas hermanas de todos los tbodys en un array 
-            var cantidad = parseInt(row.getElementById('input[id^="cantidad"]'));
+            var cantidad = parseInt(row.querySelector('input[id^="cantidad"]'));
             console.log("cantidad:");
             console.log(cantidad);
-            var precio = parseFloat(row.querySelector("input[name^='precio']").value); // ^=  es para seleccionar elementos que empiecen por lo que se indique
+            var precio = parseFloat(row.querySelector("input[id^='precio']").value); // ^=  es para seleccionar elementos que empiecen por lo que se indique
             console.log("precio:");
             console.log(precio);
-            var descuento = parseFloat(row.querySelector("input[name^='descuento']").value); // así cogemos descuento1, descuento2, etc.
+            var descuento = parseFloat(row.querySelector("input[id^='descuento']").value); // así cogemos descuento1, descuento2, etc.
 
 
             var subtotal = (precio * (1 - (descuento /  100))) * cantidad;
