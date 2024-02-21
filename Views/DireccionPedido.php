@@ -8,38 +8,27 @@ echo'<h1>Dirección de envío</h1>';
 include_once("aside.php");
 
 //RECIBIMOS POR POST LOS DATOS DE CONTENIDOPEDIDO
-print"post:<br>";
-print_r($_POST);
+
 foreach ($_POST as $AtributoYNumero => $valor) {
     // AtributoYNumero que empiecen  por alguna de estas palabras y terminar en un numero
-    if (preg_match('/^(codigo|cantidad|precio|descuento)\d+$/', $AtributoYNumero)) {
+    if (preg_match('/^(codigo|cantidad|precio|descuento)\d+$/', $AtributoYNumero)) { //así filtro dde todo lo que llega lo que quiero guardar
         $hayNumeros = preg_match('/(\d+)$/', $AtributoYNumero, $matches, PREG_OFFSET_CAPTURE); //mete en $matches si encuentra el regex, es un array multidimensional 
         $posicionNumeros=$matches[0][1];//$matches[0][0] es lo que ha encontrado que coincide con el regex, mientras que $matches[0][1] es donde lo ha encontrado
         if ($hayNumeros) {
             
             $atributo = substr($AtributoYNumero, 0, $posicionNumeros); //coge del principio hasta donde aparece el primer número, eso es el nombre del atributo
-            print"<br>atributo:<br>";
-            print_r($atributo);
+
             $numLinea = intval(substr($AtributoYNumero, $posicionNumeros)); // en AtributoYNumero buscamos desde donde empiezan los números hasta el final (hacemos 0 offset cuando llegue al final)
-            print"<br>numLinea:<br>";
-            print_r($numLinea);
-            
+
             if (!isset($productosYCantidadesConfirmadas[$numLinea])) {//si no existe ek array de productos lo crea
-                print"<br>NO existe el array productos y cantidades:<br>";
                 $productosYCantidadesConfirmadas[$numLinea] = array(); 
             } 
-            
-            print"<br>array productos y cantidades SÏ EXISTE:<br>";
-            print"<br>metemos valor:<br>";
-            print_r($valor);
+
             $productosYCantidadesConfirmadas[$numLinea][$atributo] = $valor;  //metemos dentro de la respectiva numLinea los atributos codigo, descuento, precio y cantidad
-            
-            
         }
     }
 }
-print"productos Y cantidades confirmadas:<br>:";
-print_r($productosYCantidadesConfirmadas);
+
 $_SESSION['productosCarrito'] = $productosYCantidadesConfirmadas; //guardamos los datos del carrito en la sesión para tenerlos a mano
 
 //TODO PONER Opción de recogida en tienda (más adelante)
