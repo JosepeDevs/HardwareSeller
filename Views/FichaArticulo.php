@@ -29,6 +29,18 @@ include_once("aside.php");
     <p>Descripción del producto:</p><br>
     <textarea readonly rows=5 cols=40 name="texto" ><?=$articulo->getDescripcion() ?></textarea><br><br>
 </section>
+<section id="relacionados">
+    <table>
+        <tr>
+            <th colspan="12"><h2>Productos relacionados:</h2></th>
+        </tr>
+        <tr>
+            <?
+            echo'<td class="col-12 col-lg-3 col-sm-1">
+            </td>';
+            ?>
+</section>
+
 
 
 <?php

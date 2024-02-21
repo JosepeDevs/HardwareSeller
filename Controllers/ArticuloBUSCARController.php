@@ -30,4 +30,10 @@ function GetArticulosByBusquedaNombre($nombre){
     $arrayArticulos = Articulo::GetArticulosByBusquedaNombre($nombre);
     return $arrayArticulos;
 }
+
+function GetArticulosRelacionadosByCodigo($codigo){
+    include_once("../Models/Articulo.php");
+    $arrayArticulos = Articulo::GetArticulosRelacionadosByCodigo($codigo);
+    return $arrayArticulos;
+}
 ?>
