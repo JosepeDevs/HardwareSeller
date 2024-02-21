@@ -47,7 +47,7 @@ include_once("header.php");
                             <div class="row">
                                 <button class="reducir" type="button"><i class="lni lni-minus"></i></button>
                                 <span class="cantidad">
-                                    <input type="number" id="cantidad'.$indice.'" name="cantidad'.$indice.'" value="'.$cantidad.'"/>
+                                    <input class="cantidad" type="number" id="cantidad'.$indice.'" name="cantidad'.$indice.'" value="'.$cantidad.'"/>
                                 </span>
                                 <button class="aumentar" type="button"><i class="lni lni-plus"></i></button>
                             </div>
@@ -120,12 +120,12 @@ document.addEventListener("DOMContentLoaded", function() {
         var filas= document.querySelectorAll("tbody tr")
         var indice = 1
         filas.forEach(function(row) {//metemos todas las filas hermanas de todos los tbodys en un array 
-            var cantidadInput = row.querySelector(".cantidad input");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
-            var precioInput = row.querySelector(".precio input");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
-            var descuentoInput = row.querySelector(".descuento input");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
-            var cantidad =cantidadInput.value
-            var precio =precioInput.value
-            var descuento =descuentoInput.value
+            var cantidadInput = row.querySelector(".cantidad");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
+            var precioInput = row.querySelector(".precio");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
+            var descuentoInput = row.querySelector(".descuento");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
+            var cantidad = parseInt(cantidadInput.value);
+            var precio = parseFloat(precioInput.value);
+            var descuento = parseFloat(descuentoInput.value);
             var subTotalTd = row.querySelector(".subTotal")
             var subTotal = parseFloat(subTotalTd.textContent)
             subTotal = (precio * (1 - (descuento /  100))) * cantidad;
