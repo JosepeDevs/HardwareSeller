@@ -39,8 +39,6 @@ $_SESSION['productosCarrito'] = $productosYCantidadesConfirmadas; //guardamos lo
             echo"
             <h2>Datos usuario y dirección de envío</h2>
 
-
-
             <p>Nombre: ".$usuario->getNombre()."</p>
             <p>Email: ".$usuario->getEmail()."</p>
             <p>Teléfono: ".$usuario->getTelefono()."</p>
@@ -104,10 +102,8 @@ $_SESSION['productosCarrito'] = $productosYCantidadesConfirmadas; //guardamos lo
                 echo "<h3>$mensaje</h3>";
             }
         };
-        print_r($_SESSION);
         //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
         ?>
-
 
 
 <?php
