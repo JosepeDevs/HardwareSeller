@@ -28,7 +28,7 @@ include_once("header.php");
         if(count($_SESSION['productos']) > 0){
             $arrayItems = $_SESSION['productos'];//array asociativo con codigo del articulo y cantidad
             foreach($arrayItems as $codigo => $cantidad){//aquí los indices al ser asociativo son los propios codigos de artículo
-                $indice=0;
+                $indice=1;
                 $articulo = getArticuloByCodigo($codigo);
                 $arrayArticulos[] = $articulo;
                 if($articulo !== false){
@@ -119,13 +119,13 @@ document.addEventListener("DOMContentLoaded", function() {
         // Loop todas las filas
         var filas= document.querySelectorAll("tbody tr")
         filas.forEach(function(row) {//metemos todas las filas hermanas de todos los tbodys en un array 
-            var cantidad = parseInt(row.querySelector("td div span input[name^='cantidad']").value);//cogems el input por el nombre de la varibale con un poco de regex
             console.log(row);
-            console.log("deberia haber salido td div span");
-            console.log(querySelector("td div span input[name^='cantidad']"));
-            console.log("deberia haber salido td div span");
-            var precio = parseFloat(row.querySelector("td div span input[name^='precio']").value); // ^=  es para seleccionar elementos que empiecen por lo que se indique
-            var descuento = parseFloat(row.querySelector("td div span input[name^='descuento']").value); // así cogemos descuento1, descuento2, etc.
+            var cantidad = parseInt(row.querySelector("td div span input[name^='cantidad']").value);//cogems el input por el nombre de la varibale con un poco de regex
+            var precio = parseFloat(row.querySelector("input[name^='precio']").value); // ^=  es para seleccionar elementos que empiecen por lo que se indique
+            console.log("precio:");
+            console.log(precio);
+            var descuento = parseFloat(row.querySelector("input[name^='descuento']").value); // así cogemos descuento1, descuento2, etc.
+
 
             var subtotal = (precio * (1 - (descuento /  100))) * cantidad;
 
