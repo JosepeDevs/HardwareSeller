@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             subtotales.push(subTotal);//metemos el subtotal en el array
         });
-        
+    
         //reduce un array a un único valor. aplica una función definida in situ a cada elemento del array y lo va añadiendo al total, que es lo que devuelve
         total = subtotales.reduce(function(a, b) { //aquí b) es subtotal y a) es el total o return final 
             return a + b;
