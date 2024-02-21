@@ -21,7 +21,7 @@ include_once("header.php");
         </tr>
     </thead>
     <tbody>
-        <form action="DireccionPedido.php" method="post">
+        <form action="DireccionPedido.php"  class="form-carrito" method="post">
 
         <?php
         include_once('../Controllers/ArticuloBUSCARController.php');
@@ -157,8 +157,7 @@ document.addEventListener("DOMContentLoaded", function() {
         input.removeAttribute("disabled"); //quitamos el disabled para que se envíe
         });
         //console.log(new FormData(document.querySelector("form"))); // ver qué narices hay en el formulario
-        const form = event.target.closest('form'); //elegimos el form más cercano al botón
-        form.submit(); //ahora sí lo mandamos 
+        document.querySelector(".form-carrito").submit(); //ahora sí lo mandamos
     }
 
 });
