@@ -25,7 +25,7 @@ include_once("header.php");
 
         <?php
         include_once('../Controllers/ArticuloBUSCARController.php');
-        if(count($_SESSION['productos']) > 0){
+        if(count($_SESSION['productos']) > 0 && isset($_SESSION['productos'])){
             $arrayItems = $_SESSION['productos'];//array asociativo con codigo del articulo y cantidad
             $indice=1;
             foreach($arrayItems as $codigo => $cantidad){//aquí los indices al ser asociativo son los propios codigos de artículo

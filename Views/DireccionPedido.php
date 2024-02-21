@@ -21,17 +21,17 @@ foreach ($_POST as $AtributoYNumero => $valor) {
             $atributo = substr($AtributoYNumero, 0, $posicionNumeros); //coge del principio hasta donde aparece el primer número, eso es el nombre del atributo
             $numLinea = intval(substr($AtributoYNumero, $posicionNumeros)); // en AtributoYNumero buscamos desde donde empiezan los números hasta el final (hacemos 0 offset cuando llegue al final)
             
-            if (!isset($productos[$numLinea])) {//si no existe ek array de productos lo crea
-                $productos[$numLinea] = array(); 
+            if (!isset($productosYCantidadesConfirmadas[$numLinea])) {//si no existe ek array de productos lo crea
+                $productosYCantidadesConfirmadas[$numLinea] = array(); 
             } else{
-                $productos[$numLinea][$atributo] = $valor;  //metemos dentro de la respectiva numLinea los atributos codigo, descuento, precio y cantidad
+                $productosYCantidadesConfirmadas[$numLinea][$atributo] = $valor;  //metemos dentro de la respectiva numLinea los atributos codigo, descuento, precio y cantidad
             }
 
         }
     }
 }
-print_r($productos);
-$_SESSION['productosCarrito'] = $productos; //guardamos los datos del carrito en la sesión para tenerlos a mano
+print_r($productosYCantidadesConfirmadas);
+$_SESSION['productosCarrito'] = $productosYCantidadesConfirmadas; //guardamos los datos del carrito en la sesión para tenerlos a mano
 
 //TODO PONER Opción de recogida en tienda (más adelante)
         if(isset($_SESSION['user'])) {
