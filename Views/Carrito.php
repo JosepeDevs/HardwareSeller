@@ -157,7 +157,8 @@ document.addEventListener("DOMContentLoaded", function() {
         input.removeAttribute("disabled"); //quitamos el disabled para que se envíe
         });
         //console.log(new FormData(document.querySelector("form"))); // ver qué narices hay en el formulario
-        document.querySelector(".submit-carrito").submit(); //ahora sí lo mandamos
+        const form = event.target.closest('form'); //elegimos el form más cercano al botón
+        form.submit(); //ahora sí lo mandamos 
     }
 
 });
