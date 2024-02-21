@@ -116,7 +116,8 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Loop todas las filas
         var filas= document.querySelectorAll(".table tr")
-        var filasSinCabeceras = filas.slice(1, filas.length -  1); // fragmenta array del indice indicado al indice indical (0 es el primer elemento)
+        var filasArray = Array.from(filas); //convertimos el nodelist en array
+        var filasSinCabeceras = filasArray.slice(1, filasArray.length -  1); // fragmenta array del indice indicado al indice indical (0 es el primer elemento)
         console.log(filasSinCabeceras);
         var indice = 1
         filasSinCabeceras.forEach(function(row) {//metemos todas las filas hermanas de todos los tbodys en un array 
