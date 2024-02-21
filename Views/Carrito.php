@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".aumentar").forEach(function(button) {
         button.addEventListener("click", AumentarCantidad);//añadir el listener a todos los botones
     });
-    document.querySelectorAll(".cantidad input").forEach(function(input) {//a cada uno de los elementos seleccionados aplicar↓
+    document.querySelectorAll(".cantidad").forEach(function(input) {//a cada uno de los elementos seleccionados aplicar↓
         input.addEventListener("change", CalcularTotales);//esto es como poner en el html "onchange"
     });
 
