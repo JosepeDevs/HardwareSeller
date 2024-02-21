@@ -61,20 +61,21 @@ include_once("header.php");
                     echo '<tr><td colspan="5"><p>Carrito sin artículos que mostrar</p></td>';
                 }
             } 
+            echo'
+            <tfoot>
+                <tr>';
+                    if(count($_SESSION['productos']) > 0){ 
+                        echo' <td class="text-center total" colspan="7"><h2><b>Total (€) <?php echo $total ?></b></h2></td>
+                        <br>';
+                    } 
+                echo'
+                </tr>
+            </tfoot>';
         }else{
             echo '<tr><td colspan="7"><p>Carrito sin artículos (carrito vacío)</p></td>';
         } 
     ?>
-      
     </tbody>
-    <tfoot>
-        <tr>
-            <?php if(count($_SESSION['productos']) > 0){ ?>
-                <td class="text-center total" colspan="7"><h2><b>Total (€) <?php echo $total ?></b></h2></td>
-                <br>
-            <?php } ?>
-        </tr>
-    </tfoot>
     </table>
     <button type="button"><a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Seguir navegando </a></button>
     <button type="submit" class="submit-button"><span>Proceder a DIRECCIÓN DE ENVÍO</span><i class="lni lni-chevron-right"></i></button> 
