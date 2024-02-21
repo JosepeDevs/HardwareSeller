@@ -45,13 +45,7 @@ $_SESSION['productosCarrito'] = $productosYCantidadesConfirmadas; //guardamos lo
             <p>Dirección: ".$usuario->getDireccion()."</p>
             <p>Localidad: ".$usuario->getLocalidad()."</p>
             <p>Provincia: ".$usuario->getProvincia()."</p>
-            <br>
-                <div class='finForm'>
-                    <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
-                    <button type='button'><a href='../Views/MetodoDePago.php?tienda=0' class='btn btn-warning'>Recogeré mi pedido en tienda, Proceder al método de pago<i class='lni lni-chevron-right'></i></a></button>
-                    <button type='button'><a href='../Views/MetodoDePago.php?tienda=1' class='btn btn-warning'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
-                    </form> 
-                </div>
+
             
             ";
         } else{
@@ -84,16 +78,22 @@ $_SESSION['productosCarrito'] = $productosYCantidadesConfirmadas; //guardamos lo
                         <td><input type="password" name="psswrd" id="pssword" required><br><br>
                     </tr>
                 </table>
-                <br>
-                <div class="finForm">
-                    <button type="button"><a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Seguir navegando </a></button>
-                    <button type="button"><a href="../Views/Carrito.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Volver a carrito</a></button>
-                    <button type="submit" class="submit-button"><span>Proceder al método de pago </span><i class="lni lni-chevron-right"></i></button> 
-                    </form>
-                </div>
             ';
-        }
+        }  
+    //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
+    //todo si mas adelante se permite recogida en tienda podemos mandarlo por get tienda=0 (envio) y tienda=1 (recogida)
+    //<button type='button'><a href='../Views/MetodoDePago.php?tienda=0' class='btn btn-warning'>Recogeré mi pedido en tienda, Proceder al método de pago<i class='lni lni-chevron-right'></i></a></button>
 
+    ?>
+        <br>
+        <div class='finForm'>
+            <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
+            <button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Volver a dirección de envío</a></button>
+            <button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
+            </form> 
+        </div> 
+        <br>
+        <?php
         //SECCION ERRORES EN EL ALTA DE USER
         include_once("../Controllers/ClienteALTAMensajes.php");
         $arrayMensajes=getArrayMensajesNuevo();
@@ -102,7 +102,6 @@ $_SESSION['productosCarrito'] = $productosYCantidadesConfirmadas; //guardamos lo
                 echo "<h3>$mensaje</h3>";
             }
         };
-        //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
         ?>
 
 
