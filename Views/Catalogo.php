@@ -101,8 +101,8 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
            }else{
                print "<a href='?pag=$numeroIndicePaginacion&ordenNombres=$orden'>$numeroIndicePaginacion</a>";
            }
-           if($paginaActual +1 == $paginasTotales && $numeroIndicePaginacion == $paginasTotales){
-               print "<p>Siguiente</p>"; //en la primera página esto no debe ser un enlace
+           if($paginaActual +1 == $paginasTotales && $numeroIndicePaginacion == $paginasTotales){ //"siguiente" debe ser enlace o no? es lo que hacemos aquí
+               print "<p>Siguiente</p>"; //en la ultima página esto NO debe ser un enlace
            }else if($numeroIndicePaginacion == $paginasTotales){
                print "<a href='?pag=".($paginaActual+2)."&ordenNombres=$orden'>Siguiente</a>";
            } else{
@@ -115,7 +115,7 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
            print "<a href='?pag=$numeroIndicePaginacion&ordenNombres=$orden'>$numeroIndicePaginacion</a>";
        }
    }
-
+   /* ///DESHABILITADO, EN UNA TIENDA DE VERDAD HABRÍA QUE ESTUDIAR SI QUEREMOS MOSTRAR TODO O NO... PETACIÓN MUY POSIBLE
    //FORMULARIO PIE DE PÁGINA PARA ELEGIR LA PÁGINA A VER, Nº registros/pág
    $opcionesitemXpag=[3,4,5];
    if (isset($_GET['pag']) && ( $_GET['pag'] == "X" ) ){
@@ -124,6 +124,7 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
        print "<a href='?pag=X&ordenNombres=$orden'>Ver todos</a>";
    }
    print "</div>";//final del div de paginación
+   */
 ?>
 <?php
 include_once("footer.php");
