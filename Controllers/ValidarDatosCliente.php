@@ -236,7 +236,7 @@ if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true
            header("Location: ../Views/TablaClientes.php");
             exit;
         } else if( isset($_SESSION["RegistroInSitu"]) && $_SESSION["RegistroInSitu"] == 1){
-            header("Location: ../Views/MetodoDePago.php");
+            header("Location: ../Views/DireccionPedido.php");
             exit;
         } else{
            header("Location: ../Views/ClienteALTA.php?dni=$dniNuevo");

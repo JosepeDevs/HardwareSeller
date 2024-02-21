@@ -31,8 +31,9 @@ foreach ($_POST as $AtributoYNumero => $valor) {
     }
 }
 print_r($productos);
+$_SESSION['productosCarrito'] = $productos; //guardamos los datos del carrito en la sesión para tenerlos a mano
 
-//TODO PONER Opción de recogida en tienda
+//TODO PONER Opción de recogida en tienda (más adelante)
         if(isset($_SESSION['user'])) {
             include_once('../Controllers/ClienteBUSCARController.php');
             $usuario = getClienteByemail($_SESSION['user']);
@@ -62,7 +63,7 @@ print_r($productos);
             $_SESSION['RegistroInSitu'] = 1;
             $_SESSION["nuevoCliente"] = "true";
             echo '
-            <h2>Datos usuario y dirección de envío no encontrados, por favor indicar a continuación</h2>
+            <h2>Datos de contacto y dirección de envío</h2>
             <br>
             <form action="../Controllers/ValidarDatosCliente.php" method="post">
                 <table>
