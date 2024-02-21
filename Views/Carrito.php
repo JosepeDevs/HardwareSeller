@@ -38,15 +38,15 @@ include_once("header.php");
                     $subTotal=($precio*(1-($descuento/100)))*$cantidad;
                     echo'
                     <tr>
-                        <td><input name="numLinea'.$indice.'" value="'.$indice.'" disabled></input></td>
-                        <td><input name="codigo'.$indice.'" disabled value="'.$codigo.'"></input></td>
-                        <td><input  name="nombre'.$indice.'" disabled value="'.$articulo->getNombre().'"></input></td>
-                        <td><input class="precio"  id= "precio'.$indice.'" name="precio'.$indice.'" disabled value="'.$precio.'"></input></td>
-                        <td><input class="descuento" id= "descuento'.$indice.'" name="descuento'.$indice.'" disabled value="'.$descuento.'"></input></td>
+                        <td><input class="disabled" name="numLinea'.$indice.'" value="'.$indice.'" disabled></input></td>
+                        <td><input class="disabled" name="codigo'.$indice.'" disabled value="'.$codigo.'"></input></td>
+                        <td><input  class="disabled" name="nombre'.$indice.'" disabled value="'.$articulo->getNombre().'"></input></td>
+                        <td><input class="precio disabled"  id= "precio'.$indice.'" name="precio'.$indice.'" disabled value="'.$precio.'"></input></td>
+                        <td><input class="descuento disabled" id= "descuento'.$indice.'" name="descuento'.$indice.'" disabled value="'.$descuento.'"></input></td>
                         <td>
                             <div class="row">
                                 <button class="reducir" type="button"><i class="lni lni-minus"></i></button>
-                                <input class="cantidad" type="number" id="cantidad'.$indice.'" name="cantidad'.$indice.'" value="'.$cantidad.'"/>
+                                <input class="cantidad disabled" type="number" id="cantidad'.$indice.'" name="cantidad'.$indice.'" value="'.$cantidad.'"/>
                                 <button class="aumentar" type="button"><i class="lni lni-plus"></i></button>
                             </div>
                         </td>
@@ -80,7 +80,7 @@ include_once("header.php");
     </tbody>
     </table>
     <button type="button"><a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Seguir navegando </a></button>
-    <button type="submit" class="submit-button"><span>Proceder a DIRECCIÓN DE ENVÍO</span><i class="lni lni-chevron-right"></i></button> 
+    <button type="submit" class="submit"><span>Proceder a DIRECCIÓN DE ENVÍO</span><i class="lni lni-chevron-right"></i></button> 
     </form>
 <?php include_once("footer.php");?>
 
@@ -96,6 +96,9 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".cantidad").forEach(function(input) {//a cada uno de los elementos seleccionados aplicar↓
         input.addEventListener("change", CalcularTotales);//esto es como poner en el html "onchange"
     });
+
+    const submitButton = document.querySelectorAll(".submit") 
+    submitButton.addEventListener("click", HabilitarInputs);
 
     function ReducirCantidad() {
         var inputCantidad = this.parentElement.querySelector(".cantidad");//this es el botón , subimos al span, luego seleccionamos de la clase .cantidad un input
@@ -147,5 +150,14 @@ document.addEventListener("DOMContentLoaded", function() {
         //metemos redondeado el total donde le coresponde
         document.querySelector(".total").textContent = total.toFixed(2);
     }
+
+    function HabilitarInputs(){
+        event.preventDefault(); //no dejamos que se envie
+        document.querySelectorAll(".disabled").forEach(function(input) {//a cada uno de los elementos seleccionados aplicar↓
+        input.removeAttribute("disabled"); //quitamos el disabled para que se envíe
+        document.querySelector("form").submit(); //ahora sí lo mandamos
+        });
+    }
+
 });
 </script>
