@@ -40,9 +40,9 @@ include_once("header.php");
                     <tr>
                         <td><input name="numLinea'.$indice.'" value="'.$indice.'" disabled></input></td>
                         <td><input name="codigo'.$indice.'" disabled value="'.$codigo.'"></input></td>
-                        <td><input name="nombre'.$indice.'" disabled value="'.$articulo->getNombre().'"></input></td>
-                        <td><input  id= "precio'.$indice.'" name="precio'.$indice.'" disabled value="'.$precio.'"></input></td>
-                        <td><input id= "descuento'.$indice.'" name="descuento'.$indice.'" disabled value="'.$descuento.'"></input></td>
+                        <td><input  name="nombre'.$indice.'" disabled value="'.$articulo->getNombre().'"></input></td>
+                        <td><input class="precio"  id= "precio'.$indice.'" name="precio'.$indice.'" disabled value="'.$precio.'"></input></td>
+                        <td><input class="descuento" id= "descuento'.$indice.'" name="descuento'.$indice.'" disabled value="'.$descuento.'"></input></td>
                         <td>
                             <div class="row">
                                 <button class="reducir" type="button"><i class="lni lni-minus"></i></button>
@@ -111,27 +111,26 @@ document.addEventListener("DOMContentLoaded", function() {
         inputCantidad.value = valorActual +  1;
         CalcularTotales(); //llamamos a la función que actualiza total y subtotal
     }
-
+    
     function CalcularTotales() {
         var subtotales = []; // Array donde guadaremos los subtotales
         var total =  0; 
-
+        
         // Loop todas las filas
         var filas= document.querySelectorAll("tbody tr")
+        var indice = 1
         filas.forEach(function(row) {//metemos todas las filas hermanas de todos los tbodys en un array 
-       //     var cantidad = parseInt(row.querySelector('input[id^="cantidad"]').value);
-       var precio = parseFloat(row.querySelector("input[id^='cantidad']").value); // ^=  es para seleccionar elementos que empiecen por lo que se indique
-            console.log("cantidad:");
-            console.log(cantidad);
-            var precio = parseFloat(row.querySelector("input[id^='precio']").value); // ^=  es para seleccionar elementos que empiecen por lo que se indique
-            console.log("precio:");
-            console.log(precio);
-            var descuento = parseFloat(row.querySelector("input[id^='descuento']").value); // así cogemos descuento1, descuento2, etc.
+            var cantidadInput = row.querySelector(".cantidad input");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
+            var precioInput = row.querySelector(".precio input");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
+            var descuentoInput = row.querySelector(".descuento input");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
+            var cantidad =cantidadInput.value
+            var precio =precioInput.value
+            var descuento =descuentoInput.value
+            var subTotalTd = row.querySelector(".subTotal")
+            var subTotal = parseFloat(subTotalTd.textContent)
+            subTotal = (precio * (1 - (descuento /  100))) * cantidad;
 
-
-            var subtotal = (precio * (1 - (descuento /  100))) * cantidad;
-
-            row.querySelector(".subTotal").textContent = subtotal.toFixed(2);//cambiamos el subtotal y nos aseguramos que esté redondeado a 2 cifras decimales
+            subTotalTd.textContent = subTotal.toFixed(2);//cambiamos el subtotal y nos aseguramos que esté redondeado a 2 cifras decimales
 
             subtotales.push(subtotal);//metemos el subtotal en el array
         });
