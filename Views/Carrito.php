@@ -47,7 +47,7 @@ include_once("header.php");
                             <div class="row">
                                 <button class="reducir" type="button"><i class="lni lni-minus"></i></button>
                                 <span class="cantidad">
-                                    <input type="number" name="cantidad'.$indice.'" value="'.$cantidad.'"/>
+                                    <input type="number" id="cantidad'.$indice.'" name="cantidad'.$indice.'" value="'.$cantidad.'"/>
                                 </span>
                                 <button class="aumentar" type="button"><i class="lni lni-plus"></i></button>
                             </div>
@@ -119,9 +119,9 @@ document.addEventListener("DOMContentLoaded", function() {
         // Loop todas las filas
         var filas= document.querySelectorAll("tbody tr")
         filas.forEach(function(row) {//metemos todas las filas hermanas de todos los tbodys en un array 
-            var td = (row.querySelector("td").value);
-            console.log(td);
-            var cantidad = parseInt(row.querySelector("td div span input[name^='cantidad']").value);
+            var cantidad = parseInt(row.querySelector("td div span input[id^='cantidad']").value);
+            console.log("cantidad:");
+            console.log(cantidad);
             var precio = parseFloat(row.querySelector("input[name^='precio']").value); // ^=  es para seleccionar elementos que empiecen por lo que se indique
             console.log("precio:");
             console.log(precio);
