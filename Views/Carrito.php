@@ -116,7 +116,8 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Loop todas las filas
         var filas= document.querySelectorAll(".table tr")
-        console.log(filas);
+        var filasSinCabeceras = filas.slice(1, filas.length -  1); // fragmenta array del indice indicado al indice indical (0 es el primer elemento)
+        console.log(filasSinCabeceras);
         var indice = 1
         filas.forEach(function(row) {//metemos todas las filas hermanas de todos los tbodys en un array 
             var cantidadInput = row.querySelector(".cantidad");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
