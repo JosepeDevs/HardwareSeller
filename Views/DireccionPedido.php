@@ -27,12 +27,13 @@ foreach ($_POST as $AtributoYNumero => $valor) {
             if (!isset($productosYCantidadesConfirmadas[$numLinea])) {//si no existe ek array de productos lo crea
                 print"<br>NO existe el array productos y cantidades:<br>";
                 $productosYCantidadesConfirmadas[$numLinea] = array(); 
-            } else{
-                print"<br>array productos y cantidades SÏ EXISTE:<br>";
-                print"<br>metemos valor:<br>";
-                print_r($valor);
-                $productosYCantidadesConfirmadas[$numLinea][$atributo] = $valor;  //metemos dentro de la respectiva numLinea los atributos codigo, descuento, precio y cantidad
-            }
+            } 
+            
+            print"<br>array productos y cantidades SÏ EXISTE:<br>";
+            print"<br>metemos valor:<br>";
+            print_r($valor);
+            $productosYCantidadesConfirmadas[$numLinea][$atributo] = $valor;  //metemos dentro de la respectiva numLinea los atributos codigo, descuento, precio y cantidad
+            
             
         }
     }
