@@ -57,11 +57,11 @@ include_once("header.php");
                     ';
                     $arraySubtotales [] = $subTotal;
                     $total = array_sum($arraySubtotales);
+                    $indice+=1;
                 } else{
                     $total=0;
                     echo '<tr><td colspan="5"><p>Carrito sin artículos que mostrar</p></td>';
                 }
-                $indice+=1;
             } 
         }else{
             echo '<tr><td colspan="7"><p>Carrito sin artículos (carrito vacío)</p></td>';
