@@ -85,7 +85,7 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
             }
    //PAGINACIÓN
    print "<div class='paginacion'>";
-   $filasTotales = count($arrayArticulos)/3;
+   $filasTotales = ceil(count($arrayArticulos)/3);//si es divisible fetén, si no, redondoeamos hacia arriba
    $paginasTotales = ceil($filasTotales / $articulosAMostrar);
    if(is_numeric($paginaActual) && is_numeric($articulosAMostrar)){
        //estamos viendo los registros paginados
