@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var filasSinCabeceras = filas.slice(1, filas.length -  1); // fragmenta array del indice indicado al indice indical (0 es el primer elemento)
         console.log(filasSinCabeceras);
         var indice = 1
-        filas.forEach(function(row) {//metemos todas las filas hermanas de todos los tbodys en un array 
+        filasSinCabeceras.forEach(function(row) {//metemos todas las filas hermanas de todos los tbodys en un array 
             var cantidadInput = row.querySelector(".cantidad");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
             var precioInput = row.querySelector(".precio");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
             var descuentoInput = row.querySelector(".descuento");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
