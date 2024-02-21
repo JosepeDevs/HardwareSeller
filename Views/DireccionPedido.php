@@ -15,16 +15,22 @@ foreach ($_POST as $AtributoYNumero => $valor) {
     if (preg_match('/^(codigo|cantidad|precio|descuento)\d+$/', $AtributoYNumero)) {
         $hayNumeros = preg_match('/(\d+)$/', $AtributoYNumero, $matches, PREG_OFFSET_CAPTURE); //mete en $matches si encuentra el regex, es un array multidimensional 
         $posicionNumeros=$matches[0][1];//$matches[0][0] es lo que ha encontrado que coincide con el regex, mientras que $matches[0][1] es donde lo ha encontrado
-        print"posiciones donde estaban los números:<br>";
-        print_r($posicionNumeros);
         if ($hayNumeros) {
             
             $atributo = substr($AtributoYNumero, 0, $posicionNumeros); //coge del principio hasta donde aparece el primer número, eso es el nombre del atributo
+            print"<br>atributo:<br>";
+            print_r($atributoatributo);
             $numLinea = intval(substr($AtributoYNumero, $posicionNumeros)); // en AtributoYNumero buscamos desde donde empiezan los números hasta el final (hacemos 0 offset cuando llegue al final)
+            print"<br>numLinea:<br>";
+            print_r($numLinea);
             
             if (!isset($productosYCantidadesConfirmadas[$numLinea])) {//si no existe ek array de productos lo crea
+                print"<br>NO existe el array productos y cantidades:<br>";
                 $productosYCantidadesConfirmadas[$numLinea] = array(); 
             } else{
+                print"<br>array productos y cantidades SÏ EXISTE:<br>";
+                print"<br>metemos valor:<br>";
+                print_r($valor);
                 $productosYCantidadesConfirmadas[$numLinea][$atributo] = $valor;  //metemos dentro de la respectiva numLinea los atributos codigo, descuento, precio y cantidad
             }
             
@@ -53,7 +59,7 @@ $_SESSION['productosCarrito'] = $productosYCantidadesConfirmadas; //guardamos lo
             <p>Provincia: ".$usuario->getProvincia()."</p>
             <br>
                 <div class='finForm'>
-                    <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
+                    <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
                     <button type='button'><a href='../Views/MetodoDePago.php?tienda=0' class='btn btn-warning'><i class='lni lni-chevron-right'></i>Recogeré mi pedido en tienda, Proceder al método de pago</a></button>
                     <button type='button'><a href='../Views/MetodoDePago.php?tienda=1' class='btn btn-warning'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
                     </form> 
