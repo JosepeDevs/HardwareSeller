@@ -3,7 +3,7 @@
             <a href="ArticuloBUSCAR.php">
                 <img class="iconArribaTabla"  src="../Resources/buscaAr.png" alt="recraft icon"/> Buscar artículo
             </a>
-            <a href="ArticulosLISTAR.php">
+            <a href="Catalogo.php">
             <img  class="iconArribaTabla" src="../Resources/refresh.png" alt="refrescar" /> Recargar tabla (Quita ordenación y reinicia paginación)
         </a>
             <a href="?prebuilt">Pre-built computers</a>

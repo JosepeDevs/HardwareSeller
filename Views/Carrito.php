@@ -119,8 +119,9 @@ document.addEventListener("DOMContentLoaded", function() {
         // Loop todas las filas
         var filas= document.querySelectorAll("tbody tr")
         filas.forEach(function(row) {//metemos todas las filas hermanas de todos los tbodys en un array 
-            console.log(row);
-            var cantidad = parseInt(row.querySelector("td div span input[name^='cantidad']").value);//cogems el input por el nombre de la varibale con un poco de regex
+            var td = (row.querySelector("td").value);
+            console.log(td);
+            var cantidad = parseInt(row.querySelector("td div span input[name^='cantidad']").value);
             var precio = parseFloat(row.querySelector("input[name^='precio']").value); // ^=  es para seleccionar elementos que empiecen por lo que se indique
             console.log("precio:");
             console.log(precio);
