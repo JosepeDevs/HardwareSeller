@@ -8,6 +8,30 @@ echo'<h1>Dirección de envío</h1>';
 include_once("aside.php");
 
 //RECIBIMOS POR POST LOS DATOS DE CONTENIDOPEDIDO
+
+print_r($_POST);
+foreach ($_POST as $AtributoYNumero => $valor) {
+// AtributoYNumero que empiecen  por alguna de estas palabras y terminar en un numero
+    if (preg_match('/^(codigo|cantidad|precio|descuento)\d+$/', $AtributoYNumero)) {
+        $hayNumeros = preg_match('/(\d+)$/', $AtributoYNumero, $matches, PREG_OFFSET_CAPTURE); //mete en $matches si encuentra el regex, es un array multidimensional 
+        $posicionNumeros=$matches[0][1];//$matches[0][0] es lo que ha encontrado que coincide con el regex, mientras que $matches[0][1] es donde lo ha encontrado
+        print$posicionNumero;
+        if ($hayNumeros) {
+
+            $atributo = substr($AtributoYNumero, 0, $posicionNumeros); //coge del principio hasta donde aparece el primer número, eso es el nombre del atributo
+            $numLinea = intval(substr($AtributoYNumero, $posicionNumeros)); // en AtributoYNumero buscamos desde donde empiezan los números hasta el final (hacemos 0 offset cuando llegue al final)
+            
+            if (!isset($productos[$numLinea])) {//si no existe ek array de productos lo crea
+                $productos[$numLinea] = array(); 
+            } else{
+                $productos[$numLinea][$atributo] = $valor;  //metemos dentro de la respectiva numLinea los atributos codigo, descuento, precio y cantidad
+            }
+
+        }
+    }
+}
+print_r($productos);
+
 //TODO PONER Opción de recogida en tienda
         if(isset($_SESSION['user'])) {
             include_once('../Controllers/ClienteBUSCARController.php');
