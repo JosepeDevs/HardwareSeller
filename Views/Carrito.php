@@ -46,9 +46,7 @@ include_once("header.php");
                         <td>
                             <div class="row">
                                 <button class="reducir" type="button"><i class="lni lni-minus"></i></button>
-                                <span class="cantidad">
-                                    <input class="cantidad" type="number" id="cantidad'.$indice.'" name="cantidad'.$indice.'" value="'.$cantidad.'"/>
-                                </span>
+                                <input class="cantidad" type="number" id="cantidad'.$indice.'" name="cantidad'.$indice.'" value="'.$cantidad.'"/>
                                 <button class="aumentar" type="button"><i class="lni lni-plus"></i></button>
                             </div>
                         </td>
@@ -97,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function ReducirCantidad() {
-        var inputCantidad = this.parentElement.querySelector(".cantidad input");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
+        var inputCantidad = this.parentElement.querySelector(".cantidad");//this es el botón , subimos al span, luego seleccionamos de la clase .cantidad un input
         var valorActual = parseInt(inputCantidad.value);
         if (valorActual >  1) {
             inputCantidad.value = valorActual -  1;
@@ -106,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function AumentarCantidad() {
-        var inputCantidad = this.parentElement.querySelector(".cantidad input");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
+        var inputCantidad = this.parentElement.querySelector(".cantidad");//se llama en el boton, subimos al span, luego seleccionamos de la clase .cantidad un input
         var valorActual = parseInt(inputCantidad.value);
         inputCantidad.value = valorActual +  1;
         CalcularTotales(); //llamamos a la función que actualiza total y subtotal
