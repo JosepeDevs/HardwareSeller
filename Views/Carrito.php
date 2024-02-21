@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function ReducirCantidad() {
         var inputCantidad = this.parentElement.querySelector(".cantidad");//this es el botón , subimos al span, luego seleccionamos de la clase .cantidad un input
         var valorActual = parseInt(inputCantidad.value);
-        if (valorActual >  1) {
+        if (valorActual >  0) {
             inputCantidad.value = valorActual -  1;
             CalcularTotales(); //llamamos a la función que actualiza total y subtotal
         }
