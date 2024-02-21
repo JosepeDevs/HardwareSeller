@@ -59,18 +59,25 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
                                         <br>
                                         <h2>Nombre: '.$arrayAImprimir[$i]->getNombre().'</h2>
                 ';
-                                        if($arrayAImprimir[$i]->getDescuento() == 0){
-                                            echo'
-                                                <h2>Precio: '.$arrayAImprimir[$i]->getPrecio().' € </h2>
-                                            ';
-                                        } else {
-                                            echo'
-                                                <h4 style="text-decoration: line-through;">Precio: '.$arrayAImprimir[$i]->getPrecio().' € </h4>
-                                                <h2">Descuento: '.$arrayAImprimir[$i]->getDescuento().' % </h2>
+                                        if($arrayAImprimir[$i]->getActivo() == 0){
+                                            echo '<p>Articulo actualmente descatalogado o no disponible en este momento.</p>';
+                                        } else{
+                                            //si está activo mostrar precio, descuento y permitir añadirlo al carrito
+                                            if($arrayAImprimir[$i]->getDescuento() == 0){
+                                                echo'
+                                                    <h2>Precio: '.$arrayAImprimir[$i]->getPrecio().' € </h2>
+                                                ';
+                                            } else {
+                                                echo'
+                                                    <h4 style="text-decoration: line-through;">Precio: '.$arrayAImprimir[$i]->getPrecio().' € </h4>
+                                                    <h2">Descuento: '.$arrayAImprimir[$i]->getDescuento().' % </h2>
+                                                ';
+                                            }
+                                          echo'  <h2>Precio: '. round($arrayAImprimir[$i]->getPrecio() * (1 - ($arrayAImprimir[$i]->getDescuento()/100)), 2).' € </h2>
+                                            <a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'">Añadir al carrito  <i class="lni lni-cart-full" alt="Añadir al carrito"></i></a>
                                             ';
                                         }
-                                      echo'  <h2>Precio: '. round($arrayAImprimir[$i]->getPrecio() * (1 - ($arrayAImprimir[$i]->getDescuento()/100)), 2).' € </h2>
-                                        <a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'">Añadir al carrito  <i class="lni lni-cart-full" alt="Añadir al carrito"></i></a>
+                                        echo'
                                     </div>
                                 </div>
                             </td>
