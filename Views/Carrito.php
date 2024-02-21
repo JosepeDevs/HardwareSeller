@@ -65,7 +65,7 @@ include_once("header.php");
             echo '<tr><td colspan="7"><p>Carrito sin artículos (carrito vacío)</p></td>';
         } 
     ?>
-        </form>
+      
     </tbody>
     <tfoot>
         <tr>
@@ -78,7 +78,7 @@ include_once("header.php");
     </table>
     <button type="button"><a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Seguir navegando </a></button>
     <button type="submit" class="submit-button"><span>Proceder a DIRECCIÓN DE ENVÍO</span><i class="lni lni-chevron-right"></i></button> 
-   
+    </form>
 <?php include_once("footer.php");?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
