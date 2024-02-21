@@ -22,8 +22,6 @@ include_once("header.php");
 print('<h1>Catálogo</h1>');
 include_once("aside.php");
 
-print_r($_SESSION);
-
 //PREPARAR ARRAYS CON OBJETOS
 $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
 include_once("../Controllers/OrdenarArticulosController.php");
@@ -75,7 +73,7 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
                                         <a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'">Añadir al carrito  <i class="lni lni-cart-full" alt="Añadir al carrito"></i></a>
                                     </div>
                                 </div>
-                            <td>
+                            </td>
                 ';
                 if($i==2 || $i==5 || $i==8 ){ //si es un múltiplo de 3 crear línea nueva
                         echo'</tr>
