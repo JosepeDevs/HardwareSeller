@@ -156,7 +156,9 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll(".disabled").forEach(function(input) {//a cada uno de los elementos seleccionados aplicar↓
         input.removeAttribute("disabled"); //quitamos el disabled para que se envíe
         });
-        document.querySelector("form").submit(); //ahora sí lo mandamos
+        console.log(new FormData(document.querySelector("form"))); // Log form data to console
+
+        //document.querySelector("form").submit(); //ahora sí lo mandamos
     }
 
 });
