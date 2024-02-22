@@ -57,17 +57,28 @@ echo'
         <tr>
             <?
             $arrayArticulosRelacionados = GerArticulosRelacionadosByCodigo($articulo->getCodigo());
+            if($arrayArticulosRelacionados == false){
+                echo'<td colspan="12">No se han encontrado productos relacionados.</td>';
+            }    
             if($arrayArticulosRelacionados !== false){
-                foreach ($arrayArticulosRelacionados as $index => $articuloRelacionado) {
-                    echo'<td class="col-12 col-lg-3 col-sm-1">';
-                    echo'<a href=?codigo='.$articuloRelacionado->getCodigo().'">
-                    <img src="'.$directorio.$articuloRelacionado->getImagen().'" alt="'.$articuloRelacionado->getNombre().'"/>
-                    <br>'.$articuloRelacionado->getNombre().'
-                    </a>';
+                for($i=0;$i<=6;$i++){ //todo hacerlo carousel y poder meter más de los que caben en pantalla  
+                    echo'<td class="col-12 col-lg-1 col-sm-1">';
+                    echo'
+                    <div>
+                        <a href=?codigo='.$articuloRelacionado->getCodigo().'">
+                            <img src="'.$directorio.$articuloRelacionado->getImagen().'" alt="'.$articuloRelacionado->getNombre().'"/>
+                    </div>
+                    <br>
+                    <div>
+                        <p>'.$articuloRelacionado->getNombre().'</p>
+                    </div></a>
+                    <br>
+                    <div>
+                        <p>Precio: '.$articuloRelacionado->getNombre().'</p>
+                    </div>
+                    ';
                     echo'</td>';
                 }
-            } else{
-                echo'<td colspan="12">No se han encontrado productos relacionados.</td>';
             }
             ?>
         </tr>
