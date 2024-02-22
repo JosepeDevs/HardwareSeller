@@ -86,47 +86,23 @@ class Articulo {
         include_once("../Models/Categoria.php");
         $categoriaObjeto = Categoria::getCategoriaByCodigo($categoria);
         $categoriaPadre = $categoriaObjeto->getCodCategoriaPadre();  
-
+/*
         $longitudCategoria= strlen((string)$categoria);
         $categoriaSuperior= substr($categoria,0,$longitudCategoria-1);
-
+*/
         try{                
             $con = contectarBbddPDO();
-            $sqlQuery="SELECT * FROM  `articulos` WHERE categoria LIKE CONCAT('%', :categoriaSuperior, '%');";
-            $statement=$con->prepare($sqlQuery);
-            $statement->bindParam(':categoriaSuperior', $categoriaSuperior);
+            $sqlQuery="SELECT * FROM  `articulos` WHERE categoria LIKE CONCAT('%', :categoriaPadre, '%');";
+            $statement=$con->prepare($sqlQuery2);
+            $statement->bindParam(':categoriaPadre', $categoriaPadre);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
-            $arrayArticulos1 = $statement->fetchAll();
-            $arrayArticulos1= array();
-
-            if(empty($arrayArticulos1)){
-                $noHayRelacionadosEnCategoriaSuperior= true;    
-            }
-
-            $sqlQuery2="SELECT * FROM  `articulos` WHERE categoria LIKE CONCAT('%', :categoriaPadre, '%');";
-            $statement2=$con->prepare($sqlQuery2);
-            $statement2->bindParam(':categoriaPadre', $categoriaPadre);
-            $statement2->execute();
-            $statement2->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
-            $arrayArticulos2 = $statement2->fetchAll();
-            if(empty($arrayArticulos2)){
-                $noHayRelacionadosEnCodCategoriaPadre= true;    
-            }
-
-            if($noHayRelacionadosEnCategoriaSuperior && $noHayRelacionadosEnCodCategoriaPadre){
+            $arrayArticulos = $statement->fetchAll();
+            if(empty($arrayArticulos)){
                 $_SESSION['RelacionadosNotFound'] = true;
                 return false;
-            } else{
-                $arrayCodigosArticulos = array_merge($arrayCodigos, $arrayCodigos2);
-                //hay mezclados códigos y clientes 
-
-                foreach ($arrayCategorias as $index => $categoriaDelArray) {
-                    $categoriaDelArray->getCodigo
-                    $articuloDelArray=getArticuloByCodigo($categoriaDelArray);
-                    $arrayArticulos[] = $articuloDelArray;
-                }
-                return $arrayArticulos;
+            }
+            return $arrayArticulos;
             
         } catch(PDOException $e) {
             $_SESSION['ErrorGetArticulos']= true;
