@@ -76,17 +76,48 @@ class Articulo {
     }
 
 
-    public static function getDesgloseCategoriasArticulo($categoria){
-        //para saber todas las catagorias relacionadas de este producto hay que recorrer de forma acumulativa las etiquetas
-        //ejemplo: cateogira= 21124
-        $longitudCategoria= strlen((string)$categoria);
 
-        for($i= 0; $i<$longitudCategoria; $i++ ){
-            $categoria=substr($categoria,0,$i);//ejemplo:2 piezas de pc
-            $arrayRelacionados[]=$categoria;
+
+    public static function GetArticulosByCategoria($codigo){
+        $arrayArticulo = array();
+        $articulo = getArticuloByCodigo($codigo);
+        $categoria = $articulo->getCategoria();
+        $contador=0;
+        while(count($articulos)<12){
+            $limite=50;
+            if($contador<$limite){
+                $contador=$contador+1;
+            } else{
+                //todo buscar por categoria padre
+                include_once("../Models/Categoria.php");
+                $articulo->getCa
+                break;
+            }
+
+            $longitudCategoria= strlen((string)$categoria);
+            
+            $categoriaSuperior= substr($categoria,0,$longitudCategoria-1);
+
+            try{                
+                $con = contectarBbddPDO();
+                $sqlQuery="SELECT * FROM  `articulos` WHERE categoria LIKE CONCAT('%', :categoria, '%');";
+                $statement=$con->prepare($sqlQuery);
+                $statement->bindParam(':categoria', $categoriaSuperior);
+                $statement->execute();
+                $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
+                $arrayArticulo = $statement->fetchAll();
+                if(empty($arrayArticulo)){
+                    $_SESSION['RelacionadosNotFound'] = true;
+                    return false;
+                }else{
+                }
+            } catch(PDOException $e) {
+                $_SESSION['ErrorGetArticulos']= true;
+                return false;
+            }
         }
-        return $arrayRelacionados;
-    } 
+        return $arrayArticulo;
+    }
 
 
     /**
