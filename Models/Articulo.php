@@ -82,7 +82,7 @@ class Articulo {
         $arrayArticulos = array();
         $articulo = getArticuloByCodigo($codigo);
         $categoria = $articulo->getCategoria();
-
+/*
         $longitudCategoria= strlen((string)$categoria);
         $categoriaSuperior= substr($categoria,0,$longitudCategoria-1);
 
@@ -101,7 +101,7 @@ class Articulo {
             if(empty($arrayArticulos1)){
                 $noHayRelacionadosEnCategoriaSuperior= true;    
             }
-
+*/try{
             include_once("../Models/Categoria.php");
             $categoriaObjeto = Categoria::getCategoriaByCodigo($codigo);
             $categoriaPadre = $categoriaObjeto->getCodCategoriaPadre();        
@@ -113,21 +113,24 @@ class Articulo {
             $statement2->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
             $arrayCodigos2 = $statement2->fetchAll();
             if(empty($arrayCodigos2)){
+                $_SESSION['RelacionadosNotFound'] = true;
                 $noHayRelacionadosEnCodCategoriaPadre= true;    
+                return false; //MOVER ABAJO
             }
-
+/*
             if($noHayRelacionadosEnCategoriaSuperior && $noHayRelacionadosEnCodCategoriaPadre){
                 $_SESSION['RelacionadosNotFound'] = true;
                 return false;
             } else{
                 $arrayCodigosArticulos = array_merge($arrayCodigos, $arrayCodigos2);
                 //hay mezclados códigos y clientes 
-                foreach ($arrayCodigosArticulos as $index => $value) {
-                    $articulo=getArticuloByCodigo($arrayCodigosArticulos[$index]);
-                    $arrayArticulos[] = $articulo;
+*/
+                foreach ($arrayCodigos2 as $index => $codigoDelArray) {
+                    $articuloDelArray=getArticuloByCodigo($codigoDelArray);
+                    $arrayArticulos[] = $articuloDelArray;
                 }
-            }
-            return $arrayArticulos;
+                return $arrayArticulos;
+            
         } catch(PDOException $e) {
             $_SESSION['ErrorGetArticulos']= true;
             return false;
