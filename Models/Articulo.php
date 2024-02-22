@@ -103,7 +103,9 @@ class Articulo {
             }
 
             include_once("../Models/Categoria.php");
-            $categoriaPadre = $categoria->getCodCategoriaPadre();        
+            $categoriaObjeto = new Categoria();
+            $categoriaObjeto = getCategoriaByCodigo($codigo);
+            $categoriaPadre = $categoriaObjeto->getCodCategoriaPadre();        
             $sqlQuery2="SELECT codigo FROM  `categorias` WHERE codCategoriaPadre LIKE CONCAT('%', :codCategoriaPadre, '%');";
             $statement2=$con->prepare($sqlQuery);
             $statement2->bindParam(':codCategoriaPadre', $codCategoriaPadre);
