@@ -110,7 +110,7 @@ class Articulo {
             $statement2=$con->prepare($sqlQuery2);
             $statement2->bindParam(':categoriaPadre', $categoriaPadre);
             $statement2->execute();
-            $statement2->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
+            $statement2->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Categoria");
             $arrayCodigos2 = $statement2->fetchAll();
             if(empty($arrayCodigos2)){
                 $_SESSION['RelacionadosNotFound'] = true;
