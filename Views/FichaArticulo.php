@@ -48,6 +48,8 @@ echo'
 <section id="categoria">
     <p>Categoria del producto:<? echo$categoria?></p><br><br>
 </section>
+<section>
+    <button type='button'><a href='javascript:history.back()' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
 <section id="relacionados">
     <table>
         <tr>
