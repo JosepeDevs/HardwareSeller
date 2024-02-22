@@ -38,7 +38,9 @@ $_SESSION['productosCarrito'] = $productosYCantidadesConfirmadas; //guardamos lo
             //NOTHING LIKE A GOOD RETURNING CLIENT!
             echo"
             <h2>Datos usuario y dirección de envío</h2>
-
+            <br>
+            <a href='#'>Esto en un futuro será un botón para hacer login/registrarse con google usando OAuth</a>
+            <br>
             <p>Nombre: ".$usuario->getNombre()."</p>
             <p>Email: ".$usuario->getEmail()."</p>
             <p>Teléfono: ".$usuario->getTelefono()."</p>
