@@ -14,6 +14,7 @@ $descripcion = $articulo->getDescripcion();
 $precio = $articulo->getPrecio();
 $imagen = $articulo->getImagen();
 $categoria = $articulo->getCategoria();
+$activo = $articulo->getActivo();
 
 echo'<h1>Ficha artículo:'.$nombre.'</h1>';
 
@@ -24,16 +25,21 @@ include_once("aside.php");
                 <img src="'.$directorio .$imagen.'" class="img-fluid" alt="'.$codigo." ".$imagen.'">
             </a>'?>
 </section>
-<section class="Precio-carrito">
-    <div id="precio">
-        <h2>Precio: <? echo$precio ?> €</h2>
-    </div>
+<?if($activo==1){
+echo'
+    <section class="Precio-carrito">
+        <div id="precio">
+            <h2>Precio: '.$precio.' €</h2>
+        </div>
     <br>
     <br>
     <div id="carrito">
-        <a href="<? echo '?codigo='.$codigo ?>"><i class="lni lni-cart-full" alt="Añadir al carrito"></i>Añadir al carrito </a>
+        <a href="?codigo='.$codigo.'"><i class="lni lni-cart-full" alt="Añadir al carrito"></i>Añadir al carrito </a>
     </div>  
-</section>   
+</section>';
+} else{
+    echo'<p>Prodcuto actualmente descatalogado</p>';
+}?> 
 <br>
 <br>
 <section id="descripcion">
