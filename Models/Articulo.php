@@ -93,7 +93,7 @@ class Articulo {
         try{                
             $con = contectarBbddPDO();
             $sqlQuery="SELECT * FROM  `articulos` WHERE categoria LIKE CONCAT('%', :categoriaPadre, '%');";
-            $statement=$con->prepare($sqlQuery2);
+            $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':categoriaPadre', $categoriaPadre);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
