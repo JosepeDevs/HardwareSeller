@@ -107,7 +107,7 @@ class Articulo {
             $categoriaPadre = $categoriaObjeto->getCodCategoriaPadre();        
             $con = contectarBbddPDO();
             $sqlQuery2="SELECT codigo FROM  `categorias` WHERE codCategoriaPadre LIKE CONCAT('%', :categoriaPadre, '%');";
-            $statement2=$con->prepare($sqlQuery);
+            $statement2=$con->prepare($sqlQuery2);
             $statement2->bindParam(':categoriaPadre', $categoriaPadre);
             $statement2->execute();
             $statement2->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
