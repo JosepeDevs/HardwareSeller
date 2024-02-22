@@ -9,11 +9,14 @@ if(isset($_GET["codigo"])){
 $directorio = "/Resources/ImagenesArticulos/";
 
 $codigo = $articulo->getCodigo();
+echo "codigo=";
+echo $codigo;
 $nombre = $articulo->getNombre();
 $descripcion = $articulo->getDescripcion();
 $precio = $articulo->getPrecio();
 $imagen = $articulo->getImagen();
-
+echo "precio=";
+echo $precio;
 
 echo'<h1>Ficha artículo:'.$nombre.'</h1>';
 
@@ -26,12 +29,14 @@ include_once("aside.php");
 </section>
 <section class="Precio-carrito">
     <div id="precio">
-    <h2>Precio: <? $precio ?> €</h2>
+        <?echo'<h2>Precio: '.$precio.'€</h2>';?>
     </div>
     <div id="carrito">
         <a href="<? echo '?codigo='.$codigo ?>"><i class="lni lni-cart-full" alt="Añadir al carrito"></i>Añadir al carrito </a>
     </div>  
 </section>   
+<br>
+<br>
 <section id="descripcion">
     <p>Descripción del producto:</p><br>
     <p><? $descripcion?></p><br><br>
