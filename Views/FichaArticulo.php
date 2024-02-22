@@ -61,7 +61,7 @@ echo'
                 foreach ($arrayArticulosRelacionados as $index => $articuloRelacionado) {
                     echo'<td class="col-12 col-lg-3 col-sm-1">';
                     echo'<a href=?codigo='.$articuloRelacionado->getCodigo().'">
-                    <img src="'.$directorio.$articuloRelacionado->getRutaImagen().'" alt="'.$articuloRelacionado->getNombre().'"/>
+                    <img src="'.$directorio.$articuloRelacionado->getImagen().'" alt="'.$articuloRelacionado->getNombre().'"/>
                     <br>'.$articuloRelacionado->getNombre().'
                     </a>';
                     echo'</td>';
