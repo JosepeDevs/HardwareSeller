@@ -61,20 +61,21 @@ echo'
                 echo'<td colspan="12">No se han encontrado productos relacionados.</td>';
             }    
             if($arrayArticulosRelacionados !== false){
-                for($i=0;$i<=6;$i++){ //todo hacerlo carousel y poder meter más de los que caben en pantalla  
+                //todo hacerlo carousel y poder meter más de los que caben en pantalla 
+                for($i=0;$i<=6 && $articuloRelacionado[$i]->getCodigo() !== $codigo;$i++){  //no dejaremos que se muestre el propio item como relacionado
                     echo'<td class="col-12 col-lg-1 col-sm-1">';
                     echo'
                     <div>
-                        <a href=?codigo='.$articuloRelacionado->getCodigo().'">
-                            <img src="'.$directorio.$articuloRelacionado->getImagen().'" alt="'.$articuloRelacionado->getNombre().'"/>
+                        <a href=?codigo='.$articuloRelacionado[$i]->getCodigo().'">
+                            <img src="'.$directorio.$articuloRelacionado[$i]->getImagen().'" alt="'.$articuloRelacionado[$i]->getNombre().'"/>
                     </div>
                     <br>
                     <div>
-                        <p>'.$articuloRelacionado->getNombre().'</p>
+                        <p>'.$articuloRelacionado[$i]->getNombre().'</p>
                     </div></a>
                     <br>
                     <div>
-                        <p>Precio: '.$articuloRelacionado->getNombre().'</p>
+                        <p>Precio: '.$articuloRelacionado[$i]->getNombre().'</p>
                     </div>
                     ';
                     echo'</td>';
