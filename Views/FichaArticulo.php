@@ -62,7 +62,10 @@ echo'
             }    
             if($arrayArticulosRelacionados !== false){
                 //todo hacerlo carousel y poder meter más de los que caben en pantalla 
-                for($i=0;$i<=6 && $arrayArticulosRelacionados[$i]->getCodigo() !== $codigo;$i++){  //no dejaremos que se muestre el propio item como relacionado
+                for($i=0;$i<=6;$i++){  //no dejaremos que se muestre el propio item como relacionado
+                    if($arrayArticulosRelacionados[$i]->getCodigo() !== $codigo){
+                        continue;
+                    }
                     echo'<td class="col-12 col-lg-1 col-sm-1">';
                     echo'
                     <div>
