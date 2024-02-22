@@ -9,14 +9,11 @@ if(isset($_GET["codigo"])){
 $directorio = "/Resources/ImagenesArticulos/";
 
 $codigo = $articulo->getCodigo();
-echo "codigo=";
-echo $codigo;
 $nombre = $articulo->getNombre();
 $descripcion = $articulo->getDescripcion();
 $precio = $articulo->getPrecio();
 $imagen = $articulo->getImagen();
-echo "precio=";
-echo $precio;
+
 
 echo'<h1>Ficha artículo:'.$nombre.'</h1>';
 
