@@ -82,7 +82,11 @@ class Articulo {
         $arrayArticulos = array();
         $articulo = getArticuloByCodigo($codigo);
         $categoria = $articulo->getCategoria();
-/*
+        
+        include_once("../Models/Categoria.php");
+        $categoriaObjeto = Categoria::getCategoriaByCodigo($categoria);
+        $categoriaPadre = $categoriaObjeto->getCodCategoriaPadre();  
+
         $longitudCategoria= strlen((string)$categoria);
         $categoriaSuperior= substr($categoria,0,$longitudCategoria-1);
 
@@ -94,39 +98,32 @@ class Articulo {
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
             $arrayArticulos1 = $statement->fetchAll();
-            $arrayCodigos= array();
-            foreach($arrayArticulos1 as $articulo){
-                array_push($arrayCodigos, $articulo->getCodigo());
-            }
+            $arrayArticulos1= array();
+
             if(empty($arrayArticulos1)){
                 $noHayRelacionadosEnCategoriaSuperior= true;    
             }
-*/try{
-            include_once("../Models/Categoria.php");
-            $categoriaObjeto = Categoria::getCategoriaByCodigo($codigo);
-            $categoriaPadre = $categoriaObjeto->getCodCategoriaPadre();        
-            $con = contectarBbddPDO();
-            $sqlQuery2="SELECT codigo FROM  `categorias` WHERE codCategoriaPadre LIKE CONCAT('%', :categoriaPadre, '%');";
+
+            $sqlQuery2="SELECT * FROM  `articulos` WHERE categoria LIKE CONCAT('%', :categoriaPadre, '%');";
             $statement2=$con->prepare($sqlQuery2);
             $statement2->bindParam(':categoriaPadre', $categoriaPadre);
             $statement2->execute();
-            $statement2->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Categoria");
-            $arrayCodigos2 = $statement2->fetchAll();
-            if(empty($arrayCodigos2)){
-                $_SESSION['RelacionadosNotFound'] = true;
+            $statement2->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
+            $arrayArticulos2 = $statement2->fetchAll();
+            if(empty($arrayArticulos2)){
                 $noHayRelacionadosEnCodCategoriaPadre= true;    
-                return false; //MOVER ABAJO
             }
-/*
+
             if($noHayRelacionadosEnCategoriaSuperior && $noHayRelacionadosEnCodCategoriaPadre){
                 $_SESSION['RelacionadosNotFound'] = true;
                 return false;
             } else{
                 $arrayCodigosArticulos = array_merge($arrayCodigos, $arrayCodigos2);
                 //hay mezclados códigos y clientes 
-*/
-                foreach ($arrayCodigos2 as $index => $codigoDelArray) {
-                    $articuloDelArray=getArticuloByCodigo($codigoDelArray);
+
+                foreach ($arrayCategorias as $index => $categoriaDelArray) {
+                    $categoriaDelArray->getCodigo
+                    $articuloDelArray=getArticuloByCodigo($categoriaDelArray);
                     $arrayArticulos[] = $articuloDelArray;
                 }
                 return $arrayArticulos;
