@@ -3,7 +3,6 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //si protejo esto los clientes no pueden ver el catálogo
 include_once("../config/conectarBD.php");
 include_once("../Controllers/Directorio.php");
-include_once("../Models/Categoria.php");
 
 class Articulo {
 
@@ -103,8 +102,8 @@ class Articulo {
                 $noHayRelacionadosEnCategoriaSuperior= true;    
             }
 
-            $categoriaObjeto = new Categoria();
-            $categoriaObjeto = getCategoriaByCodigo($codigo);
+            include_once("../Models/Categoria.php");
+            $categoriaObjeto = Categoria::getCategoriaByCodigo($codigo);
             $categoriaPadre = $categoriaObjeto->getCodCategoriaPadre();        
             $sqlQuery2="SELECT codigo FROM  `categorias` WHERE codCategoriaPadre LIKE CONCAT('%', :codCategoriaPadre, '%');";
             $statement2=$con->prepare($sqlQuery);
