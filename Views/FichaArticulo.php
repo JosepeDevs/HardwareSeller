@@ -29,7 +29,7 @@ include_once("aside.php");
 </section>
 <section class="Precio-carrito">
     <div id="precio">
-        <?echo'<h2>Precio: '.$precio.'€</h2>';?>
+        <h2>Precio: <? echo$precio ?> €</h2>
     </div>
     <div id="carrito">
         <a href="<? echo '?codigo='.$codigo ?>"><i class="lni lni-cart-full" alt="Añadir al carrito"></i>Añadir al carrito </a>
@@ -39,7 +39,7 @@ include_once("aside.php");
 <br>
 <section id="descripcion">
     <p>Descripción del producto:</p><br>
-    <p><? $descripcion?></p><br><br>
+    <p><? echo$descripcion?></p><br><br>
 </section>
 <section id="relacionados">
     <table>
