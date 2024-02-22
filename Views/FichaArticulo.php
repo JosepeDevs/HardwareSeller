@@ -50,7 +50,10 @@ echo'
 </section>
 <section>
     <button type='button'><a href='javascript:history.back()' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
-<section id="relacionados">
+</section>
+<br>
+<br>
+    <section id="relacionados">
     <table>
         <tr>
             <th colspan="12"><h2>Productos relacionados:</h2></th>
