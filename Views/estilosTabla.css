@@ -445,10 +445,19 @@ body{
 }
 
 #carrito a{
-    color:var(--primary)
+    color:var(--dark-blue);
+    text-decoration: underline;
 }
 #carrito a:hover{
     color:var(--hover-light)
+}
+#carrito a i{
+    color:var(--primary);
+    text-decoration: underline;
+}
+#carrito a i:hover{
+    color:var(--hover-light);
+    text-decoration: underline;
 }
 
 .finForm{
