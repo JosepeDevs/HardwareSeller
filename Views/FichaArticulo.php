@@ -36,9 +36,17 @@ include_once("aside.php");
         </tr>
         <tr>
             <?
-            echo'<td class="col-12 col-lg-3 col-sm-1">
-            </td>';
+            $arrayArticulosRelacionados = GerArticulosRelacionadosByCodigo($articulo->getCodigo());
+            foreach ($arrayArticulosRelacionados as $index => $articuloRelacionado) {
+                echo'<td class="col-12 col-lg-3 col-sm-1">';
+                    echo'<a href=?codigo='.$articuloRelacionado->getCodigo().'">
+                            <img src="'.$directorio.$articuloRelacionado->getRutaImagen().'" alt="'.$articuloRelacionado->getNombre().'"/>
+                            <br>'.$articuloRelacionado->getNombre().'
+                        </a>';
+                echo'</td>';
+            }
             ?>
+        </tr>
 </section>
 
 

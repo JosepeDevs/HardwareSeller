@@ -31,9 +31,9 @@ function GetArticulosByBusquedaNombre($nombre){
     return $arrayArticulos;
 }
 
-function GetArticulosRelacionadosByCodigo($codigo){
+function GerArticulosRelacionadosByCodigo($codigo){
     include_once("../Models/Articulo.php");
-    $arrayArticulos = Articulo::GetArticulosRelacionadosByCodigo($codigo);
+    $arrayArticulos = Articulo::GerArticulosRelacionadosByCodigo($codigo);
     return $arrayArticulos;
 }
 ?>
