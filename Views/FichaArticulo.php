@@ -61,7 +61,7 @@ echo'
             }    
             if($arrayArticulosRelacionados !== false){
                 //todo hacerlo carousel y poder meter más de los que caben en pantalla 
-                for($i=0;$i<=min(count($arrayArticulosRelacionados),7);$i++){  //hasta que acabe el array o haya impreso 7 items que son los que caben en pantalla
+                for($i=0;$i<min(count($arrayArticulosRelacionados),7);$i++){  //hasta que acabe el array o haya impreso 7 items que son los que caben en pantalla
                     if($arrayArticulosRelacionados[$i]->getCodigo() == $codigo){
                         continue;//no dejaremos que se muestre el propio item como relacionado
                     }
