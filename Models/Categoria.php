@@ -1,12 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("../Controllers/OperacionesSession.php");
-$usuarioLogeado = UserEstablecido();
-if( $usuarioLogeado == false){
-    session_destroy();
-    echo "Categoria dice: no está user en session";
-    header("Location: /index.php");
-}
+ //si protejo esto no funciona bien coger articulos relacionados (se tiene quie poder acceder sin haber logueado)
 include_once("../config/conectarBD.php");
 include_once("../Controllers/Directorio.php");
 
