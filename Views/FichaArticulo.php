@@ -8,26 +8,33 @@ if(isset($_GET["codigo"])){
 } 
 $directorio = "/Resources/ImagenesArticulos/";
 
-echo'<h1>Ficha artículo:'.$articulo->getNombre().'</h1>';
+$codigo = $articulo->getCodigo();
+$nombre = $articulo->getNombre();
+$descripcion = $articulo->getDescripcion();
+$precio = $articulo->getPrecio();
+$imagen = $articulo->getImagen();
+
+
+echo'<h1>Ficha artículo:'.$nombre.'</h1>';
 
 include_once("aside.php");
 ?>
 <section class="imagen-ficha-articulo">
-    <? echo' <a href="FichaArticulo.php?codigo='.$articulo->getCodigo().'">
-                <img src="'.$directorio .$articulo->getImagen().'" class="img-fluid" alt="'.$articulo->getImagen().'">
+    <? echo' <a href="FichaArticulo.php?codigo='.$codigo.'">
+                <img src="'.$directorio .$imagen.'" class="img-fluid" alt="'.$codigo." ".$imagen.'">
             </a>'?>
 </section>
 <section class="Precio-carrito">
     <div id="precio">
-    <h2>Precio: <? $articulo->getPrecio() ?> €</h2>
+    <h2>Precio: <? $precio ?> €</h2>
     </div>
     <div id="carrito">
-        <a href="<? echo '?codigo='.$articulo->getCodigo() ?>">Añadir al carrito  <i class="lni lni-cart-full" alt="Añadir al carrito"></i></a>
+        <a href="<? echo '?codigo='.$codigo ?>"><i class="lni lni-cart-full" alt="Añadir al carrito"></i>Añadir al carrito </a>
     </div>  
 </section>   
 <section id="descripcion">
     <p>Descripción del producto:</p><br>
-    <p><? $articulo->getDescripcion() ?></p><br><br>
+    <p><? $descripcion?></p><br><br>
 </section>
 <section id="relacionados">
     <table>
