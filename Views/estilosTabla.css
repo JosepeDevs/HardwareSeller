@@ -444,6 +444,13 @@ body{
     height: 50px;
 }
 
+#carrito a{
+    color:var(--primary)
+}
+#carrito a:hover{
+    color:var(--hover-light)
+}
+
 .finForm{
     display: flex;
     width: 50%;

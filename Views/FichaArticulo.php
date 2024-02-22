@@ -27,7 +27,7 @@ include_once("aside.php");
 </section>   
 <section id="descripcion">
     <p>Descripción del producto:</p><br>
-    <textarea readonly rows=5 cols=40 name="texto" ><?=$articulo->getDescripcion() ?></textarea><br><br>
+    <p><? $articulo->getDescripcion() ?></p><br><br>
 </section>
 <section id="relacionados">
     <table>
