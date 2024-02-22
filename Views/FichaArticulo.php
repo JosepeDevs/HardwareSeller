@@ -13,7 +13,7 @@ $nombre = $articulo->getNombre();
 $descripcion = $articulo->getDescripcion();
 $precio = $articulo->getPrecio();
 $imagen = $articulo->getImagen();
-
+$categoria = $articulo->getCategoria();
 
 echo'<h1>Ficha artículo:'.$nombre.'</h1>';
 
@@ -28,6 +28,8 @@ include_once("aside.php");
     <div id="precio">
         <h2>Precio: <? echo$precio ?> €</h2>
     </div>
+    <br>
+    <br>
     <div id="carrito">
         <a href="<? echo '?codigo='.$codigo ?>"><i class="lni lni-cart-full" alt="Añadir al carrito"></i>Añadir al carrito </a>
     </div>  
@@ -35,8 +37,11 @@ include_once("aside.php");
 <br>
 <br>
 <section id="descripcion">
-    <p>Descripción del producto:</p><br>
-    <p><? echo$descripcion?></p><br><br>
+    <p>Descripción del producto:<? echo$descripcion?></p><br><br>
+</section>
+<br>
+<section id="categoria">
+    <p>Categoria del producto:<? echo$categoria?></p><br><br>
 </section>
 <section id="relacionados">
     <table>
@@ -56,7 +61,7 @@ include_once("aside.php");
                     echo'</td>';
                 }
             } else{
-                echo'<td colspan="12">No se han encontrado productos relacionados:</td>';
+                echo'<td colspan="12">No se han encontrado productos relacionados.</td>';
             }
             ?>
         </tr>
