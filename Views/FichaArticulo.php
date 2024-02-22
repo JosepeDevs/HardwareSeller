@@ -77,7 +77,7 @@ echo'
                     </div></a>
                     <br>
                     <div>
-                        <p>Precio: '.$arrayArticulosRelacionados[$i]->getPrecio().'</p>
+                        <p>Precio: '.$arrayArticulosRelacionados[$i]->getPrecio().' €</p>
                     </div>
                     ';
                     echo'</td>';
