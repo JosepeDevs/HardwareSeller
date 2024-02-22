@@ -5,16 +5,15 @@ if(isset($_GET["codigo"])){
     $codigo = $_GET["codigo"];
     include_once("../Controllers/ArticuloBUSCARController.php");
     $articulo = getArticuloByCodigo($codigo);
+    $codigo = $articulo->getCodigo();
+    $nombre = $articulo->getNombre();
+    $descripcion = $articulo->getDescripcion();
+    $precio = $articulo->getPrecio();
+    $imagen = $articulo->getImagen();
+    $categoria = $articulo->getCategoria();
+    $activo = $articulo->getActivo();
 } 
 $directorio = "/Resources/ImagenesArticulos/";
-
-$codigo = $articulo->getCodigo();
-$nombre = $articulo->getNombre();
-$descripcion = $articulo->getDescripcion();
-$precio = $articulo->getPrecio();
-$imagen = $articulo->getImagen();
-$categoria = $articulo->getCategoria();
-$activo = $articulo->getActivo();
 
 echo'<h1>Ficha artículo:'.$nombre.'</h1>';
 
@@ -69,7 +68,7 @@ echo'
                     echo'<td class="col-12 col-lg-1 col-sm-1">';
                     echo'
                     <div>
-                        <a href=?codigo='.$arrayArticulosRelacionados[$i]->getCodigo().'">
+                        <a href=?codigo="'.$arrayArticulosRelacionados[$i]->getCodigo().'">
                             <img src="'.$directorio.$arrayArticulosRelacionados[$i]->getImagen().'" alt="'.$arrayArticulosRelacionados[$i]->getNombre().'"/>
                     </div>
                     <br>
