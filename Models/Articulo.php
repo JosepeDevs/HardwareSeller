@@ -3,6 +3,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //si protejo esto los clientes no pueden ver el catálogo
 include_once("../config/conectarBD.php");
 include_once("../Controllers/Directorio.php");
+include_once("../Models/Categoria.php");
 
 class Articulo {
 
@@ -102,7 +103,6 @@ class Articulo {
                 $noHayRelacionadosEnCategoriaSuperior= true;    
             }
 
-            include_once("../Models/Categoria.php");
             $categoriaObjeto = new Categoria();
             $categoriaObjeto = getCategoriaByCodigo($codigo);
             $categoriaPadre = $categoriaObjeto->getCodCategoriaPadre();        
