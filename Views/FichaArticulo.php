@@ -62,20 +62,20 @@ echo'
             }    
             if($arrayArticulosRelacionados !== false){
                 //todo hacerlo carousel y poder meter más de los que caben en pantalla 
-                for($i=0;$i<=6 && $articuloRelacionado[$i]->getCodigo() !== $codigo;$i++){  //no dejaremos que se muestre el propio item como relacionado
+                for($i=0;$i<=6 && $arrayArticulosRelacionados[$i]->getCodigo() !== $codigo;$i++){  //no dejaremos que se muestre el propio item como relacionado
                     echo'<td class="col-12 col-lg-1 col-sm-1">';
                     echo'
                     <div>
-                        <a href=?codigo='.$articuloRelacionado[$i]->getCodigo().'">
-                            <img src="'.$directorio.$articuloRelacionado[$i]->getImagen().'" alt="'.$articuloRelacionado[$i]->getNombre().'"/>
+                        <a href=?codigo='.$arrayArticulosRelacionados[$i]->getCodigo().'">
+                            <img src="'.$directorio.$arrayArticulosRelacionados[$i]->getImagen().'" alt="'.$arrayArticulosRelacionados[$i]->getNombre().'"/>
                     </div>
                     <br>
                     <div>
-                        <p>'.$articuloRelacionado[$i]->getNombre().'</p>
+                        <p>'.$arrayArticulosRelacionados[$i]->getNombre().'</p>
                     </div></a>
                     <br>
                     <div>
-                        <p>Precio: '.$articuloRelacionado[$i]->getNombre().'</p>
+                        <p>Precio: '.$arrayArticulosRelacionados[$i]->getNombre().'</p>
                     </div>
                     ';
                     echo'</td>';
