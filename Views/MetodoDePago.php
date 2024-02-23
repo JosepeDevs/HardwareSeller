@@ -15,10 +15,9 @@ include_once("aside.php");
     <div id="detallesTarjeta" style="display: none;">
         <br><br>
         <label for="numeroTarjeta">Número de Tarjeta:</label>
-        <br><br>
         <input type="text" id="numeroTarjeta" name="numeroTarjeta" required>
-        <label for="caducidadTarjeta">Fecha de Expiración:</label>
         <br><br>
+        <label for="caducidadTarjeta">Fecha de Expiración:</label>
         <input type="month" id="expiracionTarjeta" name="expiracionTarjeta" required>
         <br><br>
         <label for="cvv">CVV:</label>
