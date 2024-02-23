@@ -10,7 +10,8 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
     $clienteExiste = checkClientByEmailAndDni($email, $dni);
     if( $clienteExiste) {
         echo '<form action="UpdatePsswrd.php" method="POST">';
-        echo '<label>Escriba su nueva contraseña</label><br><br><input type="text" name="newpsswrd"><br><br>';
+        echo '<h1>Recuperación de contraseña</h1>';
+        echo '<h2><label>Escriba su nueva contraseña</label></h2><br><br><input type="text" name="newpsswrd"><br><br>';
         echo '<br><br><input type="submit" value="Submit"></form>';
     } else {
         $_SESSION['ClienteNoExiste'] =true;
