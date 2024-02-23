@@ -8,7 +8,7 @@ include_once("aside.php");
 
 <form action="PedidoALTA.php" method="POST">
     <h2>
-        <select name="estado" id="estado">
+        <select class="estado-metodoPago" name="estado" id="estado">
             <option value="3">Transferencia</option>
             <option value="4">Tarjeta</option>
         </select>
@@ -17,7 +17,7 @@ include_once("aside.php");
     <div id="detallesTarjeta" style="display: none;">
         <br><br>
         <label for="numeroTarjeta">Número de Tarjeta:</label>
-        <input type="text" id="numeroTarjeta" name="numeroTarjeta" required>
+        <input type="text" id="numeroTarjeta" name="numeroTarjeta" pattern="\d{16}" placeholder="0000111122223333" required>
         <br><br>
         <label for="caducidadTarjeta">Fecha de Expiración:</label>
         <input type="month" id="expiracionTarjeta" name="expiracionTarjeta" required>

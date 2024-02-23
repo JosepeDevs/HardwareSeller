@@ -7,6 +7,12 @@
     padding:0;
 }
 
+body{
+    margin-top: var(--altoHeader);
+    margin-bottom: var(--altoHeader);
+    height:100%;
+}
+
 p{
     font-size: 1.3em;
 }
@@ -428,9 +434,10 @@ aside a:hover{
     text-decoration: underline;
 }
 
-body{
-    margin-top: var(--altoHeader);
-    margin-bottom: var(--altoHeader);
+
+.estado-metodoPago{
+    font-size: 2em;
+    padding: 20px;
 }
 
 #EnlacesArriba{
