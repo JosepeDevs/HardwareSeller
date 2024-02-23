@@ -52,7 +52,7 @@ $_SESSION['productosCarrito'] = $productosYCantidadesConfirmadas; //guardamos lo
             ";
         } else{
             //ESTABAN COMPRANDO SIN REGISTRARSE LOS MUY TRUANES
-            $_SESSION['RegistroInSitu'] = 1;
+            $_SESSION['RegistroDurantePedido'] = 1;
             $_SESSION["nuevoCliente"] = "true";
             echo '
             <h2>Datos de contacto y dirección de envío</h2>

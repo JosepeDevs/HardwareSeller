@@ -6,7 +6,7 @@ echo'<h1>Seleccione el método de pago</h1>';
 include_once("aside.php");
 ?>
 
-<form action="PedidoALTA.php" method="POST">
+<form action="../Controllers/ProcesarPedidoController.php" method="POST">
     <h2>
         <select class="estado-metodoPago" name="estado" id="estado">
             <option value="3">Transferencia</option>

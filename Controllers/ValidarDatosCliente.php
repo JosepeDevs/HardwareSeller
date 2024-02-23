@@ -235,7 +235,7 @@ if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true
     if($rolAdmin == true) {
            header("Location: ../Views/TablaClientes.php");
             exit;
-        } else if( isset($_SESSION["RegistroInSitu"]) && $_SESSION["RegistroInSitu"] == 1){
+        } else if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1){
             header("Location: ../Controllers/conexion.php");
             exit;
         } else{
