@@ -1,5 +1,13 @@
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include("Views/header.php");
+include_once("Controllers/IndexMensajes.php");
+  $arrayMensajes=getArrayMensajesIndex();
+  if(is_array($arrayMensajes)){
+      foreach($arrayMensajes as $mensaje) {
+          echo "<h3>$mensaje</h3>";
+      }
+    };
 ?>
     <!-- Start Hero Area -->
     <section id="hero-area" class="hero-area">
