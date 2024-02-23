@@ -7,10 +7,12 @@ include_once("aside.php");
 ?>
 
 <form action="PedidoALTA.php" method="POST">
-    <select name="estado" id="estado">
-        <option value="3">Transferencia</option>
-        <option value="4">Tarjeta</option>
-    </select>
+    <h2>
+        <select name="estado" id="estado">
+            <option value="3">Transferencia</option>
+            <option value="4">Tarjeta</option>
+        </select>
+    </h2>
     <br><br>
     <div id="detallesTarjeta" style="display: none;">
         <br><br>
