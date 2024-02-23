@@ -28,6 +28,7 @@
         <a href="/index.php"><img src="/Resources/HSLogoAzulSinPadding.png" height="110px" alt="Logo"></a>
     </div>
     <div id="navegacion">
+    <?php print_r($_SESSION);?>
       <nav>
             <ul>
                 <li><a href="/index.php">Inicio</a></li>
