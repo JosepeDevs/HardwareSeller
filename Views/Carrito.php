@@ -65,7 +65,7 @@ include_once("header.php");
             echo'
             <tfoot>
                 <tr>';
-                    if(count($_SESSION['productos']) > 0){ 
+                    if(isset($_SESSION['productos']) && count($_SESSION['productos']) > 0){ 
                         echo'
                             <td colspan="3"><h4> TOTAL (€): </h4></td>
                             <td colspan="4"><h2><b class="total">'.round($total,2).'</b></h2></td>
