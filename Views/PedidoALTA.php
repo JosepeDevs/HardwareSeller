@@ -6,19 +6,19 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ContenidoPedido alta dice: no está user en session";
+    echo "Pedido alta dice: no está user en session";
     header("Location: /index.php");
 }
-
+//todo pendiente todo
 include("header.php");
 echo"<h1>Alta de Contenido de pedido</h1>";
 
 
-$_SESSION["nuevoContenidoPedido"]="true";//ponemos esto a true para que cuando vaya a validar datos lo trate como un insert
+$_SESSION["nuevoPedido"]="true";//ponemos esto a true para que cuando vaya a validar datos lo trate como un insert
 $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
 //ENCABEZADOS
 ?>
-    <form action="../Controllers/ContenidoPedidoVALIDAR.php" method="post" enctype="multipart/form-data" >
+    <form action="../Controllers/PedidoVALIDAR.php" method="post" enctype="multipart/form-data" >
         <table>
             <tr>
                 <th colspan="3"><label for="numPedido">Número de pedido <br> (todas las líneas serán para este numero de pedido)</label></th>
@@ -56,15 +56,15 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
     <br><br>
 <?php
 
-include_once("../Controllers/ContenidoPedidoMensajes.php");
-$arrayMensajes=getArrayMensajesContenidoPedido();
+include_once("../Controllers/PedidoMensajes.php");
+$arrayMensajes=getArrayMensajesPedido();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
         echo "<h3>$mensaje</h3>";
     }
 };
 
-echo"<h2><a class='cerrar'  href='ContenidoPedidoLISTAR.php'>Volver a la tabla de ContenidoPedido.</a></h2>";
+echo"<h2><a class='cerrar'  href='PedidoLISTAR.php'>Volver a la tabla de Pedido.</a></h2>";
 
 include("footer.php");
 ?>
