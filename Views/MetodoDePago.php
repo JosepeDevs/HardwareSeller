@@ -31,7 +31,7 @@ include_once("aside.php");
     <div class='finForm'>
         <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
         <button type='button'><a href='../Views/DireccionPedido.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Volver a dirección de envío</a></button>
-        <input type="submit" value="Guardar método de pago y confirmar pedido">
+        <button type='submit'><a href='../Views/DireccionPedido.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Guardar método de pago y confirmar pedido</a></button>
     </div> 
 </form> 
 
