@@ -20,7 +20,7 @@ include_once("aside.php");
         <input type="text" id="numeroTarjeta" name="numeroTarjeta" pattern="\d{16}" placeholder="0000111122223333" required>
         <br><br>
         <label for="caducidadTarjeta">Fecha de Expiración:</label>
-        <input type="date" id="expiracionTarjeta" name="expiracionTarjeta" required placeholder="mm/dd">
+        <input type="month" id="expiracionTarjeta" name="expiracionTarjeta" required >
         <br><br>
         <label for="cvv">CVV:</label>
         <input type="number" id="cvv" name="cvv" required min="100" max="999">
