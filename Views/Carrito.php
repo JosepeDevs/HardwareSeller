@@ -25,11 +25,14 @@ include_once("header.php");
 
         <?php
         include_once('../Controllers/ArticuloBUSCARController.php');
+        print'sesion antes de modiicarlo<br>';
+        print_r($_SESSION);
         if(isset($_SESSION['productosCarrito'])){
             //todo refactorizar productosCarrito por algo más intuitivo, como CarritoModificado o CarritoConfirmado
             //si ya modificaron la cantidad y se subió a sesió vamos a chafar productos (la cantidad inicial) por productosCarrito 
             $_SESSION['productos']=$_SESSION['productosCarrito'];
         }
+        print'sesion antes de moodificado<br>';
         print_r($_SESSION);
         if(isset($_SESSION['productos']) && count($_SESSION['productos']) > 0){
             $arrayItems = $_SESSION['productos'];//array asociativo con codigo del articulo y cantidad
