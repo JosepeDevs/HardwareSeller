@@ -24,7 +24,7 @@ if(isset($_POST['user']) &&  isset($_POST['key'])) {
         echo"<p>cliente no existe</p>";
     } else{
         $psswrdHasheada =$cliente->getPsswrd();
-        echo"$psswrdHasheada";
+       // echo"$psswrdHasheada";
         $psswrdExiste = password_verify($psswrdSinHashear, $psswrdHasheada);
         if( $psswrdExiste) {
             echo "all good";
@@ -33,9 +33,13 @@ if(isset($_POST['user']) &&  isset($_POST['key'])) {
             $_SESSION['usuario']=$usuario; //no es lo mismo que session de user
             $_SESSION['auth'] = "OK";
             $_SESSION['rol'] = $rol;
-            print_r($_SESSION);
-            echo "<script>history.back();</script>";
-            exit;
+           // print_r($_SESSION);
+            if( isset($_SESSION["RegistroInSitu"]) && $_SESSION["RegistroInSitu"] == 1){
+                header('Location: ../Views/MetdoDePago.php');
+            } else{
+                echo "<script>history.back();</script>";
+                exit;
+            }
         } else {
             echo "bad psswrd";
             $_SESSION['BadPsswrd'] = true;
