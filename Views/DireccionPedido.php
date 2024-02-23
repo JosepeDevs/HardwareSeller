@@ -30,7 +30,8 @@ foreach ($_POST as $AtributoYNumero => $valor) {
     }
 }
 
-$_SESSION['productosCarrito'] = $productosYCantidadesConfirmadas; //guardamos los datos del carrito en la sesión para tenerlos a mano
+$_SESSION['CarritoConfirmado'] = $productosYCantidadesConfirmadas; //guardamos los datos del carrito en la sesión para tenerlos a mano
+unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos llegó inicialmente
 }
 //TODO PONER Opción de recogida en tienda (más adelante)
         if(isset($_SESSION['user'])) {

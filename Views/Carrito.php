@@ -25,16 +25,8 @@ include_once("header.php");
 
         <?php
         include_once('../Controllers/ArticuloBUSCARController.php');
-        print'sesion antes de modiicarlo<br>';
-        print_r($_SESSION);
-        if(isset($_SESSION['productosCarrito'])){
-            //todo refactorizar productosCarrito por algo más intuitivo, como CarritoModificado o CarritoConfirmado
-            //si ya modificaron la cantidad y se subió a sesió vamos a chafar productos (la cantidad inicial) por productosCarrito 
-            $_SESSION['productos']=$_SESSION['productosCarrito'];
-        }
-        print'sesion antes de moodificado<br>';
-        print_r($_SESSION);
         if(isset($_SESSION['productos']) && count($_SESSION['productos']) > 0){
+            //si es la primera vez que entran en el carrito saldrá esto, si vienen de metodo de pago o dirección producos se habrá unseteado y esto no se verá
             $arrayItems = $_SESSION['productos'];//array asociativo con codigo del articulo y cantidad
             $indice=1;
             foreach($arrayItems as $codigo => $cantidad){//aquí los indices al ser asociativo son los propios codigos de artículo
@@ -65,6 +57,57 @@ include_once("header.php");
                     $arraySubtotales [] = $subTotal;
                     $total = array_sum($arraySubtotales);
                     $indice+=1;
+                } else{
+                    $total=0;
+                    echo '<tr><td colspan="5"><p>Carrito sin artículos que mostrar</p></td>';
+                }
+            } 
+            echo'
+            <tfoot>
+                <tr>';
+                    if(count($_SESSION['productos']) > 0){ 
+                        echo'
+                            <td colspan="3"><h4> TOTAL (€): </h4></td>
+                            <td colspan="4"><h2><b class="total">'.round($total,2).'</b></h2></td>
+                         <br>';
+                    } 
+                echo'
+                </tr>
+            </tfoot>';
+        }else{
+            echo '<tr><td colspan="7"><p>Carrito sin artículos (carrito vacío)</p></td>';
+        } 
+///////////////si ya modificaron la cantidad y se subió a sesión vamos a sacar los datos de aquí
+
+        if(isset($_SESSION['CarritoConfirmado'])){
+            $arrayItems = $_SESSION['CarritoConfirmado'];//array asociativo con codigo del articulo y cantidad
+            foreach($arrayItems as $index => $arrayDatosArticulo){//aquí los indices al ser asociativo son los propios codigos de artículo
+                $codigo = $arrayDatosArticulo["codigo"];
+                $articulo = getArticuloByCodigo($codigo);
+                $precio = $arrayDatosArticulo["precio"];
+                $descuento = $arrayDatosArticulo["descuento"];
+                $cantidad = $arrayDatosArticulo["cantidad"];
+                $subTotal=($precio*(1-($descuento/100)))*$cantidad;
+                if($articulo !== false){
+                    echo'
+                    <tr>
+                        <td><input class="disabled" name="numLinea'.$index.'" value="'.$index.'" disabled></input></td>
+                        <td><input class="disabled" name="codigo'.$index.'" disabled value="'.$codigo.'"></input></td>
+                        <td><input  class="disabled" name="nombre'.$index.'" disabled value="'.$articulo->getNombre().'"></input></td>
+                        <td><input class="precio disabled"  id= "precio'.$indice.'" name="precio'.$index.'" disabled value="'.$precio.'"></input></td>
+                        <td><input class="descuento disabled" id= "descuento'.$index.'" name="descuento'.$index.'" disabled value="'.$descuento.'"></input></td>
+                        <td>
+                            <div class="row">
+                                <button class="reducir" type="button"><i class="lni lni-minus"></i></button>
+                                <input class="cantidad disabled" type="number" id="cantidad'.$index.'" name="cantidad'.$index.'" value="'.$cantidad.'"/>
+                                <button class="aumentar" type="button"><i class="lni lni-plus"></i></button>
+                            </div>
+                        </td>
+                        <td class="subTotal">'.$subTotal.'</td>
+                    </tr>
+                    ';
+                    $arraySubtotales [] = $subTotal;
+                    $total = array_sum($arraySubtotales);
                 } else{
                     $total=0;
                     echo '<tr><td colspan="5"><p>Carrito sin artículos que mostrar</p></td>';
