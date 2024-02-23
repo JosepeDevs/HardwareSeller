@@ -16,6 +16,7 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
     } else {
         $_SESSION['ClienteNoExiste'] =true;
        header("Location: ../index.php");
+       exit;
     }
 } else if (isset($_POST['newpsswrd']) && !empty($_POST['newpsswrd'])){
     $newpsswrd = $_POST['newpsswrd'];
@@ -29,6 +30,8 @@ if ($operacionExitosa) {
 }
 //haya éxito o no iremos a index
 header("Location: ../index.php");
+exit;
+
 }
 
 
