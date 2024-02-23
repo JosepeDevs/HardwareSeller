@@ -11,17 +11,19 @@ include_once("aside.php");
         <option value="3">Transferencia</option>
         <option value="4">Tarjeta</option>
     </select>
+    <br>
     <div id="detallesTarjeta" style="display: none;">
-        <br>
-        <summary>Detalles de la Tarjeta</summary>
+        <br><br>
         <label for="numeroTarjeta">Número de Tarjeta:</label>
-        <br>
-        <input type="text" id="numeroTarjeta" name="numeroTarjeta" required><br>
+        <br><br>
+        <input type="text" id="numeroTarjeta" name="numeroTarjeta" required>
         <label for="caducidadTarjeta">Fecha de Expiración:</label>
-        <br>
-        <input type="month" id="expiracionTarjeta" name="expiracionTarjeta" required><br>
+        <br><br>
+        <input type="month" id="expiracionTarjeta" name="expiracionTarjeta" required>
+        <br><br>
         <label for="cvv">CVV:</label>
-        <input type="number" id="cvv" name="cvv" required min="100" max="999"><br>
+        <input type="number" id="cvv" name="cvv" required min="100" max="999">
+        <br><br>
     </div>
     <input type="submit" value="Guardar método de pago y confirmar pedido">
 </form>
