@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },  0);// este 0 es el acumulador, le dice por donde debe empezar, en este caso desde el índice 0 p'alante
 
         //metemos redondeado el total donde le coresponde
-        document.querySelector(".total").textContent = total.toFixed(2);
+        document.querySelector(".total").textContent = <h2><b>total.toFixed(2)</h2></b>;
     }
 
     function HabilitarInputs(event){
