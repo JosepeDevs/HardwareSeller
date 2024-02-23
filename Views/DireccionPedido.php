@@ -93,7 +93,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
         <div class='finForm'>
             <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
             <button type='button'><a href='../Views/Carrito.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
-            <button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
+            <input type='submit' value="Proceder al método de pago"/>
         </div> 
     </form> 
         <br>
