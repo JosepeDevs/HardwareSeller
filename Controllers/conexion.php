@@ -39,7 +39,7 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
             $_SESSION['auth'] = "OK";
             $_SESSION['rol'] = $rol;
            // print_r($_SESSION);
-            if( isset($_SESSION["RegistroInSitu"]) && $_SESSION["RegistroInSitu"] == 1){
+            if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1){
                 header('Location: ../Views/MetdoDePago.php');
             } else{
                 echo "<script>history.back();</script>";
