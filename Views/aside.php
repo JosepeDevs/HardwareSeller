@@ -6,7 +6,6 @@
             <a href="Catalogo.php">
             <img  class="iconArribaTabla" src="../Resources/refresh.png" alt="refrescar" /> Recargar tabla (Quita ordenación y reinicia paginación)
         </a>
-            <a href="/Views/Catalogo.php?prebuilt">Pre-built computers</a>
             <a href="/Views/Catalogo.php?Pantallas">Pantallas</a>
             <a href="/Views/Catalogo.php?Graficas">Gráficas</a>
             <a href="/Views/Catalogo.php?Mobo">Placas base</a>

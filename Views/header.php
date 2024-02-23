@@ -32,9 +32,8 @@
             <ul>
                 <li><a href="/index.php">Inicio</a></li>
                 <li class="dropdown">
-                    <a href="/Views/Catalogo.php">Catalogue</a>
+                    <a href="/Views/Catalogo.php">Catálogo</a>
                     <div class="dropdown-content">
-                        <a href="/Views/Catalogo.php?prebuilt">Pre-built computers</a>
                         <a href="/Views/Catalogo.php?Pantallas">Pantallas</a>
                         <a href="/Views/Catalogo.php?graficas">Gráficas</a>
                         <a href="/Views/Catalogo.php?mobo">Placas base</a>
