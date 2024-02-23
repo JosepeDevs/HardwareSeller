@@ -74,9 +74,7 @@ include_once("header.php");
                 echo'
                 </tr>
             </tfoot>';
-        }else{
-            echo '<tr><td colspan="7"><p>Carrito sin artículos (carrito vacío)</p></td>';
-        } 
+        }
 ///////////////si ya modificaron la cantidad y se subió a sesión vamos a sacar los datos de aquí
 
         if(isset($_SESSION['CarritoConfirmado'])){
@@ -125,10 +123,13 @@ include_once("header.php");
                 echo'
                 </tr>
             </tfoot>';
-        }else{
+        }
+        //SI no es su primera vez y no es más de su primera vez y no hay carrito, mostrará que no hay nada
+        if(! isset($_SESSION['productos']) && ! isset($_SESSION['CarritoConfirmado']) ){
             echo '<tr><td colspan="7"><p>Carrito sin artículos (carrito vacío)</p></td>';
-        } 
-    ?>
+
+        }
+            ?>
     </tbody>
     </table>
     <button type="button"><a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Seguir navegando </a></button>
