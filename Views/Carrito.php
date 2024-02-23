@@ -94,7 +94,7 @@ include_once("header.php");
                         <td><input class="disabled" name="numLinea'.$index.'" value="'.$index.'" disabled></input></td>
                         <td><input class="disabled" name="codigo'.$index.'" disabled value="'.$codigo.'"></input></td>
                         <td><input  class="disabled" name="nombre'.$index.'" disabled value="'.$articulo->getNombre().'"></input></td>
-                        <td><input class="precio disabled"  id= "precio'.$indice.'" name="precio'.$index.'" disabled value="'.$precio.'"></input></td>
+                        <td><input class="precio disabled"  id= "precio'.$index.'" name="precio'.$index.'" disabled value="'.$precio.'"></input></td>
                         <td><input class="descuento disabled" id= "descuento'.$index.'" name="descuento'.$index.'" disabled value="'.$descuento.'"></input></td>
                         <td>
                             <div class="row">
@@ -116,7 +116,7 @@ include_once("header.php");
             echo'
             <tfoot>
                 <tr>';
-                    if(count($_SESSION['productos']) > 0){ 
+                    if(count($_SESSION['CarritoConfirmado']) > 0){ 
                         echo'
                             <td colspan="3"><h4> TOTAL (€): </h4></td>
                             <td colspan="4"><h2><b class="total">'.round($total,2).'</b></h2></td>
