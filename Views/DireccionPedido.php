@@ -8,7 +8,8 @@ echo'<h1>Dirección de envío</h1>';
 include_once("aside.php");
 
 //RECIBIMOS POR POST LOS DATOS DE CONTENIDOPEDIDO
-
+if(isset( $_POST['numLinea1'] )){
+    //si llegamos del post vamos a subir a session todos los datos recibidos
 foreach ($_POST as $AtributoYNumero => $valor) {
     // AtributoYNumero que empiecen  por alguna de estas palabras y terminar en un numero
     if (preg_match('/^(codigo|cantidad|precio|descuento)\d+$/', $AtributoYNumero)) { //así filtro dde todo lo que llega lo que quiero guardar
@@ -30,7 +31,7 @@ foreach ($_POST as $AtributoYNumero => $valor) {
 }
 
 $_SESSION['productosCarrito'] = $productosYCantidadesConfirmadas; //guardamos los datos del carrito en la sesión para tenerlos a mano
-
+}
 //TODO PONER Opción de recogida en tienda (más adelante)
         if(isset($_SESSION['user'])) {
             include_once('../Controllers/ClienteBUSCARController.php');
@@ -90,7 +91,7 @@ $_SESSION['productosCarrito'] = $productosYCantidadesConfirmadas; //guardamos lo
         <br>
         <div class='finForm'>
             <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
-            <button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Volver a dirección de envío</a></button>
+            <button type='button'><a href='../Views/Carrito.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
             <button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
             </form> 
         </div> 
