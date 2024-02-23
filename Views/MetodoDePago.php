@@ -27,9 +27,13 @@ include_once("aside.php");
         <br><br>
     </div>
     <br><br>
-    <input type="submit" value="Guardar método de pago y confirmar pedido">
-</form>
 
+    <div class='finForm'>
+        <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
+        <button type='button'><a href='../Views/DireccionPedido.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Volver a dirección de envío</a></button>
+        <input type="submit" value="Guardar método de pago y confirmar pedido">
+    </div> 
+</form> 
 
 <?php
 include_once("footer.php");
