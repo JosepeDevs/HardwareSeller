@@ -67,7 +67,7 @@ include_once("header.php");
                     if(count($_SESSION['productos']) > 0){ 
                         echo'
                             <td colspan="3"><h4> TOTAL (€): </h4></td>
-                            <td colspan="4" class="total" ><h2><b>'.$total.'</b></h2></td>
+                            <td colspan="4"><h2><b class="total">'.$total.'</b></h2></td>
                          <br>';
                     } 
                 echo'
@@ -148,7 +148,8 @@ document.addEventListener("DOMContentLoaded", function() {
         },  0);// este 0 es el acumulador, le dice por donde debe empezar, en este caso desde el índice 0 p'alante
 
         //metemos redondeado el total donde le coresponde
-        document.querySelector(".total").innerHTML = '<h2><b>' + total.toFixed(2) + '</b></h2>';
+        document.querySelector(".total").textContent = total.toFixed(2);
+    }
 
     function HabilitarInputs(event){
         event.preventDefault(); //no dejamos que se envie
