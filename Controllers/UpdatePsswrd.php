@@ -1,8 +1,7 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Views/header.php");
-print_r($_SESSION);
-print_r($_POST);
+
  $operacionExitosa=false;
 if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']) ) {
     $email = $_POST['mail'];
