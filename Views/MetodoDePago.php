@@ -11,7 +11,7 @@ include_once("aside.php");
         <option value="3">Transferencia</option>
         <option value="4">Tarjeta</option>
     </select>
-    <br>
+    <br><br>
     <div id="detallesTarjeta" style="display: none;">
         <br><br>
         <label for="numeroTarjeta">Número de Tarjeta:</label>
@@ -25,6 +25,7 @@ include_once("aside.php");
         <input type="number" id="cvv" name="cvv" required min="100" max="999">
         <br><br>
     </div>
+    <br><br>
     <input type="submit" value="Guardar método de pago y confirmar pedido">
 </form>
 
