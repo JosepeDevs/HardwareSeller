@@ -8,6 +8,7 @@ include_once("Controllers/IndexMensajes.php");
           echo "<h3>$mensaje</h3>";
       }
     };
+    print_r($_SESSION);
 ?>
     <!-- Start Hero Area -->
     <section id="hero-area" class="hero-area">
