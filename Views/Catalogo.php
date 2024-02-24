@@ -23,6 +23,17 @@ include_once("aside.php");
 
 
 //ZONA FILTRADOS
+$categoriaFiltrada = isset($_GET['categoria'])? $_GET['categoria'] : null;
+
+if(! isset($_GET['pag'])){
+    $paginaActual = 0;
+}else{
+    if( is_numeric($_GET['pag'])){
+        $paginaActual = $_GET['pag'] - 1 ;
+    } else if ($_GET['pag'] == "X" ){
+        $paginaActual = "X";
+    }
+}
 echo"<h3>Atributos para filtrar</h3>";
 echo'<div class="col-lg-9 col-md-11 col-12">';
     echo"<table>";
@@ -33,12 +44,11 @@ echo'<div class="col-lg-9 col-md-11 col-12">';
             if($arrayAtributos !== false){
                 foreach ($arrayAtributos as $atributo) {
                     $nombreAtributo = $atributo;
-                    $categoriaFiltrada = isset($_GET['categoria'])? $_GET['categoria'] : null;
                     if($atributo !==  "imagen" && $atributo !==  "codigo"){
                         echo"<th>
                         $nombreAtributo <br>Ordenar por este atributo:<br>
-                        <a class='ordenar' href='?orden=ASC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>ASC</a>
-                        <a class='ordenar' href='?orden=DESC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>DESC</a>
+                        <a class='ordenar' href='?orden=ASC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."&pag='.($paginaActual+1)'>ASC</a>
+                        <a class='ordenar' href='?orden=DESC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."&pag='.($paginaActual+1)'>DESC</a>
                         </th>";
                     }
                 }
@@ -58,15 +68,7 @@ $arrayArticulos = getArrayArticulosFiltradosByCodigoCategoria($arrayArticulos, $
 
 $itemXpagPredeterminado=9;
 $articulosAMostrar = 9;
-if(! isset($_GET['pag'])){
-    $paginaActual = 0;
-}else{
-    if( is_numeric($_GET['pag'])){
-        $paginaActual = $_GET['pag'] - 1 ;
-    } else if ($_GET['pag'] == "X" ){
-        $paginaActual = "X";
-    }
-}
+
 
 $directorio = "/Resources/ImagenesArticulos/";
 
@@ -101,7 +103,7 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
                                                 ';
                                             }
                                           echo'  <h2>Precio: '. round($arrayAImprimir[$i]->getPrecio() * (1 - ($arrayAImprimir[$i]->getDescuento()/100)), 2).' € </h2>
-                                            <button><a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'&pag='.($paginaActual+1).'">Añadir al carrito  <i class="lni lni-cart-full" alt="Añadir al carrito"></i></a></button>
+                                            <button><a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'&pag='.($paginaActual+1).'orden='.$orden.'&atributo='.$nombreAtributo.'&categoria='.$categoriaFiltrada.'">Añadir al carrito  <i class="lni lni-cart-full" alt="Añadir al carrito"></i></a></button>
                                             ';
                                         }
                                         echo'
