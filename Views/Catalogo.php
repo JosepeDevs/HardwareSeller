@@ -14,18 +14,35 @@ if(isset($_GET["codigo"])) {
     $_SESSION['productos']["$codigoParaCarrito"] = array_key_exists($codigoParaCarrito, $_SESSION['productos']) ? $_SESSION['productos']["$codigoParaCarrito"] + 1 : 1;
 }
 
-//HEADER Y TITULO
-include_once("header.php");
-print('<h1>Catálogo</h1>');
-include_once("BreadCrumbs.php");
-include_once("aside.php");
-
+//ZONA FILTRADOS
+echo"<h3>Atributos para filtrar</h3>";
+echo"<table>";
+        echo"<tr>";
+        //ENCABEZADOS
+        include_once("../Controllers/ArticulosLISTARController.php");
+        $arrayAtributos = getArrayAtributosArticulo();
+        if($arrayAtributos !== false){
+            foreach ($arrayAtributos as $atributo) {
+                $nombreAtributo = $atributo;
+                echo"<th>
+                $nombreAtributo <br>Ordenar por este atributo:<br>
+                <a class='ordenar' href='?orden=ASC&atributo=$nombreAtributo'>ASC</a>
+                <a class='ordenar' href='?orden=DESC&atributo=$nombreAtributo'>DESC</a>
+                </th>";
+            }
+        }
+        echo"</tr>";
+echo"</table>";
+        
 //PREPARAR ARRAYS CON OBJETOS
-$orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
+$ordenAtributo = isset($_GET['ordenAtributo']) ? $_GET['ordenAtributo']:null;
+$atributoElegido = isset($_GET["atributo"])?$_GET["atributo"]:"nombre";//si no hay ningun atributo ordena por nombre
 include_once("../Controllers/OrdenarArticulosController.php");
-$arrayArticulos = getArrayArticulosOrdenados($orden);
+$arrayArticulos = getArrayArticulosOrdenadosByAtributo($orden,$atributoElegido);
+
 $codigoCategoria = isset($_GET['categoria']) ? $_GET['categoria']:null;
 $arrayArticulos = getArrayArticulosFiltradosByCodigoCategoria($arrayArticulos, $codigoCategoria);
+
 $itemXpagPredeterminado=9;
 $articulosAMostrar = 9;
 if(! isset($_GET['pag'])){

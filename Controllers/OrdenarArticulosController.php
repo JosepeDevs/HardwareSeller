@@ -19,6 +19,21 @@ function getArrayArticulosOrdenados($orden){
         return $arrayArticulos;
     }
 }
+
+function getArrayArticulosOrdenadosByAtributo($orden,$nombreAtributo){
+    include_once("../Models/Articulo.php");
+    if($orden == "ASC"){
+        $arrayArticulos= Articulo::getASCSortedArticulosByAtributo($nombreAtributo);
+        return $arrayArticulos;
+    } else if($orden == "DESC"){
+        $arrayArticulos= Articulo::getDESCSortedArticulosByAtributo($nombreAtributo);
+        return $arrayArticulos;
+    }else{
+        $arrayArticulos= Articulo::getAllArticulos();
+        return $arrayArticulos;
+    }
+}
+
 function getArrayArticulosFiltradosByCodigoCategoria($arrayArticulos, $codigoCategoria){
     include_once("../Models/Articulo.php");
     $arrayArticulosFiltrados = array();

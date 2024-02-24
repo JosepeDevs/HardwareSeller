@@ -110,7 +110,35 @@ class Articulo {
         }
     }
     
+    public static function getDESCSortedArticulosByAtributo($nombreAtributo) {
+        try {
+            $con = contectarBbddPDO();
+            $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intenten inyectarSQL
+            $sql = "SELECT * FROM articulos ORDER BY {$nombreAtributoLimpio} DESC";
+            $statement = $con->prepare($sql);
+            $statement->execute();
+            $arrayArticulos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
+            return $arrayArticulos;
+        } catch (PDOException $e) {
+            $_SESSION['ErrorGetArticulos'] = true;
+            return false;
+        }
+    }
 
+    public static function getASCSortedArticulosByAtributo($nombreAtributo) {
+        try {
+            $con = contectarBbddPDO();
+            $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intenten inyectarSQL
+            $sql = "SELECT * FROM articulos ORDER BY {$nombreAtributoLimpio} ASC";
+            $statement = $con->prepare($sql);
+            $statement->execute();
+            $arrayArticulos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
+            return $arrayArticulos;
+        } catch (PDOException $e) {
+            $_SESSION['ErrorGetArticulos'] = true;
+            return false;
+        }
+    }
 
     /**
      * @return bool|array devuelve false si falla, devuelve el articulo o array de articulos si  encuentra 1 o más articulos que coincida el texto buscado (en nombre)
