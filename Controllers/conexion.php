@@ -93,7 +93,7 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
 if( (isset($_SESSION['BadPsswrd']) && $_SESSION['BadPsswrd'] == true) ||
 ( (isset($_SESSION['NoExiste']) && $_SESSION['NoExiste'] == true) )){
     $_SESSION['UserNoSession'] = true;
-    echo "hubo un error".$_SESSION['NoExiste']. $_SESSION['BadPsswrd'];
+    echo "hubo un error".$_SESSION['NoExiste']."psswrd:". $_SESSION['BadPsswrd'];
    // header("Location: ../index.php?Destroy=Y);
     exit;
 }
