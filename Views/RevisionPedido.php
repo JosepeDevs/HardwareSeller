@@ -111,12 +111,15 @@ if(isset($_POST["estado"])) {
         <br>
         <p> 
             ¡Actualmente no disponible, gracias por su comprensión! Aunque marque esta opción le aparecerá para pagar por transferencia.
-        </p>";
+        </p>
+        <p> 
+            Indique en el concepto de la transferencia el número de pedido de la siguiente página (también disponible en su área de cliente), una vez confirme el pedido.
+         </p>";
     }
 }
 ?>
 <br><br>
-<button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar métood de pago</a></button>
+<button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Modificar métood de pago</a></button>
 <br><br><br><br>
 <button type='button'><a href='../Views/PedidoConfirmado.php' class='btn btn-warning'><i class='lni lni-chevron-right'></i><i class='lni lni-chevron-right'></i><b>CONFIRMAR PEDIDO</b></a></button>
 
