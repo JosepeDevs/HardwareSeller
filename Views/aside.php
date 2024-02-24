@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function MostrarContenido(){
         var itemsOcultos= document.querySelectorAll(".oculto")
-        itemOculto.style.display = "block";
+        itemsOcultos.style.display = "block";
     }
     });
 </script>
