@@ -37,7 +37,7 @@
                         if( $codigoSubCategoria !== $codigoCategoria){
                             //no queremos imprimir para la categoria RAM dentro de esta RAM otra vez, así que mientras no encuentre ese código que imprima subcategorias
                             echo '<li class="oculto" display="none">
-                                    <a class="dropdown-item" id="'.$codigoSubCategoria.'" href="/Views/Catalogo.php?categoria='.$codigoSubCategoria.'">'.
+                                    <a class="dropdown-item"  display="none" id="'.$codigoSubCategoria.'" href="/Views/Catalogo.php?categoria='.$codigoSubCategoria.'">'.
                                     $nombreSubCategoria.'</a>
                                 </li>';
                         }
