@@ -32,7 +32,7 @@ echo"<table>";
         if($arrayAtributos !== false){
             foreach ($arrayAtributos as $atributo) {
                 $nombreAtributo = $atributo;
-                $categoriaFiltrada = isset($_SESSION['categoria'])? $_SESSION['categoria'] : null;
+                $categoriaFiltrada = isset($_GET['categoria'])? $_GET['categoria'] : null;
                 echo"<th>
                 $nombreAtributo <br>Ordenar por este atributo:<br>
                 <a class='ordenar' href='?orden=ASC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>ASC</a>
@@ -49,8 +49,7 @@ $atributoElegido = isset($_GET["atributo"])?$_GET["atributo"]:"nombre";//si no h
 include_once("../Controllers/OrdenarArticulosController.php");
 $arrayArticulos = getArrayArticulosOrdenadosByAtributo($orden,$atributoElegido);
 
-$codigoCategoria = isset($_GET['categoria']) ? $_GET['categoria']:null;
-$arrayArticulos = getArrayArticulosFiltradosByCodigoCategoria($arrayArticulos, $codigoCategoria);
+$arrayArticulos = getArrayArticulosFiltradosByCodigoCategoria($arrayArticulos, $categoriaFiltrada);
 
 $itemXpagPredeterminado=9;
 $articulosAMostrar = 9;
