@@ -4,6 +4,12 @@
             <img class="iconArribaTabla" src="../Resources/buscaAr.png" alt="recraft icon"/> Buscar artículo
         </a>
         <?php
+        if(isset($_GET['categoria'])){
+            echo'        
+            <a href="/Views/Catalogo.php">
+                <i class="lni lni-eraser"></i> Limpiar filtros
+            </a>';
+        }
         // PREPARAR ARRAYS CON CATEGORIAS
         include_once("../Controllers/OrdenarCategoriasController.php");
         $orden="";
