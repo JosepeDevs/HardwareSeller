@@ -1,6 +1,3 @@
-<?php
-//lo meto todo dentro de un print porque recuperación de contraseña me está dando problemas de que estoy mandando cosas en header antes e llamar al metodo header
-print'
 <!DOCTYPE html>
 <html class="no-js" lang="es">
 <head>
@@ -45,11 +42,11 @@ print'
                     </div>
                 </li>
                 <li>
-                    ';
+                    <?php
                             if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
                             if( isset($_GET['destroy']) && $_GET['destroy'] == "Y" ){
                                 if (session_status() == PHP_SESSION_ACTIVE) {session_unset();}
-                                header("/index.php?destroy=false");
+                                header("../index.php?destroy=false");
                             }
                             if( ! isset($_SESSION['user'])){
                                 print('
@@ -113,14 +110,12 @@ print'
                                 <li><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></li>
                                 <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
                             }
-                            if(1==1){
                             print ('
                             </ul>
                             </div>
                         </div>');
-                        }}
-                        if(1==1){
-                    print'
+                        }
+                    ?>
                 </li>
             </ul>
         </nav>
@@ -133,9 +128,7 @@ print'
     </div>
     </form>
     <div id="carrito-header">
-    <small>';
-    if(isset($_SESSION["productos"])){print count($_SESSION["productos"]);}
-    print'</small>
+    <small><? if(isset($_SESSION['productos'])){echo count($_SESSION['productos']);}?></small>
         <a href="/Views/Carrito.php"><i class="lni lni-cart"></i></a>
     </div>
 </header>
@@ -143,4 +136,3 @@ print'
 <div class="cta-container">
     <img src="/Resources/backgroundHS.png">
     <div class="cuerpo">
-';}?>

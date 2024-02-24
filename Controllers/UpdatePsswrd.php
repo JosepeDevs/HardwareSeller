@@ -1,7 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("../Views/header.php");
-
+//quitams header porque causa problemas de envío
  $operacionExitosa=false;
 if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']) ) {
     $email = $_POST['mail'];
@@ -34,6 +33,10 @@ exit;
 
 }
 
+?>
+    <h3> <p><a id='cerrar' href="../index.php">Cancelar</a></p></h3>
+
+<?
 
 
 function checkClientByEmailAndDni($email, $dni){
