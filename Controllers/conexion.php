@@ -14,24 +14,25 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
     //entramos aquí si se están registrando en el carrito
     if(isset($_SESSION['email']) &&  isset($_SESSION['psswrdSinHash'])) {
         $email = $_SESSION['email'];
-        echo'entramos en registrodurante pedido';
+      //  echo'entramos en registrodurante pedido';
         $cliente = Cliente::GetClientByEmail($email);
         if($cliente !== false){
             $rol = $cliente->getRol();
         } else{
           header("Location:/index.php");
+          exit;
         }
         $psswrdSinHashear = $_SESSION['psswrdSinHash'];
-        echo"<br>psswrd SIN Hasheada=".$psswrdSinHashear;
+        //echo"<br>psswrd SIN Hasheada=".$psswrdSinHashear;
         if($cliente == false) {
             $_SESSION['NoExiste']=true;
-            echo"<p>cliente no existe</p>";
+         //   echo"<p>cliente no existe</p>";
         } else{
             $psswrdHasheada =$cliente->getPsswrd();
-           echo"<br>psswrdHaseada=".$psswrdHasheada;
+        //   echo"<br>psswrdHaseada=".$psswrdHasheada;
             $psswrdExiste = password_verify($psswrdSinHashear, $psswrdHasheada);
             if( $psswrdExiste) {
-                echo "all good";
+              //  echo "all good";
                 $_SESSION['email']=$email;
                 $_SESSION['psswrd'] = $psswrdHasheada;
                 $_SESSION['usuario']=$email; //no es lo mismo que session de user
@@ -39,15 +40,16 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
                 $_SESSION['rol'] = $rol;
                // print_r($_SESSION);
                 if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1){
-                    echo'vamos a medoto de pago';
-                    //           header('Location: ../Views/MetodoDePago.php');
+                    //echo'vamos a medoto de pago';
+                    header('Location: ../Views/MetodoDePago.php');
+                    exit;
                 } else{
-                    echo'vamos patras';
-             //       echo "<script>history.back();</script>";
+                  //  echo'vamos patras';
+                    echo "<script>history.back();</script>";
                     exit;
                 }
             } else {
-                echo "<br>bad psswrd";
+                //echo "<br>bad psswrd";
                 $_SESSION['BadPsswrd'] = true;
             }
         }
@@ -59,7 +61,7 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
     if($cliente !== false){
         $rol = $cliente->getRol();
     } else{
-      //  header("Location:/index.php");
+      header("Location:/index.php");
     }
     $psswrdSinHashear = $_POST['key'];
     if($cliente == false) {
@@ -78,15 +80,16 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
             $_SESSION['rol'] = $rol;
            // print_r($_SESSION);
             if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1){
-                echo'vamos a medoto de pago';
-                //           header('Location: ../Views/MetodoDePago.php');
+         //       echo'vamos a medoto de pago';
+                header('Location: ../Views/MetodoDePago.php');
+                exit;
             } else{
-                echo'vamos patras';
-         //       echo "<script>history.back();</script>";
+       //         echo'vamos patras';
+                echo "<script>history.back();</script>";
                 exit;
             }
         } else {
-            echo "bad psswrd";
+     //       echo "bad psswrd";
             $_SESSION['BadPsswrd'] = true;
         }
     }
@@ -95,8 +98,8 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
 if( (isset($_SESSION['BadPsswrd']) && $_SESSION['BadPsswrd'] == true) ||
 ( (isset($_SESSION['NoExiste']) && $_SESSION['NoExiste'] == true) )){
     $_SESSION['UserNoSession'] = true;
-    echo "hubo un error".$_SESSION['NoExiste']."psswrd:". $_SESSION['BadPsswrd'];
-   // header("Location: ../index.php?Destroy=Y);
+   // echo "hubo un error".$_SESSION['NoExiste']."psswrd:". $_SESSION['BadPsswrd'];
+    header("Location: ../index.php?Destroy=Y");
     exit;
 }
 
