@@ -128,7 +128,7 @@
     </div>
     </form>
     <div id="carrito-header">
-    <small><? if(isset($_SESSION['productos'])){echo count($_SESSION['productos']);}?></small>
+    <small><? if( isset($_SESSION['productos']) && $_SESSION['productos']!==0 ){echo count($_SESSION['productos']);}?></small>
         <a href="/Views/Carrito.php"><i class="lni lni-cart"></i></a>
     </div>
 </header>
