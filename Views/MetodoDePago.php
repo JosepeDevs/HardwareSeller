@@ -16,14 +16,15 @@ print_r($_SESSION);
     <br><br>
     <div id="detallesTarjeta" style="display: none;">
         <br><br>
+        <h3> Actualmente NO disponible, próximamente funcional, disculpe las molestias </h3>
         <label for="numeroTarjeta">Número de Tarjeta:</label>
-        <input type="text" id="numeroTarjeta" name="numeroTarjeta" pattern="\d{16}" placeholder="0000111122223333" required>
+        <input type="text" id="numeroTarjeta" name="numeroTarjeta" pattern="\d{16}" placeholder="0000111122223333" disabled>
         <br><br>
         <label for="caducidadTarjeta">Fecha de Expiración:</label>
-        <input type="month" id="expiracionTarjeta" name="expiracionTarjeta" required >
+        <input type="month" id="expiracionTarjeta" name="expiracionTarjeta" disabled>
         <br><br>
         <label for="cvv">CVV:</label>
-        <input type="number" id="cvv" name="cvv" required min="100" max="999">
+        <input type="number" id="cvv" name="cvv" disabled min="100" max="999">
         <br><br>
     </div>
     <br><br>
@@ -31,7 +32,7 @@ print_r($_SESSION);
     <div class='finForm'>
         <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
         <button type='button'><a href='../Views/DireccionPedido.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Volver a dirección de envío</a></button>
-        <button type='submit'><a href='../Views/DireccionPedido.php' class='btn btn-warning'><i class='lni lni-chevron-right'></i>Guardar método de pago y confirmar pedido</a></button>
+        <button type='submit'><a href='../Views/RevisionPedido.php' class='btn btn-warning'><i class='lni lni-chevron-right'></i>Guardar método de pago y revisión final del pedido</a></button>
     </div> 
 </form> 
 

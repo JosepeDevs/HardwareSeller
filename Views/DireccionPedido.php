@@ -57,6 +57,8 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             echo '
             <h2>Datos de contacto y dirección de envío</h2>
             <br>
+            <h3>En un futuro estos datos se podrán editar aquí mismo, si desea modificar la dirección, por favor, acceda a su área de cliente y allí podrá actualizarlo.</h3>
+            <br>
             <a href="#">Esto en un futuro será un botón para hacer login/registrarse con google usando OAuth</a>
             <br>
             <form action="../Controllers/ValidarDatosCliente.php" method="post">
