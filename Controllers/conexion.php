@@ -33,8 +33,8 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
             $psswrdExiste = password_verify($psswrdSinHashear, $psswrdHasheada);
             if( $psswrdExiste) {
               //  echo "all good";
-                $_SESSION['email']=$email;
-                $_SESSION['psswrd'] = $psswrdHasheada;
+                $_SESSION['user']=$email;
+                $_SESSION['key'] = $psswrdHasheada;
                 $_SESSION['usuario']=$email; //no es lo mismo que session de user
                 $_SESSION['auth'] = "OK";
                 $_SESSION['rol'] = $rol;
