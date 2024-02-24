@@ -56,11 +56,13 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     document.querySelectorAll(".revelador").forEach(function(button) {//con esto seleccionamos todos los elements y aplicamos una funcion en cada item
-        button.addEventListener("click", MostrarContenido); //añadir el listener a todos los botones
+       console.log(button);
+       button.addEventListener("click", MostrarContenido); //añadir el listener a todos los botones
     });
-
+    
     function MostrarContenido(){
         var itemsOcultos= document.querySelectorAll(".oculto").forEach(function(li) {//con esto seleccionamos todos los elements y aplicamos una funcion en cada item
+            console.log(itemsOcultos);
             li.style.display = "block";
         })
     }
