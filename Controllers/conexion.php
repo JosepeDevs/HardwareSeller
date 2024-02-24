@@ -14,6 +14,7 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
     //entramos aquí si se están registrando en el carrito
     if(isset($_SESSION['email']) &&  isset($_SESSION['psswrd'])) {
         $email = $_SESSION['email'];
+        echo'entramos en registrodurante pedido';
         $cliente = Cliente::GetClientByEmail($email);
         if($cliente !== false){
             $rol = $cliente->getRol();
