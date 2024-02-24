@@ -1,5 +1,7 @@
 <?php
 
+//no puedo protegerlo, si lo protejo no se pueden filtrar por categoría los artículos
+
 /**
  * $opcion puede ser "ASC" or "DESC", en función de eso devolverá los datos ordenados ASC o DESC
  */
@@ -17,5 +19,19 @@ function getArrayArticulosOrdenados($orden){
         return $arrayArticulos;
     }
 }
+function getArrayArticulosFiltradosByCodigoCategoria($arrayArticulos, $codigoCategoria){
+    include_once("../Models/Articulo.php");
+    foreach ($arrayArticulos as $articulo) {
+        if($articulo->getCategoria() == $codigoCategoria){
+            $arrayArticulosFiltrados[] = $articulo;
+        }
+    }
+    if(count(  $arrayArticulosFiltrado )==0){
+        $_SESSION['NoSePudoFiltrar'] = true;
+        return $arrayArticulos;
+    } else{
+        return $arrayArticulosFiltrados;
+    }
 
+}
 ?>

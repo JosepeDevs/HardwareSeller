@@ -14,9 +14,6 @@ if(isset($_GET["codigo"])) {
     $_SESSION['productos']["$codigoParaCarrito"] = array_key_exists($codigoParaCarrito, $_SESSION['productos']) ? $_SESSION['productos']["$codigoParaCarrito"] + 1 : 1;
 }
 
-
-
-
 //HEADER Y TITULO
 include_once("header.php");
 print('<h1>Catálogo</h1>');
@@ -26,6 +23,7 @@ include_once("aside.php");
 $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
 include_once("../Controllers/OrdenarArticulosController.php");
 $arrayArticulos = getArrayArticulosOrdenados($orden);
+$arrayArticulos = getArrayArticulosFiltradosByCodigoCategoria($arrayArticulos, $codigoCategoria);
 $itemXpagPredeterminado=9;
 $articulosAMostrar = 9;
 if(! isset($_GET['pag'])){
