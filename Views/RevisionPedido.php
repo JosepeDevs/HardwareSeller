@@ -95,7 +95,8 @@ if(isset($_SESSION['user'])) {
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
 //todo de aquík pabajo nose ve
-
+print("post:");
+print_r($_POST);
 if(isset($_POST["estado"])) {
     if( $_POST["estado"] == 3 ){
         echo"
