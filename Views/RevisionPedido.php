@@ -64,7 +64,7 @@ if(isset($_SESSION['CarritoConfirmado'])){
 </table>';
 }
 ?>
-<br><br><br><br>
+<br><br>
 <button type='button'><a href='../Views/Carrito.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar cantidades</a></button>
 <br><br><br><br>
 <?
@@ -84,7 +84,7 @@ if(isset($_SESSION['user'])) {
             <p>Provincia: ".$usuario->getProvincia()."</p>";
 }
 ?>
-<br><br><br><br>
+<br><br>
 <button type='button'><a href='../Views/ClienteEDITAR.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar dirección de envío</a></button>
 <br><br><br><br>
 
@@ -108,7 +108,7 @@ if(isset($_POST["estado"])) {
         </p>";
     }
 ?>
-<br><br><br><br>
+<br><br>
 <button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar métood de pago</a></button>
 <br><br><br><br>
 <button type='button'><a href='../Views/PedidoConfirmado.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i><b>CONFIRMAR PEDIDO</b></a></button>
