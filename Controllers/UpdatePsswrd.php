@@ -28,7 +28,7 @@ if ($operacionExitosa) {
     $_SESSION['PsswrdActualizada'] = true;
 }
 //haya éxito o no iremos a index
-//header("Location: /index.php");
+header("Location: /index.php");
 exit;
 
 }

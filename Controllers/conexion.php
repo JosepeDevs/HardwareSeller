@@ -56,7 +56,7 @@ if( (isset($_SESSION['BadPsswrd']) && $_SESSION['BadPsswrd'] == true) ||
 ( (isset($_SESSION['NoExiste']) && $_SESSION['NoExiste'] == true) )){
     $_SESSION['UserNoSession'] = true;
     echo "hubo un error";
-    header("Location: ../index.php");
+    header("Location: ../index.php?Destroy='Y'");
     exit;
 }
 

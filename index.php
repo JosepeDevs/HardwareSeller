@@ -1,6 +1,19 @@
 <?php
 if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-
+    include("Views/header.php");
+    include_once("Controllers/IndexMensajes.php");
+    $arrayMensajes=getArrayMensajesIndex();
+    if(is_array($arrayMensajes)){
+        foreach($arrayMensajes as $mensaje) {
+            echo "<h3>$mensaje</h3>";
+        }
+    };
+    print_r($_SESSION);
+    if(isset($_GET["Destroy"]) && $_GET["Destroy"] =="Y" ){
+        session_destroy();
+        if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+    }
+    print_r($_SESSION);
 ?>
     <!-- Start Hero Area -->
     <section id="hero-area" class="hero-area">
@@ -11,17 +24,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
                     <div class="col-lg-6 co-12">
                         <div class="home-slider">
                             <div class="hero-text">
-<?
-    include("Views/header.php");
-    include_once("Controllers/IndexMensajes.php");
-    $arrayMensajes=getArrayMensajesIndex();
-    if(is_array($arrayMensajes)){
-        foreach($arrayMensajes as $mensaje) {
-            echo "<h3>$mensaje</h3>";
-        }
-    };
-    print_r($_SESSION);
-?>
                                 <h5 class="wow fadeInUp" data-wow-delay=".3s">¡Bienvenido a nuestra tienda de hardware!</h5>
                                 <h1 class="wow fadeInUp" data-wow-delay=".5s">Encuentra tus piezas de hardware por el mejor precio, <br> ¡también ofrecemos construcción a medida de PC!</h1>
                                 <p class="wow fadeInUp" data-wow-delay=".7s">Descubre cómo nuestros clientes han transformado sus oficinas gracias a nuestro servicio personalizado. Con  3000 visitantes diarios y muchas opiniones positivas, somos un vendedor de confianza. </p>
