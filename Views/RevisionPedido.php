@@ -10,7 +10,7 @@ include_once("../Views/header.php");
     <thead>
         <tr>
             <th>Nº linea del pedido</th>
-            <th>Código del producto<th>
+            <th>Código del producto</th>
             <th>Producto</th>
             <th>Precio (€)</th>
             <th>Descuento (%)</th>
