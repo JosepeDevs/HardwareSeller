@@ -20,6 +20,7 @@ include_once("../Views/header.php");
     </thead>
     <tbody>
 <?
+include_once('../Controllers/ArticuloBUSCARController.php');
 if(isset($_SESSION['CarritoConfirmado'])){
     $arrayItems = $_SESSION['CarritoConfirmado'];//array asociativo con codigo del articulo y cantidad
     foreach($arrayItems as $index => $arrayDatosArticulo){//aquí los indices al ser asociativo son los propios codigos de artículo
