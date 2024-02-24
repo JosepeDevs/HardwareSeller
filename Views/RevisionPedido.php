@@ -60,7 +60,8 @@ if(isset($_SESSION['CarritoConfirmado'])){
             } 
         echo'
         </tr>
-    </tfoot>';
+    </tfoot>
+</table>';
 }
 ?>
 <button type='button'><a href='../Views/Carrito.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar cantidades</a></button>
