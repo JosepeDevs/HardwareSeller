@@ -89,11 +89,7 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
                                             echo '<p>Articulo actualmente descatalogado o no disponible en este momento.</p>';
                                         } else{
                                             //si está activo mostrar precio, descuento y permitir añadirlo al carrito
-                                            if($arrayAImprimir[$i]->getDescuento() == 0){
-                                                echo'
-                                                    <h2>Precio: '.$arrayAImprimir[$i]->getPrecio().' € </h2>
-                                                ';
-                                            } else {
+                                            if($arrayAImprimir[$i]->getDescuento() !== 0){
                                                 echo'
                                                     <h4 style="text-decoration: line-through;">Precio: '.$arrayAImprimir[$i]->getPrecio().' € </h4>
                                                     <h2">Descuento: '.$arrayAImprimir[$i]->getDescuento().' % </h2>
