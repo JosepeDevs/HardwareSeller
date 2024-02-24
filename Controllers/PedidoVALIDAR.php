@@ -51,26 +51,31 @@ if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true")
 
     //rescatamos de session los datos subidos
     $Pedido = new Pedido();
-    $numPedido = $Pedido->updatePedido($fecha, $total, $estado, $codUsuario, $activo);
+    $numPedido = $Pedido->updatePedido($numPedido, $fecha, $total, $estado, $codUsuario, $activo);
     if($operacionExitosa){
         $_SESSION['GoodUpdatePedido']= true;
     }
     header("Location: ../Views/PedidosLISTAR.php");
     exit;
-}else if( isset($_SESSION["nuevoPedido"]) && $_SESSION["nuevoPedido"] == "true" && $codigoLibre == true){
+}else if( isset($_SESSION["nuevoPedido"]) && $_SESSION["nuevoPedido"] == "true"){
 
     //all good y estamos añadiendo artículo nuevo
 
-    $_SESSION["codigo"]=$codigo;
-    $operacionExitosa = Pedido::AltaPedido($nombre, $codigo, $codigoOriginal, $activo, $codPedidoPadre);
-    if($operacionExitosa){
+    $numPedido = Pedido::AltaPedido($fecha, $total, $estado, $codUsuario, $activo);
+    if($numPedido !== false){
         $_SESSION['GoodInsertPedido']= true;
+        $pedido = Pedido::getPedidoByNumPedido($numPedido);
+        $_SESSION['pedido']= $pedido;
         print"all good $operacionExitosa";
-    } else{
-        print"all bad $operacionExitosa";
     }
-   header("Location: ../Views/PedidosLISTAR.php");
-    exit;
+    if(isset($_SESSION['CarritoConfirmado']) && !empty($_SESSION['CarritoConfirmado']) ){
+        //ahora que ya tenemos el pedido creado y en session vamos a poblar su contenido
+        header("Location: ../Controllers/ContenidoPedidoVALIDAR.php");
+        exit;
+    }else{
+        header("Location: ../Views/PedidosLISTAR.php");
+         exit;
+    }
 };
 
 ?>

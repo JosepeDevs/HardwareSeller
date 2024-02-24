@@ -13,12 +13,12 @@ if( $usuarioLogeado == false){
 include_once("../Models/ContenidoPedido.php");
 print_r($_SESSION);
 
-//necesito limitarlas
-$maxLineas =  50;
+$pedido = isset($_SESSION["pedido"]) ? $_SESSION["pedido"] : null;
+$contenidoPedido = isset($_SESSION["CarritoConfirmado"]) ? $_SESSION["CarritoConfirmado"] : null;
 
-$numPedido = isset($_SESSION["numPedidoConfirmado"]) ? $_SESSION["numPedidoConfirmado"] : null;
-$numPedidoOriginal = isset($_SESSION["numPedido"]) ? $_SESSION["numPedido"] : null;
-
+foreach ($contenidoPedido as $key => $value) {
+    # code...
+}
 for( $i = 0; $i < $maxLineas; $i++ ){
     //montamos los nombres (keys) con las que acceder a $_POST
     if($i ==0){

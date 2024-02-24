@@ -187,6 +187,28 @@ public function setActivo($activo) {
         }
     }
 
+    /**
+     * @return  Pedido|bool devuelve false si no encuentra el pedido, devuelve el pedido si tiene exito
+     */
+    public static function getPedidoByNumPedido($numPedido) {
+        try {
+            $con = contectarBbddPDO();
+            $sql = "SELECT * FROM pedidos WHERE numPedido=:numPedido";
+            $statement = $con->prepare($sql);
+            $statement->bindParam(':numPedido', $numPedido);
+            $statement->execute();
+            $pedido = $statement->fetch(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
+            if($pedido->RowCount() > 0) {
+                return $pedido;
+            } else {
+                $_SESSION['ErrorGetPedidos'] = true;
+                return false;
+            }
+        } catch (PDOException $e) {
+            $_SESSION['ErrorGetPedidos'] = true;
+            return false;
+        }
+    }
     public static function getDESCSortedPedidosByAtributo($nombreAtributo) {
         try {
             $con = contectarBbddPDO();
