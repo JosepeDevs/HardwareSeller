@@ -10,7 +10,7 @@ include_once("../Models/Cliente.php");
  * @return void|bool Devuelve TRUE Y ESTABLECE "user" y "key" en SESSION si para el email del cliente la contraseña posteada y la hasheada en la BBDD coincide. Si no lo consigue devuelve FALSE.
  *
  */
-if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1 &&  isset($_SESSION["email"]) &&  isset($_SESSION["psswrd"]) ){
+if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1 ){
     //entramos aquí si se están registrando en el carrito
     if(isset($_SESSION['email']) &&  isset($_SESSION['psswrd'])) {
         $email = $_SESSION['email'];
@@ -46,7 +46,7 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
                     exit;
                 }
             } else {
-                echo "bad psswrd";
+                echo "<br>bad psswrd";
                 $_SESSION['BadPsswrd'] = true;
             }
         }

@@ -27,6 +27,7 @@ if(in_array(strtolower($rol), array("user", "admin", "editor"))){
 //si no hay post de contraseña es que se dejó en blanco (no se quiere cambiar), por lo que psswrd debe ser la misma que ya tenía antes (nos llega por SESSION)
 if(isset($_POST["psswrd"]) && !empty($_POST['psswrd'])){
     $psswrd = $_POST["psswrd"];
+    $psswrdSinHash = $_POST["psswrd"];
     $noPsswrd = false;//este bool se usa para comprobar si hay contraseña nueva o no.
     $psswrd = password_hash($psswrd, PASSWORD_DEFAULT);
     //print("Contraseña ha llegado y vale:".$psswrd);
@@ -177,6 +178,10 @@ $_SESSION["provincia"] = $provincia;
 $_SESSION["telefono"] = $telefono;
 $_SESSION["nombre"] = $nombre;
 $_SESSION["email"] = $email;
+if(isset($_SESSION['RegistroDurantePedido']) && $_SESSION["RegistroDurantePedido"] == 1 ){
+    //cuando están registrandose en el carrito necesito que en psswrd esté sin hashear
+    $_SESSION["psswrd"] = $psswrdSinHash;
+}
 $_SESSION["psswrd"] = $psswrd;
 $_SESSION["rolCliente"] = $rol;
 $_SESSION["activo"] = $activo;
