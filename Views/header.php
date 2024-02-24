@@ -113,12 +113,13 @@ print'
                                 <li><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></li>
                                 <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
                             }
-                           if(1==1){
+                            if(1==1){
                             print ('
                             </ul>
                             </div>
                         </div>');
-                        }
+                        }}
+                        if(1==1){
                     print'
                 </li>
             </ul>
