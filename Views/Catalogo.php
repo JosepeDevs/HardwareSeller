@@ -74,7 +74,7 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
                                                 ';
                                             }
                                           echo'  <h2>Precio: '. round($arrayAImprimir[$i]->getPrecio() * (1 - ($arrayAImprimir[$i]->getDescuento()/100)), 2).' € </h2>
-                                            <button><a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'">Añadir al carrito  <i class="lni lni-cart-full" alt="Añadir al carrito"></i></a></button>
+                                            <button><a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'&pag='.$paginaActual.'">Añadir al carrito  <i class="lni lni-cart-full" alt="Añadir al carrito"></i></a></button>
                                             ';
                                         }
                                         echo'
