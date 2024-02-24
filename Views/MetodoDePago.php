@@ -3,7 +3,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("header.php");
 
 echo'<h1>Seleccione el método de pago</h1>';
-include_once("aside.php");
+//include_once("aside.php");
 ?>
 <form action="../Views/RevisionPedido.php" method="POST">
     <h2>

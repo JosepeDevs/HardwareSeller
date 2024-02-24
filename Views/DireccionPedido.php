@@ -5,7 +5,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //HEADER Y TITULO
 include_once("header.php");
 echo'<h1>Dirección de envío</h1>';
-include_once("aside.php");
+//include_once("aside.php");
 
 //RECIBIMOS POR POST LOS DATOS DE CONTENIDOPEDIDO
 if(isset( $_POST['numLinea1'] )){

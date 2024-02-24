@@ -7,7 +7,7 @@ include_once("header.php");
 
 ?>
     <h1>Vista previa del pedido</h1>
-    <?php include_once("aside.php");?>
+    <?php //include_once("aside.php");?>
     <table class="table">
     <thead>
         <tr>
