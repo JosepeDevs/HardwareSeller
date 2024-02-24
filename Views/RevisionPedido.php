@@ -102,7 +102,7 @@ if(isset($_POST["estado"])) {
         <h2>Transferencia bancaria</h2>
         <br>
         <p> 
-            Indique en el concepto de la transferencia el número de pedido de la siguiente página (también disponible en su área de cliente)
+            Indique en el concepto de la transferencia el número de pedido de la siguiente página (también disponible en su área de cliente), una vez confirme el pedido.
         </p>";
     }
     if( $_POST["estado"] == 4 ){
