@@ -45,7 +45,7 @@ if(isset($_POST["estado"])) {
         </p>";
     }
 ?>
-<button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar métood de pago</a></button>
+<button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar métod de pago</a></button>
 <br><br><br><br>
 <h2> Referencias y cantidades seleccionadas</h2>
 <table class="table">
