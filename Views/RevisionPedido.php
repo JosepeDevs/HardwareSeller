@@ -56,7 +56,7 @@ if(isset($_SESSION['CarritoConfirmado'])){
         <tr>';
             if(count($_SESSION['CarritoConfirmado']) > 0){ 
                 echo'
-                    <td colspan="3"><h4> TOTAL (€): </h4></td>
+                    <td colspan="3"><h4> TOTAL (€) (IVA incluido): </h4></td>
                     <td colspan="4"><h2><b class="total">'.round($total,2).'</b></h2></td>
                  <br>';
             } 
