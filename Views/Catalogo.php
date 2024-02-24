@@ -2,6 +2,12 @@
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //ESTA PÁGINA NO SE DEBE PROTEGER, ACCESIBLE A TODOS LOS NAVEGANTES
 
+include_once("/Views/header.php");
+echo'<h1>Catalogo</h1>';
+include_once("/Views/aside.php");
+include_once("/Views/BreadCrumbs.php");
+
+
 //si no existe la key productos la crea en session (productos será un array asociativo)
 if(!array_key_exists('productos', $_SESSION)) {
     $_SESSION['productos'] = []; 
