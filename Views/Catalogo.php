@@ -24,26 +24,29 @@ include_once("aside.php");
 
 //ZONA FILTRADOS
 echo"<h3>Atributos para filtrar</h3>";
-echo"<table>";
-        echo"<tr>";
-        //ENCABEZADOS
-        include_once("../Controllers/ArticulosLISTARController.php");
-        $arrayAtributos = getArrayAtributosArticulo();
-        if($arrayAtributos !== false){
-            foreach ($arrayAtributos as $atributo) {
-                $nombreAtributo = $atributo;
-                $categoriaFiltrada = isset($_GET['categoria'])? $_GET['categoria'] : null;
-                if($atributo !==  "imagen" && $atributo !==  "codigo"){
-                    echo"<th>
-                    $nombreAtributo <br>Ordenar por este atributo:<br>
-                    <a class='ordenar' href='?orden=ASC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>ASC</a>
-                    <a class='ordenar' href='?orden=DESC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>DESC</a>
-                    </th>";
+echo'<div class="col-lg-9 col-md-11 col-12">';
+    echo"<table>";
+            echo"<tr>";
+            //ENCABEZADOS
+            include_once("../Controllers/ArticulosLISTARController.php");
+            $arrayAtributos = getArrayAtributosArticulo();
+            if($arrayAtributos !== false){
+                foreach ($arrayAtributos as $atributo) {
+                    $nombreAtributo = $atributo;
+                    $categoriaFiltrada = isset($_GET['categoria'])? $_GET['categoria'] : null;
+                    if($atributo !==  "imagen" && $atributo !==  "codigo"){
+                        echo"<th>
+                        $nombreAtributo <br>Ordenar por este atributo:<br>
+                        <a class='ordenar' href='?orden=ASC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>ASC</a>
+                        <a class='ordenar' href='?orden=DESC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>DESC</a>
+                        </th>";
+                    }
                 }
             }
-        }
-        echo"</tr>";
-echo"</table>";
+            echo"</tr>";
+    echo"</table>";
+echo'</div>';
+
         
 //PREPARAR ARRAYS CON OBJETOS
 $orden = isset($_GET['orden']) ? $_GET['orden']:null;
