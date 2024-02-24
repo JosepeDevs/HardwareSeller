@@ -1,12 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("OperacionesSession.php");
-$usuarioLogeado = UserEstablecido();
-if( $usuarioLogeado == false){
-    session_destroy();
-    echo "CategoriaBUSCAR dice: no está user en session";
-    header("Location: /index.php");
-}
+//si protejo esto no puedo usar el aside sin logear, se queda sin proteger
 
 
 function getCategoriaByCodigo($codigo){
