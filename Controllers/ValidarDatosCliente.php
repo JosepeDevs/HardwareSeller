@@ -180,7 +180,7 @@ $_SESSION["nombre"] = $nombre;
 $_SESSION["email"] = $email;
 if(isset($_SESSION['RegistroDurantePedido']) && $_SESSION["RegistroDurantePedido"] == 1 ){
     //cuando están registrandose en el carrito necesito que en psswrd esté sin hashear
-    $_SESSION["psswrd"] = $psswrdSinHash;
+    $_SESSION["psswrdSinHash"] = $psswrdSinHash;
 }
 $_SESSION["psswrd"] = $psswrd;
 $_SESSION["rolCliente"] = $rol;

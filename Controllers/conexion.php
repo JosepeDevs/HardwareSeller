@@ -12,7 +12,7 @@ include_once("../Models/Cliente.php");
  */
 if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1 ){
     //entramos aquí si se están registrando en el carrito
-    if(isset($_SESSION['email']) &&  isset($_SESSION['psswrd'])) {
+    if(isset($_SESSION['email']) &&  isset($_SESSION['psswrdSinHash'])) {
         $email = $_SESSION['email'];
         echo'entramos en registrodurante pedido';
         $cliente = Cliente::GetClientByEmail($email);
@@ -21,7 +21,7 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
         } else{
           header("Location:/index.php");
         }
-        $psswrdSinHashear = $_SESSION['psswrd'];
+        $psswrdSinHashear = $_SESSION['psswrdSinHash'];
         echo"<br>psswrd SIN Hasheada=".$psswrdSinHashear;
         if($cliente == false) {
             $_SESSION['NoExiste']=true;
