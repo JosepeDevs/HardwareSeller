@@ -128,7 +128,7 @@
     </div>
     </form>
     <div id="carrito-header">
-        <small>Este texto será el precio con AJAX</small>
+    <small><? if(isset($_SESSION['productos'])){echo count($_SESSION['productos']);}?></small>
         <a href="/Views/Carrito.php"><i class="lni lni-cart"></i></a>
     </div>
 </header>
