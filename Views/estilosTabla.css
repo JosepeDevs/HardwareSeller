@@ -436,7 +436,7 @@ aside a:hover{
 .revelador{
     /*botones de aside que desplieguan los demás*/
     margin: 2%;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 .oculto{
     list-style-type: none;
