@@ -54,8 +54,8 @@
 </div>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector(".visible").addEventListener("click", function() {
-        document.querySelector(".oculto").style.display = "block";
+    document.querySelectorAll(".visible").addEventListener("click", function() {
+        document.querySelectorAll(".oculto").style.display = "block";
     });
 });
 </script>
