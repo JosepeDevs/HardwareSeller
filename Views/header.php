@@ -113,6 +113,7 @@ print'
                                 <li><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></li>
                                 <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
                             }
+                           if(1==1){
                             print ('
                             </ul>
                             </div>
@@ -141,4 +142,4 @@ print'
 <div class="cta-container">
     <img src="/Resources/backgroundHS.png">
     <div class="cuerpo">
-';?>
+';}?>
