@@ -1,6 +1,6 @@
 <?php
 print'
-  <div class="breadcrumb">
+  <div class="breadcrumb breadcrumbs">
     <p class="breadcrumb-item"><a href="/Views/Catalogo.php"> HardWare Seller / </a></p>
     <p class="breadcrumb-item"><a href="/Views/Catalogo.php"> Catalogo / </a></p>';
     if(isset($_GET["categoria"])) {

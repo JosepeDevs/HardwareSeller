@@ -403,6 +403,10 @@ header nav ul li a:hover{
 
 /*********** INICIO BODY*****************************/
 
+.breadcrumbs{
+    display: flex;
+    flex-direction: row;
+}
 
 aside{
     top: var(--altoHeader);
