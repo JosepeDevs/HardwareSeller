@@ -41,8 +41,6 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             echo"
             <h2>Datos usuario y dirección de envío</h2>
             <br>
-            <a href='#'>Esto en un futuro será un botón para hacer login/registrarse con google usando OAuth</a>
-            <br>
             <p>Nombre: ".$usuario->getNombre()."</p>
             <p>Email: ".$usuario->getEmail()."</p>
             <p>Teléfono: ".$usuario->getTelefono()."</p>
@@ -58,6 +56,8 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             $_SESSION["nuevoCliente"] = "true";
             echo '
             <h2>Datos de contacto y dirección de envío</h2>
+            <br>
+            <a href="#">Esto en un futuro será un botón para hacer login/registrarse con google usando OAuth</a>
             <br>
             <form action="../Controllers/ValidarDatosCliente.php" method="post">
                 <table>
@@ -93,7 +93,14 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
         <div class='finForm'>
             <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
             <button type='button'><a href='../Views/Carrito.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
-            <input type='submit' value="Proceder al método de pago"/>
+            <?
+                if(isset($_SESSION['user'])) {
+                    echo"<button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
+                    ";
+                }else{
+                    echo"<input type='submit' value='Proceder al método de pago'/>";
+                }
+            ?>
         </div> 
     </form> 
         <br>

@@ -31,7 +31,7 @@ print_r($_SESSION);
     <div class='finForm'>
         <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
         <button type='button'><a href='../Views/DireccionPedido.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Volver a dirección de envío</a></button>
-        <button type='submit'><a href='../Views/DireccionPedido.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Guardar método de pago y confirmar pedido</a></button>
+        <button type='submit'><a href='../Views/DireccionPedido.php' class='btn btn-warning'><i class='lni lni-chevron-right'></i>Guardar método de pago y confirmar pedido</a></button>
     </div> 
 </form> 
 
