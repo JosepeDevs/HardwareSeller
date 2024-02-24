@@ -1,6 +1,6 @@
 <?php
-//lo meto todo dentro de un echo porque recuperación de contraseña me está dando problemas de que estoy mandando cosas en header antes e llamar al metodo header
-echo'
+//lo meto todo dentro de un print porque recuperación de contraseña me está dando problemas de que estoy mandando cosas en header antes e llamar al metodo header
+print'
 <!DOCTYPE html>
 <html class="no-js" lang="es">
 <head>
@@ -118,7 +118,7 @@ echo'
                             </div>
                         </div>');
                         }
-                    echo'
+                    print'
                 </li>
             </ul>
         </nav>
@@ -132,8 +132,8 @@ echo'
     </form>
     <div id="carrito-header">
     <small>';
-    if(isset($_SESSION["productos"])){echo count($_SESSION["productos"]);}
-    echo'</small>
+    if(isset($_SESSION["productos"])){print count($_SESSION["productos"]);}
+    print'</small>
         <a href="/Views/Carrito.php"><i class="lni lni-cart"></i></a>
     </div>
 </header>
