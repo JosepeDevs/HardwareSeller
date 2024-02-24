@@ -21,6 +21,7 @@ function getArrayArticulosOrdenados($orden){
 }
 function getArrayArticulosFiltradosByCodigoCategoria($arrayArticulos, $codigoCategoria){
     include_once("../Models/Articulo.php");
+    $arrayArticulosFiltrados = array();
     foreach ($arrayArticulos as $articulo) {
         if($articulo->getCategoria() == $codigoCategoria){
             $arrayArticulosFiltrados[] = $articulo;
