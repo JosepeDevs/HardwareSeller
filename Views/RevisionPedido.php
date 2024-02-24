@@ -74,6 +74,7 @@ if(isset($_SESSION['CarritoConfirmado'])){
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
 if(isset($_SESSION['user'])) {
+    include_once("../Models/Cliente.php");
     $usuario = getClienteByemail($_SESSION['user']);
     $dni=$usuario->getDni();
     $_SESSION['codUsuario'] = $dni;
