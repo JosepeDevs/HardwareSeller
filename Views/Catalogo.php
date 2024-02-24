@@ -2,12 +2,6 @@
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //ESTA PÁGINA NO SE DEBE PROTEGER, ACCESIBLE A TODOS LOS NAVEGANTES
 
-include_once("/Views/header.php");
-echo'<h1>Catalogo</h1>';
-include_once("/Views/aside.php");
-include_once("/Views/BreadCrumbs.php");
-
-
 //si no existe la key productos la crea en session (productos será un array asociativo)
 if(!array_key_exists('productos', $_SESSION)) {
     $_SESSION['productos'] = []; 
@@ -19,6 +13,14 @@ if(isset($_GET["codigo"])) {
     //mira si existe ya el producto, si ya existe añade 1 , si no existe, guarda 1
     $_SESSION['productos']["$codigoParaCarrito"] = array_key_exists($codigoParaCarrito, $_SESSION['productos']) ? $_SESSION['productos']["$codigoParaCarrito"] + 1 : 1;
 }
+
+//HEADER Y TITULO
+include_once("header.php");
+print('<h1>Catálogo</h1>');
+include_once("BreadCrumbs.php");
+print'<br>';
+include_once("aside.php");
+
 
 //ZONA FILTRADOS
 echo"<h3>Atributos para filtrar</h3>";
@@ -49,6 +51,13 @@ $arrayArticulos = getArrayArticulosOrdenadosByAtributo($orden,$atributoElegido);
 $codigoCategoria = isset($_GET['categoria']) ? $_GET['categoria']:null;
 $arrayArticulos = getArrayArticulosFiltradosByCodigoCategoria($arrayArticulos, $codigoCategoria);
 
+
+//PREPARAR ARRAYS CON OBJETOS
+$orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
+include_once("../Controllers/OrdenarArticulosController.php");
+$arrayArticulos = getArrayArticulosOrdenados($orden);
+$codigoCategoria = isset($_GET['categoria']) ? $_GET['categoria']:null;
+$arrayArticulos = getArrayArticulosFiltradosByCodigoCategoria($arrayArticulos, $codigoCategoria);
 $itemXpagPredeterminado=9;
 $articulosAMostrar = 9;
 if(! isset($_GET['pag'])){
