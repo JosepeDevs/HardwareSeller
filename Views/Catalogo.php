@@ -44,7 +44,7 @@ echo"<table>";
 echo"</table>";
         
 //PREPARAR ARRAYS CON OBJETOS
-$ordenAtributo = isset($_GET['ordenAtributo']) ? $_GET['ordenAtributo']:null;
+$orden = isset($_GET['orden']) ? $_GET['orden']:null;
 $atributoElegido = isset($_GET["atributo"])?$_GET["atributo"]:"nombre";//si no hay ningun atributo ordena por nombre
 include_once("../Controllers/OrdenarArticulosController.php");
 $arrayArticulos = getArrayArticulosOrdenadosByAtributo($orden,$atributoElegido);
@@ -52,13 +52,6 @@ $arrayArticulos = getArrayArticulosOrdenadosByAtributo($orden,$atributoElegido);
 $codigoCategoria = isset($_GET['categoria']) ? $_GET['categoria']:null;
 $arrayArticulos = getArrayArticulosFiltradosByCodigoCategoria($arrayArticulos, $codigoCategoria);
 
-
-//PREPARAR ARRAYS CON OBJETOS
-$orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
-include_once("../Controllers/OrdenarArticulosController.php");
-$arrayArticulos = getArrayArticulosOrdenados($orden);
-$codigoCategoria = isset($_GET['categoria']) ? $_GET['categoria']:null;
-$arrayArticulos = getArrayArticulosFiltradosByCodigoCategoria($arrayArticulos, $codigoCategoria);
 $itemXpagPredeterminado=9;
 $articulosAMostrar = 9;
 if(! isset($_GET['pag'])){
