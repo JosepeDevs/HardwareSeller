@@ -35,8 +35,8 @@ echo"<table>";
                 $categoriaFiltrada = isset($_SESSION['categoria'])? $_SESSION['categoria'] : null;
                 echo"<th>
                 $nombreAtributo <br>Ordenar por este atributo:<br>
-                <a class='ordenar' href='&?orden=ASC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>ASC</a>
-                <a class='ordenar' href='&?orden=DESC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>DESC</a>
+                <a class='ordenar' href='?orden=ASC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>ASC</a>
+                <a class='ordenar' href='?orden=DESC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>DESC</a>
                 </th>";
             }
         }
