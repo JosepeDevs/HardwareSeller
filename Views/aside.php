@@ -30,18 +30,18 @@
                     echo $categoria->getNombre();
                     echo '</button>';
                     //la clase dropdown-menu es lo que da a una lista el formato de dropdown
-                    echo '<ul class="dropdown-menu">';
+                    echo '<ul class="dropdown-menu visible">';
                     foreach ($subcategorias as $subcategoria) {
                         if($subcategoria !== $codigoCategoria){
                             //no queremos imprimir para la categoria RAM dentro de esta RAM otra vez, así que mientras no encuentre ese código que imprima subcategorias
-                            echo '<li><a class="dropdown-item" href="/Views/Catalogo.php?'.$subcategoria->getNombre().'">'.$subcategoria->getNombre().'</a></li>';
+                            echo '<li><a class="dropdown-item oculto" display="none" id="'.$subcategoria->getCodigo().'" href="/Views/Catalogo.php?codigo='.$subcategoria->getCodigo().'"</a></li>';
                         }
                     }
                     echo '</ul>';
                     echo '</div>';
                 } else {
                     //Si alguno no tiene subcategorias dejaremos un enlace con el nombre de la propia categoria, sin dropdown
-                    echo '<a href="/Views/Catalogo.php?'.$categoria->getNombre().'">'.$categoria->getNombre().'</a>';
+                    echo '<a href="/Views/Catalogo.php?'.$categoria->getCodigo().'">'.$categoria->getCodigo().'</a>';
                 }
             }
         }  

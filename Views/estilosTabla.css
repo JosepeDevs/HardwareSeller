@@ -434,6 +434,9 @@ aside a:hover{
     text-decoration: underline;
 }
 
+.oculto{
+    list-style-type: none
+}
 
 .estado-metodoPago{
     font-size: 2em;
