@@ -77,7 +77,6 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
            // print_r($_SESSION);
             if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1){
                 echo'vamos a medoto de pago';
-                echo'vamos a medoto de pago';
                 //           header('Location: ../Views/MetodoDePago.php');
             } else{
                 echo'vamos patras';
@@ -94,7 +93,7 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
 if( (isset($_SESSION['BadPsswrd']) && $_SESSION['BadPsswrd'] == true) ||
 ( (isset($_SESSION['NoExiste']) && $_SESSION['NoExiste'] == true) )){
     $_SESSION['UserNoSession'] = true;
-    echo "hubo un error";
+    echo "hubo un error".$_SESSION['NoExiste']. $_SESSION['BadPsswrd'];
    // header("Location: ../index.php?Destroy=Y);
     exit;
 }
