@@ -61,10 +61,12 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     
     function MostrarContenido(){
-        var itemsOcultos= document.querySelectorAll(".oculto").forEach(function(li) {//con esto seleccionamos todos los elements y aplicamos una funcion en cada item
-            console.log(itemsOcultos);
-            li.style.display = "block";
-        })
-    }
+        var botonClickeado = event.target;
+        var ulCercana = botonClickeado.nextElementSibling;
+        var enlaces = ulCercana.querySelectorAll('li a');
+        enlaces.forEach(function(enlace) {
+           enlace.classList.remove('oculto'); //quitamos la clase de oculto y así se verán los enlaces de ese ul específico
+        }        
+    )};
 });
 </script>
