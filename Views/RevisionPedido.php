@@ -4,7 +4,49 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Views/header.php");
 ?>
 <h1>Confirmación del pedido</h1>
-<?php include_once("../Views/aside.php") ?>
+<?php include_once("../Views/aside.php") ;
+
+
+if(isset($_SESSION['user'])) {
+            include_once('../Controllers/ClienteBUSCARController.php');
+            $usuario = getClienteByemail($_SESSION['user']);
+            //NOTHING LIKE A GOOD RETURNING CLIENT!
+            echo"
+            <h2>Datos usuario y dirección de envío</h2>
+            <br>
+            <p>Nombre: ".$usuario->getNombre()."</p>
+            <p>Email: ".$usuario->getEmail()."</p>
+            <p>Teléfono: ".$usuario->getTelefono()."</p>
+            <p>Dirección: ".$usuario->getDireccion()."</p>
+            <p>Localidad: ".$usuario->getLocalidad()."</p>
+            <p>Provincia: ".$usuario->getProvincia()."</p>";
+}
+?>
+<button type='button'><a href='../Views/ClienteEDITAR.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar dirección de envío</a></button>
+<br><br><br><br>
+
+<?
+
+if(isset($_POST["estado"])) {
+    if( $_POST["estado"] == 3 ){
+        echo"
+        <h2>Transferencia bancaria</h2>
+        <br>
+        <p> 
+            Indique en el concepto de la transferencia el número de pedido de la siguiente página (también disponible en su área de cliente)
+        </p>";
+    }
+    if( $_POST["estado"] == 4 ){
+        echo"
+        <h2>Pago mediante tarjeta</h2>
+        <br>
+        <p> 
+            ¡Actualmente no disponible, gracias por su comprensión! Aunque marque esta opción le aparecerá para pagar por transferencia.
+        </p>";
+    }
+?>
+<button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar métood de pago</a></button>
+<br><br><br><br>
 <h2> Referencias y cantidades seleccionadas</h2>
 <table class="table">
     <thead>
@@ -62,47 +104,9 @@ if(isset($_SESSION['CarritoConfirmado'])){
         </tr>
     </tfoot>';
 }
+
 ?>
 <button type='button'><a href='../Views/Carrito.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar cantidades</a></button>
-<?
-
-if(isset($_SESSION['user'])) {
-            include_once('../Controllers/ClienteBUSCARController.php');
-            $usuario = getClienteByemail($_SESSION['user']);
-            //NOTHING LIKE A GOOD RETURNING CLIENT!
-            echo"
-            <h2>Datos usuario y dirección de envío</h2>
-            <br>
-            <p>Nombre: ".$usuario->getNombre()."</p>
-            <p>Email: ".$usuario->getEmail()."</p>
-            <p>Teléfono: ".$usuario->getTelefono()."</p>
-            <p>Dirección: ".$usuario->getDireccion()."</p>
-            <p>Localidad: ".$usuario->getLocalidad()."</p>
-            <p>Provincia: ".$usuario->getProvincia()."</p>";
-}
-?>
-<button type='button'><a href='../Views/ClienteEDITAR.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar dirección de envío</a></button>
-<?
-
-if(isset($_POST["estado"])) {
-    if( $_POST["estado"] == 3 ){
-        echo"
-        <h2>Transferencia bancaria</h2>
-        <br>
-        <p> 
-            Indique en el concepto de la transferencia el número de pedido de la siguiente página (también disponible en su área de cliente)
-        </p>";
-    }
-    if( $_POST["estado"] == 4 ){
-        echo"
-        <h2>Pago mediante tarjeta</h2>
-        <br>
-        <p> 
-            ¡Actualmente no disponible, gracias por su comprensión! Aunque marque esta opción le aparecerá para pagar por transferencia.
-        </p>";
-    }
-?>
-<button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar métood de pago</a></button>
 <br><br><br>
 <h2><button type='button'><a href='../Views/PedidoConfirmado.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>CONFIRMAR PEDIDO</a></button></h2>
 <?
