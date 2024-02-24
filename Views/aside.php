@@ -26,11 +26,11 @@
                     echo '<div class="dropdown">';
                     //atributo para bootstrap data-bs-toggle="dropdown" para decirle que el botón trigger el dropdown
                     //dropdown-toggle para que reconozca  lo de abajo como dropdown
-                    echo '<button class="btn btn-secondary dropdown-toggle aside" type="button" data-bs-toggle="dropdown" >';
+                    echo '<button class="btn btn-secondary dropdown-toggle revelador" type="button" data-bs-toggle="dropdown" >';
                     echo $categoria->getNombre();
                     echo '</button>';
                     //la clase dropdown-menu es lo que da a una lista el formato de dropdown
-                    echo '<ul class="dropdown-menu visible">';
+                    echo '<ul class="dropdown-menu">';
                     foreach ($subcategorias as $subcategoria) {
                         $codigoSubCategoria = $subcategoria->getCodigo();
                         if( $codigoSubCategoria !== $codigoCategoria){
@@ -54,8 +54,14 @@
 </div>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll(".visible").addEventListener("click", function() {
-        document.querySelectorAll(".oculto").style.display = "block";
+
+    document.querySelectorAll(".revelador").forEach(function(button) {//con esto seleccionamos todos los elements y aplicamos una funcion en cada item
+        button.addEventListener("click", MostrarContenido); //añadir el listener a todos los botones
     });
-});
+
+    function MostrarContenido(){
+        var itemsOcultos= document.querySelectorAll(".oculto")
+        itemOculto.style.display = "block";
+    }
+    });
 </script>
