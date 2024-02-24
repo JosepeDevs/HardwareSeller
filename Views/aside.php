@@ -43,7 +43,7 @@
                         if( $codigoSubCategoria !== $codigoCategoria){
                             //no queremos imprimir para la categoria RAM dentro de esta RAM otra vez, así que mientras no encuentre ese código que imprima subcategorias
                             echo '<li class="oculto" >
-                                    <a class="dropdown-item oculto" id="'.$codigoSubCategoria.'" href="/Views/Catalogo.php?categoria='.$codigoSubCategoria.'">'.
+                                    <a class="dropdown-item oculto" id="'.$codigoSubCategoria.'" href="?categoria='.$codigoSubCategoria.'">'.
                                     $nombreSubCategoria.'</a>
                                 </li>';
                         }
@@ -52,7 +52,7 @@
                     echo '</div>';
                 } else {
                     //Si alguno no tiene subcategorias dejaremos un enlace con el nombre de la propia categoria, sin dropdown
-                    echo '<a href="/Views/Catalogo.php?'.$codigoCategoria.'">'.$codigoCategoria.'</a>';
+                    echo '<a href="?'.$codigoCategoria.'">'.$codigoCategoria.'</a>';
                 }
             }
         }  
