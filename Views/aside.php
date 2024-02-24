@@ -69,8 +69,9 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(listaLi);
         listaLi.forEach(function(li) {
             var enlace = li.querySelector('a');
-            console.log(enlace);
+            console.log(enlace.classList);
             enlace.classList.remove('oculto'); //quitamos la clase de oculto y así se verán los enlaces de ese ul específico
+            console.log(enlace.classList);
         }        
     )};
 });
