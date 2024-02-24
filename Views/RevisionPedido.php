@@ -102,6 +102,8 @@ if(isset($_POST["estado"])) {
     }
 ?>
 <button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar métood de pago</a></button>
+<br><br><br>
+<h2><button type='button'><a href='../Views/PedidoConfirmado.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>CONFIRMAR PEDIDO</a></button></h2>
 <?
 }
 
