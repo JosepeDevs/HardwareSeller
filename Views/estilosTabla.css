@@ -432,6 +432,8 @@ aside a{
 aside a:hover{
     color:var(--hover-light);
     text-decoration: underline;
+    justify-content: left;
+    margin-left:1%
 }
 .revelador{
     /*botones de aside que desplieguan los demás*/
