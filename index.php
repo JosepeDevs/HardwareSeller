@@ -1,20 +1,23 @@
 <?php
 if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include("Views/header.php");
-include_once("Controllers/IndexMensajes.php");
-  $arrayMensajes=getArrayMensajesIndex();
-  if(is_array($arrayMensajes)){
-      foreach($arrayMensajes as $mensaje) {
-          echo "<h3>$mensaje</h3>";
-      }
-    };
-    print_r($_SESSION);
+
 ?>
     <!-- Start Hero Area -->
     <section id="hero-area" class="hero-area">
         <!-- Single Slider -->
         <div class="hero-inner">
             <div class="container">
+<?
+    include("Views/header.php");
+    include_once("Controllers/IndexMensajes.php");
+    $arrayMensajes=getArrayMensajesIndex();
+    if(is_array($arrayMensajes)){
+        foreach($arrayMensajes as $mensaje) {
+            echo "<h3>$mensaje</h3>";
+        }
+    };
+    print_r($_SESSION);
+?>
                 <div class="row ">
                     <div class="col-lg-6 co-12">
                         <div class="home-slider">
