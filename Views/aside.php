@@ -27,7 +27,7 @@
                     //atributo para bootstrap data-bs-toggle="dropdown" para decirle que el botón trigger el dropdown
                     //dropdown-toggle para que reconozca  lo de abajo como dropdown
                     echo '<button class="btn btn-secondary dropdown-toggle revelador" type="button" data-bs-toggle="dropdown" >';
-                    echo $categoria->getNombre();
+                    echo $categoria->getNombre().'<i class="lni lni-chevron-down"></i>';
                     echo '</button>';
                     //la clase dropdown-menu es lo que da a una lista el formato de dropdown
                     echo '<ul class="dropdown-menu">';

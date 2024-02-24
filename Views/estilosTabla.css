@@ -435,8 +435,13 @@ aside a:hover{
 }
 .revelador{
     /*botones de aside que desplieguan los demás*/
-    margin: 2%;
     font-size: 1.5em;
+    background: none;
+    border: none;
+    color: var(--background-light);
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 2%;
 }
 .oculto{
     list-style-type: none;
