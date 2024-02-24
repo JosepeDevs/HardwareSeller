@@ -435,7 +435,8 @@ aside a:hover{
 }
 
 .oculto{
-    list-style-type: none
+    list-style-type: none;
+    display: none;
 }
 
 .estado-metodoPago{

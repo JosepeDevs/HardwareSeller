@@ -36,8 +36,8 @@
                         $nombreSubCategoria = $subcategoria->getNombre();
                         if( $codigoSubCategoria !== $codigoCategoria){
                             //no queremos imprimir para la categoria RAM dentro de esta RAM otra vez, así que mientras no encuentre ese código que imprima subcategorias
-                            echo '<li class="oculto" display="none">
-                                    <a class="dropdown-item"  display="none" id="'.$codigoSubCategoria.'" href="/Views/Catalogo.php?categoria='.$codigoSubCategoria.'">'.
+                            echo '<li class="oculto" >
+                                    <a class="dropdown-item oculto" id="'.$codigoSubCategoria.'" href="/Views/Catalogo.php?categoria='.$codigoSubCategoria.'">'.
                                     $nombreSubCategoria.'</a>
                                 </li>';
                         }
@@ -57,7 +57,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     document.querySelectorAll(".revelador").forEach(function(button) {//con esto seleccionamos todos los elements y aplicamos una funcion en cada item
-       console.log(button);
        button.addEventListener("click", MostrarContenido); //añadir el listener a todos los botones
     });
     
