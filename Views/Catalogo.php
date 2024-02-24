@@ -32,10 +32,11 @@ echo"<table>";
         if($arrayAtributos !== false){
             foreach ($arrayAtributos as $atributo) {
                 $nombreAtributo = $atributo;
+                $categoriaFiltrada = isset($_SESSION['categoria'])? $_SESSION['categoria'] : null;
                 echo"<th>
                 $nombreAtributo <br>Ordenar por este atributo:<br>
-                <a class='ordenar' href='?orden=ASC&atributo=$nombreAtributo'>ASC</a>
-                <a class='ordenar' href='?orden=DESC&atributo=$nombreAtributo'>DESC</a>
+                <a class='ordenar' href='&?orden=ASC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>ASC</a>
+                <a class='ordenar' href='&?orden=DESC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>DESC</a>
                 </th>";
             }
         }

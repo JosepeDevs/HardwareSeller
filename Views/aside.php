@@ -37,13 +37,16 @@
                     echo '</button>';
                     //la clase dropdown-menu es lo que da a una lista el formato de dropdown
                     echo '<ul class="dropdown-menu">';
+                    $ordenFiltrado = isset($_SESSION['orden'])? $_SESSION['orden'] : null;
+                    $nombreAtributoFiltrado = isset($_SESSION['atributo'])? $_SESSION['atributo'] : null;
                     foreach ($subcategorias as $subcategoria) {
                         $codigoSubCategoria = $subcategoria->getCodigo();
                         $nombreSubCategoria = $subcategoria->getNombre();
                         if( $codigoSubCategoria !== $codigoCategoria){
                             //no queremos imprimir para la categoria RAM dentro de esta RAM otra vez, así que mientras no encuentre ese código que imprima subcategorias
+
                             echo '<li class="oculto" >
-                                    <a class="dropdown-item oculto" id="'.$codigoSubCategoria.'" href="?categoria='.$codigoSubCategoria.'">'.
+                                    <a class="dropdown-item oculto" id="'.$codigoSubCategoria.'" href="?categoria='.$codigoSubCategoria.'&orden='.$ordenFiltrado.'&atributo='.$nombreAtributoFiltrado.'">'.
                                     $nombreSubCategoria.'</a>
                                 </li>';
                         }
@@ -52,7 +55,7 @@
                     echo '</div>';
                 } else {
                     //Si alguno no tiene subcategorias dejaremos un enlace con el nombre de la propia categoria, sin dropdown
-                    echo '<a href="?'.$codigoCategoria.'">'.$codigoCategoria.'</a>';
+                    echo'<a  id="'.$codigoSubCategoria.'" href="?categoria='.$codigoSubCategoria.'&orden='.$ordenFiltrado.'&atributo='.$nombreAtributoFiltrado.'">'.$nombreSubCategoria.'</a>';
                 }
             }
         }  
