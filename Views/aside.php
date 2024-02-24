@@ -13,8 +13,9 @@
         foreach($arrayCategorias as $categoria) {
             if($categoria->getActivo() ==  1){
                 // Ver si hay subcategorias
+                $codigoCategoria = $categoria->getCodigo();
                 include_once("../Controllers/CategoriaBUSCARController.php");
-                $subcategorias = $categoria->getSubCategorias(); 
+                $subcategorias = $categoria->getSubCategorias($codigoCategoria); 
                 if ($subcategorias !== false) {
                     // si hay categorías creamos un dropdown
                     echo '<div class="dropdown">';

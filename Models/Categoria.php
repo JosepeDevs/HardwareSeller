@@ -79,12 +79,12 @@ public function setCodCategoriaPadre($codCategoriaPadre) {
     /**
      * @return array|bool devuelve false si no encuentra más de un resultado, si los encuentra devuelve un array con las subcategorias
      */
-    public static function getSubCategorias($categoria){
+    public static function getSubCategorias($codigoCategoria){
         try{
             $con = contectarBbddPDO();
-            $sqlQuery="SELECT * FROM  `categorias` WHERE nombre LIKE CONCAT('%', :categoria, '%');";
+            $sqlQuery="SELECT * FROM  `categorias` WHERE codigo LIKE CONCAT('%', :categoria, '%');";
             $statement=$con->prepare($sqlQuery);
-            $statement->bindParam(':categoria', $categoria);
+            $statement->bindParam(':categoria', $codigoCategoria);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Categoria");
             $arraySubCategorias = $statement->fetchAll();

@@ -20,9 +20,9 @@ function getCategoriaByCodigo($codigo){
     }
 }
 
-function getSubCategorias($categoria){
+function getSubCategorias($codigoCategoria){
     include_once("../Models/Categoria.php");
-    $arraySubCategorias = Categoria::getSubCategorias($codigo);
+    $arraySubCategorias = Categoria::getSubCategorias($codigoCategoria);
     if($arraySubCategorias == false){
         $_SESSION['SubCategoriasNotFound'] = true;
         return false;
