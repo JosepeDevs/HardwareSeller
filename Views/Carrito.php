@@ -122,7 +122,7 @@ include_once("header.php");
         </tfoot>';
 
         //SI hay solapamiento cuando no hay items
-        if( isset($_SESSION['productos'])  &&  isset($_SESSION['CarritoConfirmado']) && count($_SESSION['productos']) = 0 && count($_SESSION['CarritoConfirmado']) ){
+        if( isset($_SESSION['productos'])  &&  isset($_SESSION['CarritoConfirmado']) && count($_SESSION['productos']) == 0 && count($_SESSION['CarritoConfirmado'])==0 ){
                echo '<tr><td colspan="7"><p>Carrito sin artículos (carrito vacío)</p></td>'; 
         } else if( isset($_SESSION['productos']) && count($_SESSION['productos']) == 0  ){
             //SI es su primera visita al carrito
