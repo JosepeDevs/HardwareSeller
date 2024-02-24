@@ -15,21 +15,21 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
         echo '<br><br><input type="submit" value="Submit"></form>';
     } else {
         $_SESSION['ClienteNoExiste'] =true;
-       header("Location: ../index.php");
+       header("Location: /index.php");
        exit;
     }
 } else if (isset($_POST['newpsswrd']) && !empty($_POST['newpsswrd'])){
     $newpsswrd = $_POST['newpsswrd'];
     $newpsswrd = password_hash($newpsswrd, PASSWORD_BCRYPT);
     $dni = $_SESSION['dni'];
-    echo"entramos a actualizar la contraseña";
+   // echo"entramos a actualizar la contraseña";
     $operacionExitosa = updatePasswrdUsingDni($dni, $newpsswrd);
 if ($operacionExitosa) {
-    echo"la operacion ha sido $operacionExitosa";
+   // echo"la operacion ha sido $operacionExitosa";
     $_SESSION['PsswrdActualizada'] = true;
 }
 //haya éxito o no iremos a index
-header("Location: ../index.php");
+header("Location: /index.php");
 exit;
 
 }
