@@ -30,14 +30,13 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
             $psswrdExiste = password_verify($psswrdSinHashear, $psswrdHasheada);
             if( $psswrdExiste) {
                 echo "all good";
-                $_SESSION['user']=$usuario;
-                $_SESSION['key'] = $psswrdHasheada;
-                $_SESSION['usuario']=$usuario; //no es lo mismo que session de user
+                $_SESSION['email']=$email;
+                $_SESSION['psswrd'] = $psswrdHasheada;
+                $_SESSION['usuario']=$email; //no es lo mismo que session de user
                 $_SESSION['auth'] = "OK";
                 $_SESSION['rol'] = $rol;
                // print_r($_SESSION);
                 if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1){
-                    echo'vamos a medoto de pago';
                     echo'vamos a medoto de pago';
                     //           header('Location: ../Views/MetodoDePago.php');
                 } else{
