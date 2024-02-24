@@ -11,7 +11,7 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
         echo '<form action="UpdatePsswrd.php" method="POST">';
         echo '<h1>Recuperación de contraseña</h1>';
         echo '<h2><label>Escriba su nueva contraseña</label></h2><br><br><input type="text" name="newpsswrd"><br><br>';
-        echo '<br><br><input type="submit" value="Submit"></form>';
+        echo '<br><input type="submit" value="Submit"></form>';
     } else {
         $_SESSION['ClienteNoExiste'] =true;
        header("Location: /index.php");
@@ -21,14 +21,14 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
     $newpsswrd = $_POST['newpsswrd'];
     $newpsswrd = password_hash($newpsswrd, PASSWORD_BCRYPT);
     $dni = $_SESSION['dni'];
-   // echo"entramos a actualizar la contraseña";
+   echo"entramos a actualizar la contraseña";
     $operacionExitosa = updatePasswrdUsingDni($dni, $newpsswrd);
 if ($operacionExitosa) {
-   // echo"la operacion ha sido $operacionExitosa";
+    echo"la operacion ha sido $operacionExitosa";
     $_SESSION['PsswrdActualizada'] = true;
 }
 //haya éxito o no iremos a index
-header("Location: /index.php");
+//header("Location: /index.php");
 exit;
 
 }
