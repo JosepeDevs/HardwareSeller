@@ -33,11 +33,13 @@ echo"<table>";
             foreach ($arrayAtributos as $atributo) {
                 $nombreAtributo = $atributo;
                 $categoriaFiltrada = isset($_GET['categoria'])? $_GET['categoria'] : null;
-                echo"<th>
-                $nombreAtributo <br>Ordenar por este atributo:<br>
-                <a class='ordenar' href='?orden=ASC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>ASC</a>
-                <a class='ordenar' href='?orden=DESC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>DESC</a>
-                </th>";
+                if($atributo !==  "imagen" && $atributo !==  "codigo"){
+                    echo"<th>
+                    $nombreAtributo <br>Ordenar por este atributo:<br>
+                    <a class='ordenar' href='?orden=ASC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>ASC</a>
+                    <a class='ordenar' href='?orden=DESC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."'>DESC</a>
+                    </th>";
+                }
             }
         }
         echo"</tr>";
