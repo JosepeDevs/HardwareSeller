@@ -22,12 +22,13 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
           header("Location:/index.php");
         }
         $psswrdSinHashear = $_SESSION['psswrd'];
+        echo"<br>psswrd SIN Hasheada=".$psswrdSinHashear;
         if($cliente == false) {
             $_SESSION['NoExiste']=true;
             echo"<p>cliente no existe</p>";
         } else{
             $psswrdHasheada =$cliente->getPsswrd();
-           echo"psswrdHaseada=".$psswrdHasheada;
+           echo"<br>psswrdHaseada=".$psswrdHasheada;
             $psswrdExiste = password_verify($psswrdSinHashear, $psswrdHasheada);
             if( $psswrdExiste) {
                 echo "all good";
