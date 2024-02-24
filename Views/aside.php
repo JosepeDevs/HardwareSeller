@@ -60,8 +60,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function MostrarContenido(){
-        var itemsOcultos= document.querySelectorAll(".oculto")
-        itemsOcultos.style.display = "block";
+        var itemsOcultos= document.querySelectorAll(".oculto").forEach(function(li) {//con esto seleccionamos todos los elements y aplicamos una funcion en cada item
+            li.style.display = "block";
+        })
     }
-    });
+});
 </script>
