@@ -20,6 +20,8 @@ include_once("../Views/header.php");
     </thead>
     <tbody>
 <?
+if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+
 include_once('../Controllers/ArticuloBUSCARController.php');
 if(isset($_SESSION['CarritoConfirmado'])){
     $arrayItems = $_SESSION['CarritoConfirmado'];//array asociativo con codigo del articulo y cantidad
@@ -68,6 +70,7 @@ if(isset($_SESSION['CarritoConfirmado'])){
 <button type='button'><a href='../Views/Carrito.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar cantidades</a></button>
 <br><br><br><br>
 <?
+if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
 if(isset($_SESSION['user'])) {
             include_once('../Controllers/ClienteBUSCARController.php');
@@ -88,7 +91,10 @@ if(isset($_SESSION['user'])) {
 <button type='button'><a href='../Views/ClienteEDITAR.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar dirección de envío</a></button>
 <br><br><br><br>
 
-<?
+<?php
+if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+
+//todo de aquík pabajo nose ve
 
 if(isset($_POST["estado"])) {
     if( $_POST["estado"] == 3 ){
@@ -107,6 +113,7 @@ if(isset($_POST["estado"])) {
             ¡Actualmente no disponible, gracias por su comprensión! Aunque marque esta opción le aparecerá para pagar por transferencia.
         </p>";
     }
+}
 ?>
 <br><br>
 <button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar métood de pago</a></button>
@@ -114,7 +121,6 @@ if(isset($_POST["estado"])) {
 <button type='button'><a href='../Views/PedidoConfirmado.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i><b>CONFIRMAR PEDIDO</b></a></button>
 
 <?
-}
 
 include_once("../Views/footer.php");
 
