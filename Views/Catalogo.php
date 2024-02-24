@@ -23,6 +23,7 @@ include_once("aside.php");
 $orden = isset($_GET['ordenNombres']) ? $_GET['ordenNombres']:null;
 include_once("../Controllers/OrdenarArticulosController.php");
 $arrayArticulos = getArrayArticulosOrdenados($orden);
+$codigoCategoria = isset($_GET['categoria']) ? $_GET['categoria']:null;
 $arrayArticulos = getArrayArticulosFiltradosByCodigoCategoria($arrayArticulos, $codigoCategoria);
 $itemXpagPredeterminado=9;
 $articulosAMostrar = 9;
