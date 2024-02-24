@@ -447,6 +447,9 @@ aside a:hover{
     list-style-type: none;
     display: none;
 }
+.visible{
+    list-style-type: none;
+}
 
 .estado-metodoPago{
     font-size: 2em;

@@ -62,17 +62,14 @@ document.addEventListener("DOMContentLoaded", function() {
     
     function MostrarContenido(){
         var botonClickeado = event.target;
-        console.log(botonClickeado);
         var ulCercana = botonClickeado.nextElementSibling;
-        console.log(ulCercana);
         var listaLi = ulCercana.querySelectorAll('li');
-        console.log(listaLi);
         listaLi.forEach(function(li) {
-            li.classList.remove('oculto'); //quitamos la clase de oculto y así se verán los enlaces de ese ul específico
+            li.classList.toggle('oculto'); //toggle quita la clase si la tiene y la pone si no la tiene
+            li.classList.toggle('visible'); 
             var enlace = li.querySelector('a');
-            console.log(enlace);
-            enlace.classList.remove('oculto'); //quitamos la clase de oculto y así se verán los enlaces de ese ul específico
-            console.log(enlace);
+            enlace.classList.toggle('oculto'); //toggle quita la clase si la tiene y la pone si no la tiene 
+            enlace.classList.toggle('visible');  
         }        
     )};
 });
