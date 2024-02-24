@@ -21,7 +21,6 @@ function getClienteByEmail($email){
 }
 
 
-
 function getArrayAtributosCliente(){
     include_once("../Models/Cliente.php");
     $arrayArticulos = Cliente::getArrayAtributosCliente();

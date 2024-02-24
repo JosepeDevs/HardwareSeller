@@ -9,7 +9,7 @@
             <a href="/Views/Catalogo.php?Pantallas">Pantallas</a>
             <?php
         //PREPARAR ARRAYS CON CATEGORIAS
-        include_once("../Controllers/CategoriasLISTARController.php");
+        include_once("../Controllers/OrdenarCategoriasController.php");
         $orden="ASC";
         $arrayCategorias = getArrayCategoriasOrdenados($orden);
 
