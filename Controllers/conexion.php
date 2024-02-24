@@ -21,7 +21,7 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
     if($cliente !== false){
         $rol = $cliente->getRol();
     } else{
-        header("Location:/index.php");
+      //  header("Location:/index.php");
     }
     $psswrdSinHashear = $_POST['key'];
     if($cliente == false) {
