@@ -40,9 +40,12 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
             $_SESSION['rol'] = $rol;
            // print_r($_SESSION);
             if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1){
-                header('Location: ../Views/MetodoDePago.php');
+                echo'vamos a medoto de pago';
+                echo'vamos a medoto de pago';
+                //           header('Location: ../Views/MetodoDePago.php');
             } else{
-                echo "<script>history.back();</script>";
+                echo'vamos patras';
+         //       echo "<script>history.back();</script>";
                 exit;
             }
         } else {
@@ -56,7 +59,7 @@ if( (isset($_SESSION['BadPsswrd']) && $_SESSION['BadPsswrd'] == true) ||
 ( (isset($_SESSION['NoExiste']) && $_SESSION['NoExiste'] == true) )){
     $_SESSION['UserNoSession'] = true;
     echo "hubo un error";
-    header("Location: ../index.php?Destroy='Y'");
+   // header("Location: ../index.php?Destroy=Y");
     exit;
 }
 
