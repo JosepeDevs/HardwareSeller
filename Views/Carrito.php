@@ -125,7 +125,7 @@ include_once("header.php");
             </tfoot>';
         }
         //SI no es su primera vez y no es más de su primera vez y no hay carrito, mostrará que no hay nada
-        if(! isset($_SESSION['productos']) && ! isset($_SESSION['CarritoConfirmado']) ){
+        if(! isset($_SESSION['productos']) && count($_SESSION['productos']) > 0 || ! isset($_SESSION['CarritoConfirmado']) && count($_SESSION['CarritoConfirmado']) > 0 ){
             echo '<tr><td colspan="7"><p>Carrito sin artículos (carrito vacío)</p></td>';
 
         }
