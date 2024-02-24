@@ -27,7 +27,7 @@ function getArrayArticulosFiltradosByCodigoCategoria($arrayArticulos, $codigoCat
             $arrayArticulosFiltrados[] = $articulo;
         }
     }
-    if(count(  $arrayArticulosFiltrado )==0){
+    if(count(  $arrayArticulosFiltrados )==0){
         $_SESSION['NoSePudoFiltrar'] = true;
         return $arrayArticulos;
     } else{
