@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var ulCercana = botonClickeado.nextElementSibling;
         var listaLi = ulCercana.querySelectorAll('li');
         listaLi.forEach(function(li) {
-            var enlace = li.querySelectorAll('a');
+            var enlace = li.querySelector('a');
             enlace.classList.remove('oculto'); //quitamos la clase de oculto y así se verán los enlaces de ese ul específico
         }        
     )};
