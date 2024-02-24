@@ -16,7 +16,7 @@ print_r($_SESSION);
 //necesito limitarlas
 $maxLineas =  50;
 
-$numPedido = isset($_POST["numPedido"]) ? $_POST["numPedido"] : null;
+$numPedido = isset($_SESSION["numPedidoConfirmado"]) ? $_SESSION["numPedidoConfirmado"] : null;
 $numPedidoOriginal = isset($_SESSION["numPedido"]) ? $_SESSION["numPedido"] : null;
 
 for( $i = 0; $i < $maxLineas; $i++ ){

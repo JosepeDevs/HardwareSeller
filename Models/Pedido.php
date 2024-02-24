@@ -202,22 +202,22 @@ public function setActivo($activo) {
     }
 
     /**
-     * @return bool returns true si la inserción es exitosa, si no, false
+     * @return int|bool returns numPedido si inserción es exitosa, si no, false
      */
-    public static function AltaPedido($idPedido, $fecha, $total, $estado, $codUsuario, $activo){
+    public static function AltaPedido($fecha, $total, $estado, $codUsuario, $activo){
         $_SESSION["nuevoPedido"]=false;
         try{
             $con = contectarBbddPDO();
-            $sqlQuery="INSERT INTO `pedidos` (`idPedido`, `fecha`, `total`, `estado`, `codUsuario`, `activo`)
-                                        VALUES (:idPedido, :fecha, :total, :estado, :codUsuario, :activo);";
+            $sqlQuery="INSERT INTO `pedidos` (`fecha`, `total`, `estado`, `codUsuario`, `activo`)
+                                        VALUES (:fecha, :total, :estado, :codUsuario, :activo);";
             $statement=$con->prepare($sqlQuery);
-            $statement->bindParam(':idPedido', $idPedido);
             $statement->bindParam(':fecha', $fecha);
             $statement->bindParam(':total', $total);
             $statement->bindParam(':estado', $estado);
             $statement->bindParam(':codUsuario', $codUsuario);
             $statement->bindParam(':activo', $activo);
             $statement->execute();
+            $numPedido = $con->lastInsertId();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
             $resultado = $statement->fetch();
 
@@ -226,7 +226,7 @@ public function setActivo($activo) {
                 return false;
             } else {
                 $_SESSION['GoodInsertPedido']= true;
-                return true;
+                return $numPedido;
             }
         } catch(PDOException $e) {
             $_SESSION['BadInsertPedido']= true;
@@ -273,39 +273,24 @@ public function setActivo($activo) {
         };
     }
     /**
-     * @return bool true si hay éxito, false si no es el caso.
+     * @return bool Devuelve true si tiene éxito, false si no es el caso.
      */
-    public function updatePedido($fecha, $idPedido, $idPedidoOriginal,  $total, $estado, $codUsuario, $activo){
+    public function updatePedido($numPedido, $fecha, $total, $estado, $codUsuario, $activo){
     //una vez aquí dentro hay que "reiniciar" el valor de "editando"
     $_SESSION["editandoPedido"]="false";
+
     $conPDO = contectarBbddPDO();
-
-
-    $mantienenidPedido = ($idPedido == $idPedidoOriginal || $idPedido == null);
 
     try{
         $conPDO = contectarBbddPDO();
-        if( $mantienenidPedido){
-            $sqlQuery = " UPDATE `pedidos`
-                    SET `fecha` = :fecha, `idPedido` = :idPedidoOriginal, `total` = :total, `estado` = :estado, `codUsuario` = :codUsuario, `activo` = :activo
-                    WHERE `idPedido` = :idPedidoOriginal "
-            ;
-        } else{
-            $sqlQuery = " UPDATE `pedidos`
-                    SET `fecha` = :fecha, `idPedido` = :idPedido, `total` = :total, `estado` = :estado, `codUsuario` = :codUsuario, `activo` = :activo
-                    WHERE `idPedido` = :idPedidoOriginal "
-            ;
-        }
-        echo "<br>UpdatePedido says: idPedido nuevo: $idPedido"." y idPedido original: ".$idPedidoOriginal."<br>";
-        echo "<br>UpdatePedido says:".$sqlQuery;
+        $sqlQuery = " UPDATE `pedidos`
+                SET `fecha` = :fecha, `total` = :total, `estado` = :estado, `codUsuario` = :codUsuario, `activo` = :activo
+                WHERE `numPedido` = :numPedido "
+        ;
+
         $statement= $conPDO->prepare($sqlQuery);
 
-        if($mantienenidPedido){
-            $statement->bindParam(':idPedidoOriginal', $idPedidoOriginal);
-        }else{
-            $statement->bindParam(':idPedido', $idPedido);
-            $statement->bindParam(':idPedidoOriginal', $idPedidoOriginal);
-        }
+        $statement->bindParam(':numPedido', $numPedido);
         $statement->bindParam(':fecha', $fecha);
         $statement->bindParam(':total', $total);
         $statement->bindParam(':estado', $estado);
@@ -314,7 +299,6 @@ public function setActivo($activo) {
         $operacionRealizada = $statement->execute();
 
         if($operacionRealizada == false && $statement->rowCount() <= 0){
-            //si SQL no se ejecuta, hay que deshacer lo hecho (solo queremos borrar si estamos subiendo imagen nueva, la que ya tenía no hay que borrarla)
             $_SESSION['BadUpdatePedido']= true;
             $_SESSION['GoodUpdatePedido']= false;
             return false;
