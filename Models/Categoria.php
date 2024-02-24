@@ -77,6 +77,32 @@ public function setCodCategoriaPadre($codCategoriaPadre) {
     }
 
     /**
+     * @return array|bool devuelve false si no encuentra más de un resultado, si los encuentra devuelve un array con las subcategorias
+     */
+    public static function getSubCategorias($categoria){
+        try{
+            $con = contectarBbddPDO();
+            $sqlQuery="SELECT * FROM  `categorias` WHERE nombre LIKE CONCAT('%', :categoria, '%');";
+            $statement=$con->prepare($sqlQuery);
+            $statement->bindParam(':categoria', $categoria);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Categoria");
+            $arraySubCategorias = $statement->fetchAll();
+            if($statement->rowCount() > 1){
+                //si hay más resultados buscando exactamente la categoria del item o categoria en cuestion es que sí que tiene subcategorias
+                //p.e. 23 si es para 2pc parts>3SCREENS y encuentra 231(pantallas samsung) y 232(pantallas dell) (más de una fila) es que hay subcategorias 
+                return $arraySubCategorias;
+            }else{
+                return false;
+            }
+        } catch(PDOException $e) {
+            $_SESSION['ErrorGetSubCategorias']= true;
+            return false;
+        }
+    }
+
+    
+    /**
      * @return bool|Categoria devuelve false si falla, devuelve el Categoria si lo encuentra consultando el código
      */
     public static function GetCategoriaByCodigo($codigo){

@@ -20,6 +20,17 @@ function getCategoriaByCodigo($codigo){
     }
 }
 
+function getSubCategorias($categoria){
+    include_once("../Models/Categoria.php");
+    $arraySubCategorias = Categoria::getSubCategorias($codigo);
+    if($arraySubCategorias == false){
+        $_SESSION['SubCategoriasNotFound'] = true;
+        return false;
+    } else{
+        return $arraySubCategorias;
+    }
+}
+
 function getArrayAtributosCategoria(){
     include_once("../Models/Categoria.php");
     $arrayCategorias = Categoria::getArrayAtributosCategoria();
