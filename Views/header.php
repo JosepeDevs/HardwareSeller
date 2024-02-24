@@ -1,3 +1,6 @@
+<?php
+//lo meto todo dentro de un echo porque recuperación de contraseña me está dando problemas de que estoy mandando cosas en header antes e llamar al metodo header
+echo'
 <!DOCTYPE html>
 <html class="no-js" lang="es">
 <head>
@@ -42,11 +45,11 @@
                     </div>
                 </li>
                 <li>
-                    <?php
+                    ';
                             if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
                             if( isset($_GET['destroy']) && $_GET['destroy'] == "Y" ){
                                 if (session_status() == PHP_SESSION_ACTIVE) {session_unset();}
-                                header("../index.php?destroy=false");
+                                header("/index.php?destroy=false");
                             }
                             if( ! isset($_SESSION['user'])){
                                 print('
@@ -115,7 +118,7 @@
                             </div>
                         </div>');
                         }
-                    ?>
+                    echo'
                 </li>
             </ul>
         </nav>
@@ -128,7 +131,9 @@
     </div>
     </form>
     <div id="carrito-header">
-    <small><? if(isset($_SESSION['productos'])){echo count($_SESSION['productos']);}?></small>
+    <small>';
+    if(isset($_SESSION["productos"])){echo count($_SESSION["productos"]);}
+    echo'</small>
         <a href="/Views/Carrito.php"><i class="lni lni-cart"></i></a>
     </div>
 </header>
@@ -136,3 +141,4 @@
 <div class="cta-container">
     <img src="/Resources/backgroundHS.png">
     <div class="cuerpo">
+';?>
