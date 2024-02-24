@@ -36,7 +36,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
 //TODO PONER Opción de recogida en tienda (más adelante)
         if(isset($_SESSION['user'])) {
             include_once('../Controllers/ClienteBUSCARController.php');
-            $usuario = getClienteByemail($_SESSION['user']);
+            $usuario = getClienteByEmail($_SESSION['user']);
             //NOTHING LIKE A GOOD RETURNING CLIENT!
             echo"
             <h2>Datos usuario y dirección de envío</h2>

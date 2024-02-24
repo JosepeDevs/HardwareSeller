@@ -75,7 +75,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
 if(isset($_SESSION['user'])) {
     include_once("../Models/Cliente.php");
-    $usuario = getClienteByemail($_SESSION['user']);
+    $usuario = getClienteByEmail($_SESSION['user']);
     $dni=$usuario->getDni();
     $_SESSION['codUsuario'] = $dni;
     include_once('../Controllers/ClienteBUSCARController.php');

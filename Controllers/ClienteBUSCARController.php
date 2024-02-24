@@ -14,7 +14,7 @@ function getClienteByDni($dni){
     return $cliente;
 }
 
-function getClienteByemail($email){
+function getClienteByEmail($email){
     include_once("../Models/Cliente.php");
     $cliente = Cliente::getClienteByEmail($email);
     return $cliente;
