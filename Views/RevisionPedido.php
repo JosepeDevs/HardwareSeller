@@ -74,10 +74,10 @@ if(isset($_SESSION['CarritoConfirmado'])){
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
 if(isset($_SESSION['user'])) {
+    $usuario = getClienteByemail($_SESSION['user']);
     $dni=$usuario->getDni();
     $_SESSION['codUsuario'] = $dni;
     include_once('../Controllers/ClienteBUSCARController.php');
-    $usuario = getClienteByemail($_SESSION['user']);
     //NOTHING LIKE A GOOD RETURNING CLIENT!
     echo"
     <h2>Datos usuario y dirección de envío</h2>
