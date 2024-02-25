@@ -80,12 +80,19 @@ public function setActivo($activo) {
     /**
      * @return bool|Pedido devuelve false si falla, devuelve el Pedido si lo encuentra consultando el código
      */
-    public static function GetPedidoByidPedido($idPedido){
+    public static function GetPedidoByidPedido($idPedido, $dni=null){
         try{
             $con = contectarBbddPDO();
-            $sqlQuery="SELECT * FROM  `pedidos` WHERE idPedido=:idPedido;";
+            if($dni == null){
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE idPedido=:idPedido;";
+            } else{
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE idPedido=:idPedido AND codUsuario=:dni;";
+            }
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':idPedido', $idPedido);
+            if($dni == null){
+                $statement->bindParam(':dni', $dni);
+            }
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
             $Pedido = $statement->fetch();
@@ -104,12 +111,20 @@ public function setActivo($activo) {
     /**
      * @return bool|array devuelve false si falla, devuelve el Pedido si lo encuentra consultando el código
      */
-    public static function getPedidosByCodUsuario($codUsuario){
+    public static function getPedidosByCodUsuario($codUsuario, $dni=null){
         try{
             $con = contectarBbddPDO();
-            $sqlQuery="SELECT * FROM  `pedidos` WHERE codUsuario=:codUsuario;";
+            if($dni == null){
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE codUsuario=:codUsuario;";
+            } else{ 
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE codUsuario=:dni;";
+            }
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':codUsuario', $codUsuario);
+            if($dni == null){
+                //el que quiera hacerse el listo poniendo un dni al azar solo verá lo que su propio dni tiene bwjajajaajaja
+                $statement->bindParam(':dni', $dni);
+            }
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
             $arrayPedidos = $statement->fetchAll();
@@ -128,13 +143,20 @@ public function setActivo($activo) {
     /**
      * @return bool|array devuelve false si falla, devuelve el Pedido si lo encuentra consultando el código
      */
-    public static function GetPedidosByRangoFecha($fechaInicio,$fechaFin){
+    public static function GetPedidosByRangoFecha($fechaInicio,$fechaFin, $dni=null ){
         try{
             $con = contectarBbddPDO();
-            $sqlQuery="SELECT * FROM  `pedidos` WHERE fecha >= :fechaInicio AND fecha <= :fechaFin;";
+            if($dni == null){
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE fecha >= :fechaInicio AND fecha <= :fechaFin;";
+            } else{
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE fecha >= :fechaInicio AND fecha <= :fechaFin AND codUsuario=:dni;";
+            }
             $statement=$con->prepare($sqlQuery);
-            $statement->bindParam(':fechaInicio', $fechaInicio);
             $statement->bindParam(':fechaFin', $fechaFin);
+            $statement->bindParam(':fechaInicio', $fechaInicio);
+            if($dni !== null){
+                $statement->bindParam(':dni', $dni);
+            }
             $statement->execute();
             $resultados = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
             if(empty($resultados)){
@@ -157,35 +179,62 @@ public function setActivo($activo) {
         return true;
     }
 
-    public static Function getAllPedidos(){
-        try {
-            $con = contectarBbddPDO();
-            $sqlQuery="SELECT * FROM  `pedidos`;";
-            $statement=$con->prepare($sqlQuery);
-            $statement->execute();
-            $arrayPedidos=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
-            if($arrayPedidos == null){
-                $_SESSION['NullReturned']= true;
+    public static Function getAllPedidos($dni=null){
+        if($dni == null) {
+            try {
+                $con = contectarBbddPDO();
+                $sql = "SELECT * FROM pedidos";
+                $statement = $con->prepare($sql);
+                $statement->execute();
+                $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
+                return $arrayPedidos;
+            } catch (PDOException $e) {
+                $_SESSION['ErrorGetPedidos'] = true;
             }
-            return $arrayPedidos;
-        } catch(PDOException $e) {
-            $_SESSION['ErrorGetPedidos']= true;
+        } else {
+            try {
+                $con = contectarBbddPDO();
+                $sql = "SELECT * FROM pedidos WHERE codUsuario=:dni";
+                $statement = $con->prepare($sql);
+                $statement->bindParam(":dni", $dni);
+                $statement->execute();
+                $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
+                return $arrayPedidos;
+            } catch (PDOException $e) {
+                $_SESSION['ErrorGetPedidos'] = true;
+            }
         }
     }
 
-    public static function getASCSortedPedidosByAtributo($nombreAtributo) {
-        try {
-            $con = contectarBbddPDO();
-            $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
-            $sql = "SELECT * FROM pedidos ORDER BY {$nombreAtributoLimpio} ASC";
-            $statement = $con->prepare($sql);
-            $statement->execute();
-            $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
-            return $arrayPedidos;
-        } catch (PDOException $e) {
-            $_SESSION['ErrorGetPedidos'] = true;
+    public static function getASCSortedPedidosByAtributo($nombreAtributo, $dni=null) {
+        if($dni == null) {
+            try {
+                $con = contectarBbddPDO();
+                $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
+                $sql = "SELECT * FROM pedidos ORDER BY {$nombreAtributoLimpio} ASC";
+                $statement = $con->prepare($sql);
+                $statement->execute();
+                $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
+                return $arrayPedidos;
+            } catch (PDOException $e) {
+                $_SESSION['ErrorGetPedidos'] = true;
+            }
+        } else {
+            try {
+                $con = contectarBbddPDO();
+                $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
+                $sql = "SELECT * FROM pedidos WHERE codUsuario=:dni ORDER BY {$nombreAtributoLimpio} ASC";
+                $statement = $con->prepare($sql);
+                $statement->bindParam(":dni", $dni);
+                $statement->execute();
+                $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
+                return $arrayPedidos;
+            } catch (PDOException $e) {
+                $_SESSION['ErrorGetPedidos'] = true;
+            }
         }
     }
+
     public static function ValorFloat($float){
         //si son españoles y escriben la coma como una coma hay que cambiarla por un punto
         $float = str_replace( "," , "." , $float);
@@ -219,17 +268,32 @@ public function setActivo($activo) {
             return false;
         }
     }
-    public static function getDESCSortedPedidosByAtributo($nombreAtributo) {
-        try {
-            $con = contectarBbddPDO();
-            $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
-            $sql = "SELECT * FROM pedidos ORDER BY {$nombreAtributoLimpio} DESC";
-            $statement = $con->prepare($sql);
-            $statement->execute();
-            $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
-            return $arrayPedidos;
-        } catch (PDOException $e) {
-            $_SESSION['ErrorGetPedidos'] = true;
+    public static function getDESCSortedPedidosByAtributo($nombreAtributo, $dni=null) {
+        if($dni == null) {
+            try {
+                $con = contectarBbddPDO();
+                $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
+                $sql = "SELECT * FROM pedidos ORDER BY {$nombreAtributoLimpio} DESC";
+                $statement = $con->prepare($sql);
+                $statement->execute();
+                $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
+                return $arrayPedidos;
+            } catch (PDOException $e) {
+                $_SESSION['ErrorGetPedidos'] = true;
+            }
+        } else {
+            try {
+                $con = contectarBbddPDO();
+                $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
+                $sql = "SELECT * FROM pedidos WHERE codUsuario=:dni ORDER BY {$nombreAtributoLimpio} DESC";
+                $statement = $con->prepare($sql);
+                $statement->bindParam(":dni", $dni);
+                $statement->execute();
+                $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
+                return $arrayPedidos;
+            } catch (PDOException $e) {
+                $_SESSION['ErrorGetPedidos'] = true;
+            }
         }
     }
 

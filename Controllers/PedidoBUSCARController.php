@@ -15,7 +15,7 @@ function getArrayAtributosPedido(){
     return $arrayPedido;
 }
 
-function getPedidoByIdPedido($numPedido){
+function getPedidoByIdPedido($numPedido, $dni=null){
     include_once("../Models/Pedido.php");
     $Pedido = Pedido::getPedidoByIdPedido($numPedido);
     if($Pedido == false){
@@ -26,14 +26,14 @@ function getPedidoByIdPedido($numPedido){
     }
 }
 
-function GetPedidosByRangoFecha($fechaInicio, $fechaFin){
+function GetPedidosByRangoFecha($fechaInicio, $fechaFin, $dni=null){
     include_once("../Models/Pedido.php");
     $arrayPedido = Pedido::GetPedidosByRangoFecha($fechaInicio, $fechaFin);
     return $arrayPedido;
 }
 function getPedidosByCodUsuario($codUsuario){
     include_once("../Models/Pedido.php");
-    $arrayPedido = Pedido::getPedidosByCodUsuario($codUsuario);
+    $arrayPedido = Pedido::getPedidosByCodUsuario($codUsuario, $dni=null);
     return $arrayPedido;
 }
 ?>

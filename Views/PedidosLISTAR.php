@@ -73,7 +73,14 @@ echo"<table>";
         $orden = isset($_GET['orden']) ? $_GET['orden']:null;
         $atributoElegido = isset($_GET["atributo"])?$_GET["atributo"]:"idPedido";
         include_once("../Controllers/OrdenarPedidosController.php");
-        $arrayPedidos = getArrayPedidosOrdenadosByAtributo($orden,$atributoElegido);
+        $rol = GetRolDeSession();
+        $dni = GetDniByEmail($_SESSION['user']);
+        if( $rol == "admin" || $rol == "empleado" ){
+            $arrayPedidos = getArrayPedidosOrdenadosByAtributo($orden,$atributoElegido);
+        } else{
+            $arrayPedidos = getArrayPedidosOrdenadosByAtributo($orden,$atributoElegido, $dni);
+        }
+
         $itemXpagPredeterminado=3;
         $filasAMostrar = isset($_GET['itemXpag'])? $_GET['itemXpag'] : $itemXpagPredeterminado;
         if(! isset($_GET['pag'])){

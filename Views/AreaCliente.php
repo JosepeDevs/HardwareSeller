@@ -30,13 +30,13 @@ if( !$userExiste){
 
     <?php
 } else{
-    print"<h2>Bienvenido".$_SESSION['user']."</h2>";
+    print"<h2>Bienvenido ".$_SESSION['user']."</h2>";
 
 ?>
 <table>
     <tr>
         <td>
-            <a href="/Views/MisPedidos.php">Ver y administrar mis pedidos</a>
+            <a href="/Views/PedidosLISTAR.php">Ver y administrar mis pedidos</a>
         </td>
         <td>
             <a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a>

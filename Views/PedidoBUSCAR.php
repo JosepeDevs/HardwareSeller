@@ -2,7 +2,7 @@
 include_once("header.php");
 ?>
     <h1>
-        Buscar contenido de un pedido ...
+        Buscar pedido ...
     </h1>
 <form action="PedidoBUSCAR.php" method="POST">
     <table>
@@ -38,6 +38,9 @@ if( $usuarioLogeado == false){
     echo "PedidoBUSCAR dice: no está user en session";
     header("Location: /index.php");
 }
+$rol = GetRolDeSession();
+$dni = GetDniByEmail($_SESSION['user']);
+
 
 if(isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQUEST["fechaFin"]) || isset($_REQUEST["codUsuario"]) ) {
     $idPedido=null;//mejor null que sin declarar
@@ -45,7 +48,11 @@ if(isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQ
     include_once("../Controllers/PedidoBUSCARController.php");
     if(!empty(($_REQUEST["idPedido"]))){
         $idPedido=$_REQUEST["idPedido"];
-        $arrayPedido = getPedidoByIdPedido($idPedido);
+        if( $rol == "admin" || $rol == "empleado" ){
+            $arrayPedido = getPedidoByIdPedido($idPedido);
+        } else{
+            $arrayPedido = getPedidoByIdPedido($idPedido,$dni);
+        }
         if($arrayPedido == false){
             $_SESSION['idPedidoNotFound'] = true;
         }
@@ -56,18 +63,27 @@ if(isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQ
         $fechaFinPredeterminada = "2100/01/01";
         empty($_REQUEST["fechaInicio"]) ? $fechaInicio = $fechaInicioPredeterminada : $fechaInicio = $_REQUEST['fechaInicio'] ; 
         empty($_REQUEST["fechaFin"]) ? $fechaFin = $fechaFinPredeterminada : $fechaFin = $_REQUEST['fechaFin'] ; 
-        $arrayPedido = GetPedidosByRangoFecha($fechaInicio,$fechaFin);
+        if( $rol == "admin" || $rol == "empleado" ){
+            $arrayPedido = GetPedidosByRangoFecha($fechaInicio,$fechaFin);
+        } else{
+            $arrayPedido = GetPedidosByRangoFecha($fechaInicio,$fechaFin, $dni);
+        }
         if($arrayPedido == false){
             $_SESSION['fechaNotFound'] = true;
         }
     }
     if(!empty(($_REQUEST["codUsuario"]))){
         $codUsuario=$_REQUEST["codUsuario"];
-        $arrayPedido = getPedidosByCodUsuario($codUsuario);
+        if( $rol == "admin" || $rol == "empleado" ){
+            $arrayPedido = getPedidosByCodUsuario($codUsuario);
+        } else{
+            $arrayPedido = getPedidosByCodUsuario($codUsuario, $dni);
+        }
         if($arrayPedido == false){
             $_SESSION['codUsuarioNotFound'] = true;
         }
     }
+    
     
     $arrayAtributos = getArrayAtributosPedido();
     if( $arrayPedido !== false){
