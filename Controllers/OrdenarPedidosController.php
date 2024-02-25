@@ -6,10 +6,10 @@
 function getArrayPedidosOrdenadosByAtributo($orden,$nombreAtributo, $dni =null){
     include_once("../Models/Pedido.php");
     if($orden == "ASC"){
-        $arrayPedidos= Pedido::getASCSortedPedidosByAtributo($nombreAtributo, $dni = null);
+        $arrayPedidos= Pedido::getASCSortedPedidosByAtributo($nombreAtributo, $dni);
         return $arrayPedidos;
     } else if($orden == "DESC"){
-        $arrayPedidos= Pedido::getDESCSortedPedidosByAtributo($nombreAtributo, $dni = null);
+        $arrayPedidos= Pedido::getDESCSortedPedidosByAtributo($nombreAtributo, $dni);
         return $arrayPedidos;
     }else{
         $arrayPedidos= Pedido::getAllPedidos($dni=null);
