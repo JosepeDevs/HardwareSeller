@@ -35,7 +35,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
 }
 ?>
 <form action="../Controllers/ValidarDatosCliente.php" method="post">
-        <select class="estadoEnvio-metodoEnvio" name="estadoEnvio" id="estado">
+        <select class="estadoEnvio-metodoEnvio" name="estadoEnvio" id="estadoEnvio-metodoEnvio">
             <option for="estadoEnvio" value="5">Recogida en tienda</option>
             <option for="estadoEnvio"  value="0">Envío a mi dirección</option>
         </select>
