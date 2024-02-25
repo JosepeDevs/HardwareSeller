@@ -407,7 +407,14 @@ header nav ul li a:hover{
     display: flex;
     flex-direction: row;
 }
-
+.migas p a{
+    text-decoration: none;
+    color:black;
+}
+.migas p a:hover{
+    text-decoration: underline;
+    color: var(--dark-blue);
+}
 aside{
     top: var(--altoHeader);
     left: 0;

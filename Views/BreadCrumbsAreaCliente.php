@@ -1,6 +1,6 @@
 <?php
 echo '
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 breadcrumb breadcrumbs">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 breadcrumb breadcrumbs migas">
     <p><a class="breadcrumb-item" href="/index.php"> HardWare Seller / </a></p>
     <p><a class="breadcrumb-item" href="AreaCliente.php">Area Personal / </a></p>
     ';
