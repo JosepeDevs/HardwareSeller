@@ -4,6 +4,9 @@ $_SESSION['nuevoPedido']="true";
 include_once("../Views/header.php");
 ?>
 <h1>Confirmación del pedido</h1>
+<br><br>
+<button type='button'><a href='../Controllers/PedidoVALIDAR.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i><i class='lni lni-chevron-right'></i><b>CONFIRMAR PEDIDO</b></a></button>
+<br><br>
 <?php //include_once("../Views/aside.php") ?>
 <h2> Referencias y cantidades seleccionadas</h2>
 <table class="table">
