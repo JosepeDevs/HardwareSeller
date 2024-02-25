@@ -23,12 +23,13 @@ foreach ($contenidoPedido as $index => $array) {
     $precio =  $arrayDatosArticulo['precio'];
     $descuento =  $arrayDatosArticulo['descuento'];
     $cantidad =  $arrayDatosArticulo['cantidad'];
-
-    $numPedidoValido = ContenidoPedido::ComprobarLongitud($numPedidoValido,11);
+    $activo = isset($_SESSION['activo']) ? $_SESSION['activo'] : 1;
+    
+    $numPedidoValido = ContenidoPedido::ComprobarLongitud($numPedido,11);
     if($numPedidoValido == false) {    $_SESSION['LongNumPedido']= true; }
 
-    $numPedidoOriginal = ContenidoPedido::ComprobarLongitud($numPedidoOriginal,11);
-    if($numPedidoOriginal == false) {    $_SESSION['LongNumPedidoOriginal']= true; }
+    $numPedidoOriginalValido = ContenidoPedido::ComprobarLongitud($numPedidoOriginal,11);
+    if($numPedidoOriginalValido == false) {    $_SESSION['LongNumPedidoOriginal']= true; }
 
     $codArticuloValido = ContenidoPedido::ComprobarLongitud($codArticulo,8);
     if($codArticuloValido == false) {    $_SESSION['LongCodArticulo']= true; }
