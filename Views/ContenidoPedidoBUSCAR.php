@@ -112,7 +112,6 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
         }
         //DATOS DEL OBJETO O LOS OBJETOS
         echo "</tr>";
-        var_dump($arrayContenidoPedido);
         //arrayContenidoPedido puede conntener de 0 a vete tu a saber cuantos ContenidoPedido
         foreach($arrayContenidoPedido as $index => $ContenidoPedido) {
             echo"<tr><th>Contenidos del Pedido encontrados:</th>";
