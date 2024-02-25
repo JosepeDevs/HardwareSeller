@@ -110,7 +110,9 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
         }
     };
 }
-if(isset($_REQUEST['numPedido']) && ( $rol =="admin" ||$rol =="empleado" )){
+echo "numPedido: " . $_REQUEST['numPedido'] . "<br>";
+echo "rol: " . $rol . "<br>";
+if(isset($_REQUEST['numPedido']) && ( $rol =="admin" || $rol =="empleado" )){
     echo'
     <h2><a class="finForm" href="ContenidoPedidoEDITAR.php?numPedido='.$numPedido.'""><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Editar el contenido de este pedido</a></h2>
     ';
