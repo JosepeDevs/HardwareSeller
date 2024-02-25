@@ -1,9 +1,8 @@
 <?php
 include_once("header.php");
 
-if(isset($_GET['PedidoConfirmado']) && $_GET['PedidoConfirmado'] !== "true"){
-    //PedidoConfirmado se sube a la url si llegan desde RevisarPedido, aquí no quieren buscar otro pedido, sino que le salga la info del pedido que acaban de hacer
-    echo"";
+if(!empty($_GET)){
+    echo"<a href='PedidoBUSCAR.php'>Buscar otro pedido</a>";
 } else{
     echo'
     <h1>
