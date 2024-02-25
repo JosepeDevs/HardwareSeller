@@ -35,9 +35,9 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
 }
 ?>
 <form action="../Controllers/ValidarDatosCliente.php" method="post">
-        <select class="estado-metodoEnvio" name="estado" id="estado">
-            <option for="estado" value="5">Recogida en tienda</option>
-            <option for="estado"  value="0">Envío a mi dirección</option>
+        <select class="estado-metodoEnvio" name="estadoEnvio" id="estado">
+            <option for="estadoEnvio" value="5">Recogida en tienda</option>
+            <option for="estadoEnvio"  value="0">Envío a mi dirección</option>
         </select>
 
 <div id="detallesEnvio" style="display: none;">
@@ -135,7 +135,7 @@ include_once("footer.php");
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    var metodoEnvio = document.getElementById('estado');
+    var metodoEnvio = document.getElementById('estadoEnvio');
     var detallesEnvio = document.getElementById('detallesEnvio');
 
     metodoEnvio.addEventListener('change', function() {

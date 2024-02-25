@@ -136,8 +136,8 @@ if(isset($_POST["estado"])) {
     }
    
 }
-if(isset($_POST["estadoEnvio"])) {
-    if( $_POST["estadoEnvio"] == 5 ){
+if(isset($_SESSION["estadoEnvio"])) {
+    if( $_SESSION["estadoEnvio"] == 5 ){
         echo"
         <h2>Pago y recogida en tienda</h2>
         <p> Nuestra dirección: Calle existente nº infinito, avenida de la indeterminación/0 , CP 00000, Elche, Alicante, España, Europa, Tierra, Universo #3 </p>
