@@ -9,7 +9,8 @@ if( $usuarioLogeado == false){
 }
 include_once("../config/conectarBD.php");
 include_once("../Controllers/Directorio.php");
-
+//todo poner a todas cosas que puedan llegar por get htmlspecialchars para que no intenten meternos M.... y revisar que todas las funciones que devuelven pedido tengan
+//todo lo de dni y activo=1 para proteger los datos
 class Pedido {
 
 private $idPedido;

@@ -1,4 +1,13 @@
 <?php
+if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+include_once("../Controllers/OperacionesSession.php");
+$usuarioLogeado = UserEstablecido();
+if( $usuarioLogeado == false){
+    session_destroy();
+    echo "PedidoBUSCAR dice: no está user en session";
+    header("Location: /index.php");
+}
+
 include_once("header.php");
 
 if(!empty($_GET)){
@@ -32,18 +41,10 @@ if(!empty($_GET)){
             <h2><input type="submit" value="Consultar"></h2><br><br><br>
         </div>
     </form>
-<br><br><br>
+
 ';
 }
-
-if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("../Controllers/OperacionesSession.php");
-$usuarioLogeado = UserEstablecido();
-if( $usuarioLogeado == false){
-    session_destroy();
-    echo "PedidoBUSCAR dice: no está user en session";
-    header("Location: /index.php");
-}
+echo'<br><br><br>';
 $rol = GetRolDeSession();
 $dni = GetDniByEmail($_SESSION['user']);
 
