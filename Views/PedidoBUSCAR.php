@@ -55,9 +55,9 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
     if(!empty(($_REQUEST["idPedido"]))){
         $idPedido=$_REQUEST["idPedido"];
         if( $rol == "admin" || $rol == "empleado" ){
-            $arrayPedido = getPedidoByIdPedido($idPedido);
+            $arrayPedido[] = getPedidoByIdPedido($idPedido);
         } else{
-            $arrayPedido = getPedidoByIdPedido($idPedido, $dni);
+            $arrayPedido[] = getPedidoByIdPedido($idPedido, $dni);
         }
         if($arrayPedido == false){
             $_SESSION['idPedidoNotFound'] = true;
@@ -67,9 +67,9 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
     if(!empty(($_REQUEST["numPedido"]))){
         $numPedido=$_REQUEST["numPedido"];
         if( $rol == "admin" || $rol == "empleado" ){
-            $arrayPedido = getPedidoByIdPedido($numPedido);
+            $arrayPedido[] = getPedidoByIdPedido($numPedido);
         } else{
-            $arrayPedido = getPedidoByIdPedido($numPedido, $dni);
+            $arrayPedido[] = getPedidoByIdPedido($numPedido, $dni);
         }
         if($arrayPedido == false){
             $_SESSION['idPedidoNotFound'] = true;
