@@ -1,5 +1,8 @@
 <?php
 include_once("OperacionesSession.php");
+
+checkAdminOEmpleado();
+
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();

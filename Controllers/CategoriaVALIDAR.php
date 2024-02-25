@@ -1,8 +1,9 @@
 <?php
-
-//ESTE RECOGE LOS DATOS Y LOS MANDA A MODELOS
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("OperacionesSession.php");
+
+checkAdminOEmpleado();
+
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();

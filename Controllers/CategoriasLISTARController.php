@@ -1,4 +1,8 @@
 <?php
+if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+include_once("../Controllers/OperacionesSession.php");
+
+checkAdminOEmpleado();
 
 function getArrayAtributosCategoria(){
     include_once("../Models/Categoria.php");

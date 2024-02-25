@@ -1,5 +1,7 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+//NO PROTEGER, USADO EN ASIDE (NO REQUIERE LOGIN)
+
 include_once("OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){

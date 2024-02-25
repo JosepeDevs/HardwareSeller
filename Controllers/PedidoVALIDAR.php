@@ -1,6 +1,6 @@
 <?php
 
-//ESTE RECOGE LOS DATOS Y LOS MANDA A MODELOS
+//EN PRINCIPIO NO PROTEGER PARA QUE SE PUEDAN HACER PEDIDOS SIN REGISTRARSE
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();

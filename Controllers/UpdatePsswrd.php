@@ -1,7 +1,7 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-//quitams header porque causa problemas de envío
- $operacionExitosa=false;
+
+$operacionExitosa=false;
 if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']) ) {
     $email = $_POST['mail'];
     $dni = $_POST['dni'];

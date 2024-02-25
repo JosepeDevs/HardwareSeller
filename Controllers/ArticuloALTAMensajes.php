@@ -7,6 +7,12 @@ if( $usuarioLogeado == false){
     echo "ArticulosLISTARMensajes dice: no está user en session";
     header("Location: index.php");
 }
+
+checkAdminOEmpleado();
+
+
+
+
 /**
  * Funcion que se llama para comprobar si ha habido algún error o para mostrar un mensaje de operación realizada correctamente. Obtiene el resultado consultando SESSION.
  * @return array|bool Guarda todos los mensajes que encuentre en un array que devulve, si no hay coincidencias devuelve false.

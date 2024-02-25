@@ -1,7 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-//si lo protejo en el carrito de la compra no pueden buscar los datos del artículo
-
+//NO PROTEGER SE USA EN CARRITo
 function TransformarCodigo($codigo){
     include_once("../Models/Articulo.php");
     $codigo = Articulo::TransformarCodigo($codigo);

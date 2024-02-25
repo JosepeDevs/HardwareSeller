@@ -1,5 +1,5 @@
 <?php
-
+//NECESARIO PARA CATALOGO NO PROTEGER
 function getArrayAtributosArticulo(){
     include_once("../Models/Articulo.php");
     $arrayArticulos = Articulo::getArrayAtributosArticulo();

@@ -16,9 +16,15 @@ Function UserEstablecido(){
         return true;
     }
 }
-
-
-//esto antes era checkrol
+/**
+ * toma el rol de session y si no es admin o empleado mata la sesion
+ */
+function checkAdminOEmpleado(){
+    $rol = GetRolDeSession();
+    if( $rol !== "admin" || $rol !== "empleado" ){
+        session_destroy();
+    }
+}
 
 /**
  * funcion para poner al principio de las paginas php que solo los admin pueden ver

@@ -1,4 +1,18 @@
 <?php
+if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+include_once("OperacionesSession.php");
+
+checkAdminOEmpleado();
+
+if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+include_once("../Controllers/OperacionesSession.php");
+$usuarioLogeado = UserEstablecido();
+if( $usuarioLogeado == false){
+    session_destroy();
+    echo "CategoriaVALIDAR dice: no está user en session";
+   header("Location: /index.php");
+}
+
 /**
  * $opcion puede ser "ASC" or "DESC", en función de eso devolverá los datos ordenados ASC o DESC
  */

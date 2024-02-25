@@ -1,6 +1,7 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-//si protejo esto no puedo usar el aside sin logear, se queda sin proteger
+
+//NO PROTEGER, USADO EN ASIDE (NO REQUIERE LOGIN)
 
 
 function getCategoriaByCodigo($codigo){
