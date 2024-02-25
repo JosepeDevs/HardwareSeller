@@ -79,7 +79,7 @@ echo"<table>";
             print'<br><h2>somos admin o editor</h2>'.'<br>';
             $arrayPedidos = getArrayPedidosOrdenadosByAtributo($orden,$atributoElegido);
         } else{
-            print'<br><h2>NO somos admin o editor</h2>'.'<br>';
+            print'<br><h2>NO somos admin o editor</h2><br>orden atributo y dni'.$orden.'<br>'.$atributoElegido.'<br>'.$dni.'<br>';
             $arrayPedidos = getArrayPedidosOrdenadosByAtributo($orden,$atributoElegido, $dni);
         }
 
