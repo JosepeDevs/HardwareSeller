@@ -115,7 +115,7 @@ if($rol == "admin" || $rol == "editor"){
         echo '<h2><a class="cerrar"  href="TablaClientes.php">Ver usuarios</a></h2>';
     } else{
         $email = GetEmailDeSession();
-        include_once("..\Controllers\GetDniByEmailController.php");
+        include_once("../Controllers/GetDniByEmailController.php");
         $dni = GetDniByEmail($email);
         echo"<h2>
                 <a class='enlace' href='ClienteEDITAR.php?dni=$dni'>
