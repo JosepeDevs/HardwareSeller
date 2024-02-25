@@ -3,16 +3,16 @@
 /**
  * $opcion puede ser "ASC" or "DESC", en función de eso devolverá los datos ordenados ASC o DESC
  */
-function getArrayContenidoPedidoOrdenadosByAtributo($orden,$nombreAtributo){
+function getArrayContenidoPedidoOrdenadosByAtributo($orden,$nombreAtributo, $dni=null){
     include_once("../Models/ContenidoPedido.php");
     if($orden == "ASC"){
-        $arrayContenidoPedido= ContenidoPedido::getASCSortedContenidoPedidoByAtributo($nombreAtributo);
+        $arrayContenidoPedido= ContenidoPedido::getASCSortedContenidoPedidoByAtributo($nombreAtributo, $dni);
         return $arrayContenidoPedido;
     } else if($orden == "DESC"){
-        $arrayContenidoPedido= ContenidoPedido::getDESCSortedContenidoPedidoByAtributo($nombreAtributo);
+        $arrayContenidoPedido= ContenidoPedido::getDESCSortedContenidoPedidoByAtributo($nombreAtributo, $dni);
         return $arrayContenidoPedido;
     }else{
-        $arrayContenidoPedido= ContenidoPedido::getAllContenidoPedido();
+        $arrayContenidoPedido= ContenidoPedido::getAllContenidoPedido($dni);
         return $arrayContenidoPedido;
     }
 }

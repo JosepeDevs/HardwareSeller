@@ -1,5 +1,18 @@
 <?php
+if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+include_once("../Controllers/OperacionesSession.php");
+$usuarioLogeado = UserEstablecido();
+if( $usuarioLogeado == false){
+    session_destroy();
+    echo "PedidosLISTAR dice: no está user en session";
+    header("Location: ../index.php");
+}
+
 include_once("header.php");
+
+$rol = GetRolDeSession();
+$dni = GetDniByEmail($_SESSION['user']);
+
 ?>
 <h1>
     Contenido del pedido 
@@ -30,15 +43,6 @@ if(!empty($_GET)){
 <br><br><br><br><br><br><br>';
 }
 
-if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("../Controllers/OperacionesSession.php");
-$usuarioLogeado = UserEstablecido();
-if( $usuarioLogeado == false){
-    session_destroy();
-    echo "ContenidoPedidoBUSCAR dice: no está user en session";
-    header("Location: /index.php");
-}
-
 
 if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
     $numPedido=null;//mejor null que sin declarar
@@ -46,7 +50,11 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
     include_once("../Controllers/ContenidoPedidoBUSCARController.php");
     if(!empty(($_REQUEST["numPedido"]))){
         $numPedido=$_REQUEST["numPedido"];
-        $arrayContenidoPedido = getContenidoPedidoBynumPedido($numPedido);
+        if( $rol == "admin" || $rol == "empleado" ){
+            $arrayContenidoPedido[] = getContenidoPedidoBynumPedido($numPedido);
+        } else{
+            $arrayContenidoPedido[] = getContenidoPedidoBynumPedido($numPedido, $dni);
+        }
         if($arrayContenidoPedido == false){
             $_SESSION['numPedidoNotFound'] = true;
         }
@@ -54,7 +62,11 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
 
     if(!empty(($_REQUEST["codArticulo"]))){
         $codArticulo=$_REQUEST["codArticulo"];
-        $arrayContenidoPedido = GetContenidoPedidoByCodArticulo($codArticulo);
+        if( $rol == "admin" || $rol == "empleado" ){
+            $arrayContenidoPedido[] = GetContenidoPedidoByCodArticulo($codArticulo);
+        } else{
+            $arrayContenidoPedido[] = GetContenidoPedidoByCodArticulo($codArticulo, $dni);
+        }
         if($arrayContenidoPedido == false){
             $_SESSION['codArticuloNotFound'] = true;
         }
@@ -98,14 +110,14 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
         }
     };
 }
-if(isset($_REQUEST['numPedido'])){
+if(isset($_REQUEST['numPedido']) && ( $rol =="admin" ||$rol =="empleado" )){
     echo'
     <h2><a class="finForm" href="ContenidoPedidoEDITAR.php?numPedido='.$numPedido.'""><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Editar el contenido de este pedido</a></h2>
-    <h2><a class="finForm" href="PedidoBUSCAR.php?idPedido='.$numPedido.'"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Volver al PEDIDO</a></h2>
     ';
 }
 echo'
-<h2><a class="finForm" href="ContenidoPedidoLISTAR.php"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Ver los contenidos de todos los pedidos</a></h2>
+<h2><a class="finForm" href="PedidoBUSCAR.php?idPedido='.$numPedido.'"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Volver al PEDIDO</a></h2>
+<h2><a class="finForm" href="ContenidoPedidoLISTAR.php"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Ver los contenidos de todos mis pedidos</a></h2>
 ';
 
 echo '<h2><a class="finForm"  href="AreaCliente.php">Volver a mi área personal</a></h2>';

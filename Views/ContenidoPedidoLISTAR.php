@@ -63,7 +63,12 @@ echo"<table>";
         $orden = isset($_GET['orden']) ? $_GET['orden']:null;
         $atributoElegido = isset($_GET["atributo"])?$_GET["atributo"]:"idContenidoPedido";
         include_once("../Controllers/OrdenarContenidoPedidoController.php");
-        $arrayContenidoPedido = getArrayContenidoPedidoOrdenadosByAtributo($orden,$atributoElegido);
+
+        if($rol !=="admin" || $rol !== "empleado"){
+            $arrayContenidoPedido = getArrayContenidoPedidoOrdenadosByAtributo($orden,$atributoElegido, $dni);
+        } else{
+            $arrayContenidoPedido = getArrayContenidoPedidoOrdenadosByAtributo($orden,$atributoElegido);
+        }
         $itemXpagPredeterminado=3;
         $filasAMostrar = isset($_GET['itemXpag'])? $_GET['itemXpag'] : $itemXpagPredeterminado;
         if(! isset($_GET['pag'])){

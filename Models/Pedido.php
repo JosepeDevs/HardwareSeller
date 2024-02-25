@@ -262,11 +262,18 @@ public static function borradoLogicoPedido($idPedido){
     /**
      * @return  Pedido|bool devuelve false si no encuentra el pedido, devuelve el pedido si tiene exito
      */
-    public static function getPedidoByNumPedido($numPedido) {
+    public static function getPedidoByNumPedido($numPedido, $dni=null) {
         try {
             $con = contectarBbddPDO();
-            $sql = "SELECT * FROM pedidos WHERE numPedido=:numPedido";
+            if($dni!==null) {
+                $sql = "SELECT * FROM pedidos WHERE numPedido=:numPedido AND codUsuario=:dni";
+            } else{
+                $sql = "SELECT * FROM pedidos WHERE numPedido=:numPedido";
+            }
             $statement = $con->prepare($sql);
+            if($dni!==null) {
+                $statement->bindParam(":dni", $dni);
+            }
             $statement->bindParam(':numPedido', $numPedido);
             $statement->execute();
             $pedido = $statement->fetch(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");

@@ -9,9 +9,9 @@ if( $usuarioLogeado == false){
 }
 
 
-function getContenidoPedidoByNumPedido($numPedido){
+function getContenidoPedidoByNumPedido($numPedido, $dni=null){
     include_once("../Models/ContenidoPedido.php");
-    $ContenidoPedido = ContenidoPedido::GetContenidoPedidoBynumPedido($numPedido);
+    $ContenidoPedido = ContenidoPedido::GetContenidoPedidoBynumPedido($numPedido, $dni);
     if($ContenidoPedido == false){
        // $_SESSION['numPedidoNotFound'] = true;
         return false;
@@ -26,9 +26,9 @@ function getArrayAtributosContenidoPedido(){
     return $arrayContenidoPedido;
 }
 
-function GetContenidoPedidoByCodArticulo($codArticulo){
+function GetContenidoPedidoByCodArticulo($codArticulo, $dni=null){
     include_once("../Models/ContenidoPedido.php");
-    $arrayContenidoPedido = ContenidoPedido::GetContenidoPedidoByCodArticulo($codArticulo);
+    $arrayContenidoPedido = ContenidoPedido::GetContenidoPedidoByCodArticulo($codArticulo,$dni);
     return $arrayContenidoPedido;
 }
 ?>

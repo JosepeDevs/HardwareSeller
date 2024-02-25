@@ -90,9 +90,18 @@ public function setActivo($activo) {
     /**
      * @return bool|array devuelve false si falla, devuelve el ContenidoPedido si lo encuentra consultando el código
      */
-    public static function GetContenidoPedidoByCodArticulo($codArticulo){
+    public static function GetContenidoPedidoByCodArticulo($codArticulo, $dni=null){
         try{
             $con = contectarBbddPDO();
+            if($dni !== null){
+            
+            } else{
+
+            }
+            if($dni !== null){
+            
+            }
+
             $sqlQuery="SELECT * FROM  `contenidopedido` WHERE codArticulo=:codArticulo;";
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':codArticulo', $codArticulo);
@@ -115,12 +124,22 @@ public function setActivo($activo) {
     /**
      * @return bool|array devuelve false si falla, devuelve el ContenidoPedido si lo encuentra consultando el código
      */
-    public static function GetContenidoPedidoByNumPedido($numPedido){
+    public static function GetContenidoPedidoByNumPedido($numPedido, $dni=null){
         try{
             $con = contectarBbddPDO();
-            $sqlQuery="SELECT * FROM  `contenidopedido` WHERE numPedido=:numPedido;";
+            if($dni !== null){
+                $sqlQuery="SELECT  contenidopedido.*
+                FROM contenidopedido
+                JOIN pedidos ON contenidopedido.numPedido =pedidos.idPedido
+                WHERE pedidos.idPedido =  :numPedido AND pedidos.codUsuario=:dni;";
+            }else{
+                $sqlQuery="SELECT * FROM  `contenidopedido` WHERE numPedido=:numPedido;";
+            }
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':numPedido', $numPedido);
+            if($dni!==null){
+                $statement->bindParam(':dni', $dni);
+            }
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
             $ContenidoPedido = $statement->fetchAll();
@@ -144,11 +163,21 @@ public function setActivo($activo) {
         return true;
     }
 
-    public static Function getAllContenidoPedido(){
+    public static Function getAllContenidoPedido($dni=null){
         try {
             $con = contectarBbddPDO();
-            $sqlQuery="SELECT * FROM  `contenidopedido`;";
+            if($dni!==null){
+                $sqlQuery="SELECT  contenidopedido.*
+                FROM contenidopedido
+                JOIN pedidos ON contenidopedido.numPedido =pedidos.idPedido
+                WHERE pedidos.codUsuario=:dni;";
+            }else{
+                $sqlQuery="SELECT * FROM  `contenidopedido`;";
+            }
             $statement=$con->prepare($sqlQuery);
+            if($dni!==null){
+                $statement->bindParam(":dni", $dni);
+            }
             $statement->execute();
             $arrayContenidoPedido=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
             return $arrayContenidoPedido;
@@ -157,12 +186,24 @@ public function setActivo($activo) {
         }
     }
 
-    public static function getASCSortedContenidoPedidoByAtributo($nombreAtributo) {
+    public static function getASCSortedContenidoPedidoByAtributo($nombreAtributo, $dni=null) {
         try {
             $con = contectarBbddPDO();
             $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
-            $sql = "SELECT * FROM contenidopedido ORDER BY {$nombreAtributoLimpio} ASC";
+            if($dni !== null){
+                $sql="SELECT  contenidopedido.*
+                FROM contenidopedido
+                JOIN pedidos ON contenidopedido.numPedido =pedidos.idPedido
+                WHERE pedidos.codUsuario=:dni
+                ORDER BY :atributo ASC;";
+            } else{
+                $sql = "SELECT * FROM contenidopedido ORDER BY :atributo ASC";
+            }
             $statement = $con->prepare($sql);
+            $statement -> bindValue(':atributo',$nombreAtributoLimpio);
+            if($dni !== null){
+                $statement -> bindValue(':dni',$dni);
+            }
             $statement->execute();
             $arrayContenidoPedido = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
             return $arrayContenidoPedido;
@@ -171,12 +212,24 @@ public function setActivo($activo) {
         }
     }
 
-    public static function getDESCSortedContenidoPedidoByAtributo($nombreAtributo) {
+    public static function getDESCSortedContenidoPedidoByAtributo($nombreAtributo, $dni=null) {
         try {
             $con = contectarBbddPDO();
             $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
-            $sql = "SELECT * FROM contenidopedido ORDER BY {$nombreAtributoLimpio} DESC";
+            if($dni !== null){
+                $sql="SELECT  contenidopedido.*
+                FROM contenidopedido
+                JOIN pedidos ON contenidopedido.numPedido =pedidos.idPedido
+                WHERE pedidos.codUsuario=:dni
+                ORDER BY :atributo DESC;";
+            } else{
+                $sql = "SELECT * FROM contenidopedido ORDER BY :atributo DESC";
+            }
             $statement = $con->prepare($sql);
+            $statement ->bindParam(":atributo", $nombreAtributoLimpio);
+            if($dni !== null){
+                $statement ->bindParam(":dni", $dni);
+            }
             $statement->execute();
             $arrayContenidoPedido = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
             return $arrayContenidoPedido;
