@@ -121,12 +121,19 @@ foreach ($contenidoPedido as $index => $array) {
         foreach ($arrayContenidoPedido as $contenidoPedido) {
             //all good y estamos añadiendo artículo nuevo
             $numPedido=$contenidoPedido->getNumPedido();
+            print"numPedido=".$numPedido;
             $numLinea=$contenidoPedido->getNumLinea();
+            print"numLinea=".$numLinea;
             $codArticulo=$contenidoPedido->getCodArticulo();
+            print"codArticulo=".$codArticulocodArticulo;
             $cantidad=$contenidoPedido->getCantidad();
+            print"cantidad=".$cantidad;
             $precio=$contenidoPedido->getPrecio();
+            print"precio=".$precio;
             $descuento=$contenidoPedido->getDescuento();
+            print"descuento=".$descuento;
             $activo=$contenidoPedido->getActivo();
+            print"activo=".$activo;
             $operacionExitosa = ContenidoPedido::AltaContenidoPedido($numPedido, $numLinea,$codArticulo, $cantidad, $precio, $descuento, $activo);
             if($operacionExitosa){
                 $contador+= 1;
