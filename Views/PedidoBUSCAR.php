@@ -116,16 +116,13 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         var_dump($arrayPedido);
         //DATOS DEL OBJETO O LOS OBJETOS
         foreach($arrayPedido as $Pedido){
-            echo "Entering loop...<br>";
-
-            echo("<tr><td>test</td></tr><tr>");
             foreach ($arrayAtributos as $atributo) {
                 $getter = 'get' . ucfirst($atributo);
                 $valor = $Pedido->$getter();
-                if($nombreAtributo == "idPedido"){
+                if($atributo == "idPedido"){
                     $idPedido = $Pedido->getIdPedido();//guardamos el código para que esté disponible fuera de este bucle
                     echo "<td>4".$valor."</td>";
-                } else if( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ){
+                } else if( $atributo == "activo" ||$atributo == "codUsuario" ){
                     if( $rol !== "admin" || $rol !== "empleado" ){
                         echo'2';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
                     } else{
