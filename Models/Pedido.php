@@ -83,10 +83,10 @@ public function setActivo($activo) {
     public static function GetPedidoByidPedido($idPedido, $dni=null){
         try{
             $con = contectarBbddPDO();
-            if($dni == null){
-                $sqlQuery="SELECT * FROM  `pedidos` WHERE idPedido=:idPedido;";
-            } else{
+            if($dni !== null){
                 $sqlQuery="SELECT * FROM  `pedidos` WHERE idPedido=:idPedido AND codUsuario=:dni;";
+            } else{
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE idPedido=:idPedido;";
             }
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':idPedido', $idPedido);
