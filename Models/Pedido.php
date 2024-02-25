@@ -77,7 +77,6 @@ public function setActivo($activo) {
     $this->activo = $activo;
 }
 
-
 public static function borradoLogicoPedido($idPedido){
     try {
         include_once("../Controllers/ContenidoPedidoBORRARController.php");
