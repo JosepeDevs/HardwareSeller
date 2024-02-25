@@ -50,12 +50,12 @@ echo"<table>";
                     $nombreAtributo = $atributo;
                     if($nombreAtributo == "estado"){
                         echo"<th>
-                            $nombreAtributo 
-                            <br>(0=cancelado)(1=pedido en carrito)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago confirmado)(6=pedido enviado)(7=pedido recibido)(8=finalizado)(9=finalizado con incidencia)                            <br>Ordenar por este atributo:<br>
-                            <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
-                            <a class='ordenar' href='PedidosLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
-                        </th>";
-                    } elseif(( $rol !== "admin" || $rol !== "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
+                                $nombreAtributo 
+                                <br>Ordenar por este atributo:<br>
+                                <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
+                                <a class='ordenar' href='PedidosLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
+                            </th>";
+                    } else if(( $rol !== "admin" || $rol !== "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
                         echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
                     } else{
                         echo"<th>
@@ -112,9 +112,11 @@ echo"<table>";
                 $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
                 $valor = call_user_func([$Pedido, $nombreMetodo]);
                 if($nombreAtributo == "idPedido"){
-                    $idPedido = $Pedido->getidPedido();//guardamos el código para que esté disponible fuerra de este bucle
+                    $idPedido = $Pedido->getidPedido();//guardamos el código para que esté disponible fuera de este bucle
                     echo "<td>$valor</td>";
-                } else{
+                } else if( ( $rol !== "admin" || $rol !== "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
+                    echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
+                }else{
                     echo "<td>$valor</td>";
                 }
             }
@@ -125,8 +127,14 @@ echo"<table>";
             }
         }
         echo("</tr>
-        <tr><td colspan='5'>  El estado puede tener más de 1 digito, por ejemplo: 1 es que esta en el carrito y nada más, 235 es que el pedio es en firme pagará por transferencia y 
-        ya hemos recibido el dinero pero aun no se ha enviado. 2356 mismo caso que el anterior pero este sí se ha enviado ya (no ha llegado aun). Todos los pedidos idealmente acabarán en 8 (235678)</td></tr>
+        <tr>
+            <td colspan='5'>  El estado puede tener más de 1 digito, por ejemplo: 1 es que esta en el carrito y nada más, 235 es que el pedio es en firme pagará por transferencia y 
+                ya hemos recibido el dinero pero aun no se ha enviado. 2356 mismo caso que el anterior pero este sí se ha enviado ya (no ha llegado aun). Todos los pedidos idealmente acabarán en 8 (235678)
+                <br>
+                (0=cancelado)(1=pedido en carrito)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago confirmado)
+                (6=pedido enviado)(7=pedido recibido)(8=finalizado)(9=finalizado con incidencia)                            
+            </td>
+        </tr>
     </table>");
 
    //PAGINACIÓN
