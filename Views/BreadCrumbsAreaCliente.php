@@ -7,8 +7,8 @@ echo '
     if(isset($_REQUEST['idPedido']) && !empty($_REQUEST['idPedido']) ){
         //llegamos hasta pedido
         echo'<p><a class="breadcrumb-item " href="PedidosLISTAR.php"> Mis pedidos /</a></p>';
-        echo'<p><a class="breadcrumb-item " href="PedidoBUSCAR.php?idPedido='.$_REQUEST['idPedido'].' /">
-                Pedido id='.$_REQUEST['idPedido'].' 
+        echo'<p><a class="breadcrumb-item " href="PedidoBUSCAR.php?idPedido='.$_REQUEST['idPedido'].'">
+                Pedido id='.$_REQUEST['idPedido'].'  /
             </a></p>
         ';
     } else{
@@ -19,13 +19,13 @@ echo '
         //entonces estamos ya en contenido pedido
         echo'<p><a class="breadcrumb-item " href="PedidosLISTAR.php"> Mis pedidos /</a></p>';
         echo'
-            <p><a class="breadcrumb-item " href="PedidoBUSCAR.php?idPedido='.$_REQUEST['numPedido'].' /">
-                Pedido id='.$_REQUEST['numPedido'].' 
+            <p><a class="breadcrumb-item " href="PedidoBUSCAR.php?idPedido='.$_REQUEST['numPedido'].'">
+                Pedido id='.$_REQUEST['numPedido'].'  /
             </a></p>
         ';
         echo'
-            <p><a class="breadcrumb-item " href="PedidoBUSCAR.php?numPedido='.$_REQUEST['numPedido'].' /">
-                Contenido del Pedido id='.$_REQUEST['numPedido'].' 
+            <p><a class="breadcrumb-item " href="PedidoBUSCAR.php?numPedido='.$_REQUEST['numPedido'].'">
+                Contenido del Pedido id='.$_REQUEST['numPedido'].' /  
             </a></p>
         ';
     } 
