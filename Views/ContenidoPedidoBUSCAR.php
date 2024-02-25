@@ -1,6 +1,9 @@
 <?php
 include_once("header.php");
-?>
+if(!empty($_GET)){
+    echo"<a href='PedidoBUSCAR.php'>Buscar otro pedido</a>";
+} else{
+    echo'
     <h1>
         Buscar contenido de un pedido ...
     </h1>
@@ -21,10 +24,9 @@ include_once("header.php");
         <h2><input type="submit" value="Consultar"></h2><br><br><br>
     </div>
 </form>
-<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>';
+}
 
-
-<?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
