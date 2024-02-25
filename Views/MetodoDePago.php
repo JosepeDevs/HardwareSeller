@@ -8,6 +8,9 @@ echo'<h1>Seleccione el método de pago</h1>';
 //por si estaban logeados pero eligieron recogida en tienda
 $estadoEnvio = (isset($_GET['estadoEnvio']))? $_GET['estadoEnvio'] :null;
 $_SESSION['estadoEnvio'] = $estadoEnvio;
+if (!isset($_SESSION['estado'])) {
+    $_SESSION['estado'] = '';
+}
 $_SESSION['estado'] = ($_SESSION['estado'] . $estadoEnvio); //añadimos el numero de estado de envio a estado
 ?>
 <form action="../Views/RevisionPedido.php" method="POST">
