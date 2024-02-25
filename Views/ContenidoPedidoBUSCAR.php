@@ -51,9 +51,23 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
     if(!empty(($_REQUEST["numPedido"]))){
         $numPedido=$_REQUEST["numPedido"];
         if( $rol == "admin" || $rol == "empleado" ){
-            $arrayContenidoPedido[] = getContenidoPedidoBynumPedido($numPedido);
+            $contenidoPedido = getContenidoPedidoBynumPedido($numPedido);
+            if(is_object($contenidoPedido)){
+                //si es un objeto lo metemos en un array
+                $arrayContenidoPedido[] = $contenidoPedido;
+            } else{
+                //si es un array le ponemos el nombre que nos interesa para asegurarnos que luego se le llama
+                $arrayContenidoPedido = $contenidoPedido;
+            }
         } else{
-            $arrayContenidoPedido[] = getContenidoPedidoBynumPedido($numPedido, $dni);
+            $contenidoPedido = getContenidoPedidoBynumPedido($numPedido, $dni);
+            if(is_object($contenidoPedido)){
+                //si es un objeto lo metemos en un array
+                $arrayContenidoPedido[] = $contenidoPedido;
+            } else{
+                //si es un array le ponemos el nombre que nos interesa para asegurarnos que luego se le llama
+                $arrayContenidoPedido = $contenidoPedido;
+            }
         }
         if($arrayContenidoPedido == false){
             $_SESSION['numPedidoNotFound'] = true;
@@ -63,9 +77,23 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
     if(!empty(($_REQUEST["codArticulo"]))){
         $codArticulo=$_REQUEST["codArticulo"];
         if( $rol == "admin" || $rol == "empleado" ){
-            $arrayContenidoPedido[] = GetContenidoPedidoByCodArticulo($codArticulo);
+            $contenidoPedido = GetContenidoPedidoByCodArticulo($codArticulo);
+            if(is_object($contenidoPedido)){
+                //si es un objeto lo metemos en un array
+                $arrayContenidoPedido[] = $contenidoPedido;
+            } else{
+                //si es un array le ponemos el nombre que nos interesa para asegurarnos que luego se le llama
+                $arrayContenidoPedido = $contenidoPedido;
+            }
         } else{
-            $arrayContenidoPedido[] = GetContenidoPedidoByCodArticulo($codArticulo, $dni);
+            $contenidoPedido = GetContenidoPedidoByCodArticulo($codArticulo, $dni);
+            if(is_object($contenidoPedido)){
+                //si es un objeto lo metemos en un array
+                $arrayContenidoPedido[] = $contenidoPedido;
+            } else{
+                //si es un array le ponemos el nombre que nos interesa para asegurarnos que luego se le llama
+                $arrayContenidoPedido = $contenidoPedido;
+            }
         }
         if($arrayContenidoPedido == false){
             $_SESSION['codArticuloNotFound'] = true;
