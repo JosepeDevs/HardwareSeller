@@ -134,8 +134,8 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
                     echo "<td>3".$valor."</td>";
                 }
             }
+            echo "</tr>";
         }
-        echo "</tr>";
         echo "</table>";
     } else{
         echo "<h3>No se encontraron coincidencias.</h3>";
