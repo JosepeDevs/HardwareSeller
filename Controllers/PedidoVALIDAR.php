@@ -11,10 +11,10 @@ if( $usuarioLogeado == false){
 }
 
 include_once("../Models/Pedido.php");
-print_r($_SESSION);
 
 $fecha = date("YYYY-MM-DD"); //esto no lo comprobamos porque lo estoy generando aquí mismo
 $_SESSION['fecha']=$fecha;
+print_r($_SESSION);
 $total = isset($_SESSION["total"]) ? round($_SESSION["total"],2) : null;
 $estado = isset($_SESSION["estado"]) ? $_SESSION["estado"] : null; //aquío llegará solo 3 o 4 en función del método de pago
 $codUsuario = isset($_SESSION["codUsuario"]) ? $_SESSION["codUsuario"] : null; //dni
