@@ -449,6 +449,11 @@ aside a:hover{
     cursor: pointer;
     padding: 2%;
 }
+
+.submit-carrito, .enlace-arriba-de-footer{
+    font-size: 1.5em;
+}
+
 .oculto{
     list-style-type: none;
     display: none;

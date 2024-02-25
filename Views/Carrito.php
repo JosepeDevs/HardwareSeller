@@ -146,7 +146,9 @@ include_once("header.php");
             ?>
     </tbody>
     </table>
-    <button type="button"><a href="../Views/Catalogo.php" class="btn btn-warning"><i class="lni lni-chevron-left"></i>Seguir navegando </a></button>
+    <br><br>
+    <button type="button"><a href="../Views/Catalogo.php" class="btn btn-warning enlace-arriba-de-footer"><i class="lni lni-chevron-left"></i>Seguir navegando </a></button>
+    <br><br>
     <button type="submit" class="submit-carrito"><span>Proceder a DIRECCIÓN DE ENVÍO</span><i class="lni lni-chevron-right"></i></button> 
     </form>
 <?php include_once("footer.php");?>
