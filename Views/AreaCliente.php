@@ -31,7 +31,7 @@ if( !$userExiste){
     <?php
 } else{
     print"<h2>Bienvenido".$_SESSION['user']."</h2>";
-}
+
 ?>
 <table>
     <tr>
@@ -44,5 +44,6 @@ if( !$userExiste){
     </tr>
 </table>
 <?php
+}
 include_once("footer.php");
 ?>
