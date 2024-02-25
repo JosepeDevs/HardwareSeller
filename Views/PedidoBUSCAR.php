@@ -59,6 +59,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         } else{
             $arrayPedido = getPedidoByIdPedido($idPedido, $dni);
             print"no somos admini ni empleado y pasamos los parametros:" .$idPedido." ". $dni;
+            print_r($arrayPedido);
         }
         if($arrayPedido == false){
             $_SESSION['idPedidoNotFound'] = true;
