@@ -122,7 +122,7 @@ echo"<table>";
                     echo "<td>".$valor."</td>";
                 }
             }
-            if(GetRolDeSession() == ( "admin" || "empleado" ) ){
+            if(GetRolDeSession() ==  "admin" || GetRolDeSession() == "empleado"  ){
                 echo"
                 <td><a href='ContenidoPedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
                 <td><a href='ContenidoPedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
