@@ -142,15 +142,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var detallesEnvio = document.getElementById('detallesEnvio');
 
     var divOculto = document.getElementById('oculto');
-    var botonEnvio = document.getElementById('botonEnvio');
 
     metodoEnvio.addEventListener('change', function() {
         if (this.value === '0') {
             detallesEnvio.style.display = 'block';
-            botonEnvio.style.display = 'block';
+            divOculto.style.display = 'block';
         } else {
             detallesEnvio.style.display = 'none';
-            botonEnvio.style.display = 'none';
+            divOculto.style.display = 'none';
         }
     });
 });
