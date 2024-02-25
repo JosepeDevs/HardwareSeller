@@ -40,7 +40,6 @@ if( $usuarioLogeado == false){
 }
 $rol = GetRolDeSession();
 $dni = GetDniByEmail($_SESSION['user']);
-print"<br>dni=$dni";
 
 if(isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQUEST["fechaFin"]) || isset($_REQUEST["codUsuario"]) ) {
     $idPedido=null;//mejor null que sin declarar
@@ -51,7 +50,7 @@ if(isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQ
         if( $rol == "admin" || $rol == "empleado" ){
             $arrayPedido = getPedidoByIdPedido($idPedido);
         } else{
-            $arrayPedido = getPedidoByIdPedido($idPedido,$dni);
+            $arrayPedido = getPedidoByIdPedido($idPedido, $dni);
         }
         if($arrayPedido == false){
             $_SESSION['idPedidoNotFound'] = true;

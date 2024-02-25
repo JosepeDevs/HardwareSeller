@@ -90,7 +90,7 @@ public function setActivo($activo) {
             }
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':idPedido', $idPedido);
-            if($dni == null){
+            if($dni !== null){
                 $statement->bindParam(':dni', $dni);
             }
             $statement->execute();
@@ -121,7 +121,7 @@ public function setActivo($activo) {
             }
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':codUsuario', $codUsuario);
-            if($dni == null){
+            if($dni !== null){
                 //el que quiera hacerse el listo poniendo un dni al azar solo verá lo que su propio dni tiene bwjajajaajaja
                 $statement->bindParam(':dni', $dni);
             }
