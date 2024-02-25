@@ -14,6 +14,7 @@ include_once("../Models/Pedido.php");
 
 $fecha = date("Y-m-d"); //esto no lo comprobamos porque lo estoy generando aquí mismo
 $_SESSION['fecha']=$fecha;
+print$fecha;
 print_r($_SESSION);
 $total = isset($_SESSION["total"]) ? round($_SESSION["total"],2) : null;
 $estado = isset($_SESSION["estado"]) ? $_SESSION["estado"] : null; //aquío llegará solo 3 o 4 en función del método de pago
