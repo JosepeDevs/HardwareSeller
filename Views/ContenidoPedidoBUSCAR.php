@@ -117,7 +117,7 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
             echo"<tr><th>Contenidos del Pedido encontrados:</th>";
             foreach ($arrayAtributos as $atributo) {
                 $getter = 'get' . ucfirst($atributo);//montamos dinámicamente el getter
-                $valor = $objetoContenidoPedido[$index]->$getter();//lo llamamos para obtener el valor
+                $valor = $objetoContenidoPedido->$getter();//lo llamamos para obtener el valor
                 echo "<td>$valor</td>";
             }
             echo "</tr>";
