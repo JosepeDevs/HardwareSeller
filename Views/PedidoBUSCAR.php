@@ -113,7 +113,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             echo "<th>$nombreAtributo</th>";
         }
         echo "</tr>";
-        
+        var_dump($arrayPedido);
         //DATOS DEL OBJETO O LOS OBJETOS
         foreach($arrayPedido as $Pedido){
             echo("<tr><td>test</td></tr><tr>");
