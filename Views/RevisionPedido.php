@@ -104,7 +104,9 @@ if (strpos($estado,"5")==false){
 
 ?>
 <br><br>
-<button type='button'><a href='../Views/ClienteEDITAR.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar dirección de envío</a></button>
+<button type='button'><a href='../Views/DireccionPedido.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Escoger otra opción de envío/recogida</a></button>
+<br><br>
+<button type='button'><a href='../Views/ClienteEDITAR.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-up'></i>Modificar dirección de envío</a></button>
 <br><br><br><br>
 
 <?php
