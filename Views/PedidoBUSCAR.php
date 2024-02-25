@@ -63,6 +63,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             $_SESSION['idPedidoNotFound'] = true;
         }
     }
+
     if(!empty(($_REQUEST["numPedido"]))){
         $numPedido=$_REQUEST["numPedido"];
         if( $rol == "admin" || $rol == "empleado" ){
@@ -101,7 +102,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         }
     }
     
-    
+    print_r($arrayPedido);
     $arrayAtributos = getArrayAtributosPedido();
     if( $arrayPedido !== false){
         echo"<table>";
@@ -132,8 +133,8 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
                 }
             }
             echo "</tr>";
-        }
         echo "</table>";
+        }
     } else{
         echo "<h3>No se encontraron coincidencias.</h3>";
     }
