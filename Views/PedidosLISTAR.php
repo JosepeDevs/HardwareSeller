@@ -63,15 +63,17 @@ echo"<table>";
                         <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
                         <a class='ordenar' href='PedidosLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
                         </th>";
-
                     }
                 }
                 include_once("../Controllers/OperacionesSession.php");//get rol
-                if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
+                if(GetRolDeSession() == "empleado" || GetRolDeSession() == "admin" ){
                     echo"
                     <th>Ver contenido</th>
                     <th>Editar</th>
                     <th>Desactivar</th>";
+                } else{
+                    echo"
+                    <th>Ver contenido del pedido</th>";
                 }
                 echo"</tr>";
             }
@@ -113,17 +115,20 @@ echo"<table>";
                 $valor = call_user_func([$Pedido, $nombreMetodo]);
                 if($nombreAtributo == "idPedido"){
                     $idPedido = $Pedido->getidPedido();//guardamos el código para que esté disponible fuera de este bucle
-                    echo "<td><a href='ContenidoPedidoBUSCAR.php?numPedido=".$idPedido."'>".$valor."</a></td>";
+                    echo "<td>".$valor."</td>";
                 } else if( ( $rol !== "admin" || $rol !== "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
                     echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
                 }else{
-                    echo "<td><a href='ContenidoPedidoBUSCAR.php?numPedido=".$idPedido."'>".$valor."</a></td>";
+                    echo "<td>".$valor."</td>";
                 }
             }
-            if(GetRolDeSession() == "admin"){
+            if(GetRolDeSession() == ( "admin" || "empleado" ) ){
                 echo"
                 <td><a href='ContenidoPedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
+                <td><a href='ContenidoPedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
                 <td><a href='PedidoBORRAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
+            } else{
+                echo "<td><a href='ContenidoPedidoBUSCAR.php?numPedido=".$idPedido."'>".$valor."</a></td>";
             }
         }
         echo("</tr>
