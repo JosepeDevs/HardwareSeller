@@ -14,15 +14,11 @@ include_once("../Models/Pedido.php");
 
 $fecha = date("Y-m-d"); //esto no lo comprobamos porque lo estoy generando aquí mismo
 $_SESSION['fecha']=$fecha;
-print_r($_SESSION);
+//print_r($_SESSION);
 $total = isset($_SESSION["total"]) ? round($_SESSION["total"],2) : null;
-print("<br>total<br>".$total);
 $estado = isset($_SESSION["estado"]) ? $_SESSION["estado"] : null; //aquí llegará solo 3 o 4 en función del método de pago
-print("<br>estado<br>".$estado);
 $codUsuario = isset($_SESSION["codUsuario"]) ? $_SESSION["codUsuario"] : null; //dni
-print("<br>codUsuario<br>".$codUsuario);
 $activo = isset($_SESSION["PedidoActivo"]) ? $_SESSION["PedidoActivo"] : 1; //de forma predeterminada valdra 1
-print("<br>activo<br>".$activo);
 
 //no permitimos la edición del número de pedido, eso lo calcula la BBDD
 
@@ -49,7 +45,7 @@ if(
     ( isset($_SESSION['ClienteNoExiste']) && $_SESSION['ClienteNoExiste'] == true )
 ){
     //algo dio error, go back para que allí de donde venga se muestre el error
-  //  echo "<script>history.back();</script>";
+    echo "<script>history.back();</script>";
     exit;
 } 
 
@@ -62,7 +58,7 @@ if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true")
     if($operacionExitosa){
         $_SESSION['GoodUpdatePedido']= true;
     }
-   // header("Location: ../Views/PedidosLISTAR.php");
+   header("Location: ../Views/PedidosLISTAR.php");
     exit;
 }else if( isset($_SESSION["nuevoPedido"]) && $_SESSION["nuevoPedido"] == "true"){
     //unset($_SESSION['nuevoPedido']);
@@ -73,16 +69,14 @@ if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true")
         $_SESSION['GoodInsertPedido']= true;
         $pedido = Pedido::getPedidoByNumPedido($numPedido);
         $_SESSION['pedido']= $pedido;
-        print"all good $operacionExitosa";
-    }else{
-        echo"shit algo fue mal";
+       // print"all good $pedido";
     }
     if(isset($_SESSION['CarritoConfirmado']) && !empty($_SESSION['CarritoConfirmado']) ){
         //ahora que ya tenemos el pedido creado y en session vamos a poblar su contenido
-       // header("Location: ../Controllers/ContenidoPedidoVALIDAR.php");
+       header("Location: ../Controllers/ContenidoPedidoVALIDAR.php");
         exit;
     }else{
-      //  header("Location: ../Views/PedidosLISTAR.php");
+        header("Location: ../Views/PedidosLISTAR.php");
          exit;
     }
 };
