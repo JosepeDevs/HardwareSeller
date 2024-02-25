@@ -91,10 +91,11 @@ if(isset($_SESSION['user'])) {
     <p>Localidad: ".$usuario->getLocalidad()."</p>
     <p>Provincia: ".$usuario->getProvincia()."</p>";
 }
-$estado= isset($_SESSION["estado"])? $_SESSION["estado"]: null;
+$estado= isset($_SESSION["estadoEnvio"])? $_SESSION["estadoEnvio"]: null;
 if (strpos($estado,"5")==false){
     //si encontramos un 5 es que querían recogida en tienda
     //no hace nada aquí dentro, si seleccionaron 5 el mensaje correspondiente se muestra en la seccion de método de pago
+    echo"<h3>Han seleccionado Recogida en tienda</h3>";
 } else{
     //en cualquier otro caso eligieron el envío  a su dirección
     echo"<h3>Han seleccionado la opción de envío a esta dirección. Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
@@ -105,7 +106,7 @@ if (strpos($estado,"5")==false){
 ?>
 <br><br>
 <button type='button'><a href='../Views/DireccionPedido.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Escoger otra opción de envío/recogida</a></button>
-<br><br>
+<br>
 <button type='button'><a href='../Views/ClienteEDITAR.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-up'></i>Modificar dirección de envío</a></button>
 <br><br><br><br>
 
