@@ -81,7 +81,7 @@ if(isset($_SESSION['user'])) {
     include_once('../Controllers/ClienteBUSCARController.php');
     //NOTHING LIKE A GOOD RETURNING CLIENT!
     echo"
-    <h2>Datos usuario y dirección de envío</h2>
+    <h2> Datos usuario </h2>
     <br>
     <p>Nombre: ".$usuario->getNombre()."</p>
     <p>DNI: ".$usuario->getDni()."</p>
@@ -146,6 +146,7 @@ if(isset($_SESSION["estadoEnvio"])) {
         <p> Se reservará el stock un máximo de 5 días, transcurrido ese tiempo se pondrá de nuevo a la venta</p>
         <br>";
         $_SESSION['estado'] = ($_SESSION['estado'] . 5);//añadimos el 5 a estado
+        unset( $_SESSION['estadoEnvio']); 
     }
 }
 ?>
