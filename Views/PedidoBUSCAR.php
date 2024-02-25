@@ -40,7 +40,7 @@ if( $usuarioLogeado == false){
 }
 $rol = GetRolDeSession();
 $dni = GetDniByEmail($_SESSION['user']);
-
+print"<br>dni=$dni";
 
 if(isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQUEST["fechaFin"]) || isset($_REQUEST["codUsuario"]) ) {
     $idPedido=null;//mejor null que sin declarar
