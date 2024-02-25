@@ -26,8 +26,8 @@ if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  'false' ){
 ?>
         <h1>¿Está seguro de que desea cancelar este pedido y sus contenidos?</h1>
         <div class="finForm">
-            <h2><a href="?idPedido=<? echo $idPedido;?>&confirmacion='true'">Sí, cancelar pedido y sus contenidos.</a></h2>
-            <h2><a href="?idPedido=<? echo $idPedido;?>&confirmacion='false'">Cancelar desactivación.</a></h2>
+            <h2><a href='?idPedido=<? echo $idPedido;?>&confirmacion="true"'>Sí, cancelar pedido y sus contenidos.</a></h2>
+            <h2><a href='?idPedido=<? echo $idPedido;?>&confirmacion="false"'>Cancelar desactivación.</a></h2>
 
         </div>
 <?php
