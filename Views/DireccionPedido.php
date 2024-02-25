@@ -34,10 +34,12 @@ $_SESSION['CarritoConfirmado'] = $productosYCantidadesConfirmadas; //guardamos l
 unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos llegó inicialmente
 }
 ?>
-        <select class="estado-metodoPago" name="estado" id="estado">
+<form action="../Controllers/ValidarDatosCliente.php" method="post">
+        <input><select class="estado-metodoPago" name="estado" id="estado">
             <option for="estado" value="5">Regocida en tienda</option>
             <option for="estado"  value="0">Envío a dirección</option>
         </select>
+
 <div id="detallesTarjeta" style="display: none;">
 <?
     if(isset($_SESSION['user'])) {
@@ -68,7 +70,6 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <br>
             <a href="#">Esto en un futuro será un botón para hacer login/registrarse con google usando OAuth</a>
             <br>
-            <form action="../Controllers/ValidarDatosCliente.php" method="post">
                 <table>
                     <tr>
                         <th><label for="nombre">Nombre:</label></th>

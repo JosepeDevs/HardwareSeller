@@ -19,6 +19,9 @@ $email = isset($_POST["email"]) ? $_POST["email"]:null;
 $rol = isset($_POST["rol"]) ? $_POST["rol"]: "user";
 $activo = isset($_POST["activo"]) ? $_POST["activo"]:1;
 
+//esto es para saber si han elegido recogida en tienda o envío
+$estado = isset($_POST["estadoEnvio"]) ? $_POST["estadoEnvio"]:null;
+
 if(in_array(strtolower($rol), array("user", "admin", "editor"))){
     //se ha enviado un rol correcto, no validamos longitud porque ha cumplido con el enum
 } else{
@@ -178,6 +181,7 @@ $_SESSION["provincia"] = $provincia;
 $_SESSION["telefono"] = $telefono;
 $_SESSION["nombre"] = $nombre;
 $_SESSION["email"] = $email;
+$_SESSION["estadoEnvio"] = $estado;
 if(isset($_SESSION['RegistroDurantePedido']) && $_SESSION["RegistroDurantePedido"] == 1 ){
     //cuando están registrandose en el carrito necesito que en psswrd esté sin hashear
     $_SESSION["psswrdSinHash"] = $psswrdSinHash;

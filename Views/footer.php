@@ -6,7 +6,7 @@
     </div>
     <div>
         <h3>Información</h3>
-        <a href="https://www.linkedin.com/in/josepedronavarro/">Sobre nosotros</a>
+        <a href="/Views/AboutUs.php">Sobre nosotros</a>
         <a href="https://www.linkedin.com/in/josepedronavarro/">Nuestro equipo</a>
     </div>
     <div>

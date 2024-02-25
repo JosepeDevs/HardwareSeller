@@ -123,6 +123,14 @@ if(isset($_POST["estado"])) {
         </p>";
         $_SESSION['estado']=24; //pedido confirmado, tarjeta, pago pendiente, envio pendiente
     }
+    if( $_POST["estadoEnvio"] == 5 ){
+        echo"
+        <h2>Pago y recogida en tienda</h2>
+        <p> Nuestra dirección: </p>
+        <p> Se reservará el stock un máximo de 5 días, transcurrido ese tiempo se pondrá de nuevo a la venta</p>
+        <br>";
+        $_SESSION['estado']=0; //pedido confirmado, tarjeta, pago pendiente, envio pendiente
+    }
 }
 
 ?>
