@@ -452,6 +452,9 @@ aside a:hover{
 
 .submit-carrito, .enlace-arriba-de-footer{
     font-size: 1.5em;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
 }
 
 .oculto{

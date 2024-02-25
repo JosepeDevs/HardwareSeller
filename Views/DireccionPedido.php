@@ -57,7 +57,8 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             echo '
             <h2>Datos de contacto y dirección de envío</h2>
             <br>
-            <h3>En un futuro estos datos se podrán editar aquí mismo, si desea modificar la dirección, por favor, acceda a su área de cliente y allí podrá actualizarlo.</h3>
+            <h3>Puede pasar a la selección del método de pago directamente si ingresa en esta misma página ↑↑↑</h3>
+            <p>Futura funcionalidad: OAth autenticación con un click.</p>
             <br>
             <a href="#">Esto en un futuro será un botón para hacer login/registrarse con google usando OAuth</a>
             <br>
@@ -88,16 +89,16 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
         }  
     //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
     //todo si mas adelante se permite recogida en tienda podemos mandarlo por get tienda=0 (envio) y tienda=1 (recogida)
-    //<button type='button'><a href='../Views/MetodoDePago.php?tienda=0' class='btn btn-warning'>Recogeré mi pedido en tienda, Proceder al método de pago<i class='lni lni-chevron-right'></i></a></button>
+    //<button type='button'><a href='../Views/MetodoDePago.php?tienda=0' class='enlace-arriba-de-footer'>Recogeré mi pedido en tienda, Proceder al método de pago<i class='lni lni-chevron-right'></i></a></button>
 
     ?>
         <br>
         <div class='finForm'>
-            <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
-            <button type='button'><a href='../Views/Carrito.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
+            <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
+            <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
             <?
                 if(isset($_SESSION['user'])) {
-                    echo"<button type='button'><a href='../Views/MetodoDePago.php' class='btn btn-warning'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
+                    echo"<button type='button'><a href='../Views/MetodoDePago.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
                     ";
                 }else{
                     echo"<input type='submit' value='Proceder al método de pago'/>";
