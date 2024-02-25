@@ -146,7 +146,7 @@ foreach ($contenidoPedido as $index => $array) {
         }
     };
 
-header("Location: ../Views/PedidoLISTAR.php");
+header("Location: ../Views/PedidoBUSCAR.php?numPedido=$numPedido&PedidoConfirmado=true");
 exit;
 
 ?>

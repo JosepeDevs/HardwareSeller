@@ -1,35 +1,41 @@
 <?php
 include_once("header.php");
-?>
+
+if(isset($_GET['PedidoConfirmado']) && $_GET['PedidoConfirmado'] !== "true"){
+    //PedidoConfirmado se sube a la url si llegan desde RevisarPedido, aquí no quieren buscar otro pedido, sino que le salga la info del pedido que acaban de hacer
+    echo"";
+} else{
+    echo'
     <h1>
         Buscar pedido ...
     </h1>
-<form action="PedidoBUSCAR.php" method="POST">
-    <table>
-        <tr>
-            <th><h2><label for="idPedido">Id pedido</label></h2></th>
-            <th><h2><label for="fecha">Fecha inicio</label></h2></th>
-            <th><h2><label for="fecha">Fecha fin</label></h2></th>
-            <th><h2><label for="estado">Busqueda por estado<br>(0=En Carrito, 1=Pedido Pago Pendiente, 2=Pedido Pago Aceptado, 3=Enviado, 4=Recibido, 5=Entrega con incidencia, 6=Completado)</label></h2></th>
-            <th><h2><label for="codUsuario">Codigo usuario (DNI)</label></h2></th>
-        </tr>
-        <tr>
-            <td><input type="text" name="idPedido" ><br><br></td>
-            <td><input type="date" name="fechaInicio" autofocus><br><br></td>
-            <td><input type="date" name="fechaFin" ><br><br></td>
-            <td><input type="number" name="estado" min="0" max="5" ><br><br></td>
-            <td><input type="text" name="codUsuario" ><br><br></td>
-        </tr>
-    </table>
+    <form action="PedidoBUSCAR.php" method="POST">
+        <table>
+            <tr>
+                <th><h2><label for="idPedido">Id pedido</label></h2></th>
+                <th><h2><label for="fecha">Fecha inicio</label></h2></th>
+                <th><h2><label for="fecha">Fecha fin</label></h2></th>
+                <th><h2><label for="estado">Busqueda por estado<br>(0=En Carrito, 1=Pedido Pago Pendiente, 2=Pedido Pago Aceptado, 3=Enviado, 4=Recibido, 5=Entrega con incidencia, 6=Completado)</label></h2></th>
+                <th><h2><label for="codUsuario">Codigo usuario (DNI)</label></h2></th>
+            </tr>
+            <tr>
+                <td><input type="text" name="idPedido" ><br><br></td>
+                <td><input type="date" name="fechaInicio" autofocus><br><br></td>
+                <td><input type="date" name="fechaFin" ><br><br></td>
+                <td><input type="number" name="estado" min="0" max="5" ><br><br></td>
+                <td><input type="text" name="codUsuario" ><br><br></td>
+            </tr>
+        </table>
 
-    <br>
-    <div>
-        <h2><input type="submit" value="Consultar"></h2><br><br><br>
-    </div>
-</form>
+        <br>
+        <div>
+            <h2><input type="submit" value="Consultar"></h2><br><br><br>
+        </div>
+    </form>
 <br><br><br>
+';
+}
 
-<?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
@@ -41,7 +47,7 @@ if( $usuarioLogeado == false){
 $rol = GetRolDeSession();
 $dni = GetDniByEmail($_SESSION['user']);
 
-if(isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQUEST["fechaFin"]) || isset($_REQUEST["codUsuario"]) ) {
+if(isset($_REQUEST["numPedido"]) || $_REQUEST["idPedido"] || isset($_REQUEST["fechaInicio"]) ||isset($_REQUEST["fechaFin"]) || isset($_REQUEST["codUsuario"]) ) {
     $idPedido=null;//mejor null que sin declarar
     $codArticulo=null;//mejor null que sin declarar
     include_once("../Controllers/PedidoBUSCARController.php");
@@ -51,6 +57,17 @@ if(isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQ
             $arrayPedido = getPedidoByIdPedido($idPedido);
         } else{
             $arrayPedido = getPedidoByIdPedido($idPedido, $dni);
+        }
+        if($arrayPedido == false){
+            $_SESSION['idPedidoNotFound'] = true;
+        }
+    }
+    if(!empty(($_REQUEST["numPedido"]))){
+        $numPedido=$_REQUEST["numPedido"];
+        if( $rol == "admin" || $rol == "empleado" ){
+            $arrayPedido = getPedidoByIdPedido($numPedido);
+        } else{
+            $arrayPedido = getPedidoByIdPedido($numPedido, $dni);
         }
         if($arrayPedido == false){
             $_SESSION['idPedidoNotFound'] = true;
