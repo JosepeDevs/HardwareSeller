@@ -14,14 +14,14 @@ include_once("../Models/Pedido.php");
 print_r($_SESSION);
 
 $fecha = date("YYYY-MM-DD"); //esto no lo comprobamos porque lo estoy generando aquí mismo
-$total = isset($_SESSION["total"]) ? $_SESSION["total"] : null;
+$total = isset($_SESSION["total"]) ? round($_SESSION["total"],2) : null;
 $estado = isset($_SESSION["estado"]) ? $_SESSION["estado"] : null; //aquío llegará solo 3 o 4 en función del método de pago
 $codUsuario = isset($_SESSION["codUsuario"]) ? $_SESSION["codUsuario"] : null; //dni
 $activo = isset($_SESSION["PedidoActivo"]) ? $_SESSION["PedidoActivo"] : 1; //de forma predeterminada valdra 1
 
 //no permitimos la edición del número de pedido, eso lo calcula la BBDD
 
-$totalEsFloat = ContenidoPedido::ValorFloat($total);
+$totalEsFloat = Pedido::ValorFloat($total);
 $totalEsFloat ? $total = round($total, 2) : $totalEsFloat ; //si era float lo redondeamos a la segunda cifra decimal
 if($totalEsFloat == false) {    $_SESSION['Badtotal']= true; }
 

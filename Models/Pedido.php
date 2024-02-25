@@ -186,7 +186,17 @@ public function setActivo($activo) {
             $_SESSION['ErrorGetPedidos'] = true;
         }
     }
-
+    public static function ValorFloat($float){
+        //si son españoles y escriben la coma como una coma hay que cambiarla por un punto
+        $float = str_replace( "," , "." , $float);
+        $float = (float)$float;
+        $float = floatval($float);//según manual parece que a esta función se la pela si llega una coma o un punto, mientras no empiece por letras we are good.
+        if(is_float($float)){
+            return $float;
+        } else{
+            return false;
+        }
+    }
     /**
      * @return  Pedido|bool devuelve false si no encuentra el pedido, devuelve el pedido si tiene exito
      */
