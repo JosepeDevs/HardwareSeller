@@ -55,12 +55,15 @@ echo"<table>";
                             <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
                             <a class='ordenar' href='PedidosLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
                         </th>";
+                    } elseif(( $rol !== "admin" || $rol !== "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
+                        echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
                     } else{
                         echo"<th>
                         $nombreAtributo <br>Ordenar por este atributo:<br>
                         <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
                         <a class='ordenar' href='PedidosLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
                         </th>";
+
                     }
                 }
                 include_once("../Controllers/OperacionesSession.php");//get rol
@@ -122,7 +125,7 @@ echo"<table>";
             }
         }
         echo("</tr>
-        <tr><td>  El estado puede tener más de 1 digito, por ejemplo: 1 es que esta en el carrito y nada más, 235 es que el pedio es en firme pagará por transferencia y 
+        <tr><td colspan='5'>  El estado puede tener más de 1 digito, por ejemplo: 1 es que esta en el carrito y nada más, 235 es que el pedio es en firme pagará por transferencia y 
         ya hemos recibido el dinero pero aun no se ha enviado. 2356 mismo caso que el anterior pero este sí se ha enviado ya (no ha llegado aun). Todos los pedidos idealmente acabarán en 8 (235678)</td></tr>
     </table>");
 
