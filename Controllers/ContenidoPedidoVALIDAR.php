@@ -13,8 +13,7 @@ if( $usuarioLogeado == false){
 include_once("../Models/ContenidoPedido.php");
 print_r($_SESSION);
 
-$pedido = isset($_SESSION["pedido"]) ? $_SESSION["pedido"] : null;
-$numPedido = $pedido->getNumPedido();
+$numPedido = isset($_SESSION["numPedido"]) ? $_SESSION["numPedido"] : null;
 $contenidoPedido = isset($_SESSION["CarritoConfirmado"]) ? $_SESSION["CarritoConfirmado"] : null;
 
 foreach ($contenidoPedido as $index => $array) {
@@ -136,7 +135,7 @@ foreach ($contenidoPedido as $index => $array) {
             }
         }
     };
-    
+
 //header("Location: ../Views/ContenidoPedidoLISTAR.php");
 //exit;
 
