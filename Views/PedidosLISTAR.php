@@ -9,7 +9,7 @@ if( $usuarioLogeado == false){
 }
 //HEADER Y TITULO
 include_once("header.php");
-print("<h1>Gestionar Pedidos</h1>");
+print("<h1>Lista de Pedidos</h1>");
 
 //NAVEGACION
 ?>
@@ -76,8 +76,10 @@ echo"<table>";
         $rol = GetRolDeSession();
         $dni = GetDniByEmail($_SESSION['user']);
         if( $rol == "admin" || $rol == "empleado" ){
+            print'<br><h2>somos admin o editor</h2>'.'<br>';
             $arrayPedidos = getArrayPedidosOrdenadosByAtributo($orden,$atributoElegido);
         } else{
+            print'<br><h2>NO somos admin o editor</h2>'.'<br>';
             $arrayPedidos = getArrayPedidosOrdenadosByAtributo($orden,$atributoElegido, $dni);
         }
 
