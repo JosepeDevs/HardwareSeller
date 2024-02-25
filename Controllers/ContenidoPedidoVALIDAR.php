@@ -16,9 +16,17 @@ print_r($_SESSION);
 $pedido = isset($_SESSION["pedido"]) ? $_SESSION["pedido"] : null;
 $contenidoPedido = isset($_SESSION["CarritoConfirmado"]) ? $_SESSION["CarritoConfirmado"] : null;
 
-foreach ($contenidoPedido as $key => $value) {
-    # code...
+foreach ($contenidoPedido as $index => $array) {
+    $arrayDatosArticulo = $contenidoPedido[$index];
+    $numLinea = $index+1;
+    $codArticulo =  $arrayDatosArticulo['codigo'];
+    $precio =  $arrayDatosArticulo['precio'];
+    $descuento =  $arrayDatosArticulo['descuento'];
+    $cantidad =  $arrayDatosArticulo['cantidad'];
+    $arrayCotenidoPedido [] = new ContenidoPedido($numLinea,)
 }
+
+
 for( $i = 0; $i < $maxLineas; $i++ ){
     //montamos los nombres (keys) con las que acceder a $_POST
     if($i ==0){

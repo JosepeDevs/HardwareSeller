@@ -44,7 +44,7 @@ if(
     ( isset($_SESSION['ClienteNoExiste']) && $_SESSION['ClienteNoExiste'] == true )
 ){
     //algo dio error, go back para que allí de donde venga se muestre el error
-    echo "<script>history.back();</script>";
+  //  echo "<script>history.back();</script>";
     exit;
 } 
 
@@ -57,7 +57,7 @@ if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true")
     if($operacionExitosa){
         $_SESSION['GoodUpdatePedido']= true;
     }
-    header("Location: ../Views/PedidosLISTAR.php");
+   // header("Location: ../Views/PedidosLISTAR.php");
     exit;
 }else if( isset($_SESSION["nuevoPedido"]) && $_SESSION["nuevoPedido"] == "true"){
     unset($_SESSION['nuevoPedido']);
@@ -72,10 +72,10 @@ if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true")
     }
     if(isset($_SESSION['CarritoConfirmado']) && !empty($_SESSION['CarritoConfirmado']) ){
         //ahora que ya tenemos el pedido creado y en session vamos a poblar su contenido
-        header("Location: ../Controllers/ContenidoPedidoVALIDAR.php");
+       // header("Location: ../Controllers/ContenidoPedidoVALIDAR.php");
         exit;
     }else{
-        header("Location: ../Views/PedidosLISTAR.php");
+      //  header("Location: ../Views/PedidosLISTAR.php");
          exit;
     }
 };
