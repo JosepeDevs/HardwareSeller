@@ -30,7 +30,7 @@ $totalEsFloat = Pedido::ValorFloat($total);
 $totalEsFloat ? $total = round($total, 2) : $totalEsFloat ; //si era float lo redondeamos a la segunda cifra decimal
 if($totalEsFloat == false) {    $_SESSION['Badtotal']= true; }
 
-$estadoValido = Pedido::ComprobarLongitud($estado,1);
+$estadoValido = Pedido::ComprobarLongitud($estado,11);
 if($estadoValido == false) {    $_SESSION['LongEstado']= true; }
 
 
