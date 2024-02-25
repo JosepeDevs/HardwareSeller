@@ -30,6 +30,11 @@ if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "no" ){
 ?>
         <h1>¿Está seguro de que desea cancelar este pedido y sus contenidos?</h1>
         <div class="finForm">
+        <?php
+$url = "PedidoBORRAR.php?idPedido=" . $idPedido . "&confirmacion=no";
+echo $url; // Imprime la URL para verificar su estructura
+?>
+ 
             <h2><a href="PedidoBORRAR.php?idPedido=<? echo $idPedido;?>&confirmacion=yes">Sí, cancelar pedido y sus contenidos.</a></h2>
             <h2><a href='PedidoBORRAR.php?idPedido=<? echo $idPedido;?>&confirmacion=no'>Cancelar desactivación.</a></h2>
 
