@@ -12,7 +12,7 @@ function getArrayPedidosOrdenadosByAtributo($orden,$nombreAtributo, $dni =null){
         $arrayPedidos= Pedido::getDESCSortedPedidosByAtributo($nombreAtributo, $dni);
         return $arrayPedidos;
     }else{
-        $arrayPedidos= Pedido::getAllPedidos($dni=null);
+        $arrayPedidos= Pedido::getAllPedidos($dni);
         return $arrayPedidos;
     }
 }

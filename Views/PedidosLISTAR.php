@@ -52,12 +52,13 @@ echo"<table>";
                             <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
                             <a class='ordenar' href='PedidosLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
                         </th>";
-                    }
-                    echo"<th>
-                            $nombreAtributo <br>Ordenar por este atributo:<br>
-                            <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
-                            <a class='ordenar' href='PedidosLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
+                    } else{
+                        echo"<th>
+                        $nombreAtributo <br>Ordenar por este atributo:<br>
+                        <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
+                        <a class='ordenar' href='PedidosLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
                         </th>";
+                    }
                 }
                 include_once("../Controllers/OperacionesSession.php");//get rol
                 if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
