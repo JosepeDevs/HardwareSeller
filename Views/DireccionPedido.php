@@ -108,7 +108,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <?
 
                 if(isset($_SESSION['user'])) {
-                    echo"<button type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' id='enlaceQueDebeDesaparecer' style='display: block;' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
+                    echo"<button id='enlaceQueDebeDesaparecer' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
                     ";
                     echo"<div id='oculto' style='display: none;'>
                     <button type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago>></a></button>
