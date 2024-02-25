@@ -9,17 +9,22 @@ if( $usuarioLogeado == false){
 }
 
 include_once("header.php");
+include_once("../Controllers/PedidoBORRARController.php");
 
 $idPedido = isset($_GET['idPedido']) ? $_GET['idPedido'] : null;
+$estado = isset($_GET['estado']) ? $_GET['estado'] : null;
 
+$estadoCancelable = SePuedeCancelarPedido($estado);
+if($estadoCancelable ==false){
+    $_SESSION['BadEstadoParaCancelar'] = true;
+}
 
 if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "false" ){
     $_SESSION['BorradoPedidoCancelado'] = true;
     header("Location: PedidosLISTAR.php");
     exit;
-}else if(isset($_GET['idPedido']) && isset($_GET['confirmacion']) && $_GET['confirmacion']== "true") {
+}else if(isset($_GET['idPedido']) && isset($_GET['confirmacion']) && $_GET['confirmacion']== "true" && $estadoCancelable) {
     echo($_GET['confirmacion']);
-    include_once("../Controllers/PedidoBORRARController.php");
     $operacionConfirmada = borradoLogicoPedido($idPedido);
     header("Location: PedidosLISTAR.php");
     exit;

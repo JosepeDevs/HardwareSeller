@@ -126,6 +126,9 @@ echo"<table>";
                     if($nombreAtributo == "idPedido"){
                         $idPedido = $Pedido->getIdPedido();//guardamos el código para que esté disponible fuera de este bucle
                         echo "<td>".$valor."</td>";
+                    } else if($nombreAtributo == "estado"){
+                        $estado = $Pedido->getEstado();//guardamos  fuera de este bucle (para los enlaces)
+                        echo "<td>".$estado."</td>";
                     } else if( ( $rol !== "admin" || $rol !== "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
                         echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
                     }else{
@@ -139,7 +142,7 @@ echo"<table>";
                     <td><a href='PedidoBORRAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar Pedido' /></td>";
                 } else{
                     echo "<td><a href='ContenidoPedidoBUSCAR.php?numPedido=".$idPedido."'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
-                    <td><a href='PedidoBORRAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar Pedido' /></td>";
+                    <td><a href='PedidoBORRAR.php?idPedido=$idPedido&estado=$estado'><img class='icon' src='../Resources/minusAr.png' alt='cancelar Pedido' /></td>";
                 }
             }
         }

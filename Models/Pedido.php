@@ -368,6 +368,24 @@ public static function borradoLogicoPedido($idPedido){
         return $arrayAtributosPedido;
     }
 
+    /**
+     * @return bool true si no encuentra esta 6 pagado 7 enviado 8 recibido o 9 finalizado en alguna posicion de estado (lo pasa a string para comprobarlo)no permitimos cancelación
+     */
+    public static  function SePuedeCancelarPedido($estado){
+        $estado = (string)$estado;//lo pasamos a string
+        if(
+            strpos($estado, '6') !== false ||
+            strpos($estado, '7') !== false ||
+            strpos($estado, '8') !== false ||
+            strpos($estado, '9') !== false
+        ) {
+            ///si encuentra en alguna posicion de estado alguno de los numeros (pagado, enviado, recibido) no permitimos cancelación
+            return false;
+        } else{
+            return true;
+        }
+    }
+
 
     public function borradoLogico($idPedido){
         try {

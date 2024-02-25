@@ -13,4 +13,14 @@ function borradoLogicoPedido($idPedido){
     $operacionConfirmada = Pedido::borradoLogicoPedido($idPedido);
     return $operacionConfirmada;
 }
+
+function SePuedeCancelarPedido($estado){
+    include_once("../Models/Pedido.php");
+    $estadoCancelable = Pedido::SePuedeCancelarPedido($estado);
+    return $estadoCancelable;
+}
+
+
+
+
 ?>
