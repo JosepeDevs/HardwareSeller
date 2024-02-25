@@ -84,9 +84,9 @@ public function setActivo($activo) {
         try{
             $con = contectarBbddPDO();
             if($dni !== null){
-                $sqlQuery="SELECT * FROM  `pedidos` WHERE idPedido=:idPedido AND codUsuario=:dni;";
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE idPedido=:idPedido AND codUsuario=:dni AND activo=1;";
             } else{
-                $sqlQuery="SELECT * FROM  `pedidos` WHERE idPedido=:idPedido AND activo=1;";
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE idPedido=:idPedido ;";
             }
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':idPedido', $idPedido);
@@ -114,10 +114,10 @@ public function setActivo($activo) {
     public static function getPedidosByCodUsuario($codUsuario, $dni=null){
         try{
             $con = contectarBbddPDO();
-            if($dni == null){
-                $sqlQuery="SELECT * FROM  `pedidos` WHERE codUsuario=:codUsuario;";
-            } else{ 
+            if($dni !== null){
                 $sqlQuery="SELECT * FROM  `pedidos` WHERE codUsuario=:dni AND activo=1;";
+            } else{ 
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE codUsuario=:codUsuario;";
             }
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':codUsuario', $codUsuario);
@@ -146,10 +146,10 @@ public function setActivo($activo) {
     public static function GetPedidosByRangoFecha($fechaInicio,$fechaFin, $dni=null ){
         try{
             $con = contectarBbddPDO();
-            if($dni == null){
-                $sqlQuery="SELECT * FROM  `pedidos` WHERE fecha >= :fechaInicio AND fecha <= :fechaFin;";
-            } else{
+            if($dni !== null){
                 $sqlQuery="SELECT * FROM  `pedidos` WHERE fecha >= :fechaInicio AND fecha <= :fechaFin AND codUsuario=:dni AND activo=1;";
+            } else{
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE fecha >= :fechaInicio AND fecha <= :fechaFin;";
             }
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':fechaFin', $fechaFin);
@@ -180,60 +180,46 @@ public function setActivo($activo) {
     }
 
     public static Function getAllPedidos($dni=null){
-        if($dni == null) {
-            try {
-                $con = contectarBbddPDO();
-                $sql = "SELECT * FROM pedidos";
-                $statement = $con->prepare($sql);
-                $statement->execute();
-                $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
-                return $arrayPedidos;
-            } catch (PDOException $e) {
-                $_SESSION['ErrorGetPedidos'] = true;
-            }
-        } else {
-            try {
-                $con = contectarBbddPDO();
+        try {
+            $con = contectarBbddPDO();
+            if($dni !== null) {
                 $sql = "SELECT * FROM pedidos WHERE codUsuario=:dni AND activo=1";//si el usuario "borra" un pedido tendrá que dejar de verlo, por eso el activo=1
-                $statement = $con->prepare($sql);
-                $statement->bindParam(":dni", $dni);
-                $statement->execute();
-                $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
-                return $arrayPedidos;
-            } catch (PDOException $e) {
-                $_SESSION['ErrorGetPedidos'] = true;
+            }else{
+                $sql = "SELECT * FROM pedidos";
             }
+            $statement = $con->prepare($sql);
+            if($dni !== null) {
+                $statement->bindParam(":dni", $dni);
+            }
+            $statement->execute();
+            $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
+            return $arrayPedidos;
+        } catch (PDOException $e) {
+            $_SESSION['ErrorGetPedidos'] = true;
         }
     }
 
+
     public static function getASCSortedPedidosByAtributo($nombreAtributo, $dni=null) {
-        if($dni == null) {
-            try {
-                $con = contectarBbddPDO();
-                $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
+        try {
+            $con = contectarBbddPDO();
+            $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
+            if($dni !== null) {
+                $sql = "SELECT * FROM pedidos WHERE codUsuario=:dni AND activo=1 ORDER BY {$nombreAtributoLimpio} ASC";
+            } else{
                 $sql = "SELECT * FROM pedidos ORDER BY {$nombreAtributoLimpio} ASC";
-                $statement = $con->prepare($sql);
-                $statement->execute();
-                $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
-                return $arrayPedidos;
-            } catch (PDOException $e) {
-                $_SESSION['ErrorGetPedidos'] = true;
             }
-        } else {
-            try {
-                $con = contectarBbddPDO();
-                $nombreAtributoLimpio = htmlspecialchars($nombreAtributo);//quitamos cosas que nos intente inyectarSQL
-                $sql = "SELECT * FROM pedidos WHERE codUsuario=:dni ORDER BY {$nombreAtributoLimpio} ASC";
-                $statement = $con->prepare($sql);
+            $statement = $con->prepare($sql);
+            if($dni !== null) {
                 $statement->bindParam(":dni", $dni);
-                $statement->execute();
-                $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
-                return $arrayPedidos;
-            } catch (PDOException $e) {
-                $_SESSION['ErrorGetPedidos'] = true;
             }
+            $statement->execute();
+            $arrayPedidos = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
+            return $arrayPedidos;
+        } catch (PDOException $e) {
+            $_SESSION['ErrorGetPedidos'] = true;
         }
-    }
+    } 
 
     public static function ValorFloat($float){
         //si son españoles y escriben la coma como una coma hay que cambiarla por un punto

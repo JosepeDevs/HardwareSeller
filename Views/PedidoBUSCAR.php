@@ -48,8 +48,8 @@ $rol = GetRolDeSession();
 $dni = GetDniByEmail($_SESSION['user']);
 
 if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQUEST["fechaFin"]) || isset($_REQUEST["codUsuario"]) ) {
-    $idPedido=null;//mejor null que sin declarar
-    $codArticulo=null;//mejor null que sin declarar
+    $idPedido=null;//mejor null que sin declarar de todas formas lo voy a guardar dentro de nada con lo que tengamos en el GET
+    $codArticulo=null;//mejor null que sin declarar de todas formas lo voy a guardar dentro de nada con lo que tengamos en el GET
     include_once("../Controllers/PedidoBUSCARController.php");
     if(!empty(($_REQUEST["idPedido"]))){
         $idPedido=$_REQUEST["idPedido"];
