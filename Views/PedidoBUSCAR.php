@@ -9,7 +9,20 @@ if( $usuarioLogeado == false){
 }
 
 include_once("header.php");
-
+//BREADCRUMBS AREA CLIENTE
+echo '<><a class="finForm"  href="AreaCliente.php">Area Personal / </a>
+<a class="finForm" href="PedidosLISTAR.php"><img src="../Resources/arrow.png" alt="listar Pedido" /> Mis pedidos / </a>
+';
+if(isset($_REQUEST['idPedido'])){
+    echo'
+        <a class="finForm" href="PedidoEDITAR.php?idPedido='.$idPedido.'"">
+            <img src="../Resources/arrow.png" alt="listar Pedido" /> 
+            Pedido id='.$_REQUEST['idPedido'].' 
+        </a></h2>
+    ';
+} else{
+    echo'</h2>';
+}
 if(isset($_GET["PedidoConfirmado"])){
     //llegan de hacer un pedido, vamos a mostrarles los datos del pedido y darles instrucciones para próximos pasos
     echo'
@@ -166,18 +179,12 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         }
     };
 }
-if(isset($_REQUEST['idPedido'])){
+if(isset($_REQUEST['idPedido']) && ( $rol == "admin" || $rol == "empleado") ){
     echo'
-    <h2><a class="finForm" href="PedidoEDITAR.php?idPedido='.$idPedido.'""><img src="../Resources/arrow.png" alt="listar Pedido" />Editar pedido</a></h2>
-    <h2><a class="finForm" href="ContenidoPedidoBUSCAR.php?numPedido='.$idPedido.'"><img src="../Resources/arrow.png" alt="listar Pedido" />Ver contenidos de este pedido</a></h2>
+        <h2><a class="finForm" href="ContenidoPedidoBUSCAR.php?numPedido='.$idPedido.'"><img src="../Resources/arrow.png" alt="listar Pedido" />Ver contenidos de este pedido</a></h2>
+        <h2><a class="finForm" href="PedidoEDITAR.php?idPedido='.$idPedido.'""><img src="../Resources/arrow.png" alt="listar Pedido" />Editar pedido</a></h2>
     ';
 }
-echo'
-<h2><a class="finForm" href="PedidosLISTAR.php"><img src="../Resources/arrow.png" alt="listar Pedido" />Ver todos los pedidos</a></h2>
-';
-
-echo '<h2><a class="finForm"  href="AreaCliente.php">Ir a mi area personal</a></h2>';
-
 
 include_once("footer.php");
 ?>

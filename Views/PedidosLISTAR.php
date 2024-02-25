@@ -109,7 +109,7 @@ echo"<table>";
         //llamamos dinámicamente los getters de la clase habiendo guardado previamente el array con los nombresd de los atributos
         //hay que recorrer todos los atributos en todos los objetos
         if(count($arrayAImprimir)==0){
-            echo'<tr><td colspan="5">No hay pedidos que listar</td></tr>';
+            echo'<tr><td colspan="6">No hay pedidos que listar</td></tr>';
         } else{
             foreach($arrayAImprimir as $Pedido){
                 echo("<tr>");
