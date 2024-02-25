@@ -10,19 +10,9 @@ if( $usuarioLogeado == false){
 
 include_once("header.php");
 //BREADCRUMBS AREA CLIENTE
-echo '<><a class="finForm"  href="AreaCliente.php">Area Personal / </a>
-<a class="finForm" href="PedidosLISTAR.php"><img src="../Resources/arrow.png" alt="listar Pedido" /> Mis pedidos / </a>
-';
-if(isset($_REQUEST['idPedido'])){
-    echo'
-        <a class="finForm" href="PedidoEDITAR.php?idPedido='.$idPedido.'"">
-            <img src="../Resources/arrow.png" alt="listar Pedido" /> 
-            Pedido id='.$_REQUEST['idPedido'].' 
-        </a></h2>
-    ';
-} else{
-    echo'</h2>';
-}
+include_once("BreadCrumbsAreaCliente.php");
+
+//DISTINTAS VISTAS SEGÚN ENLACE
 if(isset($_GET["PedidoConfirmado"])){
     //llegan de hacer un pedido, vamos a mostrarles los datos del pedido y darles instrucciones para próximos pasos
     echo'

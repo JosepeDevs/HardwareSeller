@@ -10,6 +10,11 @@ if( $usuarioLogeado == false){
 //HEADER Y TITULO
 include_once("header.php");
 print("<h1>Lista de Pedidos</h1>");
+
+//BREADCRUMBS AREA CLIENTE
+include_once("BreadCrumbsAreaCliente.php");
+
+
 $rol = GetRolDeSession();
 $dni = GetDniByEmail($_SESSION['user']);
 //NAVEGACION
