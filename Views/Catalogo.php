@@ -32,6 +32,8 @@ if(! isset($_GET['pag'])){
         $paginaActual = $_GET['pag'] - 1 ;
     } else if ($_GET['pag'] == "X" ){
         $paginaActual = "X";
+    } else{
+        $paginaActual = 0;
     }
 }
 echo"<h3>Atributos para filtrar</h3>";
