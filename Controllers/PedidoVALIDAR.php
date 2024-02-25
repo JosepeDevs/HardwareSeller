@@ -67,8 +67,7 @@ if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true")
     $numPedido = Pedido::AltaPedido($fecha, $total, $estado, $codUsuario, $activo);
     if($numPedido !== false){
         $_SESSION['GoodInsertPedido']= true;
-        $pedido = Pedido::getPedidoByNumPedido($numPedido);
-        $_SESSION['pedido']= $pedido;
+        $_SESSION['numPedido']= $numPedido;
        // print"all good $pedido";
     }
     if(isset($_SESSION['CarritoConfirmado']) && !empty($_SESSION['CarritoConfirmado']) ){
