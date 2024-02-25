@@ -229,7 +229,7 @@ header nav ul li a:hover{
         padding: 10px;
         position: absolute;
         z-index: 1;
-        bottom: -324px;
+        bottom: -300px;
         left: 0%;
         opacity: 0;
         transition: opacity 0.3s;
