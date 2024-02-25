@@ -105,7 +105,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
     $arrayAtributos = getArrayAtributosPedido();
     if( $arrayPedido !== false){
         echo"<table>";
-        echo"<tr><th>Atributos:</th>";
+        echo"<tr>";
         //ENCABEZADOS
         foreach ($arrayAtributos as $atributo) {
              if(( $rol !== "admin" || $rol !== "empleado" ) && ( $atributo == "activo" ||$atributo == "codUsuario" ) ){
@@ -121,11 +121,10 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             foreach ($arrayAtributos as $atributo) {
                 $getter = 'get' . ucfirst($atributo);
                 $valor = $Pedido->$getter();
-                echo"<th>Datos pedido:</th>";
                 if($atributo == "idPedido"){
                     $idPedido = $Pedido->getIdPedido();//guardamos el código para que esté disponible fuera de este bucle
                     echo "<td>".$valor."</td>";
-                } else if(( $rol !== "admin" || $rol !== "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
+                } else if(( $rol !== "admin" || $rol !== "empleado" ) && ( $atributo == "activo" ||$atributo == "codUsuario" ) ){
                     echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
                 }else{
                     echo "<td>".$valor."</td>";
