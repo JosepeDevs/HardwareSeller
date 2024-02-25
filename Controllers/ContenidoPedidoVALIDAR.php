@@ -139,7 +139,7 @@ foreach ($contenidoPedido as $index => $array) {
         }
     };
 
-//header("Location: ../Views/ContenidoPedidoLISTAR.php");
-//exit;
+header("Location: ../Views/ContenidoPedidoLISTAR.php");
+exit;
 
 ?>
