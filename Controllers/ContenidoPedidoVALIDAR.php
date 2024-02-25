@@ -24,7 +24,9 @@ foreach ($contenidoPedido as $index => $array) {
     $descuento =  $arrayDatosArticulo['descuento'];
     $cantidad =  $arrayDatosArticulo['cantidad'];
     $activo = isset($_SESSION['activo']) ? $_SESSION['activo'] : 1;
-    
+    $numPedidoOriginal = isset($_SESSION['numPedidoOriginal']) ? $_SESSION['numPedidoOriginal'] : null;
+    $numPedido = isset($_POST['numPedido']) ? $_POST['numPedido'] : null;
+
     $numPedidoValido = ContenidoPedido::ComprobarLongitud($numPedido,11);
     if($numPedidoValido == false) {    $_SESSION['LongNumPedido']= true; }
 
