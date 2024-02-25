@@ -28,6 +28,8 @@ if($totalEsFloat == false) {    $_SESSION['Badtotal']= true; }
 $estadoValido = Pedido::ComprobarLongitud($estado,1);
 if($estadoValido == false) {    $_SESSION['LongEstado']= true; }
 
+
+include_once("../Models/Cliente.php");
 $usuarioExiste = Cliente::getClienteByDni($codUsuario);
 if($usuarioExiste == false) {    $_SESSION['ClienteNoExiste']= true; }
 
