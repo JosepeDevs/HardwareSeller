@@ -108,6 +108,7 @@
                                 <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
                             } else{
                                 print ('
+                                <li><a href="/Views/AreaCliente.php">Acceder al área personal</a></li>
                                 <li><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></li>
                                 <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
                             }
