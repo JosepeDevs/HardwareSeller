@@ -12,12 +12,13 @@ include_once("header.php");
 
 $idPedido = isset($_GET['idPedido']) ? $_GET['idPedido'] : null;
 
-
 if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "no" ){
+    echo($_GET['confirmacion']);
     $_SESSION['BorradoPedidoCancelado'] = true;
     header("Location: PedidoLISTAR.php");
     exit;
 }else if(isset($_GET['idPedido']) && isset($_GET['confirmacion']) && $_GET['confirmacion']== "yes") {
+    echo($_GET['confirmacion']);
     include_once("../Controllers/PedidoBORRARController.php");
     $operacionConfirmada = borradoLogicoPedido($idPedido);
     header("Location: PedidoLISTAR.php");
