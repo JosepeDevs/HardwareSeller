@@ -28,7 +28,10 @@ if(isset($_GET["PedidoConfirmado"])){
         y no cambiara el estado, por favor, contáctenos para revisarlo.
         </h4>
         <h4>Puede encontrar estos mismos datos bancarios en nuestra página "sobre nosotros"</h4>
-    ';
+        <br><br>
+        <a href="PedidosLISTAR.php">Ver  mis pedidos</a>
+        ';
+
 } else if(!empty($_GET) && !isset($_GET["PedidoConfirmado"])) {
     //han buscado un pedido, dar opción de buscar otro
     echo'
