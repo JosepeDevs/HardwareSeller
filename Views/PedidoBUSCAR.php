@@ -50,8 +50,9 @@ if(isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQ
         if( $rol == "admin" || $rol == "empleado" ){
             $arrayPedido = getPedidoByIdPedido($idPedido);
         } else{
-            echo"<h1>no soy admin ni empleado</h1>";
+            echo"<h1>no soy admin ni empleado</h1>dni=$dni";
             $arrayPedido = getPedidoByIdPedido($idPedido, $dni);
+            print_r($arrayPedido);
         }
         if($arrayPedido == false){
             $_SESSION['idPedidoNotFound'] = true;
