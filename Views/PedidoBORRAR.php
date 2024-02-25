@@ -41,5 +41,14 @@ echo'<h2><a href="../Views/PedidoBORRAR.php?idPedido='.$idPedido.'&confirmacion=
 
         </div>
 <?php
+//SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
+include_once("../Controllers/PedidosMensajes.php");
+            $arrayMensajes=getArrayMensajesPedidos();
+            if(is_array($arrayMensajes)){
+                foreach($arrayMensajes as $mensaje) {
+                    echo "<h3>$mensaje</h3>";
+                }
+            };
+            
 include_once("footer.php");
 ?>

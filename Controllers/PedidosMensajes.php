@@ -16,6 +16,22 @@ Function getArrayMensajesPedidos(){
 
     $mensajes=[];
 
+    if(isset($_SESSION['ExitoBorrandoPedido']) && $_SESSION['ExitoBorrandoPedido'] == true){
+        $mensajes[] =  "El Pedido se canceló satisfactoriamente.";
+        unset($_SESSION['ExitoBorrandoPedido']);
+    }
+    if(isset($_SESSION['ExitoBorrandoContenidoPedido']) && $_SESSION['ExitoBorrandoContenidoPedido'] == true){
+        $mensajes[] =  "El contenido del pedido se vació correctamente.";
+        unset($_SESSION['ExitoBorrandoContenidoPedido']);
+    }
+    if(isset($_SESSION['FalloBorrandoPedido']) && $_SESSION['FalloBorrandoPedido'] == true){
+        $mensajes[] =  "No es posible cancelar el pedido, tal vez el estado no sea adecuado (enviados, pago realizado, recibidos, finalizads...) Contacte con nosotros si cree que es un error.";
+        unset($_SESSION['FalloBorrandoPedido']);
+    }
+    if(isset($_SESSION['FalloBorrandoContenidoPedido']) && $_SESSION['FalloBorrandoContenidoPedido'] == true){
+        $mensajes[] =  "No se pudo borrar/cancelar los contenidos del pedido seleccionado, tal vez el estado no sea el adecuado (ya enviado, recibido, etc). Contacte con nosotros si cree que es un error.";
+        unset($_SESSION['FalloBorrandoContenidoPedido']);
+    }
     if(isset($_SESSION['SinNumero']) && $_SESSION['SinNumero'] == true){
         $mensajes[] =  "El idPedido que escribió le faltaba la parte numérica.";
         unset($_SESSION['SinNumero']);
@@ -90,10 +106,6 @@ Function getArrayMensajesPedidos(){
         $mensajes[]= "El idPedido no se guardó porque ya existía previamente en nuestra base de datos. Pruebe otro por favor.";
     }
 
-    if(isset($_SESSION['BadUpdatePedido']) && ($_SESSION['BadUpdatePedido'] == true)) {
-        unset($_SESSION['BadUpdatePedido']);
-        $mensajes[]= "Hubo un fallo actualizando los datos del Pedido, por favor, pruebe de nuevo. La imagen subida no ha persistido en nuestros servidores.";
-    }
 
     if(isset($_SESSION['Longfecha']) && ($_SESSION['Longfecha'] == true)) {
         unset($_SESSION['Longfecha']);
@@ -152,6 +164,10 @@ Function getArrayMensajesPedidos(){
     if(isset($_SESSION['ErrorGetPedidos']) && ($_SESSION['ErrorGetPedidos'] == false)) {
         unset($_SESSION['ErrorGetPedidos'] );
         $mensajes[]= "No se pudieron recuperar Pedidos de la base de datos.";
+    }
+    if(isset($_SESSION['codUsuarioNotFound']) && ($_SESSION['codUsuarioNotFound'] == false)) {
+        unset($_SESSION['codUsuarioNotFound'] );
+        $mensajes[]= "No se encontró el ususario indicado .";
     }
 
 

@@ -151,11 +151,6 @@ Function getArrayMensajesContenidoPedido(){
         unset($_SESSION['BadOperation']);
     }
 
-    if(isset($_SESSION['BadInsertContenidoPedido']) && $_SESSION['BadInsertContenidoPedido'] == true){
-        $mensajes[] =  "Fallo al insertar sus datos, la operación no tuvo lugar. Puede ser un fallo de la base de datos. La imagen subida no ha persistido en nuestros servidores.";
-        unset($_SESSION['BadInsertContenidoPedido']);
-    }
-
     if(isset($_SESSION['LongcodArticulo']) && $_SESSION['LongcodArticulo'] == true){
         $mensajes[] =  "Introdujo un codArticulo demasiado largo. Abrévielo por favor.";
         unset($_SESSION['LongcodArticulo']);
@@ -225,10 +220,6 @@ Function getArrayMensajesContenidoPedido(){
         $mensajes[]= "Borrado cancelado.";
     }
 
-    if(isset($_SESSION['GoodInsertContenidoPedido']) && ($_SESSION['GoodInsertContenidoPedido'] == true)) {
-        unset($_SESSION['GoodInsertContenidoPedido']);
-        $mensajes[]= "Nuevo ContenidoPedido añadido correctamente.";
-    }
 
     if(isset($_SESSION['BadInsertContenidoPedido']) && ($_SESSION['BadInsertContenidoPedido'] == true)) {
         unset($_SESSION['BadInsertContenidoPedido']);
@@ -243,7 +234,7 @@ Function getArrayMensajesContenidoPedido(){
     if(isset($_SESSION['BadOperation']) && ($_SESSION['BadOperation'] == true)) {
         unset($_SESSION['BadOperation'] );
         $mensajes[]= " Operación de borrado de artículo falló de una forma inesperada, quizás la conexión a la base de datos no fue correcta.";
-    }
+    } 
 
     if(isset($_SESSION['MoveFailed']) && ($_SESSION['MoveFailed'] == true)) {
         unset($_SESSION['MoveFailed'] );
