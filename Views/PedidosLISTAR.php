@@ -13,8 +13,8 @@ print("<h1>Lista de Pedidos</h1>");
 $rol = GetRolDeSession();
 $dni = GetDniByEmail($_SESSION['user']);
 //NAVEGACION
+echo"<div id='EnlacesArriba'>";
 if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
-    echo"<div id='EnlacesArriba'>";
     ?>
 
     <h2>
