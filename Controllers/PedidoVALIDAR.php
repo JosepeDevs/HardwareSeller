@@ -14,12 +14,15 @@ include_once("../Models/Pedido.php");
 
 $fecha = date("Y-m-d"); //esto no lo comprobamos porque lo estoy generando aquí mismo
 $_SESSION['fecha']=$fecha;
-print$fecha;
 print_r($_SESSION);
 $total = isset($_SESSION["total"]) ? round($_SESSION["total"],2) : null;
-$estado = isset($_SESSION["estado"]) ? $_SESSION["estado"] : null; //aquío llegará solo 3 o 4 en función del método de pago
+print("<br>total<br>".$total);
+$estado = isset($_SESSION["estado"]) ? $_SESSION["estado"] : null; //aquí llegará solo 3 o 4 en función del método de pago
+print("<br>estado<br>".$estado);
 $codUsuario = isset($_SESSION["codUsuario"]) ? $_SESSION["codUsuario"] : null; //dni
+print("<br>codUsuario<br>".$codUsuario);
 $activo = isset($_SESSION["PedidoActivo"]) ? $_SESSION["PedidoActivo"] : 1; //de forma predeterminada valdra 1
+print("<br>activo<br>".$activo);
 
 //no permitimos la edición del número de pedido, eso lo calcula la BBDD
 
@@ -62,7 +65,7 @@ if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true")
    // header("Location: ../Views/PedidosLISTAR.php");
     exit;
 }else if( isset($_SESSION["nuevoPedido"]) && $_SESSION["nuevoPedido"] == "true"){
-    unset($_SESSION['nuevoPedido']);
+    //unset($_SESSION['nuevoPedido']);
     //all good y estamos añadiendo artículo nuevo
 
     $numPedido = Pedido::AltaPedido($fecha, $total, $estado, $codUsuario, $activo);
