@@ -94,17 +94,18 @@ public function setActivo($activo) {
         try{
             $con = contectarBbddPDO();
             if($dni !== null){
-            
+                $sqlQuery="SELECT  contenidopedido.*
+                FROM contenidopedido
+                JOIN pedidos ON contenidopedido.numPedido =pedidos.idPedido
+                WHERE contenidopedido.codArticulo=:codArticulo AND pedidos.codUsuario=:dni;";
             } else{
-
+                $sqlQuery="SELECT * FROM  `contenidopedido` WHERE codArticulo=:codArticulo;";
             }
-            if($dni !== null){
-            
-            }
-
-            $sqlQuery="SELECT * FROM  `contenidopedido` WHERE codArticulo=:codArticulo;";
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':codArticulo', $codArticulo);
+            if($dni !== null){
+                $statement ->bindParam(":dni",$dni);
+            }
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "ContenidoPedido");
             $ContenidoPedido = $statement->fetchAll();
