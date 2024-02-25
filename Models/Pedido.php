@@ -86,7 +86,7 @@ public function setActivo($activo) {
             if($dni !== null){
                 $sqlQuery="SELECT * FROM  `pedidos` WHERE idPedido=:idPedido AND codUsuario=:dni;";
             } else{
-                $sqlQuery="SELECT * FROM  `pedidos` WHERE idPedido=:idPedido;";
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE idPedido=:idPedido AND activo=1;";
             }
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':idPedido', $idPedido);
@@ -117,7 +117,7 @@ public function setActivo($activo) {
             if($dni == null){
                 $sqlQuery="SELECT * FROM  `pedidos` WHERE codUsuario=:codUsuario;";
             } else{ 
-                $sqlQuery="SELECT * FROM  `pedidos` WHERE codUsuario=:dni;";
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE codUsuario=:dni AND activo=1;";
             }
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':codUsuario', $codUsuario);
@@ -149,7 +149,7 @@ public function setActivo($activo) {
             if($dni == null){
                 $sqlQuery="SELECT * FROM  `pedidos` WHERE fecha >= :fechaInicio AND fecha <= :fechaFin;";
             } else{
-                $sqlQuery="SELECT * FROM  `pedidos` WHERE fecha >= :fechaInicio AND fecha <= :fechaFin AND codUsuario=:dni;";
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE fecha >= :fechaInicio AND fecha <= :fechaFin AND codUsuario=:dni AND activo=1;";
             }
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':fechaFin', $fechaFin);
@@ -194,7 +194,7 @@ public function setActivo($activo) {
         } else {
             try {
                 $con = contectarBbddPDO();
-                $sql = "SELECT * FROM pedidos WHERE codUsuario=:dni";
+                $sql = "SELECT * FROM pedidos WHERE codUsuario=:dni AND activo=1";//si el usuario "borra" un pedido tendrá que dejar de verlo, por eso el activo=1
                 $statement = $con->prepare($sql);
                 $statement->bindParam(":dni", $dni);
                 $statement->execute();
