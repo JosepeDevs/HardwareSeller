@@ -122,7 +122,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
                 $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
                 $valor = call_user_func([$Pedido, $nombreMetodo]);
                 if($nombreAtributo == "idPedido"){
-                    $idPedido = $Pedido->getidPedido();//guardamos el código para que esté disponible fuera de este bucle
+                    $idPedido = $Pedido->getIdPedido();//guardamos el código para que esté disponible fuera de este bucle
                     echo "<td>4".$valor."</td>";
                 } else if( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ){
                     if( $rol !== "admin" || $rol !== "empleado" ){
@@ -134,9 +134,9 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
                     echo "<td>3".$valor."</td>";
                 }
             }
-            echo "</tr>";
-        echo "</table>";
         }
+        echo "</tr>";
+        echo "</table>";
     } else{
         echo "<h3>No se encontraron coincidencias.</h3>";
     }

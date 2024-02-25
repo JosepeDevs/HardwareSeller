@@ -244,6 +244,7 @@ public function setActivo($activo) {
             $statement->bindParam(':numPedido', $numPedido);
             $statement->execute();
             $pedido = $statement->fetch(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
+            
             if($pedido->RowCount() > 0) {
                 return $pedido;
             } else {
