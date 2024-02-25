@@ -250,6 +250,7 @@ public function setActivo($activo) {
             $statement->bindParam(':activo', $activo);
             $statement->execute();
             $numPedido = $con->lastInsertId();
+            $_SESSION['numPedido']= $numPedido;
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
             $resultado = $statement->fetch();
 
