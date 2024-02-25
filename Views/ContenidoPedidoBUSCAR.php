@@ -17,7 +17,10 @@ $dni = GetDniByEmail($_SESSION['user']);
 <h1>
     Contenido del pedido 
 </h1>
+
 <?
+//BREADCRUMBS AREA CLIENTE
+include_once("BreadCrumbsAreaCliente.php");
 if(!empty($_GET)){
     echo'<br><h2><a class="finForm" href="PedidoBUSCAR.php?"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Buscar otro pedido</a></h2>
     <br>';
