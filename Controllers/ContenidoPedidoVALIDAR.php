@@ -71,7 +71,6 @@ foreach ($contenidoPedido as $index => $array) {
         $arrayCotenidoPedido [] = new ContenidoPedido($numPedido, $numLinea, $codArticulo, $cantidad, $precio, $descuento, $activo);
     }
 }
-    print_r($arrayCotenidoPedido);
     if($numPedido == $numPedidoOriginal ){//si el código escrito es el mismo --> es que estaban editando y no lo quieren cambiar
         $mantenemosnumPedido= true;
     } else{
@@ -115,7 +114,7 @@ foreach ($contenidoPedido as $index => $array) {
     
         }
 
-    }else if( isset($_SESSION["nuevoPedido"]) && $_SESSION["nuevoPedido"] == "true" ){
+    }else if( isset($_SESSION["nuevoPedido"]) && $_SESSION["nuevoPedido"] == "true2" ){
         //todo hacer esto y alta de pedido transaccional para que ocurra todo o no ocurra nada
         $contador=0;
         print"entramos a crear nuevo Contenido pedido";
