@@ -51,7 +51,7 @@
                             if( ! isset($_SESSION['user'])){
                                 print('
                     <div class="tooltip-container">
-                        <a class="tooltip-trigger">Ingresar/Registrarse</a>
+                        <a href="/Views/AreaCliente.php" class="tooltip-trigger">Ingresar/Registrarse</a>
                         <div class="tooltip-content">
                                 <form action="/Controllers/conexion.php" method="post">
                                     <table class="tablaLogin">
