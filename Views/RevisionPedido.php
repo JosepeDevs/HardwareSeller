@@ -1,6 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-
+$_SESSION['nuevoPedido']="true";
 include_once("../Views/header.php");
 ?>
 <h1>Confirmación del pedido</h1>
@@ -123,6 +123,7 @@ if(isset($_POST["estado"])) {
          </p>";
     }
 }
+
 ?>
 <br><br>
 <button type='button'><a href='../Views/MetodoDePago.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Modificar método de pago</a></button>

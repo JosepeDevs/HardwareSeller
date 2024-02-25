@@ -60,7 +60,7 @@ if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true")
     header("Location: ../Views/PedidosLISTAR.php");
     exit;
 }else if( isset($_SESSION["nuevoPedido"]) && $_SESSION["nuevoPedido"] == "true"){
-
+    unset($_SESSION['nuevoPedido']);
     //all good y estamos añadiendo artículo nuevo
 
     $numPedido = Pedido::AltaPedido($fecha, $total, $estado, $codUsuario, $activo);
