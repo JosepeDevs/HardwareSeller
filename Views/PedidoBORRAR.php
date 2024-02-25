@@ -16,11 +16,11 @@ if(isset($_GET['confirmacion'])){
     echo($_GET['confirmacion']);
 }
 
-if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "no" ){
+if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "nain" ){
     $_SESSION['BorradoPedidoCancelado'] = true;
     header("Location: PedidoLISTAR.php");
     exit;
-}else if(isset($_GET['idPedido']) && isset($_GET['confirmacion']) && $_GET['confirmacion']== "yes") {
+}else if(isset($_GET['idPedido']) && isset($_GET['confirmacion']) && $_GET['confirmacion']== "si") {
     echo($_GET['confirmacion']);
     include_once("../Controllers/PedidoBORRARController.php");
     $operacionConfirmada = borradoLogicoPedido($idPedido);
@@ -33,8 +33,8 @@ if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "no" ){
         <?php
 
 
-echo'<h2><a href="../Views/PedidoBORRAR.php?idPedido='.$idPedido.'&confirmacion=yes">Sí, cancelar pedido y sus contenidos.</a></h2>';
-echo'<h2><a href="../Views/PedidoBORRAR.php?idPedido='.$idPedido.'&confirmacion=no">Cancelar desactivación.</a></h2>';
+echo'<h2><a href="../Views/PedidoBORRAR.php?idPedido='.$idPedido.'&confirmacion=si">Sí, cancelar pedido y sus contenidos.</a></h2>';
+echo'<h2><a href="../Views/PedidoBORRAR.php?idPedido='.$idPedido.'&confirmacion=nain">Cancelar desactivación.</a></h2>';
 ?>
 
         </div>
