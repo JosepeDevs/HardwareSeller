@@ -117,6 +117,12 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         //DATOS DEL OBJETO O LOS OBJETOS
         foreach($arrayPedido as $Pedido){
             echo("<tr>");
+            $idPedido = $pedido->getIdPedido();
+            $fecha = $pedido->getFecha();
+            $total = $pedido->getTotal();
+            $estado = $pedido->getEstado();
+            $codUsuario = $pedido->getCodUsuario();
+            $activo = $pedido->getActivo();
             foreach ($arrayAtributos as $atributo) {
                 $nombreAtributo = $atributo;//p.e. codigo, nombre...
                 $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
@@ -126,9 +132,9 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
                     echo "<td>".$valor."</td>";
                 } else if( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ){
                     if( $rol !== "admin" || $rol !== "empleado" ){
-                        echo'2';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
+                        echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
                     } else{
-                        echo "<td>1".$valor."</td>";
+                        echo "<td>".$valor."</td>";
                     }
                 }else{
                     echo "<td>".$valor."</td>";
