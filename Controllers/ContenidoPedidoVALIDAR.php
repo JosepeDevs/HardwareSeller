@@ -68,7 +68,7 @@ foreach ($contenidoPedido as $index => $array) {
         exit;
     } else {
         //array con objetos "contenidopedido",ahora en cada indice con todos los datos que me hacen falta para dar de alta el contenidoPedido 
-        $arrayCotenidoPedido [] = new ContenidoPedido($numPedido, $numLinea, $codArticulo, $cantidad, $precio, $descuento, $activo);
+        $arrayContenidoPedido [] = new ContenidoPedido($numPedido, $numLinea, $codArticulo, $cantidad, $precio, $descuento, $activo);
     }
 }
     if($numPedido == $numPedidoOriginal ){//si el código escrito es el mismo --> es que estaban editando y no lo quieren cambiar
@@ -118,7 +118,7 @@ foreach ($contenidoPedido as $index => $array) {
         //todo hacer esto y alta de pedido transaccional para que ocurra todo o no ocurra nada
         $contador=0;
         print"entramos a crear nuevo Contenido pedido";
-        foreach ($arrayCotenidoPedido as $contenidoPedido) {
+        foreach ($arrayContenidoPedido as $contenidoPedido) {
             //all good y estamos añadiendo artículo nuevo
             $numPedido=$contenidoPedido->getNumPedido();
             $numLinea=$contenidoPedido->getNumLinea();
