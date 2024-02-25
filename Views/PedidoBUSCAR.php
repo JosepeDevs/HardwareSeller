@@ -47,7 +47,7 @@ if( $usuarioLogeado == false){
 $rol = GetRolDeSession();
 $dni = GetDniByEmail($_SESSION['user']);
 
-if(isset($_REQUEST["numPedido"]) || $_REQUEST["idPedido"] || isset($_REQUEST["fechaInicio"]) ||isset($_REQUEST["fechaFin"]) || isset($_REQUEST["codUsuario"]) ) {
+if( $_REQUEST["idPedido"] || isset($_REQUEST["fechaInicio"]) ||isset($_REQUEST["fechaFin"]) || isset($_REQUEST["codUsuario"]) ) {
     $idPedido=null;//mejor null que sin declarar
     $codArticulo=null;//mejor null que sin declarar
     include_once("../Controllers/PedidoBUSCARController.php");
