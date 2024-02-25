@@ -51,9 +51,9 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
     if(!empty(($_REQUEST["numPedido"]))){
         $numPedido=$_REQUEST["numPedido"];
         if( $rol == "admin" || $rol == "empleado" ){
-            $arrayContenidoPedido[] = getContenidoPedidoBynumPedido($numPedido);
+            $arrayContenidoPedido = getContenidoPedidoBynumPedido($numPedido);
         } else{
-            $arrayContenidoPedido[] = getContenidoPedidoBynumPedido($numPedido, $dni);
+            $arrayContenidoPedido = getContenidoPedidoBynumPedido($numPedido, $dni);
         }
         if($arrayContenidoPedido == false){
             $_SESSION['numPedidoNotFound'] = true;
@@ -63,9 +63,9 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
     if(!empty(($_REQUEST["codArticulo"]))){
         $codArticulo=$_REQUEST["codArticulo"];
         if( $rol == "admin" || $rol == "empleado" ){
-            $arrayContenidoPedido[] = GetContenidoPedidoByCodArticulo($codArticulo);
+            $arrayContenidoPedido = GetContenidoPedidoByCodArticulo($codArticulo);
         } else{
-            $arrayContenidoPedido[] = GetContenidoPedidoByCodArticulo($codArticulo, $dni);
+            $arrayContenidoPedido = GetContenidoPedidoByCodArticulo($codArticulo, $dni);
         }
         if($arrayContenidoPedido == false){
             $_SESSION['codArticuloNotFound'] = true;
