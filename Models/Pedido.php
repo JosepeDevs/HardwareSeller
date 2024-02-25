@@ -78,6 +78,32 @@ public function setActivo($activo) {
 }
 
 
+public static function borradoLogicoPedido($idPedido){
+    try {
+        include_once("../Controllers/ContenidoPedidoBORRARController.php");
+        $operacion1Confirmada = borradoLogicoContenidoPedido($idPedido);
+
+        $conPDO=contectarBbddPDO();
+        $query=("UPDATE pedidos SET activo=0 WHERE idPedido=:idPedido");
+        $statement= $conPDO->prepare($query);
+        $statement->bindParam(':idPedido', $idPedido);
+        $operacion2Confirmada = $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Pedido');
+        $operacion2Confirmada= $statement->fetch();
+        if($operacion2Confirmada !== false && $operacion1Confirmada !== false){
+            $_SESSION['ExitoBorrandoPedido'] = true;
+            $_SESSION['ExitoBorrandoContenidoPedido'] = true;
+        } else {
+            $_SESSION['FalloBorrandoPedido'] = true;
+            $_SESSION['FalloBorrandoContenidoPedido'] = true;
+        }
+        return $operacion2Confirmada; //devolvemos el pedido, a partir de ahí pueden acceder al contenido si hace falta
+    } catch(PDOException $e) {
+        $_SESSION['BadOperation'] = true;
+        return false;
+    };
+}
+
     /**
      * @return bool|Pedido devuelve false si falla, devuelve el Pedido si lo encuentra consultando el código
      */
@@ -244,7 +270,7 @@ public function setActivo($activo) {
             $statement->bindParam(':numPedido', $numPedido);
             $statement->execute();
             $pedido = $statement->fetch(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
-            
+
             if($pedido->RowCount() > 0) {
                 return $pedido;
             } else {

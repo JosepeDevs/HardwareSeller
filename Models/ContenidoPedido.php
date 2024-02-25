@@ -240,7 +240,7 @@ public function setActivo($activo) {
     public static function borradoLogicoContenidoPedido($numPedido){
         try {
             $conPDO=contectarBbddPDO();
-            $query=("UPDATE contenidopedido SET activo=false WHERE numPedido=:numPedido");
+            $query=("UPDATE contenidopedido SET activo=0 WHERE numPedido=:numPedido");
             $statement= $conPDO->prepare($query);
             $statement->bindParam(':numPedido', $numPedido);
             $operacionConfirmada = $statement->execute();
