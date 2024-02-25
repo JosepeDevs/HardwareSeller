@@ -7,7 +7,12 @@ if( $usuarioLogeado == false){
     echo "ArticuloEDITAR dice: no está user en session";
     header("Location: index.php");
 }
-
+$rol = GetRolDeSession();
+if( $rol !== "admin" || $rol !== "empleado" ){
+    session_destroy();
+    echo "Articulos alta dice: no está user en session";
+    header("Location: /index.php");
+}
 
 include_once("header.php");
 print("<h1>Modificar artículo</h1>");

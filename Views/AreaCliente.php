@@ -4,6 +4,8 @@ print"<h1>Área privada</h1>";
 include_once("../Controllers/OperacionesSession.php");
 $userExiste = UserEstablecido();
 
+//NO PROTEGER, AQUÍ PUEDEN REGISTRARSE TAMBIÉN
+
 if( !$userExiste){
     ?>
     <form action="/Controllers/conexion.php" method="post">

@@ -8,9 +8,19 @@ if( $usuarioLogeado == false){
     header("Location: ../index.php");
 }
 
+
+//NO PROTEGEMOS COMO ADMIN O 
+
 include_once("header.php");
 
 $dni = isset($_GET['dni']) ? $_GET['dni'] : null;
+$dniUsuario=GetDniByEmail($_SESSION['user']);
+$estaMirandoSuPropioDni=($dni===$dniUsuario);
+if(!$estaMirandoSuPropioDni){
+    session_destroy();
+    echo "ClienteBorrar dice: estaba intentando mirara algo que no debería";
+    header("Location: /index.php");
+}
 if($dni !== null){
     $_SESSION['dni'] = $dni;
 }

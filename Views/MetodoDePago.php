@@ -1,5 +1,7 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+//NO PROTEGER
+
 include_once("header.php");
 
 echo'<h1>Seleccione el método de pago</h1>';

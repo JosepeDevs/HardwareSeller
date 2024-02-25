@@ -1,5 +1,6 @@
 <?php
 include_once("header.php");
+//NO PROTEGER
 ?>
     <form id="recuperarpsswrd" action="../Controllers/UpdatePsswrd.php" method="POST">
         <label>Email:</label> <br><input type="email" name="mail"><br><br>

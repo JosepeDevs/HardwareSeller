@@ -8,10 +8,11 @@ if( $usuarioLogeado == false){
     print "TablaClientes dice: no está user en session";
     header("Location: ../index.php");
 }
-if( AuthYRolAdmin() == false){
+$rol = GetRolDeSession();
+if( $rol !== "admin" || $rol !== "empleado" ){
     session_destroy();
-    print " el rol no era adecuado";
-    header("Location: ../index.php");
+    echo "Articulos alta dice: no está user en session";
+    header("Location: /index.php");
 }
 
 include("header.php");

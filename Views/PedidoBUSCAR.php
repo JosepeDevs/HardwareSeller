@@ -1,6 +1,7 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Controllers/OperacionesSession.php");
+//las funciones ya filtran para que las busquedas solo les devuelvan sus propios datos, con proteger para que solo users entren basta
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
@@ -164,8 +165,8 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         echo "<h3>No se encontraron coincidencias.</h3>";
     }
 
-    include_once("../Controllers/PedidoMensajes.php");
-    $arrayMensajes=getArrayMensajesPedido();
+    include_once("../Controllers/PedidosMensajes.php");
+    $arrayMensajes=getArrayMensajesPedidos();
     if(is_array($arrayMensajes)){
         foreach($arrayMensajes as $mensaje) {
             echo "<h3>$mensaje</h3>";

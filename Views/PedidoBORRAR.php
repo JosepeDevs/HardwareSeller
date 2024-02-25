@@ -1,5 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+//Aquí si que pueden acceder usuarios, las funciones de contenido pedido y pedido ya filtran para que solo tengan sus propios pedidos
 include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
@@ -49,6 +50,6 @@ include_once("../Controllers/PedidosMensajes.php");
                     echo "<h3>$mensaje</h3>";
                 }
             };
-            
+
 include_once("footer.php");
 ?>

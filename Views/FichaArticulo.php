@@ -1,5 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+//NO PROTEGER
 include("header.php");
 if(isset($_GET["codigo"])){
     $codigo = $_GET["codigo"];

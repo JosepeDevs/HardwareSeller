@@ -5,7 +5,14 @@ $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     header("Location: /index.php");
+}$rol = GetRolDeSession();
+if( $rol !== "admin" || $rol !== "empleado" ){
+    session_destroy();
+    echo "Articulos alta dice: no está user en session";
+    header("Location: /index.php");
 }
+
+
 //HEADER Y TITULO
 include_once("header.php");
 print("<h1>Administrar categorias</h1>");

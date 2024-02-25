@@ -1,4 +1,18 @@
 <?php
+if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+include_once("../Controllers/OperacionesSession.php");
+$usuarioLogeado = UserEstablecido();
+if( $usuarioLogeado == false){
+    session_destroy();
+    echo "ClientesBuscar dice: shit no está user en session";
+    header("Location: index.php");
+}
+$rol = GetRolDeSession();
+if( $rol !== "admin" || $rol !== "empleado" ){
+    session_destroy();
+    echo "Articulos alta dice: no está user en session";
+    header("Location: /index.php");
+}
 include("header.php");
 ?>
     <h1>
@@ -22,14 +36,7 @@ include("header.php");
 <br><br><br>
 
 <?php
-if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-include_once("../Controllers/OperacionesSession.php");
-$usuarioLogeado = UserEstablecido();
-if( $usuarioLogeado == false){
-    session_destroy();
-    echo "ClientesBuscar dice: shit no está user en session";
-    header("Location: index.php");
-}
+
 
 include_once("../Controllers/ClienteBUSCARController.php");
 $arrayAtributos = getArrayAtributosCliente();

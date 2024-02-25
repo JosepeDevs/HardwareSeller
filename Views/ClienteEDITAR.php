@@ -14,7 +14,11 @@ print("<h1>Modificar cliente</h1>");
 include_once("../Controllers/ClienteEDITARController.php");
 if(isset($_GET['dni'])){
     //el DNI ha llegado por la url
-    $dniOriginal=$_GET["dni"];
+    $rol = GetRolDeSession();
+    //solo podrán acceder a esa info algunos roles
+    if( $rol == "admin" || $rol == "empleado" ){
+        $dniOriginal=$_GET["dni"];
+    }
 } else{
     //hemos llegado con la url vacia
     $raiz= dirname(__DIR__);

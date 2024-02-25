@@ -1,12 +1,19 @@
 
 <?php
-//require controller y nada más, dependencia de fuera hacia dentro
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+/// las funciones de contenido pedidos y pedidos ya bloquean para que los usuarios solo puedan ver lo suyo propio si no tienen un rol de admin o empleado
+//AUNQUE ESTA FILE ESTÁ PENSADA PARA ADMINS
 include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     echo "ContenidoPedido alta dice: no está user en session";
+    header("Location: /index.php");
+}
+$rol = GetRolDeSession();
+if( $rol !== "admin" || $rol !== "empleado" ){
+    session_destroy();
+    echo "Articulos alta dice: no está user en session";
     header("Location: /index.php");
 }
 

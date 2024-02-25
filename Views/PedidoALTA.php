@@ -1,7 +1,8 @@
 
 <?php
-//require controller y nada más, dependencia de fuera hacia dentro
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+//esta página es para admins y empleados
+
 include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
@@ -9,7 +10,12 @@ if( $usuarioLogeado == false){
     echo "Pedido alta dice: no está user en session";
     header("Location: /index.php");
 }
-//todo pendiente todo
+$rol = GetRolDeSession();
+if( $rol !== "admin" || $rol !== "empleado" ){
+    session_destroy();
+    echo "Articulos alta dice: no está user en session";
+    header("Location: /index.php");
+}
 include("header.php");
 echo"<h1>Alta de Contenido de pedido</h1>";
 
@@ -56,8 +62,8 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
     <br><br>
 <?php
 
-include_once("../Controllers/PedidoMensajes.php");
-$arrayMensajes=getArrayMensajesPedido();
+include_once("../Controllers/PedidosMensajes.php");
+$arrayMensajes=getArrayMensajesPedidos();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
         echo "<h3>$mensaje</h3>";

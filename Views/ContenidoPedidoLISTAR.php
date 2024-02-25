@@ -2,6 +2,8 @@
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
+/// las funciones de contenido pedidos y pedidos ya bloquean para que los usuarios solo puedan ver lo suyo propio si no tienen un rol de admin o empleado
+
 if( $usuarioLogeado == false){
     session_destroy();
     echo "ContenidoPedidoLISTAR dice: no está user en session";
