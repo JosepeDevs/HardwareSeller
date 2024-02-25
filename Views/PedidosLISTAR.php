@@ -113,16 +113,16 @@ echo"<table>";
                 $valor = call_user_func([$Pedido, $nombreMetodo]);
                 if($nombreAtributo == "idPedido"){
                     $idPedido = $Pedido->getidPedido();//guardamos el código para que esté disponible fuera de este bucle
-                    echo "<td>$valor</td>";
+                    echo "<td><a href='ContenidoPedidoBUSCAR?idPedido=".$idPedido.">".$valor."</a></td>";
                 } else if( ( $rol !== "admin" || $rol !== "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
                     echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
                 }else{
-                    echo "<td>$valor</td>";
+                    echo "<td><a href='ContenidoPedidoBUSCAR?idPedido=".$idPedido.">".$valor."</a></td>";
                 }
             }
             if(GetRolDeSession() == "admin"){
                 echo"
-                <td><a href='ContenidoPedidoLISTAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
+                <td><a href='ContenidoPedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
                 <td><a href='PedidoBORRAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
             }
         }
