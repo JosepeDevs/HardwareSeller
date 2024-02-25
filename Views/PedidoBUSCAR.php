@@ -58,8 +58,6 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             $arrayPedido = getPedidoByIdPedido($idPedido);
         } else{
             $arrayPedido = getPedidoByIdPedido($idPedido, $dni);
-            print"no somos admini ni empleado y pasamos los parametros:" .$idPedido." ". $dni;
-            print_r($arrayPedido);
         }
         if($arrayPedido == false){
             $_SESSION['idPedidoNotFound'] = true;
@@ -118,13 +116,20 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         echo "</tr>";
 
         //arrayPedido puede conntener de 0 a vete tu a saber cuantos Pedido
-        foreach($arrayPedido as $Pedido) {
-            echo"<tr><th>Datos del Pedido encontrado:</th>";
-            foreach ($arrayAtributos as $index => $atributo) {
-                $codArticuloAtributo = $atributo;
-                $getter = 'get' . ucfirst($codArticuloAtributo);//montamos dinámicamente el getter
-                $valor = $Pedido->$getter();//lo llamamos para obtener el valor
-                echo "<td>$valor</td>";
+        foreach($arrayPedido as $Pedido){
+            echo("<tr>");
+            foreach ($arrayAtributos as $atributo) {
+                $nombreAtributo = $atributo;//p.e. codigo, nombre...
+                $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
+                $valor = call_user_func([$Pedido, $nombreMetodo]);
+                if($nombreAtributo == "idPedido"){
+                    $idPedido = $Pedido->getidPedido();//guardamos el código para que esté disponible fuera de este bucle
+                    echo "<td>".$valor."</td>";
+                } else if( ( $rol !== "admin" || $rol !== "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
+                    echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
+                }else{
+                    echo "<td>".$valor."</td>";
+                }
             }
             echo "</tr>";
         }
