@@ -11,9 +11,10 @@ if( $usuarioLogeado == false){
 include_once("header.php");
 
 $idPedido = isset($_GET['idPedido']) ? $_GET['idPedido'] : null;
-
-if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "no" ){
+if(isset($_GET['confirmacion'])){
     echo($_GET['confirmacion']);
+}
+if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "no" ){
     $_SESSION['BorradoPedidoCancelado'] = true;
     header("Location: PedidoLISTAR.php");
     exit;
