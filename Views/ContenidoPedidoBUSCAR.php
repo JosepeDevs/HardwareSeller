@@ -6,7 +6,8 @@ include_once("header.php");
 </h1>
 <?
 if(!empty($_GET)){
-    echo"<a href='PedidoBUSCAR.php'>Buscar otro pedido</a>";
+    echo'<br><h2><a class="finForm" href="PedidoBUSCAR.php?"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Buscar otro pedido</a></h2>
+    <br>';
 } else{
     echo'
 <form action="ContenidoPedidoBUSCAR.php" method="POST">
