@@ -136,19 +136,17 @@ if(isset($_POST["estado"])) {
         </p>";
         $_SESSION['estado'] = ($_SESSION['estado'] . 4);   //pedido confirmado, tarjeta, pago pendiente, envio pendiente
     }
-   
-}
-if(isset($_SESSION["estadoEnvio"])) {
-    if( $_SESSION["estadoEnvio"] == 5 ){
+    if( $_POST["estado"] == 5 ){
         echo"
         <h2>Pago y recogida en tienda</h2>
         <p> Nuestra dirección: Calle existente nº infinito, avenida de la indeterminación/0 , CP 00000, Elche, Alicante, España, Europa, Tierra, Universo #3 </p>
         <p> Se reservará el stock un máximo de 5 días, transcurrido ese tiempo se pondrá de nuevo a la venta</p>
         <br>";
-        $_SESSION['estado'] = ($_SESSION['estado'] . 5);//añadimos el 5 a estado
-         $_SESSION['estadoEnvio']='';  //(como unset para que se imprima y luego desaparezca
+        $_SESSION['estado'] = ($_SESSION['estado'] . 4);   //pedido confirmado, tarjeta, pago pendiente, envio pendiente
     }
+   
 }
+
 ?>
 <br><br>
 <button type='button'><a href='../Views/MetodoDePago.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Modificar método de pago</a></button>
