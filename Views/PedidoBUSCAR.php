@@ -118,9 +118,8 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         foreach($arrayPedido as $Pedido){
             echo("<tr>");
             foreach ($arrayAtributos as $atributo) {
-                $nombreAtributo = $atributo;//p.e. codigo, nombre...
-                $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
-                $valor = call_user_func([$Pedido, $nombreMetodo]);
+                $getter = 'get' . ucfirst($atributo);
+                $valor = $Pedido->$getter();
                 if($nombreAtributo == "idPedido"){
                     $idPedido = $Pedido->getIdPedido();//guardamos el código para que esté disponible fuera de este bucle
                     echo "<td>4".$valor."</td>";

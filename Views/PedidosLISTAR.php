@@ -114,7 +114,7 @@ echo"<table>";
                 $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
                 $valor = call_user_func([$Pedido, $nombreMetodo]);
                 if($nombreAtributo == "idPedido"){
-                    $idPedido = $Pedido->getidPedido();//guardamos el código para que esté disponible fuera de este bucle
+                    $idPedido = $Pedido->getIdPedido();//guardamos el código para que esté disponible fuera de este bucle
                     echo "<td>".$valor."</td>";
                 } else if( ( $rol !== "admin" || $rol !== "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
                     echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
