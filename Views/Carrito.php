@@ -65,6 +65,7 @@ include_once("header.php");
             //si es la primera vez que entran en el carrito saldrá esto, si vienen de metodo de pago o dirección producos se habrá unseteado y esto no se verá
             $arrayItems = $_SESSION['productos'];//array asociativo con codigo del articulo y cantidad
             $indice=1;
+            $yaSeImprimió = false;
             foreach($arrayItems as $codigo => $cantidad){//aquí los indices al ser asociativo son los propios codigos de artículo
                 foreach($arrayCodigoArticulosYaTrackeados as $index => $trackedCodigo) {
                     if($trackedCodigo == $codigo) {
@@ -111,13 +112,24 @@ include_once("header.php");
         echo'
         <tfoot>
             <tr>';
-                if(count($_SESSION['CarritoConfirmado']) > 0){ 
+                //SI hay solapamiento cuando no hay items
+                if( isset($_SESSION['productos'])  &&  isset($_SESSION['CarritoConfirmado']) && count($_SESSION['productos']) > 0 && count($_SESSION['CarritoConfirmado']) > 0 ){
                     echo'
                         <td colspan="3"><h4> TOTAL (€) (IVA no incluido): </h4></td>
                         <td colspan="4"><h2><b class="total">'.round($total,2).'</b></h2></td>
-                     <br>';
-                } 
-            echo'
+                        <br>';
+                } else if( isset($_SESSION['productos']) && count($_SESSION['productos']) > 0  ){
+                    echo'
+                        <td colspan="3"><h4> TOTAL (€) (IVA no incluido): </h4></td>
+                        <td colspan="4"><h2><b class="total">'.round($total,2).'</b></h2></td>
+                        <br>';
+                } else if(! isset($_SESSION['CarritoConfirmado']) && count($_SESSION['CarritoConfirmado']) > 0 ){
+                    echo'
+                        <td colspan="3"><h4> TOTAL (€) (IVA no incluido): </h4></td>
+                        <td colspan="4"><h2><b class="total">'.round($total,2).'</b></h2></td>
+                        <br>';
+                }
+        echo'
             </tr>
         </tfoot>';
 
