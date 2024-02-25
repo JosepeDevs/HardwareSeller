@@ -91,6 +91,17 @@ if(isset($_SESSION['user'])) {
     <p>Localidad: ".$usuario->getLocalidad()."</p>
     <p>Provincia: ".$usuario->getProvincia()."</p>";
 }
+$estado= isset($_SESSION["estado"])? $_SESSION["estado"]: null;
+if (strpos($estado,"5")==false){
+    //si encontramos un 5 es que querían recogida en tienda
+    //no hace nada aquí dentro, si seleccionaron 5 el mensaje correspondiente se muestra en la seccion de método de pago
+} else{
+    //en cualquier otro caso eligieron el envío  a su dirección
+    echo"<h3>Han seleccionado la opción de envío a esta dirección. Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
+    $_SESSION['estado'] = ($_SESSION['estado'] . 0); //metemos esto en el session de estado para indicar que es envío a dirección del cliente
+}
+
+
 ?>
 <br><br>
 <button type='button'><a href='../Views/ClienteEDITAR.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Modificar dirección de envío</a></button>
@@ -109,7 +120,7 @@ if(isset($_POST["estado"])) {
         <p> 
             Indique en el concepto de la transferencia el número de pedido de la siguiente página (también disponible en su área de cliente), una vez confirme el pedido.
         </p>";
-        $_SESSION['estado']=23; //pedido confirmado, transferencia, pago pendiente, envio pendiente
+        $_SESSION['estado'] = ($_SESSION['estado'] . 3);  //pedido confirmado, transferencia, pago pendiente, envio pendiente
     }
     if( $_POST["estado"] == 4 ){
         echo"
@@ -121,15 +132,15 @@ if(isset($_POST["estado"])) {
         <p> 
         Indique en el concepto de la transferencia el número de pedido de la siguiente página (también disponible en su área de cliente), una vez confirme el pedido.
         </p>";
-        $_SESSION['estado']=24; //pedido confirmado, tarjeta, pago pendiente, envio pendiente
+        $_SESSION['estado'] = ($_SESSION['estado'] . 4);   //pedido confirmado, tarjeta, pago pendiente, envio pendiente
     }
     if( $_POST["estadoEnvio"] == 5 ){
         echo"
         <h2>Pago y recogida en tienda</h2>
-        <p> Nuestra dirección: </p>
+        <p> Nuestra dirección: Calle existente nº infinito, avenida de la indeterminación/0 , CP 00000, Elche, Alicante, España, Europa, Tierra, Universo #3 </p>
         <p> Se reservará el stock un máximo de 5 días, transcurrido ese tiempo se pondrá de nuevo a la venta</p>
         <br>";
-        $_SESSION['estado']=0; //pedido confirmado, tarjeta, pago pendiente, envio pendiente
+        $_SESSION['estado'] = ($_SESSION['estado'] . 5);//añadimos el 5 a estado
     }
 }
 

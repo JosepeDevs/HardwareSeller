@@ -35,12 +35,12 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
 }
 ?>
 <form action="../Controllers/ValidarDatosCliente.php" method="post">
-        <input><select class="estado-metodoPago" name="estado" id="estado">
+        <input><select class="estado-metodoEnvio" name="estado" id="estado">
             <option for="estado" value="5">Regocida en tienda</option>
             <option for="estado"  value="0">Envío a dirección</option>
         </select>
 
-<div id="detallesTarjeta" style="display: none;">
+<div id="detallesEnvio" style="display: none;">
 <?
     if(isset($_SESSION['user'])) {
             include_once('../Controllers/ClienteBUSCARController.php');
@@ -70,6 +70,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <br>
             <a href="#">Esto en un futuro será un botón para hacer login/registrarse con google usando OAuth</a>
             <br>
+            <form action="../Controllers/ValidarDatosCliente.php" method="post">
                 <table>
                     <tr>
                         <th><label for="nombre">Nombre:</label></th>
@@ -105,8 +106,9 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
             <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
             <?
+
                 if(isset($_SESSION['user'])) {
-                    echo"<button type='button'><a href='../Views/MetodoDePago.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
+                    echo"<button type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer detallesEnvio'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
                     ";
                 }else{
                     echo"<input type='submit' value='Proceder al método de pago'/>";
@@ -133,14 +135,14 @@ include_once("footer.php");
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    var metodoPago = document.getElementById('estado');
-    var detallesTarjeta = document.getElementById('detallesTarjeta');
+    var metodoEnvio = document.getElementById('estado');
+    var detallesEnvio = document.getElementById('detallesEnvio');
 
-    metodoPago.addEventListener('change', function() {
-        if (this.value === '0') {
-            detallesTarjeta.style.display = 'block';
+    metodoEnvio.addEventListener('change', function() {
+        if (this.value === '5') {
+            detallesEnvio.style.display = 'block';
         } else {
-            detallesTarjeta.style.display = 'none';
+            detallesEnvio.style.display = 'none';
         }
     });
 });
