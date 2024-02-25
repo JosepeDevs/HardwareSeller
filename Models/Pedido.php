@@ -92,10 +92,8 @@ public static function borradoLogicoPedido($idPedido){
         $operacion2Confirmada= $statement->fetch();
         if($operacion2Confirmada !== false && $operacion1Confirmada !== false){
             $_SESSION['ExitoBorrandoPedido'] = true;
-            $_SESSION['ExitoBorrandoContenidoPedido'] = true;
         } else {
             $_SESSION['FalloBorrandoPedido'] = true;
-            $_SESSION['FalloBorrandoContenidoPedido'] = true;
         }
         return $operacion2Confirmada; //devolvemos el pedido, a partir de ahí pueden acceder al contenido si hace falta
     } catch(PDOException $e) {
