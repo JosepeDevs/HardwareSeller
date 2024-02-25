@@ -115,10 +115,10 @@ foreach ($contenidoPedido as $index => $array) {
     
         }
 
-
     }else if( isset($_SESSION["nuevoPedido"]) && $_SESSION["nuevoPedido"] == "true" ){
         //todo hacer esto y alta de pedido transaccional para que ocurra todo o no ocurra nada
         $contador=0;
+        print"entramos a crear nuevo Contenido pedido";
         foreach ($arrayCotenidoPedido as $contenidoPedido) {
             //all good y estamos añadiendo artículo nuevo
             $numPedido=$contenidoPedido->getNumPedido();
@@ -131,6 +131,7 @@ foreach ($contenidoPedido as $index => $array) {
             $operacionExitosa = ContenidoPedido::AltaContenidoPedido($numPedido, $numLinea,$codArticulo, $cantidad, $precio, $descuento, $activo);
             if($operacionExitosa){
                 $contador+= 1;
+                print"uno fue bien,llemvamos.$contador";
             } 
             if($contador == count($arrayContenidoPedido)){
                 $_SESSION['GoodInsertContenidoPedido']= true;
@@ -139,7 +140,7 @@ foreach ($contenidoPedido as $index => $array) {
         }
     };
 
-header("Location: ../Views/ContenidoPedidoLISTAR.php");
-exit;
+//header("Location: ../Views/ContenidoPedidoLISTAR.php");
+//exit;
 
 ?>
