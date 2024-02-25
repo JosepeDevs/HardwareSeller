@@ -12,9 +12,6 @@ include_once("header.php");
 
 $idPedido = isset($_GET['idPedido']) ? $_GET['idPedido'] : null;
 
-if(isset($_GET['confirmacion'])){
-    echo($_GET['confirmacion']);
-}
 
 if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "false" ){
     $_SESSION['BorradoPedidoCancelado'] = true;
