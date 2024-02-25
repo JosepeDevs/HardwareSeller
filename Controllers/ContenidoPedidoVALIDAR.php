@@ -114,7 +114,7 @@ foreach ($contenidoPedido as $index => $array) {
     
         }
 
-    }else if( isset($_SESSION["nuevoPedido"]) && $_SESSION["nuevoPedido"] == "true2" ){
+    }else if( isset($_SESSION["nuevoContenidoPedido"]) && $_SESSION["nuevoContenidoPedido"] == "true" ){
         //todo hacer esto y alta de pedido transaccional para que ocurra todo o no ocurra nada
         $contador=0;
         print"entramos a crear nuevo Contenido pedido";
