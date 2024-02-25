@@ -8,8 +8,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
             echo "<h3>$mensaje</h3>";
         }
     };
+    include_once("Controllers/OperacionesSession.php");
     ResetearSesion();
-    
+
     if(isset($_GET["Destroy"]) && $_GET["Destroy"] =="Y" ){
         session_destroy();
         if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
