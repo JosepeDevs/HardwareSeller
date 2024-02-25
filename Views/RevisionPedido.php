@@ -109,18 +109,19 @@ if(isset($_POST["estado"])) {
         <p> 
             Indique en el concepto de la transferencia el número de pedido de la siguiente página (también disponible en su área de cliente), una vez confirme el pedido.
         </p>";
-
+        $_SESSION['estado']=23; //pedido confirmado, transferencia, pago pendiente, envio pendiente
     }
     if( $_POST["estado"] == 4 ){
         echo"
         <h2>Pago mediante tarjeta</h2>
         <br>
         <p> 
-            ¡Actualmente no disponible, gracias por su comprensión! Aunque marque esta opción le aparecerá para pagar por transferencia.
+        ¡Actualmente no disponible, gracias por su comprensión! Aunque marque esta opción tendrá que pagar por transferencia.
         </p>
         <p> 
-            Indique en el concepto de la transferencia el número de pedido de la siguiente página (también disponible en su área de cliente), una vez confirme el pedido.
-         </p>";
+        Indique en el concepto de la transferencia el número de pedido de la siguiente página (también disponible en su área de cliente), una vez confirme el pedido.
+        </p>";
+        $_SESSION['estado']=24; //pedido confirmado, tarjeta, pago pendiente, envio pendiente
     }
 }
 

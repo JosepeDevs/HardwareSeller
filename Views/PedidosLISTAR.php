@@ -45,7 +45,7 @@ echo"<table>";
                     if($nombreAtributo == "estado"){
                         echo"<th>
                             $nombreAtributo 
-                            <br>(1=pedido en carrito)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago confirmado)(6=pedido enviado)(7=pedido recibido)(8=finalizado)(9=finalizado con incidencia)
+                            <br>(0=cancelado)(1=pedido en carrito)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago confirmado)(6=pedido enviado)(7=pedido recibido)(8=finalizado)(9=finalizado con incidencia)
                             <br> El estado puede tener más de 1 digito, por ejemplo: 1 es que esta en el carrito y nada más, 235 es que el pedio es en firme pagará por transferencia y 
                             ya hemos recibido el dinero pero aun no se ha enviado. 2356 mismo caso que el anterior pero este sí se ha enviado ya (no ha llegado aun). Todos los pedidos idealmente acabarán en 8 (235678)
                             <br>Ordenar por este atributo:<br>
