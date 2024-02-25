@@ -108,29 +108,34 @@ echo"<table>";
         //DATOS DE LOS OBJETOS
         //llamamos dinámicamente los getters de la clase habiendo guardado previamente el array con los nombresd de los atributos
         //hay que recorrer todos los atributos en todos los objetos
-        foreach($arrayAImprimir as $Pedido){
-            echo("<tr>");
-            foreach ($arrayAtributos as $atributo) {
-                $nombreAtributo = $atributo;//p.e. codigo, nombre...
-                $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
-                $valor = call_user_func([$Pedido, $nombreMetodo]);
-                if($nombreAtributo == "idPedido"){
-                    $idPedido = $Pedido->getIdPedido();//guardamos el código para que esté disponible fuera de este bucle
-                    echo "<td>".$valor."</td>";
-                } else if( ( $rol !== "admin" || $rol !== "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
-                    echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
-                }else{
-                    echo "<td>".$valor."</td>";
+        if(count($arrayAImprimir)==0){
+            echo'<tr><td colspan="5">No hay pedidos que listar</td></tr>';
+        } else{
+            foreach($arrayAImprimir as $Pedido){
+                echo("<tr>");
+                foreach ($arrayAtributos as $atributo) {
+                    $nombreAtributo = $atributo;//p.e. codigo, nombre...
+                    $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
+                    $valor = call_user_func([$Pedido, $nombreMetodo]);
+                
+                    if($nombreAtributo == "idPedido"){
+                        $idPedido = $Pedido->getIdPedido();//guardamos el código para que esté disponible fuera de este bucle
+                        echo "<td>".$valor."</td>";
+                    } else if( ( $rol !== "admin" || $rol !== "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
+                        echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
+                    }else{
+                        echo "<td>".$valor."</td>";
+                    }
                 }
-            }
-            if(GetRolDeSession() ==  "admin" || GetRolDeSession() == "empleado"  ){
-                echo"
-                <td><a href='ContenidoPedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar pedido' /></td>
-                <td><a href='ContenidoPedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar pedido' /></td>
-                <td><a href='PedidoBORRAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar Pedido' /></td>";
-            } else{
-                echo "<td><a href='ContenidoPedidoBUSCAR.php?numPedido=".$idPedido."'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
-                <td><a href='PedidoBORRAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar Pedido' /></td>";
+                if(GetRolDeSession() ==  "admin" || GetRolDeSession() == "empleado"  ){
+                    echo"
+                    <td><a href='ContenidoPedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar pedido' /></td>
+                    <td><a href='ContenidoPedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar pedido' /></td>
+                    <td><a href='PedidoBORRAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar Pedido' /></td>";
+                } else{
+                    echo "<td><a href='ContenidoPedidoBUSCAR.php?numPedido=".$idPedido."'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
+                    <td><a href='PedidoBORRAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar Pedido' /></td>";
+                }
             }
         }
         echo("</tr>
