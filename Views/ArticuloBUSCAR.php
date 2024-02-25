@@ -113,16 +113,8 @@ if($rol == "admin" || $rol == "editor"){
         echo'
         <h2><a class="cerrar" href="ArticulosLISTAR.php"><img src="../Resources/arrow.png" alt="listar articulos" />Volver a la tabla de artículos</a></h2>';
         echo '<h2><a class="cerrar"  href="TablaClientes.php">Ver usuarios</a></h2>';
-    } else{
-        $email = GetEmailDeSession();
-        include_once("../Controllers/GetDniByEmailController.php");
-        $dni = GetDniByEmail($email);
-        echo"<h2>
-                <a class='enlace' href='ClienteEDITAR.php?dni=$dni'>
-                    <img src='../Resources/edit.png' alt='editar datos user'/> Editar mis datos $email
-                </a>
-            </h2>";
-    }
+    } 
+
 
 include_once("footer.php");
 ?>
