@@ -34,11 +34,11 @@
                 <li class="dropdown">
                     <a href="/Views/Catalogo.php">Catálogo</a>
                     <div class="dropdown-content">
-                        <a href="/Views/Catalogo.php?Pantallas">Pantallas</a>
-                        <a href="/Views/Catalogo.php?graficas">Gráficas</a>
-                        <a href="/Views/Catalogo.php?mobo">Placas base</a>
-                        <a href="/Views/Catalogo.php?RAM">RAM</a>
-                        <a href="/Views/Catalogo.php">More Hardware coming soon</a>
+                        <a href="/Views/Catalogo.php?codigo=22">Pantallas</a>
+                        <a href="/Views/Catalogo.php?codigo=23">Gráficas</a>
+                        <a href="/Views/Catalogo.php?codigo=24">Placas base</a>
+                        <a href="/Views/Catalogo.php?codigo=25">RAM</a>
+                        <a href="/Views/Catalogo.php">¡Más hardward muy pronto!</a>
                     </div>
                 </li>
                 <li>
