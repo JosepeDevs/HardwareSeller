@@ -128,13 +128,13 @@ echo"<table>";
                 <td><a href='ContenidoPedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
                 <td><a href='PedidoBORRAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
             } else{
-                echo "<td><a href='ContenidoPedidoBUSCAR.php?numPedido=".$idPedido."'>".$valor."</a></td>";
+                echo "<td><a href='ContenidoPedidoBUSCAR.php?numPedido=".$idPedido."'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>";
             }
         }
         echo("</tr>
         <tr>
-        <td>Información sobre estado</td>
-            <td colspan='5'>  
+            <td>Información sobre estado</td>
+            <td colspan='4'>  
                 Estado del pedido:(0=cancelado)(1=pedido en carrito)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago confirmado)
                 (6=pedido enviado)(7=pedido recibido)(8=finalizado)(9=finalizado con incidencia)                            
                 <br>
