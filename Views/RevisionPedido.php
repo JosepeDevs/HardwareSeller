@@ -3,7 +3,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 $_SESSION['nuevoPedido']="true";
 include_once("../Views/header.php");
 ?>
-<h1>Confirmación del pedido</h1>
+<h1>Revisión del pedido</h1>
 <?php //include_once("../Views/aside.php") ?>
 <h2> Referencias y cantidades seleccionadas</h2>
 <table class="table">
