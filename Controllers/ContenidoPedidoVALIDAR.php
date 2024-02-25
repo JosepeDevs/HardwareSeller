@@ -25,7 +25,7 @@ foreach ($contenidoPedido as $index => $array) {
     $cantidad =  $arrayDatosArticulo['cantidad'];
     $activo = isset($_SESSION['activo']) ? $_SESSION['activo'] : 1;
     $numPedidoOriginal = isset($_SESSION['numPedidoOriginal']) ? $_SESSION['numPedidoOriginal'] : null;
-    $numPedido = isset($_POST['numPedido']) ? $_POST['numPedido'] : null;
+    $numPedido = isset($_SESSION['numPedido']) ? $_SESSION['numPedido'] : null;
 
     $numPedidoValido = ContenidoPedido::ComprobarLongitud($numPedido,11);
     if($numPedidoValido == false) {    $_SESSION['LongNumPedido']= true; }
@@ -121,19 +121,19 @@ foreach ($contenidoPedido as $index => $array) {
         foreach ($arrayContenidoPedido as $contenidoPedido) {
             //all good y estamos añadiendo artículo nuevo
             $numPedido=$contenidoPedido->getNumPedido();
-            print"numPedido=".$numPedido;
+            print"<br>numPedido=".$numPedido;
             $numLinea=$contenidoPedido->getNumLinea();
-            print"numLinea=".$numLinea;
+            print"<br>numLinea=".$numLinea;
             $codArticulo=$contenidoPedido->getCodArticulo();
-            print"codArticulo=".$codArticulo ;
+            print"<br>codArticulo=".$codArticulo ;
             $cantidad=$contenidoPedido->getCantidad();
-            print"cantidad=".$cantidad;
+            print"<br>cantidad=".$cantidad;
             $precio=$contenidoPedido->getPrecio();
-            print"precio=".$precio;
+            print"<br>precio=".$precio;
             $descuento=$contenidoPedido->getDescuento();
-            print"descuento=".$descuento;
+            print"<br>descuento=".$descuento;
             $activo=$contenidoPedido->getActivo();
-            print"activo=".$activo;
+            print"<br>activo=".$activo;
             $operacionExitosa = ContenidoPedido::AltaContenidoPedido($numPedido, $numLinea,$codArticulo, $cantidad, $precio, $descuento, $activo);
             if($operacionExitosa){
                 $contador+= 1;
