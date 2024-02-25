@@ -6,7 +6,7 @@ echo '
     ';
     if(isset($_REQUEST['idPedido']) && !empty($_REQUEST['idPedido']) ){
         echo'
-            <a class="breadcrumb-item active" href="PedidoBUSCAR.php?idPedido='.$idPedido.'">
+            <a class="breadcrumb-item active" href="PedidoBUSCAR.php?idPedido='.$_REQUEST['idPedido'].'">
                 Pedido id='.$_REQUEST['idPedido'].' 
             </a></p></div>
         ';
