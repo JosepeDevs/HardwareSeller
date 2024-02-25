@@ -71,7 +71,7 @@ foreach ($contenidoPedido as $index => $array) {
         $arrayCotenidoPedido [] = new ContenidoPedido($numPedido, $numLinea, $codArticulo, $cantidad, $precio, $descuento, $activo);
     }
 }
-
+    print_r($arrayCotenidoPedido);
     if($numPedido == $numPedidoOriginal ){//si el código escrito es el mismo --> es que estaban editando y no lo quieren cambiar
         $mantenemosnumPedido= true;
     } else{
