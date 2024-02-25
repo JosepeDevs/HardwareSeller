@@ -116,6 +116,8 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         var_dump($arrayPedido);
         //DATOS DEL OBJETO O LOS OBJETOS
         foreach($arrayPedido as $Pedido){
+            echo "Entering loop...<br>";
+
             echo("<tr><td>test</td></tr><tr>");
             foreach ($arrayAtributos as $atributo) {
                 $getter = 'get' . ucfirst($atributo);
