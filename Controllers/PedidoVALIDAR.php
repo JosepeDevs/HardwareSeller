@@ -74,6 +74,8 @@ if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true")
         $pedido = Pedido::getPedidoByNumPedido($numPedido);
         $_SESSION['pedido']= $pedido;
         print"all good $operacionExitosa";
+    }else{
+        echo"shit algo fue mal";
     }
     if(isset($_SESSION['CarritoConfirmado']) && !empty($_SESSION['CarritoConfirmado']) ){
         //ahora que ya tenemos el pedido creado y en session vamos a poblar su contenido
