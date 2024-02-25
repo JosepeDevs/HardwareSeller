@@ -10,10 +10,30 @@ if( $usuarioLogeado == false){
 
 include_once("header.php");
 
-if(!empty($_GET)){
+if(isset($_GET["PedidoConfirmado"])){
+    //llegan de hacer un pedido, vamos a mostrarles los datos del pedido y darles instrucciones para próximos pasos
+    echo'
+    <h1>
+        Pedido recibido
+    </h1>
+    <br><br>
+        <h2>Imporante, al hacer la transferencia indique el número de Pedido: "'.$_GET["idPedido"].'". ¡Gracias!</h2>
+        <br>
+        <h3>Nuestros datos bancarios son: ES0000-1111-2222-3333 ; Titular= HardWare Seller, S.I. (Sociedad Inexistente)</h3>
+        <br>
+        <h4> Desde el momento de la transferencia tardará algunos días que se actualice el estado del pedido como pago recibido, si transcurren más de 3 días
+        y no cambiara el estado, por favor, contáctenos para revisarlo.
+        </h4>
+    ';
+} if(!empty($_GET) && !isset($_GET["PedidoConfirmado"])) {
+    //han buscado un pedido, dar opción de buscar otro
+    echo'
+    <h1>
+        Datos del pedido
+    </h1>';
     echo'<br><h2><a class="finForm" href="PedidoBUSCAR.php?"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Buscar otro pedido</a></h2>
     <br>';
-} else{
+}else{
     echo'
     <h1>
         Buscar pedido ...
