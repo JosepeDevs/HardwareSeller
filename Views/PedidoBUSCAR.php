@@ -102,7 +102,6 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         }
     }
     
-    print_r($arrayPedido);
     $arrayAtributos = getArrayAtributosPedido();
     if( $arrayPedido !== false){
         echo"<table>";
@@ -113,10 +112,9 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             $nombreAtributo = $atributo;
             echo "<th>$nombreAtributo</th>";
         }
-        //DATOS DEL OBJETO O LOS OBJETOS
         echo "</tr>";
-
-        //arrayPedido puede conntener de 0 a vete tu a saber cuantos Pedido
+        
+        //DATOS DEL OBJETO O LOS OBJETOS
         foreach($arrayPedido as $Pedido){
             echo("<tr>");
             foreach ($arrayAtributos as $atributo) {
@@ -126,8 +124,12 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
                 if($nombreAtributo == "idPedido"){
                     $idPedido = $Pedido->getidPedido();//guardamos el código para que esté disponible fuera de este bucle
                     echo "<td>".$valor."</td>";
-                } else if( ( $rol !== "admin" || $rol !== "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
-                    echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
+                } else if( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ){
+                    if( $rol !== "admin" || $rol !== "empleado" ){
+                        echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
+                    } else{
+                        echo "<td>".$valor."</td>";
+                    }
                 }else{
                     echo "<td>".$valor."</td>";
                 }
