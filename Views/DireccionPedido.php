@@ -105,6 +105,11 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
         <div class='finForm'>
             <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
             <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
+            
+            <label for="crearCuenta">¿Quieres crear una cuenta con los datos que nos facilitas para el pedido?</label>
+            <input type="checkbox" id="crearCuenta" name="crearCuenta">
+            <button id='enlaceQueDebeDesaparecer2' style='display: none;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
+            
             <?
 
                 if(isset($_SESSION['user'])) {
@@ -114,7 +119,8 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                     <button type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago>></a></button>
                     </div>";
                 }else{
-                    echo"<input type='submit' value='Proceder al método de pago'/>";
+                    echo"<input id='enlaceQueDebeDesaparecer3' type='submit' value='Proceder al método de pago'/>";
+                    
                 }
             ?>
         </div> 
@@ -138,6 +144,21 @@ include_once("footer.php");
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+
+    var checkBox = document.getElementById('crearCuenta');
+    var enlaceQueDebeDesaparecer2 = document.getElementById('enlaceQueDebeDesaparecer2');
+    var enlaceQueDebeDesaparecer3 = document.getElementById('enlaceQueDebeDesaparecer3');
+    checkBox.addEventListener('change', function() {
+        if (this.checked) {
+            enlaceQueDebeDesaparecer2.style.display = 'block';
+            enlaceQueDebeDesaparecer3.style.display = 'none';
+        } else {
+            enlaceQueDebeDesaparecer2.style.display = 'none';
+            enlaceQueDebeDesaparecer3.style.display = 'block';
+        }
+    });
+
+
     var metodoEnvio = document.getElementById('estadoEnvio-metodoEnvio');
     var detallesEnvio = document.getElementById('detallesEnvio');
 
