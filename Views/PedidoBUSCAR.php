@@ -123,7 +123,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
                 $valor = call_user_func([$Pedido, $nombreMetodo]);
                 if($nombreAtributo == "idPedido"){
                     $idPedido = $Pedido->getidPedido();//guardamos el código para que esté disponible fuera de este bucle
-                    echo "<td>".$valor."</td>";
+                    echo "<td>4".$valor."</td>";
                 } else if( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ){
                     if( $rol !== "admin" || $rol !== "empleado" ){
                         echo'2';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
@@ -131,7 +131,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
                         echo "<td>1".$valor."</td>";
                     }
                 }else{
-                    echo "<td>".$valor."</td>";
+                    echo "<td>3".$valor."</td>";
                 }
             }
             echo "</tr>";
@@ -158,10 +158,9 @@ if(isset($_REQUEST['idPedido'])){
 echo'
 <h2><a class="finForm" href="PedidosLISTAR.php"><img src="../Resources/arrow.png" alt="listar Pedido" />Ver todos los pedidos</a></h2>
 ';
-$rol = GetRolDeSession();
-if($rol == "admin" || $rol == "editor"){
-    echo '<h2><a class="finForm"  href="TablaClientes.php">Ver usuarios</a></h2>';
-} 
+
+echo '<h2><a class="finForm"  href="AreaCliente.php">Ir a mi area personal</a></h2>';
+
 
 include_once("footer.php");
 ?>
