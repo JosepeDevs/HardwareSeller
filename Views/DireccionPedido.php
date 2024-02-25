@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var detallesEnvio = document.getElementById('detallesEnvio');
 
     metodoEnvio.addEventListener('change', function() {
-        if (this.value === '5') {
+        if (this.value === '0') {
             detallesEnvio.style.display = 'block';
         } else {
             detallesEnvio.style.display = 'none';
