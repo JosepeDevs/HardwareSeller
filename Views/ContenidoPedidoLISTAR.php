@@ -11,6 +11,8 @@ if( $usuarioLogeado == false){
 include_once("header.php");
 print("<h1>Gestionar Contenido de los Pedidos</h1>");
 
+
+print_r($_SESSION);
 //NAVEGACION
 ?>
 <div id='EnlacesArriba'>
