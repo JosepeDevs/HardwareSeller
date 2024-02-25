@@ -158,7 +158,6 @@ for( $i = 0; $i < $maxLineas; $i++ ){
     };
 } //aqui termina el for
 
-
 //header("Location: ../Views/ContenidoPedidoLISTAR.php");
 //exit;
 
