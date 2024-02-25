@@ -110,6 +110,9 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                 if(isset($_SESSION['user'])) {
                     echo"<button type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
                     ";
+                    echo"<div class='oculto'>
+                    <button type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' id='botonEnvio' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
+                    </div>";
                 }else{
                     echo"<input type='submit' value='Proceder al método de pago'/>";
                 }
@@ -138,11 +141,16 @@ document.addEventListener('DOMContentLoaded', function() {
     var metodoEnvio = document.getElementById('estadoEnvio-metodoEnvio');
     var detallesEnvio = document.getElementById('detallesEnvio');
 
+    var divOculto = document.getElementById('oculto');
+    var botonEnvio = document.getElementById('botonEnvio');
+
     metodoEnvio.addEventListener('change', function() {
         if (this.value === '0') {
             detallesEnvio.style.display = 'block';
+            botonEnvio.style.display = 'block';
         } else {
             detallesEnvio.style.display = 'none';
+            botonEnvio.style.display = 'none';
         }
     });
 });
