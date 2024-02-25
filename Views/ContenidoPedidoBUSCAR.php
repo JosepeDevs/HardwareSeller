@@ -87,7 +87,7 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
 
         //arrayContenidoPedido puede conntener de 0 a vete tu a saber cuantos ContenidoPedido
         foreach($arrayContenidoPedido as $index => $ContenidoPedido) {
-            echo"<tr><th>Datos del ContenidoPedido encontrado:</th>";
+            echo"<tr><th>Contenidos del Pedido encontrados:</th>";
             foreach ($arrayAtributos as $atributo) {
                 $getter = 'get' . ucfirst($atributo);//montamos dinámicamente el getter
                 $valor = $ContenidoPedido[$index]->$getter();//lo llamamos para obtener el valor
@@ -109,8 +109,7 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
         }
     };
 }
-echo "numPedido: " . $_REQUEST['numPedido'] . "<br>";
-echo "rol: " . $rol . "<br>";
+
 if(isset($_REQUEST['numPedido']) && ( $rol =="admin" || $rol =="empleado" )){
     echo'
     <h2><a class="finForm" href="ContenidoPedidoEDITAR.php?numPedido='.$numPedido.'""><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Editar el contenido de este pedido</a></h2>
