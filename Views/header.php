@@ -71,6 +71,7 @@
                                     </div>
                                 </form>
                                 <div id="sinAcceso">
+                                    <p><a href="/Views/AreaCliente.php">Acceder al área personal</a></p>
                                     <p><a href="/Views/ClienteALTA.php?auth='."temp".'">Registrar nuevo usuario</a></p>
                                     <p><a href="/Views/RecuperarPsswrd.php">Recuperar contraseña</a></p>
                                 </div>
