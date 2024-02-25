@@ -116,6 +116,9 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //todo de aquík pabajo nose ve
 
 if(isset($_POST["estado"])) {
+    if(!isset($_SESSION['estado'])){
+        $_SESSION['estado']='';
+    }
     if( $_POST["estado"] == 3 ){
         echo"
         <h2>Transferencia bancaria</h2>
