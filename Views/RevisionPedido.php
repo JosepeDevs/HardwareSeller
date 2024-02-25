@@ -146,7 +146,7 @@ if(isset($_SESSION["estadoEnvio"])) {
         <p> Se reservará el stock un máximo de 5 días, transcurrido ese tiempo se pondrá de nuevo a la venta</p>
         <br>";
         $_SESSION['estado'] = ($_SESSION['estado'] . 5);//añadimos el 5 a estado
-        unset( $_SESSION['estadoEnvio']); 
+         $_SESSION['estadoEnvio']='';  //(como unset para que se imprima y luego desaparezca
     }
 }
 ?>
