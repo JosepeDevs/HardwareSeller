@@ -100,15 +100,15 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
 }
 if(isset($_REQUEST['numPedido'])){
     echo'
-    <h2><a class="finForm" href="ContenidoPedidoEDITAR.php?numPedido='.$numPedido.'""><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Editar el contenido de este pedido</a></h2>
-    <h2><a class="finForm" href="PedidoBUSCAR.php?idPedido='.$numPedido.'"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Volver al PEDIDO</a></h2>
+    <h2><a class="finForm" href="ContenidoPedidoEDITAR.php?idPedido='.$numPedido.'""><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Editar el contenido de este pedido</a></h2>
+    <h2><a class="finForm" href="PedidoBUSCAR.php?numPedido='.$numPedido.'"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Volver al PEDIDO</a></h2>
     ';
 }
 echo'
 <h2><a class="finForm" href="ContenidoPedidoLISTAR.php"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Ver los contenidos de todos los pedidos</a></h2>
 ';
 $rol = GetRolDeSession();
-if($rol == "admin" || $rol == "editor"){
+if($rol == "admin" || $rol == "empleado"){
     echo '<h2><a class="finForm"  href="TablaClientes.php">Ver usuarios</a></h2>';
 } 
 
