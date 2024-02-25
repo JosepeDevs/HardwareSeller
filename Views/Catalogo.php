@@ -46,7 +46,9 @@ echo'<div class="col-lg-9 col-md-11 col-12">';
             if($arrayAtributos !== false){
                 foreach ($arrayAtributos as $atributo) {
                     $nombreAtributo = $atributo;
-                    if($atributo !==  "imagen" && $atributo !==  "codigo"){
+                    if($atributo !==  "imagen" && $atributo !==  "descripcion"){
+                        //la descripción en catálogo no se ve y filtrar por imagen es inutil, dejamos por código para los clientes que quieran revisar referencias (codigo) conocidas
+
                         echo"<th>
                         $nombreAtributo <br>Ordenar por este atributo:<br>
                         <a class='ordenar' href='?orden=ASC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."&pag='.($paginaActual+1)'>ASC</a>
