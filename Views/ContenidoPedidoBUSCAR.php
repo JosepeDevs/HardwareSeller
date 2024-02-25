@@ -86,12 +86,11 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
         echo "</tr>";
 
         //arrayContenidoPedido puede conntener de 0 a vete tu a saber cuantos ContenidoPedido
-        foreach($arrayContenidoPedido as $ContenidoPedido) {
+        foreach($arrayContenidoPedido as $index => $ContenidoPedido) {
             echo"<tr><th>Datos del ContenidoPedido encontrado:</th>";
-            foreach ($arrayAtributos as $index => $atributo) {
-                $codArticuloAtributo = $atributo;
-                $getter = 'get' . ucfirst($codArticuloAtributo);//montamos dinámicamente el getter
-                $valor = $ContenidoPedido->$getter();//lo llamamos para obtener el valor
+            foreach ($arrayAtributos as $atributo) {
+                $getter = 'get' . ucfirst($atributo);//montamos dinámicamente el getter
+                $valor = $ContenidoPedido[$index]->$getter();//lo llamamos para obtener el valor
                 echo "<td>$valor</td>";
             }
             echo "</tr>";
