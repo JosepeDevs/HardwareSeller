@@ -80,7 +80,7 @@
                         } else{
                             print('
                             <div class="tooltip-container-logged">
-                            <a class="tooltip-trigger-logged">Hola ' . $_SESSION['user'] . '</a>
+                            <a class="tooltip-trigger-logged">Hola ' . $_SESSION['user'] ." (".$_SESSION['rol'].')</a>
                             <div class="tooltip-content-logged ">
                                 <ul>');
                             $raiz= dirname(__DIR__);
