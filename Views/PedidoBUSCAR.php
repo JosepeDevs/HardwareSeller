@@ -50,6 +50,7 @@ if(isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQ
         if( $rol == "admin" || $rol == "empleado" ){
             $arrayPedido = getPedidoByIdPedido($idPedido);
         } else{
+            echo"<h1>no soy admin ni empleado</h1>";
             $arrayPedido = getPedidoByIdPedido($idPedido, $dni);
         }
         if($arrayPedido == false){
