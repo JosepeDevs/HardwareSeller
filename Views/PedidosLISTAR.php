@@ -147,11 +147,12 @@ echo"<table>";
         <tr>
             <td>Información sobre estado</td>
             <td colspan='5'>  
-                Estado del pedido:(0=cancelado)(1=pedido en carrito)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago confirmado)
-                (6=pedido enviado)(7=pedido recibido)(8=finalizado)(9=finalizado con incidencia)                            
+                Estado del pedido:(0=envío a direccion)(1=pedido en carrito)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago y recogida en tienda)
+                (6=pago confirmado)(7=pedido enviado)(8=pedido recibido)(9=finalizado o cancelado)                            
                 <br>
-                El estado puede tener más de 1 digito, por ejemplo: 1 es que esta en el carrito y nada más, 235 es que el pedio es en firme pagará por transferencia y 
-                ya hemos recibido el dinero pero aun no se ha enviado. 2356 mismo caso que el anterior pero este sí se ha enviado ya (no ha llegado aun). Todos los pedidos idealmente acabarán en 8 (235678)
+                El estado puede tener más de 1 digito, por ejemplo: 1 es que esta en el carrito y nada más, 236 es que el pedio es en firme pagará por transferencia y 
+                ya hemos recibido el dinero pero aun no se ha enviado. 2367 mismo caso que el anterior pero este  ya se ha enviado  (aunque no ha llegado aun). 2568 es
+                pago y recogida en tienda, pagado y recibido (recogido por cliente) no ponemos finalizado hasta que no pase periodo de reclamacion o devoluciones.
             </td>
         </tr>
     </table>");

@@ -10,6 +10,7 @@ echo'<h1>Seleccione el método de pago</h1>';
         <select class="estado-metodoPago" name="estado" id="estado">
             <option for="estado" value="3">Transferencia</option>
             <option for="estado"  value="4">Tarjeta</option>
+            <option for="estado"  value="5">Pago en tienda</option>
         </select>
     </h2>
     <br><br>

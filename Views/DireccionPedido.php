@@ -33,8 +33,14 @@ foreach ($_POST as $AtributoYNumero => $valor) {
 $_SESSION['CarritoConfirmado'] = $productosYCantidadesConfirmadas; //guardamos los datos del carrito en la sesión para tenerlos a mano
 unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos llegó inicialmente
 }
-//TODO PONER Opción de recogida en tienda (más adelante)
-        if(isset($_SESSION['user'])) {
+?>
+        <select class="estado-metodoPago" name="estado" id="estado">
+            <option for="estado" value="5">Regocida en tienda</option>
+            <option for="estado"  value="0">Envío a dirección</option>
+        </select>
+<div id="detallesTarjeta" style="display: none;">
+<?
+    if(isset($_SESSION['user'])) {
             include_once('../Controllers/ClienteBUSCARController.php');
             $usuario = getClienteByEmail($_SESSION['user']);
             //NOTHING LIKE A GOOD RETURNING CLIENT!
@@ -92,6 +98,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
     //<button type='button'><a href='../Views/MetodoDePago.php?tienda=0' class='enlace-arriba-de-footer'>Recogeré mi pedido en tienda, Proceder al método de pago<i class='lni lni-chevron-right'></i></a></button>
 
     ?>
+</div> <!--cerramos  id="detallesTarjeta"-->
         <br>
         <div class='finForm'>
             <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
@@ -123,3 +130,17 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
 include_once("footer.php");
 ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var metodoPago = document.getElementById('estado');
+    var detallesTarjeta = document.getElementById('detallesTarjeta');
+
+    metodoPago.addEventListener('change', function() {
+        if (this.value === '0') {
+            detallesTarjeta.style.display = 'block';
+        } else {
+            detallesTarjeta.style.display = 'none';
+        }
+    });
+});
+</script>
