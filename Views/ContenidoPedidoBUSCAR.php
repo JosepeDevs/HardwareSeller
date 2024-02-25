@@ -1,12 +1,14 @@
 <?php
 include_once("header.php");
+?>
+<h1>
+    Contenido del pedido 
+</h1>
+<?
 if(!empty($_GET)){
     echo"<a href='PedidoBUSCAR.php'>Buscar otro pedido</a>";
 } else{
     echo'
-    <h1>
-        Buscar contenido de un pedido ...
-    </h1>
 <form action="ContenidoPedidoBUSCAR.php" method="POST">
     <table>
         <tr>
