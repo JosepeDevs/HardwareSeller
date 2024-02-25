@@ -135,7 +135,7 @@ include_once("footer.php");
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    var metodoEnvio = document.getElementById('estadoEnvio');
+    var metodoEnvio = document.getElementById('estado-metodoEnvio');
     var detallesEnvio = document.getElementById('detallesEnvio');
 
     metodoEnvio.addEventListener('change', function() {
