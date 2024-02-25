@@ -12,7 +12,7 @@ if( $usuarioLogeado == false){
 
 include_once("../Models/Pedido.php");
 
-$fecha = date("YYYY-MM-DD"); //esto no lo comprobamos porque lo estoy generando aquí mismo
+$fecha = date("Y-m-d"); //esto no lo comprobamos porque lo estoy generando aquí mismo
 $_SESSION['fecha']=$fecha;
 print_r($_SESSION);
 $total = isset($_SESSION["total"]) ? round($_SESSION["total"],2) : null;
