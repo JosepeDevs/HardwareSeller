@@ -44,7 +44,7 @@ if(!empty($_GET)){
 
 ';
 }
-echo'<br><br><br>';
+echo'<br>';
 $rol = GetRolDeSession();
 $dni = GetDniByEmail($_SESSION['user']);
 
@@ -58,6 +58,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             $arrayPedido = getPedidoByIdPedido($idPedido);
         } else{
             $arrayPedido = getPedidoByIdPedido($idPedido, $dni);
+            print"no somos admini ni empleado y pasamos los parametros:" .$idPedido." ". $dni;
         }
         if($arrayPedido == false){
             $_SESSION['idPedidoNotFound'] = true;
