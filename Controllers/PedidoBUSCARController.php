@@ -31,7 +31,7 @@ function GetPedidosByRangoFecha($fechaInicio, $fechaFin, $dni=null){
     $arrayPedido = Pedido::GetPedidosByRangoFecha($fechaInicio, $fechaFin);
     return $arrayPedido;
 }
-function getPedidosByCodUsuario($codUsuario){
+function getPedidosByCodUsuario($codUsuario, $dni=null){
     include_once("../Models/Pedido.php");
     $arrayPedido = Pedido::getPedidosByCodUsuario($codUsuario, $dni=null);
     return $arrayPedido;
