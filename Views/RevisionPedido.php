@@ -134,6 +134,9 @@ if(isset($_POST["estado"])) {
         </p>";
         $_SESSION['estado'] = ($_SESSION['estado'] . 4);   //pedido confirmado, tarjeta, pago pendiente, envio pendiente
     }
+   
+}
+if(isset($_POST["estadoEnvio"])) {
     if( $_POST["estadoEnvio"] == 5 ){
         echo"
         <h2>Pago y recogida en tienda</h2>
@@ -143,7 +146,6 @@ if(isset($_POST["estado"])) {
         $_SESSION['estado'] = ($_SESSION['estado'] . 5);//añadimos el 5 a estado
     }
 }
-
 ?>
 <br><br>
 <button type='button'><a href='../Views/MetodoDePago.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Modificar método de pago</a></button>
