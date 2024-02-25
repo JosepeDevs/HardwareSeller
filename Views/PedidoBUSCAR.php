@@ -26,7 +26,7 @@ if(isset($_GET["PedidoConfirmado"])){
         </h4>
         <h5>Puede encontrar estos mismos datos bancarios en nuestra página "sobre nosotros"</h5>
     ';
-} if(!empty($_GET) && !isset($_GET["PedidoConfirmado"])) {
+} else if(!empty($_GET) && !isset($_GET["PedidoConfirmado"])) {
     //han buscado un pedido, dar opción de buscar otro
     echo'
     <h1>
