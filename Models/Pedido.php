@@ -273,7 +273,7 @@ public static function borradoLogicoPedido($idPedido){
             }
             $statement->bindParam(':idPedido', $idPedido);
             $statement->execute();
-            $pedido = $statement->fetch(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
+            $pedido = $statement->fetch();
 
             if($pedido->RowCount() > 0) {
                 return $pedido;
