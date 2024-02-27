@@ -38,30 +38,58 @@ if( !$userExiste){
     $esEmpleado = AuthYRolEmpleado();
     if($esAdmin){
         print ('
-        <li><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></li>
-        <li><a href="/Views/PedidosLISTAR.php">Administrar PEDIDOS</a></li>
-        <li><a href="/Views/TablaClientes.php">Administrar CLIENTES</a></li>
-        <li><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></li>
-        <li><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></li>
-        <li><a href="/Views/InformesLISTAR.php">Ver/generar informes</a></li>
-        <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
+        <table class="table table-bordered">
+            <tr>
+                <td><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></td>
+                <td><a href="/Views/PedidosLISTAR.php">Administrar PEDIDOS</a></td>
+                <td><a href="/Views/TablaClientes.php">Administrar CLIENTES</a></td>
+            </tr>
+            <tr>
+                <td><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></td>
+                <td><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></td>
+                <td><a href="/Views/InformesLISTAR.php">Ver/generar informes</a></td>
+            </tr>
+            <tr>
+                <td><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></td>
+            </tr>
+        </table>
+        ');
     } else if ($esEditor){
         print ('
-        <li><a href="/Views/ClienteEDITAR.php?dni='.$dni.'">Ver/editar mis datos</a></li>
-        <li><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></li>
-        <li><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></li>
-        <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
+        <table class="table table-bordered">
+            <tr>
+                <td><a href="/Views/ClienteEDITAR.php?dni='.$dni.'">Ver/editar mis datos</a></td>
+                <td><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></td>
+            </tr>
+            <tr>
+                <td><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></td>
+                <td><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></td>
+            </tr>
+        </table>    
+                ');
     } else if($esEmpleado){
         print ('
-        <li><a href="/Views/PedidosLISTAR.php">Administrar PEDIDOS</a></li>
-        <li><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></li>
-        <li><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></li>
-        <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
+        <table class="table table-bordered">
+            <tr>
+                <td><a href="/Views/PedidosLISTAR.php">Administrar PEDIDOS</a></td>
+                <td><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></td>
+            </tr>
+            <tr>
+                <td><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></td>
+                <td><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></td>
+            </tr>
+        </table>
+        ');
     } else{
         print ('
-        <li><a href="/Views/AreaCliente.php">Acceder al área personal</a></li>
-        <li><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></li>
-        <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
+        <table class="table table-bordered">
+            <tr>
+                <td><a href="/Views/AreaCliente.php">Acceder al área personal</a></td>
+                <td><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></td>
+                <td><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></td>
+            </tr>
+        </table>
+        ');
     }
 }
 
