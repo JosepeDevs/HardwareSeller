@@ -19,7 +19,7 @@ include_once("../Controllers/InformesLISTARController.php");
 
 print"<table class='table table-bordered'>";
     print'<tr><td class="container-fluid">';
-    print("<button class='btn btn-secondary'><a href='InformesLISTAR.php??EstadisticasUsuariosWeb=1'>Generar informe Clientes</button>");//así solo pueden llamar a la función los que tengan rol de admin y no escribirmos en la url rol=admin que eso es muy obvio
+    print("<button class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasUsuariosWeb=1'>Generar informe Clientes</button>");//así solo pueden llamar a la función los que tengan rol de admin y no escribirmos en la url rol=admin que eso es muy obvio
     if( isset( $_GET["EstadisticasUsuariosWeb"] ) && $_GET["EstadisticasUsuariosWeb"] == 1 )  {
             $textoGenerado = EstadisticasUsuariosWeb($dni);//con llamar al método se debería descargar
             print $textoGenerado;
@@ -28,7 +28,7 @@ print"<table class='table table-bordered'>";
     print"</td></tr>";
 
     print'<tr><td class="container-fluid">';
-        print("<button class='btn btn-secondary'><a href='InformesLISTAR.php??EstadisticasArticulosWeb=1'>Generar informe Artículos</button>");//así solo pueden llamar a la función los que tengan rol de admin y no escribirmos en la url rol=admin que eso es muy obvio
+        print("<button class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasArticulosWeb=1'>Generar informe Artículos</button>");//así solo pueden llamar a la función los que tengan rol de admin y no escribirmos en la url rol=admin que eso es muy obvio
         if( isset( $_GET["EstadisticasArticulosWeb"] ) && $_GET["EstadisticasArticulosWeb"] == 1 )  {
             $textoGenerado = EstadisticasArticulosWeb($dni);//con llamar al método se debería descargar
             print $textoGenerado;
@@ -38,7 +38,7 @@ print"<table class='table table-bordered'>";
     print"</td></tr>";
 
     print'<tr><td class="container-fluid">';
-    print("<button class='btn btn-secondary'><a href='InformesLISTAR.php??EstadisticasPedidosWeb=1'>Generar informe Pedidos</button>");//así solo pueden llamar a la función los que tengan rol de admin y no escribirmos en la url rol=admin que eso es muy obvio
+    print("<button class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasPedidosWeb=1'>Generar informe Pedidos</button>");//así solo pueden llamar a la función los que tengan rol de admin y no escribirmos en la url rol=admin que eso es muy obvio
     if( isset( $_GET["EstadisticasPedidosWeb"] ) && $_GET["EstadisticasPedidosWeb"] == 1 )  {
             $textoGenerado = EstadisticasPedidosWeb($dni);//con llamar al método se debería descargar
             print $textoGenerado;
