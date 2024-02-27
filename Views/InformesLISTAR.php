@@ -18,5 +18,11 @@ print("<a href='../Controllers/InformesLISTARController.php?EstadisticasUsuarios
 $textoEnInforme = EstadisticasUsuariosWeb($dni);//esto también lo descarga
 print($textoEnInforme);
 
+print("<a href='../Controllers/InformesLISTARController.php?EstadisticasArticulosWeb=1&dni=$dni");//así solo pueden llamar a la función los que tengan rol de admin y no escribirmos en la url rol=admin que eso es muy obvio
+$textoEnInforme = EstadisticasArticulosWeb($dni);//esto también lo descarga
+print($textoEnInforme);
+
+
+
 
 include_once("footer.php");
