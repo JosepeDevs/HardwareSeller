@@ -132,7 +132,7 @@ public static function borradoLogicoPedido($idPedido){
     }
 
     /**
-     * @return bool|Pedido devuelve false si falla, devuelve el Pedido si lo encuentra consultando el código
+     * @return bool|array devuelve false si falla, devuelve el Pedido si lo encuentra consultando el código
      */
     public static function getPedidosByEstado($estado, $dni=null){
         try{
@@ -140,7 +140,7 @@ public static function borradoLogicoPedido($idPedido){
             if($dni !== null){
                 $sqlQuery="SELECT * FROM  `pedidos` WHERE estado=:estado AND codUsuario=:dni AND activo=1;";
             } else{
-                $sqlQuery="SELECT * FROM  `pedidos` WHERE estado=:estado ;";
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE estado=:estado;";
             }
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':estado', $estado);
@@ -149,7 +149,7 @@ public static function borradoLogicoPedido($idPedido){
             }
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
-            $Pedido = $statement->fetch();
+            $Pedido = $statement->fetchAll();
             if(empty($Pedido)){
                 $_SESSION['estadoNotFound'] = true;
                 return false;
