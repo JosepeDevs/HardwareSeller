@@ -37,7 +37,7 @@ $arrayAtributosPedido = getArrayAtributosPedido();
 echo"<table>";
         foreach ($arrayAtributosPedido as $index => $atributo) {
             $nombreAtributo = $atributo;
-            if( $index == 1) {
+            if( $index == 0) {
                 echo"<tr><th>Atributos:</th>";
                 echo "<th>$nombreAtributo</th>";
             } else {
