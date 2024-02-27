@@ -8,6 +8,8 @@ if(!$rolEsAdmin) {
     echo "PedidoVALIDAR dice: no está user en session";
     header("Location: /index.php");
 }
+
+include_once("../Controllers/GetDniByEmailController.php");
 $dni=GetDniByEmail($_SESSION['user']);//acabamos de comprobar que sea admin asíque este será el dni de un admin, así si despedimos un admin con cambiar en la BBDD a user ya no podrá acceder a los informes
 
 include_once("header.php");
