@@ -11,14 +11,13 @@ if( $usuarioLogeado == false){
 }
 
 include_once("../Models/Pedido.php");
-print_r($_POST);
-print_r($_SESSION);
+
 if(isset($_POST["total"]) || isset($_POST["fecha"]) ) {
     print"entramos a coger variables";
     //con que compruebe que hay algún dato además del estado sabremos que venimos de modificar como admin los pedidos
     $idPedido = isset($_SESSION["idPedido"]) ? $_SESSION["idPedido"] : null; // CUIDADO QUE ESTO SE SACA DE *****SESSION*******, NO DE POST
     $codUsuario = isset($_SESSION["codUsuario"]) ? $_SESSION["codUsuario"] : null; //dni
-    print "dni vale $codUsuario";
+    
     $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : null;
     $total = isset($_POST["total"]) ? round($_POST["total"],2) : null;
     $estado = isset($_POST["estado"]) ? $_POST["estado"] : null; 
