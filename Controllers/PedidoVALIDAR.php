@@ -11,7 +11,8 @@ if( $usuarioLogeado == false){
 }
 
 include_once("../Models/Pedido.php");
-
+print_r($_POST);
+print_r($_SESION);
 if(isset($_POST["total"]) || isset($_POST["fecha"]) ) {
     //con que compruebe que hay algún dato además del estado sabremos que venimos de modificar como admin los pedidos
     $idPedido = isset($_SESSION["idPedido"]) ? $_SESSION["idPedido"] : null; // CUIDADO QUE ESTO SE SACA DE *****SESSION*******, NO DE POST
@@ -61,7 +62,7 @@ if(
   //  echo "<script>history.back();</script>";
     exit;
 } 
-
+ 
 if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true"){
     //llegamos aquí si está todo OK y estamos editando
     $_SESSION["editandoPedido"] == "false";
