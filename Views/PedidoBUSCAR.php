@@ -83,7 +83,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
 
     //deben existir ambas fechas, si ambas están vacias queremos que devulva todos los pedidos (all time), pro eso esta búsqueda debe ser la primera, para que 
     //no machaque otras que puedan hacerse.
-    if( isset($_REQUEST['fechaInicio']) && isset($_REQUEST['fechaFin']) ) {
+    if( isset($_REQUEST['fechaInicio']) && isset($_REQUEST['fechaFin'])) {
         $fechaInicioPredeterminada = "1990/01/01";
         $fechaFinPredeterminada = "2100/01/01";
         empty($_REQUEST["fechaInicio"]) ? $fechaInicio = $fechaInicioPredeterminada : $fechaInicio = $_REQUEST['fechaInicio'] ; 
@@ -97,6 +97,10 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             $_SESSION['fechaNotFound'] = true;
         }
     }
+    print'<br>fechas<br>';
+    print_r($arrayPedido);
+
+
 
     if(!empty(($_REQUEST["idPedido"]))){
         $idPedido=$_REQUEST["idPedido"];
@@ -109,11 +113,16 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             $_SESSION['idPedidoNotFound'] = true;
         }
     }
+    print'<br>idpedido<br>';
+    print_r($arrayPedido);
+
 
     if(!empty(($_REQUEST["numPedido"]))){
         $numPedido=$_REQUEST["numPedido"];
         if( $rol == "admin" || $rol == "empleado" ){
             $arrayPedido[] = getPedidoByIdPedido($numPedido);
+            print_r($arrayPedido);
+
         } else{
             $arrayPedido[] = getPedidoByIdPedido($numPedido, $dni);
         }
@@ -121,7 +130,8 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             $_SESSION['idPedidoNotFound'] = true;
         }
     }
-
+    print'<br>numpedido<br>';
+    print_r($arrayPedido);
 
     if(!empty(($_REQUEST["codUsuario"]))){
         $codUsuario=$_REQUEST["codUsuario"];
@@ -134,6 +144,8 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             $_SESSION['codUsuarioNotFound'] = true;
         }
     }
+    print'<br>trascodusuario<br>';
+    print_r($arrayPedido);
 
     $arrayAtributos = getArrayAtributosPedido();
     if( $arrayPedido !== false){
