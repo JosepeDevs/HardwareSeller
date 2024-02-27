@@ -176,11 +176,68 @@ function EstadisticasArticulosWeb($dni){
     readfile($rutaArchivo); // Lee y envía el archivo al cliente
 
 }
-function EstadisticasPedidosTotales(){
+function EstadisticasPedidosWeb($dni){
 
-//numero total de pedidos
-//promedio gasto en pedidos
-//total facturado
+    try{
+        $con= contectarBbddPDO();
+        $sql="SELECT SUM(total) FROM pedidos";
+        $statement=$con->prepare($sql);
+        $statement->execute();
+        $facturacionTotal=$statement->fetch();
+        $facturacionTotal=round(floatval($facturacionTotal),2);
+    } catch (Exception $e) {
+        $_SESSION['BadPedido'] = true;
+        return false;
+    }
+
+    try{
+        $con= contectarBbddPDO();
+        $sql="SELECT AVG(total) FROM pedidos";
+        $statement=$con->prepare($sql);
+        $statement->execute();
+        $promedioTotalPedidos=$statement->fetch();
+        $promedioTotalPedidos=round(floatval($promedioTotalPedidos),2);
+    } catch (Exception $e) {
+        $_SESSION['BadPedido'] = true;
+        return false;
+    }
+
+    try{
+        $con= contectarBbddPDO();
+        $sql="  SELECT COUNT(*) FROM pedidos;";
+        $statement=$con->prepare($sql);
+        $statement->execute();
+        $numeroPedidosTotal=$statement->fetch();
+        $numeroPedidosTotal=intval($numeroPedidosTotal);
+    } catch (Exception $e) {
+        $_SESSION['BadPedido'] = true;
+        return false;
+    }
+    
+    $carpeta = DirectorioInformes();
+    $nombreArchivo='estadisticasPPedidosAllTime'.date("Y-m-d")."txt";
+    $rutaArchivo = $carpeta.$nombreArchivo;
+    $informe = fopen($rutaArchivo, "w");//esto también intenta crearla
+    $dniLog ="Informe generado por consulta de adminitrador con $dni";
+    $textoFacturacionTotal = "Facturacion total = ".$facturacionTotal;
+    $textoPromedioPedidos=" Promedio total de los pedidos = ".$promedioTotalPedidos;
+    $textoNumeroPedidos ="Número de pedidos recibidos= ".$numeroPedidosTotal;
+    $textoInforme = $dni."\n".$textoFacturacionTotal."\n".$textoPromedioPedidos."\n".$textoNumeroPedidos."\n";
+
+    if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line, vamos que hace un break line
+        fwrite($informe, $textoFacturacionTotal . PHP_EOL) !== false &&
+        fwrite($informe, $textoPromedioPedidos . PHP_EOL) !== false &&
+        fwrite($informe, $textoNumeroPedidos . PHP_EOL) !== false) {
+        $_SESSION["InformeGenerado"] = true;
+        return $textoInforme;
+    }
+    fclose($informe);
+    
+
+    header("Content-Disposition: attachment; filename=".basename($rutaArchivo)); // con attachement el browser sabe que debe descargar, cojemos solo el nombre del archivo con basename
+    header("Content-Length: " . filesize($rutaArchivo)); // Configura el tamaño del archivo,necesario para que se pueda ver una barra de progreso de la descarga
+    header("Content-Type: application/octet-stream;"); // Establece el tipo MIME de contenido a octet-stream, esto ayuda a que se descarge y no se intente sacar por pantalla
+    readfile($rutaArchivo); // Lee y envía el archivo al cliente
 
 }
 
