@@ -35,14 +35,13 @@ $arrayAtributosPedido = getArrayAtributosPedido();
 
 //ENCABEZADOS
 echo"<table>";
+echo"<tr><th>Atributos:</th>";
+
         foreach ($arrayAtributosPedido as $index => $atributo) {
             $nombreAtributo = $atributo;
-            if( $index == 0) {
-                echo"<tr><th>Atributos:</th>";
-                echo "<th>$nombreAtributo</th>";
-            } if($nombreAtributo == "activo"){
+            if($nombreAtributo == "activo"){
                 echo "<th>$nombreAtributo<br> Esta cambio se aplicará tamibén a todas las lineas de contenido pedido, desactivando por completo el pedido</th>";
-            }else {
+            } else {
                 echo "<th>$nombreAtributo</th>";
             }
         }
