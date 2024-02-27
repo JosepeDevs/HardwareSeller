@@ -48,11 +48,10 @@ function EstadisticasUsuariosWeb($dni){
     $nombreArchivo='estadisticasClientes'.date("Y-m-d").".txt";
     $rutaArchivo = $carpeta.$nombreArchivo;
     $informe = fopen($rutaArchivo, "w");//esto también intenta crearla
-    $dniLog ="Informe generado por consulta de adminitrador con $dni";
-    $totalRegistrados = "Número de clientes registrados (activos e inactivos): ".$_SESSION['NumeroClientes'];
-    $activosRegistrados="Número de clientes registrados (activos): ".$_SESSION['ClientesActivos'];
-    $inactivosRegistrados="Número de clientes registrados (inactivos): ".$_SESSION['ClientesInactivos'];
-    $textoInforme = $dni."\n".$totalRegistrados."\n".$activosRegistrados."\n".$inactivosRegistrados;
+    $dniLog ="Informe generado por consulta de adminitrador con $dni"."\n";
+    $totalRegistrados = "Número de clientes registrados (activos e inactivos): ".$_SESSION['NumeroClientes']."\n";
+    $activosRegistrados="Número de clientes registrados (activos): ".$_SESSION['ClientesActivos']."\n";
+    $inactivosRegistrados="Número de clientes registrados (inactivos): ".$_SESSION['ClientesInactivos']."\n";
 
     if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line, vamos que hace un break line
         fwrite($informe, $totalRegistrados . PHP_EOL) !== false &&
@@ -62,16 +61,14 @@ function EstadisticasUsuariosWeb($dni){
     }
     fclose($informe);
 
-    $carpeta="https://josepedevs.infinityfreeapp.com/Reports/";
-    $rutaArchivo = $carpeta.$nombreArchivo;
-
+/*
     header("Cache-Control: public");
     header("Content-Description: File Transfer");
     header("Content-Disposition: attachment; filename=".basename($rutaArchivo)); // con attachement el browser sabe que debe descargar, cojemos solo el nombre del archivo con basename
     header("Content-Type: application/zip");
     header("Content-Transfer-Encoding: binary");
     readfile($rutaArchivo); // Lee y envía el archivo al cliente
-    
+    */
     return $nombreArchivo;
 }
 
@@ -122,7 +119,7 @@ function EstadisticasArticulosWeb($dni){
             $categoriaCategoria = $articuloMasVendido->getCategoria();
             $precioPrecio = $articuloMasVendido->getPrecio();
             $descuentoDescuento = $articuloMasVendido->getDescuento();
-            $articuloMasVendido = "el artículo más vendido tiene el codigo ". $articuloCodigo .". con nombre: ". $nombreNombre .". Con categoria: ". $categoriaCategoria .". Con precio: ". $precioPrecio .". Vendido con descuento: ". $descuentoDescuento;
+            $articuloMasVendido = "\nEl artículo más vendido tiene el codigo ". $articuloCodigo .". con nombre: ". $nombreNombre .". Con categoria: ". $categoriaCategoria .". Con precio: ". $precioPrecio .". Vendido con descuento: ". $descuentoDescuento;
         }
     } catch (Exception $e) {
         $_SESSION['BadArticulos'] = true;
@@ -135,11 +132,10 @@ function EstadisticasArticulosWeb($dni){
     $nombreArchivo='estadisticasArticulos'.date("Y-m-d").".txt";
     $rutaArchivo = $carpeta.$nombreArchivo;
     $informe = fopen($rutaArchivo, "w");//esto también intenta crearla
-    $dniLog ="Informe generado por consulta de adminitrador con $dni";
-    $textoNumeroTotal = "Número de artículos registrados (activos e inactivos): ".$totalArticulos;
-    $textoActivos="Número de artículos registrados (activos): ".$totalActivos;
-    $textoInactivos ="Número de artículos registrados (inactivos): ".$totalInactivos;
-    $textoInforme = $dni."\n".$textoNumeroTotal."\n".$textoActivos."\n".$textoInactivos."\n".$articuloMasVendido;
+    $dniLog ="Informe generado por consulta de adminitrador con $dni"."\n";
+    $textoNumeroTotal = "Número de artículos registrados (activos e inactivos): ".$totalArticulos."\n";
+    $textoActivos="Número de artículos registrados (activos): ".$totalActivos."\n";
+    $textoInactivos ="Número de artículos registrados (inactivos): ".$totalInactivos."\n";
 
     if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line, vamos que hace un break line
         fwrite($informe, $textoNumeroTotal . PHP_EOL) !== false &&
@@ -150,12 +146,12 @@ function EstadisticasArticulosWeb($dni){
     }
     fclose($informe);
     
-
+/*
     header("Content-Disposition: attachment; filename=".basename($rutaArchivo)); // con attachement el browser sabe que debe descargar, cojemos solo el nombre del archivo con basename
     header("Content-Length: " . filesize($rutaArchivo)); // Configura el tamaño del archivo,necesario para que se pueda ver una barra de progreso de la descarga
     header("Content-Type: application/octet-stream;"); // Establece el tipo MIME de contenido a octet-stream, esto ayuda a que se descarge y no se intente sacar por pantalla
     readfile($rutaArchivo); // Lee y envía el archivo al cliente
-    
+*/
     return $nombreArchivo;
 
 }
@@ -201,11 +197,10 @@ function EstadisticasPedidosWeb($dni){
     $nombreArchivo='estadisticasPedidosAllTime'.date("Y-m-d").".txt";
     $rutaArchivo = $carpeta.$nombreArchivo;
     $informe = fopen($rutaArchivo, "w");//esto también intenta crearla
-    $dniLog ="Informe generado por consulta de adminitrador con $dni";
-    $textoFacturacionTotal = "Facturacion total = ".$facturacionTotal;
-    $textoPromedioPedidos=" Promedio total de los pedidos = ".$promedioTotalPedidos;
-    $textoNumeroPedidos ="Número de pedidos recibidos= ".$numeroPedidosTotal;
-    $textoInforme = $dni."\n".$textoFacturacionTotal."\n".$textoPromedioPedidos."\n".$textoNumeroPedidos."\n";
+    $dniLog ="Informe generado por consulta de adminitrador con $dni"."\n";
+    $textoFacturacionTotal = "Facturacion total = ".$facturacionTotal."\n";
+    $textoPromedioPedidos=" Promedio total de los pedidos = ".$promedioTotalPedidos."\n";
+    $textoNumeroPedidos ="Número de pedidos recibidos= ".$numeroPedidosTotal."\n";
 
     if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line, vamos que hace un break line
         fwrite($informe, $textoFacturacionTotal . PHP_EOL) !== false &&
@@ -215,12 +210,12 @@ function EstadisticasPedidosWeb($dni){
     }
     fclose($informe);
     
-
+/*
     header("Content-Disposition: attachment; filename=".basename($rutaArchivo)); // con attachement el browser sabe que debe descargar, cojemos solo el nombre del archivo con basename
     header("Content-Length: " . filesize($rutaArchivo)); // Configura el tamaño del archivo,necesario para que se pueda ver una barra de progreso de la descarga
     header("Content-Type: application/octet-stream;"); // Establece el tipo MIME de contenido a octet-stream, esto ayuda a que se descarge y no se intente sacar por pantalla
     readfile($rutaArchivo); // Lee y envía el archivo al cliente
-
+*/
     return $nombreArchivo;
 
 }
@@ -268,11 +263,10 @@ $carpeta = DirectorioInformes();
 $nombreArchivo='estadisticasPPedidosAllTime'.date("Y-m-d").".txt";
 $rutaArchivo = $carpeta.$nombreArchivo;
 $informe = fopen($rutaArchivo, "w");//esto también intenta crearla
-$dniLog ="Informe generado por consulta de adminitrador con $dni";
-$textoFacturacionTotal = "Facturacion total = ".$facturacionTotal;
-$textoPromedioPedidos=" Promedio total de los pedidos = ".$promedioTotalPedidos;
-$textoNumeroPedidos ="Número de pedidos recibidos= ".$numeroPedidosTotal;
-$textoInforme = $dni."\n".$textoFacturacionTotal."\n".$textoPromedioPedidos."\n".$textoNumeroPedidos."\n";
+$dniLog ="Informe generado por consulta de adminitrador con $dni\n";
+$textoFacturacionTotal = "Facturacion total = ".$facturacionTotal."\n";
+$textoPromedioPedidos=" Promedio total de los pedidos = ".$promedioTotalPedidos."\n";
+$textoNumeroPedidos ="Número de pedidos recibidos= ".$numeroPedidosTotal."\n";
 
 if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line, vamos que hace un break line
     fwrite($informe, $textoFacturacionTotal . PHP_EOL) !== false &&
@@ -281,13 +275,13 @@ if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line, vamos
     $_SESSION["InformePedidoGenerado"] = true;
 }
 fclose($informe);
-
+/*
 
 header("Content-Disposition: attachment; filename=".basename($rutaArchivo)); // con attachement el browser sabe que debe descargar, cojemos solo el nombre del archivo con basename
 header("Content-Length: " . filesize($rutaArchivo)); // Configura el tamaño del archivo,necesario para que se pueda ver una barra de progreso de la descarga
 header("Content-Type: application/octet-stream;"); // Establece el tipo MIME de contenido a octet-stream, esto ayuda a que se descarge y no se intente sacar por pantalla
 readfile($rutaArchivo); // Lee y envía el archivo al cliente
-
+*/
 return $nombreArchivo;
 
 
