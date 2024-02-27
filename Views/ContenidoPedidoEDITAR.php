@@ -30,6 +30,7 @@ if(isset($_GET["idPedido"]) ){
 }
 
 include_once("../Controllers/PedidoEDITARController.php");
+include_once("../Models/Pedido.php");
 
 $pedido = getPedidoByIdPedido($numPedidoOriginal);
 $arrayAtributosPedido = getArrayAtributosPedido();
