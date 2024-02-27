@@ -8,7 +8,7 @@ if( $usuarioLogeado == false){
     header("Location: index.php");
 }
 
-function GetPedidoByBusquedaIdPedido($numPedido){
+function getPedidoByIdPedido($numPedido){
     include_once("../Models/Pedido.php");
     $Pedido = Pedido::GetPedidoByIdPedido($numPedido);
     return $Pedido;

@@ -30,7 +30,7 @@ if(isset($_GET["idPedido"]) ){
 
 include_once("../Controllers/PedidoEDITARController.php");
 
-$pedido = GetPedidoByBusquedaIdPedido($numPedidoOriginal);
+$pedido = getPedidoByIdPedido($numPedidoOriginal);
 $arrayAtributosPedido = getArrayAtributosPedido();
 
 //ENCABEZADOS
@@ -74,16 +74,16 @@ echo"<tr><th>Atributos:</th>";
                             $nombreAtributo = $atributo;
                             $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
                             $valor = $pedido->$getter();//lo llamamos para obtener el valor
-                            if( $nombreAtributo == "estado" ){
-                                echo "<td><input type='number' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
-                            }else if($nombreAtributo == "idPedido" ){
+                            if($nombreAtributo == "idPedido" ){
                                 $_SESSION['idPedido'] = $valor;//lo subimos a session idpedido porque hace falta para identificar el pedido, pero no dejamos editarlo
                                 echo "<td>$valor</td>";//idPedido lo genera la BBDD, no dejamos editarlo, igual que no dejeamos editar el codUsuario
-                            }if($nombreAtributo == "total" ){
-                                echo "<td><input type='number' step='0.01' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
-                            } else if($nombreAtributo == "fecha" ){
+                            }else if($nombreAtributo == "fecha" ){
                                 echo "<td><input type='date' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
-                            }else if($nombreAtributo == "codUsuario" ){
+                            }else if($nombreAtributo == "total" ){
+                                echo "<td><input type='number' step='0.01' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
+                            } else if( $nombreAtributo == "estado" ){
+                                echo "<td><input type='number' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
+                            }else  if($nombreAtributo == "codUsuario" ){
                                 echo "<td>$valor</td>";
                             }else if($nombreAtributo == "activo") {
                                 echo "
