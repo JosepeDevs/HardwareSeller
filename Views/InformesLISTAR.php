@@ -76,7 +76,7 @@ $nombreInforme=false;
     $nombreInforme= EstadisticasPedidosRangoFechas($dni,$fechaInicio, $fechaFin);
 }
 if($nombreInforme !== false){
-    print(" <div>
+    print(" <div class='container-fluid'>
        <button class='btn btn-secondary'><a href='download.php?informe=".urlencode($nombreInforme)."'>Descargar informe</a></button>
     </div>");//urlencode para no mandar caracteres no compatibles por la url
 }
