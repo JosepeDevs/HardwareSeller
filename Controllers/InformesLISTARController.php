@@ -45,7 +45,7 @@ function EstadisticasUsuariosWeb($dni){
     $_SESSION['NumeroClientes'] = count(array_merge($arrayClientesActivos, $arrayClientesInactivos));
 
     $carpeta = DirectorioInformes();
-    $nombreArchivo='estadisticasClientes'.date("Y-m-d H-i").".txt";
+    $nombreArchivo='estadisticasClientes'.date("Y-m-d.H-i").".txt";
     $rutaArchivo = $carpeta.$nombreArchivo;
     $informe = fopen($rutaArchivo, "w");//esto también intenta crearla
     $dniLog ="Informe generado por consulta de adminitrador con $dni"."\n";
@@ -129,7 +129,7 @@ function EstadisticasArticulosWeb($dni){
     $totalArticulos= $totalActivos + $totalInactivos;
 
     $carpeta = DirectorioInformes();
-    $nombreArchivo='estadisticasArticulos'.date("Y-m-d H-i").".txt";
+    $nombreArchivo='estadisticasArticulos'.date("Y-m-d.H-i").".txt";
     $rutaArchivo = $carpeta.$nombreArchivo;
     $informe = fopen($rutaArchivo, "w");//esto también intenta crearla
     $dniLog ="Informe generado por consulta de adminitrador con $dni"."\n";
@@ -194,7 +194,7 @@ function EstadisticasPedidosWeb($dni){
     }
     
     $carpeta = DirectorioInformes();
-    $nombreArchivo='estadisticasPedidosAllTime'.date("Y-m-d H-i").".txt";
+    $nombreArchivo='estadisticasPedidosAllTime'.date("Y-m-d.H-i").".txt";
     $rutaArchivo = $carpeta.$nombreArchivo;
     $informe = fopen($rutaArchivo, "w");//esto también intenta crearla
     $dniLog ="Informe generado por consulta de adminitrador con $dni"."\n";
@@ -260,7 +260,7 @@ try{
 }
 
 $carpeta = DirectorioInformes();
-$nombreArchivo='estadisticasPPedidosAllTime'.date("Y-m-d H-i").".txt";
+$nombreArchivo='estadisticasPPedidosAllTime'.date("Y-m-d.H-i").".txt";
 $rutaArchivo = $carpeta.$nombreArchivo;
 $informe = fopen($rutaArchivo, "w");//esto también intenta crearla
 $dniLog ="Informe generado por consulta de adminitrador con $dni\n";
