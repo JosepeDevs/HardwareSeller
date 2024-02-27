@@ -273,7 +273,8 @@ public static function borradoLogicoPedido($idPedido){
             }
             $statement->bindParam(':idPedido', $idPedido);
             $statement->execute();
-            $pedido = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
+            $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
+            $pedido = $statement->fetch();
             if(empty($pedido)){
                 $_SESSION['ErrorGetPedidos'] = true;
                 return false;
