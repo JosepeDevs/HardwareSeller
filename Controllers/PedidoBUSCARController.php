@@ -25,6 +25,15 @@ function getPedidoByIdPedido($idPedido, $dni=null){
         return $Pedido;
     }
 }
+function getPedidosByEstado($estado, $dni=null){
+    include_once("../Models/Pedido.php");
+    $Pedido = Pedido::getPedidosByEstado($estado, $dni);
+    if($Pedido == false){
+        return false;
+    } else{
+        return $Pedido;
+    }
+}
 
 function GetPedidosByRangoFecha($fechaInicio, $fechaFin, $dni=null){
     include_once("../Models/Pedido.php");

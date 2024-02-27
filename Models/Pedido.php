@@ -132,6 +132,37 @@ public static function borradoLogicoPedido($idPedido){
     }
 
     /**
+     * @return bool|Pedido devuelve false si falla, devuelve el Pedido si lo encuentra consultando el código
+     */
+    public static function getPedidosByEstado($estado, $dni=null){
+        try{
+            $con = contectarBbddPDO();
+            if($dni !== null){
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE estado=:estado AND codUsuario=:dni AND activo=1;";
+            } else{
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE estado=:estado ;";
+            }
+            $statement=$con->prepare($sqlQuery);
+            $statement->bindParam(':estado', $estado);
+            if($dni !== null){
+                $statement->bindParam(':dni', $dni);
+            }
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
+            $Pedido = $statement->fetch();
+            if(empty($Pedido)){
+                $_SESSION['EstadoNotFound'] = true;
+                return false;
+            }else{
+                return $Pedido;
+            }
+        } catch(PDOException $e) {
+            $_SESSION['ErrorGetPedidos']= true;
+            return false;
+        }
+    }
+
+    /**
      * @return bool|array devuelve false si falla, devuelve el Pedido si lo encuentra consultando el código
      */
     public static function getPedidosByCodUsuario($codUsuario, $dni=null){

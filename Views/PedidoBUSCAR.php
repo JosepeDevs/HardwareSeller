@@ -126,6 +126,16 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         if($arrayPedido == false){
             $_SESSION['codUsuarioNotFound'] = true;
         }
+    } else if(!empty( $_REQUEST['estado'])) {
+        $estado=$_REQUEST["estado"];
+        if( $rol == "admin" || $rol == "empleado" ){
+            $arrayPedido = getPedidosByEstado($codUsuario);
+        } else{
+            $arrayPedido = getPedidosByEstado($codUsuario, $dni);
+        }
+        if($arrayPedido == false){
+            $_SESSION['codUsuarioNotFound'] = true;
+        }
     }
 
 
