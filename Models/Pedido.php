@@ -151,7 +151,7 @@ public static function borradoLogicoPedido($idPedido){
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
             $Pedido = $statement->fetch();
             if(empty($Pedido)){
-                $_SESSION['EstadoNotFound'] = true;
+                $_SESSION['estadoNotFound'] = true;
                 return false;
             }else{
                 return $Pedido;

@@ -17,7 +17,7 @@ Function getArrayMensajesPedidos(){
     $mensajes=[];
 
     if(isset($_SESSION['estadoNotFound']) && $_SESSION['estadoNotFound'] == true){
-        $mensajes[] =  "Noi se ha encontrado nada con ese estado.";
+        $mensajes[] =  "No se ha encontrado nada con ese estado.";
         unset($_SESSION['estadoNotFound']);
     }
     if(isset($_SESSION['ExitoBorrandoPedido']) && $_SESSION['ExitoBorrandoPedido'] == true){

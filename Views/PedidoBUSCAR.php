@@ -129,7 +129,9 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
     } else if(!empty( $_REQUEST['estado'])) {
         $estado=$_REQUEST["estado"];
         if( $rol == "admin" || $rol == "empleado" ){
+            print $estado;
             $arrayPedido = getPedidosByEstado($codUsuario);
+            print_r($arrayPedido);
         } else{
             $arrayPedido = getPedidosByEstado($codUsuario, $dni);
         }
