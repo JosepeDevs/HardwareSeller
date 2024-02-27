@@ -12,9 +12,12 @@ if( $usuarioLogeado == false){
 
 
 include_once("header.php");
-print("<h1>Modificar Contenido del Pedido</h1>");
+print("<h1>Modificar Pedido</h1>");
 
-include_once("../Controllers/ContenidoPedidoEDITARController.php");
+//ponemos "editando" en true para que cuando lo mandemos a ValidarDatos lo trate como update
+$_SESSION["editandoContenidoPedido"]="true";
+$rol4consulta = isset($_GET['rol4consulta'])? $_GET['rol4consulta'] : null;
+
 if(isset($_GET["idPedido"]) ){
     $numPedidoOriginal=$_GET["idPedido"];   
     $_SESSION["numPedido"] = $numPedidoOriginal; 
@@ -25,11 +28,72 @@ if(isset($_GET["idPedido"]) ){
     $numPedidoOriginal=false;   
 }
 
-$arrayAtributos = getArrayAtributosContenidoPedido();
+include_once("../Controllers/PedidoEDITARController.php");
 
-//ponemos "editando" en true para que cuando lo mandemos a ValidarDatos lo trate como update
-$_SESSION["editandoContenidoPedido"]="true";
-$rol4consulta = isset($_GET['rol4consulta'])? $_GET['rol4consulta'] : null;
+$pedido = GetPedidoByBusquedaIdPedido($numPedidoOriginal);
+$arrayAtributosPedido = getArrayAtributosPedido();
+
+//ENCABEZADOS
+echo"<table>";
+        foreach ($arrayAtributosPedido as $index => $atributo) {
+            $nombreAtributo = $atributo;
+            if( $index == 1) {
+                echo"<tr><th>Atributos:</th>";
+                echo "<th>$nombreAtributo</th>";
+            } else {
+                echo "<th>$nombreAtributo</th>";
+            }
+        }
+        echo "</tr>";
+                //datos ACTUALES OBJETO (estaticos, para que se vean siempre los actuales) 
+                if($pedido == false){
+                    //no había o no llegó numPedido por url u otr forma
+                    echo'<p>Ocurrió un error</p>';
+                } else {
+                    echo"<tr><th>Datos actuales:</th>";
+                    foreach ($arrayAtributos as $atributo) {
+                        $nombreAtributo = $atributo;
+                        $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
+                        $valor = $numLinea->$getter();//lo llamamos para obtener el valor
+                        if($nombreAtributo == "activo") {
+                            if($valor==0){
+                                echo"<td>Desactivado</td>";
+                            }else{
+                                echo"<td>Activado</td>";
+                            }
+                        } else {
+                            echo "<td>$valor</td>";
+                        }
+                    }
+                    echo "</tr>";
+                }
+                //FORMULARIO para EDITAR PRERELLENADO para que se mantengan los datos si no cambia nada
+                    echo '<form action="../Controllers/PedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
+                        echo"<tr><th>Nuevos datos:</th>";
+                        foreach ($arrayAtributos as $atributo) {
+                            $nombreAtributo = $atributo;
+                            $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
+                            $valor = $numLinea->$getter();//lo llamamos para obtener el valor
+                            if( $nombreAtributo == "numPedido"  || $nombreAtributo == "estado" ){
+                                echo "<td><input type='number' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
+                            }else if($nombreAtributo == "total" ){
+                                echo "<td><input type='number' step='0.01' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
+                            } else if($nombreAtributo == "fecha" ){
+                                echo "<td><input type='date' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
+                            }else{
+                                //de este no hay ninguno pero si alguna vez cambiara los atributos de pedido los vería con esta línea
+                                echo "<td><input type='text' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
+                            }
+                        }
+                        echo "</tr>";
+        echo "</table>";
+    echo "</form>";
+
+print("<h2>Modificar Contenido del Pedido</h2>");
+
+include_once("../Controllers/ContenidoPedidoEDITARController.php");
+
+$arrayAtributos = getArrayAtributosContenidoPedido();
 
 //ENCABEZADOS
 echo"<table>";
@@ -58,7 +122,6 @@ echo"<table>";
                 } else {
 
                     //arrayContenidoPedido puede conntener de 0 a vete tu a saber cuantos ContenidoPedido
-                    echo '<form action="../Controllers/ContenidoPedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
                     foreach($arrayContenidoPedido as $index => $numLinea) {
                         echo"<tr><th>Datos actuales:</th>";
                         foreach ($arrayAtributos as $atributo) {
