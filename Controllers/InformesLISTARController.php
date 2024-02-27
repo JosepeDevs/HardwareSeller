@@ -63,7 +63,7 @@ function EstadisticasUsuariosWeb($dni){
     }
     fclose($informe);
 
-    $carpeta="   https://josepedevs.infinityfreeapp.com/Reports/";
+    $carpeta="https://josepedevs.infinityfreeapp.com/Reports/";
     $rutaArchivo = $carpeta.$nombreArchivo;
 
     header("Cache-Control: public");
@@ -165,7 +165,7 @@ function EstadisticasPedidosWeb($dni){
         $sql="SELECT SUM(total) FROM pedidos";
         $statement=$con->prepare($sql);
         $statement->execute();
-        $facturacionTotal=$statement->fetch();
+        $facturacionTotal = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la fila 
         $facturacionTotal=round(floatval($facturacionTotal),2);
     } catch (Exception $e) {
         $_SESSION['BadPedido'] = true;
@@ -177,7 +177,7 @@ function EstadisticasPedidosWeb($dni){
         $sql="SELECT AVG(total) FROM pedidos";
         $statement=$con->prepare($sql);
         $statement->execute();
-        $promedioTotalPedidos=$statement->fetch();
+        $promedioTotalPedidos = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la fila 
         $promedioTotalPedidos=round(floatval($promedioTotalPedidos),2);
     } catch (Exception $e) {
         $_SESSION['BadPedido'] = true;
@@ -189,7 +189,7 @@ function EstadisticasPedidosWeb($dni){
         $sql="  SELECT COUNT(*) FROM pedidos;";
         $statement=$con->prepare($sql);
         $statement->execute();
-        $numeroPedidosTotal=$statement->fetch();
+        $numeroPedidosTotal = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la fila 
         $numeroPedidosTotal=intval($numeroPedidosTotal);
     } catch (Exception $e) {
         $_SESSION['BadPedido'] = true;
@@ -231,7 +231,7 @@ try{
     $sql="SELECT SUM(total) FROM pedidos WHERE fecha >= :fechaInicio AND fecha <= :fechaFin;";
     $statement=$con->prepare($sql);
     $statement->execute();
-    $facturacionTotal=$statement->fetch();
+    $facturacionTotal = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la fila 
     $facturacionTotal=round(floatval($facturacionTotal),2);
 } catch (Exception $e) {
     $_SESSION['BadPedido'] = true;
@@ -243,7 +243,7 @@ try{
     $sql="SELECT AVG(total) FROM pedidos  WHERE fecha >= :fechaInicio AND fecha <= :fechaFin;";
     $statement=$con->prepare($sql);
     $statement->execute();
-    $promedioTotalPedidos=$statement->fetch();
+    $promedioTotalPedidos = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la fila 
     $promedioTotalPedidos=round(floatval($promedioTotalPedidos),2);
 } catch (Exception $e) {
     $_SESSION['BadPedido'] = true;
@@ -255,7 +255,7 @@ try{
     $sql="  SELECT COUNT(*) FROM pedidos  WHERE fecha >= :fechaInicio AND fecha <= :fechaFin;;";
     $statement=$con->prepare($sql);
     $statement->execute();
-    $numeroPedidosTotal=$statement->fetch();
+    $numeroPedidosTotal = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la fila 
     $numeroPedidosTotal=intval($numeroPedidosTotal);
 } catch (Exception $e) {
     $_SESSION['BadPedido'] = true;
