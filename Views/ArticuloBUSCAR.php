@@ -109,7 +109,7 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
 echo'
         <h2><a class="cerrar" href="../Views/Catalogo.php"><img src="../Resources/arrow.png" alt="listar articulos" />Volver al catálogo</a></h2>';
 $rol = GetRolDeSession();
-if($rol == "admin" || $rol == "editor"){
+if($rol == "admin" || $rol == "editor" || $rol == "empleado") {
         echo'
         <h2><a class="cerrar" href="ArticulosLISTAR.php"><img src="../Resources/arrow.png" alt="listar articulos" />Volver a la tabla de artículos</a></h2>';
         echo '<h2><a class="cerrar"  href="TablaClientes.php">Ver usuarios</a></h2>';

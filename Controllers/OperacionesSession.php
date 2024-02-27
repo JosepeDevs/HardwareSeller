@@ -26,6 +26,15 @@ function checkAdminOEmpleado(){
     }
 }
 
+function AuthYRolEmpleado(){
+    if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
+    if(isset($_SESSION['rol']) && $_SESSION['rol'] == "empleado" && isset($_SESSION['auth']) && $_SESSION['auth'] == "OK") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 /**
  * funcion para poner al principio de las paginas php que solo los admin pueden ver
  * @return boolean true si session auth=OK y rol= admin, en cualquier otro caso devuelve false.

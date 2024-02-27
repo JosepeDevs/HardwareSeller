@@ -21,12 +21,12 @@ print("<h1>Gestionar artículos</h1>");
 
 //NAVEGACION
 include_once("../Controllers/OperacionesSession.php");
-if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
+if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ||GetRolDeSession()=="empleado" ){
     echo"
     <div id='EnlacesArriba'>
         <h2>
             <a href='ArticuloALTA.php'>
-                <img class='iconArribaTabla' src='../Resources/addAr.png' alt='añadir' /> Nuevo artículo (solo admin y editores)
+                <img class='iconArribaTabla' src='../Resources/addAr.png' alt='añadir' /> Nuevo artículo (solo admin y editores y empleados)
             </a>
         </h2>";
 }
@@ -82,7 +82,7 @@ echo"<table>";
                     echo "<th>$nombreAtributo</th>";
                 }
                 include_once("../Controllers/OperacionesSession.php");//get rol
-                if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
+                if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" || GetRolDeSession() == "empleado"){
                     echo"
                     <th>Editar</th>
                     <th>Desactivar</th>";
@@ -130,7 +130,7 @@ echo"<table>";
                     echo "<td>$valor</td>";
                 }
             }
-            if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"){
+            if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" || GetRolDeSession() == "empleado"){
                 echo"
                 <td><a href='ArticuloEDITAR.php?codigo=$codigo'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
                 <td><a href='ArticuloBORRAR.php?codigo=$codigo'><img class='icon' src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";

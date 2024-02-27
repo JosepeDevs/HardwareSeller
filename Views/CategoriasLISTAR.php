@@ -5,7 +5,8 @@ $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
     header("Location: /index.php");
-}$rol = GetRolDeSession();
+}
+$rol = GetRolDeSession();
 if( $rol !== "admin" || $rol !== "empleado" ){
     session_destroy();
     echo "Articulos alta dice: no está user en session";
@@ -19,12 +20,12 @@ print("<h1>Administrar categorias</h1>");
 
 //NAVEGACION
 include_once("../Controllers/OperacionesSession.php");
-if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
+if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ||GetRolDeSession() == "empleado"){
     echo"
     <div id='EnlacesArriba'>
         <h2>
             <a href='CategoriaALTA.php'>
-                <img class='iconArribaTabla' src='../Resources/addAr.png' alt='añadir' /> Nueva categoría (solo admin y editores)
+                <img class='iconArribaTabla' src='../Resources/addAr.png' alt='añadir' /> Nueva categoría (solo admin y editores y empleados)
             </a>
         </h2>";
 }
@@ -35,7 +36,7 @@ if(GetRolDeSession() == "admin" ){
             </a>
         </h2>";
 } else {
-    //solo entrará aquí si es editor
+    //solo entrará aquí si es editor o empleado
     echo"<h2>
             <a href='CategoriaALTA.php'>
                 <img class='iconArribaTabla' src='../Resources/addAr.png' alt='añadir' /> Crear categoría nueva
@@ -69,7 +70,7 @@ echo"<table>";
                     echo "<th>$nombreAtributo</th>";
                 }
                 include_once("../Controllers/OperacionesSession.php");//get rol
-                if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ){
+                if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"||GetRolDeSession() == "empleado" ){
                     echo"
                     <th>Editar</th>
                     <th>Desactivar</th>";
@@ -118,7 +119,7 @@ echo"<table>";
                     echo "<td>$valor</td>";
                 }
             }
-            if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"){
+            if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ||GetRolDeSession() == "empleado"){
                 echo"
                 <td>
                     <a  href='CategoriaEDITAR.php?codigo=$codigo'>

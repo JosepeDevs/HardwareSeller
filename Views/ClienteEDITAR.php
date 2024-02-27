@@ -93,6 +93,7 @@ echo"<table>";
                                         <select id='rol' name='rol' required value='$valor'>
                                             <option value='user'>User</option>
                                             <option value='editor'>Editor</option>
+                                            <option value='empleado'>Empleado</option>
                                             <option value='admin'>Administrador</option>
                                         </select>
                                     </td>";

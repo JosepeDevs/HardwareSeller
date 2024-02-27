@@ -92,6 +92,7 @@
                             $dni=GetDniByEmail($email);
                             $esEditor = AuthYRolEditor();
                             $esAdmin = AuthYRolAdmin();
+                            $esEmpleado = AuthYRolEmpleado();
                             if($esAdmin){
                                 print ('
                                 <li><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></li>
@@ -103,6 +104,12 @@
                             } else if ($esEditor){
                                 print ('
                                 <li><a href="/Views/ClienteEDITAR.php?dni='.$dni.'">Ver/editar mis datos</a></li>
+                                <li><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></li>
+                                <li><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></li>
+                                <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
+                            } else if($esEmpleado){
+                                print ('
+                                <li><a href="/Views/PedidosLISTAR.php">Administrar PEDIDOS</a></li>
                                 <li><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></li>
                                 <li><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></li>
                                 <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
