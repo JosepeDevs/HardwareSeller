@@ -43,16 +43,3 @@ print"</table>";
 
 include_once("footer.php");
 
-
-//todo wrappear esto en función y llamar a CLASE Informes (también todo)
-if(
-    isset( $_GET["EstadisticasUsuariosWeb"] ) &&
-    $_GET["EstadisticasUsuariosWeb"] == 1  &&
-    isset( $_GET["dni"] ) 
-) {
-
-    $dni=$_GET['dni'];
-    $textoGenerado = EstadisticasUsuariosWeb($dni);//con llamar al método se debería descargar
-}
-
-
