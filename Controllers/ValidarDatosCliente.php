@@ -22,7 +22,7 @@ $activo = isset($_POST["activo"]) ? $_POST["activo"]:1;
 //esto es para saber si han elegido recogida en tienda o envío
 $estado = isset($_POST["estadoEnvio"]) ? $_POST["estadoEnvio"]:null;
 
-if(in_array(strtolower($rol), array("user", "admin", "editor"))){
+if(in_array(strtolower($rol), array("user", "admin", "editor", "empleado"))){
     //se ha enviado un rol correcto, no validamos longitud porque ha cumplido con el enum
 } else{
     $_SESSION['BadRol']= true;
