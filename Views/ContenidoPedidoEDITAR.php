@@ -40,7 +40,9 @@ echo"<table>";
             if( $index == 0) {
                 echo"<tr><th>Atributos:</th>";
                 echo "<th>$nombreAtributo</th>";
-            } else {
+            } if($nombreAtributo == "activo"){
+                echo "<th>$nombreAtributo<br> Esta cambio se aplicará tamibén a todas las lineas de contenido pedido, desactivando por completo el pedido</th>";
+            }else {
                 echo "<th>$nombreAtributo</th>";
             }
         }
@@ -106,8 +108,10 @@ echo"<table>";
         echo"<h2><input type='submit' value='Guardar datos pedido'></h2></div>";
     echo "</form>";
 
-print("<br><br><h2>Modificar Contenido del Pedido</h2>");
+    ///////////////////////////PARTE DE  CONTENIDO PEDIDO
 
+
+print("<br><br><h2>Modificar Contenido del Pedido</h2>");
 include_once("../Controllers/ContenidoPedidoEDITARController.php");
 
 $arrayAtributos = getArrayAtributosContenidoPedido();
@@ -124,7 +128,9 @@ echo"<table>";
             } else if( $index == 1) {
                 echo"<tr><th>Atributos:</th>";
                 echo "<th>$nombreAtributo</th>";
-            } else {
+            } else if($nombreAtributo == "activo"){
+                echo "<th>$nombreAtributo<br> Esta cambio solo se aplicará en la línea que se cambie</th>";
+            } {
                 echo "<th>$nombreAtributo</th>";
             }
         }
