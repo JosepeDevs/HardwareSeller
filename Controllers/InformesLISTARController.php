@@ -59,7 +59,6 @@ function EstadisticasUsuariosWeb($dni){
         fwrite($informe, $activosRegistrados . PHP_EOL) !== false &&
         fwrite($informe, $inactivosRegistrados . PHP_EOL) !== false) {
         $_SESSION["InformeClientesGenerado"] = true;
-        return $textoInforme;
     }
     fclose($informe);
 
@@ -72,7 +71,8 @@ function EstadisticasUsuariosWeb($dni){
     header("Content-Type: application/zip");
     header("Content-Transfer-Encoding: binary");
     readfile($rutaArchivo); // Lee y envía el archivo al cliente
-
+    
+    return $nombreArchivo;
 }
 
 function EstadisticasArticulosWeb($dni){
@@ -147,7 +147,6 @@ function EstadisticasArticulosWeb($dni){
         fwrite($informe, $textoInactivos . PHP_EOL) !== false &&
         fwrite($informe, $articuloMasVendido . PHP_EOL) !== false) {
         $_SESSION["InformeArticulosGenerado"] = true;
-        return $textoInforme;
     }
     fclose($informe);
     
@@ -156,6 +155,8 @@ function EstadisticasArticulosWeb($dni){
     header("Content-Length: " . filesize($rutaArchivo)); // Configura el tamaño del archivo,necesario para que se pueda ver una barra de progreso de la descarga
     header("Content-Type: application/octet-stream;"); // Establece el tipo MIME de contenido a octet-stream, esto ayuda a que se descarge y no se intente sacar por pantalla
     readfile($rutaArchivo); // Lee y envía el archivo al cliente
+    
+    return $nombreArchivo;
 
 }
 function EstadisticasPedidosWeb($dni){
@@ -211,7 +212,6 @@ function EstadisticasPedidosWeb($dni){
         fwrite($informe, $textoPromedioPedidos . PHP_EOL) !== false &&
         fwrite($informe, $textoNumeroPedidos . PHP_EOL) !== false) {
         $_SESSION["InformePedidoGenerado"] = true;
-        return $textoInforme;
     }
     fclose($informe);
     
@@ -220,6 +220,8 @@ function EstadisticasPedidosWeb($dni){
     header("Content-Length: " . filesize($rutaArchivo)); // Configura el tamaño del archivo,necesario para que se pueda ver una barra de progreso de la descarga
     header("Content-Type: application/octet-stream;"); // Establece el tipo MIME de contenido a octet-stream, esto ayuda a que se descarge y no se intente sacar por pantalla
     readfile($rutaArchivo); // Lee y envía el archivo al cliente
+
+    return $nombreArchivo;
 
 }
 
@@ -276,8 +278,7 @@ if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line, vamos
     fwrite($informe, $textoFacturacionTotal . PHP_EOL) !== false &&
     fwrite($informe, $textoPromedioPedidos . PHP_EOL) !== false &&
     fwrite($informe, $textoNumeroPedidos . PHP_EOL) !== false) {
-    $_SESSION["InformeGenerado"] = true;
-    return $textoInforme;
+    $_SESSION["InformePedidoGenerado"] = true;
 }
 fclose($informe);
 
@@ -286,6 +287,8 @@ header("Content-Disposition: attachment; filename=".basename($rutaArchivo)); // 
 header("Content-Length: " . filesize($rutaArchivo)); // Configura el tamaño del archivo,necesario para que se pueda ver una barra de progreso de la descarga
 header("Content-Type: application/octet-stream;"); // Establece el tipo MIME de contenido a octet-stream, esto ayuda a que se descarge y no se intente sacar por pantalla
 readfile($rutaArchivo); // Lee y envía el archivo al cliente
+
+return $nombreArchivo;
 
 
 }

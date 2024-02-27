@@ -17,74 +17,69 @@ print"<h1>Informes desempeño HardWare Seller</h1>";
 
 print"<br><h2><a href='InformesLISTAR.php'>Recargar página</a></h2><br>";
 include_once("../Controllers/InformesLISTARController.php");
+?>
+<table class='table table-bordered'>
+    <tr>
+        <td class="container-fluid">
+            <button type='button' class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasUsuariosWeb=1'>Generar informe Clientes</button>
+        </td>
+    </tr>
+    <tr>
+        <td class="container-fluid">
+            <button type='button' class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasArticulosWeb=1'>Generar informe Artículos</button>
+        </td>
+    </tr>
+    <tr>
+        <td class="container-fluid">
+            <button type='button' class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasPedidosWeb=1'>Generar informe Pedidos</button>
+        </td>
+    </tr>
+</table>
 
-print"<table class='table table-bordered'>";
-    print'<tr><td class="container-fluid">';
-    print("<button class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasUsuariosWeb=1'>Generar informe Clientes</button>");//así solo pueden llamar a la función los que tengan rol de admin y no escribirmos en la url rol=admin que eso es muy obvio
-    if( isset( $_GET["EstadisticasUsuariosWeb"] ) && $_GET["EstadisticasUsuariosWeb"] == 1 )  {
-            $textoGenerado = EstadisticasUsuariosWeb($dni);//con llamar al método se debería descargar
-            print "<tr><td>Guarde como PDF esta página para disponer del informe</td></tr>" ;
-            print $textoGenerado;
-            print "</td></tr>" ;
-        }
-    print"</td></tr>";
-
-    print'<tr><td class="container-fluid">';
-        print("<button class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasArticulosWeb=1'>Generar informe Artículos</button>");//así solo pueden llamar a la función los que tengan rol de admin y no escribirmos en la url rol=admin que eso es muy obvio
-        if( isset( $_GET["EstadisticasArticulosWeb"] ) && $_GET["EstadisticasArticulosWeb"] == 1 )  {
-            $textoGenerado = EstadisticasArticulosWeb($dni);//con llamar al método se debería descargar
-            print "<td>Guarde como PDF esta página para disponer del informe</td></tr>" ;
-            print $textoGenerado;
-            print "</td>" ;
-        }
-    print"</td></tr>";
-
-    print'<tr><td class="container-fluid">';
-    print("<button class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasPedidosWeb=1'>Generar informe Pedidos</button>");//así solo pueden llamar a la función los que tengan rol de admin y no escribirmos en la url rol=admin que eso es muy obvio
-    if( isset( $_GET["EstadisticasPedidosWeb"] ) && $_GET["EstadisticasPedidosWeb"] == 1 )  {
-            $textoGenerado = EstadisticasPedidosWeb($dni);//con llamar al método se debería descargar
-            print "<td>Guarde como PDF esta página para disponer del informe</td></tr>" ;
-            print $textoGenerado;
-            print "</td>" ;
-        }
-    print'</td></tr>';
-print'</table>
+<br><br>
 
 <form action="InformesLISTAR.php" method="POST">
     <table>
         <tr>
-            <th><h2><label for="fecha">Fecha inicio</label></h2></th>
-            <th><h2><label for="fecha">Fecha fin</label></h2></th>
+            <th>
+                <h2><label for="fecha">Fecha inicio</label></h2>
+            </th>
+            <th>
+                <h2><label for="fecha">Fecha fin</label></h2>
+            </th>
         </tr>
         <tr>
             <td><input type="date" name="fechaInicio" autofocus><br><br></td>
             <td><input type="date" name="fechaFin" ><br><br></td>
         </tr>
 
-        <tr><td class="container-fluid">';
-        if( isset( $_POST["FechaInicio"] ) && !empty($_POST['FechaInicio']) && isset($_POST["FechaFin"]) && empty($_POST['FechaFin']) )  {
-
-            $fechaInicio = !empty($_REQUEST["fechaInicio"]) ? $_REQUEST['fechaInicio'] : null ; 
-            $fechaFin = !empty($_REQUEST["fechaFin"]) ?  $_REQUEST['fechaFin'] : null ; 
-            $arrayPedido = GetPedidosByRangoFecha($fechaInicio,$fechaFin);
-
-                $textoGenerado = EstadisticasPedidosRangoFechas($dni, $fechaInicio, $fechaFin);
-                print "<td>Guarde como PDF esta página para disponer del informe</td></tr>" ;
-                print $textoGenerado;
-                print "</td>" ;
-        } else{
-                print "<td>" ;
-                print "Necesita especificar una fecha de inicio y una fecha de fin." ;
-                print "</td>" ;
-        }
-        print'</td></tr>
+        </td></tr>
     </table>
 
     <div>
         <h2><input type="submit" value="Generar informe Pedidos"></h2><br><br><br>
     </div>
 </form>
-';
+
+<?php
+
+$nombreInforme=false;
+       if( isset( $_GET["EstadisticasUsuariosWeb"] ) && $_GET["EstadisticasUsuariosWeb"] == 1 )  {
+    $nombreInforme= EstadisticasUsuariosWeb($dni);
+} else if( isset( $_GET["EstadisticasArticulosWeb"] ) && $_GET["EstadisticasArticulosWeb"] == 1 )  {
+    $nombreInforme= EstadisticasArticulosWeb($dni);
+} else if( isset( $_GET["EstadisticasPedidosWeb"] ) && $_GET["EstadisticasPedidosWeb"] == 1 )  {
+    $nombreInforme= EstadisticasPedidosWeb($dni);
+} else if( isset( $_POST["FechaInicio"] ) && !empty($_POST['FechaInicio']) && isset($_POST["FechaFin"]) && empty($_POST['FechaFin']) )  {
+    $fechaInicio = !empty($_REQUEST["fechaInicio"]) ? $_REQUEST['fechaInicio'] : null ; 
+    $fechaFin = !empty($_REQUEST["fechaFin"]) ?  $_REQUEST['fechaFin'] : null ; 
+    $nombreInforme= EstadisticasPedidosRangoFechas($dni,$fechaInicio, $fechaFin);
+}
+if($nombreInforme !== false){
+    print(" <div>
+       <button class='btn btn-secondary'><a href='download.php?informe=".urlencode($nombreInforme)."'>Descargar informe</a></button>
+    </div>");//urlencode para no mandar caracteres no compatibles por la url
+}
 
 include_once("footer.php");
 
