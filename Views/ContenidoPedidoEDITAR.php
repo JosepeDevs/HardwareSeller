@@ -34,9 +34,9 @@ $pedido = GetPedidoByBusquedaIdPedido($numPedidoOriginal);
 $arrayAtributosPedido = getArrayAtributosPedido();
 
 //ENCABEZADOS
+echo '<form action="../Controllers/PedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
 echo"<table>";
 echo"<tr><th>Atributos:</th>";
-
         foreach ($arrayAtributosPedido as $index => $atributo) {
             $nombreAtributo = $atributo;
             if($nombreAtributo == "activo"){
@@ -69,7 +69,6 @@ echo"<tr><th>Atributos:</th>";
                     echo "</tr>";
                 }
                 //FORMULARIO para EDITAR PRERELLENADO para que se mantengan los datos si no cambia nada
-                    echo '<form action="../Controllers/PedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
                         echo"<tr><th>Nuevos datos:</th>";
                         foreach ($arrayAtributosPedido as $atributo) {
                             $nombreAtributo = $atributo;
@@ -104,7 +103,7 @@ echo"<tr><th>Atributos:</th>";
                         }
                         echo "</tr>";
         echo "</table>";
-        echo"<h2><input type='submit' value='Guardar datos pedido'></h2></div>";
+        echo"<h2><input type='submit' value='Guardar datos pedido'></h2>";
     echo "</form>";
 
     ///////////////////////////PARTE DE  CONTENIDO PEDIDO
@@ -116,6 +115,7 @@ include_once("../Controllers/ContenidoPedidoEDITARController.php");
 $arrayAtributos = getArrayAtributosContenidoPedido();
 
 //ENCABEZADOS
+echo '<form action="../Controllers/ContenidoPedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
 echo"<table>";
         foreach ($arrayAtributos as $index => $atributo) {
             $nombreAtributo = $atributo;
@@ -165,7 +165,6 @@ echo"<table>";
                         echo "</tr>";
                     }
                 //FORMULARIO para EDITAR PRERELLENADO para que se mantengan los datos si no cambia nada
-                    echo '<form action="../Controllers/ContenidoPedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
                     foreach($arrayContenidoPedido as $index => $numLinea) {
                         echo"<tr><th>Nuevos datos:</th>";
                         foreach ($arrayAtributos as $atributo) {
@@ -202,9 +201,10 @@ echo"<table>";
                     }
         echo "</table>";
     echo "<div class='finForm'>";
-    echo'<button type="button" onclick="addLineaPedidoTodoDisponible()">Añadir una fila al pedido</button>
-    <button type="button" onclick="removeLineaPedido()">Quitar una fila al pedido</button><!--resulta que si no le ponemos type entenderá que es el botón de submit-->';
-    echo"<h2><input type='submit' value='Guardar'></h2></div>";
+            echo'<button type="button" onclick="addLineaPedidoTodoDisponible()">Añadir una fila al pedido</button>
+            <button type="button" onclick="removeLineaPedido()">Quitar una fila al pedido</button>';
+            echo"<h2><input type='submit' value='Guardar'></h2>
+        </div>";
     echo "</form>";
 
 }
