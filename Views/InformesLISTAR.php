@@ -15,7 +15,7 @@ $dni=GetDniByEmail($_SESSION['user']);//acabamos de comprobar que sea admin así
 include_once("header.php");
 print"<h1>Informes desempeño HardWare Seller</h1>";
 
-include_once("./Controllers/InformesLISTARController.php");
+include_once("../Controllers/InformesLISTARController.php");
 
 print"<table  class='table table-bordered'>";
     print"<tr>";
