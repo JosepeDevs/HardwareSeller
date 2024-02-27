@@ -63,10 +63,11 @@ function EstadisticasUsuariosWeb($dni){
     }
     fclose($informe);
     
-
+    header("Cache-Control: public");
+    header("Content-Description: File Transfer");
     header("Content-Disposition: attachment; filename=".basename($rutaArchivo)); // con attachement el browser sabe que debe descargar, cojemos solo el nombre del archivo con basename
-    header("Content-Length: " . filesize($rutaArchivo)); // Configura el tamaño del archivo,necesario para que se pueda ver una barra de progreso de la descarga
-    header("Content-Type: application/octet-stream;"); // Establece el tipo MIME de contenido a octet-stream, esto ayuda a que se descarge y no se intente sacar por pantalla
+    header("Content-Type: application/zip");
+    header("Content-Transfer-Encoding: binary");
     readfile($rutaArchivo); // Lee y envía el archivo al cliente
 
 }
