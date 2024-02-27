@@ -84,7 +84,6 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         $idPedido=$_REQUEST["idPedido"];
         if( $rol == "admin" || $rol == "empleado" ){
             $arrayPedido[] = getPedidoByIdPedido($idPedido);
-            print_r($arrayPedido);
         } else{
             $arrayPedido[] = getPedidoByIdPedido($idPedido, $dni);
         }
@@ -92,11 +91,16 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             $_SESSION['idPedidoNotFound'] = true;
         }
     }
+    print'<br>idpedido<br>';
+    print_r($arrayPedido);
+
 
     if(!empty(($_REQUEST["numPedido"]))){
         $numPedido=$_REQUEST["numPedido"];
         if( $rol == "admin" || $rol == "empleado" ){
             $arrayPedido[] = getPedidoByIdPedido($numPedido);
+            print_r($arrayPedido);
+
         } else{
             $arrayPedido[] = getPedidoByIdPedido($numPedido, $dni);
         }
@@ -104,6 +108,9 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             $_SESSION['idPedidoNotFound'] = true;
         }
     }
+    print'<br>numpedido<br>';
+    print_r($arrayPedido);
+
     
     if( isset($_REQUEST['fechaInicio']) && isset($_REQUEST['fechaFin'])) {
         $fechaInicioPredeterminada = "1990/01/01";
@@ -119,6 +126,9 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             $_SESSION['fechaNotFound'] = true;
         }
     }
+    print'<br>fechas<br>';
+    print_r($arrayPedido);
+
     if(!empty(($_REQUEST["codUsuario"]))){
         $codUsuario=$_REQUEST["codUsuario"];
         if( $rol == "admin" || $rol == "empleado" ){
@@ -130,7 +140,9 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             $_SESSION['codUsuarioNotFound'] = true;
         }
     }
-    
+    print'<br>trascodusuario<br>';
+    print_r($arrayPedido);
+
     $arrayAtributos = getArrayAtributosPedido();
     if( $arrayPedido !== false){
         echo"<table>";
