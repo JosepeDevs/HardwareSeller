@@ -32,7 +32,6 @@ include_once("../Controllers/PedidoEDITARController.php");
 
 $pedido = getPedidoByIdPedido($numPedidoOriginal);
 $arrayAtributosPedido = getArrayAtributosPedido();
-print_r($pedido);
 //ENCABEZADOS
 echo '<form action="../Controllers/PedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
 echo"<table>";
