@@ -80,8 +80,8 @@ echo"<tr><th>Atributos:</th>";
                             }else if($nombreAtributo == "fecha" ){
                                 echo "<td><input type='date' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
                             }else if($nombreAtributo == "total" ){
-                                echo "<td><input type='number' step='0.01' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
-                            } else if( $nombreAtributo == "estado" ){
+                                $_SESSION['total'] = $valor;
+                                echo "<td>$valor</td>";                            } else if( $nombreAtributo == "estado" ){
                                 echo "<td><input type='number' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
                             }else  if($nombreAtributo == "codUsuario" ){
                                 $_SESSION['codUsuario'] = $valor;
