@@ -75,11 +75,11 @@ function EstadisticasArticulosWeb($dni){
 
     try{
         $con= contectarBbddPDO();
-        $sql="SELECT COUNT(*) FROM articulos WHERE activo=1";
+        $sql="SELECT COUNT(codigo) FROM articulos WHERE activo=1";
         $statement=$con->prepare($sql);
         $statement->execute();
-        $result=$statement->fetch();
-        $totalActivos=intval($result);
+        $result = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la fila 
+        $totalActivos = intval($result);
     } catch (Exception $e) {
         $_SESSION['BadArticulos'] = true;
         return false;
@@ -87,10 +87,10 @@ function EstadisticasArticulosWeb($dni){
 
     try{
         $con= contectarBbddPDO();
-        $sql="SELECT COUNT(*) FROM articulos WHERE activo=0";
+        $sql="SELECT COUNT(codigo) FROM articulos WHERE activo=0";
         $statement=$con->prepare($sql);
         $statement->execute();
-        $result=$statement->fetch();
+        $result = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la fila 
         $totalInactivos=intval($result);
     } catch (Exception $e) {
         $_SESSION['BadArticulos'] = true;
@@ -109,7 +109,7 @@ function EstadisticasArticulosWeb($dni){
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Articulo");
         $articuloMasVendido=$statement->fetch();
-        if(!empty($articuloMasVendido) || $articuloMasVendido == false){
+        if(empty($articuloMasVendido) || $articuloMasVendido == false){
             $_SESSION["ProblemaArticuloMasVendido"] = true;
             $articuloMasVendido = "No se pudo determinar el artículo más vendido";
         } else{
@@ -193,7 +193,7 @@ function EstadisticasPedidosWeb($dni){
     }
     
     $carpeta = DirectorioInformes();
-    $nombreArchivo='estadisticasPPedidosAllTime'.date("Y-m-d").".txt";
+    $nombreArchivo='estadisticasPedidosAllTime'.date("Y-m-d").".txt";
     $rutaArchivo = $carpeta.$nombreArchivo;
     $informe = fopen($rutaArchivo, "w");//esto también intenta crearla
     $dniLog ="Informe generado por consulta de adminitrador con $dni";
