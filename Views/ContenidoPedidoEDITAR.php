@@ -15,7 +15,7 @@ include_once("header.php");
 print("<h1>Modificar Pedido</h1>");
 
 //ponemos "editando" en true para que cuando lo mandemos a ValidarDatos lo trate como update
-$_SESSION["editandoContenidoPedido"]="true";
+$_SESSION["editandoPedidoYContenidoPedido"]="true";
 $rol4consulta = isset($_GET['rol4consulta'])? $_GET['rol4consulta'] : null;
 
 if(isset($_GET["idPedido"]) ){
@@ -74,14 +74,14 @@ echo"<tr><th>Atributos:</th>";
                             $nombreAtributo = $atributo;
                             $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
                             $valor = $pedido->$getter();//lo llamamos para obtener el valor
-                            if( $nombreAtributo == "numPedido"  || $nombreAtributo == "estado" ){
+                            if( $nombreAtributo == "estado" ){
                                 echo "<td><input type='number' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
                             }else if($nombreAtributo == "total" ){
                                 echo "<td><input type='number' step='0.01' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
                             } else if($nombreAtributo == "fecha" ){
                                 echo "<td><input type='date' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
-                            }else if($nombreAtributo == "codUsuario" ){
-                                echo "<td>'$valor'</td>";
+                            }else if($nombreAtributo == "codUsuario" || $nombreAtributo == "idPedido"){
+                                echo "<td>'$valor'</td>";//idPedido lo genera la BBDD, no dejamos editarlo, igual que no dejeamos editar el codUsuario
                             }else if($nombreAtributo == "activo") {
                                 echo "
                                     <td>
@@ -105,7 +105,7 @@ echo"<tr><th>Atributos:</th>";
                         }
                         echo "</tr>";
         echo "</table>";
-        echo"<h2><input type='submit' value='Guardar datos pedido'></h2>";
+        echo" <div class='finForm'><h2><input type='submit' value='Guardar datos pedido'></h2></div>";
     echo "</form>";
 
 
@@ -119,17 +119,10 @@ $arrayAtributos = getArrayAtributosContenidoPedido();
 //ENCABEZADOS
 echo '<form action="../Controllers/ContenidoPedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
 echo"<table>";
+echo"<tr><th>Atributos:</th>";
         foreach ($arrayAtributos as $index => $atributo) {
             $nombreAtributo = $atributo;
-            if($nombreAtributo == "numPedido"){
-                echo'<tr><th colspan="2"><label for="numPedido">Número de pedido NUEVO <br> (Se aplicará a todas las lineas, si el pedido existe éstas se añadirán a dicho numero de pedido)</label></th>';
-                echo'<td colspan="3"><input type="text" name="numPedido" id="numPedido" value="'.$numPedidoOriginal.'"></td>';
-                echo'<th colspan="1">Número ACTUAL del pedido <br> (todas las líneas son de este numero de pedido)</th>';
-                echo'<td colspan="1">'.$numPedidoOriginal.'</td></tr>';
-            } else if( $index == 1) {
-                echo"<tr><th>Atributos:</th>";
-                echo "<th>$nombreAtributo</th>";
-            } else if($nombreAtributo == "activo"){
+            if($nombreAtributo == "activo"){
                 echo "<th>$nombreAtributo<br> Cambios en este atributo solo se aplicará a las líneas modificadas y no a todo el pedido</th>";
             } else {
                 echo "<th>$nombreAtributo</th>";

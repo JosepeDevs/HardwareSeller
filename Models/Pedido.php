@@ -499,5 +499,22 @@ public static function borradoLogicoPedido($idPedido){
         };
     }
 
+    
+    /**
+     * @param string comprueba que el string de fecha esté en formato Y-m-d
+     * @return bool devuelve true si tiene formato Y-m-d y false si no tiene ese formato
+     */
+    public static function fechaValida($fecha){
+       //transforma la fecha recbida como string a DateTime, devuelve false si el string no vale apra el formato especificado (lo usamos como comprobadora)
+        $fechaValida = DateTime::createFromFormat('Y-m-d', $fecha);
+        if($fechaValida !== false){
+            return true;
+        } else{
+            $_SESSION['BadFecha']= true;
+            return false;
+        }
+    }
+
+
 }
         ?>

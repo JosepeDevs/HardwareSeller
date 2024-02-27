@@ -12,13 +12,22 @@ if( $usuarioLogeado == false){
 
 include_once("../Models/Pedido.php");
 
-$fecha = date("Y-m-d"); //esto no lo comprobamos porque lo estoy generando aquí mismo
-$_SESSION['fecha']=$fecha;
-//print_r($_SESSION);
-$total = isset($_SESSION["total"]) ? round($_SESSION["total"],2) : null;
-$estado = isset($_SESSION["estado"]) ? $_SESSION["estado"] : null; //aquí llegará solo 3 o 4 en función del método de pago
-$codUsuario = isset($_SESSION["codUsuario"]) ? $_SESSION["codUsuario"] : null; //dni
-$activo = isset($_SESSION["PedidoActivo"]) ? $_SESSION["PedidoActivo"] : 1; //de forma predeterminada valdra 1
+if(isset($_POST["id"]) || isset($_POST["id"]) ) {
+    //con que compruebe que hay algún dato además del estado sabremos que venimos de modificar como admin los pedidos
+    $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : null;
+    $total = isset($_POST["total"]) ? round($_POST["total"],2) : null;
+    $estado = isset($_POST["estado"]) ? $_POST["estado"] : null; 
+    $codUsuario = isset($_POST["codUsuario"]) ? $_POST["codUsuario"] : null; //dni
+    $activo = isset($_POST["activo"]) ? $_POST["activo"] : null; 
+}else {
+    //entramos aquí al crear pedidos, solo llega por post el estado 
+    $fecha = date("Y-m-d"); //esto no lo comprobamos porque lo estoy generando aquí mismo
+    $_SESSION['fecha']=$fecha;
+    $total = isset($_SESSION["total"]) ? round($_SESSION["total"],2) : null;
+    $estado = isset($_SESSION["estado"]) ? $_SESSION["estado"] : null; //aquí llegará solo 3 o 4 en función del método de pago
+    $codUsuario = isset($_SESSION["codUsuario"]) ? $_SESSION["codUsuario"] : null; //dni
+    $activo = isset($_SESSION["PedidoActivo"]) ? $_SESSION["PedidoActivo"] : 1; //de forma predeterminada valdra 1
+}
 
 //no permitimos la edición del número de pedido, eso lo calcula la BBDD
 
@@ -29,6 +38,8 @@ if($totalEsFloat == false) {    $_SESSION['Badtotal']= true; }
 $estadoValido = Pedido::ComprobarLongitud($estado,11);
 if($estadoValido == false) {    $_SESSION['LongEstado']= true; }
 
+$fechaValida= Pedido::fechaValida($fecha);
+if($fechaValida == false) {    $_SESSION['BadFecha']= true; }
 
 include_once("../Models/Cliente.php");
 $usuarioExiste = Cliente::getClienteByDni($codUsuario);
@@ -37,11 +48,10 @@ if($usuarioExiste == false) {    $_SESSION['ClienteNoExiste']= true; }
 include_once("../Controllers/OperacionesSession.php");
 $rol=GetRolDeSession();
 
-//no comprobamos si es pedido nuevo o pedido que está siendo editando, porque a estas alturas cogeriamos los códigos y para pedidos los da la BBDD
-
 if(
     ( isset($_SESSION['Badtotal']) && $_SESSION['Badtotal'] == true) ||
     ( isset($_SESSION['LongEstado']) && $_SESSION['LongEstado'] == true) ||
+    ( isset($_SESSION['BadFecha']) && $_SESSION['BadFecha'] == true) ||
     ( isset($_SESSION['ClienteNoExiste']) && $_SESSION['ClienteNoExiste'] == true )
 ){
     //algo dio error, go back para que allí de donde venga se muestre el error
@@ -49,7 +59,7 @@ if(
     exit;
 } 
 
-if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true"){
+if( isset($_SESSION["editandoPedidoYContenidoPedido"]) && $_SESSION["editandoPedidoYContenidoPedido"] == "true"){
     //llegamos aquí si está todo OK y estamos editando
 
     //rescatamos de session los datos subidos
