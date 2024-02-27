@@ -62,7 +62,10 @@ function EstadisticasUsuariosWeb($dni){
         return $textoInforme;
     }
     fclose($informe);
-    
+
+    $carpeta="   https://josepedevs.infinityfreeapp.com/Reports/";
+    $rutaArchivo = $carpeta.$nombreArchivo;
+
     header("Cache-Control: public");
     header("Content-Description: File Transfer");
     header("Content-Disposition: attachment; filename=".basename($rutaArchivo)); // con attachement el browser sabe que debe descargar, cojemos solo el nombre del archivo con basename
