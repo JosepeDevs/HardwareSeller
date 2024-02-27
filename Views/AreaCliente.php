@@ -33,19 +33,36 @@ if( !$userExiste){
     <?php
 } else{
     print"<h2>Bienvenido ".$_SESSION['user']."</h2>";
-
-?>
-<table>
-    <tr>
-        <td>
-            <a href="/Views/PedidosLISTAR.php">Ver y administrar mis pedidos</a>
-        </td>
-        <td>
-            <a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a>
-        </td>
-    </tr>
-</table>
-<?php
+    $esEditor = AuthYRolEditor();
+    $esAdmin = AuthYRolAdmin();
+    $esEmpleado = AuthYRolEmpleado();
+    if($esAdmin){
+        print ('
+        <li><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></li>
+        <li><a href="/Views/PedidosLISTAR.php">Administrar PEDIDOS</a></li>
+        <li><a href="/Views/TablaClientes.php">Administrar CLIENTES</a></li>
+        <li><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></li>
+        <li><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></li>
+        <li><a href="/Views/CategoriasLISTAR.php">Ver/generar informes</a></li>
+        <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
+    } else if ($esEditor){
+        print ('
+        <li><a href="/Views/ClienteEDITAR.php?dni='.$dni.'">Ver/editar mis datos</a></li>
+        <li><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></li>
+        <li><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></li>
+        <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
+    } else if($esEmpleado){
+        print ('
+        <li><a href="/Views/PedidosLISTAR.php">Administrar PEDIDOS</a></li>
+        <li><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></li>
+        <li><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></li>
+        <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
+    } else{
+        print ('
+        <li><a href="/Views/AreaCliente.php">Acceder al área personal</a></li>
+        <li><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></li>
+        <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
+    }
 }
+
 include_once("footer.php");
-?>

@@ -95,6 +95,7 @@
                             $esEmpleado = AuthYRolEmpleado();
                             if($esAdmin){
                                 print ('
+                                <li><a href="/Views/AreaCliente.php">Ir a mi espacio personal</a></li>
                                 <li><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></li>
                                 <li><a href="/Views/PedidosLISTAR.php">Administrar PEDIDOS</a></li>
                                 <li><a href="/Views/TablaClientes.php">Administrar CLIENTES</a></li>
@@ -103,18 +104,21 @@
                                 <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
                             } else if ($esEditor){
                                 print ('
+                                <li><a href="/Views/AreaCliente.php">Ir a mi espacio personal</a></li>
                                 <li><a href="/Views/ClienteEDITAR.php?dni='.$dni.'">Ver/editar mis datos</a></li>
                                 <li><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></li>
                                 <li><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></li>
                                 <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
                             } else if($esEmpleado){
                                 print ('
+                                <li><a href="/Views/AreaCliente.php">Ir a mi espacio personal</a></li>
                                 <li><a href="/Views/PedidosLISTAR.php">Administrar PEDIDOS</a></li>
                                 <li><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></li>
                                 <li><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></li>
                                 <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
                             } else{
                                 print ('
+                                <li><a href="/Views/AreaCliente.php">Ir al area de cliente</a></li>
                                 <li><a href="/Views/AreaCliente.php">Acceder al área personal</a></li>
                                 <li><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></li>
                                 <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
