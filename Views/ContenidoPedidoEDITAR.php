@@ -51,7 +51,7 @@ echo"<table>";
                     echo'<p>Ocurrió un error</p>';
                 } else {
                     echo"<tr><th>Datos actuales:</th>";
-                    foreach ($arrayAtributos as $atributo) {
+                    foreach ($arrayAtributosPedido as $atributo) {
                         $nombreAtributo = $atributo;
                         $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
                         $valor = $numLinea->$getter();//lo llamamos para obtener el valor
@@ -70,7 +70,7 @@ echo"<table>";
                 //FORMULARIO para EDITAR PRERELLENADO para que se mantengan los datos si no cambia nada
                     echo '<form action="../Controllers/PedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
                         echo"<tr><th>Nuevos datos:</th>";
-                        foreach ($arrayAtributos as $atributo) {
+                        foreach ($arrayAtributosPedido as $atributo) {
                             $nombreAtributo = $atributo;
                             $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
                             $valor = $numLinea->$getter();//lo llamamos para obtener el valor
