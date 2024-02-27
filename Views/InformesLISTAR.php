@@ -62,8 +62,7 @@ print'</table>
         </tr>
 
         <tr><td class="container-fluid">';
-        print("<button class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasPedidosWeb=1'>Generar informe Pedidos</button>");//así solo pueden llamar a la función los que tengan rol de admin y no escribirmos en la url rol=admin que eso es muy obvio
-        if( isset( $_POST["FechaInicio"] ) && isset($_POST["FechaFin"]) )  {
+        if( isset( $_POST["FechaInicio"] ) && !empty($_POST['FechaInicio']) && isset($_POST["FechaFin"]) && empty($_POST['FechaFin']) )  {
 
             $fechaInicio = !empty($_REQUEST["fechaInicio"]) ? $_REQUEST['fechaInicio'] : null ; 
             $fechaFin = !empty($_REQUEST["fechaFin"]) ?  $_REQUEST['fechaFin'] : null ; 
@@ -73,18 +72,19 @@ print'</table>
                 print "<td>Guarde como PDF esta página para disponer del informe</td></tr>" ;
                 print $textoGenerado;
                 print "</td>" ;
-            } else{
+        } else{
                 print "<td>" ;
                 print "Necesita especificar una fecha de inicio y una fecha de fin." ;
                 print "</td>" ;
-            }
+        }
         print'</td></tr>
     </table>
 
     <div>
-        <h2><input type="submit" value="Consultar"></h2><br><br><br>
+        <h2><input type="submit" value="Generar informe Pedidos"></h2><br><br><br>
     </div>
 </form>
 ';
+
 include_once("footer.php");
 

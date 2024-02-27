@@ -118,7 +118,7 @@ function EstadisticasArticulosWeb($dni){
             $categoriaCategoria = $articuloMasVendido->getCategoria();
             $precioPrecio = $articuloMasVendido->getPrecio();
             $descuentoDescuento = $articuloMasVendido->getDescuento();
-            $articuloMasVendido = "el artículo más vendido es". $articuloCodigo .". con nombre: ". $nombreNombre .". Con categoria: ". $categoriaCategoria .". Con precio: ". $precioPrecio .". Vendido con descuento: ". $descuentoDescuento;
+            $articuloMasVendido = "el artículo más vendido tiene el codigo ". $articuloCodigo .". con nombre: ". $nombreNombre .". Con categoria: ". $categoriaCategoria .". Con precio: ". $precioPrecio .". Vendido con descuento: ". $descuentoDescuento;
         }
     } catch (Exception $e) {
         $_SESSION['BadArticulos'] = true;
