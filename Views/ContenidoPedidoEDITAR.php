@@ -103,6 +103,7 @@ echo"<table>";
                         }
                         echo "</tr>";
         echo "</table>";
+        echo"<h2><input type='submit' value='Guardar datos pedido'></h2></div>";
     echo "</form>";
 
 print("<br><br><h2>Modificar Contenido del Pedido</h2>");
