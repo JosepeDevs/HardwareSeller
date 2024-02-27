@@ -80,6 +80,8 @@ echo"<tr><th>Atributos:</th>";
                                 echo "<td><input type='number' step='0.01' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
                             } else if($nombreAtributo == "fecha" ){
                                 echo "<td><input type='date' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
+                            }else if($nombreAtributo == "codUsuario" ){
+                                echo "<td>'$valor'</td>";
                             }else if($nombreAtributo == "activo") {
                                 echo "
                                     <td>
