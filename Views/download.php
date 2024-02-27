@@ -6,7 +6,7 @@ if (isset($_REQUEST["informe"])) {
 
 //validar con regex el nombre de un archivo
   if (preg_match('/^[^.][-a-z0-9_.]+[a-z]$/i', $informe)) {
-    $rutaArchivo = "/Reports/" . $informe;
+    $rutaArchivo = "../Reports/" . $informe;
 
     if (file_exists($rutaArchivo)) {
       header('Content-Description: File Transfer');
