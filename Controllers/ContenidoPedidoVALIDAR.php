@@ -145,8 +145,13 @@ foreach ($contenidoPedido as $index => $array) {
             }
         }
     };
-
-header("Location: ../Views/PedidoBUSCAR.php?idPedido=$numPedido&PedidoConfirmado='true'");
+if(isset($_SESSION["CarritoConfirmado"])){
+    header("Location: ../Views/PedidoBUSCAR.php?idPedido=$numPedido&PedidoConfirmado='true'");
+}else{
+    //venimos de estar editando o dando de alta un pedido como admins
+    echo "<script>history.back();</script>";
+    exit;
+}
 exit;
 
 ?>
