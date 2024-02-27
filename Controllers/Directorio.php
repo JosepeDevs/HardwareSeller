@@ -10,7 +10,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 function PrepararDirectorio() {
     $actualPath = __DIR__;//esto es controllers
     $parentDirectory = dirname($actualPath);//parent directory es algo asi /home/vol8_4/infinityfree.com/if0_35787488/htdocs/
-    $rutaCarpeta =$parentDirectory.'/Reports/ImagenesArticulos/';
+    $rutaCarpeta =$parentDirectory.'/Resources/ImagenesArticulos/';
     if (!file_exists($rutaCarpeta)) {//si no existe el directorio lo crea con permisos totales
         mkdir($rutaCarpeta, 0777, true);
     }
@@ -18,7 +18,9 @@ function PrepararDirectorio() {
 }
 
 function DirectorioInformes() {
-    $rutaCarpeta = 'Reports/';
+    $actualPath = __DIR__;//esto es controllers
+    $parentDirectory = dirname($actualPath);//parent directory es algo asi /home/vol8_4/infinityfree.com/if0_35787488/htdocs/
+    $rutaCarpeta =$parentDirectory.'Reports/';
     if (!file_exists($rutaCarpeta)) {//si no existe el directorio lo crea con permisos totales
         mkdir($rutaCarpeta, 0777, true);
     }
