@@ -274,12 +274,11 @@ public static function borradoLogicoPedido($idPedido){
             $statement->bindParam(':idPedido', $idPedido);
             $statement->execute();
             $pedido = $statement->fetch();
-
-            if($pedido->RowCount() > 0) {
-                return $pedido;
-            } else {
+            if(empty($pedido)){
                 $_SESSION['ErrorGetPedidos'] = true;
                 return false;
+            }else{
+                return $pedido;
             }
         } catch (PDOException $e) {
             $_SESSION['ErrorGetPedidos'] = true;
