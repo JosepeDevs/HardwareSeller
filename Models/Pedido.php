@@ -432,7 +432,6 @@ public static function borradoLogicoPedido($idPedido){
 
         if($operacionRealizada == false && $statement->rowCount() <= 0){
             $_SESSION['BadUpdatePedido']= true;
-            $_SESSION['GoodUpdatePedido']= false;
             return false;
         } else{
             $_SESSION['GoodUpdatePedido']= true;

@@ -14,7 +14,7 @@ include_once("../Models/Pedido.php");
 
 if(isset($_POST["total"]) || isset($_POST["codUsuario"]) ) {
     //con que compruebe que hay algún dato además del estado sabremos que venimos de modificar como admin los pedidos
-    $idPedido = isset($_SESSION["idPedido"]) ? $_SESSION["idPedido"] : null; // CUIDADO QUE ESTO SE SACA DE SESSION, NO DE POST
+    $idPedido = isset($_SESSION["idPedido"]) ? $_SESSION["idPedido"] : null; // CUIDADO QUE ESTO SE SACA DE *****SESSION*******, NO DE POST
 
     $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : null;
     $total = isset($_POST["total"]) ? round($_POST["total"],2) : null;
@@ -23,6 +23,7 @@ if(isset($_POST["total"]) || isset($_POST["codUsuario"]) ) {
     $activo = isset($_POST["activo"]) ? $_POST["activo"] : null; 
 }else {
     //entramos aquí al crear pedidos, solo llega por post el estado 
+    //No necesitamso idPedido, lo dará la BBDD
     $fecha = date("Y-m-d"); //esto no lo comprobamos porque lo estoy generando aquí mismo
     $_SESSION['fecha']=$fecha;
     $total = isset($_SESSION["total"]) ? round($_SESSION["total"],2) : null;

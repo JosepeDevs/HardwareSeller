@@ -15,7 +15,8 @@ include_once("header.php");
 print("<h1>Modificar Pedido</h1>");
 
 //ponemos "editando" en true para que cuando lo mandemos a ValidarDatos lo trate como update
-$_SESSION["editandoPedidoYContenidoPedido"]="true";
+$_SESSION["editandoContenidoPedido"]="true";
+$_SESSION["editandoPedido"]="true";
 $rol4consulta = isset($_GET['rol4consulta'])? $_GET['rol4consulta'] : null;
 
 if(isset($_GET["idPedido"]) ){
@@ -39,7 +40,7 @@ echo"<tr><th>Atributos:</th>";
         foreach ($arrayAtributosPedido as $index => $atributo) {
             $nombreAtributo = $atributo;
             if($nombreAtributo == "activo"){
-                echo "<th>$nombreAtributo<br> Esta cambio se aplicará tamibén a todas las lineas de contenido pedido, desactivando por completo el pedido</th>";
+                echo "<th>$nombreAtributo<br> Más adelante esta cambio se aplicará también a todas las lineas de contenido pedido, ahora mismo son independientes</th>";
             } else {
                 echo "<th>$nombreAtributo</th>";
             }
