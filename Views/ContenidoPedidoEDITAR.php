@@ -103,7 +103,7 @@ echo"<tr><th>Atributos:</th>";
                                     echo"</td>";
                             } else{
                                 //de este no hay ninguno pero si alguna vez cambiara los atributos de pedido los vería con esta línea
-                                echo "<td><input type='text' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
+                                //echo "<td><input type='text' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
                             }
                         }
                         echo "</tr>";
