@@ -209,7 +209,7 @@ echo"<tr><th>Atributos:</th>";
     echo "<div class='finForm'>";
             echo'<button type="button" onclick="addLineaPedidoTodoDisponible()">Añadir una fila al pedido</button>
             <button type="button" onclick="removeLineaPedido()">Quitar una fila al pedido</button>';
-            echo"<h2><input type='submit' value='Guardar'></h2>
+            echo"<h2><input type='submit' value='Guardar contenido del pedido'></h2>
         </div>";
     echo "</form>";
 
