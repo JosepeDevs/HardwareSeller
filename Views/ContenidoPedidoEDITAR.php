@@ -42,7 +42,13 @@ echo"<table>";
         echo "</tr>";
 
         //datos ACTUALES OBJETO (estaticos, para que se vean siempre los actuales) PUEDEN SER VARIAS LINEAS
-                    $arrayContenidoPedido = GetContenidoPedidoByBusquedaNumPedido($numPedidoOriginal);
+                $arrayContenidoPedido = GetContenidoPedidoByBusquedaNumPedido($numPedidoOriginal);
+
+                if($arrayContenidoPedido == false){
+                    //no había o no llegó numPedido por url u otr forma
+                    echo'<p>Ocurrió un error</p>';
+                } else {
+
                     //arrayContenidoPedido puede conntener de 0 a vete tu a saber cuantos ContenidoPedido
                     echo '<form action="../Controllers/ContenidoPedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
                     foreach($arrayContenidoPedido as $index => $numLinea) {
@@ -107,6 +113,8 @@ echo"<table>";
     <button type="button" onclick="removeLineaPedido()">Quitar una fila al pedido</button><!--resulta que si no le ponemos type entenderá que es el botón de submit-->';
     echo"<h2><input type='submit' value='Guardar'></h2></div>";
     echo "</form>";
+
+}
 echo"<div id='errores'>";
 include_once("../Controllers/ContenidoPedidoMensajes.php");
 $arrayMensajes=getArrayMensajesContenidoPedido();
