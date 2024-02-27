@@ -84,6 +84,7 @@ echo"<tr><th>Atributos:</th>";
                             } else if( $nombreAtributo == "estado" ){
                                 echo "<td><input type='number' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
                             }else  if($nombreAtributo == "codUsuario" ){
+                                $_SESSION['codUsuario'] = $valor;
                                 echo "<td>$valor</td>";
                             }else if($nombreAtributo == "activo") {
                                 echo "
