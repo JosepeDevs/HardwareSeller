@@ -14,6 +14,8 @@ include_once("../Models/Pedido.php");
 
 if(isset($_POST["total"]) || isset($_POST["codUsuario"]) ) {
     //con que compruebe que hay algún dato además del estado sabremos que venimos de modificar como admin los pedidos
+    $idPedido = isset($_SESSION["idPedido"]) ? $_SESSION["idPedido"] : null; // CUIDADO QUE ESTO SE SACA DE SESSION, NO DE POST
+
     $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : null;
     $total = isset($_POST["total"]) ? round($_POST["total"],2) : null;
     $estado = isset($_POST["estado"]) ? $_POST["estado"] : null; 
@@ -64,7 +66,7 @@ if( isset($_SESSION["editandoPedidoYContenidoPedido"]) && $_SESSION["editandoPed
 
     //rescatamos de session los datos subidos
     $Pedido = new Pedido();
-    $numPedido = $Pedido->updatePedido($numPedido, $fecha, $total, $estado, $codUsuario, $activo);
+    $idPedido = $Pedido->updatePedido($idPedido, $fecha, $total, $estado, $codUsuario, $activo);
     if($operacionExitosa){
         $_SESSION['GoodUpdatePedido']= true;
     }

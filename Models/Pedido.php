@@ -100,36 +100,6 @@ public static function borradoLogicoPedido($idPedido){
     };
 }
 
-    /**
-     * @return bool|Pedido devuelve false si falla, devuelve el Pedido si lo encuentra consultando el código
-     */
-    public static function GetPedidoByidPedido($idPedido, $dni=null){
-        try{
-            $con = contectarBbddPDO();
-            if($dni !== null){
-                $sqlQuery="SELECT * FROM  `pedidos` WHERE idPedido=:idPedido AND codUsuario=:dni AND activo=1;";
-            } else{
-                $sqlQuery="SELECT * FROM  `pedidos` WHERE idPedido=:idPedido ;";
-            }
-            $statement=$con->prepare($sqlQuery);
-            $statement->bindParam(':idPedido', $idPedido);
-            if($dni !== null){
-                $statement->bindParam(':dni', $dni);
-            }
-            $statement->execute();
-            $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
-            $Pedido = $statement->fetch();
-            if(empty($Pedido)){
-                $_SESSION['idPedidoNotFound'] = true;
-                return false;
-            }else{
-                return $Pedido;
-            }
-        } catch(PDOException $e) {
-            $_SESSION['ErrorGetPedidos']= true;
-            return false;
-        }
-    }
 
     /**
      * @return bool|array devuelve false si falla, devuelve el Pedido si lo encuentra consultando el código
@@ -289,19 +259,19 @@ public static function borradoLogicoPedido($idPedido){
     /**
      * @return  Pedido|bool devuelve false si no encuentra el pedido, devuelve el pedido si tiene exito
      */
-    public static function getPedidoByNumPedido($numPedido, $dni=null) {
+    public static function getPedidoByIdPedido($idPedido, $dni=null) {
         try {
             $con = contectarBbddPDO();
             if($dni!==null) {
-                $sql = "SELECT * FROM pedidos WHERE numPedido=:numPedido AND codUsuario=:dni";
+                $sql = "SELECT * FROM pedidos WHERE idPedido=:idPedido AND codUsuario=:dni";
             } else{
-                $sql = "SELECT * FROM pedidos WHERE numPedido=:numPedido";
+                $sql = "SELECT * FROM pedidos WHERE idPedido=:idPedido";
             }
             $statement = $con->prepare($sql);
             if($dni!==null) {
                 $statement->bindParam(":dni", $dni);
             }
-            $statement->bindParam(':numPedido', $numPedido);
+            $statement->bindParam(':idPedido', $idPedido);
             $statement->execute();
             $pedido = $statement->fetch(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
 
@@ -346,7 +316,7 @@ public static function borradoLogicoPedido($idPedido){
     }
 
     /**
-     * @return int|bool returns numPedido si inserción es exitosa, si no, false
+     * @return int|bool returns idPedido si inserción es exitosa, si no, false
      */
     public static function AltaPedido($fecha, $total, $estado, $codUsuario, $activo){
         $_SESSION["nuevoPedido"]=false;
@@ -361,7 +331,7 @@ public static function borradoLogicoPedido($idPedido){
             $statement->bindParam(':codUsuario', $codUsuario);
             $statement->bindParam(':activo', $activo);
             $statement->execute();
-            $numPedido = $con->lastInsertId();
+            $idPedido = $con->lastInsertId();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
             $resultado = $statement->fetch();
 
@@ -370,7 +340,7 @@ public static function borradoLogicoPedido($idPedido){
                 return false;
             } else {
                 $_SESSION['GoodInsertPedido']= true;
-                return $numPedido;
+                return $idPedido;
             }
         } catch(PDOException $e) {
             $_SESSION['BadInsertPedido']= true;
@@ -437,7 +407,7 @@ public static function borradoLogicoPedido($idPedido){
     /**
      * @return bool Devuelve true si tiene éxito, false si no es el caso.
      */
-    public function updatePedido($numPedido, $fecha, $total, $estado, $codUsuario, $activo){
+    public function updatePedido($idPedido, $fecha, $total, $estado, $codUsuario, $activo){
     //una vez aquí dentro hay que "reiniciar" el valor de "editando"
     $_SESSION["editandoPedido"]="false";
 
@@ -447,12 +417,12 @@ public static function borradoLogicoPedido($idPedido){
         $conPDO = contectarBbddPDO();
         $sqlQuery = " UPDATE `pedidos`
                 SET `fecha` = :fecha, `total` = :total, `estado` = :estado, `codUsuario` = :codUsuario, `activo` = :activo
-                WHERE `numPedido` = :numPedido "
+                WHERE `idPedido` = :idPedido "
         ;
 
         $statement= $conPDO->prepare($sqlQuery);
 
-        $statement->bindParam(':numPedido', $numPedido);
+        $statement->bindParam(':idPedido', $idPedido);
         $statement->bindParam(':fecha', $fecha);
         $statement->bindParam(':total', $total);
         $statement->bindParam(':estado', $estado);
