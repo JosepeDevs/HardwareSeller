@@ -58,7 +58,7 @@ if(
     ( isset($_SESSION['ClienteNoExiste']) && $_SESSION['ClienteNoExiste'] == true )
 ){
     //algo dio error, go back para que allí de donde venga se muestre el error
-   // echo "<script>history.back();</script>";
+    echo "<script>history.back();</script>";
     exit;
 } 
 
@@ -71,7 +71,7 @@ if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true")
     if($operacionExitosa){
         $_SESSION['GoodUpdatePedido']= true;
     }
-  // header("Location: ../Views/PedidosLISTAR.php");
+   header("Location: ../Views/PedidosLISTAR.php");
     exit;
 }else if( isset($_SESSION["nuevoPedido"]) && $_SESSION["nuevoPedido"] == "true"){
     //all good y estamos añadiendo artículo nuevo
