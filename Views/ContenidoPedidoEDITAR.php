@@ -54,7 +54,7 @@ echo"<table>";
                     foreach ($arrayAtributosPedido as $atributo) {
                         $nombreAtributo = $atributo;
                         $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
-                        $valor = $numLinea->$getter();//lo llamamos para obtener el valor
+                        $valor = $pedido->$getter();//lo llamamos para obtener el valor
                         if($nombreAtributo == "activo") {
                             if($valor==0){
                                 echo"<td>Desactivado</td>";
@@ -73,7 +73,7 @@ echo"<table>";
                         foreach ($arrayAtributosPedido as $atributo) {
                             $nombreAtributo = $atributo;
                             $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
-                            $valor = $numLinea->$getter();//lo llamamos para obtener el valor
+                            $valor = $pedido->$getter();//lo llamamos para obtener el valor
                             if( $nombreAtributo == "numPedido"  || $nombreAtributo == "estado" ){
                                 echo "<td><input type='number' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
                             }else if($nombreAtributo == "total" ){
