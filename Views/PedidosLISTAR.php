@@ -62,8 +62,13 @@ echo"<table>";
                                 <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
                                 <a class='ordenar' href='PedidosLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
                             </th>";
-                    } else if(( $rol !== "admin" || $rol !== "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
-                        echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
+                    } else if(( $rol == "admin" || $rol == "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
+                        //estos atributos solo los podrán ver admin y empleados
+                        echo"<th>
+                        $nombreAtributo <br>Ordenar por este atributo:<br>
+                        <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
+                        <a class='ordenar' href='PedidosLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
+                        </th>";
                     } else{
                         echo"<th>
                         $nombreAtributo <br>Ordenar por este atributo:<br>
@@ -130,8 +135,9 @@ echo"<table>";
                     } else if($nombreAtributo == "estado"){
                         $estado = $Pedido->getEstado();//guardamos  fuera de este bucle (para los enlaces)
                         echo "<td>".$estado."</td>";
-                    } else if( ( $rol !== "admin" || $rol !== "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
-                        echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
+                    } else if(( $rol == "admin" || $rol == "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
+                       //estos datos solo los podrán ver admin y empleados
+                        echo "<td>".$valor."</td>";
                     }else{
                         echo "<td>".$valor."</td>";
                     }
