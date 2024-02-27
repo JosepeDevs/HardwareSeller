@@ -15,12 +15,14 @@ include_once("header.php");
 print("<h1>Modificar Contenido del Pedido</h1>");
 
 include_once("../Controllers/ContenidoPedidoEDITARController.php");
-if(isset($_SESSION["idPedido"]) ){
+if(isset($_GET["idPedido"]) ){
     $numPedidoOriginal=$_GET["idPedido"];   
     $_SESSION["numPedido"] = $numPedidoOriginal; 
-} else if(isset($_SESSION["numPedido"])){
+} else if(isset($_GET["numPedido"])){
     $numPedidoOriginal=$_GET["numPedido"];   
     $_SESSION["numPedido"] = $numPedidoOriginal; 
+} else{
+    $numPedidoOriginal=false;   
 }
 
 $arrayAtributos = getArrayAtributosContenidoPedido();
