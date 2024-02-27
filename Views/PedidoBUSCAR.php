@@ -59,7 +59,7 @@ if(isset($_GET["PedidoConfirmado"])){
                 <td><input type="text" name="idPedido" ><br><br></td>
                 <td><input type="date" name="fechaInicio" autofocus><br><br></td>
                 <td><input type="date" name="fechaFin" ><br><br></td>
-                <td><input type="number" name="estado" min="0" max="5" ><br><br></td>
+                <td><input type="number" name="estado"><br><br></td>
                 <td><input type="text" name="codUsuario" ><br><br></td>
             </tr>
         </table>
@@ -134,8 +134,10 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             $arrayPedido = getPedidosByEstado($codUsuario, $dni);
         }
         if($arrayPedido == false){
-            $_SESSION['codUsuarioNotFound'] = true;
+            $_SESSION['estadoNotFound'] = true;
         }
+    } else{
+        $arrayPedido = false;
     }
 
 
