@@ -12,7 +12,20 @@ if(!$rolEsAdmin) {
 include_once("OperacionesSession.php");
 include_once("../Controllers/Directorio.php");
 
-function EstadisticasUsuariosWeb(){
+
+//todo wrappear esto en función y llamar a CLASE Informes (también todo)
+if(
+    isset( $_GET["EstadisticasUsuariosWeb"] ) &&
+    $_GET["EstadisticasUsuariosWeb"] == 1  &&
+    isset( $_GET["dni"] ) 
+) {
+
+    $dni=$_GET['dni'];
+    $textoGenerado = EstadisticasUsuariosWeb($dni);//con llamar al método se debería descargar
+
+}
+
+function EstadisticasUsuariosWeb($dni){
 
     try{
         $con= contectarBbddPDO();
@@ -44,18 +57,27 @@ function EstadisticasUsuariosWeb(){
     $nombreArchivo='estadisticasClientes'.date("Y-m-d")."txt";
     $rutaArchivo = $carpeta.$nombreArchivo;
     $informe = fopen($rutaArchivo, "w");//esto también intenta crearla
+    $dniLog ="Informe generado por consulta de adminitrador con $dni";
     $totalRegistrados = "Número de clientes registrados (activos e inactivos): ".$_SESSION['NumeroClientes'];
     $activosRegistrados="Número de clientes registrados (activos): ".$_SESSION['ClientesActivos'];
     $inactivosRegistrados="Número de clientes registrados (inactivos): ".$_SESSION['ClientesInactivos'];
-    $textoInforme = $totalRegistrados."\n".$activosRegistrados."\n".$inactivosRegistrados;
+    $textoInforme = $dni."\n".$totalRegistrados."\n".$activosRegistrados."\n".$inactivosRegistrados;
 
-    if (fwrite($informe, $totalRegistrados . PHP_EOL) !== false && //EOL es end of line, vamos que hace un break line
+    if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line, vamos que hace un break line
+        fwrite($informe, $totalRegistrados . PHP_EOL) !== false &&
         fwrite($informe, $activosRegistrados . PHP_EOL) !== false &&
         fwrite($informe, $inactivosRegistrados . PHP_EOL) !== false) {
         $_SESSION["InformeGenerado"] = true;
         return $textoInforme;
     }
     fclose($informe);
+    
+    //todo  TCPDF  o FPDF u otro para poder descargarlo como pdf
+
+    header("Content-Disposition: attachment; filename=".basename($rutaArchivo)); // con attachement el browser sabe que debe descargar, cojemos solo el nombre del archivo con basename
+    header("Content-Length: " . filesize($rutaArchivo)); // Configura el tamaño del archivo,necesario para que se pueda ver una barra de progreso de la descarga
+    header("Content-Type: application/octet-stream;"); // Establece el tipo MIME de contenido a octet-stream, esto ayuda a que se descarge y no se intente sacar por pantalla
+    readfile($rutaArchivo); // Lee y envía el archivo al cliente
 
 }
 

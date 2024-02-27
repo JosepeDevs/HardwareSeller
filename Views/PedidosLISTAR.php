@@ -137,7 +137,21 @@ echo"<table>";
                         echo "<td>".$estado."</td>";
                     } else if(( $rol == "admin" || $rol == "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
                        //estos datos solo los podrán ver admin y empleados
-                        echo "<td>".$valor."</td>";
+                       echo "
+                        <td>
+                            <select id='activo' name='activo' required>";
+                            if($valor == 0){
+                                echo"
+                                    <option value='0' selected>Inactivo</option>
+                                    <option value='1' >Activo</option>
+                                </select>";
+                            } else{
+                                echo"
+                                    <option value='0' >Inactivo</option>
+                                    <option value='1' selected>Activo</option>
+                                </select>";
+                            }
+                        echo"</td>";
                     }else{
                         echo "<td>".$valor."</td>";
                     }

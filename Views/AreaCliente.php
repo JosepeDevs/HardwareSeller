@@ -43,7 +43,7 @@ if( !$userExiste){
         <li><a href="/Views/TablaClientes.php">Administrar CLIENTES</a></li>
         <li><a href="/Views/ArticulosLISTAR.php">Administrar ARTÍCULOS</a></li>
         <li><a href="/Views/CategoriasLISTAR.php">Administrar CATEGORÍAS</a></li>
-        <li><a href="/Views/CategoriasLISTAR.php">Ver/generar informes</a></li>
+        <li><a href="/Views/InformesLISTAR.php">Ver/generar informes</a></li>
         <li><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></li>');
     } else if ($esEditor){
         print ('
