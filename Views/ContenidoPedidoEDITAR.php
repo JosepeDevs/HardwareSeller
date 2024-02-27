@@ -106,8 +106,8 @@ echo"<tr><th>Atributos:</th>";
         echo"<h2><input type='submit' value='Guardar datos pedido'></h2>";
     echo "</form>";
 
-    ///////////////////////////PARTE DE  CONTENIDO PEDIDO
 
+    ///////////////////////////PARTE DE  CONTENIDO PEDIDO
 
 print("<br><br><h2>Modificar Contenido del Pedido</h2>");
 include_once("../Controllers/ContenidoPedidoEDITARController.php");
@@ -128,8 +128,8 @@ echo"<table>";
                 echo"<tr><th>Atributos:</th>";
                 echo "<th>$nombreAtributo</th>";
             } else if($nombreAtributo == "activo"){
-                echo "<th>$nombreAtributo<br> Esta cambio solo se aplicará en la línea que se cambie</th>";
-            } {
+                echo "<th>$nombreAtributo<br> Cambios en este atributo solo se aplicará a las líneas modificadas y no a todo el pedido</th>";
+            } else {
                 echo "<th>$nombreAtributo</th>";
             }
         }
