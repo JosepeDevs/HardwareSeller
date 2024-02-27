@@ -89,7 +89,7 @@ echo"<table>";
         echo "</table>";
     echo "</form>";
 
-print("<h2>Modificar Contenido del Pedido</h2>");
+print("<br><br><h2>Modificar Contenido del Pedido</h2>");
 
 include_once("../Controllers/ContenidoPedidoEDITARController.php");
 
