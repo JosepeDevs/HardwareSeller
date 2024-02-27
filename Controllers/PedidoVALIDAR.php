@@ -64,7 +64,7 @@ if(
 
 if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true"){
     //llegamos aquí si está todo OK y estamos editando
-
+    $_SESSION["editandoPedido"] == "false";
     //rescatamos de session los datos subidos
     $Pedido = new Pedido();
     $idPedido = $Pedido->updatePedido($idPedido, $fecha, $total, $estado, $codUsuario, $activo);
@@ -74,8 +74,8 @@ if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true")
   // header("Location: ../Views/PedidosLISTAR.php");
     exit;
 }else if( isset($_SESSION["nuevoPedido"]) && $_SESSION["nuevoPedido"] == "true"){
-    $_SESSION["nuevoContenidoPedido"] = "true";
     //all good y estamos añadiendo artículo nuevo
+    $_SESSION["nuevoPedido"] == "false";
 
     $numPedido = Pedido::AltaPedido($fecha, $total, $estado, $codUsuario, $activo);
     if($numPedido !== false){
