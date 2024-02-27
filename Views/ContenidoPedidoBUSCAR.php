@@ -103,6 +103,8 @@ if(isset($_REQUEST["numPedido"]) || isset($_REQUEST["codArticulo"])) {
             $_SESSION['codArticuloNotFound'] = true;
         }
     }
+    //si llegados a esta punto no existe, dejalo false, si existe, déjalo como estaba
+    $arrayContenidoPedido = (!isset($arrayContenidoPedido)) ?  false : $arrayContenidoPedido ;
 
     $arrayAtributos = getArrayAtributosContenidoPedido();
     if( $arrayContenidoPedido !== false){
