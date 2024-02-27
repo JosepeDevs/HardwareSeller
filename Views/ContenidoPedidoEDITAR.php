@@ -80,7 +80,23 @@ echo"<table>";
                                 echo "<td><input type='number' step='0.01' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
                             } else if($nombreAtributo == "fecha" ){
                                 echo "<td><input type='date' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
-                            }else{
+                            }else if($nombreAtributo == "activo") {
+                                echo "
+                                    <td>
+                                        <select id='activo' name='activo' required>";
+                                        if($valor == 0){
+                                            echo"
+                                                <option value='0' selected>Inactivo</option>
+                                                <option value='1' >Activo</option>
+                                            </select>";
+                                        } else{
+                                            echo"
+                                                <option value='0' >Inactivo</option>
+                                                <option value='1' selected>Activo</option>
+                                            </select>";
+                                        }
+                                    echo"</td>";
+                            } else{
                                 //de este no hay ninguno pero si alguna vez cambiara los atributos de pedido los vería con esta línea
                                 echo "<td><input type='text' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
                             }
