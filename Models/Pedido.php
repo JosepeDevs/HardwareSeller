@@ -257,7 +257,7 @@ public static function borradoLogicoPedido($idPedido){
         }
     }
     /**
-     * @return  Pedido|bool devuelve false si no encuentra el pedido, devuelve el pedido si tiene exito
+     *  devuelve false si no encuentra el pedido, devuelve el pedido si tiene exito
      */
     public static function getPedidoByIdPedido($idPedido, $dni=null) {
         try {
@@ -273,7 +273,7 @@ public static function borradoLogicoPedido($idPedido){
             }
             $statement->bindParam(':idPedido', $idPedido);
             $statement->execute();
-            $pedido = $statement->fetch();
+            $pedido = $statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
             if(empty($pedido)){
                 $_SESSION['ErrorGetPedidos'] = true;
                 return false;
