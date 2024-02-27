@@ -110,7 +110,6 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         $numPedido=$_REQUEST["numPedido"];
         if( $rol == "admin" || $rol == "empleado" ){
             $arrayPedido[] = getPedidoByIdPedido($numPedido);
-            print_r($arrayPedido);
         } else{
             $arrayPedido[] = getPedidoByIdPedido($numPedido, $dni);
         }

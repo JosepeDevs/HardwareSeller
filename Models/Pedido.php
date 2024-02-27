@@ -136,7 +136,6 @@ public static function borradoLogicoPedido($idPedido){
      */
     public static function getPedidosByEstado($estado, $dni=null){
         try{
-            print $estado;
             $con = contectarBbddPDO();
             if($dni !== null){
                 $sqlQuery="SELECT * FROM  `pedidos` WHERE estado=:estado AND codUsuario=:dni AND activo=1;";
