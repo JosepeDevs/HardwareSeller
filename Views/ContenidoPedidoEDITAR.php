@@ -130,7 +130,7 @@ $arrayAtributos = getArrayAtributosContenidoPedido();
 
 //ENCABEZADOS
 echo '<form action="../Controllers/ContenidoPedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
-echo"<table>";
+echo"<table id='tablaContenidoPedido'>";
 echo"<tr><th>Atributos:</th>";
         foreach ($arrayAtributos as $index => $atributo) {
             $nombreAtributo = $atributo;
@@ -221,6 +221,7 @@ if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
         echo "<h3>$mensaje</h3>";
     }
+    ResetearSesion();
 };
 echo"</div>";
 
@@ -235,7 +236,7 @@ include_once("footer.php");
 function addLineaPedidoTodoDisponible() {
 
     document.getElementById("errores").innerHTML =  ""
-    var tabla = document.querySelector('table');    // pillamos la tabla
+    var tabla = document.getElementById('tablaContenidoPedido');    // pillamos la tabla
     var ultimaFila = tabla.rows[tabla.rows.length -  1];    // nos vamos a la que actualmente es la última fila de dicha tabla
     var nuevaFila = ultimaFila.cloneNode(true);    // clonamos la última línea arrastra todos los atributos e hijos (tds, inputs, contenido...)
     var numLineaInput = nuevaFila.querySelector('input[name^="numLinea"]'); //hacemos que seleccione el input cuyo nombre empiece por numLinea
@@ -267,11 +268,11 @@ function addLineaPedidoTodoDisponible() {
 }
 
     document.addEventListener("DOMContentLoaded", function() {
-         initialRows = document.querySelector('table').rows.length; //al no ponerle const ni nada es global
+         initialRows = document.getElementById('tablaContenidoPedido').rows.length; //al no ponerle const ni nada es global
     });
 
     function removeLineaPedido() {
-        var table = document.querySelector('table');
+        var table = document.getElementById('tablaContenidoPedido');
         console.log("hola"+initialRows);
         if (table.rows.length -1 >= initialRows) {//no borrar más allá de lo que había inicialmente
             table.deleteRow(-1); // con -1 podemos decirle la última fila en lugar de tener que buscar el índice de la fila
