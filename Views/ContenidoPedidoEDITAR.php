@@ -148,9 +148,7 @@ echo"<tr><th>Atributos:</th>";
                             $nombreAtributo = $atributo;
                             $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
                             $valor = $numLinea->$getter();//lo llamamos para obtener el valor
-                            if( $nombreAtributo == "numPedido"){
-                                echo "";//no queremos mostrar nada porque numpedido aparece encima de la tabla
-                            } else if($nombreAtributo == "activo") {
+                            if($nombreAtributo == "activo") {
                                 if($valor==0){
                                     echo"<td>Desactivado</td>";
                                 }else{
@@ -170,7 +168,8 @@ echo"<tr><th>Atributos:</th>";
                             $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
                             $valor = $numLinea->$getter();//lo llamamos para obtener el valor
                             if( $nombreAtributo == "numPedido"){
-                                echo "";//no queremos mostrar nada porque numpedido aparece encima de la tabla
+                                $_SESSION['numPedido'] = $valor;//lo subimos a session porque lo necsitamos para ubicar el pedio al que pertenece este contenido
+                                echo "<td>$valor</td>";//no dejamos editar el  Numero Pedido
                             } else if($nombreAtributo == "activo") {
                                 echo "
                                     <td>
