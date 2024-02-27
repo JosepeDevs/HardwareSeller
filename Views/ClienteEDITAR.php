@@ -156,15 +156,8 @@ if(is_array($arrayMensajes)){
     }
 };
 
-//según el rol cambia el comportamiento del botón
-if(AuthYRolAdmin() == true){
-    echo("<h2><a class='cerrar' href='TablaClientes.php?editandoCliente=false'>Cancelar edición / volver a la tabla</a></h2>");
-} else {
-    echo("<h2><a class='cerrar' href='TablaClientes.php?editandoCliente=false'>Ver listado de productos</a></h2>");
-    echo("<h2><a class='cerrar' href='/index.php?editandoCliente=false'>Cancelar edición / cerrar sesión</a></h2>");
-}
-echo"<br><br><br><br><br>";
-echo("<h2><a class='cerrar' href='ClienteBORRAR.php?dni=$dniOriginal'>BORRAR CUENTA (ELIMINA TODOS LOS DATOS)</a></h2>");
+echo("<h2><a class='cerrar' a href='AreaCliente.php'>Ir al área personal</a></h2>");
+
 
 include_once("footer.php");
 ?>

@@ -180,7 +180,6 @@ include_once("../Controllers/ContenidoPedidoMensajes.php");
 include_once("../Controllers/OperacionesSession.php");
 ResetearSesion();
 
-?>
-<h2><a class="cerrar"  href='/index.php'>Cerrar sesión</a></h2>
-<?php
+echo("<h2><a class='cerrar' a href='AreaCliente.php'>Ir al área personal</a></h2>");
+
 include_once("footer.php");

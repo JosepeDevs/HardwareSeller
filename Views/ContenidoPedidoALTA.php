@@ -71,7 +71,7 @@ if(is_array($arrayMensajes)){
     }
 };
 
-echo"<h2><a class='cerrar'  href='ContenidoPedidoLISTAR.php'>Volver a la tabla de ContenidoPedido.</a></h2>";
+echo("<h2><a class='cerrar' a href='AreaCliente.php'>Ir al área personal</a></h2>");
 
 include("footer.php");
 ?>

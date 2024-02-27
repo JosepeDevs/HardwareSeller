@@ -15,8 +15,14 @@ include_once("header.php");
 print("<h1>Modificar Contenido del Pedido</h1>");
 
 include_once("../Controllers/ContenidoPedidoEDITARController.php");
-$numPedidoOriginal=$_GET["numPedido"];    //el numPedido ha llegado por la url
-$_SESSION["numPedido"] = $numPedidoOriginal;
+if(isset($_SESSION["idPedido"]) ){
+    $numPedidoOriginal=$_GET["idPedido"];   
+    $_SESSION["numPedido"] = $numPedidoOriginal; 
+} else if(isset($_SESSION["numPedido"])){
+    $numPedidoOriginal=$_GET["numPedido"];   
+    $_SESSION["numPedido"] = $numPedidoOriginal; 
+}
+
 $arrayAtributos = getArrayAtributosContenidoPedido();
 
 //ponemos "editando" en true para que cuando lo mandemos a ValidarDatos lo trate como update
@@ -127,8 +133,7 @@ echo"</div>";
 
 echo"<div>";
     echo("<h2><a class='cerrar' href='ContenidoPedidoLISTAR.php?editandoContenidoPedido=false'>Volver al listado de ContenidoPedido</a></h2>");
-    echo("<h2><a class='cerrar' href='/index.php?editandoContenidoPedido=false'> cerrar sesión</a></h2>");
-    echo("<h2><a class='cerrar' a href='ContenidoPedidoBORRAR.php?numPedido=$numPedidoOriginal'>BORRAR ContenidoPedido</a></h2>");
+    echo("<h2><a class='cerrar' a href='AreaCliente.php'>Ir al área personal</a></h2>");
 echo"</div>";
 include_once("footer.php");
 ?>

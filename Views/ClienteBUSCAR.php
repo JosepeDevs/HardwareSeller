@@ -91,8 +91,6 @@ if(is_array($arrayMensajes)){
 
 ///////////PONER AQUÍ QUE SI ESTÁ DESACTIVADO, ?¿ACTIVAR???
 
-
-
 ?>
 <h2><a class="cerrar"  href="TablaClientes.php">Volver a la tabla</a></h2>
 <?php
