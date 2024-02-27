@@ -111,6 +111,15 @@ echo"<tr><th>Atributos:</th>";
         echo" <div class='finForm'><h2><input type='submit' value='Guardar datos pedido'></h2></div>";
     echo "</form>";
 
+echo"<div id='errores'>";
+include_once("../Controllers/PedidosMensajes.php");
+$arrayMensajes=getArrayMensajesPedidos();
+if(is_array($arrayMensajes)){
+    foreach($arrayMensajes as $mensaje) {
+        echo "<h3>$mensaje</h3>";
+    }
+};
+echo"</div>";
 
     ///////////////////////////PARTE DE  CONTENIDO PEDIDO
 

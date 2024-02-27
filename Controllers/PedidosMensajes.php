@@ -16,6 +16,10 @@ Function getArrayMensajesPedidos(){
 
     $mensajes=[];
 
+    if(isset($_SESSION['badFecha']) && $_SESSION['badFecha'] == true){
+        $mensajes[] =  "El formato de la fecha no era adecuado.";
+        unset($_SESSION['badFecha']);
+    }
     if(isset($_SESSION['estadoNotFound']) && $_SESSION['estadoNotFound'] == true){
         $mensajes[] =  "No se ha encontrado nada con ese estado.";
         unset($_SESSION['estadoNotFound']);
