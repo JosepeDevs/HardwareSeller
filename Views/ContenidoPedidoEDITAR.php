@@ -219,7 +219,6 @@ if(is_array($arrayMensajes)){
 echo"</div>";
 
 echo"<div>";
-    echo("<h2><a class='cerrar' href='ContenidoPedidoLISTAR.php?editandoContenidoPedido=false'>Volver al listado de ContenidoPedido</a></h2>");
     echo("<h2><a class='cerrar' a href='AreaCliente.php'>Ir al área personal</a></h2>");
 echo"</div>";
 include_once("footer.php");
