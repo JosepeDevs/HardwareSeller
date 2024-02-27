@@ -15,9 +15,9 @@ function getArrayAtributosPedido(){
     return $arrayPedido;
 }
 
-function getPedidoByIdPedido($numPedido, $dni=null){
+function getPedidoByIdPedido($idPedido, $dni=null){
     include_once("../Models/Pedido.php");
-    $Pedido = Pedido::getPedidoByIdPedido($numPedido, $dni);
+    $Pedido = Pedido::getPedidoByIdPedido($idPedido, $dni);
     if($Pedido == false){
        // $_SESSION['numPedidoNotFound'] = true;
         return false;

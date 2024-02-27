@@ -82,6 +82,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
     include_once("../Controllers/PedidoBUSCARController.php");
     if(!empty(($_REQUEST["idPedido"]))){
         $idPedido=$_REQUEST["idPedido"];
+        print($idPedido);
         if( $rol == "admin" || $rol == "empleado" ){
             $arrayPedido[] = getPedidoByIdPedido($idPedido);
         } else{
