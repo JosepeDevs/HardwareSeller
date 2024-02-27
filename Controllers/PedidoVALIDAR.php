@@ -12,7 +12,7 @@ if( $usuarioLogeado == false){
 
 include_once("../Models/Pedido.php");
 
-if(isset($_POST["id"]) || isset($_POST["id"]) ) {
+if(isset($_POST["total"]) || isset($_POST["codUsuario"]) ) {
     //con que compruebe que hay algún dato además del estado sabremos que venimos de modificar como admin los pedidos
     $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : null;
     $total = isset($_POST["total"]) ? round($_POST["total"],2) : null;

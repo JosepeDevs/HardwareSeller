@@ -76,12 +76,15 @@ echo"<tr><th>Atributos:</th>";
                             $valor = $pedido->$getter();//lo llamamos para obtener el valor
                             if( $nombreAtributo == "estado" ){
                                 echo "<td><input type='number' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
-                            }else if($nombreAtributo == "total" ){
+                            }else if($nombreAtributo == "idPedido" ){
+                                $_SESSION['idPedido'] = $valor;//lo subimos a session idpedido porque hace falta para identificar el pedido, pero no dejamos editarlo
+                                echo "<td>$valor</td>";//idPedido lo genera la BBDD, no dejamos editarlo, igual que no dejeamos editar el codUsuario
+                            }if($nombreAtributo == "total" ){
                                 echo "<td><input type='number' step='0.01' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
                             } else if($nombreAtributo == "fecha" ){
                                 echo "<td><input type='date' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
-                            }else if($nombreAtributo == "codUsuario" || $nombreAtributo == "idPedido"){
-                                echo "<td>'$valor'</td>";//idPedido lo genera la BBDD, no dejamos editarlo, igual que no dejeamos editar el codUsuario
+                            }else if($nombreAtributo == "codUsuario" ){
+                                echo "<td>$valor</td>";
                             }else if($nombreAtributo == "activo") {
                                 echo "
                                     <td>
