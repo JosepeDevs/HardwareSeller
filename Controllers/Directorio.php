@@ -20,7 +20,7 @@ function PrepararDirectorio() {
 function DirectorioInformes() {
     $actualPath = __DIR__;//esto es controllers
     $parentDirectory = dirname($actualPath);//parent directory es algo asi /home/vol8_4/infinityfree.com/if0_35787488/htdocs/
-    $rutaCarpeta =$parentDirectory.'Reports/';
+    $rutaCarpeta =$parentDirectory.'/Reports/';
     if (!file_exists($rutaCarpeta)) {//si no existe el directorio lo crea con permisos totales
         mkdir($rutaCarpeta, 0777, true);
     }
