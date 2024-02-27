@@ -219,14 +219,12 @@ function EstadisticasPedidosWeb($dni){
 
 }
 
-function EstadisticasPedidosRangoFechas($dni){
+function EstadisticasPedidosRangoFechas($dni, $fechaInicio, $fechaFin){
 
-//numero total de pedidos
-//promedio gasto en pedidos
-//total facturado
+
 try{
     $con= contectarBbddPDO();
-    $sql="SELECT SUM(total) FROM pedidos";
+    $sql="SELECT SUM(total) FROM pedidos WHERE fecha >= :fechaInicio AND fecha <= :fechaFin;";
     $statement=$con->prepare($sql);
     $statement->execute();
     $facturacionTotal=$statement->fetch();
@@ -238,7 +236,7 @@ try{
 
 try{
     $con= contectarBbddPDO();
-    $sql="SELECT AVG(total) FROM pedidos";
+    $sql="SELECT AVG(total) FROM pedidos  WHERE fecha >= :fechaInicio AND fecha <= :fechaFin;";
     $statement=$con->prepare($sql);
     $statement->execute();
     $promedioTotalPedidos=$statement->fetch();
@@ -250,7 +248,7 @@ try{
 
 try{
     $con= contectarBbddPDO();
-    $sql="  SELECT COUNT(*) FROM pedidos;";
+    $sql="  SELECT COUNT(*) FROM pedidos  WHERE fecha >= :fechaInicio AND fecha <= :fechaFin;;";
     $statement=$con->prepare($sql);
     $statement->execute();
     $numeroPedidosTotal=$statement->fetch();

@@ -46,7 +46,38 @@ print"<table class='table table-bordered'>";
         }
     print'</td></tr>';
 
-print"</table>";
+    print'<tr><td class="container-fluid">';
+    print("<button class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasPedidosWeb=1'>Generar informe Pedidos</button>");//así solo pueden llamar a la función los que tengan rol de admin y no escribirmos en la url rol=admin que eso es muy obvio
+    if( isset( $_POST["FechaInicio"] ) && $_POST["FechaFin"] == 1 )  {
+        $fechaInicioPredeterminada = "1970/01/01";
+        $fechaFinPredeterminada = "2100/01/01";
+        $fechaInicio = empty($_REQUEST["fechaInicio"]) ? $fechaInicioPredeterminada : $_REQUEST['fechaInicio'] ; 
+        $fechaFin = empty($_REQUEST["fechaFin"]) ? $fechaFinPredeterminada : $_REQUEST['fechaFin'] ; 
+        $arrayPedido = GetPedidosByRangoFecha($fechaInicio,$fechaFin);
 
+            $textoGenerado = EstadisticasPedidosRangoFechas($dni, $fechaInicio, $fechaFin);
+            print $textoGenerado;
+            print "Guarde como PDF esta página para disponer del informe" ;
+        }
+    print'</td></tr>';
+print'</table>
+
+<form action="InformesLISTAR.php" method="POST">
+
+<table>
+    <tr>
+        <th><h2><label for="fecha">Fecha inicio</label></h2></th>
+        <th><h2><label for="fecha">Fecha fin</label></h2></th>
+    </tr>
+    <tr>
+        <td><input type="date" name="fechaInicio" autofocus><br><br></td>
+        <td><input type="date" name="fechaFin" ><br><br></td>
+    </tr>
+</table>
+
+<div>
+    <h2><input type="submit" value="Consultar"></h2><br><br><br>
+</div>
+';
 include_once("footer.php");
 

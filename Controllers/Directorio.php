@@ -18,7 +18,7 @@ function PrepararDirectorio() {
 }
 
 function DirectorioInformes() {
-    $rutaCarpeta = '/Reports/';
+    $rutaCarpeta = 'Reports/';
     if (!file_exists($rutaCarpeta)) {//si no existe el directorio lo crea con permisos totales
         mkdir($rutaCarpeta, 0777, true);
     }
