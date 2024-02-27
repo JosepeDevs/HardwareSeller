@@ -52,7 +52,8 @@ if(isset($_GET["PedidoConfirmado"])){
                 <th><h2><label for="idPedido">Id pedido</label></h2></th>
                 <th><h2><label for="fecha">Fecha inicio</label></h2></th>
                 <th><h2><label for="fecha">Fecha fin</label></h2></th>
-                <th><h2><label for="estado">Busqueda por estado<br>(0=En Carrito, 1=Pedido Pago Pendiente, 2=Pedido Pago Aceptado, 3=Enviado, 4=Recibido, 5=Entrega con incidencia, 6=Completado)</label></h2></th>
+                <th><h2><label for="estado">Busqueda por estado<br> Estado del pedido:(0=envío a direccion)(1=pedido en carrito)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago y recogida en tienda)
+                (6=pago confirmado)(7=pedido enviado)(8=pedido recibido)(9=finalizado o cancelado)</label></h2></th>
                 <th><h2><label for="codUsuario">Codigo usuario (DNI)</label></h2></th>
             </tr>
             <tr>
