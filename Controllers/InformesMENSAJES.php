@@ -25,9 +25,21 @@ Function getArrayMensajesPedidos(){
         $mensajes[] =  "No se pudo generar el informe de artículos.";
         unset($_SESSION['BadArticulos']);
     }
-    if(isset($_SESSION['InformeGenerado']) && $_SESSION['InformeGenerado'] == true){
-        $mensajes[] =  "Informe generado correctemente, descarga debería empezar en breve.";
-        unset($_SESSION['InformeGenerado']);
+    if(isset($_SESSION['InformePedidoGenerado']) && $_SESSION['InformePedidoGenerado'] == true){
+        $mensajes[] =  "Informe de pedidos generado correctemente, descarga debería empezar en breve.";
+        unset($_SESSION['InformePedidoGenerado']);
+    }
+    if(isset($_SESSION['InformeArticulosGenerado']) && $_SESSION['InformeArticulosGenerado'] == true){
+        $mensajes[] =  "Informe de articulos generado correctemente, descarga debería empezar en breve.";
+        unset($_SESSION['InformeArticulosGenerado']);
+    }
+    if(isset($_SESSION['InformeClientesGenerado']) && $_SESSION['InformeClientesGenerado'] == true){
+        $mensajes[] =  "Informe de clientes generado correctemente, descarga debería empezar en breve.";
+        unset($_SESSION['InformeClientesGenerado']);
+    }
+    if(isset($_SESSION['BadCliente']) && $_SESSION['BadCliente'] == true){
+        $mensajes[] =  "problema al generar el informe de clientes.";
+        unset($_SESSION['BadCliente']);
     }
    
 

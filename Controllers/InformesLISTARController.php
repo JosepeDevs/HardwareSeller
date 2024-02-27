@@ -26,7 +26,7 @@ function EstadisticasUsuariosWeb($dni){
         $arrayClientesActivos=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
         $_SESSION['ClientesActivos']= count($arrayClientesActivos);
     } catch (Exception $e) {
-        $_SESSION['BadOperation'] = true;
+        $_SESSION['BadCliente'] = true;
         return false;
     }
 
@@ -38,7 +38,7 @@ function EstadisticasUsuariosWeb($dni){
         $arrayClientesInactivos=$statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Cliente");
         $_SESSION['ClientesInactivos']= count($arrayClientesInactivos);
     } catch (Exception $e) {
-        $_SESSION['BadOperation'] = true;
+        $_SESSION['BadCliente'] = true;
         return false;
     }
     
@@ -58,7 +58,7 @@ function EstadisticasUsuariosWeb($dni){
         fwrite($informe, $totalRegistrados . PHP_EOL) !== false &&
         fwrite($informe, $activosRegistrados . PHP_EOL) !== false &&
         fwrite($informe, $inactivosRegistrados . PHP_EOL) !== false) {
-        $_SESSION["InformeGenerado"] = true;
+        $_SESSION["InformeClientesGenerado"] = true;
         return $textoInforme;
     }
     fclose($informe);
@@ -142,7 +142,7 @@ function EstadisticasArticulosWeb($dni){
         fwrite($informe, $textoActivos . PHP_EOL) !== false &&
         fwrite($informe, $textoInactivos . PHP_EOL) !== false &&
         fwrite($informe, $articuloMasVendido . PHP_EOL) !== false) {
-        $_SESSION["InformeGenerado"] = true;
+        $_SESSION["InformeArticulosGenerado"] = true;
         return $textoInforme;
     }
     fclose($informe);
@@ -206,7 +206,7 @@ function EstadisticasPedidosWeb($dni){
         fwrite($informe, $textoFacturacionTotal . PHP_EOL) !== false &&
         fwrite($informe, $textoPromedioPedidos . PHP_EOL) !== false &&
         fwrite($informe, $textoNumeroPedidos . PHP_EOL) !== false) {
-        $_SESSION["InformeGenerado"] = true;
+        $_SESSION["InformePedidoGenerado"] = true;
         return $textoInforme;
     }
     fclose($informe);
