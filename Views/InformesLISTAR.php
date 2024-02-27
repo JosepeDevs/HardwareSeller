@@ -33,9 +33,9 @@ print"<table class='table table-bordered'>";
         print("<button class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasArticulosWeb=1'>Generar informe Artículos</button>");//así solo pueden llamar a la función los que tengan rol de admin y no escribirmos en la url rol=admin que eso es muy obvio
         if( isset( $_GET["EstadisticasArticulosWeb"] ) && $_GET["EstadisticasArticulosWeb"] == 1 )  {
             $textoGenerado = EstadisticasArticulosWeb($dni);//con llamar al método se debería descargar
-            print "<tr><td>Guarde como PDF esta página para disponer del informe</td></tr>" ;
+            print "<td>Guarde como PDF esta página para disponer del informe</td></tr>" ;
             print $textoGenerado;
-            print "</td></tr>" ;
+            print "</td>" ;
         }
     print"</td></tr>";
 
@@ -43,9 +43,9 @@ print"<table class='table table-bordered'>";
     print("<button class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasPedidosWeb=1'>Generar informe Pedidos</button>");//así solo pueden llamar a la función los que tengan rol de admin y no escribirmos en la url rol=admin que eso es muy obvio
     if( isset( $_GET["EstadisticasPedidosWeb"] ) && $_GET["EstadisticasPedidosWeb"] == 1 )  {
             $textoGenerado = EstadisticasPedidosWeb($dni);//con llamar al método se debería descargar
-            print "<tr><td>Guarde como PDF esta página para disponer del informe</td></tr>" ;
+            print "<td>Guarde como PDF esta página para disponer del informe</td></tr>" ;
             print $textoGenerado;
-            print "</td></tr>" ;
+            print "</td>" ;
         }
     print'</td></tr>';
 print'</table>
@@ -70,13 +70,13 @@ print'</table>
             $arrayPedido = GetPedidosByRangoFecha($fechaInicio,$fechaFin);
 
                 $textoGenerado = EstadisticasPedidosRangoFechas($dni, $fechaInicio, $fechaFin);
-                print "<tr><td>Guarde como PDF esta página para disponer del informe</td></tr>" ;
+                print "<td>Guarde como PDF esta página para disponer del informe</td></tr>" ;
                 print $textoGenerado;
-                print "</td></tr>" ;
+                print "</td>" ;
             } else{
-                print "<tr><td>" ;
+                print "<td>" ;
                 print "Necesita especificar una fecha de inicio y una fecha de fin." ;
-                print "</td></tr>" ;
+                print "</td>" ;
             }
         print'</td></tr>
     </table>
