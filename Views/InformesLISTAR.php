@@ -1,7 +1,7 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
-include_once("OperacionesSession.php");
+include_once("../Controllers/OperacionesSession.php");
 $rolEsAdmin = AuthYRolAdmin();
 if(!$rolEsAdmin) {
     session_destroy();
