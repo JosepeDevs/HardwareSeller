@@ -75,8 +75,7 @@ echo"<table>";
                 include_once("../Controllers/OperacionesSession.php");//get rol
                 if(GetRolDeSession() == "empleado" || GetRolDeSession() == "admin" ){
                     echo"
-                    <th>Ver contenido</th>
-                    <th>Editar</th>
+                    <th>Ver y Editar contenido</th>
                     <th>Desactivar</th>";
                 } else{
                     echo"
@@ -140,7 +139,6 @@ echo"<table>";
                 if(GetRolDeSession() ==  "admin" || GetRolDeSession() == "empleado"  ){
                     echo"
                     <td><a href='ContenidoPedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar pedido' /></td>
-                    <td><a href='ContenidoPedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar pedido' /></td>
                     <td><a href='PedidoBORRAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar Pedido' /></td>";
                 } else{
                     echo "<td><a href='ContenidoPedidoBUSCAR.php?numPedido=".$idPedido."'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
@@ -151,7 +149,7 @@ echo"<table>";
         echo("</tr>
         <tr>
             <td>Información sobre estado</td>
-            <td colspan='5'>  
+            <td colspan='6'>  
                 Estado del pedido:(0=envío a direccion)(1=pedido en carrito)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago y recogida en tienda)
                 (6=pago confirmado)(7=pedido enviado)(8=pedido recibido)(9=finalizado o cancelado)                            
                 <br>

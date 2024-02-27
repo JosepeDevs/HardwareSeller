@@ -11,13 +11,12 @@ if(!$rolEsAdmin) {
 
 function EstadisticasUsuariosWeb(){
 
+    include_once("../Models/Cliente.php");
+
 //nº activos
 //nº inactivos
 
 }
-
-
-
 
 function EstadisticasArticulosWeb(){
 //nº activos
