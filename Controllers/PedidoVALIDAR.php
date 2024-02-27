@@ -62,7 +62,7 @@ if(
     exit;
 } 
 
-if( isset($_SESSION["editandoPedidoYContenidoPedido"]) && $_SESSION["editandoPedidoYContenidoPedido"] == "true"){
+if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true"){
     //llegamos aquí si está todo OK y estamos editando
 
     //rescatamos de session los datos subidos
@@ -71,7 +71,7 @@ if( isset($_SESSION["editandoPedidoYContenidoPedido"]) && $_SESSION["editandoPed
     if($operacionExitosa){
         $_SESSION['GoodUpdatePedido']= true;
     }
-   header("Location: ../Views/PedidosLISTAR.php");
+  // header("Location: ../Views/PedidosLISTAR.php");
     exit;
 }else if( isset($_SESSION["nuevoPedido"]) && $_SESSION["nuevoPedido"] == "true"){
     $_SESSION["nuevoContenidoPedido"] = "true";
