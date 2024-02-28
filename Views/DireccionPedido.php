@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var DivIngresar = document.getElementById('DivIngresar');
 
     //formularios para hacer sus respectivos submits
-    var datosClienteFormulario = document.getElementById('datosClienteFormulario');
+    var datosCliente = document.getElementById('datosCliente');
     var ingresarFormulario = document.getElementById('ingresarFormulario');
 
 
