@@ -192,16 +192,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     function enviarFormulario(idFormulario) {
+        console.log(idFormulario);
         event.preventDefault();
         document.getElementById(idFormulario).submit();
     }
 
     ingresarBoton.addEventListener('click', function() {
         enviarFormulario("ingresarFormulario")
+        console.log(ingresarBoton);
+
     })
 
     RegistrarseBoton.addEventListener('click', function() {
         enviarFormulario("datosCliente")
+        console.log(RegistrarseBoton);
+
     })
 
 
