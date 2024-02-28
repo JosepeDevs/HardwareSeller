@@ -4,7 +4,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
 //NO PUEDO PROTEGER ESTO PORQUE POR AQUÍ PASA AÑADIR CLIENTE NUEVO QUE REQUIERE QUE NO HAYA LOGIN
 
-
+//todo cuando se intentan regsistrar y ya está email y dni es porque hicieron una compra "sin registrarse", contemplar esa casuistica.
 
 //este archivo valida los datos de los clientes y según qué estaban haciendo los redirige si todo estaba bien
 include_once("../Models/Cliente.php");
@@ -17,7 +17,13 @@ $provincia = isset($_POST["provincia"]) ? $_POST["provincia"] : null;
 $telefono = isset($_POST["telefono"]) ? $_POST["telefono"] : null;
 $email = isset($_POST["email"]) ? $_POST["email"]:null;
 $rol = isset($_POST["rol"]) ? $_POST["rol"]: "user";
-$activo = isset($_POST["activo"]) ? $_POST["activo"]:1;
+
+if(isset($_POST['estadoEnvio']) && ( $_POST['estadoEnvio'] == "tiendaSINcuenta" || $_POST['estadoEnvio'] == "direccionSINcuenta" ) ){
+    $activo = 0;
+} else{
+    $activo = isset($_POST["activo"]) ? $_POST["activo"]:1;
+}
+
 
 //esto es para saber si han elegido recogida en tienda o envío
 $estado = isset($_POST["estadoEnvio"]) ? $_POST["estadoEnvio"]:null;
@@ -191,17 +197,9 @@ $_SESSION["rolCliente"] = $rol;
 $_SESSION["activo"] = $activo;
 
 
-//print("<br> array session:");
-//print_r($_SESSION);
-if(isset($_POST['estadoEnvio']) && ( $_POST['estadoEnvio'] == "tiendaSINcuenta" || $_POST['estadoEnvio'] == "direccionSINcuenta" ) ){
-    //no han habido problemas con los datos introducidos, pero no hacemos insert, vamos directamente a 
-    //sus datos ya están subidos en session
-    header("Location: ../Views/MetodoDePago.php");
-    exit;
-}
 //UPDATE o INSERT , SUBIR confirmación a SESSION y HEADER A DONDE TOQUE
 if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true" ){
-
+    
     $arrayDatosCliente  = array($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo, $noPsswrd);
     //print("<br> array del cliente:");
     //print_r($arrayDatosCliente);
@@ -249,6 +247,9 @@ if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true
     if($rolAdmin == true) {
            header("Location: ../Views/AreaCliente.php");
             exit;
+    } else if(isset($_POST['estadoEnvio']) && ( $_POST['estadoEnvio'] == "tiendaSINcuenta" || $_POST['estadoEnvio'] == "direccionSINcuenta" ) ){
+        header("Location: ../Views/MetodoDePago.php");
+        exit;
     } else if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1){
         header("Location: ../Controllers/conexion.php");
         exit;

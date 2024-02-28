@@ -16,6 +16,10 @@ Function getArrayMensajesNuevo(){
         $mensajes[] =  "Cliente añadido correctamente.";
         unset($_SESSION['GoodInsertCliente']);
     };
+    if(isset($_SESSION['BadSemiInsertCliente']) && $_SESSION['BadSemiInsertCliente'] == true){
+        $mensajes[] =  "Ocurrio algun problema al procesar sus  datos y no fue posible pasar a método de pago, por favor, revíselo.";
+        unset($_SESSION['BadSemiInsertCliente']);
+    };
 
     if(isset($_SESSION['EmailAlreadyExists']) && $_SESSION['EmailAlreadyExists'] == true){
         $mensajes[] =  "Lo sentimos, el  correo indicado no está disponible o no se acepta, por favor, seleccione otro.";
