@@ -227,6 +227,8 @@ try{
     $con= contectarBbddPDO();
     $sql="SELECT SUM(total) FROM pedidos WHERE fecha >= :fechaInicio AND fecha <= :fechaFin;";
     $statement=$con->prepare($sql);
+    $statement->bindParam(':fechaInicio',$fechaInicio);
+    $statement->bindParam(':fechaFin',$fechaFin);
     $statement->execute();
     $facturacionTotal = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la fila 
     $facturacionTotal=round(floatval($facturacionTotal),2);
@@ -239,6 +241,8 @@ try{
     $con= contectarBbddPDO();
     $sql="SELECT AVG(total) FROM pedidos  WHERE fecha >= :fechaInicio AND fecha <= :fechaFin;";
     $statement=$con->prepare($sql);
+    $statement->bindParam(':fechaInicio',$fechaInicio);
+    $statement->bindParam(':fechaFin',$fechaFin);
     $statement->execute();
     $promedioTotalPedidos = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la fila 
     $promedioTotalPedidos=round(floatval($promedioTotalPedidos),2);
@@ -251,6 +255,8 @@ try{
     $con= contectarBbddPDO();
     $sql="  SELECT COUNT(*) FROM pedidos  WHERE fecha >= :fechaInicio AND fecha <= :fechaFin;;";
     $statement=$con->prepare($sql);
+    $statement->bindParam(':fechaInicio',$fechaInicio);
+    $statement->bindParam(':fechaFin',$fechaFin);
     $statement->execute();
     $numeroPedidosTotal = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la fila 
     $numeroPedidosTotal=intval($numeroPedidosTotal);
