@@ -270,6 +270,7 @@ $nombreArchivo='estadisticasPedidosAllTime'.date("Y-m-d.H-i").".txt";
 $rutaArchivo = $carpeta.$nombreArchivo;
 $informe = fopen($rutaArchivo, "w");//esto también intenta crearla
 $dniLog ="Informe generado por consulta de adminitrador con $dni\n";
+$fechasLog ="Periodo consultado entre $fechaInicio y $fechaFin.\n";
 $textoFacturacionTotal = "Facturacion total = ".$facturacionTotal."\n";
 $textoPromedioPedidos=" Promedio total de los pedidos = ".$promedioTotalPedidos."\n";
 $textoNumeroPedidos ="Número de pedidos recibidos= ".$numeroPedidosTotal."\n";
