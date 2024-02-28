@@ -173,6 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
             formularioEnvio.style.display = 'block';
             DivFormularioRegistrarse.style.display = 'block';
             DivIngresar.style.display = 'none';
+            RegistrarseBoton.style.display = 'block';
         }  else if(this.value == '0'){
             //ya tienen cuenta, no mostrar tabla de registrarse, mostrar tabla de ingresar
             formularioEnvio.style.display = 'block';
@@ -184,6 +185,8 @@ document.addEventListener('DOMContentLoaded', function() {
             formularioEnvio.style.display = 'none';
             DivFormularioRegistrarse.style.display = 'none';
             DivIngresar.style.display = 'none';
+            RegistrarseBoton.style.display = 'block';
+
         }
     });
 
