@@ -33,7 +33,7 @@ if (isset($_REQUEST["informe"])) {
     }
   } else {
     include_once('header.php');
-    print"<p> Nombre del archivo no válido</p>
+    print"<h1> Nombre del archivo no válido</h1>
     <a href='InformesLISTAR.php'>Volver al generador de informes</a>";
     include_once('footer.php');
     exit;
