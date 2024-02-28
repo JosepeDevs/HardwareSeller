@@ -2,7 +2,7 @@
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Controllers/OperacionesSession.php");
 print_r($_SESSION);
-/*
+
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
@@ -11,12 +11,14 @@ if( $usuarioLogeado == false){
 }
 
 $rol = GetRolDeSession();
-if( $rol !== "admin" || $rol !== "empleado" ){
+if( $rol == "admin" || $rol == "empleado" ){
+} else{
     session_destroy();
     echo "Articulos alta dice: no está user en session";
     header("Location: /index.php");
 }
-*/
+
+
 
 //HEADER Y TITULO
 include_once("header.php");

@@ -11,11 +11,13 @@ if( $usuarioLogeado == false){
     header("Location: /index.php");
 }
 $rol = GetRolDeSession();
-if( $rol !== "admin" || $rol !== "empleado" ){
+if( $rol == "admin" || $rol == "empleado" ){
+} else{
     session_destroy();
     echo "Articulos alta dice: no está user en session";
     header("Location: /index.php");
 }
+
 
 include("header.php");
 echo"<h1>Alta de Contenido de pedido</h1>";
