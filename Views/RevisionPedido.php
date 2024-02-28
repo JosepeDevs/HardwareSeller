@@ -101,7 +101,7 @@ if(isset($_SESSION['user'])) {
     if (strpos($estadoEnvio,"5") !== false){
         //si encontramos un 5 en algun sitio de estadoEnvio es que querían recogida en tienda
         echo"<h3>Han seleccionado Recogida del pedido en tienda.</h3>";
-        $_SESSION['estado'] = ($_SESSION['estado'] . 5); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
+        $_SESSION['estado'] = ($_SESSION['estado'] . "5"); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
     } else if (strpos($estadoEnvio,"0") !== false){
         //si es 0 es envío,  leemos sus datos
         echo"<h3>Han seleccionado la opción de envío a esta dirección. Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
@@ -116,7 +116,7 @@ if(isset($_SESSION['user'])) {
         <p>Dirección: ".$usuario->getDireccion()."</p>
         <p>Localidad: ".$usuario->getLocalidad()."</p>
         <p>Provincia: ".$usuario->getProvincia()."</p>";
-        $_SESSION['estado'] = ($_SESSION['estado'] . 0); //metemos esto en el session de estado para indicar que es envío a dirección del cliente
+        $_SESSION['estado'] = ($_SESSION['estado'] . "0"); //metemos esto en el session de estado para indicar que es envío a dirección del cliente
     }else{
         echo"<h3>No pudimos determinar el método de envío/recogida seleccionado </h3>";
     }
@@ -126,12 +126,12 @@ if(isset($_SESSION['user'])) {
     if (strpos($estadoEnvio,"5") !== false){
         //si encontramos un 5 es que querían recogida en tienda
         echo"<h3>Han seleccionado Recogida del pedido en tienda.</h3>";
-        $_SESSION['estado'] = ($_SESSION['estado'] . 5); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
+        $_SESSION['estado'] = ($_SESSION['estado'] . "5"); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
     } else if (strpos($estadoEnvio,"0") !== false){
         //si es 0 es envío, decimos leemos sus datos
         echo"<h3>Han seleccionado la opción de envío a esta dirección. Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
         echo("<p>Dirección de envío: Nombre=$nombre, DNI=$dni, telefono=$telefono, Direccion=$direccion, Poblacion=$localidad, Provincia=$provincia, email=$email</p>");
-        $_SESSION['estado'] = ($_SESSION['estado'] . 0); //metemos esto en el session de estado para indicar que es envío a dirección del cliente
+        $_SESSION['estado'] = ($_SESSION['estado'] . "0"); //metemos esto en el session de estado para indicar que es envío a dirección del cliente
     }else{
         echo"<h3>No pudimos determinar el método de envío/recogida seleccionado </h3>";
     }
@@ -160,7 +160,7 @@ if(isset($_POST["estado"])) {
         <p> 
             Indique en el concepto de la transferencia el número de pedido de la siguiente página (también disponible en su área de cliente), una vez confirme el pedido.
         </p>";
-        $_SESSION['estado'] = ($_SESSION['estado'] . 3);  //pedido confirmado, transferencia, pago pendiente, envio pendiente
+        $_SESSION['estado'] = ($_SESSION['estado'] . "3");  
     }
     if( $_POST["estado"] == 4 ){
         echo"
@@ -172,7 +172,7 @@ if(isset($_POST["estado"])) {
         <p> 
         Indique en el concepto de la transferencia el número de pedido de la siguiente página (también disponible en su área de cliente), una vez confirme el pedido.
         </p>";
-        $_SESSION['estado'] = ($_SESSION['estado'] . 4);   //pedido confirmado, tarjeta, pago pendiente, envio pendiente
+        $_SESSION['estado'] = ($_SESSION['estado'] . "4");   
     }
     if( $_POST["estado"] == 5 ){
         echo"
@@ -180,7 +180,10 @@ if(isset($_POST["estado"])) {
         <p> Nuestra dirección: Calle existente nº infinito, avenida de la indeterminación/0 , CP 00000, Elche, Alicante, España, Europa, Tierra, Universo #3 </p>
         <p> Se reservará el stock un máximo de 5 días, transcurrido ese tiempo se pondrá de nuevo a la venta</p>
         <br>";
-        $_SESSION['estado'] = ($_SESSION['estado'] . 4);   //pedido confirmado, tarjeta, pago pendiente, envio pendiente
+        if (strpos($_SESSION['estado'],"5") == false){
+            //si no lo entontramos el numero en $_SESSION['estado'] lo metemos 
+            $_SESSION['estado'] = ($_SESSION['estado'] . "5");  
+        } 
     }
    
 }

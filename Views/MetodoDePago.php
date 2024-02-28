@@ -12,11 +12,11 @@ $estadoEnvio = (isset($_REQUEST['estadoEnvio']))? $_REQUEST['estadoEnvio'] :null
 
 //transformamos lo que nos llega por POST en estadoEnvio en un número (estado)
 if($estadoEnvio == "direccionSINcuenta"){
-    $estadoEnvio = 0;
+    $estadoEnvio = "0";
 } else if($estadoEnvio == "tiendaSINcuenta") {
-    $estadoEnvio = 5;
+    $estadoEnvio = "5";
 } else if($estadoEnvio == "direccionYcuenta"){
-    $estadoEnvio = 0;
+    $estadoEnvio = "0";
 } else{
     //lo que llegó ya era un número, no hay que hacer nada
 } 
