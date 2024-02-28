@@ -8,8 +8,8 @@ echo'<h1>Seleccione el método de pago</h1>';
 //include_once("aside.php");
 
 //por si estaban logeados pero eligieron recogida en tienda
-$estadoEnvio = (isset($_SESSION['estadoEnvio']))? $_SESSION['estadoEnvio'] :null;
 print_r($_SESSION);
+$estadoEnvio = (isset($_SESSION['estadoEnvio']))? $_SESSION['estadoEnvio'] :null;
 print $estadoEnvio;
 //transformamos lo que nos llega por POST en estadoEnvio en un número (estado)
 if(trim($estadoEnvio) == "direccionSINcuenta"){
