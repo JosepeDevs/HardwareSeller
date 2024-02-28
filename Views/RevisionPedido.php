@@ -102,6 +102,10 @@ $direccion=isset($_SESSION['direccion']) ? $_SESSION['direccion'] : null;
 $localidad=isset($_SESSION['localidad']) ? $_SESSION['localidad'] : null;
 $provincia=isset($_SESSION['provincia']) ? $_SESSION['provincia'] : null;
 
+if(!isset($_SESSION['estado'])){
+    $_SESSION['estado']=null;
+}
+
 if (strpos($estado,"5")==false){
     //si encontramos un 5 es que querían recogida en tienda
     //no hace nada aquí dentro, si seleccionaron 5 el mensaje correspondiente se muestra en la seccion de método de pago
