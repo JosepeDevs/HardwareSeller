@@ -110,7 +110,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                                     </tr>
                                     </table>
                                     <div id="IngresarYReiniciarHeader" class="finForm">
-                                        <br><button onclick="enviarFormulario('ingresar')">Ingresar, usar mis datos de envío y proceder al método de pago</button>
+                                        <br><button id="ingresarBoton">Ingresar, usar mis datos de envío y proceder al método de pago</button>
                                     </div>
                                 </form>
 </div><!--cerramos DivIngresar-->
@@ -125,9 +125,9 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
         <br>
         <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
         <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
-        <button  id='Registrarse' style='display: block;'  onclick="enviarFormulario('datosCliente')">Proceder al método de pago</button>
+        <button  id='Registrarse' style='display: block;' id="enviarFormularioBoton">Proceder al método de pago</button>
 
-    
+      
     <?
 /*
 echo'
@@ -186,16 +186,13 @@ include_once("footer.php");
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     //otros elementos
-    var checkBox = document.getElementById('crearCuenta');
     var metodoEnvioInput = document.getElementById('estadoEnvio-metodoEnvioInput');
     var formularioEnvio = document.getElementById('formularioEnvio');
-    var DivdireccionRegistrados = document.getElementById('DivdireccionRegistrados');
-    var DivdireccionSinRegistrase = document.getElementById('DivdireccionSinRegistrase');
-    var DivRegistrarse = document.getElementById('DivRegistrarse');
-    var DivtiendaSinRegistrarse = document.getElementById('DivtiendaSinRegistrarse');
-    var DivtiendaRegistrados = document.getElementById('DivtiendaRegistrados');
     var DivocultoSiTienenCuenta = document.getElementById('ocultoSiTienenCuenta');
     var DivIngresar = document.getElementById('DivIngresar');
+    var datosClienteFormulario = document.getElementById('datosCliente');
+    var ingresarFormulario = document.getElementById('ingresar');
+
 
     //botones
     var tiendaRegistrados = document.getElementById('tiendaRegistrados');
@@ -207,44 +204,35 @@ document.addEventListener('DOMContentLoaded', function() {
     function enviarFormulario(idFormulario) {
         document.getElementById(idFormulario).submit();
     }
+
+    ingresarFormulario.addEventListener('click', function() {
+        enviarFormulario("ingresar")
+    })
+
+    datosClienteFormulario.addEventListener('click', function() {
+        enviarFormulario("datosCliente")
+    })
     
     //primero hacemos visible el DIV que toque según dirección de envío
     metodoEnvioInput.addEventListener('change', function() {
         if (this.value == 'direccionYcuenta' || this.value == 'direccionSINcuenta') {
             formularioEnvio.style.display = 'block';
-            ocultoSiTienenCuenta.style.display = 'block';
+            DivocultoSiTienenCuenta.style.display = 'block';
             DivIngresar.style.display = 'none';
         }  else if(this.value == '0'){
             //ya tienen cuenta, no mostrar tabla de registrarse, mostrar tabla de ingresar
             formularioEnvio.style.display = 'block';
-            ocultoSiTienenCuenta.style.display = 'none';
+            DivocultoSiTienenCuenta.style.display = 'none';
             DivIngresar.style.display = 'block';
             Registrarse.style.display = 'none';
         }  else {
             //recogida en tienda
             formularioEnvio.style.display = 'none';
-            ocultoSiTienenCuenta.style.display = 'none';
+            DivocultoSiTienenCuenta.style.display = 'none';
             DivIngresar.style.display = 'none';
         }
     });
 });
-/*
-//luego según si queiren o no registrase mostramos unos u otros botones
-    checkBox.addEventListener('change', function() {
-        if (this.checked) {
-            //es que quieren registrarse y no lo están
-            tiendaRegistrados.style.display = 'none';
-            direccionRegistradosdireccionRegistrados.style.display = 'none';
-            tiendaSinRegistrarse.style.display = 'none';
-            direccionSinRegistrase.style.display = 'none';
-            Registrarse.style.display = 'block'; //con este botón cubrimos todos los caminos
-        } else {
-            //SIN REGISTRASE todos en block luego mostraremos  div según  envío o tienda
-            tiendaRegistrados.style.display = 'none';
-            direccionRegistradosdireccionRegistrados.style.display = 'none';
-            tiendaSinRegistrarse.style.display = 'block';
-            direccionSinRegistrase.style.display = 'block';
-            Registrarse.style.display = 'none'; 
-        }
-    });*/
+/*checkBox.addEventListener('change', function() {
+        if (this.checked) {*/
 </script>
