@@ -109,20 +109,20 @@ if(!isset($_SESSION['estado'])){
 if (strpos($estado,"5")==false){
     //si encontramos un 5 es que querían recogida en tienda
     //no hace nada aquí dentro, si seleccionaron 5 el mensaje correspondiente se muestra en la seccion de método de pago
-    echo"<h3>Han seleccionado Recogida en tienda</h3>";
+    echo"<h3>Han seleccionado Recogida en tienda.</h3>";
     $_SESSION['estado'] = ($_SESSION['estado'] . 5); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
 } if ($estado =="tiendaSINcuenta"){
-    echo"<h3>Han seleccionado Recogida en tienda</h3>";
+    echo"<h3>Han seleccionado Recogida en tienda..</h3>";
     $_SESSION['estado'] = ($_SESSION['estado'] . 5); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
 } if ($estado =="direccionSINcuenta"){
     echo"<h3>Han seleccionado la opción de envío a esta dirección. Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
     echo("<p>Dirección de envío: Nombre=$nombre, DNI=$dni, telefono=$telefono, Direccion=$direccion, Poblacion=$localidad, Provincia=$provincia, email=$email</p>");
     $_SESSION['estado'] = ($_SESSION['estado'] . 0); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
-    echo"<h3>Han seleccionado la opción de envío a esta dirección. Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
+    echo"<h3>Han seleccionado la opción de envío a esta dirección.. Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
     echo("<p>Dirección de envío: Nombre=$nombre, DNI=$dni, telefono=$telefono, Direccion=$direccion, Poblacion=$localidad, Provincia=$provincia, email=$email</p>");
     $_SESSION['estado'] = ($_SESSION['estado'] . 0); //metemos esto en el session de estado para indicar que es envío a dirección del cliente
 }else{
-    echo"<h3>Han seleccionado la opción de envío a esta dirección. Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
+    echo"<h3>Han seleccionado la opción de envío a esta dirección... Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
     echo("<p>Dirección de envío: Nombre=$nombre, DNI=$dni, telefono=$telefono, Direccion=$direccion, Poblacion=$localidad, Provincia=$provincia, email=$email</p>");
     $_SESSION['estado'] = ($_SESSION['estado'] . 0); //metemos esto en el session de estado para indicar que es envío a dirección del cliente
 }
