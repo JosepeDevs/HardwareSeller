@@ -42,8 +42,9 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
                 if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1){
                     //echo'vamos a medoto de pago';
                     $estadoEnvio = isset($_POST['estadoEnvio']) ? $_POST['estadoEnvio']: null;
+                    print "hola".$estadoEnvio;
                     $_SESSION['estadoEnvio'] = $estadoEnvio; //subimos a session lo recibido con su elección de como quieren el envío
-                    header('Location: ../Views/MetodoDePago.php');
+                    //header('Location: ../Views/MetodoDePago.php');
                     exit;
                 } else{
                   //  echo'vamos patras';
