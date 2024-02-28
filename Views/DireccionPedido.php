@@ -74,7 +74,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <br>
 </div> <!--cerramos  id="formularioEnvio"-->
 <div id="ocultoSiTienenCuenta" style="display: none;">
-            <form action="../Controllers/ValidarDatosCliente.php" method="post">
+            <form id="datosCliente" action="../Controllers/ValidarDatosCliente.php" method="post">
                 <table>
                     <tr>
                         <th><label for="nombre">Nombre:</label></th>
@@ -98,6 +98,25 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                     </tr>
                 </table>
 </div><!--cerramos ocultoSiTIenenCuenta-->
+<div id="DivIngresar" style="display: none;">
+                <form id="ingresar" action="/Controllers/conexion.php" method="post">
+                                    <table class="tablaLogin">
+                                    <caption><h2>Ingresar:</h2></caption>
+                                    <tr>
+                                        <th colspan="2">Usuario (email) :<br></td>
+                                        <td><input type="text" name="user" placeholder="example@example.com"></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">Contraseña<br></th>
+                                        <td><input type="password" name="key" placeholder="***********"></td>
+                                    </tr>
+                                    </table>
+                                    <div id="IngresarYReiniciarHeader">
+                                        <br> <input type="submit" form="ingresar" value="Enviar Formulario 2">
+                                        <br> <input type="reset" form="ingresar" value="Reiniciar">
+                                    </div>
+                                </form>
+</div><!--cerramos DivIngresar-->
             ';
         }  
     //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
@@ -110,7 +129,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
         <br>
         <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
         <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
-        <input id='Registrarse' style='display: block;' type='submit' value='Proceder al método de pago'>
+        <input id='Registrarse' style='display: block;' form="datosCliente" type='submit' value='Proceder al método de pago'>
     
     
     <?
@@ -180,7 +199,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var DivtiendaSinRegistrarse = document.getElementById('DivtiendaSinRegistrarse');
     var DivtiendaRegistrados = document.getElementById('DivtiendaRegistrados');
     var DivocultoSiTienenCuenta = document.getElementById('ocultoSiTienenCuenta');
-    
+    var DivIngresar = document.getElementById('DivIngresar');
+
     //botones
     var tiendaRegistrados = document.getElementById('tiendaRegistrados');
     var direccionRegistrados = document.getElementById('direccionRegistrados');
@@ -190,22 +210,25 @@ document.addEventListener('DOMContentLoaded', function() {
     
     //primero hacemos visible el DIV que toque según dirección de envío
     metodoEnvioInput.addEventListener('change', function() {
-        if (this.value == '0' || this.value == 'direccionSINcuenta') {
-             //si eligen envío a direccion
+        if (this.value == 'direccionYcuenta' || this.value == 'direccionSINcuenta') {
             formularioEnvio.style.display = 'block';
             ocultoSiTienenCuenta.style.display = 'block';
+            DivIngresar.style.display = 'none';
            /* DivdireccionSinRegistrase.style.display = 'block';
             DivdireccionRegistrados.style.display = 'block';
             DivRegistrarse.style.display = 'block';
             DivtiendaSinRegistrarse.style.display = 'none';
             DivtiendaRegistrados.style.display = 'none';*/
-        }  else if(this.value == 'direccionYcuenta'){
+        }  else if(this.value == '0'){
+            //ya tienen cuenta, no mostrar tabla de registrarse, mostrar tabla de ingresar
             formularioEnvio.style.display = 'block';
             ocultoSiTienenCuenta.style.display = 'none';
+            DivIngresar.style.display = 'block';
         }  else {
             //recogida en tienda
             formularioEnvio.style.display = 'none';
             ocultoSiTienenCuenta.style.display = 'none';
+            DivIngresar.style.display = 'none';
   /*          DivdireccionSinRegistrase.style.display = 'none';
             DivdireccionRegistrados.style.display = 'none';
             DivRegistrarse.style.display = 'none';
