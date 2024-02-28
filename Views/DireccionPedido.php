@@ -117,12 +117,12 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                 if(isset($_SESSION['user'])) {
                     //si estan logeados se mostrará uno de estos dos botones, uno por posible dirección
                     print'<div id="DivtiendaRegistrados" style="display: block;">';
-                    echo"<button id='tiendaRegistrados' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago→</a></button>";
+                    echo"<button id='tiendaRegistrados' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Ya tengo cuenta, recogeré y pagaré en tienda</a></button>";
                     print'</div>';
 
                     //este boton será 
                     print'<div id="DivdireccionRegistrados" style="display: none;">';
-                    echo"<button id='direccionRegistrados' style='display: none; type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago>></a></button>";
+                    echo"<button id='direccionRegistrados' style='display: none; type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago (envío a mi dirección)>></a></button>";
                     print'</div>';
 
                 }else{
@@ -130,17 +130,17 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
 
                     //sin registrarse y recogida a tienda
                     print'<div id="DivtiendaSinRegistrarse" style="display: block;">';
-                    print"<button id='tiendaSinRegistrarse' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago→→</a></button>";
+                    print"<button id='tiendaSinRegistrarse' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Pago y recogida en tienda→→</a></button>";
                     print'</div>';
 
                     print'<div id="DivdireccionSinRegistrase" style="display: none;">';
                         // sin registrarse y envio a mi direccion
-                        print"<button id='direccionSinRegistrase' style='display: none;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago..</a></button>";
+                        print"<button id='direccionSinRegistrase' style='display: none;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago sin registrarme con envío a mi dirección</a></button>";
                     print'</div>';
                     
                     print'<div id="DivRegistrarse" style="display: none;">';
                     //este es si marcan registrarse
-                    print"<button id='Registrarse' style='display: none;' type='submit' value'Proceder al método de pago→→'</button>";
+                    print"<button id='Registrarse' style='display: none;' type='submit' value'Proceder al método de pago y registrarme→→'</button>";
                     print'</div>';
                 }
             ?>
