@@ -72,7 +72,7 @@ $nombreInforme=false;
     $nombreInforme= EstadisticasArticulosWeb($dni);
 } else if( isset( $_GET["EstadisticasPedidosWeb"] ) && $_GET["EstadisticasPedidosWeb"] == 1 )  {
     $nombreInforme= EstadisticasPedidosWeb($dni);
-} else if( isset( $_POST["FechaInicio"] ) && !empty($_POST['FechaInicio']) && isset($_POST["FechaFin"]) && !empty($_POST['FechaFin']) )  {
+} else if( isset( $_POST["fechaInicio"] ) && !empty($_POST['fechaInicio']) && isset($_POST["fechaFin"]) && !empty($_POST['fechaFin']) )  {
     print"entramos";
     $fechaInicio = !empty($_POST["fechaInicio"]) ? $_POST['fechaInicio'] : null ; 
     $fechaFin = !empty($_POST["fechaFin"]) ?  $_POST['fechaFin'] : null ; 
