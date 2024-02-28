@@ -44,6 +44,8 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
         </select>
 
 <div id="formularioEnvio" style="display: none;">
+
+
 <?
     if(isset($_SESSION['user'])) {
             include_once('../Controllers/ClienteBUSCARController.php');
@@ -103,7 +105,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
     //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
 
     ?>
-</div> <!--cerramos  id="detalles"-->
+</div> <!--cerramos  id="formularioEnvio"-->
 
 
 
@@ -202,6 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
             DivtiendaRegistrados.style.display = 'none';*/
         }  else if(this.value == 'direccionYcuenta'){
             formularioEnvio.style.display = 'block';
+            ocultoSiTienenCuenta.style.display = 'none';
         }  else {
             //recogida en tienda
             formularioEnvio.style.display = 'none';
