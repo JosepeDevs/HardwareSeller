@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     //primero hacemos visible el DIV que toque según dirección de envío
     metodoEnvioInput.addEventListener('change', function() {
-        if (this.value === '0') {
+        if (this.value == '0' || this.value == 'direccionYcuenta' ||this.value == 'direccionYcuenta') {
              //si eligen envío a direccion
             formularioEnvio.style.display = 'block';
            /* DivdireccionSinRegistrase.style.display = 'block';
