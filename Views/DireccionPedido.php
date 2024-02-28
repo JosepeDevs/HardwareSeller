@@ -126,45 +126,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
         <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
         <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
         <button  id='Registrarse' style='display: block;' id="enviarFormularioBoton">Proceder al método de pago</button>
-
-      
-    <?
-/*
-echo'
-    </div>    
-<div class="finForm">';
-                if(isset($_SESSION['user'])) {
-                    //si estan logeados se mostrará uno de estos dos botones, uno por posible dirección
-                    print'<div id="DivtiendaRegistrados" style="display: block;">';
-                    echo"<button id='tiendaRegistrados' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Ya tengo cuenta, recogeré y pagaré en tienda</a></button>";
-                    print'</div>';
-
-                    //este boton será 
-                    print'<div id="DivdireccionRegistrados" style="display: none;">';
-                    echo"<button id='direccionRegistrados' style='display: none; type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago (envío a mi dirección)>></a></button>";
-                    print'</div>';
-
-                }else{
-                    //si están comprando sin registrarse verán uno de estos botones
-
-                    //sin registrarse y recogida a tienda
-                    print'<div id="DivtiendaSinRegistrarse" style="display: block;">';
-                    print"<button id='tiendaSinRegistrarse' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Pago y recogida en tienda→→</a></button>";
-                    print'</div>';
-
-                    print'<div id="DivdireccionSinRegistrase" style="display: none;">';
-                        // sin registrarse y envio a mi direccion
-                        print"<button id='direccionSinRegistrase' style='display: none;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago sin registrarme con envío a mi dirección</a></button>";
-                    print'</div>';
-                    
-                    print'<div id="DivRegistrarse" style="display: none;">';
-                    //este es si marcan registrarse
-                    print"<button id='Registrarse' style='display: none;' type='submit' value'Proceder al método de pago y registrarme→→'</button>";
-                    print'</div>';
-                }
-            */
-                ?>
-        </div> 
+</div> 
     </form> 
         <br>
         <?php
