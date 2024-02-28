@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     //primero hacemos visible el DIV que toque según dirección de envío
     metodoEnvioInput.addEventListener('change', function() {
-        if (this.value == '0' || this.value == 'direccionSINcuenta') {
+        if (this.value == 'direccionSINcuenta') {
              //si eligen envío a direccion
             formularioEnvio.style.display = 'block';
             ocultoSiTienenCuenta.style.display = 'block';
@@ -189,7 +189,10 @@ document.addEventListener('DOMContentLoaded', function() {
             DivRegistrarse.style.display = 'block';
             DivtiendaSinRegistrarse.style.display = 'none';
             DivtiendaRegistrados.style.display = 'none';*/
-        }  else if(this.value == 'direccionYcuenta'){
+        }  else if (this.value == '0'){
+            formularioEnvio.style.display = 'block';
+            ocultoSiTienenCuenta.style.display = 'none';
+        }else if(this.value == 'direccionYcuenta'){
             formularioEnvio.style.display = 'block';
             ocultoSiTienenCuenta.style.display = 'none';
         }  else {
