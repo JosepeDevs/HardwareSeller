@@ -36,8 +36,10 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
 ?>
 <form action="../Controllers/ValidarDatosCliente.php" method="post">
         <select class="estadoEnvio-metodoEnvioInput" name="estadoEnvio" id="estadoEnvio-metodoEnvioInput">
-            <option for="estadoEnvio" value="5">Recogida en tienda</option>
-            <option for="estadoEnvio"  value="0">Envío a mi dirección</option>
+            <option for="estadoEnvio" value="5">Pago y Recogida en tienda</option>
+            <option for="estadoEnvio" value="0">Envío a mi dirección (usar datos de mi área de cliente)</option>
+            <option for="estadoEnvio" value="direccionYcuenta">Envío a mi dirección (crear cuenta)</option>
+            <option for="estadoEnvio" value="direccionSINcuenta">Envío a mi dirección (NO crear cuenta)</option>
         </select>
 
 <div id="formularioEnvio" style="display: none;">
@@ -108,12 +110,14 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
         <br>
         <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
         <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
+        <input id='Registrarse' style='display: block;' type='submit' value='Proceder al método de pago'>
+    
+    
+    <?
+/*
+echo'
     </div>    
-<div class='finForm'>
-    <label for="crearCuenta">¿Quieres crear una cuenta con los datos que nos facilitas para el pedido?</label>
-    <input type="checkbox" id="crearCuenta" name="crearCuenta">
-            <?
-
+<div class="finForm">';
                 if(isset($_SESSION['user'])) {
                     //si estan logeados se mostrará uno de estos dos botones, uno por posible dirección
                     print'<div id="DivtiendaRegistrados" style="display: block;">';
@@ -143,7 +147,8 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                     print"<button id='Registrarse' style='display: none;' type='submit' value'Proceder al método de pago y registrarme→→'</button>";
                     print'</div>';
                 }
-            ?>
+            */
+                ?>
         </div> 
     </form> 
         <br>
@@ -187,19 +192,19 @@ document.addEventListener('DOMContentLoaded', function() {
         if (this.value === '0') {
              //si eligen envío a direccion
             formularioEnvio.style.display = 'block';
-            DivdireccionSinRegistrase.style.display = 'block';
+           /* DivdireccionSinRegistrase.style.display = 'block';
             DivdireccionRegistrados.style.display = 'block';
             DivRegistrarse.style.display = 'block';
             DivtiendaSinRegistrarse.style.display = 'none';
-            DivtiendaRegistrados.style.display = 'none';
+            DivtiendaRegistrados.style.display = 'none';*/
         } else {
             //recogida en tienda
             formularioEnvio.style.display = 'none';
-            DivdireccionSinRegistrase.style.display = 'none';
+  /*          DivdireccionSinRegistrase.style.display = 'none';
             DivdireccionRegistrados.style.display = 'none';
             DivRegistrarse.style.display = 'none';
             DivtiendaSinRegistrarse.style.display = 'block';
-            DivtiendaRegistrados.style.display = 'block';
+            DivtiendaRegistrados.style.display = 'block';*/
         }
     });
 });
