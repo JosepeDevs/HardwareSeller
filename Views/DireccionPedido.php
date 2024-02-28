@@ -72,7 +72,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <br>
             <br>
 </div> <!--cerramos id="formularioEnvio"-->
-<div id="DivOcultoSiTienenCuenta" style="display: none;">
+<div id="DivFormularioRegistrarse" style="display: none;">
             <form id="datosCliente" action="../Controllers/ValidarDatosCliente.php" method="post">
                 <table>
                     <tr>
@@ -98,7 +98,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                 </table>
 </div><!--cerramos ocultoSiTIenenCuenta-->
 <div id="DivIngresar" style="display: none;">
-                <form id="datosClienteFormulario" action="/Controllers/conexion.php" method="post">
+                <form id="ingresarFormulario" action="/Controllers/conexion.php" method="post">
                                     <table class="tablaLogin">
                                     <caption><h2>Ingresar:</h2></caption>
                                     <tr>
@@ -110,7 +110,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                                         <td><input type="password" name="key" placeholder="***********"></td>
                                     </tr>
                                     </table>
-                                    <div id="IngresarYReiniciarHeader" class="finForm">
+                                    <div class="finForm">
                                         <br><button id="ingresarBoton">Ingresar, usar mis datos de envío y proceder al método de pago</button>
                                     </div>
                                 </form>
@@ -148,11 +148,13 @@ include_once("footer.php");
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    //otros elementos
+    //Divs a mostrar/esconder
     var metodoEnvioInput = document.getElementById('estadoEnvio-metodoEnvioInput');
     var formularioEnvio = document.getElementById('formularioEnvio');
-    var DivOcultoSiTienenCuenta = document.getElementById('DivOcultoSiTienenCuenta');
+    var DivFormularioRegistrarse = document.getElementById('DivFormularioRegistrarse');
     var DivIngresar = document.getElementById('DivIngresar');
+
+    //formularios para hacer sus respectivos submits
     var datosClienteFormulario = document.getElementById('datosClienteFormulario');
     var ingresarFormulario = document.getElementById('ingresarFormulario');
 
@@ -165,38 +167,40 @@ document.addEventListener('DOMContentLoaded', function() {
     var RegistrarseBoton = document.getElementById('RegistrarseBoton');
     var ingresarBoton = document.getElementById('ingresarBoton');
 
-
-    function enviarFormulario(idFormulario) {
-        document.getElementById(idFormulario).submit();
-    }
-
-    ingresarFormulario.addEventListener('click', function() {
-        enviarFormulario("ingresar")
-    })
-
-    datosClienteFormulario.addEventListener('click', function() {
-        enviarFormulario("datosCliente")
-    })
     
-    //primero hacemos visible el DIV que toque según dirección de envío
     metodoEnvioInput.addEventListener('change', function() {
         if (this.value == 'direccionYcuenta' || this.value == 'direccionSINcuenta') {
             formularioEnvio.style.display = 'block';
-            DivOcultoSiTienenCuenta.style.display = 'block';
+            DivFormularioRegistrarse.style.display = 'block';
             DivIngresar.style.display = 'none';
         }  else if(this.value == '0'){
             //ya tienen cuenta, no mostrar tabla de registrarse, mostrar tabla de ingresar
             formularioEnvio.style.display = 'block';
-            DivOcultoSiTienenCuenta.style.display = 'none';
+            DivFormularioRegistrarse.style.display = 'none';
             DivIngresar.style.display = 'block';
             RegistrarseBoton.style.display = 'none';
         }  else {
             //recogida en tienda
             formularioEnvio.style.display = 'none';
-            DivOcultoSiTienenCuenta.style.display = 'none';
+            DivFormularioRegistrarse.style.display = 'none';
             DivIngresar.style.display = 'none';
         }
     });
+
+
+    function enviarFormulario(idFormulario) {
+        document.getElementById(idFormulario).submit();
+    }
+
+    ingresarBoton.addEventListener('click', function() {
+        enviarFormulario("ingresarFormulario")
+    })
+
+    RegistrarseBoton.addEventListener('click', function() {
+        enviarFormulario("datosCliente")
+    })
+
+
 });
 /*checkBox.addEventListener('change', function() {
         if (this.checked) {*/
