@@ -63,15 +63,14 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             //ESTABAN COMPRANDO SIN REGISTRARSE LOS MUY TRUANES
             $_SESSION['RegistroDurantePedido'] = 1;
             $_SESSION["nuevoCliente"] = "true";
-            echo '
+            ?>
 <div id="formularioEnvio" style="display: none;">
             <h2>Datos de contacto y dirección de envío</h2>
             <br>
-            <h3>Al enviar sus datos o ingresar en su cuenta acepta la direccion de envío de su perfil o la aquí indicada si no tienen cuenta y pasará a la selección del método de pago</h3>
             <p>Futura funcionalidad: OAth autenticación con un click.</p>
             <br>
             <br>
-</div> <!--cerramos  id="formularioEnvio"-->
+</div> <!--cerramos id="formularioEnvio"-->
 <div id="ocultoSiTienenCuenta" style="display: none;">
             <form id="datosCliente" action="../Controllers/ValidarDatosCliente.php" method="post">
                 <table>
@@ -110,13 +109,13 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                                         <td><input type="password" name="key" placeholder="***********"></td>
                                     </tr>
                                     </table>
-                                    <div id="IngresarYReiniciarHeader">
-                                        <br><button onclick="enviarFormulario("ingresar")">Ingresar y proceder al método de pago</button>
+                                    <div id="IngresarYReiniciarHeader" class="finForm">
+                                        <br><button onclick="enviarFormulario('ingresar')">Ingresar, usar mis datos de envío y proceder al método de pago</button>
                                     </div>
                                 </form>
 </div><!--cerramos DivIngresar-->
             ';
-        }  
+       <? }  
     //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
 
     ?>
@@ -216,11 +215,6 @@ document.addEventListener('DOMContentLoaded', function() {
             formularioEnvio.style.display = 'block';
             ocultoSiTienenCuenta.style.display = 'block';
             DivIngresar.style.display = 'none';
-           /* DivdireccionSinRegistrase.style.display = 'block';
-            DivdireccionRegistrados.style.display = 'block';
-            DivRegistrarse.style.display = 'block';
-            DivtiendaSinRegistrarse.style.display = 'none';
-            DivtiendaRegistrados.style.display = 'none';*/
         }  else if(this.value == '0'){
             //ya tienen cuenta, no mostrar tabla de registrarse, mostrar tabla de ingresar
             formularioEnvio.style.display = 'block';
@@ -232,11 +226,6 @@ document.addEventListener('DOMContentLoaded', function() {
             formularioEnvio.style.display = 'none';
             ocultoSiTienenCuenta.style.display = 'none';
             DivIngresar.style.display = 'none';
-  /*          DivdireccionSinRegistrase.style.display = 'none';
-            DivdireccionRegistrados.style.display = 'none';
-            DivRegistrarse.style.display = 'none';
-            DivtiendaSinRegistrarse.style.display = 'block';
-            DivtiendaRegistrados.style.display = 'block';*/
         }
     });
 });
