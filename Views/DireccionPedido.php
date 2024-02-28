@@ -35,12 +35,12 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
 }
 ?>
 <form action="../Controllers/ValidarDatosCliente.php" method="post">
-        <select class="estadoEnvio-metodoEnvio" name="estadoEnvio" id="estadoEnvio-metodoEnvio">
+        <select class="estadoEnvio-metodoEnvioInput" name="estadoEnvio" id="estadoEnvio-metodoEnvioInput">
             <option for="estadoEnvio" value="5">Recogida en tienda</option>
             <option for="estadoEnvio"  value="0">Envío a mi dirección</option>
         </select>
 
-<div id="detallesEnvio" style="display: none;">
+<div id="formularioEnvio" style="display: none;">
 <?
     if(isset($_SESSION['user'])) {
             include_once('../Controllers/ClienteBUSCARController.php');
@@ -116,18 +116,32 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
 
                 if(isset($_SESSION['user'])) {
                     //si estan logeados se mostrará uno de estos dos botones, uno por posible dirección
-                    echo"<button id='enlaceQueDebeDesaparecer' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago→</a></button>
-                    ";
-                    echo"<div id='oculto' class='finForm' style='display: none;'>
-                        <button type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago>></a></button>
-                    </div>";
+                    print'<div id="DivtiendaRegistrados" style="display: block;">';
+                    echo"<button id='tiendaRegistrados' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago→</a></button>";
+                    print'</div>';
+
+                    //este boton será 
+                    print'<div id="DivdireccionRegistrados" style="display: none;">';
+                    echo"<button id='direccionRegistrados' style='display: none; type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago>></a></button>";
+                    print'</div>';
+
                 }else{
                     //si están comprando sin registrarse verán uno de estos botones
 
-                    // es recogida en tienda y envio sin crear cuenta
-                    print"<button id='enlaceQueDebeDesaparecer2' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago..</a></button>";
-                     //este es el botón de queremos crear cuenta y envio a mi dirección
-                    print"<button id='enlaceQueDebeDesaparecer3' style='display: none;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago..</a></button>";
+                    //sin registrarse y recogida a tienda
+                    print'<div id="DivtiendaSinRegistrarse" style="display: block;">';
+                    print"<button id='tiendaSinRegistrarse' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago→→</a></button>";
+                    print'</div>';
+
+                    print'<div id="DivdireccionSinRegistrase" style="display: none;">';
+                        // sin registrarse y envio a mi direccion
+                        print"<button id='direccionSinRegistrase' style='display: none;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago..</a></button>";
+                    print'</div>';
+                    
+                    print'<div id="DivRegistrarse" style="display: none;">';
+                    //este es si marcan registrarse
+                    print"<button id='Registrarse' style='display: none;' type='submit' value'Proceder al método de pago→→'</button>";
+                    print'</div>';
                 }
             ?>
         </div> 
@@ -151,36 +165,61 @@ include_once("footer.php");
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-
+    //otros elementos
     var checkBox = document.getElementById('crearCuenta');
-    var enlaceQueDebeDesaparecer2 = document.getElementById('enlaceQueDebeDesaparecer2');
-    var enlaceQueDebeDesaparecer3 = document.getElementById('enlaceQueDebeDesaparecer3');
-    checkBox.addEventListener('change', function() {
-        if (this.checked) {
-            enlaceQueDebeDesaparecer2.style.display = 'none';
-            enlaceQueDebeDesaparecer3.style.display = 'block';
-        } else {
-            enlaceQueDebeDesaparecer2.style.display = 'block';
-            enlaceQueDebeDesaparecer3.style.display = 'none';
-        }
-    });
-
-
-    var metodoEnvio = document.getElementById('estadoEnvio-metodoEnvio');
-    var detallesEnvio = document.getElementById('detallesEnvio');
-
-    var divOculto = document.getElementById('oculto');
-    var enlaceQueDebeDesaparecer = document.getElementById('enlaceQueDebeDesaparecer');
-
-    metodoEnvio.addEventListener('change', function() {
+    var metodoEnvioInput = document.getElementById('estadoEnvio-metodoEnvioInput');
+    var formularioEnvio = document.getElementById('formularioEnvio');
+    var DivdireccionRegistrados = document.getElementById('DivdireccionRegistrados');
+    var DivdireccionSinRegistrase = document.getElementById('DivdireccionSinRegistrase');
+    var DivRegistrarse = document.getElementById('DivRegistrarse');
+    var DivtiendaSinRegistrarse = document.getElementById('DivtiendaSinRegistrarse');
+    var DivtiendaRegistrados = document.getElementById('DivtiendaRegistrados');
+    
+    //botones
+    var tiendaRegistrados = document.getElementById('tiendaRegistrados');
+    var direccionRegistrados = document.getElementById('direccionRegistrados');
+    var direccionSinRegistrase = document.getElementById('direccionSinRegistrase');
+    var tiendaSinRegistrarse = document.getElementById('tiendaSinRegistrarse');
+    var Registrarse = document.getElementById('Registrarse');
+    
+    //primero hacemos visible el DIV que toque según dirección de envío
+    metodoEnvioInput.addEventListener('change', function() {
         if (this.value === '0') {
-            detallesEnvio.style.display = 'block';
-            divOculto.style.display = 'block';
-            enlaceQueDebeDesaparecer.style.display = 'none';
+             //si eligen envío a direccion
+            formularioEnvio.style.display = 'block';
+            DivdireccionSinRegistrase.style.display = 'block';
+            DivdireccionRegistrados.style.display = 'block';
+            DivRegistrarse.style.display = 'block';
+            DivtiendaSinRegistrarse.style.display = 'none';
+            DivtiendaRegistrados.style.display = 'none';
         } else {
-            detallesEnvio.style.display = 'none';
-            divOculto.style.display = 'none';
+            //recogida en tienda
+            formularioEnvio.style.display = 'none';
+            DivdireccionSinRegistrase.style.display = 'none';
+            DivdireccionRegistrados.style.display = 'none';
+            DivRegistrarse.style.display = 'none';
+            DivtiendaSinRegistrarse.style.display = 'block';
+            DivtiendaRegistrados.style.display = 'block';
         }
     });
 });
+
+//luego según si queiren o no registrase mostramos unos u otros botones
+    checkBox.addEventListener('change', function() {
+        if (this.checked) {
+            //es que quieren registrarse y no lo están
+            tiendaRegistrados.style.display = 'none';
+            direccionRegistradosdireccionRegistrados.style.display = 'none';
+            tiendaSinRegistrarse.style.display = 'none';
+            direccionSinRegistrase.style.display = 'none';
+            Registrarse.style.display = 'block'; //con este botón cubrimos todos los caminos
+        } else {
+            //SIN REGISTRASE todos en block luego mostraremos  div según  envío o tienda
+            tiendaRegistrados.style.display = 'none';
+            direccionRegistradosdireccionRegistrados.style.display = 'none';
+            tiendaSinRegistrarse.style.display = 'block';
+            direccionSinRegistrase.style.display = 'block';
+            Registrarse.style.display = 'none'; 
+        }
+    });
 </script>
