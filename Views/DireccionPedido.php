@@ -157,11 +157,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var enlaceQueDebeDesaparecer3 = document.getElementById('enlaceQueDebeDesaparecer3');
     checkBox.addEventListener('change', function() {
         if (this.checked) {
-            enlaceQueDebeDesaparecer2.style.display = 'block';
-            enlaceQueDebeDesaparecer3.style.display = 'none';
-        } else {
             enlaceQueDebeDesaparecer2.style.display = 'none';
             enlaceQueDebeDesaparecer3.style.display = 'block';
+        } else {
+            enlaceQueDebeDesaparecer2.style.display = 'block';
+            enlaceQueDebeDesaparecer3.style.display = 'none';
         }
     });
 
