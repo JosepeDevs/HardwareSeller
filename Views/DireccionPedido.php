@@ -111,7 +111,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                                     </tr>
                                     </table>
                                     <div class="finForm">
-                                        <br><button id="ingresarBoton">Ingresar, usar mis datos de envío y proceder al método de pago</button>
+                                        <br><button type="button" id="ingresarBoton">Ingresar, usar mis datos de envío y proceder al método de pago</button>
                                     </div>
                                 </form>
 </div><!--cerramos DivIngresar-->
@@ -126,7 +126,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
         <br>
         <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
         <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
-        <button  id='RegistrarseBoton' style='display: block;' id="enviarFormularioBoton">Proceder al método de pago</button>
+        <button  id='RegistrarseBoton' type="button" style='display: block;' id="enviarFormularioBoton">Proceder al método de pago</button>
 </div> 
     </form> 
         <br>
@@ -192,6 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     function enviarFormulario(idFormulario) {
+        event.preventDefault();
         document.getElementById(idFormulario).submit();
     }
 
