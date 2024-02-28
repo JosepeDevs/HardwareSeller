@@ -62,9 +62,9 @@ include_once("../Controllers/InformesLISTARController.php");
 </form>
 
 <?php
-print($_REQUEST['fechaInicio']);
-print($_REQUEST['fechaFin']);
-print_r($_REQUEST);
+print($_POST['fechaInicio']);
+print($_POST['fechaFin']);
+print_r($_POST);
 $nombreInforme=false;
        if( isset( $_GET["EstadisticasUsuariosWeb"] ) && $_GET["EstadisticasUsuariosWeb"] == 1 )  {
     $nombreInforme= EstadisticasUsuariosWeb($dni);
@@ -74,8 +74,8 @@ $nombreInforme=false;
     $nombreInforme= EstadisticasPedidosWeb($dni);
 } else if( isset( $_POST["FechaInicio"] ) && !empty($_POST['FechaInicio']) && isset($_POST["FechaFin"]) && !empty($_POST['FechaFin']) )  {
     print"entramos";
-    $fechaInicio = !empty($_REQUEST["fechaInicio"]) ? $_REQUEST['fechaInicio'] : null ; 
-    $fechaFin = !empty($_REQUEST["fechaFin"]) ?  $_REQUEST['fechaFin'] : null ; 
+    $fechaInicio = !empty($_POST["fechaInicio"]) ? $_POST['fechaInicio'] : null ; 
+    $fechaFin = !empty($_POST["fechaFin"]) ?  $_POST['fechaFin'] : null ; 
     $nombreInforme= EstadisticasPedidosRangoFechas($dni,$fechaInicio, $fechaFin);
 }
 if($nombreInforme !== false){
