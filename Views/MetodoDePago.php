@@ -23,7 +23,7 @@ if(trim($estadoEnvio) == "direccionSINcuenta"){
 } 
 
 //subimmos a session el numero del estado correspondiente al envío
-$_SESSION['estadoEnvio2'] = $estadoEnvio;
+$_SESSION['estadoEnvio'] = $estadoEnvio;
 
 ?>
 <form action="../Views/RevisionPedido.php" method="POST">

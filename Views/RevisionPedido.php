@@ -75,8 +75,7 @@ if(isset($_SESSION['CarritoConfirmado'])){
 <?
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
-$estadoEnvio= isset($_SESSION["estadoEnvio2"])? $_SESSION["estadoEnvio2"]: null;
-
+$estadoEnvio= isset($_SESSION["estadoEnvio"])? $_SESSION["estadoEnvio"]: null;
 
 $nombre=isset($_SESSION['nombre']) ? $_SESSION['nombre'] : null;
 $email=isset($_SESSION['email']) ? $_SESSION['email'] : null;
@@ -100,11 +99,11 @@ if(isset($_SESSION['user'])) {
     
     if (strpos($estadoEnvio,"5") !== false){
         //si encontramos un 5 en algun sitio de estadoEnvio es que querían recogida en tienda
-        echo"<h3>Han seleccionado Recogida del pedido en tienda.</h3>";
+        echo"<h2>Han seleccionado Recogida del pedido en tienda.</h2>";
         $_SESSION['estado'] = ($_SESSION['estado'] . "5"); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
     } else if (strpos($estadoEnvio,"0") !== false){
         //si es 0 es envío,  leemos sus datos
-        echo"<h3>Han seleccionado la opción de envío a esta dirección. Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
+        echo"<h2>Han seleccionado la opción de envío a esta dirección.</h2>";
             //NOTHING LIKE A GOOD RETURNING CLIENT!
         echo"
         <h2> Datos usuario </h2>
@@ -116,24 +115,27 @@ if(isset($_SESSION['user'])) {
         <p>Dirección: ".$usuario->getDireccion()."</p>
         <p>Localidad: ".$usuario->getLocalidad()."</p>
         <p>Provincia: ".$usuario->getProvincia()."</p>";
+        echo"<h3>Gatos de transporte gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
         $_SESSION['estado'] = ($_SESSION['estado'] . "0"); //metemos esto en el session de estado para indicar que es envío a dirección del cliente
     }else{
-        echo"<h3>No pudimos determinar el método de envío/recogida seleccionado </h3>";
+        echo"<h2>No pudimos determinar el método de envío/recogida seleccionado </h2>";
     }
 
 } else{
    //NO existe user (estan comprando sin registrarse)
     if (strpos($estadoEnvio,"5") !== false){
         //si encontramos un 5 es que querían recogida en tienda
-        echo"<h3>Han seleccionado Recogida del pedido en tienda.</h3>";
+        echo"<h2>Han seleccionado Recogida del pedido en tienda.</h2>";
         $_SESSION['estado'] = ($_SESSION['estado'] . "5"); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
     } else if (strpos($estadoEnvio,"0") !== false){
         //si es 0 es envío, decimos leemos sus datos
-        echo"<h3>Han seleccionado la opción de envío a esta dirección. Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
-        echo("<p>Dirección de envío: Nombre=$nombre, DNI=$dni, telefono=$telefono, Direccion=$direccion, Poblacion=$localidad, Provincia=$provincia, email=$email</p>");
+        echo"<h2>Han seleccionado la opción de envío. La dirección de envío es:</h2>";
+        echo("<p>Dirección de envío:
+        <br> Nombre=$nombre<br> DNI=$dni, <br>telefono=$telefono,<br> Direccion=$direccion,<br> Poblacion=$localidad,<br> Provincia=$provincia,<br> email=$email</p>");
         $_SESSION['estado'] = ($_SESSION['estado'] . "0"); //metemos esto en el session de estado para indicar que es envío a dirección del cliente
+        echo"<h3>Gatos de transporte gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
     }else{
-        echo"<h3>No pudimos determinar el método de envío/recogida seleccionado </h3>";
+        echo"<h2>No pudimos determinar el método de envío/recogida seleccionado </h2>";
     }
 }
 
