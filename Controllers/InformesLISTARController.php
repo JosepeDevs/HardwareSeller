@@ -61,14 +61,6 @@ function EstadisticasUsuariosWeb($dni){
     }
     fclose($informe);
 
-/*
-    header("Cache-Control: public");
-    header("Content-Description: File Transfer");
-    header("Content-Disposition: attachment; filename=".basename($rutaArchivo)); // con attachement el browser sabe que debe descargar, cojemos solo el nombre del archivo con basename
-    header("Content-Type: application/zip");
-    header("Content-Transfer-Encoding: binary");
-    readfile($rutaArchivo); // Lee y envía el archivo al cliente
-    */
     return $nombreArchivo;
 }
 
@@ -146,12 +138,6 @@ function EstadisticasArticulosWeb($dni){
     }
     fclose($informe);
     
-/*
-    header("Content-Disposition: attachment; filename=".basename($rutaArchivo)); // con attachement el browser sabe que debe descargar, cojemos solo el nombre del archivo con basename
-    header("Content-Length: " . filesize($rutaArchivo)); // Configura el tamaño del archivo,necesario para que se pueda ver una barra de progreso de la descarga
-    header("Content-Type: application/octet-stream;"); // Establece el tipo MIME de contenido a octet-stream, esto ayuda a que se descarge y no se intente sacar por pantalla
-    readfile($rutaArchivo); // Lee y envía el archivo al cliente
-*/
     return $nombreArchivo;
 
 }
@@ -210,12 +196,6 @@ function EstadisticasPedidosWeb($dni){
     }
     fclose($informe);
     
-/*
-    header("Content-Disposition: attachment; filename=".basename($rutaArchivo)); // con attachement el browser sabe que debe descargar, cojemos solo el nombre del archivo con basename
-    header("Content-Length: " . filesize($rutaArchivo)); // Configura el tamaño del archivo,necesario para que se pueda ver una barra de progreso de la descarga
-    header("Content-Type: application/octet-stream;"); // Establece el tipo MIME de contenido a octet-stream, esto ayuda a que se descarge y no se intente sacar por pantalla
-    readfile($rutaArchivo); // Lee y envía el archivo al cliente
-*/
     return $nombreArchivo;
 
 }
@@ -275,7 +255,7 @@ $textoFacturacionTotal = "Facturacion total = ".$facturacionTotal."\n";
 $textoPromedioPedidos=" Promedio total de los pedidos = ".$promedioTotalPedidos."\n";
 $textoNumeroPedidos ="Número de pedidos recibidos= ".$numeroPedidosTotal."\n";
 
-if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line, vamos que hace un break line
+if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line
     fwrite($informe, $fechasLog . PHP_EOL) !== false &&
     fwrite($informe, $textoFacturacionTotal . PHP_EOL) !== false &&
     fwrite($informe, $textoPromedioPedidos . PHP_EOL) !== false &&
@@ -283,13 +263,7 @@ if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line, vamos
     $_SESSION["InformePedidoGenerado"] = true;
 }
 fclose($informe);
-/*
 
-header("Content-Disposition: attachment; filename=".basename($rutaArchivo)); // con attachement el browser sabe que debe descargar, cojemos solo el nombre del archivo con basename
-header("Content-Length: " . filesize($rutaArchivo)); // Configura el tamaño del archivo,necesario para que se pueda ver una barra de progreso de la descarga
-header("Content-Type: application/octet-stream;"); // Establece el tipo MIME de contenido a octet-stream, esto ayuda a que se descarge y no se intente sacar por pantalla
-readfile($rutaArchivo); // Lee y envía el archivo al cliente
-*/
 return $nombreArchivo;
 
 
