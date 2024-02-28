@@ -1,14 +1,8 @@
 <?php
 
-//ESTE RECOGE LOS DATOS Y LOS MANDA A MODELOS
+//SI PROTEJO ESTO NO PUEDEN CREAR PEDIDOS LOS NO REGISTRADOS
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("OperacionesSession.php");
-$usuarioLogeado = UserEstablecido();
-if( $usuarioLogeado == false){
-    session_destroy();
-    echo "ContenidoPedidoVALIDAR dice: no está user en session";
-   header("Location: /index.php");
-}
 
 include_once("../Models/ContenidoPedido.php");
 print_r($_SESSION);
