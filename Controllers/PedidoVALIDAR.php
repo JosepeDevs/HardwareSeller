@@ -2,13 +2,7 @@
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
 //EN PRINCIPIO NO PROTEGER PARA QUE SE PUEDAN HACER PEDIDOS SIN REGISTRARSE
-include_once("OperacionesSession.php");
-$usuarioLogeado = UserEstablecido();
-if( $usuarioLogeado == false){
-    session_destroy();
-    echo "PedidoVALIDAR dice: no está user en session";
-   header("Location: /index.php");
-}
+
 
 include_once("../Models/Pedido.php");
 
