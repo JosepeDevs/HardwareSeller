@@ -13,7 +13,7 @@ Function getArrayMensajesNuevo(){
     $mensajes=[];
 
     if(isset($_SESSION['GoodInsertCliente']) && $_SESSION['GoodInsertCliente'] == true){
-        $mensajes[] =  "Cliente añadido correctamente.";
+        $mensajes[] =  "Datos guardados correctamente.";
         unset($_SESSION['GoodInsertCliente']);
     };
     if(isset($_SESSION['BadSemiInsertCliente']) && $_SESSION['BadSemiInsertCliente'] == true){

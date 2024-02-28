@@ -75,7 +75,7 @@ if(isset($_SESSION['CarritoConfirmado'])){
 <?
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
-$estadoEnvio= isset($_SESSION["estadoEnvio"])? $_SESSION["estadoEnvio"]: null;
+$estadoEnvio= isset($_SESSION["estadoEnvio2"])? $_SESSION["estadoEnvio2"]: null;
 
 
 $nombre=isset($_SESSION['nombre']) ? $_SESSION['nombre'] : null;

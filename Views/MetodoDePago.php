@@ -18,11 +18,11 @@ if($estadoEnvio == "direccionSINcuenta"){
 } else if($estadoEnvio == "direccionYcuenta"){
     $estadoEnvio = "0";
 } else{
-    //lo que llegó ya era un número, no hay que hacer nada
+    $estadoEnvio = "9999";
 } 
 
 //subimmos a session el numero del estado correspondiente al envío
-$_SESSION['estadoEnvio'] = $estadoEnvio;
+$_SESSION['estadoEnvio2'] = $estadoEnvio;
 
 ?>
 <form action="../Views/RevisionPedido.php" method="POST">
