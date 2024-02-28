@@ -135,7 +135,7 @@ echo"<table>";
                     } else if($nombreAtributo == "estado"){
                         $estado = $Pedido->getEstado();//guardamos  fuera de este bucle (para los enlaces)
                         echo "<td>".$estado."</td>";
-                    } else if(( $rol == "admin" || $rol == "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
+                    } else if(( $rol == "admin" || $rol == "empleado" ) && ( $nombreAtributo == "activo"  ) ){
                        //estos datos solo los podrán ver admin y empleados
                        echo "
                         <td>
@@ -152,7 +152,10 @@ echo"<table>";
                                 </select>";
                             }
                         echo"</td>";
-                    }else{
+                    }else if(( $rol == "admin" || $rol == "empleado" ) && ( $nombreAtributo == "codUsuario" ) ){
+                        //estos datos solo los podrán ver admin y empleados
+                        echo "<td>".$valor."</td>";
+                     }else{
                         echo "<td>".$valor."</td>";
                     }
                 }
