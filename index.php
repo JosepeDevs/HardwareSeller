@@ -5,7 +5,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
     $arrayMensajes=getArrayMensajesIndex();
     if(is_array($arrayMensajes)){
         foreach($arrayMensajes as $mensaje) {
-            echo "<h3>$mensaje</h3>";
+            echo "<br><br><h3>$mensaje</h3>";
         }
     };
     include_once("Controllers/OperacionesSession.php");
