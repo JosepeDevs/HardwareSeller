@@ -44,6 +44,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
         </select>
 
 <?
+
     if(isset($_SESSION['user'])) {
             include_once('../Controllers/ClienteBUSCARController.php');
             $usuario = getClienteByEmail($_SESSION['user']);
@@ -71,7 +72,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <br>
             <br>
 </div> <!--cerramos id="formularioEnvio"-->
-<div id="ocultoSiTienenCuenta" style="display: none;">
+<div id="DivOcultoSiTienenCuenta" style="display: none;">
             <form id="datosCliente" action="../Controllers/ValidarDatosCliente.php" method="post">
                 <table>
                     <tr>
@@ -150,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //otros elementos
     var metodoEnvioInput = document.getElementById('estadoEnvio-metodoEnvioInput');
     var formularioEnvio = document.getElementById('formularioEnvio');
-    var DivocultoSiTienenCuenta = document.getElementById('ocultoSiTienenCuenta');
+    var DivOcultoSiTienenCuenta = document.getElementById('DivOcultoSiTienenCuenta');
     var DivIngresar = document.getElementById('DivIngresar');
     var datosClienteFormulario = document.getElementById('datosClienteFormulario');
     var ingresarFormulario = document.getElementById('ingresarFormulario');
@@ -181,19 +182,18 @@ document.addEventListener('DOMContentLoaded', function() {
     metodoEnvioInput.addEventListener('change', function() {
         if (this.value == 'direccionYcuenta' || this.value == 'direccionSINcuenta') {
             formularioEnvio.style.display = 'block';
-            DivocultoSiTienenCuenta.style.display = 'block';
+            DivOcultoSiTienenCuenta.style.display = 'block';
             DivIngresar.style.display = 'none';
         }  else if(this.value == '0'){
             //ya tienen cuenta, no mostrar tabla de registrarse, mostrar tabla de ingresar
             formularioEnvio.style.display = 'block';
-            DivocultoSiTienenCuenta.style.display = 'none';
+            DivOcultoSiTienenCuenta.style.display = 'none';
             DivIngresar.style.display = 'block';
-            ingresarBoton.style.display = 'block';
             RegistrarseBoton.style.display = 'none';
         }  else {
             //recogida en tienda
             formularioEnvio.style.display = 'none';
-            DivocultoSiTienenCuenta.style.display = 'none';
+            DivOcultoSiTienenCuenta.style.display = 'none';
             DivIngresar.style.display = 'none';
         }
     });
