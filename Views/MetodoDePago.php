@@ -9,13 +9,14 @@ echo'<h1>Seleccione el método de pago</h1>';
 
 //por si estaban logeados pero eligieron recogida en tienda
 $estadoEnvio = (isset($_REQUEST['estadoEnvio']))? $_REQUEST['estadoEnvio'] :null;
-
+print_r($_REQUEST);
+print_r("<br>".$estadoEnvio);
 //transformamos lo que nos llega por POST en estadoEnvio en un número (estado)
-if($estadoEnvio == "direccionSINcuenta"){
+if(trim($estadoEnvio) == "direccionSINcuenta"){
     $estadoEnvio = "0";
-} else if($estadoEnvio == "tiendaSINcuenta") {
+} else if(trim($estadoEnvio) == "tiendaSINcuenta") {
     $estadoEnvio = "5";
-} else if($estadoEnvio == "direccionYcuenta"){
+} else if(trim($estadoEnvio) == "direccionYcuenta"){
     $estadoEnvio = "0";
 } else{
     $estadoEnvio = "9999";
