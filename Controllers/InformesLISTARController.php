@@ -276,6 +276,7 @@ $textoPromedioPedidos=" Promedio total de los pedidos = ".$promedioTotalPedidos.
 $textoNumeroPedidos ="Número de pedidos recibidos= ".$numeroPedidosTotal."\n";
 
 if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line, vamos que hace un break line
+    fwrite($informe, $fechasLog . PHP_EOL) !== false &&
     fwrite($informe, $textoFacturacionTotal . PHP_EOL) !== false &&
     fwrite($informe, $textoPromedioPedidos . PHP_EOL) !== false &&
     fwrite($informe, $textoNumeroPedidos . PHP_EOL) !== false) {
