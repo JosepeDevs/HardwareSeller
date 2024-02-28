@@ -106,25 +106,28 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
 
 <div class='finForm'>
         <br>
+        <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
+        <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
         <label for="crearCuenta">¿Quieres crear una cuenta con los datos que nos facilitas para el pedido?</label>
-            <input type="checkbox" id="crearCuenta" name="crearCuenta">
-            <button id='enlaceQueDebeDesaparecer2' style='display: none;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago..</a></button>
-
-            <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
-            <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
-            
-
+</div>    
+        <input type="checkbox" id="crearCuenta" name="crearCuenta">
+<div class='finForm'>
             <?
 
                 if(isset($_SESSION['user'])) {
+                    //si estan logeados se mostrará uno de estos dos botones, uno por posible dirección
                     echo"<button id='enlaceQueDebeDesaparecer' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago→</a></button>
                     ";
                     echo"<div id='oculto' class='finForm' style='display: none;'>
                         <button type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago>></a></button>
                     </div>";
                 }else{
-                    echo"<input id='enlaceQueDebeDesaparecer3' type='submit' value='Proceder al método de pago'/>";
-                    
+                    //si están comprando sin registrarse verán uno de estos botones
+
+                    //este es recogida en tienda y envio sin crear cuenta
+                    print"<button id='enlaceQueDebeDesaparecer3' style='display: none;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago..</a></button>";
+                     //este es el botón de queremos crear cuenta y envio a mi dirección
+                    print"<button id='enlaceQueDebeDesaparecer2' style='display: none;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago..</a></button>";
                 }
             ?>
         </div> 
