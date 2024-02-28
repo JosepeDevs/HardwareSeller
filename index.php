@@ -13,7 +13,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
     if(isset($_GET["Destroy"]) && $_GET["Destroy"] =="Y" ){
         session_destroy();
-        if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
     }
    // print_r($_SESSION);
 ?>
