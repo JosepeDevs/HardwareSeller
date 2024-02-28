@@ -248,6 +248,7 @@ if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true
            header("Location: ../Views/AreaCliente.php");
             exit;
     } else if(isset($_POST['estadoEnvio']) && ( $_POST['estadoEnvio'] == "tiendaSINcuenta" || $_POST['estadoEnvio'] == "direccionSINcuenta" ) ){
+        $_SESSION['estadoEnvio']= $_POST['estadoEnvio'];
         header("Location: ../Views/MetodoDePago.php");
         exit;
     } else if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1){
