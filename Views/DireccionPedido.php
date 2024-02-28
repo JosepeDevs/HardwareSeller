@@ -73,6 +73,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <br>
             <a href="#">Esto en un futuro será un botón para hacer login/registrarse con google usando OAuth</a>
             <br>
+            <div id="ocultoSiTienenCuenta" style="display: none;">
             <form action="../Controllers/ValidarDatosCliente.php" method="post">
                 <table>
                     <tr>
@@ -96,11 +97,10 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                         <td><input type="password" name="psswrd" id="pssword" required><br><br>
                     </tr>
                 </table>
+            </div>
             ';
         }  
     //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
-    //todo si mas adelante se permite recogida en tienda podemos mandarlo por get tienda=0 (envio) y tienda=1 (recogida)
-    //<button type='button'><a href='../Views/MetodoDePago.php?tienda=0' class='enlace-arriba-de-footer'>Recogeré mi pedido en tienda, Proceder al método de pago<i class='lni lni-chevron-right'></i></a></button>
 
     ?>
 </div> <!--cerramos  id="detalles"-->
@@ -180,6 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var DivRegistrarse = document.getElementById('DivRegistrarse');
     var DivtiendaSinRegistrarse = document.getElementById('DivtiendaSinRegistrarse');
     var DivtiendaRegistrados = document.getElementById('DivtiendaRegistrados');
+    var DivocultoSiTienenCuenta = document.getElementById('ocultoSiTienenCuenta');
     
     //botones
     var tiendaRegistrados = document.getElementById('tiendaRegistrados');
@@ -190,17 +191,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     //primero hacemos visible el DIV que toque según dirección de envío
     metodoEnvioInput.addEventListener('change', function() {
-        if (this.value == '0' || this.value == 'direccionYcuenta' || this.value == 'direccionSINcuenta') {
+        if (this.value == '0' || this.value == 'direccionSINcuenta') {
              //si eligen envío a direccion
             formularioEnvio.style.display = 'block';
+            ocultoSiTienenCuenta.style.display = 'block';
            /* DivdireccionSinRegistrase.style.display = 'block';
             DivdireccionRegistrados.style.display = 'block';
             DivRegistrarse.style.display = 'block';
             DivtiendaSinRegistrarse.style.display = 'none';
             DivtiendaRegistrados.style.display = 'none';*/
-        } else {
+        }  else if(this.value == 'direccionYcuenta'){
+            formularioEnvio.style.display = 'block';
+        }  else {
             //recogida en tienda
             formularioEnvio.style.display = 'none';
+            ocultoSiTienenCuenta.style.display = 'none';
   /*          DivdireccionSinRegistrase.style.display = 'none';
             DivdireccionRegistrados.style.display = 'none';
             DivRegistrarse.style.display = 'none';
@@ -209,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
+/*
 //luego según si queiren o no registrase mostramos unos u otros botones
     checkBox.addEventListener('change', function() {
         if (this.checked) {
@@ -227,5 +232,5 @@ document.addEventListener('DOMContentLoaded', function() {
             direccionSinRegistrase.style.display = 'block';
             Registrarse.style.display = 'none'; 
         }
-    });
+    });*/
 </script>
