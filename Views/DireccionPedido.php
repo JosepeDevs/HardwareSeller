@@ -193,8 +193,8 @@ document.addEventListener('DOMContentLoaded', function() {
             formularioEnvio.style.display = 'block';
             ocultoSiTienenCuenta.style.display = 'none';
         }else if(this.value == 'direccionYcuenta'){
-            formularioEnvio.style.display = 'none';
-            ocultoSiTienenCuenta.style.display = 'none';
+            formularioEnvio.style.display = 'block';
+            ocultoSiTienenCuenta.style.display = 'block';
         }  else {
             //recogida en tienda
             formularioEnvio.style.display = 'none';
