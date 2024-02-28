@@ -19,9 +19,9 @@ $email = isset($_POST["email"]) ? $_POST["email"]:null;
 $rol = isset($_POST["rol"]) ? $_POST["rol"]: "user";
 
 if(isset($_POST['estadoEnvio']) && ( $_POST['estadoEnvio'] == "tiendaSINcuenta" || $_POST['estadoEnvio'] == "direccionSINcuenta" ) ){
-    $activo = 0;
+    $activo = "0";
 } else{
-    $activo = isset($_POST["activo"]) ? $_POST["activo"]:0;
+    $activo = isset($_POST["activo"]) ? $_POST["activo"]:"0";
 }
 
 
@@ -64,7 +64,7 @@ if($provinciaValida == false) { $_SESSION['LongProvincia']= true;}
 //print("provincia valida:".$provinciaValida);
 
 $activoValido = ComprobarLongitud($activo,1);
-if($activoValido == false && ($activo !== 1 || $activo !== 0)) { $_SESSION['LongActivo']= true;}
+if($activoValido == false && ($activo !== "1" || $activo !== "0")) { $_SESSION['LongActivo']= true;}
 //print("activo valido:".$activoValido);
 
 
