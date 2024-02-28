@@ -2,6 +2,7 @@
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //NO PROTEGER SI QUEREMOS QUE GENTE SIN REGISTRASE  PUEDA HACER PEDIDOS
 $_SESSION['nuevoPedido']="true";
+print_r($_SESSION);
 include_once("../Views/header.php");
 ?>
 <h1>Revisión del pedido</h1>

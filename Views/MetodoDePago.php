@@ -8,12 +8,22 @@ echo'<h1>Seleccione el método de pago</h1>';
 //include_once("aside.php");
 
 //por si estaban logeados pero eligieron recogida en tienda
-$estadoEnvio = (isset($_GET['estadoEnvio']))? $_GET['estadoEnvio'] :null;
+$estadoEnvio = (isset($_REQUEST['estadoEnvio']))? $_REQUEST['estadoEnvio'] :null;
+
+//transformamos lo que nos llega por POST en estadoEnvio en un número (estado)
+if($estadoEnvio == "direccionSINcuenta"){
+    $estadoEnvio = 0;
+} else if($estadoEnvio == "tiendaSINcuenta") {
+    $estadoEnvio = 5;
+} else if($estadoEnvio == "direccionYcuenta"){
+    $estadoEnvio = 0;
+} else{
+    //lo que llegó ya era un número, no hay que hacer nada
+} 
+
+//subimmos a session el numero del estado correspondiente al envío
 $_SESSION['estadoEnvio'] = $estadoEnvio;
-if (!isset($_SESSION['estadoEnvio'])) {
-    $_SESSION['estadoEnvio'] = '';
-}
-$_SESSION['estadoEnvio'] = ($_SESSION['estadoEnvio'] . $estadoEnvio); //añadimos el numero de estado de envio a estado
+
 ?>
 <form action="../Views/RevisionPedido.php" method="POST">
     <h2>
