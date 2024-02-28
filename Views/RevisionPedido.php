@@ -75,25 +75,8 @@ if(isset($_SESSION['CarritoConfirmado'])){
 <?
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
-if(isset($_SESSION['user'])) {
-    include_once("../Controllers/ClienteBUSCARController.php");
-    $usuario = getClienteByEmail($_SESSION['user']);
-    $dni=$usuario->getDni();
-    $_SESSION['codUsuario'] = $dni;
-    include_once('../Controllers/ClienteBUSCARController.php');
-    //NOTHING LIKE A GOOD RETURNING CLIENT!
-    echo"
-    <h2> Datos usuario </h2>
-    <br>
-    <p>Nombre: ".$usuario->getNombre()."</p>
-    <p>DNI: ".$usuario->getDni()."</p>
-    <p>Email: ".$usuario->getEmail()."</p>
-    <p>Teléfono: ".$usuario->getTelefono()."</p>
-    <p>Dirección: ".$usuario->getDireccion()."</p>
-    <p>Localidad: ".$usuario->getLocalidad()."</p>
-    <p>Provincia: ".$usuario->getProvincia()."</p>";
-}
-$estado= isset($_SESSION["estadoEnvio"])? $_SESSION["estadoEnvio"]: null;
+$estadoEnvio= isset($_SESSION["estadoEnvio"])? $_SESSION["estadoEnvio"]: null;
+
 
 $nombre=isset($_SESSION['nombre']) ? $_SESSION['nombre'] : null;
 $email=isset($_SESSION['email']) ? $_SESSION['email'] : null;
@@ -103,50 +86,75 @@ $direccion=isset($_SESSION['direccion']) ? $_SESSION['direccion'] : null;
 $localidad=isset($_SESSION['localidad']) ? $_SESSION['localidad'] : null;
 $provincia=isset($_SESSION['provincia']) ? $_SESSION['provincia'] : null;
 
+
 if(!isset($_SESSION['estado'])){
     $_SESSION['estado']=null;
 }
 
-if (strpos($estado,"5")==false){
-    //si encontramos un 5 es que querían recogida en tienda
-    //no hace nada aquí dentro, si seleccionaron 5 el mensaje correspondiente se muestra en la seccion de método de pago
-    echo"<h3>Han seleccionado Recogida en tienda.</h3>";
-    $_SESSION['estado'] = ($_SESSION['estado'] . 5); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
-} else if ($estado =="tiendaSINcuenta"){
-    echo"<h3>Han seleccionado Recogida en tienda..</h3>";
-    $_SESSION['estado'] = ($_SESSION['estado'] . 5); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
-} else if ($estado =="direccionSINcuenta"){
-    echo"<h3>Han seleccionado la opción de envío a esta dirección. Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
-    echo("<p>Dirección de envío: Nombre=$nombre, DNI=$dni, telefono=$telefono, Direccion=$direccion, Poblacion=$localidad, Provincia=$provincia, email=$email</p>");
-    $_SESSION['estado'] = ($_SESSION['estado'] . 0); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
-    echo"<h3>Han seleccionado la opción de envío a esta dirección.. Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
-    echo("<p>Dirección de envío: Nombre=$nombre, DNI=$dni, telefono=$telefono, Direccion=$direccion, Poblacion=$localidad, Provincia=$provincia, email=$email</p>");
-    $_SESSION['estado'] = ($_SESSION['estado'] . 0); //metemos esto en el session de estado para indicar que es envío a dirección del cliente
-}else{
-    echo"<h3>Han seleccionado la opción de envío a esta dirección... Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
-    echo("<p>Dirección de envío: Nombre=$nombre, DNI=$dni, telefono=$telefono, Direccion=$direccion, Poblacion=$localidad, Provincia=$provincia, email=$email</p>");
-    $_SESSION['estado'] = ($_SESSION['estado'] . 0); //metemos esto en el session de estado para indicar que es envío a dirección del cliente
-}
+if(isset($_SESSION['user'])) {
+    include_once("../Controllers/ClienteBUSCARController.php");
+    $usuario = getClienteByEmail($_SESSION['user']);
+    $dni=$usuario->getDni();
+    $_SESSION['codUsuario'] = $dni;
+    include_once('../Controllers/ClienteBUSCARController.php');
+    
+    if (strpos($estadoEnvio,"5") !== false){
+        //si encontramos un 5 en algun sitio de estadoEnvio es que querían recogida en tienda
+        echo"<h3>Han seleccionado Recogida del pedido en tienda.</h3>";
+        $_SESSION['estado'] = ($_SESSION['estado'] . 5); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
+    } else if (strpos($estadoEnvio,"0") !== false){
+        //si es 0 es envío,  leemos sus datos
+        echo"<h3>Han seleccionado la opción de envío a esta dirección. Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
+            //NOTHING LIKE A GOOD RETURNING CLIENT!
+        echo"
+        <h2> Datos usuario </h2>
+        <br>
+        <p>Nombre: ".$usuario->getNombre()."</p>
+        <p>DNI: ".$usuario->getDni()."</p>
+        <p>Email: ".$usuario->getEmail()."</p>
+        <p>Teléfono: ".$usuario->getTelefono()."</p>
+        <p>Dirección: ".$usuario->getDireccion()."</p>
+        <p>Localidad: ".$usuario->getLocalidad()."</p>
+        <p>Provincia: ".$usuario->getProvincia()."</p>";
+        $_SESSION['estado'] = ($_SESSION['estado'] . 0); //metemos esto en el session de estado para indicar que es envío a dirección del cliente
+    }else{
+        echo"<h3>No pudimos determinar el método de envío/recogida seleccionado </h3>";
+    }
 
+} else{
+   //NO existe user (estan comprando sin registrarse)
+    if (strpos($estado,"5") !== false){
+        //si encontramos un 5 es que querían recogida en tienda
+        echo"<h3>Han seleccionado Recogida del pedido en tienda.</h3>";
+        $_SESSION['estado'] = ($_SESSION['estado'] . 5); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
+    } else if (strpos($estado,"0") !== false){
+        //si es 0 es envío, decimos leemos sus datos
+        echo"<h3>Han seleccionado la opción de envío a esta dirección. Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
+        echo("<p>Dirección de envío: Nombre=$nombre, DNI=$dni, telefono=$telefono, Direccion=$direccion, Poblacion=$localidad, Provincia=$provincia, email=$email</p>");
+        $_SESSION['estado'] = ($_SESSION['estado'] . 0); //metemos esto en el session de estado para indicar que es envío a dirección del cliente
+    }else{
+        echo"<h3>No pudimos determinar el método de envío/recogida seleccionado </h3>";
+    }
+}
 
 ?>
 <br><br>
 <button type='button'><a href='../Views/DireccionPedido.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Escoger otra opción de envío/recogida</a></button>
 <br>
-<button type='button'><a href='../Views/ClienteEDITAR.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-up'></i>Modificar dirección de envío</a></button>
-<br><br><br><br>
 
+<?
+if(isset($_SESSION["user"])) { ?>
+    <button type='button'><a href='../Views/ClienteEDITAR.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-up'></i>Modificar mi dirección de envío en mi area de cliente (tendrá que pasar por el carrito de nuevo)</a></button>
+    
 <?php
-if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-
-//todo de aquík pabajo nose ve
+}
 
 if(isset($_POST["estado"])) {
     if(!isset($_SESSION['estado'])){
         $_SESSION['estado']='';
     }
     if( $_POST["estado"] == 3 ){
-        echo"
+        echo"<br><br><br><br>
         <h2>Transferencia bancaria</h2>
         <br>
         <p> 
