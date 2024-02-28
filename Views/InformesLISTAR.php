@@ -62,7 +62,8 @@ include_once("../Controllers/InformesLISTARController.php");
 </form>
 
 <?php
-
+print($_REQUEST['fechaInicio']);
+print($_REQUEST['fechaFin']);
 $nombreInforme=false;
        if( isset( $_GET["EstadisticasUsuariosWeb"] ) && $_GET["EstadisticasUsuariosWeb"] == 1 )  {
     $nombreInforme= EstadisticasUsuariosWeb($dni);
