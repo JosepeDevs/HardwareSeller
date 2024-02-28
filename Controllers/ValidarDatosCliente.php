@@ -21,7 +21,7 @@ $rol = isset($_POST["rol"]) ? $_POST["rol"]: "user";
 if(isset($_POST['estadoEnvio']) && ( $_POST['estadoEnvio'] == "tiendaSINcuenta" || $_POST['estadoEnvio'] == "direccionSINcuenta" ) ){
     $activo = 0;
 } else{
-    $activo = isset($_POST["activo"]) ? $_POST["activo"]:1;
+    $activo = isset($_POST["activo"]) ? $_POST["activo"]:0;
 }
 
 
