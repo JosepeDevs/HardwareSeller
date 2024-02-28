@@ -97,7 +97,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                 </table>
 </div><!--cerramos ocultoSiTIenenCuenta-->
 <div id="DivIngresar" style="display: none;">
-                <form id="ingresar" action="/Controllers/conexion.php" method="post">
+                <form id="datosClienteFormulario" action="/Controllers/conexion.php" method="post">
                                     <table class="tablaLogin">
                                     <caption><h2>Ingresar:</h2></caption>
                                     <tr>
@@ -125,7 +125,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
         <br>
         <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
         <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
-        <button  id='Registrarse' style='display: block;' id="enviarFormularioBoton">Proceder al método de pago</button>
+        <button  id='RegistrarseBoton' style='display: block;' id="enviarFormularioBoton">Proceder al método de pago</button>
 </div> 
     </form> 
         <br>
@@ -152,8 +152,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var formularioEnvio = document.getElementById('formularioEnvio');
     var DivocultoSiTienenCuenta = document.getElementById('ocultoSiTienenCuenta');
     var DivIngresar = document.getElementById('DivIngresar');
-    var datosClienteFormulario = document.getElementById('datosCliente');
-    var ingresarFormulario = document.getElementById('ingresar');
+    var datosClienteFormulario = document.getElementById('datosClienteFormulario');
+    var ingresarFormulario = document.getElementById('ingresarFormulario');
 
 
     //botones
@@ -161,7 +161,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var direccionRegistrados = document.getElementById('direccionRegistrados');
     var direccionSinRegistrase = document.getElementById('direccionSinRegistrase');
     var tiendaSinRegistrarse = document.getElementById('tiendaSinRegistrarse');
-    var Registrarse = document.getElementById('Registrarse');
+    var RegistrarseBoton = document.getElementById('RegistrarseBoton');
+    var ingresarBoton = document.getElementById('ingresarBoton');
+
 
     function enviarFormulario(idFormulario) {
         document.getElementById(idFormulario).submit();
@@ -186,7 +188,8 @@ document.addEventListener('DOMContentLoaded', function() {
             formularioEnvio.style.display = 'block';
             DivocultoSiTienenCuenta.style.display = 'none';
             DivIngresar.style.display = 'block';
-            Registrarse.style.display = 'none';
+            ingresarBoton.style.display = 'block';
+            RegistrarseBoton.style.display = 'none';
         }  else {
             //recogida en tienda
             formularioEnvio.style.display = 'none';
