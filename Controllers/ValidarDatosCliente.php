@@ -193,7 +193,12 @@ $_SESSION["activo"] = $activo;
 
 //print("<br> array session:");
 //print_r($_SESSION);
-
+if(isset($_POST['estadoEnvio']) && ( $_POST['estadoEnvio'] == "tiendaSINcuenta" || $_POST['estadoEnvio'] == "direccionSINcuenta" ) ){
+    //no han habido problemas con los datos introducidos, pero no hacemos insert, vamos directamente a 
+    //sus datos ya están subidos en session
+    header("Location: ../Views/MetodoDePago.php");
+    exit;
+}
 //UPDATE o INSERT , SUBIR confirmación a SESSION y HEADER A DONDE TOQUE
 if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true" ){
 
@@ -242,16 +247,16 @@ if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true
 
     
     if($rolAdmin == true) {
-           header("Location: ../Views/TablaClientes.php");
+           header("Location: ../Views/AreaCliente.php");
             exit;
-        } else if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1){
-            header("Location: ../Controllers/conexion.php");
-            exit;
-        } else{
-           header("Location: ../Views/ClienteALTA.php?dni=$dniNuevo");
-            exit;
-        }
-    };
+    } else if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1){
+        header("Location: ../Controllers/conexion.php");
+        exit;
+    } else{
+        header("Location: ../Views/ClienteALTA.php?dni=$dniNuevo");
+        exit;
+    }
+};
 
     ///FUNCIONES PARA QUE ESTÉ TODO EN UN MISMO ARCHIVO PHP
 

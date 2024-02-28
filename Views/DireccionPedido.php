@@ -37,6 +37,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
 <form action="../Controllers/ValidarDatosCliente.php" method="post">
         <select class="estadoEnvio-metodoEnvioInput" name="estadoEnvio" id="estadoEnvio-metodoEnvioInput">
             <option for="estadoEnvio" value="5">Pago y Recogida en tienda</option>
+            <option for="estadoEnvio" value="tiendaSINcuenta">Pago y Recogida en tienda (no crear cuenta)</option>
             <option for="estadoEnvio" value="0">Envío a mi dirección (usar datos de mi área de cliente)</option>
             <option for="estadoEnvio" value="direccionYcuenta">Envío a mi dirección (crear cuenta)</option>
             <option for="estadoEnvio" value="direccionSINcuenta">Envío a mi dirección (NO crear cuenta)</option>
