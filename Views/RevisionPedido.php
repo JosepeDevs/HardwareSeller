@@ -123,11 +123,11 @@ if(isset($_SESSION['user'])) {
 
 } else{
    //NO existe user (estan comprando sin registrarse)
-    if (strpos($estado,"5") !== false){
+    if (strpos($estadoEnvio,"5") !== false){
         //si encontramos un 5 es que querían recogida en tienda
         echo"<h3>Han seleccionado Recogida del pedido en tienda.</h3>";
         $_SESSION['estado'] = ($_SESSION['estado'] . 5); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
-    } else if (strpos($estado,"0") !== false){
+    } else if (strpos($estadoEnvio,"0") !== false){
         //si es 0 es envío, decimos leemos sus datos
         echo"<h3>Han seleccionado la opción de envío a esta dirección. Gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
         echo("<p>Dirección de envío: Nombre=$nombre, DNI=$dni, telefono=$telefono, Direccion=$direccion, Poblacion=$localidad, Provincia=$provincia, email=$email</p>");
