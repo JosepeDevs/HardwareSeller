@@ -43,9 +43,6 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <option for="estadoEnvio" value="direccionSINcuenta">Envío a mi dirección (NO crear cuenta)</option>
         </select>
 
-<div id="formularioEnvio" style="display: none;">
-
-
 <?
     if(isset($_SESSION['user'])) {
             include_once('../Controllers/ClienteBUSCARController.php');
@@ -60,7 +57,6 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <p>Dirección: ".$usuario->getDireccion()."</p>
             <p>Localidad: ".$usuario->getLocalidad()."</p>
             <p>Provincia: ".$usuario->getProvincia()."</p>
-
             
             ";
         } else{
@@ -68,6 +64,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             $_SESSION['RegistroDurantePedido'] = 1;
             $_SESSION["nuevoCliente"] = "true";
             echo '
+<div id="formularioEnvio" style="display: none;">
             <h2>Datos de contacto y dirección de envío</h2>
             <br>
             <h3>Si ya tiene cuenta puede hacer login ahora para pasar a la selección del método de pago ↑↑↑</h3>
@@ -75,7 +72,8 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <br>
             <a href="#">Esto en un futuro será un botón para hacer login/registrarse con google usando OAuth</a>
             <br>
-            <div id="ocultoSiTienenCuenta" style="display: none;">
+</div> <!--cerramos  id="formularioEnvio"-->
+<div id="ocultoSiTienenCuenta" style="display: none;">
             <form action="../Controllers/ValidarDatosCliente.php" method="post">
                 <table>
                     <tr>
@@ -99,13 +97,12 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                         <td><input type="password" name="psswrd" id="pssword" required><br><br>
                     </tr>
                 </table>
-            </div>
+</div><!--cerramos ocultoSiTIenenCuenta-->
             ';
         }  
     //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
 
     ?>
-</div> <!--cerramos  id="formularioEnvio"-->
 
 
 
