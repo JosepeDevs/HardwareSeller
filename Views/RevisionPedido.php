@@ -178,9 +178,10 @@ if(isset($_POST["estado"])) {
     }
     if( $_POST["estado"] == 5 ){
         echo"
-        <h2>Pago y recogida en tienda</h2>
+        <h2>Pago en tienda</h2>
         <p> Nuestra dirección: Calle existente nº infinito, avenida de la indeterminación/0 , CP 00000, Elche, Alicante, España, Europa, Tierra, Universo #3 </p>
         <p> Se reservará el stock un máximo de 5 días, transcurrido ese tiempo se pondrá de nuevo a la venta</p>
+        <p> Si seleccionó envío a su dirección se lo haremos llegar tan pronto venga a nuestra tienda a realizar el pago y tengamos stock, si ya hubiera disponible cuando realice el pago podrá llevarse el material usted mismo. </p>
         <br>";
         if (strpos($_SESSION['estado'],"5") == false){
             //si no lo entontramos el numero en $_SESSION['estado'] lo metemos 
