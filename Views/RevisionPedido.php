@@ -100,7 +100,6 @@ if(isset($_SESSION['user'])) {
     } else if (strpos($estadoEnvio,"0") !== false){
         //si es 0 es envío,  leemos sus datos
         echo"<h2>Han seleccionado la opción de envío a esta dirección.</h2>";
-            //NOTHING LIKE A GOOD RETURNING CLIENT!
         echo"
         <h2> Datos usuario </h2>
         <br>

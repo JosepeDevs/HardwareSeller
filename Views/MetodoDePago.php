@@ -18,6 +18,10 @@ if(trim($estadoEnvio) == "direccionSINcuenta"){
     $estadoEnvio = "5";
 } else if(trim($estadoEnvio) == "direccionYcuenta"){
     $estadoEnvio = "0";
+} else if(strpos($estadoEnvio,"0") !== false){
+    $estadoEnvio = "0";
+} else if(strpos($estadoEnvio,"5") !== false){
+    $estadoEnvio = "5";
 } else{
     $estadoEnvio = "9999";
 } 
