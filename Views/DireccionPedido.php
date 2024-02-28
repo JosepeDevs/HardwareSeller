@@ -65,7 +65,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             echo '
             <h2>Datos de contacto y dirección de envío</h2>
             <br>
-            <h3>Puede pasar a la selección del método de pago directamente si ingresa en esta misma página ↑↑↑</h3>
+            <h3>Si ya tiene cuenta puede hacer login ahora para pasar a la selección del método de pago ↑↑↑</h3>
             <p>Futura funcionalidad: OAth autenticación con un click.</p>
             <br>
             <a href="#">Esto en un futuro será un botón para hacer login/registrarse con google usando OAuth</a>
@@ -101,12 +101,15 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
 
     ?>
 </div> <!--cerramos  id="detalles"-->
+
+
+
+<div class='finForm'>
         <br>
         <label for="crearCuenta">¿Quieres crear una cuenta con los datos que nos facilitas para el pedido?</label>
             <input type="checkbox" id="crearCuenta" name="crearCuenta">
-            <button id='enlaceQueDebeDesaparecer2' style='display: none;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
-            
-        <div class='finForm'>
+            <button id='enlaceQueDebeDesaparecer2' style='display: none;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago..</a></button>
+
             <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
             <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
             
@@ -114,10 +117,10 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <?
 
                 if(isset($_SESSION['user'])) {
-                    echo"<button id='enlaceQueDebeDesaparecer' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago</a></button>
+                    echo"<button id='enlaceQueDebeDesaparecer' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago→</a></button>
                     ";
-                    echo"<div id='oculto' style='display: none;'>
-                    <button type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago>></a></button>
+                    echo"<div id='oculto' class='finForm' style='display: none;'>
+                        <button type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago>></a></button>
                     </div>";
                 }else{
                     echo"<input id='enlaceQueDebeDesaparecer3' type='submit' value='Proceder al método de pago'/>";
