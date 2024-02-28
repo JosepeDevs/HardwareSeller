@@ -35,7 +35,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
 }
 ?>
 <form action="../Controllers/ValidarDatosCliente.php" method="post">
-        <select class="estadoEnvio-metodoEnvioInput" name="estadoEnvio" id="estadoEnvio-metodoEnvioInput">
+        <select class="estado-metodoPago" name="estadoEnvio" id="estadoEnvio-metodoEnvioInput">
             <option for="estadoEnvio" value="5">Pago y Recogida en tienda</option>
             <option for="estadoEnvio" value="tiendaSINcuenta">Pago y Recogida en tienda (no crear cuenta)</option>
             <option for="estadoEnvio" value="0">Envío a mi dirección (usar datos de mi área de cliente)</option>
@@ -111,8 +111,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                                     </tr>
                                     </table>
                                     <div id="IngresarYReiniciarHeader">
-                                        <br> <input type="submit" form="ingresar" value="Enviar Formulario 2">
-                                        <br> <input type="reset" form="ingresar" value="Reiniciar">
+                                        <br><button onclick="enviarFormulario("ingresar")">Ingresar y proceder al método de pago</button>
                                     </div>
                                 </form>
 </div><!--cerramos DivIngresar-->
@@ -128,8 +127,8 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
         <br>
         <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
         <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
-        <input id='Registrarse' style='display: block;' form="datosCliente" type='submit' value='Proceder al método de pago'>
-    
+        <button  id='Registrarse' style='display: block;'  onclick="enviarFormulario('datosCliente')">Proceder al método de pago</button>
+
     
     <?
 /*
@@ -206,6 +205,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var direccionSinRegistrase = document.getElementById('direccionSinRegistrase');
     var tiendaSinRegistrarse = document.getElementById('tiendaSinRegistrarse');
     var Registrarse = document.getElementById('Registrarse');
+
+    function enviarFormulario(idFormulario) {
+        document.getElementById(idFormulario).submit();
+    }
     
     //primero hacemos visible el DIV que toque según dirección de envío
     metodoEnvioInput.addEventListener('change', function() {
@@ -223,6 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
             formularioEnvio.style.display = 'block';
             ocultoSiTienenCuenta.style.display = 'none';
             DivIngresar.style.display = 'block';
+            Registrarse.style.display = 'none';
         }  else {
             //recogida en tienda
             formularioEnvio.style.display = 'none';
