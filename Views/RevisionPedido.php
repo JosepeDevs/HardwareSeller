@@ -2,14 +2,12 @@
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //NO PROTEGER SI QUEREMOS QUE GENTE SIN REGISTRASE  PUEDA HACER PEDIDOS
 $_SESSION['nuevoPedido']="true";
-print_r($_SESSION);
 include_once("../Views/header.php");
 ?>
 <h1>Revisión del pedido</h1>
 <?php //include_once("../Views/aside.php") ?>
 <h2> Referencias y cantidades seleccionadas</h2>
 <table class="table">
-    <thead>
         <tr>
             <th>Nº linea del pedido</th>
             <th>Código del producto</th>
@@ -19,8 +17,7 @@ include_once("../Views/header.php");
             <th>Cantidad</th>
             <th>Sub total (€)</th>
         </tr>
-    </thead>
-    <tbody>
+
 <?
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
@@ -55,7 +52,6 @@ if(isset($_SESSION['CarritoConfirmado'])){
         }
     } 
     echo'
-    <tfoot>
         <tr>';
             if(count($_SESSION['CarritoConfirmado']) > 0){ 
                 echo'
@@ -65,7 +61,6 @@ if(isset($_SESSION['CarritoConfirmado'])){
             } 
         echo'
         </tr>
-    </tfoot>
 </table>';
 }
 ?>
