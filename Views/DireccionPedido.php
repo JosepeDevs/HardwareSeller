@@ -67,10 +67,9 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
 <div id="formularioEnvio" style="display: none;">
             <h2>Datos de contacto y dirección de envío</h2>
             <br>
-            <h3>Si ya tiene cuenta puede hacer login ahora para pasar a la selección del método de pago ↑↑↑</h3>
+            <h3>Al enviar sus datos o ingresar en su cuenta acepta la direccion de envío de su perfil o la aquí indicada si no tienen cuenta y pasará a la selección del método de pago</h3>
             <p>Futura funcionalidad: OAth autenticación con un click.</p>
             <br>
-            <a href="#">Esto en un futuro será un botón para hacer login/registrarse con google usando OAuth</a>
             <br>
 </div> <!--cerramos  id="formularioEnvio"-->
 <div id="ocultoSiTienenCuenta" style="display: none;">
