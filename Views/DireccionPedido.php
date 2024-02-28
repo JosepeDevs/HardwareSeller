@@ -114,7 +114,6 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                                     </div>
                                 </form>
 </div><!--cerramos DivIngresar-->
-            ';
        <? }  
     //todo si suben a session la seccion que estaba navegando podemos consultarla aquí para que cuando le dén a seguir navegando le siga listando articulos relevantes
 
