@@ -19,9 +19,9 @@ if( $rol == "admin" || $rol == "empleado" ){
     header("Location: /index.php");
     exit;
 } */
-print_r($_SESSION);
 
 include("header.php");
+print_r($_SESSION);
 
 print("
     <h1>Gestionar clientes</h1>
