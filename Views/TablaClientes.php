@@ -28,7 +28,7 @@ print("
             <h2><a class='enlace' href='ClienteALTA.php'><img class='iconArribaTabla' src='../Resources/add.png' alt='add user' /> Nuevo cliente</h2></a>
             <h2><a class='enlace' href='TablaClientes.php'><img class='iconArribaTabla' src='../Resources/refresh.png' alt='refresh' /> Recargar tabla (resetea filtros y paginación)</h2></a>
             <h2><a class='enlace' href='ClienteBUSCAR.php'><img class='iconArribaTabla' src='../Resources/search.png' alt='search user'/> Buscar cliente</h2></a>
-            <h2><a class='enlace' href='ArticulosLISTAR.php'><img class='iconArribaTabla' src='../Resources/buscaAr.png' alt='view products'/> Ver listado de productos</h2></a>
+            <h2><a class='enlace' href='AreaCliente.php'><img class='iconArribaTabla' src='../Resources/buscaAr.png' alt='view products'/> Volver al área de cliente</h2></a>
         </div>
 ");
 
@@ -43,8 +43,8 @@ print("
             if($nombreAtributo == "nombre"){
             print"<th>
                     Nombre <br>Ordenar:<br>
-                    <a class='ordenar' href='TablaClientes.php?ordenNombres=ASC'>A->Z</a>
-                    <a class='ordenar' href='TablaClientes.php?ordenNombres=DESC'>Z->A</a>
+                    <a class='ordenar' href='?ordenNombres=ASC'>A->Z</a>
+                    <a class='ordenar' href='?ordenNombres=DESC'>Z->A</a>
                 </th>";
             }else{
                 print"<th>$nombreAtributo</th>";
@@ -113,18 +113,18 @@ print("
             if($paginaActual == 0 ){
                 print "<p>Anterior</p>"; //en la primera página esto no debe ser un enlace
             } else{
-                print "<a href='TablaClientes.php?pag=".($paginaActual)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Anterior</a>";
+                print "<a href='?pag=".($paginaActual)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Anterior</a>";
             }
             for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
                 if($numeroIndicePaginacion == $paginaActual + 1 ){
                     print "<b>$numeroIndicePaginacion</b>";
                 }else{
-                    print "<a href='TablaClientes.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
+                    print "<a href='?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
                 }
                 if($paginaActual +1 == $paginasTotales && $numeroIndicePaginacion == $paginasTotales){
                     print "<p>Siguiente</p>"; //en la primera página esto no debe ser un enlace
                 }else if($numeroIndicePaginacion == $paginasTotales){
-                    print "<a href='TablaClientes.php?pag=".($paginaActual+2)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Siguiente</a>";
+                    print "<a href='?pag=".($paginaActual+2)."&ordenNombres=$orden&itemXpag=$filasAMostrar'>Siguiente</a>";
                 } else{
                     print "";//no printear nada
                 }
@@ -132,7 +132,7 @@ print("
         } else{
             //estamos viendo todos los registros en una página
             for ($numeroIndicePaginacion = 1; $numeroIndicePaginacion <= $paginasTotales; $numeroIndicePaginacion++) {
-                print "<a href='TablaClientes.php?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
+                print "<a href='?pag=$numeroIndicePaginacion&ordenNombres=$orden&itemXpag=$filasAMostrar'>$numeroIndicePaginacion</a>";
             }
         }
 
@@ -141,7 +141,7 @@ print("
         if (isset($_GET['pag']) && ( $_GET['pag'] == "X" ) ){
             print "<b>Ver todos</b>";
         } else{
-            print "<a href='TablaClientes.php?pag=X&ordenNombres=$orden'>Ver todos</a>";
+            print "<a href='?pag=X&ordenNombres=$orden'>Ver todos</a>";
         }
         print "
         <form action='TablaClientes.php' method='GET'>
