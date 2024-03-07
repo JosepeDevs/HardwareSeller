@@ -1,8 +1,8 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
-
-include_once("../Controllers/OperacionesSession.php");
 /*
+include_once("../Controllers/OperacionesSession.php");
+*//*
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
