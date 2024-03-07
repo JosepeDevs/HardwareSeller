@@ -6,6 +6,7 @@ if( $usuarioLogeado == false){
     session_destroy();
     echo "ContenidoPedidoEDITAR dice: no está user en session";
     header("Location: index.php");
+    exit;
 }
 
 function GetContenidoPedidoByBusquedaNumPedido($numPedido){

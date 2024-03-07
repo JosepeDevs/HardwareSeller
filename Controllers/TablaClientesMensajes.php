@@ -8,6 +8,7 @@ if( $usuarioLogeado == false){
     session_destroy();
     echo "TablaClientesMensajes dice: shit no está user en session";
     header("Location: index.php");
+    exit;
 }
 
 /**

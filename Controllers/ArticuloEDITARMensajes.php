@@ -6,6 +6,7 @@ if( $usuarioLogeado == false){
     session_destroy();
     echo "ArticulosEDITARMensajes dice: no está user en session";
     header("Location: index.php");
+    exit;
 }
 /**
  * Funcion que se llama para comprobar si ha habido algún error o para mostrar un mensaje de operación realizada correctamente. Obtiene el resultado consultando SESSION.
