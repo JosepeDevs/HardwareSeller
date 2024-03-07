@@ -107,16 +107,16 @@ Function getArrayMensajesCategorias(){
 
     if(isset($_SESSION['BadUpdateCategoria']) && ($_SESSION['BadUpdateCategoria'] == true)) {
         unset($_SESSION['BadUpdateCategoria']);
-        $mensajes[] =  "El sistema tuvo un problema actualizando los datos del artículo, por favor, pruebe de nuevo.";
+        $mensajes[] =  "El sistema tuvo un problema actualizando los datos de la categoría, por favor, pruebe de nuevo.";
     }
 
     if(isset($_SESSION['ExitoBorrandoCategoria']) && ($_SESSION['ExitoBorrandoCategoria'] == true)) {
         unset($_SESSION['ExitoBorrandoCategoria']);
-        $mensajes[] =  "El artículo se borró correctamente.";
+        $mensajes[] =  "El categoría se borró correctamente.";
 
     } elseif(isset($_SESSION['ExitoBorrandoCategoria']) && ($_SESSION['ExitoBorrandoCategoria'] == false)) {
         unset($_SESSION['ExitoBorrandoCategoria']);
-        $mensajes[] =  "El artículo no ha sido borrado.";
+        $mensajes[] =  "El categoría no ha sido borrada.";
     }
 
     if(isset($_SESSION['OperationFailed']) && ($_SESSION['OperationFailed'] == true)) {
@@ -142,7 +142,7 @@ Function getArrayMensajesCategorias(){
     }
     if(isset($_SESSION['NombreNotFound']) && $_SESSION['NombreNotFound'] == true){
         $_SESSION['NombreNotFound']=false;
-        $mensajes[] = "No se encontró ningún artículo que contenga su consulta en el nombre.";
+        $mensajes[] = "No se encontró ningún categoría que contenga su consulta en el nombre.";
     }
     if(isset($_SESSION['GoodInsertCategoria']) && $_SESSION['GoodInsertCategoria'] == true){
         $mensajes[] =  "Categoria añadido correctamente.";
@@ -221,11 +221,11 @@ Function getArrayMensajesCategorias(){
 
     if(isset($_SESSION['ExitoBorrandoCategoria']) && ($_SESSION['ExitoBorrandoCategoria'] == true)) {
         unset($_SESSION['ExitoBorrandoCategoria']);
-        $mensajes[]= "El artículo se borró correctamente.";
+        $mensajes[]= "El categoría se borró correctamente.";
 
     } elseif(isset($_SESSION['ExitoBorrandoCategoria']) && ($_SESSION['ExitoBorrandoCategoria'] == false)) {
         unset($_SESSION['ExitoBorrandoCategoria'] );
-        $mensajes[]= "El borrado del artículo NO tuvo lugar.";
+        $mensajes[]= "El borrado del categoría NO tuvo lugar.";
     }
 
     if(isset($_SESSION['BorradoCategoriaCancelado']) && ($_SESSION['BorradoCategoriaCancelado'] == true)) {
@@ -240,7 +240,7 @@ Function getArrayMensajesCategorias(){
 
     if(isset($_SESSION['BadInsertCategoria']) && ($_SESSION['BadInsertCategoria'] == true)) {
         unset($_SESSION['BadInsertCategoria']);
-        $mensajes[]= "hubo un fallo al insertar los datos del artículo, quizás debido a la conexión con la base de datos.";
+        $mensajes[]= "hubo un fallo al insertar los datos del categoría, quizás debido a la conexión con la base de datos.";
     }
 
     if(isset($_SESSION['OperationFailed']) && ($_SESSION['OperationFailed'] == true)) {
@@ -250,7 +250,7 @@ Function getArrayMensajesCategorias(){
 
     if(isset($_SESSION['BadOperation']) && ($_SESSION['BadOperation'] == true)) {
         unset($_SESSION['BadOperation'] );
-        $mensajes[]= " Operación de borrado de artículo falló de una forma inesperada, quizás la conexión a la base de datos no fue correcta.";
+        $mensajes[]= " Operación de borrado de categoría falló de una forma inesperada, quizás la conexión a la base de datos no fue correcta.";
     }
 
     if(isset($_SESSION['MoveFailed']) && ($_SESSION['MoveFailed'] == true)) {

@@ -33,32 +33,25 @@ if($nombreValido == false) {    $_SESSION['LongNombre']= true; }
 $codPadreValido = Categoria::ComprobarLongitud($codCategoriaPadre,50);
 if($codPadreValido == false) {    $_SESSION['LongPadre']= true; }
 
-//comprobamos el nuevvo codigo que no esté en uso para no tener duplciados
-$codigoYaExiste = Categoria::CodigoLibre($codigo);
-if($codigoYaExiste == false) {    $_SESSION['codigoYaExiste']= true; }
-
-$codPadreExiste = Categoria::CodigoPadreExiste($codCategoriaPadre);
-if($codPadreExiste == false) {    $_SESSION['codPadreNoExiste']= true; }
-
 $activoValido = Categoria::ComprobarLongitud($activo,11);
 if($activoValido == false) { $_SESSION['LongActivo']= true;}
 
 if( isset($_SESSION["editandoCategoria"]) && $_SESSION["editandoCategoria"] == "true" ){
-    if($_SESSION['codigo'] !== null){
-        //no han escrito código, quieren que se mantega el que ya tenía
-        $codigoOriginal = $_SESSION["codigo"];
-        $codigoOriginalLibre = Categoria::CodigoLibre($codigoOriginal);
-        if($codigoOriginalLibre == true) {  $_SESSION['CodigoDeberiaExistir'] = true;}
-    }
-
-    if( !$mantenemosCodigo ){
-        //entonces hay codigo nuevo, validamos formato y que esté libre (el nuevo)
+    
+    if( $mantenemosCodigo == false ){
+        //entonces hay codigo nuevo, validamos formato y que esté libre (el nuevo codigo)
         $codigo = $_POST["codigo"];
         $codigoLibre = Categoria::CodigoLibre($codigo);
         if($codigoLibre == false) {  $_SESSION['CodigoAlreadyExists']= true;}
+    } else{
+        //entonces el codigo recibido es el mismo, no hacen falta comprobaciones de si esta libre o no (no lo estará porque lo están reutilizando)
     }
 
 }else if( isset($_SESSION["nuevoCategoria"]) && $_SESSION["nuevoCategoria"] == "true" ){
+
+    //al crear una categoría la categoria padre debería existir
+    $codPadreExiste = Categoria::CodigoPadreExiste($codCategoriaPadre);
+    if($codPadreExiste == false) {    $_SESSION['codPadreNoExiste']= true; }
 
     if( isset($_POST['codigo']) ) {//codigo nuevo  Categoria llega por POST, aqui codigo es obligatorio.
     $codigo = $_POST["codigo"];
@@ -68,6 +61,9 @@ if( isset($_SESSION["editandoCategoria"]) && $_SESSION["editandoCategoria"] == "
 
 };
 
+
+
+//////////////sección comprobación de errores
 if(
     ( isset($_SESSION['LongNombre']) && $_SESSION['LongNombre'] == true) ||
     ( isset($_SESSION['LongPadre']) && $_SESSION['LongPadre'] == true) ||
