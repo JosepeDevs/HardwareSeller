@@ -93,4 +93,17 @@ if( !$userExiste){
     }
 }
 
+//seccion de mensajes igual que en alta de clientes
+include_once("../Controllers/ClienteALTAMensajes.php");
+$arrayMensajes=getArrayMensajesNuevo();
+if(is_array($arrayMensajes)){
+    foreach($arrayMensajes as $mensaje) {
+        echo "<h3>$mensaje</h3>";
+    }
+};
+if(isset($_GET["dni"]) && !empty($_GET["dni"])){
+    echo "<h3>Usuario añadido correctamente.</h3>";
+}
+
+
 include_once("footer.php");
