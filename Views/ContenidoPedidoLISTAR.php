@@ -8,6 +8,7 @@ if( $usuarioLogeado == false){
     session_destroy();
     echo "ContenidoPedidoLISTAR dice: no está user en session";
     header("Location: ../index.php");
+    exit;
 }
 //HEADER Y TITULO
 include_once("header.php");

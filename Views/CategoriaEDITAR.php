@@ -6,6 +6,7 @@ if( $usuarioLogeado == false){
     session_destroy();
     echo "CategoriaEDITAR dice: no está user en session";
     header("Location: ../index.php");
+    exit;
 }
 $rol = GetRolDeSession();
 if( $rol == "admin" || $rol == "empleado" ){
