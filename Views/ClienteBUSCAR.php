@@ -19,6 +19,21 @@ if( $rol == "admin" || $rol == "empleado" ){
 }
 
 include("header.php");
+
+include_once("../Controllers/ClienteBUSCARController.php");
+$arrayAtributos = getArrayAtributosCliente();
+$clienteEncontrado = false;
+if(isset($_POST["dni"])) {
+    $dni=$_POST["dni"];
+    $cliente = getClienteByDni($dni);
+    if($cliente == false){
+        $_SESSION['ClientNotFound']=true;
+        header("location: ClienteBUSCAR.php");
+        exit;
+    } else{
+        $clienteEncontrado =true; // ponemos esto a true para que el código detrás del texto se ejecute, havcemos esto para poder poner el header antes que cualquier texto
+    }
+}
 ?>
     <h1>
         Buscar cliente por DNI
@@ -42,18 +57,7 @@ include("header.php");
 
 <?php
 
-
-include_once("../Controllers/ClienteBUSCARController.php");
-$arrayAtributos = getArrayAtributosCliente();
-
-if(isset($_POST["dni"])) {
-    $dni=$_POST["dni"];
-    $cliente = getClienteByDni($dni);
-    if($cliente == false){
-        $_SESSION['ClientNotFound']=true;
-        header("location: ClienteBUSCAR.php");
-        exit;
-    }else{
+if($clienteExiste){
             //ENCABEZADOS obtenidos de la clase, por si más adelante añadimos atributos
             //https://www.php.net/manual/en/class.reflectionproperty.php
             echo"<table>";
@@ -84,7 +88,7 @@ if(isset($_POST["dni"])) {
                     echo "</tr>
                 </table>";
     }
-}
+
 include_once("../Controllers/ClienteBUSCARMensajes.php");
 $arrayMensajes=getArrayMensajesBuscar();
 if(is_array($arrayMensajes)){
