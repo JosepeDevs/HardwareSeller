@@ -22,7 +22,7 @@ Function UserEstablecido(){
 function checkAdminOEmpleado(){
     $rol = GetRolDeSession();
     if( $rol == "admin" || $rol == "empleado" ){
-    //si es amdin o empleado no hacer nada
+        //si es amdin o empleado no hacer nada
     } else{
         //si no es admin o empleado destruir session
         if(session_status() !== PHP_SESSION_ACTIVE) { session_destroy();}
