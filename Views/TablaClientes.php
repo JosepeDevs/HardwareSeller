@@ -2,7 +2,6 @@
 if(session_status() !== PHP_SESSION_ACTIVE) { session_start();}
 
 include_once("../Controllers/OperacionesSession.php");
-print_r($_SESSION);
 
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
@@ -18,7 +17,8 @@ if( $rol == "admin" || $rol == "empleado" ){
     echo "Articulos alta dice: no está user en session";
     header("Location: /index.php");
     exit;
-}
+} 
+print_r($_SESSION);
 
 include("header.php");
 
