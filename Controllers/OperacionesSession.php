@@ -18,7 +18,7 @@ Function UserEstablecido(){
 }
 /**
  * toma el rol de session y si no es admin o empleado mata la sesion
- */
+ */ 
 function checkAdminOEmpleado(){
     $rol = GetRolDeSession();
     if( $rol !== "admin" || $rol !== "empleado" ){
