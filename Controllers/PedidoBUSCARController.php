@@ -6,6 +6,8 @@ if( $usuarioLogeado == false){
     session_destroy();
     echo "PedidoBUSCAR dice: no está user en session";
     header("Location: /index.php");
+    exit;
+
 }
 
 

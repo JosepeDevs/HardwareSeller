@@ -7,6 +7,8 @@ if(!$rolEsAdmin) {
     session_destroy();
     echo "PedidoVALIDAR dice: no está user en session";
     header("Location: /index.php");
+    exit;
+
 }
 
 include_once("OperacionesSession.php");

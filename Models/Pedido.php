@@ -6,6 +6,8 @@ if( $usuarioLogeado == false){
     session_destroy();
     echo "Pedido dice: no está user en session";
     header("Location: /index.php");
+    exit;
+
 }
 include_once("../config/conectarBD.php");
 include_once("../Controllers/Directorio.php");

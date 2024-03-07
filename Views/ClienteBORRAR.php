@@ -20,6 +20,8 @@ if(!$estaMirandoSuPropioDni){
     session_destroy();
     echo "ClienteBorrar dice: estaba intentando mirara algo que no debería";
     header("Location: /index.php");
+    exit;
+
 }
 if($dni !== null){
     $_SESSION['dni'] = $dni;

@@ -7,6 +7,8 @@ if(!$rolEsAdmin) {
     session_destroy();
     print "PedidoVALIDAR dice: no está user en session";
     header("Location: /index.php");
+    exit;
+
 }
 
 include_once("../Controllers/GetDniByEmailController.php");

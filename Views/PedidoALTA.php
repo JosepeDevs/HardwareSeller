@@ -9,6 +9,8 @@ if( $usuarioLogeado == false){
     session_destroy();
     echo "Pedido alta dice: no está user en session";
     header("Location: /index.php");
+    exit;
+
 }
 $rol = GetRolDeSession();
 if( $rol == "admin" || $rol == "empleado" ){
@@ -16,6 +18,8 @@ if( $rol == "admin" || $rol == "empleado" ){
     session_destroy();
     echo "Articulos alta dice: no está user en session";
     header("Location: /index.php");
+    exit;
+
 }
 
 include("header.php");
