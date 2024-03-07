@@ -21,7 +21,7 @@ Function UserEstablecido(){
  */ 
 function checkAdminOEmpleado(){
     $rol = GetRolDeSession();
-    if( $rol !== "admin" || $rol !== "empleado" ){
+    if( $rol == "admin" || $rol == "empleado" ){
         if(session_status() !== PHP_SESSION_ACTIVE) { session_destroy();}
     }
 }

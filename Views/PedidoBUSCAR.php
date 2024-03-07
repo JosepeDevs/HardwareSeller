@@ -149,8 +149,8 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         echo"<tr>";
         //ENCABEZADOS
         foreach ($arrayAtributos as $atributo) {
-             if(( $rol !== "admin" || $rol !== "empleado" ) && ( $atributo == "activo" ||$atributo == "codUsuario" ) ){
-                echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
+             if(( $rol == "user") && ( $atributo == "activo" ||$atributo == "codUsuario" ) ){
+                echo'';//si es user tanto el atributo "activo" como "coduusuario" no se muestran 
             }else{
                 echo "<th>$atributo</th>";
             }
@@ -165,8 +165,8 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
                 if($atributo == "idPedido"){
                     $idPedido = $Pedido->getIdPedido();//guardamos el código para que esté disponible fuera de este bucle
                     echo "<td>".$valor."</td>";
-                } else if(( $rol !== "admin" || $rol !== "empleado" ) && ( $atributo == "activo" ||$atributo == "codUsuario" ) ){
-                    echo'';//si no es admin o empleado tanto el atributo activo como coduusuario no se muestran a rol=user
+                } else if(( $rol == "user" ) && ( $atributo == "activo" ||$atributo == "codUsuario" ) ){
+                    echo'';//si es user tanto el atributo "activo" como "coduusuario" no se muestran a rol=user
                 }else{
                     echo "<td>".$valor."</td>";
                 }
