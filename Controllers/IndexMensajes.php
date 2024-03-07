@@ -12,6 +12,10 @@ Function getArrayMensajesIndex(){
 
     $mensajes=[];
 
+    if(isset($_SESSION['NoBorrarDniAjeno']) && ($_SESSION['NoBorrarDniAjeno'] == true)) {
+        unset($_SESSION['NoBorrarDniAjeno']);
+        $mensajes[] = "No puede intentar borrar un usuario con un dni diferente al suyo propio.";
+    }
     if(isset($_SESSION['BadRol']) && ($_SESSION['BadRol'] == true)) {
         unset($_SESSION['BadRol']);
         $mensajes[] = "El rol no se pudo asignar correctamente.";

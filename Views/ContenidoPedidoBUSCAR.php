@@ -7,7 +7,7 @@ if( $usuarioLogeado == false){
     session_destroy();
     echo "PedidosLISTAR dice: no está user en session";
     header("Location: ../index.php");
-    exit;    exit;
+    exit;  
 }
 
 include_once("header.php");

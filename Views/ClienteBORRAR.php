@@ -10,16 +10,17 @@ if( $usuarioLogeado == false){
 }
 
 
-//NO PROTEGEMOS COMO ADMIN O 
 
 include_once("header.php");
-
+//SOLO ADMIN PUEDEN BORRAR DNI AJENOS, CUALQUIER OTRO LO MANDA A INDEX
 $dni = isset($_GET['dni']) ? $_GET['dni'] : null;
 $dniUsuario=GetDniByEmail($_SESSION['user']);
-$estaMirandoSuPropioDni=($dni===$dniUsuario);
-if(!$estaMirandoSuPropioDni){
+$rol = GetRolDeSession();
+$estaMirandoSuPropioDni=($dni===$dniUsuario);//comprobamos si son iguales y guardamos el resultado bool en la variable
+if(!$estaMirandoSuPropioDni && $rol !== "admin"){
     session_destroy();
-    echo "ClienteBorrar dice: estaba intentando mirara algo que no debería";
+    $_SESSION['NoBorrarDniAjeno'] = true;
+   // echo "ClienteBorrar dice: estaba intentando mirara algo que no debería";
     header("Location: /index.php");
     exit;
 
@@ -50,17 +51,15 @@ if(isset($_GET['confirmacion']) && isset($_GET['confirmacion']) && $_GET['confir
 <?php
 include_once("footer.php");
 
+//si ya han respondido esto les redigirá a un sitio u otro
 if(( $_SESSION['operacionCancelada'] !== null)){
-    $tieneAdminYEstaLogeado = AuthYRolAdmin();
-    if($tieneAdminYEstaLogeado == true ){
+    $tieneRolAdminYEstaLogeado = AuthYRolAdmin();
+    if($tieneRolAdminYEstaLogeado == true ){
         header("Location: TablaClientes.php");
-        print"hola";
         exit;
     } else {
-        print"adios";
-        header("Location: ClienteEDITAR.php?dni=$dni");
+        header("Location: AreaCliente.php");
         exit;
     }
-
 }
 ?>
