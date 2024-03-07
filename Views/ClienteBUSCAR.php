@@ -27,7 +27,6 @@ if(isset($_POST["dni"])) {
     $dni=$_POST["dni"];
     $cliente = getClienteByDni($dni);
     if($cliente == false){
-        $_SESSION['ClientNotFound']=true;
         header("location: ClienteBUSCAR.php");
         exit;
     } else{
@@ -57,7 +56,7 @@ if(isset($_POST["dni"])) {
 
 <?php
 
-if($clienteExiste){
+if($clienteEncontrado){
             //ENCABEZADOS obtenidos de la clase, por si más adelante añadimos atributos
             //https://www.php.net/manual/en/class.reflectionproperty.php
             echo"<table>";
