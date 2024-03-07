@@ -10,6 +10,7 @@ if( $usuarioLogeado == false){
     session_destroy();
     echo "CategoriaVALIDAR dice: no está user en session";
    header("Location: /index.php");
+   exit;
 }
 
 /**

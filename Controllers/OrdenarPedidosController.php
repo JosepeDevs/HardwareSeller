@@ -6,6 +6,7 @@ if( $usuarioLogeado == false){
     session_destroy();
     echo "CategoriaVALIDAR dice: no está user en session";
    header("Location: /index.php");
+   exit;
 }
 /**
  * $opcion puede ser "ASC" or "DESC", en función de eso devolverá los datos ordenados ASC o DESC
