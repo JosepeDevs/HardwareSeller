@@ -8,7 +8,7 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "CategoriaVALIDAR dice: no está user en session";
+    echo "TablaClientes Controller dice: no está user en session";
    header("Location: /index.php");
    exit;
 }
