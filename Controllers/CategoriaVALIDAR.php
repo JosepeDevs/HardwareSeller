@@ -33,6 +33,10 @@ if($nombreValido == false) {    $_SESSION['LongNombre']= true; }
 $codPadreValido = Categoria::ComprobarLongitud($codCategoriaPadre,50);
 if($codPadreValido == false) {    $_SESSION['LongPadre']= true; }
 
+//comprobamos el nuevvo codigo que no esté en uso para no tener duplciados
+$codigoYaExiste = Categoria::CodigoLibre($codigo);
+if($codigoYaExiste == false) {    $_SESSION['codigoYaExiste']= true; }
+
 $codPadreExiste = Categoria::CodigoPadreExiste($codCategoriaPadre);
 if($codPadreExiste == false) {    $_SESSION['codPadreNoExiste']= true; }
 

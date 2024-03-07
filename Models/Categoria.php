@@ -295,7 +295,7 @@ public function setCodCategoriaPadre($codCategoriaPadre) {
     };
     }
     /**
-     * Función que comprueba si el código está libre y devuelve bool con el resultado.
+     * Función que comprueba si el código del padre está libre y devuelve bool con el resultado.
      * @param string codigo a comprobar
      * @return bool devuelve true si el código existe, devuelve false si el código no está usado
      */

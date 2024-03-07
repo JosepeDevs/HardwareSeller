@@ -19,6 +19,10 @@ Function getArrayMensajesCategorias(){
     if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
     $mensajes=[];
+    if(isset($_SESSION['codigoYaExiste']) && $_SESSION['codigoYaExiste'] == true){
+        $mensajes[] =  "El codigo que ha seleccionado ya está en uso, por favor, seleccione otro.";
+        unset($_SESSION['codigoYaExiste']);
+    }
     if(isset($_SESSION['LongNombre']) && $_SESSION['LongNombre'] == true){
         $mensajes[] =  "Introdujo un nombre demasiado largo. Abrévielo por favor.";
         unset($_SESSION['LongNombre']);
