@@ -245,7 +245,7 @@ if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true
 
     
     if($rolAdmin == true) {
-           header("Location: ../Views/AreaCliente.php");
+           header("Location: ../Views/TablaClientes.php");
             exit;
     } else if(isset($_POST['estadoEnvio']) && ( $_POST['estadoEnvio'] == "tiendaSINcuenta" || $_POST['estadoEnvio'] == "direccionSINcuenta" ) ){
         $_SESSION['estadoEnvio']= $_POST['estadoEnvio'];
