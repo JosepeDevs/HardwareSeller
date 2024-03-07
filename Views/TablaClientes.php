@@ -10,6 +10,7 @@ if( $usuarioLogeado == false){
     header("Location: ../index.php");
     exit;
 }
+/*
 $rol = GetRolDeSession();
 if( $rol == "admin" || $rol == "empleado" ){
 } else{
@@ -17,7 +18,7 @@ if( $rol == "admin" || $rol == "empleado" ){
     echo "Articulos alta dice: no está user en session";
     header("Location: /index.php");
     exit;
-} 
+} */
 print_r($_SESSION);
 
 include("header.php");
