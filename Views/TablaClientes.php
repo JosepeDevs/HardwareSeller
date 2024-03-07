@@ -172,7 +172,7 @@ print("
         };
 
         //tras printear los mensajes de error/confirmación "reseteamos" session
-        ResetearSesion();
+       // ResetearSesion();
 
         ?>
 <h2><a class="cerrar"  href='/index.php'>Cerrar sesión</a></h2>
