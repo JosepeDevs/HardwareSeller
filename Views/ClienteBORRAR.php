@@ -42,15 +42,6 @@ if(isset($_GET['confirmacion']) && isset($_GET['confirmacion']) && $_GET['confir
     //no hay confirmación, es la primera vez que entran en la página.no hay que hacer nada
 }
 
-?>
-<h1>¿Está seguro de que desea desactivar/borrar este cliente?</h1>
-        <div class="finForm">
-            <h2><a href="ClienteBORRAR.php?dni=<?php echo $dni;?>&confirmacion=true">Sí, borrar el cliente (Borrado lógico).</a></h2>
-            <h2><a href="ClienteBORRAR.php?dni=<?php echo $dni;?>&confirmacion=false">Cancelar borrado.</a></h2>
-        </div>
-<?php
-include_once("footer.php");
-
 //si ya han respondido esto les redigirá a un sitio u otro
 if(( $_SESSION['operacionCancelada'] !== null)){
     $tieneRolAdminYEstaLogeado = AuthYRolAdmin();
@@ -62,4 +53,12 @@ if(( $_SESSION['operacionCancelada'] !== null)){
         exit;
     }
 }
+?>
+<h1>¿Está seguro de que desea desactivar/borrar este cliente?</h1>
+        <div class="finForm">
+            <h2><a href="ClienteBORRAR.php?dni=<?php echo $dni;?>&confirmacion=true">Sí, borrar el cliente (Borrado lógico).</a></h2>
+            <h2><a href="ClienteBORRAR.php?dni=<?php echo $dni;?>&confirmacion=false">Cancelar borrado.</a></h2>
+        </div>
+<?php
+include_once("footer.php");
 ?>
