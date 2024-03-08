@@ -67,6 +67,8 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
             $nombreAtributo = $atributo;
             echo "<th>$nombreAtributo</th>";
         }
+        echo "<th>Editar</th>";
+
         //DATOS DEL OBJETO O LOS OBJETOS
         echo "</tr>";
 
@@ -88,10 +90,13 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
                     } else{
                         echo "<td>Inactivo (0)</td>";
                     }
-                } else {
+                } else if($nombreAtributo == "codigo"){
+                    $codigo = $valor;
+                }else {
                     echo "<td>$valor</td>";
                 }
             }
+            echo "<td> <a href='ArticuloEDITAR.php?codigo=$codigo'></td>";
             echo "</tr>";
         }
         echo "</table>";
