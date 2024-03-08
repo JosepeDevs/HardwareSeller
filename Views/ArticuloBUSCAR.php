@@ -96,7 +96,11 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
                     echo "<td>$valor</td>";
                 }
             }
-            echo "<td> <a href='ArticuloEDITAR.php?codigo=$codigo'></td>";
+            echo "<td> 
+                    <a href='ArticuloEDITAR.php?codigo=$codigo'>
+                        <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' />
+                    </a>
+                </td>";
             echo "</tr>";
         }
         echo "</table>";
