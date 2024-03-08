@@ -38,6 +38,8 @@ if($descripcionValida == false) { $_SESSION['LongDescripcion']= true;}
 
 $categoriaValido = Articulo::ComprobarLongitud($categoria,30);
 if($categoriaValido == false) { $_SESSION['LongCategoria']= true;}
+$categoriaEsNumero = is_int($categoria);
+if($categoriaEsNumero == false) { $_SESSION['CategoriaNoEsNumero']= true;}
 
 $precioValido = Articulo::ComprobarLongitud($precio,11);
 if($precioValido == false) { $_SESSION['LongPrecio']= true;}
@@ -134,6 +136,7 @@ if(
     ( isset( $_SESSION['FileAlreadyExists']) && $_SESSION['FileAlreadyExists']== true ) ||
     ( isset( $_SESSION['ImagenGrande']) && $_SESSION['ImagenGrande']== true ) ||
     ( isset( $_SESSION['ActivoGrande']) && $_SESSION['ActivoGrande']== true ) ||
+    ( isset( $_SESSION['CategoriaNoEsNumero']) && $_SESSION['CategoriaNoEsNumero']== true ) ||
     ( isset( $_SESSION['BadDescuento']) && $_SESSION['BadDescuento']== true ) ||
     ( isset( $_SESSION['FileBadFormat']) && $_SESSION['FileBadFormat']== true )
 ){
