@@ -77,7 +77,7 @@ echo"<table>";
                                 </td>";
                         }else if( $nombreAtributo == "categoria") {
                             echo "<td>
-                                     <input type='number' name='$nombreAtributo' id='$nombreAtributo' name='$nombreAtributo' value='$valor'>
+                                     <input type='number' name='$nombreAtributo' id='$nombreAtributo' value='$valor'>
                                 </td>";
                         } else if($nombreAtributo == "activo") {
                             echo "
