@@ -8,6 +8,7 @@ if(isset($_GET["codigo"])){
     $articulo = getArticuloByCodigo($codigo);
     $codigo = $articulo->getCodigo();
     $nombre = $articulo->getNombre();
+    $descuento = $articulo->getDescuento();
     $descripcion = $articulo->getDescripcion();
     $precio = $articulo->getPrecio();
     $imagen = $articulo->getImagen();
@@ -29,7 +30,9 @@ include_once("aside.php");
 echo'
     <section class="Precio-carrito">
         <div id="precio">
-            <h2>Precio: '.$precio.' €</h2>
+            <h4 style="text-decoration: line-through;">Precio: '.$precio.' € </h4>
+            <h2>Descuento: '.$descuento.' €</h2>
+            <h2>Precio: '.round($precio*(1-($descuento/100)),2).' €</h2>
         </div>
     <br>
     <br>
