@@ -206,8 +206,8 @@ echo"<table>";
    </div>";
 
 //SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
-include_once("../Controllers/ArticulosLISTARMensajes.php");
-            $arrayMensajes=getArrayMensajesArticulos();
+include_once("../Controllers/ArticulosMensajes.php");
+$arrayMensajes=getArrayMensajesArticulos();
             if(is_array($arrayMensajes)){
                 foreach($arrayMensajes as $mensaje) {
                     echo "<h3>$mensaje</h3>";

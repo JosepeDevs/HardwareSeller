@@ -89,17 +89,17 @@ Function getArrayMensajesArticulos(){
 
     if(isset($_SESSION['BadInsertArticulo']) && ($_SESSION['BadInsertArticulo'] == true)) {
         unset($_SESSION['BadInsertArticulo']);
-        $mensajes[]= "hubo un fallo al insertar los datos del artículo, quizás debido a la conexión con la base de datos.";
+        $mensajes[]= "hubo un fallo al insertar los datos del artículo, quizás debido a la conexión con la base de datos o quizás este artículo esté en algún pedido y la dependencia impidió la modificación.";
     }
 
     if(isset($_SESSION['OperationFailed']) && ($_SESSION['OperationFailed'] == true)) {
         unset($_SESSION['OperationFailed'] );
-        $mensajes[]= " operación falló de una forma inesperada, quizás la conexión a la base de datos no fue correcta.";
+        $mensajes[]= " operación falló de una forma inesperada, quizás la conexión a la base de datos no fue correcta.o quizás este artículo esté en algún pedido y la dependencia impidió la modificación";
     }
 
     if(isset($_SESSION['BadOperation']) && ($_SESSION['BadOperation'] == true)) {
         unset($_SESSION['BadOperation'] );
-        $mensajes[]= " Operación de borrado de artículo falló de una forma inesperada, quizás la conexión a la base de datos no fue correcta.";
+        $mensajes[]= " Operación de borrado de artículo falló de una forma inesperada, quizás la conexión a la base de datos no fue correcta.o quizás este artículo esté en algún pedido y la dependencia impidió la modificacióno quizás este artículo esté en algún pedido y la dependencia impidió la modificacióno quizás este artículo esté en algún pedido y la dependencia impidió la modificación";
     }
 
     if(isset($_SESSION['MoveFailed']) && ($_SESSION['MoveFailed'] == true)) {
@@ -124,6 +124,10 @@ Function getArrayMensajesArticulos(){
     if(isset($_SESSION['BadDescuento']) && ($_SESSION['BadDescuento'] == false)) {
         unset($_SESSION['BadDescuento'] );
         $mensajes[]= "El descuento introdducido no se detectó como numérico-decimal y no se pudo procesar correctamente.";
+    }
+    if(isset($_SESSION['CategoriaNoEsNumero']) && ($_SESSION['CategoriaNoEsNumero'] == false)) {
+        unset($_SESSION['CategoriaNoEsNumero'] );
+        $mensajes[]= "El codigo de categoría introducido no era un número (debe estar compuesto de hasta 11 números).";
     }
 
     if( count($mensajes) == 0){

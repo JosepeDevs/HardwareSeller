@@ -76,8 +76,8 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
     <br><br>
 <?php
 
-include_once("../Controllers/ArticuloALTAMensajes.php");
-$arrayMensajes=getArrayMensajesAltaArticulos();
+include_once("../Controllers/ArticulosMensajes.php");
+$arrayMensajes=getArrayMensajesArticulos();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
         echo "<h3>$mensaje</h3>";

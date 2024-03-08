@@ -112,7 +112,7 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
     }
 
 
-    include_once("../Controllers/ArticuloBUSCARMensajes.php");
+    include_once("../Controllers/ArticulosMensajes.php");
     $arrayMensajes=getArrayMensajesArticulos();
     if(is_array($arrayMensajes)){
         foreach($arrayMensajes as $mensaje) {

@@ -88,7 +88,7 @@ Function getArrayMensajesCategorias(){
     }
 
     if(isset($_SESSION['BadOperation']) && $_SESSION['BadOperation'] == true){
-        $mensajes[] =  "Hubo algún problema con la conexión a la base de datos.";
+        $mensajes[] =  "Hubo algún problema con la conexión a la base de datos.o quizás esta categoría esté usada en algún artículo y la dependencia impidió la modificacióno quizás esta categoría esté ya siendo usada en un artículo y la dependencia impidió la modificación";
         unset($_SESSION['BadOperation']);
     }
 

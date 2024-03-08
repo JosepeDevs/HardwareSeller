@@ -100,8 +100,8 @@ echo"<table>";
     echo "<div class='finForm'><h2><input type='submit' value='Guardar'></h2>";
     echo "</form>";
 
-include_once("../Controllers/ArticuloEDITARMensajes.php");
-$arrayMensajes=getArrayMensajesArticulos();
+    include_once("../Controllers/ArticulosMensajes.php");
+    $arrayMensajes=getArrayMensajesArticulos();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
         echo "<h3>$mensaje</h3>";
