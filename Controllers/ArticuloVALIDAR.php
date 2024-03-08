@@ -143,7 +143,7 @@ if(
     //algo dio error, go back para que allí de donde venga se muestre el error
     print"nombre ={$_SESSION['LongNombre']},BadCodigo ={$_SESSION['BadCodigo']},CodigoAlreadyExists ={$_SESSION['CodigoAlreadyExists']},LongDescripcion ={$_SESSION['LongDescripcion']},LongCategoria ={$_SESSION['LongCategoria']},LongPrecio ={$_SESSION['LongPrecio']},LongImagen ={$_SESSION['LongImagen']},ImagenPesada ={$_SESSION['ImagenPesada']},FileAlreadyExists ={$_SESSION['FileAlreadyExists']},ImagenGrande ={$_SESSION['ImagenGrande']},ActivoGrande ={$_SESSION['ActivoGrande']},FileBadFormat ={$_SESSION['FileBadFormat']},,BadDescuento ={$_SESSION['BadDescuento']},";
 
-       echo "<script>history.back();</script>";
+    //   echo "<script>history.back();</script>";
         exit;
 } else {
     $_SESSION["nombre"] = $nombre;
