@@ -43,6 +43,8 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
         $articulo = getArticuloByCodigo($codigo);
         if($articulo == false){
             $_SESSION['CodigoNotFound'] = true;
+            echo "<script>history.back();</script>";
+            exit;
         }
         $arrayArticulos[] = $articulo;
     }
