@@ -11,7 +11,7 @@ if(isset($_GET["codigo"])){
     $descripcion = $articulo->getDescripcion();
     $precio = $articulo->getPrecio();
     $imagen = $articulo->getImagen();
-    $categoria = $articulo->getCategoria();
+    $categoriaInt = $articulo->getCategoria();
     $activo = $articulo->getActivo();
 } 
 $directorio = "/Resources/ImagenesArticulos/";
@@ -47,7 +47,7 @@ echo'
 </section>
 <br>
 <section id="categoria">
-    <p>Categoria del producto:<? echo$categoria?></p><br><br>
+    <p>Categoria del producto:<? echo$categoriaInt?></p><br><br>
 </section>
 <section>
     <button type='button'><a href='javascript:history.back()' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
