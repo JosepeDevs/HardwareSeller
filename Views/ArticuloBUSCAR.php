@@ -92,6 +92,7 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
                     }
                 } else if($nombreAtributo == "codigo"){
                     $codigo = $valor;
+                    echo "<td>$valor</td>";
                 }else {
                     echo "<td>$valor</td>";
                 }
