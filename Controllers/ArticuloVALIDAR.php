@@ -33,7 +33,7 @@ if($codigo == $codigoOriginal ){//si el código escrito es el mismo --> es que e
 $nombreValido = Articulo::ComprobarLongitud($nombre,50);
 if($nombreValido == false) {    $_SESSION['LongNombre']= true; }
 
-$descripcionValida = Articulo::ComprobarLongitud($descripcion,60);
+$descripcionValida = Articulo::ComprobarLongitud($descripcion,200);
 if($descripcionValida == false) { $_SESSION['LongDescripcion']= true;}
 
 $categoriaValido = Articulo::ComprobarLongitud($categoria,30);
