@@ -52,6 +52,8 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
         $arrayArticulos = GetArticulosByBusquedaNombre($nombre);
         if($arrayArticulos == false){
             $_SESSION['NombreNotFound'] = true;
+            echo "<script>history.back();</script>";
+            exit;
         }
     }
 
