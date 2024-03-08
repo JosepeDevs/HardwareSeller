@@ -31,7 +31,7 @@ echo'
     <section class="Precio-carrito">
         <div id="precio">
             <h4 style="text-decoration: line-through;">Precio: '.$precio.' € </h4>
-            <h2>Descuento: '.$descuento.' €</h2>
+            <h2>Descuento: '.$descuento.' %</h2>
             <h2>Precio: '.round($precio*(1-($descuento/100)),2).' €</h2>
         </div>
     <br>
