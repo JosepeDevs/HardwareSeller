@@ -13,7 +13,7 @@ if( $usuarioLogeado == false){
 }
 
 include_once("../Models/Articulo.php");
-print_r($_SESSION);
+//print_r($_SESSION);
 
 $nombre = isset($_POST["nombre"]) ? $_POST["nombre"] : null;
 $descripcion = isset($_POST["descripcion"]) ? $_POST["descripcion"] : null;//por post llegaría el posible nuevo código
@@ -89,7 +89,7 @@ if( isset($_SESSION["editandoArticulo"]) && $_SESSION["editandoArticulo"] == "tr
 if(isset($_FILES["imagen"]) && $_FILES["imagen"]["size"] !== 0){
 //si han subido algún archivo entonces...
     $imagen = $_FILES["imagen"];
-    echo"<br>____________si que hay una imagen:_________";
+    //echo"<br>____________si que hay una imagen:_________";
     $imagenValida = Articulo::ValidaImagen();//comprobamos peso, tamaño y formato aquí, se sube a session los errores encontrados
 
     $nombreArchivo = $_FILES['imagen']['name'];//este es el nombre con el que se sube el archivo (como lo nombra el usuario)
@@ -101,7 +101,7 @@ if(isset($_FILES["imagen"]) && $_FILES["imagen"]["size"] !== 0){
 
     $nombreDirectorioValido = Articulo::ComprobarLongitud($nombreArchivoDestino,260);
     if($nombreDirectorioValido == false) { $_SESSION['LongImagen']= true;}
-    print"nombre directorio valido =$nombreDirectorioValido";
+    //print"nombre directorio valido =$nombreDirectorioValido";
 }else{
     //no han subido imagen, necesitamos el nombre del archivo ya subido
     $articulo = Articulo::GetArticuloByCodigo($codigoOriginal);
@@ -117,7 +117,7 @@ if(isset($_FILES["imagen"]) && $_FILES["imagen"]["size"] !== 0){
         echo "<br>articuloValidar dice: imagen vale= ".$imagen;
     } else{
         $_SESSION['CodigoNotFound'] = true;
-        print"<br>no se encontro el codigo <br>";
+      //  print"<br>no se encontro el codigo <br>";
         echo "<script>history.back();</script>";
         exit;
     }
@@ -141,9 +141,9 @@ if(
     ( isset( $_SESSION['FileBadFormat']) && $_SESSION['FileBadFormat']== true )
 ){
     //algo dio error, go back para que allí de donde venga se muestre el error
-    print"nombre ={$_SESSION['LongNombre']},BadCodigo ={$_SESSION['BadCodigo']},CodigoAlreadyExists ={$_SESSION['CodigoAlreadyExists']},LongDescripcion ={$_SESSION['LongDescripcion']},LongCategoria ={$_SESSION['LongCategoria']},LongPrecio ={$_SESSION['LongPrecio']},LongImagen ={$_SESSION['LongImagen']},ImagenPesada ={$_SESSION['ImagenPesada']},FileAlreadyExists ={$_SESSION['FileAlreadyExists']},ImagenGrande ={$_SESSION['ImagenGrande']},ActivoGrande ={$_SESSION['ActivoGrande']},FileBadFormat ={$_SESSION['FileBadFormat']},,BadDescuento ={$_SESSION['BadDescuento']},";
+   // print"nombre ={$_SESSION['LongNombre']},BadCodigo ={$_SESSION['BadCodigo']},CodigoAlreadyExists ={$_SESSION['CodigoAlreadyExists']},LongDescripcion ={$_SESSION['LongDescripcion']},LongCategoria ={$_SESSION['LongCategoria']},LongPrecio ={$_SESSION['LongPrecio']},LongImagen ={$_SESSION['LongImagen']},ImagenPesada ={$_SESSION['ImagenPesada']},FileAlreadyExists ={$_SESSION['FileAlreadyExists']},ImagenGrande ={$_SESSION['ImagenGrande']},ActivoGrande ={$_SESSION['ActivoGrande']},FileBadFormat ={$_SESSION['FileBadFormat']},,BadDescuento ={$_SESSION['BadDescuento']},";
 
-    //   echo "<script>history.back();</script>";
+       echo "<script>history.back();</script>";
         exit;
 } else {
     $_SESSION["nombre"] = $nombre;
