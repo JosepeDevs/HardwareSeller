@@ -38,7 +38,7 @@ if($descripcionValida == false) { $_SESSION['LongDescripcion']= true;}
 
 $categoriaValido = Articulo::ComprobarLongitud($categoria,30);
 if($categoriaValido == false) { $_SESSION['LongCategoria']= true;}
-$categoriaEsNumero = is_int($categoria);
+$categoriaEsNumero = is_int(intval($categoria));///pasamos string a int y vemos si es int ¿overkill?
 if($categoriaEsNumero == false) { $_SESSION['CategoriaNoEsNumero']= true;}
 
 $precioValido = Articulo::ComprobarLongitud($precio,11);
