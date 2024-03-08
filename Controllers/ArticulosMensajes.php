@@ -18,6 +18,62 @@ Function getArrayMensajesArticulos(){
 
     $mensajes=[];
 
+    if(isset($_SESSION['CodigoDeberiaExistir']) && $_SESSION['CodigoDeberiaExistir'] == true){
+        $mensajes[] =  "Estamos editando, el código original debería estar en la base de datos pero no se ha encontrado.";
+        unset($_SESSION['CodigoDeberiaExistir']);
+    }
+
+    if(isset($_SESSION['ExitoBorrandoArticulo']) && ($_SESSION['ExitoBorrandoArticulo'] == true)) {
+        unset($_SESSION['ExitoBorrandoArticulo']);
+        $mensajes[] =  "El artículo se borró correctamente.";
+
+    } elseif(isset($_SESSION['ExitoBorrandoArticulo']) && ($_SESSION['ExitoBorrandoArticulo'] == false)) {
+        unset($_SESSION['ExitoBorrandoArticulo']);
+        $mensajes[] =  "El artículo no ha sido borrado.";
+    }
+
+    if(isset($_SESSION['FileAlreadyExists']) && $_SESSION['FileAlreadyExists'] == true){
+        $mensajes[] =  "Lo sentimos, ya existe un archivo en nuestros servidores con ese nombre, renombre su archivo y pruebe de nuevo.";
+        unset($_SESSION['FileAlreadyExists']);
+    }
+
+    if(isset($_SESSION['FileBadFormat']) && $_SESSION['FileBadFormat'] == true){
+        $mensajes[] =  "El formato o extensión del archivo subido no es adecuado (jpg, jpeg, gif o png) .";
+        unset($_SESSION['FileBadFormat']);
+    }
+    if(isset($_SESSION['ImagenPesada']) && $_SESSION['ImagenPesada'] == true){
+        $mensajes[] =  "El peso de la imagen que intetó subir excedió el permitido o hubo algún fallo relacionado con su peso (max 200kb) .";
+        unset($_SESSION['ImagenPesada']);
+    }
+    if(isset($_SESSION['ImagenGrande']) && $_SESSION['ImagenGrande'] == true){
+        $mensajes[] =  "El ancho o el alto de la imagen enviada excedió el permitido 200px ambos o hubo algún problema midiendo el ancho y alto de la imagen.";
+        unset($_SESSION['ImagenGrande']);
+    }
+
+    if(isset($_SESSION['SinNumero']) && $_SESSION['SinNumero'] == true){
+        $mensajes[] =  "El código que escribió le faltaba la parte numérica.";
+        unset($_SESSION['SinNumero']);
+    }
+
+    if(isset($_SESSION['NumeroGrande']) && $_SESSION['NumeroGrande'] == true){
+        $mensajes[] =  "La parte numérica que indicó en el código debe ser como máximo 99999 (5 digitos)";
+        unset($_SESSION['NumeroGrande']);
+    }
+
+    if(isset($_SESSION['LongImagen']) && $_SESSION['LongImagen'] == true){
+        $mensajes[] =  "El total de carácteres necesarios para la ruta de la imagen es demasido largo. por favor, abrevie el nombre de la imágen.";
+        unset($_SESSION['LongImagen']);
+    }
+
+    if(isset($_SESSION['CodigoNotFound']) && $_SESSION['CodigoNotFound'] == true){
+        $_SESSION['CodigoNotFound']=false;
+        $mensajes[] = "No se encontró el código consultado.";
+    }
+    if(isset($_SESSION['NombreNotFound']) && $_SESSION['NombreNotFound'] == true){
+        $_SESSION['NombreNotFound']=false;
+        $mensajes[] = "No se encontró ningún artículo que contenga su consulta en el nombre.";
+    }
+
     if(isset($_SESSION['GoodUpdateArticulo']) && ($_SESSION['GoodUpdateArticulo'] == true)) {
         unset($_SESSION['GoodUpdateArticulo']);
         $mensajes[]= "Datos del Articulo actualizados correctamente.";
@@ -66,15 +122,6 @@ Function getArrayMensajesArticulos(){
     if(isset($_SESSION['LongActivo']) && ($_SESSION['LongActivo'] == true)) {
         unset($_SESSION['LongActivo']);
         $mensajes[]= "indico un estado para activo demasiado largo (solo se permite 0 para inactivo o 1 para activo.";
-    }
-
-    if(isset($_SESSION['ExitoBorrandoArticulo']) && ($_SESSION['ExitoBorrandoArticulo'] == true)) {
-        unset($_SESSION['ExitoBorrandoArticulo']);
-        $mensajes[]= "El artículo se borró correctamente.";
-
-    } elseif(isset($_SESSION['ExitoBorrandoArticulo']) && ($_SESSION['ExitoBorrandoArticulo'] == false)) {
-        unset($_SESSION['ExitoBorrandoArticulo'] );
-        $mensajes[]= "El borrado del artículo NO tuvo lugar.";
     }
 
     if(isset($_SESSION['BorradoArticuloCancelado']) && ($_SESSION['BorradoArticuloCancelado'] == true)) {
