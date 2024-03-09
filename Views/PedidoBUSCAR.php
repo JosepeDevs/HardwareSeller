@@ -10,6 +10,8 @@ include_once("header.php");
 //BREADCRUMBS AREA CLIENTE
 include_once("BreadCrumbsAreaCliente.php");
 
+print_r($_SESSION);
+
 //DISTINTAS VISTAS SEGÚN ENLACE
 if(isset($_GET["PedidoConfirmado"])){
     //llegan de hacer un pedido, vamos a mostrarles los datos del pedido y darles instrucciones para próximos pasos
@@ -100,6 +102,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             $arrayPedido[] = getPedidoByIdPedido($idPedido);
         } else{
             $arrayPedido[] = getPedidoByIdPedido($idPedido, $dni);
+            print_r($arrayPedido);
         }
         if($arrayPedido == false){
             $_SESSION['idPedidoNotFound'] = true;
