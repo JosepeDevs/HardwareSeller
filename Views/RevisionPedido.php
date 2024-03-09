@@ -3,6 +3,8 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //NO PROTEGER SI QUEREMOS QUE GENTE SIN REGISTRASE  PUEDA HACER PEDIDOS
 $_SESSION['nuevoPedido']="true";
 include_once("../Views/header.php");
+include_once("../Controllers/ClienteBUSCARController.php");
+
 print_r($_SESSION);
 ?>
 <h1>Revisión del pedido</h1>
@@ -96,9 +98,7 @@ if(isset($_SESSION['sinCuenta']) && $_SESSION['sinCuenta']== true && isset($_SES
     $_SESSION['codUsuario'] = "No hay DNI";
 }
 
-if(isset($_SESSION['user'])) {
-    include_once("../Controllers/ClienteBUSCARController.php");
-    
+if(isset($_SESSION['user'])) {    
     if (strpos($estadoEnvio,"5") !== false){
         //si encontramos un 5 en algun sitio de estadoEnvio es que querían recogida en tienda
         echo"<h2>Han seleccionado Recogida del pedido en tienda.</h2><br><h3>El stock se reservará un máximo de 5 días.</h3>";
