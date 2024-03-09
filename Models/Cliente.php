@@ -366,8 +366,96 @@ public static function checkClientByEmailAndDni($email, $dni){
         }
     }
 
+
+    /**
+  * @param $dni . (String) con el dni a comprobar (8 numeros y 1 letra, da igual minus o mayus)
+  * @return bool devuelve true si la letra se corresponde a las 8 cifras introducidas. Devuelve false si la letra no es correcta, si no cumple regex de ser 8 numeros y 1 letra (permitimos que el input esté en minusculas), también devuelve false si dni es null.
+  */
+  public static function ValidaDni($dniNuevo){
+    if($dniNuevo == null){
+        return false;
+    };
+    if(preg_match("/^\d{8}\w{1}$/", $dniNuevo) == true ){
+        $numerosString=substr($dniNuevo,0,8);
+        $letra=strtoupper(substr($dniNuevo,8,9));
+        $arrayLetras=array("T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E");
+        $numero=intval($numerosString);
+        $resto=$numero%23;
+        $letraCalculada=$arrayLetras[$resto];
+        if($letra == $letraCalculada){
+            return true;
+        } else {
+            return false;
+        }
+    }else{
+        return false;
+    }
+}
+
+/**
+ * @param string telefono como texto cada 3 numeros puede haber una separación de un punto o un guión y sería aceptable. p.e. formatos aceptados formatos: 444-555-123, 246.555.888, 123456789
+ *@return bool devuelve true si telefono cumple regex de 3 cifras guion?punto? 3 cifras guion?punto? 3 cifras. Devuelve false si no cumple regex
+  *  */
+  public static function ValidaTelefono($telefono){
+    $formatoTelefonoCorrecto = preg_match("/\d{3}[-.]?\d{3}[-.]?\d{3}/", $telefono);
+    if($formatoTelefonoCorrecto == true) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+ /**
+ * @param $email el email a comprobar, permite lo que sea delante del arroba (puntos, barras bajas. guiones, comas, excepto @)
+ * @return boolean true si cumple regex, si no, devuelve false
+ *
+ * */
+public static function ValidarEmail($email) {
+    $email = trim($email);
+    $formatoEmailCorrecto = preg_match("/^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/", $email);
+    if ( $formatoEmailCorrecto == true ) {
+        return true;// all good
+    } else {
+        return false;
+    }
+}
+
+
+/**
+ * @param string Recibe correo electrónico (esta función NO valida el formato), solo comprueba si ya existe en la BBDD.
+ * @return bool true si ya existe en la BBDD, false si no está en uso.
+ */
+public static function EmailRepetido($email) {
+    $conPDO = contectarBbddPDO();
+    $emailCheck = "SELECT `email` FROM `clientes` WHERE `email` = :email";
+    $statement = $conPDO->prepare($emailCheck);
+    $statement->bindParam(':email', $email);
+    $statement->execute();
+    $statement->setFetchMode(PDO::FETCH_CLASS,"Cliente");
+    $yaHayclienteConEseCorreo = $statement->fetch();
+    if ( $yaHayclienteConEseCorreo !== false) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * @param string $string String a comprobar.
+ * @param int $longitud longitud máxima.
+ * @return bool devuelve true si NO supera la longitud especificada, devuelve false si es más largo de lo especificado.
+ */
+public static function ComprobarLongitud($string, $longitud) {
+    if(strlen($string) > $longitud) {
+        return false;
+    }
+    return true;
+}
+
+    
 /////// /////// ////////CUIDADO////////////////
-//Partes del código construyen dinámicamente los nombres de estos métodos (los getters), siempre deben ser getMayus nombrar con camelCase o cambiar BuscarCliente
+//Partes del código construyen dinámicamente los nombres de estos métodos (los getters), siempre deben ser getMayus nombrar con camelCase
     public function getNombre() {return $this->nombre;}
     public function getDireccion() {return $this->direccion;}
     public function getLocalidad() {return $this->localidad;}

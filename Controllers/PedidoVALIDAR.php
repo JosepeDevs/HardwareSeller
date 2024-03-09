@@ -7,6 +7,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Models/Pedido.php");
 
 if(isset($_POST["estado"]) || isset($_POST["fecha"]) ) {
+    //ENtramos aqui si estamos editando el pedido
     print"entramos a coger variables";
     //con que compruebe que hay algún dato además del estado sabremos que venimos de modificar como admin los pedidos
     $idPedido = isset($_SESSION["idPedido"]) ? $_SESSION["idPedido"] : null; // CUIDADO QUE ESTO SE SACA DE *****SESSION*******, NO DE POST

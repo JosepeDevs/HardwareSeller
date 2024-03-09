@@ -11,11 +11,11 @@ if(isset( $_POST['estadoEnvio'] ) && !empty($_POST['estadoEnvio'] )){
     } else if($_POST['estadoEnvio'] == "tiendaSINcuenta"){
         $_SESSION['estadoEnvio'] = 5;
         $_SESSION['sinCuenta'] = true;
-        header("Location: ../Views/MetodoDePago.php");
+        header("Location: ../Views/DatosContactoPedido.php");
         exit;
     }else if($_POST['estadoEnvio'] == "DireccionAreaCliente"){
         $_SESSION['estadoEnvio'] = '0.';
-        header("Location:../Views/DireccionSeleccionada.php");
+        header("Location: ../Views/AreaCliente.php");
         exit;
     }else if($_POST['estadoEnvio'] == "direccionYcuenta"){
         $_SESSION['estadoEnvio'] = '0.';
