@@ -111,11 +111,11 @@ function EstadisticasArticulosWeb($dni){
             $articuloMasVendido = "No se pudo determinar el artículo más vendido";
         } else{
             $articuloCodigo = $articuloMasVendido->getCodigo();
-            $nombreNombre = $articuloMasVendido->getNombre();
-            $categoriaCategoria = $articuloMasVendido->getCategoria();
-            $precioPrecio = $articuloMasVendido->getPrecio();
-            $descuentoDescuento = $articuloMasVendido->getDescuento();
-            $articuloMasVendido = "\nEl artículo más vendido tiene el codigo ". $articuloCodigo .". con nombre: ". $nombreNombre .". Con categoria: ". $categoriaCategoria .". Con precio: ". $precioPrecio .". Vendido con descuento: ". $descuentoDescuento;
+            $articuloNombre = $articuloMasVendido->getNombre();
+            $articuloCategoria = $articuloMasVendido->getCategoria();
+            $articuloPrecio = $articuloMasVendido->getPrecio();
+            $articuloDescuento = $articuloMasVendido->getDescuento();
+            $articuloMasVendido = "\nEl artículo más vendido tiene el codigo ". $articuloCodigo .". con nombre: ". $articuloNombre .". Con categoria: ". $articuloCategoria .". Con precio: ". $articuloPrecio ." €. Vendido con descuento: ". $articuloDescuento."%";
         }
     } catch (Exception $e) {
         $_SESSION['BadArticulos'] = true;
@@ -190,9 +190,9 @@ function EstadisticasPedidosWeb($dni){
     $rutaArchivo = $carpeta.$nombreArchivo;
     $informe = fopen($rutaArchivo, "w");//esto también intenta crearla
     $dniLog ="Informe generado por consulta de adminitrador con $dni"."\n";
-    $textoFacturacionTotal = "Facturacion total = ".$facturacionTotal."\n";
-    $textoPromedioPedidos=" Promedio total de los pedidos = ".$promedioTotalPedidos."\n";
-    $textoNumeroPedidos ="Número de pedidos recibidos= ".$numeroPedidosTotal."\n";
+    $textoFacturacionTotal = "Facturacion total = ".$facturacionTotal." € \n";
+    $textoPromedioPedidos=" Promedio total de los pedidos = ".$promedioTotalPedidos."€ \n";
+    $textoNumeroPedidos ="Número de pedidos recibidos= ".$numeroPedidosTotal."€ \n";
 
     if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line, vamos que hace un break line
         fwrite($informe, $textoFacturacionTotal . PHP_EOL) !== false &&
@@ -259,8 +259,8 @@ $rutaArchivo = $carpeta.$nombreArchivo;
 $informe = fopen($rutaArchivo, "w");//esto también intenta crearla
 $dniLog ="Informe generado por consulta de adminitrador con $dni\n";
 $fechasLog ="Periodo consultado entre $fechaInicio y $fechaFin.\n";
-$textoFacturacionTotal = "Facturacion total = ".$facturacionTotal."\n";
-$textoPromedioPedidos=" Promedio total de los pedidos = ".$promedioTotalPedidos."\n";
+$textoFacturacionTotal = "Facturacion total = ".$facturacionTotal." € \n";
+$textoPromedioPedidos=" Promedio total de los pedidos = ".$promedioTotalPedidos."€ \n";
 $textoNumeroPedidos ="Número de pedidos recibidos= ".$numeroPedidosTotal."\n";
 
 
