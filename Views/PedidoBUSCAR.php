@@ -10,7 +10,7 @@ include_once("header.php");
 //BREADCRUMBS AREA CLIENTE
 include_once("BreadCrumbsAreaCliente.php");
 
-print_r($_SESSION);
+//print_r($_SESSION);
 
 //DISTINTAS VISTAS SEGÚN ENLACE
 if(isset($_GET["PedidoConfirmado"])){
@@ -85,7 +85,6 @@ if(isset($_SESSION['dni'])){
 } else{
     $dni="dni no encontrado";
 }
-print"dni vale $dni";
 
 if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQUEST["fechaFin"]) || isset($_REQUEST["codUsuario"]) ) {
     $idPedido=null;//mejor null que sin declarar de todas formas lo voy a guardar dentro de nada con lo que tengamos en el GET
@@ -153,7 +152,6 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
 
     $arrayAtributos = getArrayAtributosPedido();
     if( $arrayPedido !== false){
-        print_r($arrayPedido);
         echo"<table>";
         echo"<tr>";
         //ENCABEZADOS
