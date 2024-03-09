@@ -1,6 +1,8 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Controllers/OperacionesSession.php");
+include_once("../Controllers/GetDniByEmailController.php");
+
 //las funciones ya filtran para que las busquedas solo les devuelvan sus propios datos, con proteger para que solo users entren basta
 //NO PROTEGER ESTO o si no las compras realizadas sin registrarse no tendrán la vista de confirmación
 
