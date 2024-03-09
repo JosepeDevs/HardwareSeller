@@ -39,8 +39,8 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
                 $_SESSION['auth'] = "OK";
                 $_SESSION['rol'] = $rol;
                // print_r($_SESSION);
-                if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1 ||
-                isset($_SESSION["CarritoConfirmado"]) && !empty($_SESSION["CarritoConfirmado"]) 
+                if( ( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1 ) ||
+                    ( isset($_SESSION["CarritoConfirmado"]) && !empty($_SESSION["CarritoConfirmado"])) 
                 ){
                     //echo'vamos a medoto de pago';
                     header('Location: ../Views/MetodoDePago.php');
