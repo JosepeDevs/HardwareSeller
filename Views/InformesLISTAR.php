@@ -37,8 +37,9 @@ if( isset( $_GET["EstadisticasUsuariosWeb"] ) && $_GET["EstadisticasUsuariosWeb"
 
 }
 if($arrayInforme !== false){//urlencode para no mandar caracteres no compatibles por la url, mostramos por pantalla también el contenido del informe
+    //Creamos botón con enlace a archivo download.php para que allí por GET coja 
     print(" <div class='container-fluid'>
-        <button class='btn btn-secondary'><a href='download.php?informe=".urlencode($arrayInforme[0])."'>Descargar informe</a></button>
+        <button class='btn btn-secondary'><a href='../Controllers/download.php?informe=".urlencode($arrayInforme[0])."'>Descargar informe</a></button>
         <br><br>
         <table><tr><td>
         <h3 class='display-1'>".$arrayInforme[1]."</h3>

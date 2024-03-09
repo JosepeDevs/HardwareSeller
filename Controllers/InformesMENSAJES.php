@@ -17,6 +17,10 @@ Function getArrayMensajesPedidos(){
 
     $mensajes=[];
 
+    if(isset($_SESSION['BadnombreArchivo']) && $_SESSION['BadnombreArchivo'] == true){
+        $mensajes[] =  "el nomrbe del archivo no era válido, probablemente contuviera carácteres no permitidos (evitar puntos, dobles puintos, barra, etc).";
+        unset($_SESSION['BadnombreArchivo']);
+    }
     if(isset($_SESSION['ProblemaArticuloMasVendido']) && $_SESSION['ProblemaArticuloMasVendido'] == true){
         $mensajes[] =  "Hubo un problema al generar obtener el artículo más vendido .";
         unset($_SESSION['ProblemaArticuloMasVendido']);
