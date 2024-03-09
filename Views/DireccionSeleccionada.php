@@ -2,7 +2,7 @@
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //ESTA PÁGINA NO SE DEBE PROTEGER, ACCESIBLE A TODOS LOS NAVEGANTES
 //HEADER Y TITULO
-include_once("header.php");
+include_once("../Views/header.php");
 echo'<h1>Datos de la dirección de envío</h1>';
 print_r($_SESSION);
 //RECIBIMOS POR POST LOS DATOS 
