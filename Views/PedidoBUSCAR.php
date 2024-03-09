@@ -76,6 +76,7 @@ if(isset($_GET["PedidoConfirmado"])){
 echo'<br>';
 $rol = GetRolDeSession();
 $dni = GetDniByEmail($_SESSION['user']);
+print"dni vale $dni";
 
 if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQUEST["fechaFin"]) || isset($_REQUEST["codUsuario"]) ) {
     $idPedido=null;//mejor null que sin declarar de todas formas lo voy a guardar dentro de nada con lo que tengamos en el GET
@@ -102,7 +103,6 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
             $arrayPedido[] = getPedidoByIdPedido($idPedido);
         } else{
             $arrayPedido[] = getPedidoByIdPedido($idPedido, $dni);
-            print_r($arrayPedido);
         }
         if($arrayPedido == false){
             $_SESSION['idPedidoNotFound'] = true;
