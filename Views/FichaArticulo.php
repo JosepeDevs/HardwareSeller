@@ -14,7 +14,17 @@ if(isset($_GET["codigo"])){
     $imagen = $articulo->getImagen();
     $categoriaInt = $articulo->getCategoria();
     $activo = $articulo->getActivo();
-} 
+}  else{
+    $articulo = null;
+    $codigo = null;
+    $nombre = null;
+    $descuento = null;
+    $descripcion = null;
+    $precio = null;
+    $imagen = null;
+    $categoriaInt = null;
+    $activo = null;
+}
 
 //AÑADIR AL CARRITO
 if(isset($_GET["codArticulo"])) {
