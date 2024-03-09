@@ -41,10 +41,11 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
 
 
 <?
+
+///////////////////QuÉ MOSTRAR SI ESTÁN REGISTRADOS///////////////////
     if(isset($_SESSION['user'])) {
             include_once('../Controllers/ClienteBUSCARController.php');
             $usuario = getClienteByEmail($_SESSION['user']);
-            //NOTHING LIKE A GOOD RETURNING CLIENT!
             echo"
             <h2>Datos usuario y dirección de envío</h2>
             <br>
@@ -57,7 +58,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             
             ";
         } else{
-            //ESTABAN COMPRANDO SIN REGISTRARSE LOS MUY TRUANES
+////////////////////QUE MOSTRAR SI NO ESTAN REGISTRADOS////////////////////
             $_SESSION['RegistroDurantePedido'] = 1;
             $_SESSION["nuevoCliente"] = "true";
             echo '
@@ -69,7 +70,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <a href="#">Esto en un futuro será un botón para hacer login/registrarse con google usando OAuth</a>
             <br>
             <div id="ocultoSiTienenCuenta" style="display: none;">
-            <form action="../Controllers/ValidarDatosCliente.php" method="post">
+    <form action="../Controllers/ValidarDatosCliente.php" method="post">
                 <table>
                     <tr>
                         <th><label for="nombre">Nombre:</label></th>
@@ -82,14 +83,14 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
                         <th><label for="psswrd">contraseña:</label></th>
                     </tr>
                     <tr>
-                        <td><input type="text" name="nombre" id="nombre" required><br><br></td>
-                        <td><input type="text" name="direccion" id="direccion" required ><br><br></td>
-                        <td><input type="text" name="localidad" id="localidad" required ><br><br></td>
-                        <td><input type="text" name="provincia" id="provincia" required><br><br>
-                        <td><input type="tel" name="telefono" id="telefono" required><br><br>
-                        <td><input type="email" name="email" id="email" required><br><br>
-                        <td><input type="text" name="dni" id="dni" required pattern="^\d{8}\w{1}$"><br><br></td>
-                        <td><input type="password" name="psswrd" id="pssword" required><br><br>
+                        <td><input type="text" name="nombre" id="nombre"  class="disabled-required" disabled><br><br></td>
+                        <td><input type="text" name="direccion" id="direccion" class="disabled-required" disabled ><br><br></td>
+                        <td><input type="text" name="localidad" id="localidad" class="disabled-required" disabled ><br><br></td>
+                        <td><input type="text" name="provincia" id="provincia" class="disabled-required" disabled><br><br>
+                        <td><input type="tel" name="telefono" id="telefono"  class="disabled-required" disabled><br><br>
+                        <td><input type="email" name="email" id="email"  class="disabled-required" disabled><br><br>
+                        <td><input type="text" name="dni" id="dni"  class="disabled-required" disabled pattern="^\d{8}\w{1}$"><br><br></td>
+                        <td><input type="password" name="psswrd" id="pssword"  class="disabled-required" disabled><br><br>
                     </tr>
                 </table>
             </div>
@@ -107,41 +108,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
         <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
         <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
         <input id='Registrarse' style='display: block;' type='submit' value='Proceder al método de pago'>
-    
-    
-    <?
-/*
-echo'
-    </div>    
-<div class="finForm">';
-                if(isset($_SESSION['user'])) {
-                    //si estan logeados se mostrará uno de estos dos botones, uno por posible dirección
-                    print'<div id="DivtiendaRegistrados" style="display: block;">';
-                    echo"<button id='tiendaRegistrados' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Ya tengo cuenta, recogeré y pagaré en tienda</a></button>";
-                    print'</div>';
-                    //este boton será 
-                    print'<div id="DivdireccionRegistrados" style="display: none;">';
-                    echo"<button id='direccionRegistrados' style='display: none; type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago (envío a mi dirección)>></a></button>";
-                    print'</div>';
-                }else{
-                    //si están comprando sin registrarse verán uno de estos botones
-                    //sin registrarse y recogida a tienda
-                    print'<div id="DivtiendaSinRegistrarse" style="display: block;">';
-                    print"<button id='tiendaSinRegistrarse' style='display: block;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=5' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Pago y recogida en tienda→→</a></button>";
-                    print'</div>';
-                    print'<div id="DivdireccionSinRegistrase" style="display: none;">';
-                        // sin registrarse y envio a mi direccion
-                        print"<button id='direccionSinRegistrase' style='display: none;' type='button'><a href='../Views/MetodoDePago.php?estadoEnvio=0' class='enlace-arriba-de-footer'><i class='lni lni-chevron-right'></i>Proceder al método de pago sin registrarme con envío a mi dirección</a></button>";
-                    print'</div>';
-                    
-                    print'<div id="DivRegistrarse" style="display: none;">';
-                    //este es si marcan registrarse
-                    print"<button id='Registrarse' style='display: none;' type='submit' value'Proceder al método de pago y registrarme→→'</button>";
-                    print'</div>';
-                }
-            */
-                ?>
-        </div> 
+</div> 
     </form> 
         <br>
         <?php
@@ -163,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //otros elementos
     var checkBox = document.getElementById('crearCuenta');
     var metodoEnvioInput = document.getElementById('estadoEnvio-metodoEnvioInput');
-    var formularioEnvio = document.getElementById('formularioEnvio');
+    var formularioEnvio = document.getElementById('formularioEnvio');// donde se ve la direccion ya existente o se da la opcion de registrarse 
     var DivdireccionRegistrados = document.getElementById('DivdireccionRegistrados');
     var DivdireccionSinRegistrase = document.getElementById('DivdireccionSinRegistrase');
     var DivRegistrarse = document.getElementById('DivRegistrarse');
@@ -181,49 +148,44 @@ document.addEventListener('DOMContentLoaded', function() {
     //primero hacemos visible el DIV que toque según dirección de envío
     metodoEnvioInput.addEventListener('change', function() {
         if (this.value == 'direccionSINcuenta') {
-             //si eligen envío a direccion
+            HabilitarInputs() //si eleigieron envio a dirección sin crear cuenta deben estar activos los inputs
+             //si eligen envío a direccion aparecerá el formulario
             formularioEnvio.style.display = 'block';
             ocultoSiTienenCuenta.style.display = 'block';
-           /* DivdireccionSinRegistrase.style.display = 'block';
-            DivdireccionRegistrados.style.display = 'block';
-            DivRegistrarse.style.display = 'block';
-            DivtiendaSinRegistrarse.style.display = 'none';
-            DivtiendaRegistrados.style.display = 'none';*/
         }  else if (this.value == '0'){
+            DisableInputs() // si ya estan registrados los inputs deben estar disablesd para que no manden nulls 
+            //eligieron envio a mi dirección
             formularioEnvio.style.display = 'block';
             ocultoSiTienenCuenta.style.display = 'none';
         }else if(this.value == 'direccionYcuenta'){
+            //envio a dirección y crear cuenta
+            HabilitarInputs()
             formularioEnvio.style.display = 'block';
             ocultoSiTienenCuenta.style.display = 'block';
         }  else {
             //recogida en tienda
+            DisableInputs() // si no es visible deben estar disabled para que no manden nulls 
             formularioEnvio.style.display = 'none';
             ocultoSiTienenCuenta.style.display = 'none';
-  /*          DivdireccionSinRegistrase.style.display = 'none';
-            DivdireccionRegistrados.style.display = 'none';
-            DivRegistrarse.style.display = 'none';
-            DivtiendaSinRegistrarse.style.display = 'block';
-            DivtiendaRegistrados.style.display = 'block';*/
         }
     });
+
+    // CAMIBAMOS LOS DISABLED POR REQUIRED
+    function HabilitarInputs(){
+        document.querySelectorAll(".disabled-required").forEach(function(input) {//a cada uno de los elementos seleccionados aplicar↓
+        input.removeAttribute("disabled"); //quitamos el disabled para que se envíe
+        input.addAttribute("required"); //añadimos el required
+        });
+    }
+
+    // CAMIBAMOS LOS REQUIRED POR DISABLED
+        function DisableInputs(){
+        document.querySelectorAll(".disabled-required").forEach(function(input) {//a cada uno de los elementos seleccionados aplicar↓
+        input.removeAttribute("required"); //quitamos el required para que se envíe
+        input.addAttribute("disabled"); //añadimos el disbled
+        });
+    }
+
 });
-/*
-//luego según si queiren o no registrase mostramos unos u otros botones
-    checkBox.addEventListener('change', function() {
-        if (this.checked) {
-            //es que quieren registrarse y no lo están
-            tiendaRegistrados.style.display = 'none';
-            direccionRegistradosdireccionRegistrados.style.display = 'none';
-            tiendaSinRegistrarse.style.display = 'none';
-            direccionSinRegistrase.style.display = 'none';
-            Registrarse.style.display = 'block'; //con este botón cubrimos todos los caminos
-        } else {
-            //SIN REGISTRASE todos en block luego mostraremos  div según  envío o tienda
-            tiendaRegistrados.style.display = 'none';
-            direccionRegistradosdireccionRegistrados.style.display = 'none';
-            tiendaSinRegistrarse.style.display = 'block';
-            direccionSinRegistrase.style.display = 'block';
-            Registrarse.style.display = 'none'; 
-        }
-    });*/
+
 </script>
