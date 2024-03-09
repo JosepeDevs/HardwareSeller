@@ -85,7 +85,7 @@ if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true")
         exit;
     }else{
        // print('hola2');
-        header("Location: ../Views/PedidosLISTAR.php");
+        header("Location: ../Views/ PedidosLISTAR.php");
         exit;
     }
 };

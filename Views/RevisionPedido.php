@@ -88,9 +88,13 @@ if(!isset($_SESSION['estado'])){
 
 if(isset($_SESSION['user'])) {
     include_once("../Controllers/ClienteBUSCARController.php");
-    $usuario = getClienteByEmail($_SESSION['user']);
-    $dni=$usuario->getDni();
-    $_SESSION['codUsuario'] = $dni;
+   if(isset($_SESSION['sinCuenta']) && $_SESSION['sinCuenta']== true){
+        $_SESSION['codUsuario'] = $_SESSION['dni'];
+   }else{
+       $usuario = getClienteByEmail($_SESSION['user']);
+       $dni=$usuario->getDni();
+       $_SESSION['codUsuario'] = $dni;
+   }
     include_once('../Controllers/ClienteBUSCARController.php');
     
     if (strpos($estadoEnvio,"5") !== false){
