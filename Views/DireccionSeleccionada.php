@@ -33,6 +33,7 @@ print_r($_SESSION);
         if(isset($_SESSION['sinCuenta']) && $_SESSION['sinCuenta'] == true){
             echo'
             <h4>Ha seleccionado no crear cuenta con los datos que nos va a facilitar</h4>';
+            unset($_SESSION['sinCuenta']);
         }
         echo'
         <form action="../Controllers/ValidarDatosCliente.php" method="post">

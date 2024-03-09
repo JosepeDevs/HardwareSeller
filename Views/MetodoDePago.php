@@ -33,7 +33,7 @@ echo'<h1>Seleccione el método de pago</h1>';
 
     <div class='finForm'>
         <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
-        <button type='button'><a href='../Views/DireccionPedido.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>VOlcer a la selección de la dirección de envío</a></button>
+        <button type='button'><a href='../Views/DireccionPedido.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Volver a la selección de la dirección de envío</a></button>
         <input type='submit' value="Guardar método de pago y revisión final del pedido"></input>
     </div> 
 </form> 
