@@ -272,7 +272,8 @@ public static function borradoLogicoPedido($idPedido){
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Pedido");
             $pedido = $statement->fetch();
-            if(empty($pedido)){
+            if(empty($pedido) || $pedido==false || empty($pedido->idPedido) ){
+                //si el resultado está vacio, es falso o es un objeto vacio (si idPedido está vacio el resto de props estarán vacias), devolvemos false
                 $_SESSION['ErrorGetPedidos'] = true;
                 return false;
             }else{
