@@ -14,6 +14,7 @@ include_once("BreadCrumbsAreaCliente.php");
 if(isset($_GET["PedidoConfirmado"])){
     //llegan de hacer un pedido, vamos a mostrarles los datos del pedido y darles instrucciones para próximos pasos
     echo'
+    <br><br>
     <h1>
         Pedido recibido
     </h1>
