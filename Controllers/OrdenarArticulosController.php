@@ -43,7 +43,9 @@ function getArrayArticulosFiltradosByCodigoCategoria($arrayArticulos, $codigoCat
         }
     }
     if(count(  $arrayArticulosFiltrados )==0){
-        $_SESSION['NoSePudoFiltrar'] = true;
+        if($codigoCategoria !== null){ //si no han intentado filtrar no subir a session el fallo, solo queremos subir esto si intentan filtrar y no encuentra nada
+            $_SESSION['NoSePudoFiltrar'] = true;
+        }
         return $arrayArticulos;
     } else{
         return $arrayArticulosFiltrados;
