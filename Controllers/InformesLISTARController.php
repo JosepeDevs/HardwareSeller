@@ -63,7 +63,7 @@ function EstadisticasUsuariosWeb($dni){
     }
     fclose($informe);
 
-    $textoTotalInforme =  $dniLog.$totalRegistrados.$activosRegistrados.$inactivosRegistrados;
+    $textoTotalInforme =  $nombreArchivo."<br>".$dniLog."<br>".$totalRegistrados."<br>".$activosRegistrados."<br>".$inactivosRegistrados;
     $arrayConEnlaceYTexto = array($nombreArchivo, $textoTotalInforme);
     return $arrayConEnlaceYTexto;
 }
@@ -142,7 +142,7 @@ function EstadisticasArticulosWeb($dni){
     }
     fclose($informe);
     
-    $textoTotalInforme =  $dniLog.$textoNumeroTotal.$textoActivos.$textoInactivos.$articuloMasVendido;
+    $textoTotalInforme =  $nombreArchivo."<br>".$dniLog."<br>".$textoNumeroTotal."<br>".$textoActivos."<br>".$textoInactivos."<br>".$articuloMasVendido;
     $arrayConEnlaceYTexto = array($nombreArchivo, $textoTotalInforme);
     return $arrayConEnlaceYTexto;
 
@@ -202,7 +202,7 @@ function EstadisticasPedidosWeb($dni){
     }
     fclose($informe);
     
-    $textoTotalInforme =  $dniLog.$textoFacturacionTotal.$textoPromedioPedidos.$textoNumeroPedidos;
+    $textoTotalInforme =  $nombreArchivo."<br>".$dniLog."<br>".$textoFacturacionTotal."<br>".$textoPromedioPedidos."<br>".$textoNumeroPedidos;
     $arrayConEnlaceYTexto = array($nombreArchivo, $textoTotalInforme);
     return $arrayConEnlaceYTexto;
 
@@ -273,7 +273,7 @@ if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line
 }
 fclose($informe);
 
-$textoTotalInforme =  $dniLog.$fechasLog.$textoFacturacionTotal.$textoPromedioPedidos.$textoNumeroPedidos;
+$textoTotalInforme =  $nombreArchivo."<br>".$dniLog."<br>".$fechasLog."<br>".$textoFacturacionTotal."<br>".$textoPromedioPedidos."<br>".$textoNumeroPedidos;
 $arrayConEnlaceYTexto = array($nombreArchivo, $textoTotalInforme);
 return $arrayConEnlaceYTexto;
 

@@ -50,17 +50,17 @@ if($arrayInforme !== false){//urlencode para no mandar caracteres no compatibles
 <table class='table table-bordered'>
     <tr>
         <td class="container-fluid">
-            <button type='button' class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasUsuariosWeb=1'>Generar enlace para descargar informe Clientes</button>
+            <button type='button' class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasUsuariosWeb=1'>Generar enlace para descargar y mostrar informe Clientes</button>
         </td>
     </tr>
     <tr>
         <td class="container-fluid">
-            <button type='button' class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasArticulosWeb=1'>Generar enlace para descargar informe Artículos</button>
+            <button type='button' class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasArticulosWeb=1'>Generar enlace para descargar y mostrar informe Artículos</button>
         </td>
     </tr>
     <tr>
         <td class="container-fluid">
-            <button type='button' class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasPedidosWeb=1'>Generar enlace para descargar informe Pedidos</button>
+            <button type='button' class='btn btn-secondary'><a href='InformesLISTAR.php?EstadisticasPedidosWeb=1'>Generar enlace para descargar y mostrar  informe Pedidos</button>
         </td>
     </tr>
 </table>
@@ -86,7 +86,7 @@ if($arrayInforme !== false){//urlencode para no mandar caracteres no compatibles
     </table>
 
     <div>
-        <h2><input type="submit" value="Generar enlace para descargar informe Pedidos"></h2><br><br><br>
+        <h2><input type="submit" value="Generar enlace para descargar y mostrar informe Pedidos"></h2><br><br><br>
     </div>
 </form>
 
