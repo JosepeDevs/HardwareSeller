@@ -14,7 +14,7 @@ if(!$rolEsAdmin) {
 include_once("OperacionesSession.php");
 include_once("../Controllers/Directorio.php");
 
-//todo  TCPDF  o FPDF u otro para poder descargarlo como pdf
+//todo  TCPDF  o FPDF u otro para poder descargarlo como pdf, por ahora tendrán que guardar la página en pdf si lo quieren como pdf
 
 
 function EstadisticasUsuariosWeb($dni){
@@ -63,7 +63,9 @@ function EstadisticasUsuariosWeb($dni){
     }
     fclose($informe);
 
-    return $nombreArchivo;
+    $textoTotalInforme =  $dniLog.$totalRegistrados.$activosRegistrados.$inactivosRegistrados;
+    $arrayConEnlaceYTexto = array($nombreArchivo, $textoTotalInforme);
+    return $arrayConEnlaceYTexto;
 }
 
 function EstadisticasArticulosWeb($dni){
@@ -140,7 +142,9 @@ function EstadisticasArticulosWeb($dni){
     }
     fclose($informe);
     
-    return $nombreArchivo;
+    $textoTotalInforme =  $dniLog.$textoNumeroTotal.$textoActivos.$textoInactivos;
+    $arrayConEnlaceYTexto = array($nombreArchivo, $textoTotalInforme);
+    return $arrayConEnlaceYTexto;
 
 }
 function EstadisticasPedidosWeb($dni){
@@ -198,7 +202,9 @@ function EstadisticasPedidosWeb($dni){
     }
     fclose($informe);
     
-    return $nombreArchivo;
+    $textoTotalInforme =  $dniLog.$textoFacturacionTotal.$textoPromedioPedidos.$textoNumeroPedidos;
+    $arrayConEnlaceYTexto = array($nombreArchivo, $textoTotalInforme);
+    return $arrayConEnlaceYTexto;
 
 }
 
@@ -212,7 +218,7 @@ try{
     $statement->bindParam(':fechaInicio',$fechaInicio);
     $statement->bindParam(':fechaFin',$fechaFin);
     $statement->execute();
-    $facturacionTotal = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la fila 
+    $facturacionTotal = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la columna de total 
     $facturacionTotal=round(floatval($facturacionTotal),2);
 } catch (Exception $e) {
     $_SESSION['BadPedido'] = true;
@@ -226,7 +232,7 @@ try{
     $statement->bindParam(':fechaInicio',$fechaInicio);
     $statement->bindParam(':fechaFin',$fechaFin);
     $statement->execute();
-    $promedioTotalPedidos = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la fila 
+    $promedioTotalPedidos = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la columna de total 
     $promedioTotalPedidos=round(floatval($promedioTotalPedidos),2);
 } catch (Exception $e) {
     $_SESSION['BadPedido'] = true;
@@ -240,7 +246,7 @@ try{
     $statement->bindParam(':fechaInicio',$fechaInicio);
     $statement->bindParam(':fechaFin',$fechaFin);
     $statement->execute();
-    $numeroPedidosTotal = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la fila 
+    $numeroPedidosTotal = $statement->fetch(PDO::FETCH_COLUMN);// queremos  la columna de total 
     $numeroPedidosTotal=intval($numeroPedidosTotal);
 } catch (Exception $e) {
     $_SESSION['BadPedido'] = true;
@@ -257,6 +263,7 @@ $textoFacturacionTotal = "Facturacion total = ".$facturacionTotal."\n";
 $textoPromedioPedidos=" Promedio total de los pedidos = ".$promedioTotalPedidos."\n";
 $textoNumeroPedidos ="Número de pedidos recibidos= ".$numeroPedidosTotal."\n";
 
+
 if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line
     fwrite($informe, $fechasLog . PHP_EOL) !== false &&
     fwrite($informe, $textoFacturacionTotal . PHP_EOL) !== false &&
@@ -266,7 +273,8 @@ if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line
 }
 fclose($informe);
 
-return $nombreArchivo;
-
+$textoTotalInforme =  $dniLog.$fechasLog.$textoFacturacionTotal.$textoPromedioPedidos.$textoNumeroPedidos;
+$arrayConEnlaceYTexto = array($nombreArchivo, $textoTotalInforme);
+return $arrayConEnlaceYTexto;
 
 }

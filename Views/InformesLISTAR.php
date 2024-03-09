@@ -65,22 +65,28 @@ include_once("../Controllers/InformesLISTARController.php");
 
 <?php
 
-$nombreInforme=false;
-       if( isset( $_GET["EstadisticasUsuariosWeb"] ) && $_GET["EstadisticasUsuariosWeb"] == 1 )  {
-    $nombreInforme= EstadisticasUsuariosWeb($dni);
+$arrayInforme=false;
+if( isset( $_GET["EstadisticasUsuariosWeb"] ) && $_GET["EstadisticasUsuariosWeb"] == 1 )  {
+    $arrayInforme= EstadisticasUsuariosWeb($dni);
+
 } else if( isset( $_GET["EstadisticasArticulosWeb"] ) && $_GET["EstadisticasArticulosWeb"] == 1 )  {
-    $nombreInforme= EstadisticasArticulosWeb($dni);
+    $arrayInforme= EstadisticasArticulosWeb($dni);
+
 } else if( isset( $_GET["EstadisticasPedidosWeb"] ) && $_GET["EstadisticasPedidosWeb"] == 1 )  {
-    $nombreInforme= EstadisticasPedidosWeb($dni);
+    $arrayInforme= EstadisticasPedidosWeb($dni);
+
 } else if( isset( $_POST["fechaInicio"] ) && !empty($_POST['fechaInicio']) && isset($_POST["fechaFin"]) && !empty($_POST['fechaFin']) )  {
     $fechaInicio = !empty($_POST["fechaInicio"]) ? $_POST['fechaInicio'] : null ; 
     $fechaFin = !empty($_POST["fechaFin"]) ?  $_POST['fechaFin'] : null ; 
-    $nombreInforme= EstadisticasPedidosRangoFechas($dni,$fechaInicio, $fechaFin);
+    $arrayInforme= EstadisticasPedidosRangoFechas($dni,$fechaInicio, $fechaFin);
+
 }
-if($nombreInforme !== false){
+if($arrayInforme !== false){//urlencode para no mandar caracteres no compatibles por la url, mostramos por pantalla también el contenido del informe
     print(" <div class='container-fluid'>
-       <button class='btn btn-secondary'><a href='download.php?informe=".urlencode($nombreInforme)."'>Descargar informe</a></button>
-    </div>");//urlencode para no mandar caracteres no compatibles por la url
+       <button class='btn btn-secondary'><a href='download.php?informe=".urlencode($arrayInforme[0])."'>Descargar informe</a></button>
+       <br>
+       <span class='h2'>".$arrayInforme[1]."</span>
+    </div>");
 }
 
 include_once("footer.php");
