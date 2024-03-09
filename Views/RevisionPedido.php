@@ -101,7 +101,7 @@ if(isset($_SESSION['user'])) {
     
     if (strpos($estadoEnvio,"5") !== false){
         //si encontramos un 5 en algun sitio de estadoEnvio es que querían recogida en tienda
-        echo"<h2>Han seleccionado Recogida del pedido en tienda.</h2>";
+        echo"<h2>Han seleccionado Recogida del pedido en tienda.</h2><br><h3>El stock se reservará un máximo de 5 días.</h3>";
         $_SESSION['estado'] = ($_SESSION['estado'] . "5"); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
     } else if (strpos($estadoEnvio,"0") !== false){
         //si es 0 es envío,  leemos sus datos

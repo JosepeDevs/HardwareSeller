@@ -6,7 +6,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 if(isset( $_POST['estadoEnvio'] ) && !empty($_POST['estadoEnvio'] )){
     if($_POST['estadoEnvio'] == "tiendaCONcuenta"){
         $_SESSION['estadoEnvio'] = 5;
-        header("Location: ../Views/MetodoDePago.php");
+        header("Location: ../Views/AreaCliente.php");
         exit;
     } else if($_POST['estadoEnvio'] == "tiendaSINcuenta"){
         $_SESSION['estadoEnvio'] = 5;

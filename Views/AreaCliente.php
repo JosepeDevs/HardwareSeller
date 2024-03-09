@@ -32,6 +32,11 @@ if( !$userExiste){
 
     <?php
 } else{
+    if(isset($_SESSION['CarritoConfirmado']) && !empty($_SESSION['CarritoConfirmado']) ){
+        //es que hemos llegado aquí tras seleccionar recogida en tienda pero que quieren guardar el pedido en su cuenta.
+        header("Location: ../Views/MetodoDePago.php");
+        exit;
+    }
     print"<h2>Bienvenido ".$_SESSION['user']."</h2>";
     $esEditor = AuthYRolEditor();
     $esAdmin = AuthYRolAdmin();
