@@ -10,6 +10,7 @@ print_r($_SESSION);
 $numPedido = isset($_SESSION["numPedido"]) ? $_SESSION["numPedido"] : null;
 $contenidoPedido = isset($_SESSION["CarritoConfirmado"]) ? $_SESSION["CarritoConfirmado"] : null;
 
+//CADA ARTICULO EN EL CARRITO VAMOS A METER SUS DATOS EN UN ARRAY
 foreach ($contenidoPedido as $index => $array) {
     $arrayDatosArticulo = $contenidoPedido[$index];
     $numLinea = $index+1;
@@ -73,19 +74,29 @@ foreach ($contenidoPedido as $index => $array) {
 
 
     if( isset($_SESSION["editandoContenidoPedido"]) && $_SESSION["editandoContenidoPedido"] == "true" ){
-      //todo esto tendré que manejarlo recibiendo datos por $_POST
+        
+        //esto hay que ejecutarlo mantengamos o no el numPedido
         if($_SESSION['numPedido'] !== null){
-            //no han escrito código, quieren que se mantega el que ya tenía
             $numPedidoOriginal = $_SESSION["numPedido"];
-            $numPedidoOriginalLibre = ContenidoPedido::numPedidoLibre($numPedidoOriginal);
-            if($numPedidoOriginalLibre == true) {  $_SESSION['numPedidoDeberiaExistir'] = true;}
-        }
+            $numPedidoOriginalDeberiaExistir = ContenidoPedido::numPedidoLibre($numPedidoOriginal);
+            if($numPedidoOriginalDeberiaExistir == true) { 
+                //si es true debemos subir error, porque debería existir
+                $_SESSION['numPedidoDeberiaExistir'] = true;
+                echo "<script>history.back();</script>";
+                exit;
+            } 
+        }          
 
         if( !$mantenemosnumPedido ){
             //entonces hay numPedido nuevo, validamos formato y que esté libre (el nuevo)
             $numPedido = $_POST["numPedido"];
             $numPedidoLibre = ContenidoPedido::numPedidoLibre($numPedido);
-            if($numPedidoLibre == false) {  $_SESSION['numPedidoAlreadyExists']= true;}
+            if($numPedidoLibre == false) {
+                //si no está libre subimos errro y retrocedemos
+                $_SESSION['numPedidoAlreadyExists']= true;
+                echo "<script>history.back();</script>";
+                exit;
+            }
         }
 
         if( isset($_SESSION["editandoContenidoPedido"]) && $_SESSION["editandoContenidoPedido"] == "true"){
@@ -113,21 +124,14 @@ foreach ($contenidoPedido as $index => $array) {
         $contador=0;
         print"entramos a crear nuevo Contenido pedido";
         foreach ($arrayContenidoPedido as $contenidoPedido) {
-            //all good y estamos añadiendo artículo nuevo
+            //Sacamos del array de objetos ContenidoPedido los datos de cada artículo
             $numPedido=$contenidoPedido->getNumPedido();
-            print"<br>numPedido=".$numPedido;
             $numLinea=$contenidoPedido->getNumLinea();
-            print"<br>numLinea=".$numLinea;
             $codArticulo=$contenidoPedido->getCodArticulo();
-            print"<br>codArticulo=".$codArticulo ;
             $cantidad=$contenidoPedido->getCantidad();
-            print"<br>cantidad=".$cantidad;
             $precio=$contenidoPedido->getPrecio();
-            print"<br>precio=".$precio;
             $descuento=$contenidoPedido->getDescuento();
-            print"<br>descuento=".$descuento;
             $activo=$contenidoPedido->getActivo();
-            print"<br>activo=".$activo;
             $operacionExitosa = ContenidoPedido::AltaContenidoPedido($numPedido, $numLinea,$codArticulo, $cantidad, $precio, $descuento, $activo);
             if($operacionExitosa){
                 $contador+= 1;
@@ -139,7 +143,10 @@ foreach ($contenidoPedido as $index => $array) {
             }
         }
     };
+
+////////////ROUTER para ver donde vamos    
 if(isset($_SESSION["CarritoConfirmado"])){
+    //si existe carrito confirmado es que venimos de confirmar el pedido, hay que mostrar los datos de pedido
     header("Location: ../Views/PedidoBUSCAR.php?idPedido=$numPedido&PedidoConfirmado=true");
 }else{
     //venimos de estar editando o dando de alta un pedido como admins

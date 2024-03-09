@@ -1,7 +1,7 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
-//EN PRINCIPIO NO PROTEGER PARA QUE SE PUEDAN HACER PEDIDOS SIN REGISTRARSE
+// NO PROTEGER PARA QUE SE PUEDAN HACER PEDIDOS SIN REGISTRARSE
 
 
 include_once("../Models/Pedido.php");

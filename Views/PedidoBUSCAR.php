@@ -2,14 +2,7 @@
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Controllers/OperacionesSession.php");
 //las funciones ya filtran para que las busquedas solo les devuelvan sus propios datos, con proteger para que solo users entren basta
-$usuarioLogeado = UserEstablecido();
-if( $usuarioLogeado == false){
-    session_destroy();
-    echo "PedidoBUSCAR dice: no está user en session";
-    header("Location: /index.php");
-    exit;
-
-}
+//NO PROTEGER ESTO o si no las compras realizadas sin registrarse no tendrán la vista de confirmación
 
 include_once("header.php");
 //BREADCRUMBS AREA CLIENTE
