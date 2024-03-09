@@ -254,7 +254,7 @@ try{
 }
 
 $carpeta = DirectorioInformes();
-$nombreArchivo='estadisticasPedidosAllTime'.date("Y-m-d.H-i").".txt";
+$nombreArchivo='estadisticasPedidosRangoFechas'.date("Y-m-d.H-i").".txt";
 $rutaArchivo = $carpeta.$nombreArchivo;
 $informe = fopen($rutaArchivo, "w");//esto también intenta crearla
 $dniLog ="Informe generado por consulta de adminitrador con $dni\n";
