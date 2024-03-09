@@ -101,7 +101,7 @@ if(isset($_SESSION['sinCuenta']) && $_SESSION['sinCuenta']== true && isset($_SES
 if(isset($_SESSION['user'])) {    
     if (strpos($estadoEnvio,"5") !== false){
         //si encontramos un 5 en algun sitio de estadoEnvio es que querían recogida en tienda
-        echo"<h2>Han seleccionado Recogida del pedido en tienda.</h2><br><h3>El stock se reservará un máximo de 5 días.</h3>";
+        echo"<h2>Han seleccionado Recogida del pedido en tienda.</h2><br><h3>El stock se reservará un máximo de 3 días.</h3>";
         $_SESSION['estado'] = ($_SESSION['estado'] . "5"); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
     } else if (strpos($estadoEnvio,"0") !== false){
         //si es 0 es envío,  leemos sus datos
@@ -183,7 +183,7 @@ if(isset($_POST["estado"])) {
         echo"
         <h2>Pago en tienda</h2>
         <p> Nuestra dirección: Calle existente nº infinito, avenida de la indeterminación/0 , CP 00000, Elche, Alicante, España, Europa, Tierra, Universo #3 </p>
-        <p> Se reservará el stock un máximo de 5 días, transcurrido ese tiempo se pondrá de nuevo a la venta</p>
+        <p> Se reservará el stock un máximo de 3 días, transcurrido ese tiempo se pondrá de nuevo a la venta</p>
         <p> Si seleccionó envío a su dirección se lo haremos llegar tan pronto venga a nuestra tienda a realizar el pago y tengamos stock, si ya hubiera disponible cuando realice el pago podrá llevarse el material usted mismo. </p>
         <br>";
         if (strpos($_SESSION['estado'],"5") == false){
