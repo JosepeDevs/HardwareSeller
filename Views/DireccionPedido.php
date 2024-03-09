@@ -148,25 +148,25 @@ document.addEventListener('DOMContentLoaded', function() {
     //primero hacemos visible el DIV que toque según dirección de envío
     metodoEnvioInput.addEventListener('change', function() {
         if (this.value == 'direccionSINcuenta') {
-            HabilitarInputs() //si eleigieron envio a dirección sin crear cuenta deben estar activos los inputs
-             //si eligen envío a direccion aparecerá el formulario
+            //si eligen envío a direccion aparecerá el formulario
             formularioEnvio.style.display = 'block';
             ocultoSiTienenCuenta.style.display = 'block';
+            HabilitarInputs() //si eleigieron envio a dirección sin crear cuenta deben estar activos los inputs
         }  else if (this.value == '0'){
-            DisableInputs() // si ya estan registrados los inputs deben estar disablesd para que no manden nulls 
             //eligieron envio a mi dirección
             formularioEnvio.style.display = 'block';
             ocultoSiTienenCuenta.style.display = 'none';
+            DisableInputs() // si ya estan registrados los inputs deben estar disablesd para que no manden nulls 
         }else if(this.value == 'direccionYcuenta'){
             //envio a dirección y crear cuenta
-            HabilitarInputs()
             formularioEnvio.style.display = 'block';
             ocultoSiTienenCuenta.style.display = 'block';
+            HabilitarInputs()
         }  else {
             //recogida en tienda
-            DisableInputs() // si no es visible deben estar disabled para que no manden nulls 
             formularioEnvio.style.display = 'none';
             ocultoSiTienenCuenta.style.display = 'none';
+            DisableInputs() // si no es visible deben estar disabled para que no manden nulls 
         }
     });
 
