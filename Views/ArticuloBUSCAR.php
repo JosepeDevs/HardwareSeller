@@ -2,6 +2,7 @@
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
+$rol = GetRolDeSession();
 //NO PROTEGER SE USA EN ASIDE PARA QUE PUEDAN BUSCAR ARTICULOS
 include_once("header.php");
 ?>
@@ -69,7 +70,9 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
             $nombreAtributo = $atributo;
             echo "<th>$nombreAtributo</th>";
         }
-        echo "<th>Editar</th>";
+        if($rol !== null || $rol == "admin" || $rol == "empleado" || $rol == "editor"){
+            echo "<th>Editar</th>";
+        }
 
         //DATOS DEL OBJETO O LOS OBJETOS
         echo "</tr>";
@@ -99,11 +102,13 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
                     echo "<td>$valor</td>";
                 }
             }
-            echo "<td> 
-                    <a href='ArticuloEDITAR.php?codigo=$codigo'>
-                        <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' />
-                    </a>
-                </td>";
+            if($rol !== null || $rol == "admin" || $rol == "empleado" || $rol == "editor"){
+                echo "<td> 
+                        <a href='ArticuloEDITAR.php?codigo=$codigo'>
+                            <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' />
+                        </a>
+                    </td>";
+            }
             echo "</tr>";
         }
         echo "</table>";
