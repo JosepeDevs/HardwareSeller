@@ -80,9 +80,11 @@ if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true")
     }
     if(isset($_SESSION['CarritoConfirmado']) && !empty($_SESSION['CarritoConfirmado']) ){
         //ahora que ya tenemos el pedido creado y en session vamos a poblar su contenido
-       //header("Location: ../Controllers/ContenidoPedidoVALIDAR.php");
+        print('hola');
+        //header("Location: ../Controllers/ContenidoPedidoVALIDAR.php");
         exit;
     }else{
+        print('hola2');
        // header("Location: ../Views/PedidosLISTAR.php");
         exit;
     }
