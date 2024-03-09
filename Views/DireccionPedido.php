@@ -5,6 +5,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("header.php");
 echo'<h1>Dirección de envío</h1>';
 //include_once("aside.php");
+print_r($_SESSION);
 //RECIBIMOS POR POST LOS DATOS DE CONTENIDOPEDIDO
 if(isset( $_POST['numLinea1'] )){
     //si llegamos del post vamos a subir a session todos los datos recibidos
