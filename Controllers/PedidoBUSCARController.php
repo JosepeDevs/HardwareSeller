@@ -1,15 +1,8 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("OperacionesSession.php");
-$usuarioLogeado = UserEstablecido();
-if( $usuarioLogeado == false){
-    session_destroy();
-    echo "PedidoBUSCAR dice: no está user en session";
-    header("Location: /index.php");
-    exit;
 
-}
-
+//NO PROTEGER O NO FUNCIONA LA PÁGINA DE CONFIRMACIÓN DE PEDIDO CUANDO COMPRAN SIN REGISTRARSE
 
 function getArrayAtributosPedido(){
     include_once("../Models/Pedido.php");
