@@ -20,6 +20,14 @@ print("<h1>Datos de contacto para pedido sin registro</h1><br>");
             <td><input type="text" name="dni" id="dni"  class="disabled-required" required pattern="^\d{8}\w{1}$"><br><br></td>
         </tr>
     </table>
+
+    <div class='finForm'>
+            <br>
+            <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
+            <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
+            <input type='submit' value='Proceder al método de pago'>
+    </div> 
+</form>
 <?
 
 
