@@ -84,7 +84,6 @@ $provincia = null;
 $psswrd = "HardWare"; //No quiero hacer nullable la columna de contraseña así que para los registros minimos tendrán la contraseña HardWare, podrán reestablecer contraseña.
 
 if( isset($_SESSION["nuevoCliente"]) && $_SESSION["nuevoCliente"] == "true" ){
-    $arrayDatosCliente  = array($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
 
     $operacionExitosa = Cliente::InsertCliente($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
     if($operacionExitosa == true){
