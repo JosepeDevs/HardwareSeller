@@ -132,7 +132,7 @@ function EstadisticasArticulosWeb($dni){
     $textoNumeroTotal = "Número de artículos registrados (activos e inactivos): ".$totalArticulos."\n";
     $textoActivos="Número de artículos registrados (activos): ".$totalActivos."\n";
     $textoInactivos ="Número de artículos registrados (inactivos): ".$totalInactivos."\n";
-
+    
     if (fwrite($informe, $dniLog . PHP_EOL) !== false && //EOL es end of line, vamos que hace un break line
         fwrite($informe, $textoNumeroTotal . PHP_EOL) !== false &&
         fwrite($informe, $textoActivos . PHP_EOL) !== false &&
@@ -142,7 +142,7 @@ function EstadisticasArticulosWeb($dni){
     }
     fclose($informe);
     
-    $textoTotalInforme =  $dniLog.$textoNumeroTotal.$textoActivos.$textoInactivos;
+    $textoTotalInforme =  $dniLog.$textoNumeroTotal.$textoActivos.$textoInactivos.$articuloMasVendido;
     $arrayConEnlaceYTexto = array($nombreArchivo, $textoTotalInforme);
     return $arrayConEnlaceYTexto;
 

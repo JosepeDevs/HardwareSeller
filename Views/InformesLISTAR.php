@@ -17,7 +17,7 @@ $dni=GetDniByEmail($_SESSION['user']);//acabamos de comprobar que sea admin así
 include_once("header.php");
 print"<h1>Informes desempeño HardWare Seller</h1>";
 
-print"<br><h2><a href='InformesLISTAR.php'>Recargar página</a></h2><br>";
+print"<br><h2><a href='InformesLISTAR.php'>Reiniciar página</a></h2><br>";
 include_once("../Controllers/InformesLISTARController.php");
 
 $arrayInforme=false;
@@ -42,7 +42,7 @@ if($arrayInforme !== false){//urlencode para no mandar caracteres no compatibles
         <br><br>
         <table><tr><td>
         <h3 class='display-1'>".$arrayInforme[1]."</h3>
-        </td></tr></table>
+        </td></tr></table><br><br>
         </div>");
 }
 
