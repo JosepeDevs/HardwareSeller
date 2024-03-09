@@ -83,8 +83,8 @@ if( isset($_SESSION["editandoPedido"]) && $_SESSION["editandoPedido"] == "true")
        header("Location: ../Controllers/ContenidoPedidoVALIDAR.php");
         exit;
     }else{
-        header("Location: ../Views/PedidosLISTAR.php");
-         exit;
+       // header("Location: ../Views/PedidosLISTAR.php");
+        exit;
     }
 };
 
