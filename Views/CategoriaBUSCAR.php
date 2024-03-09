@@ -67,6 +67,8 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
         $arrayCategorias = GetCategoriasByBusquedaNombre($nombre);
         if($arrayCategorias == false){
             $_SESSION['NombreNotFound'] = true;
+            echo "<script>history.back();</script>";
+            exit;
         }
     }
 
