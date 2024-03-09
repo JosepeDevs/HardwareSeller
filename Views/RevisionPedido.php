@@ -21,7 +21,7 @@ print_r($_SESSION);
 
 <?
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-
+/////////////////////////CANTIDADES
 include_once('../Controllers/ArticuloBUSCARController.php');
 if(isset($_SESSION['CarritoConfirmado'])){
     $arrayItems = $_SESSION['CarritoConfirmado'];//array asociativo con codigo del articulo y cantidad
@@ -70,7 +70,7 @@ if(isset($_SESSION['CarritoConfirmado'])){
 <br><br><br><br>
 <?
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-
+//////////////////////////////////////////DIRECCION ENVIO
 $estadoEnvio= isset($_SESSION["estadoEnvio"])? $_SESSION["estadoEnvio"]: null;
 
 $nombre=isset($_SESSION['nombre']) ? $_SESSION['nombre'] : null;
@@ -112,6 +112,8 @@ if(isset($_SESSION['user'])) {
         <p>Provincia: ".$usuario->getProvincia()."</p>";
         echo"<h3>Gatos de transporte gratis hasta que se implemente la búsqueda de precio en una tarifa de nuestros transportistas y se incluya en el total</h3>";
         $_SESSION['estado'] = ($_SESSION['estado'] . "0"); //metemos esto en el session de estado para indicar que es envío a dirección del cliente
+    }else if($estadoEnvio==null){
+        echo"<h2>método de envío/recogida no determinado </h2>";
     }else{
         echo"<h2>No pudimos determinar el método de envío/recogida seleccionado </h2>";
     }
