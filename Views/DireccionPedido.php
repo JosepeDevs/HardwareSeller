@@ -37,10 +37,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <option for="estadoEnvio" value="direccionSINcuenta">Envío a mi dirección (NO crear cuenta)</option>
         </select>
 
-<!--
-    <div id="formularioEnvio" style="display: none;">
--->
-
+    <div id="formularioEnvio" style="display: noneSSSS;">
 
 <?
 
@@ -71,7 +68,7 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <br>
             <a href="#">Esto en un futuro será un botón para hacer login/registrarse con google usando OAuth</a>
             <br>
-  <!--          <div id="ocultoSiTienenCuenta" style="display: none;"> -->
+           <div id="ocultoSiTienenCuenta" style="display: noneSSSS;"> 
     <form action="../Controllers/ValidarDatosCliente.php" method="post">
                 <table>
                     <tr>
