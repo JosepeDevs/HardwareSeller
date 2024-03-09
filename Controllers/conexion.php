@@ -55,6 +55,7 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
         }
     }
 }
+
     if(isset($_POST['user']) &&  isset($_POST['key'])) {
     $usuario = $_POST['user'];
     $cliente = Cliente::GetClientByEmail($usuario);
