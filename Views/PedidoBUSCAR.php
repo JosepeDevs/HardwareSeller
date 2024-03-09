@@ -75,7 +75,16 @@ if(isset($_GET["PedidoConfirmado"])){
 }
 echo'<br>';
 $rol = GetRolDeSession();
-$dni = GetDniByEmail($_SESSION['user']);
+
+//que consiga el dni de alguna de estas dos formas, por user (registrados y logeados) o de session dni (sin registrrarse)
+if(isset($_SESSION['user'])){
+    $dni = GetDniByEmail($_SESSION['user']);
+}
+if(isset($_SESSION['dni'])){
+    $dni = $_SESSION['dni'];
+} else{
+    $dni="dni no encontrado";
+}
 print"dni vale $dni";
 
 if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQUEST["fechaFin"]) || isset($_REQUEST["codUsuario"]) ) {
