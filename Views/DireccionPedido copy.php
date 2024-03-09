@@ -29,7 +29,7 @@ $_SESSION['CarritoConfirmado'] = $productosYCantidadesConfirmadas; //guardamos l
 unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos llegó inicialmente
 }
 ?>
-<form action="../Controllers/ValidarDatosCliente.php" method="post">
+<form action="../Views/DireccionSeleccionada.php" method="post">
         <select class="estadoEnvio-metodoEnvioInput" name="estadoEnvio" id="estadoEnvio-metodoEnvioInput">
             <option for="estadoEnvio" value="5">Pago y Recogida en tienda</option>
             <option for="estadoEnvio" value="tiendaSINcuenta">Pago y Recogida en tienda (no crear cuenta)</option>
