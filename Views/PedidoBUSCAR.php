@@ -153,7 +153,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
 
 
     $arrayAtributos = getArrayAtributosPedido();
-    if( $arrayPedido !== false){
+    if( $arrayPedido !== false || !empty($arrayPedido) ){
         echo"<table>";
         echo"<tr>";
         //ENCABEZADOS

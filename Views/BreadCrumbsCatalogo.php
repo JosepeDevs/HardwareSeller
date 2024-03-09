@@ -9,7 +9,7 @@ print'
         $codigoCategoria = $_GET["categoria"];
         include_once("../Controllers/CategoriaBUSCARController.php");
         $categoria = getCategoriaByCodigo($codigoCategoria);
-        $nombreCategoria = $categoria->getNombre();
+        $nombreCategoria = $categoria->getNombre(); 
         echo'<p class="breadcrumb-item active"><a href=""> '.$nombreCategoria.' </a> /</p>
         ';
     }
