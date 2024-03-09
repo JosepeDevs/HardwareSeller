@@ -15,8 +15,6 @@ print'
     }
     if(isset($_REQUEST['codigo']) && !empty($_REQUEST['codigo']) ){
       //entonces estamos ya en ficha cliente
-      echo'<p><a class="breadcrumb-item " href="/index.php"> HardWare Seller /</a></p>';
-      echo'<p><a class="breadcrumb-item " href="../Views/Catalogo.php"> Catálogo /</a></p>';
       echo'
           <p><a class="breadcrumb-item " href="FichaArticulo.php?codigo='.$_REQUEST['codigo'].'">
               Artículo ='.$_REQUEST['codigo'].'  /
