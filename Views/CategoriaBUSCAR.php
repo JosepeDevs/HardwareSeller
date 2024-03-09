@@ -58,6 +58,8 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
         $Categoria = getCategoriaByCodigo($codigo);
         if($Categoria == false){
             $_SESSION['CodigoNotFound'] = true;
+            echo "<script>history.back();</script>";
+            exit;
         }
         $arrayCategorias[] = $Categoria;
     }
