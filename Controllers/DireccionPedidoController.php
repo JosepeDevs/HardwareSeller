@@ -16,15 +16,15 @@ if(isset( $_POST['estadoEnvio'] ) && !empty($_POST['estadoEnvio'] )){
         header("Location: ../Views/MetodoDePago.php");
         exit;
     }else if($_POST['estadoEnvio'] == "DireccionAreaCliente"){
-        $_SESSION['estadoEnvio'] = '0';
+        $_SESSION['estadoEnvio'] = '0.';
         header("Location:../Views/DireccionSeleccionada.php");
         exit;
     }else if($_POST['estadoEnvio'] == "direccionYcuenta"){
-        $_SESSION['estadoEnvio'] = '0';
+        $_SESSION['estadoEnvio'] = '0.';
         header("Location:../Views/DireccionSeleccionada.php");
         exit;
     }else if($_POST['estadoEnvio'] == "direccionSINcuenta"){
-        $_SESSION['estadoEnvio'] = '0';
+        $_SESSION['estadoEnvio'] = '0.';
         $_SESSION['sinCuenta'] = true;
         header("Location:../Views/DireccionSeleccionada.php");
         exit;
