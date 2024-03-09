@@ -18,9 +18,12 @@ if(isset($_GET["codigo"])){
 $directorio = "/Resources/ImagenesArticulos/";
 
 echo'<h1>Ficha artículo:'.$nombre.'</h1>';
+include_once("BreadCrumbsCatalogo.php");
 
 include_once("aside.php");
 ?>
+<br>
+
 <section class="imagen-ficha-articulo">
     <? echo' <a href="FichaArticulo.php?codigo='.$codigo.'">
                 <img src="'.$directorio .$imagen.'" class="img-fluid" alt="'.$codigo." ".$imagen.'">

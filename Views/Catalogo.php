@@ -17,7 +17,7 @@ if(isset($_GET["codigo"])) {
 //HEADER Y TITULO
 include_once("header.php");
 print('<h1>Catálogo</h1>');
-include_once("BreadCrumbs.php");
+include_once("BreadCrumbsCatalogo.php");
 print'<br>';
 include_once("aside.php");
 
