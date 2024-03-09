@@ -88,7 +88,7 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
                 if($nombreAtributo == "imagen"){
                     $directorio = "/Resources/ImagenesArticulos/";
                     $ruta=$directorio.$valor;
-                    echo " <td><img class='imagenes' src='{$ruta}' width='200' height='200'/><br>$valor</td>";
+                    echo " <td><a href='../Views/FichaArticulo.php?codigo=$codigo'><img class='imagenes' src='{$ruta}' width='200' height='200'/><br>$valor</a></td>";
                 } else if($nombreAtributo == "activo"){
                     if($valor == 1){
                         echo "<td>Activo (1)</td>";
