@@ -5,7 +5,7 @@ include_once("../Controllers/OperacionesSession.php");
 $userExiste = UserEstablecido();
 ResetearSesion(); // para que después de estar haciendo operaciones como les da la opción de venir aquí la session se limpie y no cause comportamientos no deseados
 //NO PROTEGER, AQUÍ PUEDEN REGISTRARSE TAMBIÉN
-
+print_r($_SESSION);
 if( !$userExiste){
     ?>
     <form action="/Controllers/conexion.php" method="post">
