@@ -48,11 +48,12 @@ if( isset($_SESSION["editandoCategoria"]) && $_SESSION["editandoCategoria"] == "
     }
 
 }else if( isset($_SESSION["nuevoCategoria"]) && $_SESSION["nuevoCategoria"] == "true" ){
+    //el codigo que será el padre debe existir previamente como código de categoría
+    $codPadreExiste = Categoria::CodigoLibre($codCategoriaPadre);
+    //si no existe el código (está libre), entonces subir error a session, porque para hacer un codigo de categoria como codPadre, debe existir previamente el código
+    if($codPadreExiste == true) { $_SESSION['codPadreNoExiste']= true; }
 
-    //al crear una categoría la categoria padre debería existir
-    $codPadreExiste = Categoria::CodigoPadreExiste($codCategoriaPadre);
-    if($codPadreExiste == false) {    $_SESSION['codPadreNoExiste']= true; }
-
+    //lo que sí debo comprobar es que el código que quieren ponerle no esté ya ocupado 
     if( isset($_POST['codigo']) ) {//codigo nuevo  Categoria llega por POST, aqui codigo es obligatorio.
     $codigo = $_POST["codigo"];
     $codigoLibre = Categoria::CodigoLibre($codigo);
