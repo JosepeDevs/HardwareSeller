@@ -1,7 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //ESTA PÁGINA NO SE DEBE PROTEGER, ACCESIBLE A TODOS LOS NAVEGANTES
-include_once("../Views/header.php");
 
 //RECIBIMOS POR POST LOS DATOS 
 if(isset( $_POST['estadoEnvio'] ) && !empty($_POST['estadoEnvio'] )){
@@ -34,4 +33,3 @@ if(isset( $_POST['estadoEnvio'] ) && !empty($_POST['estadoEnvio'] )){
         exit;
     }
 }
-include_once("../Views/footer.php");
