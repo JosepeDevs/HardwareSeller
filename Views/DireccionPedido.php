@@ -174,16 +174,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function HabilitarInputs(){
         document.querySelectorAll(".disabled-required").forEach(function(input) {//a cada uno de los elementos seleccionados aplicar↓
         input.removeAttribute("disabled"); //quitamos el disabled para que se envíe
-        input.addAttribute("required"); //añadimos el required
+        input.setAttribute("required", ""); //añadimos el required (nombre, valor) como queremos que solo ponga el atributo required sin ningun valor el segundo param es ""
         });
+        console.log(document.querySelectorAll(".disabled-required"));
     }
 
     // CAMIBAMOS LOS REQUIRED POR DISABLED
         function DisableInputs(){
         document.querySelectorAll(".disabled-required").forEach(function(input) {//a cada uno de los elementos seleccionados aplicar↓
         input.removeAttribute("required"); //quitamos el required para que se envíe
-        input.addAttribute("disabled"); //añadimos el disbled
+        input.setAttribute("disabled", ""); //añadimos el required (nombre, valor) como queremos que solo ponga el atributo required sin ningun valor el segundo param es ""
         });
+        console.log(document.querySelectorAll(".disabled-required"));       
     }
 
 });
