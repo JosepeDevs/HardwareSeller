@@ -68,7 +68,7 @@ print_r($_SESSION);
         <br>
         <button type='button'><a href='../Views/Catalogo.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
         <button type='button'><a href='../Views/Carrito.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Volver a carrito</a></button>
-        <button type='button'><a href='../Views/DireccionEnvio.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Cambiar la dirección</a></button>
+        <button type='button'><a href='../Views/DireccionPedido.php' class='enlace-arriba-de-footer'><i class='lni lni-chevron-left'></i>Cambiar la dirección</a></button>
         <input id='Registrarse' style='display: block;' type='submit' value='Proceder al método de pago'>
 </div> 
 
