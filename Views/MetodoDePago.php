@@ -5,29 +5,6 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("header.php");
 
 echo'<h1>Seleccione el método de pago</h1>';
-//include_once("aside.php");
-
-//por si estaban logeados pero eligieron recogida en tienda
-//print_r($_SESSION);
-$estadoEnvio = (isset($_SESSION['estadoEnvio']))? $_SESSION['estadoEnvio'] :null;
-//print $estadoEnvio;
-//transformamos lo que nos llega por POST en estadoEnvio en un número (estado)
-if(trim($estadoEnvio) == "direccionSINcuenta"){
-    $estadoEnvio = "0";
-} else if(trim($estadoEnvio) == "tiendaSINcuenta") {
-    $estadoEnvio = "5";
-} else if(trim($estadoEnvio) == "direccionYcuenta"){
-    $estadoEnvio = "0";
-} else if(strpos($estadoEnvio,"0") !== false){
-    $estadoEnvio = "0";
-} else if(strpos($estadoEnvio,"5") !== false){
-    $estadoEnvio = "5";
-} else{
-    $estadoEnvio = "9999";
-} 
-
-//subimmos a session el numero del estado correspondiente al envío
-$_SESSION['estadoEnvio'] = $estadoEnvio;
 
 ?>
 <form action="../Views/RevisionPedido.php" method="POST">
@@ -56,7 +33,7 @@ $_SESSION['estadoEnvio'] = $estadoEnvio;
 
     <div class='finForm'>
         <button type='button'><a href='../Views/Catalogo.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
-        <button type='button'><a href='../Views/DireccionPedido.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>Volver a dirección de envío</a></button>
+        <button type='button'><a href='../Views/DireccionPedido.php' class='btn btn-warning'><i class='lni lni-chevron-left'></i>VOlcer a la selección de la dirección de envío</a></button>
         <input type='submit' value="Guardar método de pago y revisión final del pedido"></input>
     </div> 
 </form> 
