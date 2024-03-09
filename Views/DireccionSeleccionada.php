@@ -23,7 +23,6 @@ print_r($_SESSION);
         ";
     } else{
 ////////////////////QUE MOSTRAR SI NO ESTAN REGISTRADOS////////////////////
-        $_SESSION['RegistroDurantePedido'] = 1;
         $_SESSION["nuevoCliente"] = "true";
         echo '
         <h2>Datos de contacto y dirección de envío</h2>
@@ -33,7 +32,8 @@ print_r($_SESSION);
         if(isset($_SESSION['sinCuenta']) && $_SESSION['sinCuenta'] == true){
             echo'
             <h4>Ha seleccionado no crear cuenta con los datos que nos va a facilitar</h4>';
-            unset($_SESSION['sinCuenta']);
+        } else{
+            $_SESSION['RegistroDurantePedido'] = 1;
         }
         echo'
         <form action="../Controllers/ValidarDatosCliente.php" method="post">
