@@ -76,6 +76,8 @@ if(isset($_SESSION['RegistroDurantePedido']) && $_SESSION["RegistroDurantePedido
     $_SESSION["psswrdSinHash"] = $psswrdSinHash;
 }
 $psswrd = "HardWare"; //No quiero hacer nullable la columna de contraseña así que para los registros minimos tendrán la contraseña HardWare, podrán reestablecer contraseña.
+$psswrd = password_hash($psswrd, PASSWORD_DEFAULT);
+
 $_SESSION["psswrd"] = $psswrd;
 $_SESSION["rolCliente"] = $rol;
 $_SESSION["activo"] = $activo;
