@@ -428,7 +428,7 @@ aside{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    z-index: 1;
+    z-index: 2;
 }
 
 aside a{
@@ -438,13 +438,15 @@ aside a{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    z-index: 2;
 }
 
 aside a:hover{
     color:var(--hover-light);
     text-decoration: underline;
     justify-content: left;
-    margin-left:1%
+    margin-left:1%;
+    z-index: 2;
 }
 .revelador{
     /*botones de aside que desplieguan los demás*/

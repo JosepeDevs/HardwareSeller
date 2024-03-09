@@ -145,7 +145,7 @@ Function getArrayMensajesCategorias(){
         $mensajes[] = "No se encontró ningún categoría que contenga su consulta en el nombre.";
     }
     if(isset($_SESSION['GoodInsertCategoria']) && $_SESSION['GoodInsertCategoria'] == true){
-        $mensajes[] =  "Categoria añadido correctamente.";
+        $mensajes[] =  "Categoría añadida correctamente.";
         unset($_SESSION['GoodInsertCategoria']);
     };
 
@@ -171,7 +171,7 @@ Function getArrayMensajesCategorias(){
 
     if(isset($_SESSION['GoodUpdateCategoria']) && ($_SESSION['GoodUpdateCategoria'] == true)) {
         unset($_SESSION['GoodUpdateCategoria']);
-        $mensajes[]= "Datos del Categoria actualizados correctamente.";
+        $mensajes[]= "Datos del Categoría actualizados correctamente.";
     }
 
     if(isset($_SESSION['BadCodigo']) && ($_SESSION['BadCodigo'] == true)) {
@@ -235,7 +235,7 @@ Function getArrayMensajesCategorias(){
 
     if(isset($_SESSION['GoodInsertCategoria']) && ($_SESSION['GoodInsertCategoria'] == true)) {
         unset($_SESSION['GoodInsertCategoria']);
-        $mensajes[]= "Nuevo Categoria añadido correctamente.";
+        $mensajes[]= "Nueva Categoría añadida correctamente.";
     }
 
     if(isset($_SESSION['BadInsertCategoria']) && ($_SESSION['BadInsertCategoria'] == true)) {
