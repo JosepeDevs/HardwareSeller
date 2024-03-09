@@ -83,17 +83,15 @@ $direccion = null;
 $localidad = null;
 $provincia = null;
 
-if( isset($_SESSION["nuevoCliente"]) && $_SESSION["nuevoCliente"] == "true" ){
 
-    $operacionExitosa = Cliente::InsertCliente($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
-    if($operacionExitosa == true){
-        $_SESSION['GoodInsertCliente']= true;
-    } else{
-        $_SESSION['BadInsertCliente']= true;
-    }
-    header("Location: ../Views/MetodoDePago.php");
-    exit;
+$operacionExitosa = Cliente::InsertCliente($dni, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
+if($operacionExitosa == true){
+    $_SESSION['GoodInsertCliente']= true;
+} else{
+    $_SESSION['BadInsertCliente']= true;
+}
+header("Location: ../Views/MetodoDePago.php");
+exit;
 
-};
 
 ?>
