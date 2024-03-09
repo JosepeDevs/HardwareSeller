@@ -48,14 +48,14 @@ print_r($_SESSION);
                     <th><label for="psswrd">contraseña:</label></th>
                 </tr>
                 <tr>
-                    <td><input type="text" name="nombre" id="nombre"  class="disabled-required" disabled><br><br></td>
-                    <td><input type="text" name="direccion" id="direccion" class="disabled-required" disabled ><br><br></td>
-                    <td><input type="text" name="localidad" id="localidad" class="disabled-required" disabled ><br><br></td>
-                    <td><input type="text" name="provincia" id="provincia" class="disabled-required" disabled><br><br>
-                    <td><input type="tel" name="telefono" id="telefono"  class="disabled-required" disabled><br><br>
-                    <td><input type="email" name="email" id="email"  class="disabled-required" disabled><br><br>
-                    <td><input type="text" name="dni" id="dni"  class="disabled-required" disabled pattern="^\d{8}\w{1}$"><br><br></td>
-                    <td><input type="password" name="psswrd" id="pssword"  class="disabled-required" disabled><br><br>
+                    <td><input type="text" name="nombre" id="nombre"  class="disabled-required" required><br><br></td>
+                    <td><input type="text" name="direccion" id="direccion" class="disabled-required" required ><br><br></td>
+                    <td><input type="text" name="localidad" id="localidad" class="disabled-required" required ><br><br></td>
+                    <td><input type="text" name="provincia" id="provincia" class="disabled-required" required><br><br>
+                    <td><input type="tel" name="telefono" id="telefono"  class="disabled-required" required><br><br>
+                    <td><input type="email" name="email" id="email"  class="disabled-required" required><br><br>
+                    <td><input type="text" name="dni" id="dni"  class="disabled-required" required pattern="^\d{8}\w{1}$"><br><br></td>
+                    <td><input type="password" name="psswrd" id="pssword"  class="disabled-required" required><br><br>
                 </tr>
             </table>
         ';
