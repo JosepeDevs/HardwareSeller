@@ -40,7 +40,7 @@ echo'
     <br>
     <br>
     <div id="carrito">
-        <a href="?codigo='.$codigo.'"><i class="lni lni-cart-full" alt="Añadir al carrito"></i>Añadir al carrito </a>
+        <a class="display-1" href="?codigo='.$codigo.'"><i class="lni lni-cart-full" alt="Añadir al carrito"></i>Añadir al carrito </a>
     </div>  
 </section>';
 } else{
