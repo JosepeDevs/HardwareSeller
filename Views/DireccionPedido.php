@@ -37,7 +37,9 @@ unset($_SESSION["productos"]);//nos cargamos la versión simplificada que nos ll
             <option for="estadoEnvio" value="direccionSINcuenta">Envío a mi dirección (NO crear cuenta)</option>
         </select>
 
-<div id="formularioEnvio" style="display: none;">
+<!--
+    <div id="formularioEnvio" style="display: none;">
+-->
 
 
 <?
