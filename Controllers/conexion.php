@@ -10,54 +10,57 @@ include_once("../Models/Cliente.php");
  * @return void|bool Devuelve TRUE Y ESTABLECE "user" y "key" en SESSION si para el email del cliente la contraseña posteada y la hasheada en la BBDD coincide. Si no lo consigue devuelve FALSE.
  *
  */
-if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1 ){
+///////////////////CONEXIÓN SI LOS DATOS LLEGAN POR SESSION
+if( 
+    isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1 && 
+    isset($_SESSION['email']) &&  isset($_SESSION['psswrdSinHash']) 
+){
     //entramos aquí si se están registrando en el carrito
-    if(isset($_SESSION['email']) &&  isset($_SESSION['psswrdSinHash'])) {
-        $email = $_SESSION['email'];
-      //  echo'entramos en registrodurante pedido';
-        $cliente = Cliente::GetClientByEmail($email);
-        if($cliente !== false){
-            $rol = $cliente->getRol();
-        } else{
-          header("Location:/index.php");
-          exit;
-        }
-        $psswrdSinHashear = $_SESSION['psswrdSinHash'];
-        //echo"<br>psswrd SIN Hasheada=".$psswrdSinHashear;
-        if($cliente == false) {
-            $_SESSION['NoExiste']=true;
-         //   echo"<p>cliente no existe</p>";
-        } else{
-            $psswrdHasheada =$cliente->getPsswrd();
-        //   echo"<br>psswrdHaseada=".$psswrdHasheada;
-            $psswrdExiste = password_verify($psswrdSinHashear, $psswrdHasheada);
-            if( $psswrdExiste) {
-              //  echo "all good";
-                $_SESSION['user']=$email;
-                $_SESSION['key'] = $psswrdHasheada;
-                $_SESSION['usuario']=$email; //no es lo mismo que session de user
-                $_SESSION['auth'] = "OK";
-                $_SESSION['rol'] = $rol;
-                print_r($_SESSION);
-                if( ( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1 ) ||
-                    ( isset($_SESSION["CarritoConfirmado"]) && !empty($_SESSION["CarritoConfirmado"])) 
-                ){
-                    //echo'vamos a medoto de pago';
-                    header('Location: ../Views/MetodoDePago.php');
-                    exit;
-                } else{
-                  //  echo'vamos patras';
-                   //echo "<script>history.back();</script>";
-                    exit;
-                }
-            } else {
-                //echo "<br>bad psswrd";
-                $_SESSION['BadPsswrd'] = true;
+    $email = $_SESSION['email'];
+    //  echo'entramos en registrodurante pedido';
+    $cliente = Cliente::GetClientByEmail($email);
+    if($cliente !== false){
+        $rol = $cliente->getRol();
+    } else{
+        header("Location:/index.php");
+        exit;
+    }
+    $psswrdSinHashear = $_SESSION['psswrdSinHash'];
+    //echo"<br>psswrd SIN Hasheada=".$psswrdSinHashear;
+    if($cliente == false) {
+        $_SESSION['NoExiste']=true;
+        //   echo"<p>cliente no existe</p>";
+    } else{
+        $psswrdHasheada =$cliente->getPsswrd();
+    //   echo"<br>psswrdHaseada=".$psswrdHasheada;
+        $psswrdExiste = password_verify($psswrdSinHashear, $psswrdHasheada);
+        if( $psswrdExiste) {
+            //  echo "all good";
+            $_SESSION['user']=$email;
+            $_SESSION['key'] = $psswrdHasheada;
+            $_SESSION['usuario']=$email; //no es lo mismo que session de user
+            $_SESSION['auth'] = "OK";
+            $_SESSION['rol'] = $rol;
+            //print_r($_SESSION);
+            if( ( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1 ) ||
+                ( isset($_SESSION["CarritoConfirmado"]) && !empty($_SESSION["CarritoConfirmado"])) 
+            ){
+                //echo'vamos a medoto de pago';
+                header('Location: ../Views/MetodoDePago.php');
+                exit;
+            } else{
+                //  echo'vamos patras';
+                echo "<script>history.back();</script>";
+                exit;
             }
+        } else {
+            //echo "<br>bad psswrd";
+            $_SESSION['BadPsswrd'] = true;
         }
     }
 }
 
+//////////////CONEXION SI LOS DATOS LLEGAN POR POST
     if(isset($_POST['user']) &&  isset($_POST['key'])) {
     $usuario = $_POST['user'];
     $cliente = Cliente::GetClientByEmail($usuario);
@@ -82,8 +85,9 @@ if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedid
             $_SESSION['auth'] = "OK";
             $_SESSION['rol'] = $rol;
            // print_r($_SESSION);
-            if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1){
-         //       echo'vamos a medoto de pago';
+           if( ( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1 ) ||
+           ( isset($_SESSION["CarritoConfirmado"]) && !empty($_SESSION["CarritoConfirmado"])) 
+       ){         //       echo'vamos a medoto de pago';
                 header('Location: ../Views/MetodoDePago.php');
                 exit;
             } else{
