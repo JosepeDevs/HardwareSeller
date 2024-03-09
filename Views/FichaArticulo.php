@@ -15,6 +15,14 @@ if(isset($_GET["codigo"])){
     $categoriaInt = $articulo->getCategoria();
     $activo = $articulo->getActivo();
 } 
+
+//AÑADIR AL CARRITO
+if(isset($_GET["codArticulo"])) {
+    $codigoParaCarrito = $_GET["codArticulo"] ;
+    //mira si existe ya el codigo del articulo en el array productos y si está  añade 1 , si no existe, guarda 1
+    $_SESSION['productos']["$codigoParaCarrito"] = array_key_exists($codigoParaCarrito, $_SESSION['productos']) ? $_SESSION['productos']["$codigoParaCarrito"] + 1 : 1;
+}
+
 $directorio = "/Resources/ImagenesArticulos/";
 
 echo'<h1>Ficha artículo:'.$nombre.'</h1>';
@@ -40,7 +48,7 @@ echo'
     <br>
     <br>
     <div id="carrito">
-        <a class="display-1" href="?codigo='.$codigo.'"><i class="lni lni-cart-full display-1" alt="Añadir al carrito"></i>Añadir al carrito </a>
+        <a class="display-1" href="?codArticulo='.$codigo.'"><i class="lni lni-cart-full display-1" alt="Añadir al carrito"></i>Añadir al carrito </a>
     </div>  
 </section>';
 } else{
