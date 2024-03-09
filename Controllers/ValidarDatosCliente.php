@@ -18,16 +18,6 @@ $telefono = isset($_POST["telefono"]) ? $_POST["telefono"] : null;
 $email = isset($_POST["email"]) ? $_POST["email"]:null;
 $rol = isset($_POST["rol"]) ? $_POST["rol"]: "user";
 
-if(isset($_POST['estadoEnvio']) && ( $_POST['estadoEnvio'] == "tiendaSINcuenta" || $_POST['estadoEnvio'] == "direccionSINcuenta" ) ){
-    $activo = "0";
-} else{
-    $activo = isset($_POST["activo"]) ? $_POST["activo"]:"0";
-}
-
-
-//esto es para saber si han elegido recogida en tienda o envío
-$estado = isset($_POST["estadoEnvio"]) ? $_POST["estadoEnvio"]:null;
-
 if(in_array(strtolower($rol), array("user", "admin", "editor", "empleado"))){
     //se ha enviado un rol correcto, no validamos longitud porque ha cumplido con el enum
 } else{
@@ -187,7 +177,6 @@ $_SESSION["provincia"] = $provincia;
 $_SESSION["telefono"] = $telefono;
 $_SESSION["nombre"] = $nombre;
 $_SESSION["email"] = $email;
-$_SESSION["estadoEnvio"] = $estado;
 if(isset($_SESSION['RegistroDurantePedido']) && $_SESSION["RegistroDurantePedido"] == 1 ){
     //cuando están registrandose en el carrito necesito que en psswrd esté sin hashear
     $_SESSION["psswrdSinHash"] = $psswrdSinHash;
@@ -247,8 +236,7 @@ if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true
     if($rolAdmin == true) {
            header("Location: ../Views/TablaClientes.php");
             exit;
-    } else if(isset($_POST['estadoEnvio']) && ( $_POST['estadoEnvio'] == "tiendaSINcuenta" || $_POST['estadoEnvio'] == "direccionSINcuenta" ) ){
-        $_SESSION['estadoEnvio']= $_POST['estadoEnvio'];
+    } else if(isset($_SESSION['estadoEnvio']) &&  $_SESSION['sinCuenta'] == true){
         header("Location: ../Views/MetodoDePago.php");
         exit;
     } else if( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1){
