@@ -75,13 +75,13 @@ if(isset($_SESSION['RegistroDurantePedido']) && $_SESSION["RegistroDurantePedido
     //cuando están registrandose en el carrito necesito que en psswrd esté sin hashear
     $_SESSION["psswrdSinHash"] = $psswrdSinHash;
 }
+$psswrd = "HardWare"; //No quiero hacer nullable la columna de contraseña así que para los registros minimos tendrán la contraseña HardWare, podrán reestablecer contraseña.
 $_SESSION["psswrd"] = $psswrd;
 $_SESSION["rolCliente"] = $rol;
 $_SESSION["activo"] = $activo;
 $direccion = null;
 $localidad = null;
 $provincia = null;
-$psswrd = "HardWare"; //No quiero hacer nullable la columna de contraseña así que para los registros minimos tendrán la contraseña HardWare, podrán reestablecer contraseña.
 
 if( isset($_SESSION["nuevoCliente"]) && $_SESSION["nuevoCliente"] == "true" ){
 
