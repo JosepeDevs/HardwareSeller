@@ -86,16 +86,18 @@ if(!isset($_SESSION['estado'])){
     $_SESSION['estado']=null;
 }
 
+if(isset($_SESSION['sinCuenta']) && $_SESSION['sinCuenta']== true && isset($_SESSION['dni']) ){
+    $_SESSION['codUsuario'] = $_SESSION['dni'];
+}else if(isset($_SESSION['user'])){
+   $usuario = getClienteByEmail($_SESSION['user']);
+   $dni=$usuario->getDni();
+   $_SESSION['codUsuario'] = $dni;
+} else{
+    $_SESSION['codUsuario'] = "No hay DNI";
+}
+
 if(isset($_SESSION['user'])) {
     include_once("../Controllers/ClienteBUSCARController.php");
-   if(isset($_SESSION['sinCuenta']) && $_SESSION['sinCuenta']== true){
-        $_SESSION['codUsuario'] = $_SESSION['dni'];
-   }else{
-       $usuario = getClienteByEmail($_SESSION['user']);
-       $dni=$usuario->getDni();
-       $_SESSION['codUsuario'] = $dni;
-   }
-    include_once('../Controllers/ClienteBUSCARController.php');
     
     if (strpos($estadoEnvio,"5") !== false){
         //si encontramos un 5 en algun sitio de estadoEnvio es que querían recogida en tienda
