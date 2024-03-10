@@ -419,7 +419,7 @@ aside{
     top: var(--altoHeader);
     left: 0;
     float: left;
-    height: calc(85% - var(--altoHeader));
+    height: calc(86% - var(--altoHeader));
     width: 10%;
     background-color: var(--secondary);
     color: white;
@@ -427,6 +427,7 @@ aside{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    padding-bottom:2%;
     align-items: center;
     z-index: 2;
 }
@@ -450,7 +451,7 @@ aside a:hover{
 }
 .revelador{
     /*botones de aside que desplieguan los demás*/
-    font-size: 1.5em;
+    font-size: auto;
     background: none;
     border: none;
     color: var(--background-light);
