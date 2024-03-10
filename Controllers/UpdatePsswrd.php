@@ -69,7 +69,7 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
 } else if (isset($_POST['newpsswrd']) && !empty($_POST['newpsswrd'])){
     if($todoOK == true){
         //haya éxito o no, iremos a index
-        header("Location: /index.php");
+        print "<script>history.go(-2);</script>";
         exit;
     };
 }
