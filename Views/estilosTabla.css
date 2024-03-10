@@ -426,7 +426,7 @@ aside{
     position: fixed;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-around;
     padding:0% 0% 1% 1% ;
     align-items: left;
     align-items: start;
