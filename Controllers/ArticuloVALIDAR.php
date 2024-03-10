@@ -45,6 +45,14 @@ $precioValido = Articulo::ComprobarLongitud($precio,11);
 if($precioValido == false) { $_SESSION['LongPrecio']= true;}
 
 $descuento = Articulo::ValorFloat($descuento);
+if($descuento<=100){
+//no hacer nada 
+}else{
+    if($descuento == false) { $_SESSION['DescuentoAlto']= true;}
+}
+if($descuento<0){
+    if($descuento == false) { $_SESSION['DescuentoBajo']= true;}
+}
 if($descuento == false) { $_SESSION['BadDescuento']= true;}
 
 $activoValido = Articulo::ComprobarLongitud($activo,11);
@@ -138,6 +146,8 @@ if(
     ( isset( $_SESSION['ActivoGrande']) && $_SESSION['ActivoGrande']== true ) ||
     ( isset( $_SESSION['CategoriaNoEsNumero']) && $_SESSION['CategoriaNoEsNumero']== true ) ||
     ( isset( $_SESSION['BadDescuento']) && $_SESSION['BadDescuento']== true ) ||
+    ( isset( $_SESSION['DescuentoAlto']) && $_SESSION['DescuentoAlto']== true ) ||
+    ( isset( $_SESSION['DescuentoBajo']) && $_SESSION['DescuentoBajo']== true ) ||
     ( isset( $_SESSION['FileBadFormat']) && $_SESSION['FileBadFormat']== true )
 ){
     //algo dio error, go back para que allí de donde venga se muestre el error

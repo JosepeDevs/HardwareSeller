@@ -11,6 +11,14 @@ Function getArrayMensajesArticulos(){
 
     $mensajes=[];
 
+    if(isset($_SESSION['DescuentoAlto']) && $_SESSION['DescuentoAlto'] == true){
+        $mensajes[] =  "El descuento no puede ser superior a 100 (es decir 100%).";
+        unset($_SESSION['DescuentoAlto']);
+    }
+    if(isset($_SESSION['DescuentoBajo']) && $_SESSION['DescuentoBajo'] == true){
+        $mensajes[] =  "El descuento no puede ser inferior a 0(es decir 0%).";
+        unset($_SESSION['DescuentoBajo']);
+    }
     if(isset($_SESSION['CodigoDeberiaExistir']) && $_SESSION['CodigoDeberiaExistir'] == true){
         $mensajes[] =  "Estamos editando, el código original debería estar en la base de datos pero no se ha encontrado.";
         unset($_SESSION['CodigoDeberiaExistir']);
