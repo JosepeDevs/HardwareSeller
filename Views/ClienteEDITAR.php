@@ -19,6 +19,9 @@ if(isset($_GET['dni'])){
     //solo podrán acceder a esa info algunos roles
     if( $rol == "admin" || $rol == "empleado" ){
         $dniOriginal=$_GET["dni"];
+    } else{
+        $email=  GetEmailDeSession();
+        $dniOriginal=GetDniByEmail($email);
     }
 } else{
     //hemos llegado con la url vacia
@@ -58,10 +61,7 @@ echo"<table>";
                             //no admins no deben ver si está activo o no, por eso no imprimimos nada aquí
                         }elseif($nombreAtributo == "rol" ) {
                             //no admins no deben ver el rol, por eso no imprimimos nada aquí
-                        }elseif($nombreAtributo == "email") {
-                            echo "<th>$nombreAtributo</th>";
-                            $_SESSION['email'] =$valor; //subimos a session el email original del cliente, por si se lo intenta modificar
-                        } elseif($nombreAtributo == "psswrd") {
+                        }elseif($nombreAtributo == "psswrd") {
                             echo "<th>Contraseña</th>";//no required y sin imprimir
                         } else {
                             echo "<th>$nombreAtributo</th>";
