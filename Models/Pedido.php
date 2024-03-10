@@ -99,7 +99,8 @@ public static function borradoLogicoPedido($idPedido){
 
 
     /**
-     * @return bool|array devuelve false si falla, devuelve el Pedido si lo encuentra consultando el código
+     * @return bool|array devuelve false si falla, devuelve el Pedido o array de pedidos si lo/s encuentra consultando el estado (no requiere coincidencia exacta)
+     * con que esté el estado escrito dentro del estado saldrá como resultado
      */
     public static function getPedidosByEstado($estado, $dni=null){
         try{
