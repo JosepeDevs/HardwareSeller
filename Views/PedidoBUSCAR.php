@@ -163,10 +163,10 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
 
     if( is_array($arrayPedido) ){
         print'adiosssssssssssssssssssssss';
+        print_r($arrayPedido);
     } else{
         print($arrayPedido);
         print'<br>';
-        print_r($arrayPedido);
     }
         $arrayAtributos = getArrayAtributosPedido();
     if( $arrayPedido !== false ){
