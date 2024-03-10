@@ -274,7 +274,7 @@ public static function borradoLogicoPedido($idPedido){
             $pedido = $statement->fetch();
             if(empty($pedido) || $pedido==false || empty($pedido->idPedido) ){
                 //si el resultado está vacio, es falso o es un objeto vacio (si idPedido está vacio el resto de props estarán vacias), devolvemos false
-                $_SESSION['ErrorGetPedidos'] = true;
+                $_SESSION['NoHayPedidos'] = true;
                 return false;
             }else{
                 return $pedido;

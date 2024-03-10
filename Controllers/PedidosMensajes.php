@@ -166,6 +166,11 @@ Function getArrayMensajesPedidos(){
         $mensajes[]= " operación falló de una forma inesperada, quizás la conexión a la base de datos no fue correcta.";
     }
 
+    if(isset($_SESSION['NoHayPedidos']) && ($_SESSION['NoHayPedidos'] == false)) {
+        unset($_SESSION['NoHayPedidos'] );
+        $mensajes[]= "No se encontraron Pedidos con los datos buscados o no tiene acceso a ellos.";
+    }
+
     if(isset($_SESSION['ErrorGetPedidos']) && ($_SESSION['ErrorGetPedidos'] == false)) {
         unset($_SESSION['ErrorGetPedidos'] );
         $mensajes[]= "No se pudieron recuperar Pedidos de la base de datos.";
