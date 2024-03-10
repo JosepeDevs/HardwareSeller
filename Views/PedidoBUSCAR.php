@@ -156,7 +156,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
 
 
     $arrayAtributos = getArrayAtributosPedido();
-    if( $arrayPedido !== false || !empty($arrayPedido) || !is_array($arrayPedido) ){
+    if( $arrayPedido !== false ){
         echo"<table>";
         echo"<tr>";
         //ENCABEZADOS
@@ -169,25 +169,25 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         }
         echo "</tr>";
         //DATOS DEL OBJETO O LOS OBJETOS
-        foreach($arrayPedido as $Pedido){
-            echo "<tr>";
-            foreach ($arrayAtributos as $atributo) {
-                $getter = 'get' . ucfirst($atributo);
-                $valor = $Pedido->$getter();
-                if($atributo == "idPedido"){
-                    $idPedido = $Pedido->getIdPedido();//guardamos el código para que esté disponible fuera de este bucle
-                    echo "<td>".$valor."</td>";
-                } else if(( $rol == "user" ) && ( $atributo == "activo" ||$atributo == "codUsuario" ) ){
-                    echo'';//si es user tanto el atributo "activo" como "coduusuario" no se muestran a rol=user
-                }else{
-                    echo "<td>".$valor."</td>";
+            foreach($arrayPedido as $Pedido){
+                echo "<tr>";
+                foreach ($arrayAtributos as $atributo) {
+                    $getter = 'get' . ucfirst($atributo);
+                    $valor = $Pedido->$getter();
+                    if($atributo == "idPedido"){
+                        $idPedido = $Pedido->getIdPedido();//guardamos el código para que esté disponible fuera de este bucle
+                        echo "<td>".$valor."</td>";
+                    } else if(( $rol == "user" ) && ( $atributo == "activo" ||$atributo == "codUsuario" ) ){
+                        echo'';//si es user tanto el atributo "activo" como "coduusuario" no se muestran a rol=user
+                    }else{
+                        echo "<td>".$valor."</td>";
+                    }
                 }
+                echo "</tr>";
             }
-            echo "</tr>";
-        }
         echo "</table>";
     } else{
-        echo "<h3>No se encontraron coincidencias.</h3>";
+        echo "<h3>No se encontraron pedidos con los datos proporcionados.</h3>";
     }
 
     include_once("../Controllers/PedidosMensajes.php");
