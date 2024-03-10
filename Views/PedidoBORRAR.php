@@ -18,7 +18,7 @@ $idPedido = isset($_GET['idPedido']) ? $_GET['idPedido'] : null;
 $estado = isset($_GET['estado']) ? $_GET['estado'] : null;
 
 $estadoCancelable = SePuedeCancelarPedido($estado);
-if($estadoCancelable ==false){
+if($estadoCancelable == false){
     $_SESSION['BadEstadoParaCancelar'] = true;
 }
 print_r($_SESSION);

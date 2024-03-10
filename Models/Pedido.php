@@ -372,15 +372,15 @@ public static function borradoLogicoPedido($idPedido){
     public static  function SePuedeCancelarPedido($estado){
         $estado = (string)$estado;//lo pasamos a string
         if(
-            strpos($estado, '6') !== false ||
-            strpos($estado, '7') !== false ||
-            strpos($estado, '8') !== false ||
-            strpos($estado, '9') !== false
-        ) {
-            return true;
-        } else{
-            ///si no encuentra los estados que no dejamos cancelar (pagado, enviado, recibido, finalizado) no permitimos cancelación
+            strpos($estado, '6') == false ||
+            strpos($estado, '7') == false ||
+            strpos($estado, '8') == false ||
+            strpos($estado, '9') == false
+            ) {
+            ///si encuentra los estados que no dejamos cancelar (pagado, enviado, recibido, finalizado) no permitimos cancelación
             return false;
+        } else{
+            return true;
         }
     }
 
