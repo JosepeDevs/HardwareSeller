@@ -126,7 +126,6 @@ foreach ($contenidoPedido as $index => $array) {
             //Sacamos del array de objetos ContenidoPedido los datos de cada artículo
             $numPedido=$contenidoPedido->getNumPedido();
             $numLinea=$contenidoPedido->getNumLinea();
-            $numLinea -= $numLinea; //se están guardando como linea 2, linea 3 así que le restamos 1 como solucion provisional hasta que tenga más tiempo para bsucar y refactorizar como dios manda
             $codArticulo=$contenidoPedido->getCodArticulo();
             $cantidad=$contenidoPedido->getCantidad();
             $precio=$contenidoPedido->getPrecio();
