@@ -54,8 +54,8 @@ include_once("../Controllers/PedidosMensajes.php");
                 }
             };
 //tras hacer print del error se hará unset, pero si insisten en borrar aquí subimos de nuevo el error para que se vea en listar pedidos
-if($estadoCancelable == false){
-    $_SESSION['BadEstadoParaCancelar'];
+if($estadoCancelable == false ){
+    $_SESSION['BadEstadoParaCancelar'] = true;
 }
 include_once("footer.php");
 ?>
