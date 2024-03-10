@@ -159,7 +159,7 @@ print"<table>";
                 if(GetRolDeSession() ==  "admin" || GetRolDeSession() == "empleado"  ){
                     print"
                     <td><a href='ContenidoPedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar pedido' /></td>
-                    <td><a href='PedidoBORRAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar Pedido' /></td>";
+                    <td><a href='PedidoBORRAR.php?idPedido=$idPedido'&estado=$estado><img class='icon' src='../Resources/minusAr.png' alt='Borrar Pedido' /></td>";
                 } else{
                     print "<td><a href='ContenidoPedidoBUSCAR.php?numPedido=".$idPedido."'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
                     <td><a href='PedidoBORRAR.php?idPedido=$idPedido&estado=$estado'><img class='icon' src='../Resources/minusAr.png' alt='cancelar Pedido' /></td>";
