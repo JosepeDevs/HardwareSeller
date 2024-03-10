@@ -31,6 +31,8 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
        // print"la operacion ha sido $operacionExitosa";
         $_SESSION['PsswrdActualizada'] = true;
         $todoOK =true;
+        $cliente = getClienteByEmail($email);
+        $cliente->setActivo(1);
     } else{
         $todoOK =false;
     }
@@ -75,8 +77,6 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
     //cuando ya han escrito la nueva contraseña
     $email = isset($_SESSION['mail']) ? $_SESSION['mail'] : null ; 
     if($todoOK == true){
-        $cliente = getClienteByEmail($email);
-        $cliente->setActivo(1);
         //haya éxito o no, iremos a index
         header("Location: /index.php");
         exit;
