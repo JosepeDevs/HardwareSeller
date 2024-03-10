@@ -88,7 +88,7 @@ echo"<table>";
                         $getter = 'get' . ucfirst($atributo);
                         $valor = $cliente->$getter();
                         if($rol4consulta == 'administradormaestro') {
-                            if($nombreAtributo == "rol") {
+                            if($nombreAtributo == "rol" && ( $rol="admin" || $rol=="empleado" )) {
                                 echo "
                                     <td>
                                         <select id='rol' name='rol' required value='$valor'>
@@ -98,7 +98,7 @@ echo"<table>";
                                             <option value='admin'>Administrador</option>
                                         </select>
                                     </td>";
-                            } elseif($nombreAtributo == "activo") {
+                            } elseif($nombreAtributo == "activo" && ( $rol="admin" || $rol=="empleado" )) {
                                 echo "
                                     <td>
                                         <select id='activo' name='activo' required>";
