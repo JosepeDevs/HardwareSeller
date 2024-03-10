@@ -165,7 +165,8 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         print'adiosssssssssssssssssssssss';
         print_r($arrayPedido);
         $arraytest= array();
-        print("veamos:".$arraytest==$arrayPedido);
+        $booleano= $arraytest==$arrayPedido;
+        print("veamos:".$booleano);
     } else{
         print($arrayPedido);
         print'<br>';
