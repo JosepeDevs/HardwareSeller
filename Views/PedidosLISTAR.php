@@ -16,6 +16,7 @@ print("<h1>Lista de Pedidos</h1>");
 
 //BREADCRUMBS AREA CLIENTE
 include_once("BreadCrumbsAreaCliente.php");
+print('<br>');
 
 
 $rol = GetRolDeSession();
