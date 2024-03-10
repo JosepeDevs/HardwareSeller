@@ -30,7 +30,7 @@ Function getArrayMensajesArticulos(){
 
     } elseif(isset($_SESSION['ExitoBorrandoArticulo']) && ($_SESSION['ExitoBorrandoArticulo'] == false)) {
         unset($_SESSION['ExitoBorrandoArticulo']);
-        $mensajes[] =  "El artículo no ha sido borrado.";
+        $mensajes[] =  "El artículo no ha sido desactivado.";
     }
 
     if(isset($_SESSION['FileAlreadyExists']) && $_SESSION['FileAlreadyExists'] == true){
