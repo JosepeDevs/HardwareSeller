@@ -426,9 +426,10 @@ aside{
     position: fixed;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: start;
+    justify-content: left;
     padding:0% 0% 1% 1% ;
-    align-items: center;
+    align-items: space-around;
     z-index: 1;
 }
 
@@ -436,7 +437,6 @@ aside a{
     font-size: auto;
     color:var(--background-light);
     text-decoration: none;
-    justify-content: left;
     z-index: 2;
 }
 
