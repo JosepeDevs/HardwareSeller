@@ -371,13 +371,18 @@ public static function borradoLogicoPedido($idPedido){
      */
     public static  function SePuedeCancelarPedido($estado){
         $estado = (string)$estado;//lo pasamos a string
-        if(
-            strpos($estado, '6') == false ||
-            strpos($estado, '7') == false ||
-            strpos($estado, '8') == false ||
-            strpos($estado, '9') == false
-            ) {
-            ///si encuentra los estados que no dejamos cancelar (pagado, enviado, recibido, finalizado) no permitimos cancelación
+        $estaPagado = strpos($estado, '6') ;
+        $estaEnviado = strpos($estado, '7') ;
+        $seHaRecibido = strpos($estado, '8')  ;
+        $estaFinalizado= strpos($estado, '9') ;
+
+        if( 
+            $estaPagado !== false ||
+            $estaEnviado !== false || 
+            $seHaRecibido  !== false || 
+            $estaFinalizado !== false 
+        ) {
+            ///si no son falsoso, es que ha encontrado alguno de ellos, no dejamos cancelar (pagado, enviado, recibido, finalizado)
             $_SESSION['BadEstadoParaCancelar2'] = true;
             return false;
         } else{
