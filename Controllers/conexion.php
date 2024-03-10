@@ -21,10 +21,14 @@ if(
     $cliente = Cliente::GetClientByEmail($email);
     if($cliente !== false){
         $rol = $cliente->getRol();
-    } else{
+        $activo = $cliente->getActivo();
+    } 
+    if($cliente == false || $activo == 0){
+        //si la cuenta está desactivada no les dejamos hacer login
         header("Location:/index.php");
         exit;
     }
+
     $psswrdSinHashear = $_SESSION['psswrdSinHash'];
     //print"<br>psswrd SIN Hasheada=".$psswrdSinHashear;
     if($cliente == false) {
