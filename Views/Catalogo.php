@@ -6,6 +6,10 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 if(!array_key_exists('productos', $_SESSION)) {
     $_SESSION['productos'] = []; 
 }
+//si no existe la key productos la crea en session (productos será un array asociativo)
+if(!array_key_exists('precios', $_SESSION)) {
+    $_SESSION['precios'] = []; 
+}
 include_once("../Controllers/ArticulosLISTARController.php");
 
 //AÑADIR AL CARRITO
