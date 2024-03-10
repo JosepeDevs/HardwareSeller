@@ -105,9 +105,8 @@ public static function borradoLogicoPedido($idPedido){
         try{
             $con = contectarBbddPDO();
             if($dni !== null){
-                $sqlQuery="SELECT * FROM  `pedidos` WHERE estado=:estado AND codUsuario=:dni AND activo=1;";
-            } else{
-                $sqlQuery="SELECT * FROM  `pedidos` WHERE estado=:estado;";
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE estado LIKE CONCAT('%', :estado, '%') AND codUsuario=:dni AND activo=1;";
+                $sqlQuery="SELECT * FROM  `pedidos` WHERE estado LIKE CONCAT('%', :estado, '%');";
             }
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':estado', $estado);

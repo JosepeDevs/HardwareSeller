@@ -91,7 +91,7 @@ if(isset($_SESSION['dni'])){
     $dni=GetDniByEmail($email);
 } else if(!isset($_GET['PedidoConfirmado']) && !isset($_SESSION['user'])){
     //si no están logeados, solo dejamos que vean la págian de PedidoConfirmado 
-    header("Location: /index.php");
+    print "<script>history.back();</script>";
     exit;
 }else{
     $dni="dni no encontrado";
