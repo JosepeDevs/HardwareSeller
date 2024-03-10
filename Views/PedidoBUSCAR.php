@@ -9,7 +9,6 @@ $rol = GetRolDeSession();
 include_once("header.php");
 //BREADCRUMBS AREA CLIENTE
 include_once("BreadCrumbsAreaCliente.php");
-print_r($_SESSION);
 
 //DISTINTAS VISTAS SEGÚN ENLACE
 if(isset($_GET["PedidoConfirmado"])){
