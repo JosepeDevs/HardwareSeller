@@ -146,7 +146,7 @@
                 if( isset($_SESSION['productos']) && !empty($_SESSION['productos']) ){
                     //contamos cuantos codigos hay en el array de productos 
                     print count($_SESSION['productos']);
-                    print ("   ");
+                    print (":___");
                 }
              ?>
         </small>
