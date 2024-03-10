@@ -5,6 +5,7 @@ include_once("../Controllers/ClienteBUSCARController.php");
 $operacionExitosa=false;
 print_r($_SESSION);
 if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']) ) {
+    //cuando llegan por primera vez
     $email = $_POST['mail'];
     $_SESSION['mail'] = $email;
     $dni = $_POST['dni'];
@@ -20,6 +21,7 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
         $atras= true;
     }
 } else if (isset($_POST['newpsswrd']) && !empty($_POST['newpsswrd'])){
+    //Cuando han escrito su contraseña nueva
     $newpsswrd = $_POST['newpsswrd'];
     $newpsswrd = password_hash($newpsswrd, PASSWORD_BCRYPT);
     $dni = $_SESSION['dni'];
@@ -63,12 +65,14 @@ function updatePasswrdUsingDni($dni, $newpsswrd){
 
 
 if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']) ) {
+    //cuando entran por primera vez
     if($atras == true){
         //haya éxito o no, iremos a index
         print "<script>history.back();</script>";
         exit;
     };
 } else if (isset($_POST['newpsswrd']) && !empty($_POST['newpsswrd'])){
+    //cuando ya han escrito la nueva contraseña
     $email = isset($_SESSION['mail']) ? $_SESSION['mail'] : null ; 
     if($todoOK == true){
         $cliente = getClienteByEmail($email);
