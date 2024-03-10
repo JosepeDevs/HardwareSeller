@@ -4,7 +4,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) { session_start(); }
 //NO PROTEGER ESTO, ES DONDE SE SUBE A SESSION USER Y KEY Y ROL
 include_once("../Models/Cliente.php");
 
-print_r($_SESSION);
+//print_r($_SESSION);
 /**
  * Requiere usarse esta función en páginas que reciben un POST de "user" y "key".
  * @return void|bool Devuelve TRUE Y ESTABLECE "user" y "key" en SESSION si para el email del cliente la contraseña posteada y la hasheada en la BBDD coincide. Si no lo consigue devuelve FALSE.
@@ -110,5 +110,15 @@ if( (isset($_SESSION['BadPsswrd']) && $_SESSION['BadPsswrd'] == true) ||
     exit;
 }
 
-
+//si me mandan aquí estando ya logueado no debería hacer más que llevarme a un sitio u otro, pero no quedare aquí
+if( ( isset($_SESSION['user']) && !empty($_SESSION['user'])  && isset($_SESSION["CarritoConfirmado"]) && !empty($_SESSION["CarritoConfirmado"])) 
+){
+//print'vamos a medoto de pago';
+header('Location: ../Views/MetodoDePago.php');
+exit;
+} else{
+//  print'vamos patras';
+print "<script>history.back();</script>";
+exit;
+}
 ?>
