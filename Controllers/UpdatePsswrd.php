@@ -15,8 +15,8 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
         print '<br><input type="submit" value="Submit"></form>';
     } else {
         $_SESSION['ClienteNoExiste'] =true;
-       header("Location: /index.php");
-       exit;
+        print "<script>history.back();</script>";
+        exit;
     }
 } else if (isset($_POST['newpsswrd']) && !empty($_POST['newpsswrd'])){
     $newpsswrd = $_POST['newpsswrd'];
