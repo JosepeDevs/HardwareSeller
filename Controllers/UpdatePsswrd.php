@@ -1,5 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+include_once("../Views/header.php");
 
 $operacionExitosa=false;
 if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']) ) {
@@ -13,9 +14,7 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
         print '<h2><label>Escriba su nueva contraseña</label></h2><br><br><input type="password" name="newpsswrd"><br><br>';
         print '<br><input type="submit" value="Submit"></form>';
     } else {
-        $_SESSION['ClienteNoExiste'] =true;
-        print "<script>history.back();</script>";
-        exit;
+        $atras= true;
     }
 } else if (isset($_POST['newpsswrd']) && !empty($_POST['newpsswrd'])){
     $newpsswrd = $_POST['newpsswrd'];
@@ -26,10 +25,8 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
     if ($operacionExitosa) {
        // print"la operacion ha sido $operacionExitosa";
         $_SESSION['PsswrdActualizada'] = true;
+        $todoOK =true;
     }
-    //haya éxito o no, iremos a index
-    header("Location: /index.php");
-    exit;
 }
 
 ?>
@@ -57,6 +54,21 @@ function updatePasswrdUsingDni($dni, $newpsswrd){
     } else{
         return false;
     }
+}
+
+
+if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']) ) {
+    if($atras == true){
+        //haya éxito o no, iremos a index
+        print "<script>history.back();</script>";
+        exit;
+    };
+} else if (isset($_POST['newpsswrd']) && !empty($_POST['newpsswrd'])){
+    if($todoOK == true){
+    //haya éxito o no, iremos a index
+    header("Location: /index.php");
+    exit;
+    };
 }
 
 include_once("../Views/footer.php");
