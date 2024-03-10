@@ -163,6 +163,10 @@ Function getArrayMensajesPedidos(){
         unset($_SESSION['falloBorrandoElPropioPedido'] );
         $mensajes[]= "no se pudo cancelar el propio pedido (el contenido del pedido no lanzó error).Contacte con nosotros si cree que es un error.";
     }
+    if(isset($_SESSION['BadEstadoParaCancelar']) && ($_SESSION['BadEstadoParaCancelar'] == true)) {
+        unset($_SESSION['BadEstadoParaCancelar'] );
+        $mensajes[]= "El pedido que ha intentado cancelar tiene un estado que actualmente no se puede cancelar. Si cree que esto puede ser un error por favor contacte con nosotros.";
+    }
 
 
     if( count($mensajes) == 0){
