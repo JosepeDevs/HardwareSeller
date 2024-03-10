@@ -126,6 +126,7 @@ public static function borradoLogicoPedido($idPedido){
             }
         } catch(PDOException $e) {
             $_SESSION['ErrorGetPedidos']= true;
+            $_SESSION['ErrorGetPedidos1'] = $e->getMessage();
             return false;
         }
     }
