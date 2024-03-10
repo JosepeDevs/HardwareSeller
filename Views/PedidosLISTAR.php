@@ -140,21 +140,15 @@ print"<table>";
                         print "<td>".$estado."</td>";
                     } else if(( $rol == "admin" || $rol == "empleado" ) && ( $nombreAtributo == "activo"  ) ){
                        //estos datos solo los podrán ver admin y empleados
-                       print "
-                        <td>
-                            <select id='activo' name='activo' required>";
                             if($valor == 0){
-                                print"
-                                    <option value='0' selected>Inactivo</option>
-                                    <option value='1' >Activo</option>
-                                </select>";
+                                print"<td>
+                                        Inactivo
+                                    </td>";
                             } else{
-                                print"
-                                    <option value='0' >Inactivo</option>
-                                    <option value='1' selected>Activo</option>
-                                </select>";
+                                print"<td>
+                                        Activo
+                                    </td>";
                             }
-                        print"</td>";
                     }else if(( $rol == "admin" || $rol == "empleado" ) && ( $nombreAtributo == "codUsuario" ) ){
                         //estos datos solo los podrán ver admin y empleados
                         print "<td>".$valor."</td>";
