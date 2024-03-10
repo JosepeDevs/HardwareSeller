@@ -125,16 +125,8 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
     <h2><a class="cerrar" href="CategoriasLISTAR.php"><img src="../Resources/arrow.png" alt="listar Categorias" />Volver a la tabla de Categorias</a></h2>';
     $rol = GetRolDeSession();
     if($rol == "admin" || $rol == "editor" || $rol == "empleado") {
-        print '<h2><a class="cerrar"  href="TablaClientes.php">Ver usuarios</a></h2>';
-    } else{
-        $email = GetEmailDeSession();
-        $dni = GetDniByEmail($email);
-        print"<h2>
-                <a class='enlace' href='ClienteEDITAR.php?dni=$dni'>
-                    <img src='../Resources/edit.png' alt='editar datos user'/> Editar mis datos $email
-                </a>
-            </h2>";
-    }
+        print("<h2><a class='cerrar' a href='AreaCliente.php'>Ir al área personal</a></h2>");
+    } 
 
 include_once("footer.php");
 ?>
