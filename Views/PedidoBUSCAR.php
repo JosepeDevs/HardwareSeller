@@ -64,9 +64,11 @@ if(isset($_GET["PedidoConfirmado"])){
                 <td><input type="text" name="idPedido" ><br><br></td>
                 <td><input type="date" name="fechaInicio" autofocus><br><br></td>
                 <td><input type="date" name="fechaFin" ><br><br></td>
-                <td><input type="number" name="estado"><br><br></td>
-                <td><input type="text" name="codUsuario" ><br><br></td>
-            </tr>
+                <td><input type="number" name="estado"><br><br></td>';
+                if($rol= "admin" || $rol == "empleado"){
+                    echo'<td><input type="text" name="codUsuario"><br><br></td>';
+                }        
+           echo' </tr>
         </table>
 
         <br>
