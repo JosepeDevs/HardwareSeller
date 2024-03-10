@@ -84,6 +84,9 @@ if(isset($_SESSION['user'])){
 }
 if(isset($_SESSION['dni'])){
     $dni = $_SESSION['dni'];
+} else if(isset($_SESSION['user'])){
+    $email=$_SESSION['user'];
+    $dni=GetDniByEmail($email);
 } else{
     $dni="dni no encontrado";
 }
@@ -153,7 +156,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
 
 
     $arrayAtributos = getArrayAtributosPedido();
-    if( $arrayPedido !== false || !empty($arrayPedido) ){
+    if( $arrayPedido !== false || !empty($arrayPedido) || !is_array($arrayPedido) ){
         echo"<table>";
         echo"<tr>";
         //ENCABEZADOS
