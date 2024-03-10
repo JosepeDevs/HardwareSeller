@@ -46,7 +46,7 @@
                             //no queremos imprimir para la categoria RAM dentro de esta RAM otra vez, así que mientras no encuentre ese código que imprima subcategorias
 
                             echo '<li class="oculto" >
-                                    <a class="dropdown-item oculto" id="'.$codigoSubCategoria.'" href="?categoria='.$codigoSubCategoria.'&orden='.$ordenFiltrado.'&atributo='.$nombreAtributoFiltrado.'">'.
+                                    <a class="dropdown-item oculto" id="'.$codigoSubCategoria.'" href="Catalogo.php?categoria='.$codigoSubCategoria.'&orden='.$ordenFiltrado.'&atributo='.$nombreAtributoFiltrado.'">'.
                                     $nombreSubCategoria.'</a>
                                 </li>';
                         }
@@ -55,7 +55,7 @@
                     echo '</div>';
                 } else {
                     //Si alguno no tiene subcategorias dejaremos un enlace con el nombre de la propia categoria, sin dropdown
-                    echo'<a  id="'.$codigoSubCategoria.'" href="?categoria='.$codigoSubCategoria.'&orden='.$ordenFiltrado.'&atributo='.$nombreAtributoFiltrado.'">'.$nombreSubCategoria.'</a>';
+                    echo'<a  id="'.$codigoSubCategoria.'" href="Catalogo.php?categoria='.$codigoSubCategoria.'&orden='.$ordenFiltrado.'&atributo='.$nombreAtributoFiltrado.'">'.$nombreSubCategoria.'</a>';
                 }
             }
         }  
