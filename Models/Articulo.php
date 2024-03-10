@@ -81,7 +81,7 @@ class Articulo {
     public static function GerArticulosRelacionadosByCodigo($codigo){
         $arrayArticulos = array();
         $articulo = getArticuloByCodigo($codigo);
-        $categoria = $articulo->getCategoria();
+        $categoria = $articulo->getCategoria(); 
         
         include_once("../Models/Categoria.php");
         $categoriaObjeto = Categoria::getCategoriaByCodigo($categoria);
