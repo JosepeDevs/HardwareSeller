@@ -116,7 +116,7 @@ Function getArrayMensajesCategorias(){
 
     } elseif(isset($_SESSION['ExitoBorrandoCategoria']) && ($_SESSION['ExitoBorrandoCategoria'] == false)) {
         unset($_SESSION['ExitoBorrandoCategoria']);
-        $mensajes[] =  "El categoría no ha sido desactivada.";
+        $mensajes[] =  "El categoría ha sido desactivada.";
     }
 
     if(isset($_SESSION['OperationFailed']) && ($_SESSION['OperationFailed'] == true)) {

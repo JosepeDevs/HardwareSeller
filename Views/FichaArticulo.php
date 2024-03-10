@@ -107,10 +107,20 @@ echo'
                         <p>'.$arrayArticulosRelacionados[$i]->getNombre().'</p>
                     </div></a>
                     <br>
-                    <div>
-                        <p>Precio: '.$arrayArticulosRelacionados[$i]->getPrecio().' €</p>
-                    </div>
                     ';
+                    if($arrayArticulosRelacionados[$i]->getActivo() == 1){
+                        echo'
+                        <div>
+                            <p>Precio: '.$arrayArticulosRelacionados[$i]->getPrecio().' €</p>
+                        </div>
+                        ';
+                    } else{
+                        echo'
+                        <div>
+                            <p>Precio: Producto descatalogado</p>
+                        </div>
+                        ';
+                    }
                     echo'</td>';
                 }
             }
