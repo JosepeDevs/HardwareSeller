@@ -19,6 +19,7 @@ if( $rol == "admin" || $rol == "empleado" ){
     header("Location: /index.php");
     exit;
 } 
+$rol=GetRolDeSession();
 
 include("header.php");
 
@@ -93,7 +94,7 @@ print("
                 } else {
                     print "<td>$valor</td>";
                 }
-                if(next($arrayAtributos) == false && ( GetRolDeSession() == "editor" || GetRolDeSession() == "admin" )){ //si ya no quedan más atributos que imprimir y el rol es correcto
+                if(next($arrayAtributos) == false && ( $rol == "empleado" || $rol == "admin" )){ //si ya no quedan más atributos que imprimir y el rol es correcto
                 print"
                 <td><a class='icon' href='ClienteEDITAR.php?dni=$dni&rol4consulta=administradormaestro'><img src='../Resources/edit.png' alt='Editar cliente' /></td>
                 <td><a class='icon' href='ClienteBORRAR.php?dni=$dni'><img src='../Resources/delete.png' alt='Borrar cliente' /></td>";

@@ -36,12 +36,37 @@ echo("<h2>Bienvenido $email</h2>");
 $_SESSION["editandoCliente"]="true";
 
 include_once("../Controllers/OperacionesSession.php");
-$rol4consulta = isset($_GET['rol4consulta'])? $_GET['rol4consulta'] : null;
+//esto es porque como en session estará rol del cliente siendo editado para saber que venimos de la tabla de listar clientes
+$rol4consulta = isset($_GET['rol4consulta'])? $_GET['rol4consulta'] : null; 
 echo"<table>";
         echo"<tr><th>Atributos:</th>";
                 foreach ($arrayAtributos as $index => $atributo) {
                     $nombreAtributo = $atributo;
-                    echo "<th>$nombreAtributo</th>";
+                    if($rol4consulta == 'administradormaestro') {
+                        if($nombreAtributo == "dni") {
+                            echo "<th>$nombreAtributo</th>";
+                        } elseif( $nombreAtributo == "psswrd") {
+                            echo "<th>Contraseña</th>";//no required y vacio, la contraseña no debe mostrarse
+                        } else {
+                            echo "<th>$nombreAtributo</th>";
+                        };
+                    } else{
+                        //NO ES UN ADMIN
+                        if($nombreAtributo == "dni") {
+                            echo "<th>$dniOriginal</th>";
+                        } elseif($nombreAtributo == "activo" ) {
+                            //no admins no deben ver si está activo o no, por eso no imprimimos nada aquí
+                        }elseif($nombreAtributo == "rol" ) {
+                            //no admins no deben ver el rol, por eso no imprimimos nada aquí
+                        }elseif($nombreAtributo == "email") {
+                            echo "<th>$nombreAtributo</th>";
+                            $_SESSION['email'] =$valor; //subimos a session el email original del cliente, por si se lo intenta modificar
+                        } elseif($nombreAtributo == "psswrd") {
+                            echo "<th>Contraseña</th>";//no required y sin imprimir
+                        } else {
+                            echo "<th>$nombreAtributo</th>";
+                        }
+                    }
                 }
         echo "</tr>";
 
@@ -56,7 +81,13 @@ echo"<table>";
                         if($rol4consulta == 'administradormaestro') {
                             if($nombreAtributo == "dni") {
                                 echo "<td>$dniOriginal</td>";
-                            } elseif( $nombreAtributo == "psswrd") {
+                            } else if($nombreAtributo == "activo"){
+                                if($valor == 1){
+                                    echo "<td>Activo ($valor)</td>";
+                                }else{
+                                    echo "<td>Inactivo ($valor)</td>";
+                                }  
+                            }elseif( $nombreAtributo == "psswrd") {
                                 echo "<td></td>";//no required y vacio, la contraseña no debe mostrarse
                             } else {
                                 echo "<td>$valor</td>";
@@ -65,8 +96,10 @@ echo"<table>";
                             //NO ES UN ADMIN
                             if($nombreAtributo == "dni") {
                                 echo "<td>$dniOriginal</td>";
-                            } elseif($nombreAtributo == "rol") {
-                                //no admins no deben ver el rol
+                            } elseif($nombreAtributo == "rol" ) {
+                                //no admins no deben ver el rol, por eso no imprimimos nada aquí
+                            } elseif($nombreAtributo == "activo" ) {
+                                //no admins no deben ver el activo, por eso no imprimimos nada aquí
                             }elseif($nombreAtributo == "email") {
                                 echo "<td>$valor</td>";
                                 $_SESSION['email'] =$valor; //subimos a session el email original del cliente, por si se lo intenta modificar
@@ -88,7 +121,7 @@ echo"<table>";
                         $getter = 'get' . ucfirst($atributo);
                         $valor = $cliente->$getter();
                         if($rol4consulta == 'administradormaestro') {
-                            if($nombreAtributo == "rol" && ( $rol="admin" || $rol=="empleado" )) {
+                            if($nombreAtributo == "rol" ) {
                                 echo "
                                     <td>
                                         <select id='rol' name='rol' required value='$valor'>
@@ -98,7 +131,7 @@ echo"<table>";
                                             <option value='admin'>Administrador</option>
                                         </select>
                                     </td>";
-                            } elseif($nombreAtributo == "activo" && ( $rol="admin" || $rol=="empleado" )) {
+                            } elseif($nombreAtributo == "activo" ) {
                                 echo "
                                     <td>
                                         <select id='activo' name='activo' required>";
@@ -129,6 +162,8 @@ echo"<table>";
                             if($nombreAtributo == "dni") {
                                 echo "<td>$dniOriginal</td>";
                             } elseif($nombreAtributo == "rol") {
+                                //no imprimir nada
+                            } elseif($nombreAtributo == "activo") {
                                 //no imprimir nada
                             } elseif($nombreAtributo == "psswrd") {
                                 echo "<td><input type='password' id='$nombreAtributo' name='$nombreAtributo'></td>";//no required y vacio
