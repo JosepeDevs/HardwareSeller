@@ -67,10 +67,13 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
         exit;
     };
 } else if (isset($_POST['newpsswrd']) && !empty($_POST['newpsswrd'])){
+    
     if($todoOK == true){
-    //haya éxito o no, iremos a index
-    header("Location: /index.php");
-    exit;
+        $cliente = getClienteByEmail($email);
+        $cliente->setActivo(1);
+        //haya éxito o no, iremos a index
+        header("Location: /index.php");
+        exit;
     };
 }
 

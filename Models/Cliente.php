@@ -467,6 +467,7 @@ public static function ComprobarLongitud($string, $longitud) {
     public function getPsswrd() {return $this->psswrd;}
     public function getActivo() {return $this->activo;}
 
+    public function setActivo($activo) {$this->activo=$activo;}
 }
 
 ?>

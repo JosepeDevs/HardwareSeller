@@ -22,9 +22,14 @@ if(
     if($cliente !== false){
         $rol = $cliente->getRol();
         $activo = $cliente->getActivo();
-    } 
+    } else{
+        $_SESSION['NoExiste']=true;
+        header("Location:/index.php");
+        exit;
+    }
     if( $activo == 0){
         //si la cuenta está desactivada no les dejamos hacer login
+        $_SESSION['CuentaDesactivada']=true;
         header("Location:/index.php");
         exit;
     }
@@ -70,9 +75,15 @@ if(
     $cliente = Cliente::GetClientByEmail($usuario);
     if($cliente !== false){
         $rol = $cliente->getRol();
+        $activo = $cliente->getActivo();
     } else{
-      header("Location:/index.php");
-    }
+        header("Location:/index.php");
+      }
+    if( $activo == 0){
+        //si la cuenta está desactivada no les dejamos hacer login
+        header("Location:/index.php");
+        exit;
+    } 
     $psswrdSinHashear = $_POST['key'];
     if($cliente == false) {
         $_SESSION['NoExiste']=true;

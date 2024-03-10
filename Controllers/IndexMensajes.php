@@ -12,6 +12,10 @@ Function getArrayMensajesIndex(){
 
     $mensajes=[];
 
+    if(isset($_SESSION['CuentaDesactivada']) && ($_SESSION['CuentaDesactivada'] == true)) {
+        unset($_SESSION['CuentaDesactivada']);
+        $mensajes[] = "Ha intentado acceder a una cuenta desactivada. Puede recuperar su contraseña para activarla";
+    }
     if(isset($_SESSION['NoBorrarDniAjeno']) && ($_SESSION['NoBorrarDniAjeno'] == true)) {
         unset($_SESSION['NoBorrarDniAjeno']);
         $mensajes[] = "No puede intentar borrar un usuario con un dni diferente al suyo propio.";
