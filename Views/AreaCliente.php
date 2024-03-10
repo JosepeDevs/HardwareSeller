@@ -86,7 +86,6 @@ if( !$userExiste){
         print ('
         <table class="table table-bordered">
             <tr>
-                <td><a href="/Views/AreaCliente.php">Acceder al área personal</a></td>
                 <td><a href="/Views/PedidosLISTAR.php">Ver mis pedidos</a></td>
                 <td><a href="/Views/ClienteEDITAR.php">Ver/editar mis datos</a></td>
                 <td><a href="/Controllers/DestructorSession.php">Cerrar sesión</a></td>
