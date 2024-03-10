@@ -23,6 +23,7 @@ if(isset($_POST["estado"]) || isset($_POST["fecha"]) ) {
     $fecha = date("Y-m-d"); //esto no lo comprobamos porque lo estoy generando aquí mismo
     $_SESSION['fecha']=$fecha;
     $total = isset($_SESSION["total"]) ? round($_SESSION["total"],2) : null;
+    $_SESSION['estado'] = ($_SESSION['estado'] . "2");  // añadimos el 2 para indicar que ya han confirmado el pedido y está en firme
     $estado = isset($_SESSION["estado"]) ? $_SESSION["estado"] : null; //aquí llegará solo 3 o 4 en función del método de pago
     $codUsuario = isset($_SESSION["codUsuario"]) ? $_SESSION["codUsuario"] : null; //dni
     $activo = isset($_SESSION["PedidoActivo"]) ? $_SESSION["PedidoActivo"] : 1; //de forma predeterminada valdra 1

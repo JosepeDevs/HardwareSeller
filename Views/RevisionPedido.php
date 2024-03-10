@@ -5,7 +5,7 @@ $_SESSION['nuevoPedido']="true";
 include_once("../Views/header.php");
 include_once("../Controllers/ClienteBUSCARController.php");
 
-//print_r($_SESSION);;
+print_r($_SESSION);
 ?>
 <h1>Revisión del pedido</h1>
 <?php //include_once("../Views/aside.php") ?>
