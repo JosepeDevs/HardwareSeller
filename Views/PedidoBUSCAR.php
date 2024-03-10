@@ -99,7 +99,7 @@ if(!isset($_GET['PedidoConfirmado']) && !isset($_SESSION['user']) && empty($_SES
 }
 
 //////////////FORMAS DE BUSCAR PEDIDOS////////////////////////////
-if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQUEST["fechaFin"]) || isset($_REQUEST["codUsuario"]) ) {
+if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQUEST["fechaFin"]) || isset($_REQUEST["codUsuario"]) || isset($_REQUEST["estado"]) ) {
     $idPedido=null;//mejor null que sin declarar de todas formas lo voy a guardar dentro de nada con lo que tengamos en el GET
     $codUsuario=null;//mejor null que sin declarar de todas formas lo voy a guardar dentro de nada con lo que tengamos en el GET
     include_once("../Controllers/PedidoBUSCARController.php");
