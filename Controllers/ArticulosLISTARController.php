@@ -6,6 +6,12 @@ function getArrayAtributosArticulo(){
     return $arrayArticulos;
 }
 
+function getArticuloByCodigo($codigo){
+    include_once("../Models/Articulo.php");
+    $activo = Articulo::getArticuloByCodigo($codigo);
+    return $activo;
+}
+
 /**
  * @return array|bool devuelve array con artículos si tiene éxito, devuelve false si no tiene éxito
  */

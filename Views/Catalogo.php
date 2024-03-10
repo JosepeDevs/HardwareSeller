@@ -6,12 +6,19 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 if(!array_key_exists('productos', $_SESSION)) {
     $_SESSION['productos'] = []; 
 }
+include_once("../Controllers/ArticulosLISTARController.php");
 
 //AÑADIR AL CARRITO
 if(isset($_GET["codigo"])) {
-    $codigoParaCarrito = $_GET["codigo"] ;
-    //mira si existe ya el producto, si ya existe añade 1 , si no existe, guarda 1
-    $_SESSION['productos']["$codigoParaCarrito"] = array_key_exists($codigoParaCarrito, $_SESSION['productos']) ? $_SESSION['productos']["$codigoParaCarrito"] + 1 : 1;
+    include_once("../Models/Articulo.php");
+    //para que no puedan ver el precio de lo que quieran vamos a poner la comprobación antes del get para revisar que esté activo el producto, si no lo está no lo metemos.
+    $articulo = getArticuloByCodigo($codigo);
+    $activo = $articulo->getActivo();
+    if($activo == 1){
+        $codigoParaCarrito = $_GET["codigo"] ;
+        //mira si existe ya el producto, si ya existe añade 1 , si no existe, guarda 1
+        $_SESSION['productos']["$codigoParaCarrito"] = array_key_exists($codigoParaCarrito, $_SESSION['productos']) ? $_SESSION['productos']["$codigoParaCarrito"] + 1 : 1;
+    }
 }
 
 //HEADER Y TITULO
@@ -41,7 +48,6 @@ print'<div class="col-lg-9 col-md-11 col-12">';
     print"<table>";
             print"<tr>";
             //ENCABEZADOS
-            include_once("../Controllers/ArticulosLISTARController.php");
             $arrayAtributos = getArrayAtributosArticulo();
             if($arrayAtributos !== false){
                 foreach ($arrayAtributos as $atributo) {
