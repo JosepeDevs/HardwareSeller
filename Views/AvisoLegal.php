@@ -8,6 +8,11 @@ include_once("header.php");
     no nos hacemos responsables de incompatibilidades que puedan surgir de comprar piezas sin haber verificado previamente su compatibilidad
     imposibilidad de usar material recibido 
 </p>
+<p>
+    Para poder ejercer sus derechos de acuerdo al GDPR, tiene derecho al acceso, modificación, traslado y supresión de sus datos personales.
+    Puede ejercer sus derechos en cualquier momento poníendose en contacto con info@josepedevs.infinityfreeapp.com
+    Gracias por utilizar nuestros servicicos y si tiene cualquier solicitud, por favor, no dude en hacérnosla llegar.
+</p>
 <?php
 include_once("footer.php");
 ?>
