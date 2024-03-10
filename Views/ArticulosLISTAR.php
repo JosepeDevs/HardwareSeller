@@ -1,7 +1,7 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Controllers/OperacionesSession.php");
-////print_r($_SESSION);;
+//////print_r($_SESSION);;
 
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){

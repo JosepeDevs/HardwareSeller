@@ -4,7 +4,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //HEADER Y TITULO
 include_once("../Views/header.php");
 print'<h1>Datos de la dirección de envío</h1>';
-//print_r($_SESSION);;
+////print_r($_SESSION);;
 //RECIBIMOS POR POST LOS DATOS 
    
 ///////////////////QuÉ MOSTRAR SI ESTÁN REGISTRADOS///////////////////

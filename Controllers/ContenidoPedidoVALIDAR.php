@@ -142,7 +142,7 @@ foreach ($contenidoPedido as $index => $array) {
             }
         }
     };
-//print_r($_SESSION);
+////print_r($_SESSION);
 
 ////////////ROUTER para ver donde vamos    
 if(isset($_SESSION["CarritoConfirmado"])){

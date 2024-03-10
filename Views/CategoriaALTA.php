@@ -24,7 +24,7 @@ if( $rol == "admin" || $rol == "empleado" ){
 
 include("header.php");
 print"<h1>Alta de Categoría</h1>";
-////print_r($_SESSION);;
+//////print_r($_SESSION);;
 
 $_SESSION["nuevoCategoria"]="true";//ponemos esto a true para que cuando vaya a validar datos lo trate como un insert
 $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;

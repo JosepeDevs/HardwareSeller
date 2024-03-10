@@ -13,7 +13,7 @@ if( $usuarioLogeado == false){
 }
 
 include_once("../Models/Articulo.php");
-//print_r($_SESSION);;
+////print_r($_SESSION);;
 
 $nombre = isset($_POST["nombre"]) ? $_POST["nombre"] : null;
 $descripcion = isset($_POST["descripcion"]) ? $_POST["descripcion"] : null;//por post llegaría el posible nuevo código
@@ -131,7 +131,7 @@ if(isset($_FILES["imagen"]) && $_FILES["imagen"]["size"] !== 0){
     }
 }
 
-print_r($_SESSION);
+////print_r($_SESSION);
 
 if(
     ( isset($_SESSION['LongNombre']) && $_SESSION['LongNombre'] == true) ||
@@ -227,6 +227,6 @@ if( isset($_SESSION["editandoArticulo"]) && $_SESSION["editandoArticulo"] == "tr
    header("Location: ../Views/ArticulosLISTAR.php");
     exit;
 };
-print_r($_SESSION);
+////print_r($_SESSION);
 
 ?>
