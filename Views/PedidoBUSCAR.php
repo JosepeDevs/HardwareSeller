@@ -2,7 +2,7 @@
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Controllers/OperacionesSession.php");
 include_once("../Controllers/GetDniByEmailController.php");
-
+$rol = GetRolDeSession();
 //las funciones ya filtran para que las busquedas solo les devuelvan sus propios datos, con proteger para que solo users entren basta
 //NO PROTEGER ESTO o si no las compras realizadas sin registrarse no tendrán la vista de confirmación
 
@@ -55,9 +55,11 @@ if(isset($_GET["PedidoConfirmado"])){
                 <th><h2><label for="fecha">Fecha inicio</label></h2></th>
                 <th><h2><label for="fecha">Fecha fin</label></h2></th>
                 <th><h2><label for="estado">Busqueda por estado<br> Estado del pedido:(0=envío a direccion)(1=pedido en carrito)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago y recogida en tienda)
-                (6=pago confirmado)(7=pedido enviado)(8=pedido recibido)(9=finalizado o cancelado)</label></h2></th>
-                <th><h2><label for="codUsuario">Codigo usuario (DNI)</label></h2></th>
-            </tr>
+                (6=pago confirmado)(7=pedido enviado)(8=pedido recibido)(9=finalizado o cancelado)</label></h2></th>';
+            if($rol= "admin" || $rol == "empleado"){
+                echo'<th><h2><label for="codUsuario">Codigo usuario (DNI)</label></h2></th>';
+            }
+            echo'</tr>
             <tr>
                 <td><input type="text" name="idPedido" ><br><br></td>
                 <td><input type="date" name="fechaInicio" autofocus><br><br></td>
@@ -76,7 +78,6 @@ if(isset($_GET["PedidoConfirmado"])){
 ';
 }
 echo'<br>';
-$rol = GetRolDeSession();
 
 //que consiga el dni de alguna de estas dos formas, por user (registrados y logeados) o de session dni (sin registrrarse)
 if(isset($_SESSION['user'])){
@@ -91,6 +92,7 @@ if(isset($_SESSION['dni'])){
     $dni="dni no encontrado";
 }
 
+//////////////FORMAS DE BUSCAR PEDIDOS////////////////////////////
 if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQUEST["fechaFin"]) || isset($_REQUEST["codUsuario"]) ) {
     $idPedido=null;//mejor null que sin declarar de todas formas lo voy a guardar dentro de nada con lo que tengamos en el GET
     $codUsuario=null;//mejor null que sin declarar de todas formas lo voy a guardar dentro de nada con lo que tengamos en el GET
@@ -161,7 +163,7 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         echo"<tr>";
         //ENCABEZADOS
         foreach ($arrayAtributos as $atributo) {
-             if(( $rol == "user") && ( $atributo == "activo" ||$atributo == "codUsuario" ) ){
+             if(( $rol == "user") && ( $atributo == "activo" || $atributo == "codUsuario" ) ){
                 echo'';//si es user tanto el atributo "activo" como "coduusuario" no se muestran 
             }else{
                 echo "<th>$atributo</th>";
