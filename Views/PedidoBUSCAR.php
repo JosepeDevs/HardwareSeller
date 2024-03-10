@@ -160,9 +160,13 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
     } else{
         $arrayPedido = false;
     }
-
+ 
+    if(isset($arrayPedido[0]) && ($arrayPedido[0] == "")){
+        //si llega un array con el indice 0 pero dentro hay texto vacio es que no encontró pedidos, lo ponemos como false para que diga que no se encontraron pedidos
+        $arrayPedido = false;
+    }
         $arrayAtributos = getArrayAtributosPedido();
-    if( $arrayPedido !== false || ( isset($array[0]) && ($array[0] !== "") ) ) {//si llega un array con el indice 0 pero dentro hay texto vacio es que no encontró pedidos
+    if( $arrayPedido !== false ) {
         print"<table>";
         print"<tr>";
         //ENCABEZADOS
