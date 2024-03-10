@@ -77,7 +77,9 @@ public static function borradoLogicoPedido($idPedido){
     try {
         include_once("../Controllers/ContenidoPedidoBORRARController.php");
         $operacion1Confirmada = borradoLogicoContenidoPedido($idPedido);
-
+        if($operacion1Confirmada ==false){
+            $_SESSION['falloBorrandoContenidoDelPedido'];
+        }
         $conPDO=contectarBbddPDO();
         $query=("UPDATE pedidos SET activo=0 WHERE idPedido=:idPedido");
         $statement= $conPDO->prepare($query);

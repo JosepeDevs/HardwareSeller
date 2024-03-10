@@ -33,6 +33,10 @@ Function getArrayMensajesPedidos(){
         $mensajes[] =  "No es posible cancelar el pedido, tal vez el estado no sea adecuado (enviados, pago realizado, recibidos, finalizads...) Contacte con nosotros si cree que es un error.";
         unset($_SESSION['FalloBorrandoPedido']);
     }
+    if(isset($_SESSION['FalloBorrandoPedido']) && $_SESSION['FalloBorrandoPedido'] == true){
+        $mensajes[] =  "no se pudo borrar el contenido del pedido .";
+        unset($_SESSION['FalloBorrandoPedido']);
+    }
     if(isset($_SESSION['FalloBorrandoContenidoPedido']) && $_SESSION['FalloBorrandoContenidoPedido'] == true){
         $mensajes[] =  "No se pudo borrar/cancelar los contenidos del pedido seleccionado, tal vez el estado no sea el adecuado (ya enviado, recibido, etc). Contacte con nosotros si cree que es un error.";
         unset($_SESSION['FalloBorrandoContenidoPedido']);
