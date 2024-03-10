@@ -167,6 +167,10 @@ Function getArrayMensajesPedidos(){
         unset($_SESSION['BadEstadoParaCancelar'] );
         $mensajes[]= "El pedido que ha intentado cancelar tiene un estado que actualmente no se puede cancelar. Si cree que esto puede ser un error por favor contacte con nosotros.";
     }
+    if(isset($_SESSION['BorradoPedidoFallido']) && ($_SESSION['BorradoPedidoFallido'] == true)) {
+        unset($_SESSION['BorradoPedidoFallido'] );
+        $mensajes[]= "El pedido que ha intentado cancelar no se ha podido determianr si es cancelable o no, no ha sido cancelado.";
+    }
 
 
     if( count($mensajes) == 0){

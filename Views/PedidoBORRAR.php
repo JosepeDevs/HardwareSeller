@@ -24,10 +24,18 @@ if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "false" ){
     header("Location: PedidosLISTAR.php");
     exit;
 }else if(isset($_GET['idPedido']) && isset($_GET['confirmacion']) && $_GET['confirmacion']== "true" && $estadoCancelable) {
-    print($_GET['confirmacion']);
     if(isset($_SESSION['BadEstadoParaCancelar']) && $_SESSION['BadEstadoParaCancelar'] !== true){
         $operacionExitosa = borradoLogicoPedido($idPedido);
         $_SESSION['PedidoCanceladoExitoso'] = true;
+    } else if(!isset($_SESSION['BadEstadoParaCancelar']) && $estadoCancelable){
+        //si todo va bien no se subirá a session badestado, no sirve como comprobación única, por eso si no existe es qeu todo OK pero también debe ser cancelable
+        //esto es para pedidos que sí son cancelables que no existe BadEstado
+        $operacionExitosa = borradoLogicoPedido($idPedido);
+        $_SESSION['PedidoCanceladoExitoso'] = true;
+    } else{
+        $_SESSION['BorradoPedidoFallido'] = true;
+        header("Location: PedidosLISTAR.php");
+        exit;
     }
     header("Location: PedidosLISTAR.php");
     exit;
