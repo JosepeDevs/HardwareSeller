@@ -23,7 +23,7 @@ if(
         $rol = $cliente->getRol();
         $activo = $cliente->getActivo();
     } 
-    if($cliente == false || $activo == 0){
+    if( $activo == 0){
         //si la cuenta está desactivada no les dejamos hacer login
         header("Location:/index.php");
         exit;
