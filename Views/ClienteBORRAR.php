@@ -49,7 +49,7 @@ if(( $_SESSION['operacionCancelada'] !== null)){
         header("Location: TablaClientes.php");
         exit;
     } else {
-        header("Location: AreaCliente.php");
+        header("Location: ../Controllers/DestructorSession.php");
         exit;
     }
 }
