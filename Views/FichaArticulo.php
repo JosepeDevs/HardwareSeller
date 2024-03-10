@@ -99,7 +99,7 @@ echo'
                     echo'<td class="col-12 col-lg-1 col-sm-1">';
                     echo'
                     <div>
-                        <a href=?categoria='.$arrayArticulosRelacionados[$i]->getCategoria().'codigo='.$arrayArticulosRelacionados[$i]->getCodigo().'>
+                        <a href=?categoria='.$arrayArticulosRelacionados[$i]->getCategoria().'&codigo='.$arrayArticulosRelacionados[$i]->getCodigo().'>
                             <img src="'.$directorio.$arrayArticulosRelacionados[$i]->getImagen().'" alt="'.$arrayArticulosRelacionados[$i]->getNombre().'"/>
                     </div>
                     <br>
