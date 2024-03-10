@@ -45,6 +45,7 @@ print'<h2><a href="../Views/PedidoBORRAR.php?idPedido='.$idPedido.'&confirmacion
         </div>
 <?php
 //SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
+
 include_once("../Controllers/PedidosMensajes.php");
             $arrayMensajes=getArrayMensajesPedidos();
             if(is_array($arrayMensajes)){
@@ -52,6 +53,9 @@ include_once("../Controllers/PedidosMensajes.php");
                     print "<h3>$mensaje</h3>";
                 }
             };
-
+//tras hacer print del error se hará unset, pero si insisten en borrar aquí subimos de nuevo el error para que se vea en listar pedidos
+if($estadoCancelable == false){
+    $_SESSION['BadEstadoParaCancelar'];
+}
 include_once("footer.php");
 ?>
