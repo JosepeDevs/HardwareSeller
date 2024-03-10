@@ -92,7 +92,7 @@ class Articulo {
 */
         try{                
             $con = contectarBbddPDO();
-            $sqlQuery="SELECT * FROM  `articulos` WHERE categoria LIKE CONCAT(:categoriaPadre, '%');";
+            $sqlQuery="SELECT * FROM  `articulos` WHERE categoria LIKE CONCAT(:categoriaPadre, '%') LIMIT 7;";
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':categoriaPadre', $categoriaPadre);
             $statement->execute();
