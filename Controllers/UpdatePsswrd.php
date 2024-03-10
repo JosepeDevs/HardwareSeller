@@ -1,7 +1,7 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Views/header.php");
-include_once("../Models/Cliente.php");
+include_once("../Controllers/ClienteBUSCARController.php");
 $operacionExitosa=false;
 if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']) ) {
     $email = $_POST['mail'];
