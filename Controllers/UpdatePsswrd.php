@@ -5,6 +5,7 @@ include_once("../Controllers/ClienteBUSCARController.php");
 $operacionExitosa=false;
 if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']) ) {
     $email = $_POST['mail'];
+    $_SESSION['mail'] = $email;
     $dni = $_POST['dni'];
     $_SESSION['dni'] = $dni;
     $clienteExiste = checkClientByEmailAndDni($email, $dni);
@@ -67,7 +68,7 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
         exit;
     };
 } else if (isset($_POST['newpsswrd']) && !empty($_POST['newpsswrd'])){
-    
+    $email = isset($_SESSION['mail']) ? $_SESSION['mail'] : null ; 
     if($todoOK == true){
         $cliente = getClienteByEmail($email);
         $cliente->setActivo(1);
