@@ -298,9 +298,7 @@ public function setActivo($activo) {
             $operacionConfirmada= $statement->fetch();
             if($operacionConfirmada !== false){
                 $_SESSION['ExitoBorrandoContenidoPedido'] = true;
-            } else {
-                $_SESSION['ExitoBorrandoContenidoPedido'] = false;
-            }
+            } 
             return $operacionConfirmada;
         } catch(PDOException $e) {
             $_SESSION['BadOperation'] = true;
