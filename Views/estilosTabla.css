@@ -426,10 +426,10 @@ aside{
     position: fixed;
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    justify-content: left;
+    justify-content: space-around;
     padding:0% 0% 1% 1% ;
-    align-items: space-around;
+    align-items: left;
+    align-items: start;
     z-index: 1;
 }
 
