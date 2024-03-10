@@ -383,7 +383,7 @@ public static function borradoLogicoPedido($idPedido){
             $estaFinalizado !== false 
         ) {
             ///si no son falsoso, es que ha encontrado alguno de ellos, no dejamos cancelar (pagado, enviado, recibido, finalizado)
-            $_SESSION['BadEstadoParaCancelar2'] = true;
+            $_SESSION['BadEstadoParaCancelar'] = true;
             return false;
         } else{
             return true;

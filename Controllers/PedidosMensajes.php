@@ -179,6 +179,10 @@ Function getArrayMensajesPedidos(){
         unset($_SESSION['codUsuarioNotFound'] );
         $mensajes[]= "No se encontró el ususario indicado .";
     }
+    if(isset($_SESSION['PedidoCanceladoExitoso']) && ($_SESSION['PedidoCanceladoExitoso'] == false)) {
+        unset($_SESSION['PedidoCanceladoExitoso'] );
+        $mensajes[]= "El pedido seleccionado ha sido cancelado.";
+    }
 
 
     if( count($mensajes) == 0){

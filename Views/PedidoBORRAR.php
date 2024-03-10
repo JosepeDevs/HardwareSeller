@@ -18,14 +18,6 @@ $idPedido = isset($_GET['idPedido']) ? $_GET['idPedido'] : null;
 $estado = isset($_GET['estado']) ? $_GET['estado'] : null;
 
 $estadoCancelable = SePuedeCancelarPedido($estado);
-if($estadoCancelable == false){
-    $_SESSION['BadEstadoParaCancelar'] = true;
-}
-print_r($_SESSION);
-$esnumero=is_numeric($estado);
-print("es numero:".($esnumero));
-$encontrado=strpos($estado, '6') ;
-print("encontrado?:".($encontrado));
 
 if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "false" ){
     $_SESSION['BorradoPedidoCancelado'] = true;
@@ -34,6 +26,7 @@ if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "false" ){
 }else if(isset($_GET['idPedido']) && isset($_GET['confirmacion']) && $_GET['confirmacion']== "true" && $estadoCancelable) {
     print($_GET['confirmacion']);
     $operacionConfirmada = borradoLogicoPedido($idPedido);
+    $_SESSION['PedidoCanceladoExitoso'] = true;
     header("Location: PedidosLISTAR.php");
     exit;
 }
