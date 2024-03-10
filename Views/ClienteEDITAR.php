@@ -189,7 +189,9 @@ if(is_array($arrayMensajes)){
 };
 
 print("<h2><a class='cerrar' a href='AreaCliente.php'>Ir al área personal</a></h2>");
-print("<h2><a class='cerrar' a href='ClienteBORRAR.php?dni=$dni'>Borrar cuenta</a></h2>");
+if($rol == "user" || $rol == "empleado" || $rol="editor"){
+    print("<h2><a class='cerrar' a href='ClienteBORRAR.php?dni=$dni'>Borrar cuenta</a></h2>");
+}
 
 
 include_once("footer.php");
