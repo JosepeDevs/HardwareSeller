@@ -126,8 +126,8 @@ if(isset($_FILES["imagen"]) && $_FILES["imagen"]["size"] !== 0){
     } else{
         $_SESSION['CodigoNotFound'] = true;
       //  print"<br>no se encontro el codigo <br>";
-    //    print "<script>history.back();</script>";
-      //  exit;
+        print "<script>history.back();</script>";
+        exit;
     }
 }
 
@@ -153,7 +153,7 @@ if(
 ){
     //algo dio error, go back para que allí de donde venga se muestre el error
    // print"nombre ={$_SESSION['LongNombre']},BadCodigo ={$_SESSION['BadCodigo']},CodigoAlreadyExists ={$_SESSION['CodigoAlreadyExists']},LongDescripcion ={$_SESSION['LongDescripcion']},LongCategoria ={$_SESSION['LongCategoria']},LongPrecio ={$_SESSION['LongPrecio']},LongImagen ={$_SESSION['LongImagen']},ImagenPesada ={$_SESSION['ImagenPesada']},FileAlreadyExists ={$_SESSION['FileAlreadyExists']},ImagenGrande ={$_SESSION['ImagenGrande']},ActivoGrande ={$_SESSION['ActivoGrande']},FileBadFormat ={$_SESSION['FileBadFormat']},,BadDescuento ={$_SESSION['BadDescuento']},";
-   //    print "<script>history.back();</script>";
+       print "<script>history.back();</script>";
         exit;
 } else {
     $_SESSION["nombre"] = $nombre;
@@ -200,7 +200,7 @@ if( isset($_SESSION["editandoArticulo"]) && $_SESSION["editandoArticulo"] == "tr
     if($operacionExitosa){
         $_SESSION['GoodUpdateArticulo']= true;
     }
-   // header("Location: ../Views/ArticulosLISTAR.php");
+    header("Location: ../Views/ArticulosLISTAR.php");
     exit;
 }else if( isset($_SESSION["nuevoArticulo"]) && $_SESSION["nuevoArticulo"] == "true" && $codigoLibre == true){
 
@@ -224,8 +224,8 @@ if( isset($_SESSION["editandoArticulo"]) && $_SESSION["editandoArticulo"] == "tr
     } else{
         print"all bad $operacionExitosa";
     }
-   //header("Location: ../Views/ArticulosLISTAR.php");
-    //exit;
+   header("Location: ../Views/ArticulosLISTAR.php");
+    exit;
 };
 print_r($_SESSION);
 
