@@ -141,16 +141,25 @@
     </div>
     </form>
     <div id="carrito-header">
-        <small><? if( isset($_SESSION['productos']) && !empty($_SESSION['productos']) ){print count($_SESSION['productos']);}?></small>
+        <small>
+            <?
+                if( isset($_SESSION['productos']) && !empty($_SESSION['productos']) ){
+                    //contamos cuantos codigos hay en el array de productos 
+                    print count($_SESSION['productos']);
+                    print ("   ");
+                }
+             ?>
+        </small>
         <small>
             <?  
                 $sumaTotal = 0;
                 if(isset($_SESSION['precios']) && !empty($_SESSION['precios'])) {
                     foreach($_SESSION['precios'] as $precio) {
+                        //como solo guardamos precio en este array no tengo que especificar índice numerico ni asociativo y puedo acceder al contenido más fácil 
                         $sumaTotal += $precio;
                     }
                 }
-                print $sumaTotal."€";
+                print round($sumaTotal,2)."€";
             ?>
         </small>
         <a href="/Views/Carrito.php"><i class="lni lni-cart"></i></a>
