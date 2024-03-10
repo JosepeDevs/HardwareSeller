@@ -78,6 +78,10 @@ public static function borradoLogicoPedido($idPedido){
         include_once("../Controllers/ContenidoPedidoBORRARController.php");
         $desactivaContenidoPedidoConfirmado = borradoLogicoContenidoPedido($idPedido);
 
+        if($desactivaContenidoPedidoConfirmado == false){
+            $_SESSION['FalloBorrandoContenidoPedido'];
+        }
+
         $conPDO=contectarBbddPDO();
         $query=("UPDATE pedidos SET activo=0 WHERE idPedido=:idPedido");
         $statement= $conPDO->prepare($query);
@@ -86,15 +90,14 @@ public static function borradoLogicoPedido($idPedido){
         $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Pedido');
         $desactivaPedidoConfirmado= $statement->fetch();
 
+        if($desactivaPedidoConfirmado == false){
+            $_SESSION['falloBorrandoElPropioPedido'];
+        } 
+
         if($desactivaPedidoConfirmado !== false && $desactivaContenidoPedidoConfirmado !== false){
             $_SESSION['ExitoBorrandoTodoPedido'] = true;
-        } else if($desactivaContenidoPedidoConfirmado == false && $desactivaPedidoConfirmado !==false){
-            $_SESSION['FalloBorrandoContenidoPedido'];
-        }else if($desactivaContenidoPedidoConfirmado !== false && $desactivaPedidoConfirmado ==false){
-            $_SESSION['falloBorrandoElPropioPedido'];
-        } else {
-            $_SESSION['FalloBorrandoPedidoY-OsuContenido'] = true;
-        }
+        } 
+        
         return $desactivaPedidoConfirmado; //devolvemos el pedido, a partir de ahí pueden acceder al contenido si hace falta
     } catch(PDOException $e) {
         $_SESSION['BadOperation'] = true;
