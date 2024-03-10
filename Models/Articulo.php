@@ -276,8 +276,8 @@ class Articulo {
             $statement->bindParam(':codigo', $codigo);
             $operacionConfirmada = $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Articulo');
-            $operacionConfirmada= $statement->fetch();
-            if($operacionConfirmada !== false){
+            //$operacionConfirmada= $statement->fetch();
+            if ($statement->rowCount() > 0) {
                 $_SESSION['ExitoBorrandoArticulo'] = true;
             } else {
                 $_SESSION['FalloBorrandoArticulo'] = true;
