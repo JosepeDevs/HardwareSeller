@@ -45,7 +45,7 @@ print'<h2><a href="../Views/PedidoBORRAR.php?idPedido='.$idPedido.'&confirmacion
         </div>
 <?php
 //SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
-
+print_r($_SESSION);
 include_once("../Controllers/PedidosMensajes.php");
             $arrayMensajes=getArrayMensajesPedidos();
             if(is_array($arrayMensajes)){
