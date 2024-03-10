@@ -88,12 +88,14 @@ if(isset($_SESSION['dni'])){
 } else if(isset($_SESSION['user'])){
     $email=$_SESSION['user'];
     $dni=GetDniByEmail($email);
-} else if(!isset($_GET['PedidoConfirmado']) && !isset($_SESSION['user']) && empty($_SESSION['user']) ){
+}  else{
+    $dni="dni no encontrado";
+}
+
+if(!isset($_GET['PedidoConfirmado']) && !isset($_SESSION['user']) && empty($_SESSION['user']) ){
     //si no están logeados, solo dejamos que vean la págian de PedidoConfirmado 
     print "<script>history.back();</script>";
     exit;
-}else{
-    $dni="dni no encontrado";
 }
 
 //////////////FORMAS DE BUSCAR PEDIDOS////////////////////////////
