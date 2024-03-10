@@ -62,11 +62,6 @@ Function getArrayMensajesPedidos(){
         $mensajes[] =  "El pedido y su contenido se borró correctamente.";
     }
 
-    if(isset($_SESSION['BorradoPedidoCancelado']) && ($_SESSION['BorradoPedidoCancelado'] == true)) {
-        unset($_SESSION['BorradoPedidoCancelado']);
-        $mensajes[] =  "Borrado cancelado.";
-    }
-
     if(isset($_SESSION['idPedidoNotFound']) && $_SESSION['idPedidoNotFound'] == true){
         $_SESSION['idPedidoNotFound']=false;
         $mensajes[] = "No se encontró el idPedido consultado.";
@@ -133,28 +128,9 @@ Function getArrayMensajesPedidos(){
         $mensajes[]= "indico un estado para activo demasiado largo (solo se permite 0 para inactivo o 1 para activo.";
     }
 
-    if(isset($_SESSION['ExitoBorrandoPedido']) && ($_SESSION['ExitoBorrandoPedido'] == true)) {
-        unset($_SESSION['ExitoBorrandoPedido']);
-        $mensajes[]= "El pedido se borró correctamente.";
-
-    } elseif(isset($_SESSION['ExitoBorrandoPedido']) && ($_SESSION['ExitoBorrandoPedido'] == false)) {
-        unset($_SESSION['ExitoBorrandoPedido'] );
-        $mensajes[]= "El borrado del pedido NO tuvo lugar.";
-    }
-
     if(isset($_SESSION['BorradoPedidoCancelado']) && ($_SESSION['BorradoPedidoCancelado'] == true)) {
         unset($_SESSION['BorradoPedidoCancelado']);
         $mensajes[]= "Borrado cancelado.";
-    }
-
-    if(isset($_SESSION['GoodInsertPedido']) && ($_SESSION['GoodInsertPedido'] == true)) {
-        unset($_SESSION['GoodInsertPedido']);
-        $mensajes[]= "Nuevo Pedido añadido correctamente.";
-    }
-
-    if(isset($_SESSION['BadInsertPedido']) && ($_SESSION['BadInsertPedido'] == true)) {
-        unset($_SESSION['BadInsertPedido']);
-        $mensajes[]= "hubo un fallo al insertar los datos del pedido, quizás debido a la conexión con la base de datos.";
     }
 
     if(isset($_SESSION['OperationFailed']) && ($_SESSION['OperationFailed'] == true)) {
@@ -162,20 +138,20 @@ Function getArrayMensajesPedidos(){
         $mensajes[]= " operación falló de una forma inesperada, quizás la conexión a la base de datos no fue correcta.";
     }
 
-    if(isset($_SESSION['NoHayPedidos']) && ($_SESSION['NoHayPedidos'] == false)) {
+    if(isset($_SESSION['NoHayPedidos']) && ($_SESSION['NoHayPedidos'] == true)) {
         unset($_SESSION['NoHayPedidos'] );
         $mensajes[]= "No se encontraron Pedidos con los datos buscados o no tiene acceso a ellos.";
     }
 
-    if(isset($_SESSION['ErrorGetPedidos']) && ($_SESSION['ErrorGetPedidos'] == false)) {
+    if(isset($_SESSION['ErrorGetPedidos']) && ($_SESSION['ErrorGetPedidos'] == true)) {
         unset($_SESSION['ErrorGetPedidos'] );
         $mensajes[]= "No se pudieron recuperar Pedidos de la base de datos.";
     }
-    if(isset($_SESSION['codUsuarioNotFound']) && ($_SESSION['codUsuarioNotFound'] == false)) {
+    if(isset($_SESSION['codUsuarioNotFound']) && ($_SESSION['codUsuarioNotFound'] == true)) {
         unset($_SESSION['codUsuarioNotFound'] );
         $mensajes[]= "No se encontró el ususario indicado .";
     }
-    if(isset($_SESSION['PedidoCanceladoExitoso']) && ($_SESSION['PedidoCanceladoExitoso'] == false)) {
+    if(isset($_SESSION['PedidoCanceladoExitoso']) && ($_SESSION['PedidoCanceladoExitoso'] == true)) {
         unset($_SESSION['PedidoCanceladoExitoso'] );
         $mensajes[]= "El pedido seleccionado ha sido cancelado.";
     }
