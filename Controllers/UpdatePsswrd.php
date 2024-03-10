@@ -1,5 +1,6 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+include_once("../Views/header.php");
 
 $operacionExitosa=false;
 if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']) ) {
@@ -21,16 +22,15 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
     $newpsswrd = $_POST['newpsswrd'];
     $newpsswrd = password_hash($newpsswrd, PASSWORD_BCRYPT);
     $dni = $_SESSION['dni'];
-   print"entramos a actualizar la contraseña";
+   //print"entramos a actualizar la contraseña";
     $operacionExitosa = updatePasswrdUsingDni($dni, $newpsswrd);
-if ($operacionExitosa) {
-    print"la operacion ha sido $operacionExitosa";
-    $_SESSION['PsswrdActualizada'] = true;
-}
-//haya éxito o no iremos a index
-header("Location: /index.php");
-exit;
-
+    if ($operacionExitosa) {
+       // print"la operacion ha sido $operacionExitosa";
+        $_SESSION['PsswrdActualizada'] = true;
+    }
+    //haya éxito o no iremos a index
+    header("Location: /index.php");
+    exit;
 }
 
 ?>
