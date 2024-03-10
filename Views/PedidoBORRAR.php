@@ -37,7 +37,7 @@ if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "false" ){
 
 
 print'<h2><a href="../Views/PedidoBORRAR.php?idPedido='.$idPedido.'&confirmacion=true">Sí, cancelar pedido y sus contenidos.</a></h2>';
-print'<h2><a href="../Views/PedidoBORRAR.php?idPedido='.$idPedido.'&confirmacion=false">Cancelar desactivación.</a></h2>';
+print'<h2><a href="../Views/PedidoBORRAR.php?idPedido='.$idPedido.'&confirmacion=false">No deseo cancelar el pedido.</a></h2>';
 ?>
 
         </div>
