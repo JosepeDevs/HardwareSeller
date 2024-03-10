@@ -378,6 +378,7 @@ public static function borradoLogicoPedido($idPedido){
             strpos($estado, '9') == false
             ) {
             ///si encuentra los estados que no dejamos cancelar (pagado, enviado, recibido, finalizado) no permitimos cancelación
+            $_SESSION['BadEstadoParaCancelar2'] = true;
             return false;
         } else{
             return true;
