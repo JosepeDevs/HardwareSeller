@@ -127,7 +127,7 @@ if(isset($_FILES["imagen"]) && $_FILES["imagen"]["size"] !== 0){
         $_SESSION['CodigoNotFound'] = true;
       //  print"<br>no se encontro el codigo <br>";
     //    print "<script>history.back();</script>";
-        exit;
+      //  exit;
     }
 }
 
@@ -225,7 +225,7 @@ if( isset($_SESSION["editandoArticulo"]) && $_SESSION["editandoArticulo"] == "tr
         print"all bad $operacionExitosa";
     }
    //header("Location: ../Views/ArticulosLISTAR.php");
-    exit;
+    //exit;
 };
 print_r($_SESSION);
 
