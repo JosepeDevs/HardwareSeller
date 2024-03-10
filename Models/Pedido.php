@@ -108,6 +108,7 @@ public static function borradoLogicoPedido($idPedido){
             $con = contectarBbddPDO();
             if($dni !== null){
                 $sqlQuery="SELECT * FROM  `pedidos` WHERE estado LIKE CONCAT('%', :estado, '%') AND codUsuario=:dni AND activo=1;";
+            } else{
                 $sqlQuery="SELECT * FROM  `pedidos` WHERE estado LIKE CONCAT('%', :estado, '%') ;";
             }
             $statement=$con->prepare($sqlQuery);
@@ -126,7 +127,7 @@ public static function borradoLogicoPedido($idPedido){
             }
         } catch(PDOException $e) {
             $_SESSION['ErrorGetPedidos']= true;
-            $_SESSION['ErrorGetPedidos1'] = $e->getMessage();
+           // $_SESSION['ErrorGetPedidos1'] = $e->getMessage();
             return false;
         }
     }
