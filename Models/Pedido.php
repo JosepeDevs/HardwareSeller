@@ -76,23 +76,26 @@ public function setActivo($activo) {
 public static function borradoLogicoPedido($idPedido){
     try {
         include_once("../Controllers/ContenidoPedidoBORRARController.php");
-        $operacion1Confirmada = borradoLogicoContenidoPedido($idPedido);
-        if($operacion1Confirmada ==false){
-            $_SESSION['falloBorrandoContenidoDelPedido'];
-        }
+        $desactivaContenidoPedidoConfirmado = borradoLogicoContenidoPedido($idPedido);
+
         $conPDO=contectarBbddPDO();
         $query=("UPDATE pedidos SET activo=0 WHERE idPedido=:idPedido");
         $statement= $conPDO->prepare($query);
         $statement->bindParam(':idPedido', $idPedido);
-        $operacion2Confirmada = $statement->execute();
+        $desactivaPedidoConfirmado = $statement->execute();
         $statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Pedido');
-        $operacion2Confirmada= $statement->fetch();
-        if($operacion2Confirmada !== false && $operacion1Confirmada !== false){
-            $_SESSION['ExitoBorrandoPedido'] = true;
+        $desactivaPedidoConfirmado= $statement->fetch();
+
+        if($desactivaPedidoConfirmado !== false && $desactivaContenidoPedidoConfirmado !== false){
+            $_SESSION['ExitoBorrandoTodoPedido'] = true;
+        } else if($desactivaContenidoPedidoConfirmado == false && $desactivaPedidoConfirmado !==false){
+            $_SESSION['FalloBorrandoContenidoPedido'];
+        }else if($desactivaContenidoPedidoConfirmado !== false && $desactivaPedidoConfirmado ==false){
+            $_SESSION['falloBorrandoElPropioPedido'];
         } else {
-            $_SESSION['FalloBorrandoPedido'] = true;
+            $_SESSION['FalloBorrandoPedidoY-OsuContenido'] = true;
         }
-        return $operacion2Confirmada; //devolvemos el pedido, a partir de ahí pueden acceder al contenido si hace falta
+        return $desactivaPedidoConfirmado; //devolvemos el pedido, a partir de ahí pueden acceder al contenido si hace falta
     } catch(PDOException $e) {
         $_SESSION['BadOperation'] = true;
         return false;

@@ -33,12 +33,8 @@ Function getArrayMensajesPedidos(){
         $mensajes[] =  "No es posible cancelar el pedido, tal vez el estado no sea adecuado (enviados, pago realizado, recibidos, finalizads...) Contacte con nosotros si cree que es un error.";
         unset($_SESSION['FalloBorrandoPedido']);
     }
-    if(isset($_SESSION['FalloBorrandoPedido']) && $_SESSION['FalloBorrandoPedido'] == true){
-        $mensajes[] =  "no se pudo borrar el contenido del pedido .";
-        unset($_SESSION['FalloBorrandoPedido']);
-    }
     if(isset($_SESSION['FalloBorrandoContenidoPedido']) && $_SESSION['FalloBorrandoContenidoPedido'] == true){
-        $mensajes[] =  "No se pudo borrar/cancelar los contenidos del pedido seleccionado, tal vez el estado no sea el adecuado (ya enviado, recibido, etc). Contacte con nosotros si cree que es un error.";
+        $mensajes[] =  "No se pudo borrar/cancelar los contenidos del pedido seleccionado. Contacte con nosotros si cree que es un error.";
         unset($_SESSION['FalloBorrandoContenidoPedido']);
     }
     if(isset($_SESSION['SinNumero']) && $_SESSION['SinNumero'] == true){
@@ -58,16 +54,12 @@ Function getArrayMensajesPedidos(){
 
     if(isset($_SESSION['BadUpdatePedido']) && ($_SESSION['BadUpdatePedido'] == true)) {
         unset($_SESSION['BadUpdatePedido']);
-        $mensajes[] =  "El sistema tuvo un problema actualizando los datos del artículo, por favor, pruebe de nuevo.";
+        $mensajes[] =  "El sistema tuvo un problema actualizando los datos del pedido, por favor, pruebe de nuevo.";
     }
 
-    if(isset($_SESSION['ExitoBorrandoPedido']) && ($_SESSION['ExitoBorrandoPedido'] == true)) {
-        unset($_SESSION['ExitoBorrandoPedido']);
-        $mensajes[] =  "El artículo se borró correctamente.";
-
-    } elseif(isset($_SESSION['ExitoBorrandoPedido']) && ($_SESSION['ExitoBorrandoPedido'] == false)) {
-        unset($_SESSION['ExitoBorrandoPedido']);
-        $mensajes[] =  "El artículo no ha sido borrado.";
+    if(isset($_SESSION['ExitoBorrandoTodoPedido']) && ($_SESSION['ExitoBorrandoTodoPedido'] == true)) {
+        unset($_SESSION['ExitoBorrandoTodoPedido']);
+        $mensajes[] =  "El pedido y su contenido se borró correctamente.";
     }
 
     if(isset($_SESSION['BorradoPedidoCancelado']) && ($_SESSION['BorradoPedidoCancelado'] == true)) {
@@ -82,7 +74,7 @@ Function getArrayMensajesPedidos(){
 
     if(isset($_SESSION['fechaNotFound']) && $_SESSION['fechaNotFound'] == true){
         $_SESSION['fechaNotFound']=false;
-        $mensajes[] = "No se encontró ningún artículo que contenga su consulta en el fecha.";
+        $mensajes[] = "No se encontró ningún pedido que contenga su consulta en el fecha.";
     }
     if(isset($_SESSION['GoodInsertPedido']) && $_SESSION['GoodInsertPedido'] == true){
         $mensajes[] =  "Pedido añadido correctamente.";
@@ -143,11 +135,11 @@ Function getArrayMensajesPedidos(){
 
     if(isset($_SESSION['ExitoBorrandoPedido']) && ($_SESSION['ExitoBorrandoPedido'] == true)) {
         unset($_SESSION['ExitoBorrandoPedido']);
-        $mensajes[]= "El artículo se borró correctamente.";
+        $mensajes[]= "El pedido se borró correctamente.";
 
     } elseif(isset($_SESSION['ExitoBorrandoPedido']) && ($_SESSION['ExitoBorrandoPedido'] == false)) {
         unset($_SESSION['ExitoBorrandoPedido'] );
-        $mensajes[]= "El borrado del artículo NO tuvo lugar.";
+        $mensajes[]= "El borrado del pedido NO tuvo lugar.";
     }
 
     if(isset($_SESSION['BorradoPedidoCancelado']) && ($_SESSION['BorradoPedidoCancelado'] == true)) {
@@ -162,7 +154,7 @@ Function getArrayMensajesPedidos(){
 
     if(isset($_SESSION['BadInsertPedido']) && ($_SESSION['BadInsertPedido'] == true)) {
         unset($_SESSION['BadInsertPedido']);
-        $mensajes[]= "hubo un fallo al insertar los datos del artículo, quizás debido a la conexión con la base de datos.";
+        $mensajes[]= "hubo un fallo al insertar los datos del pedido, quizás debido a la conexión con la base de datos.";
     }
 
     if(isset($_SESSION['OperationFailed']) && ($_SESSION['OperationFailed'] == true)) {
@@ -186,6 +178,14 @@ Function getArrayMensajesPedidos(){
     if(isset($_SESSION['PedidoCanceladoExitoso']) && ($_SESSION['PedidoCanceladoExitoso'] == false)) {
         unset($_SESSION['PedidoCanceladoExitoso'] );
         $mensajes[]= "El pedido seleccionado ha sido cancelado.";
+    }
+    if(isset($_SESSION['FalloBorrandoPedidoY-OsuContenido']) && ($_SESSION['FalloBorrandoPedidoY-OsuContenido'] == true)) {
+        unset($_SESSION['FalloBorrandoPedidoY-OsuContenido'] );
+        $mensajes[]= "el pedido o el contenido del pedido no se pudieron cancelar correctamente.Contacte con nosotros si cree que es un error.";
+    }
+    if(isset($_SESSION['falloBorrandoElPropioPedido']) && ($_SESSION['falloBorrandoElPropioPedido'] == true)) {
+        unset($_SESSION['falloBorrandoElPropioPedido'] );
+        $mensajes[]= "no se pudo cancelar el propio pedido (el contenido del pedido no lanzó error).Contacte con nosotros si cree que es un error.";
     }
 
 
