@@ -21,6 +21,11 @@ $estadoCancelable = SePuedeCancelarPedido($estado);
 if($estadoCancelable ==false){
     $_SESSION['BadEstadoParaCancelar'] = true;
 }
+print_r($_SESSION);
+$esnumero=is_numeric($estado);
+print("es numero:".($esnumero));
+$encontrado=strpos($estado, '6') ;
+print("encontrado?:".($encontrado));
 
 if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "false" ){
     $_SESSION['BorradoPedidoCancelado'] = true;

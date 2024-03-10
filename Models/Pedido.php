@@ -377,7 +377,7 @@ public static function borradoLogicoPedido($idPedido){
             strpos($estado, '8') !== false ||
             strpos($estado, '9') !== false
         ) {
-            ///si encuentra en alguna posicion de estado alguno de los numeros (pagado, enviado, recibido) no permitimos cancelación
+            ///si encuentra en alguna posicion de estado alguno de los numeros (pagado, enviado, recibido, finalizado) no permitimos cancelación
             return false;
         } else{
             return true;
