@@ -126,7 +126,7 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
     $rol = GetRolDeSession();
     if($rol == "admin" || $rol == "editor" || $rol == "empleado") {
         print("<h2><a class='cerrar' a href='AreaCliente.php'>Ir al área personal</a></h2>");
-    } 
+    }   
 
 include_once("footer.php");
 ?>
