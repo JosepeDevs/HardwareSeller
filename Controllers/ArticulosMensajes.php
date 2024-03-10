@@ -1,14 +1,7 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("OperacionesSession.php");
-$usuarioLogeado = UserEstablecido();
-if( $usuarioLogeado == false){
-    session_destroy();
-    echo "ArticulosLISTARMensajes dice: no está user en session";
-    header("Location: index.php");
-    exit;
-}
-
+//no proteger para que el aside pueda buscar bien 
 /**
  * Funcion que se llama para comprobar si ha habido algún error o para mostrar un mensaje de operación realizada correctamente. Obtiene el resultado consultando SESSION.
  * @$mensajes[]= string|bool Devuelve texto si detecta algún mensaje de confirmación/error, si no, devuelve false.
