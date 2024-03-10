@@ -26,10 +26,11 @@ Function getArrayMensajesArticulos(){
 
     if(isset($_SESSION['ExitoBorrandoArticulo']) && ($_SESSION['ExitoBorrandoArticulo'] == true)) {
         unset($_SESSION['ExitoBorrandoArticulo']);
-        $mensajes[] =  "El artículo se borró correctamente.";
+        $mensajes[] =  "El artículo se desactivó correctamente.";
 
-    } elseif(isset($_SESSION['ExitoBorrandoArticulo']) && ($_SESSION['ExitoBorrandoArticulo'] == false)) {
-        unset($_SESSION['ExitoBorrandoArticulo']);
+    }
+    if(isset($_SESSION['FalloBorrandoArticulo']) && ($_SESSION['FalloBorrandoArticulo'] == true)) {
+        unset($_SESSION['FalloBorrandoArticulo']);
         $mensajes[] =  "El artículo no ha sido desactivado.";
     }
 

@@ -280,7 +280,7 @@ class Articulo {
             if($operacionConfirmada !== false){
                 $_SESSION['ExitoBorrandoArticulo'] = true;
             } else {
-                $_SESSION['ExitoBorrandoArticulo'] = false;
+                $_SESSION['FalloBorrandoArticulo'] = true;
             }
             return $operacionConfirmada;
         } catch(PDOException $e) {
