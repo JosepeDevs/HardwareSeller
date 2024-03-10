@@ -97,6 +97,7 @@ if(!isset($_GET['PedidoConfirmado']) && !isset($_SESSION['user']) && empty($_SES
     print "<script>history.back();</script>";
     exit;
 }
+print_r($_POST);
 
 //////////////FORMAS DE BUSCAR PEDIDOS////////////////////////////
 if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_REQUEST["fechaFin"]) || isset($_REQUEST["codUsuario"]) || isset($_REQUEST["estado"]) ) {

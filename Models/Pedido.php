@@ -103,7 +103,6 @@ public static function borradoLogicoPedido($idPedido){
      * con que esté el estado escrito dentro del estado saldrá como resultado
      */
     public static function getPedidosByEstado($estado, $dni=null){
-        $estado= (string)$estado; //casteamos a string lo que llegue por estado, aunque al rodear con % el estado SQL debería entender que es un string
         try{
             $con = contectarBbddPDO();
             if($dni !== null){
