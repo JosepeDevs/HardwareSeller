@@ -31,9 +31,6 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
        // print"la operacion ha sido $operacionExitosa";
         $_SESSION['PsswrdActualizada'] = true;
         $todoOK =true;
-        $email = isset($_SESSION['mail']) ? $_SESSION['mail'] : null ; 
-        $cliente = getClienteByEmail($email);
-        $cliente->setActivo(1);
     } else{
         $todoOK =false;
     }
