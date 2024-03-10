@@ -178,8 +178,8 @@ print"<table>";
                 Estado del pedido:(0=pedido en carrito, pendiente implementación)(1=envío a dirección del cliente)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago y recogida en tienda)
                 (6=pago confirmado)(7=pedido enviado)(8=pedido recibido)(9=finalizado o cancelado)                            
                 <br>
-                El estado puede tener más de 1 digito, por ejemplo: 1 es que esta en el carrito y nada más, 236 es que el pedio es en firme pagará por transferencia y 
-                ya hemos recibido el dinero pero aun no se ha enviado. 2367 mismo caso que el anterior pero este  ya se ha enviado  (aunque no ha llegado aun). 2568 es
+                El estado puede tener más de 1 digito, por ejemplo: 1 es que esta en el carrito y nada más, 236 es que el pedio está confirmado, pagará por transferencia y 
+                ya hemos recibido el dinero pero aun no se ha enviado. 2367 mismo caso que el anterior pero este ya se ha enviado  (aunque no ha llegado aun). 2568 es
                 pago y recogida en tienda, pagado y recibido (recogido por cliente) no ponemos finalizado hasta que no pase periodo de reclamacion o devoluciones.
             </td>
         </tr>
