@@ -12,7 +12,7 @@ $contenidoPedido = isset($_SESSION["CarritoConfirmado"]) ? $_SESSION["CarritoCon
 //CADA ARTICULO EN EL CARRITO VAMOS A METER SUS DATOS EN UN ARRAY
 foreach ($contenidoPedido as $index => $array) {
     $arrayDatosArticulo = $contenidoPedido[$index];
-    $numLinea = $index+1;
+    $numLinea = $index;
     $codArticulo =  $arrayDatosArticulo['codigo'];
     $precio =  $arrayDatosArticulo['precio'];
     $descuento =  $arrayDatosArticulo['descuento'];
