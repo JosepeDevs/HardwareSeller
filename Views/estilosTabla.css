@@ -427,7 +427,7 @@ aside{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding-bottom:2%;
+    padding:0% 0% 1% 1% ;
     align-items: center;
     z-index: 1;
 }
@@ -437,9 +437,6 @@ aside a{
     color:var(--background-light);
     text-decoration: none;
     justify-content: left;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     z-index: 2;
 }
 
@@ -447,18 +444,17 @@ aside a:hover{
     color:var(--hover-light);
     text-decoration: underline;
     justify-content: left;
-    margin-left:1%;
     z-index: 2;
 }
 .revelador{
     /*botones de aside que desplieguan los demás*/
-    font-size: auto;
+    font-size: 1.1em;
     background: none;
+    justify-content: left;
     border: none;
     color: var(--background-light);
     text-decoration: underline;
     cursor: pointer;
-    padding: 2%;
 }
 
 .submit-carrito, .enlace-arriba-de-footer{
@@ -474,6 +470,7 @@ aside a:hover{
 }
 .visible{
     list-style-type: none;
+    justify-content: left;
 }
 
 .estado-metodoPago{

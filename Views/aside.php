@@ -10,6 +10,7 @@
                 <i class="lni lni-eraser"></i> Limpiar filtros
             </a>';
         }
+
         // PREPARAR ARRAYS CON CATEGORIAS
         include_once("../Controllers/OrdenarCategoriasController.php");
         $orden="";
@@ -28,7 +29,6 @@
                 $subcategorias = $categoria->getSubCategorias($codigoCategoria); 
                 if ($subcategorias !== false) {
                     // si hay categorías creamos un dropdown, solo mostraremos las categorias y subcategorias por ahora
-                    //todo con ajax ir cargando subcategorias e ir haciendo un append para mejorar la navegación con el aside
                     echo '<div class="dropdown">';
                     //atributo para bootstrap data-bs-toggle="dropdown" para decirle que el botón trigger el dropdown
                     //dropdown-toggle para que reconozca  lo de abajo como dropdown
