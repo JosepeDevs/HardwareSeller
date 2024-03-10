@@ -1,7 +1,5 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-ob_start(); //vamos a meter en este buffer todos los prints que hagan falta y luego los liberaré cuando quiera mostrarlos
-include_once("../Views/header.php");
 
 $operacionExitosa=false;
 if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']) ) {
@@ -30,8 +28,6 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
         $_SESSION['PsswrdActualizada'] = true;
     }
     //haya éxito o no, iremos a index
-    ob_get_contents();//ahora mostramos todo lo que estaba en el buffer, se mandará todo a la vez, por lo que la siguiente linea no pillará la página a medio crear
-    ob_end_flush();//no dejamos nada en el el buffer y lo cerramos 
     header("Location: /index.php");
     exit;
 }
