@@ -1,13 +1,10 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Views/header.php");
-include_once("../Controllers/ClienteBUSCARController.php");
+
 $operacionExitosa=false;
-print_r($_SESSION);
 if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']) ) {
-    //cuando llegan por primera vez
     $email = $_POST['mail'];
-    $_SESSION['mail'] = $email;
     $dni = $_POST['dni'];
     $_SESSION['dni'] = $dni;
     $clienteExiste = checkClientByEmailAndDni($email, $dni);
@@ -21,7 +18,6 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
         $atras= true;
     }
 } else if (isset($_POST['newpsswrd']) && !empty($_POST['newpsswrd'])){
-    //Cuando han escrito su contraseña nueva
     $newpsswrd = $_POST['newpsswrd'];
     $newpsswrd = password_hash($newpsswrd, PASSWORD_BCRYPT);
     $dni = $_SESSION['dni'];
@@ -65,18 +61,16 @@ function updatePasswrdUsingDni($dni, $newpsswrd){
 
 
 if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']) ) {
-    //cuando entran por primera vez
     if($atras == true){
         //haya éxito o no, iremos a index
         print "<script>history.back();</script>";
         exit;
     };
 } else if (isset($_POST['newpsswrd']) && !empty($_POST['newpsswrd'])){
-    //cuando ya han escrito la nueva contraseña
     if($todoOK == true){
-        //haya éxito o no, iremos a index
-        header("Location: /index.php");
-        exit;
+    //haya éxito o no, iremos a index
+    header("Location: /index.php");
+    exit;
     };
 }
 
