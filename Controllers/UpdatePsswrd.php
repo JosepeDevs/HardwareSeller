@@ -30,7 +30,8 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
         $_SESSION['PsswrdActualizada'] = true;
     }
     //haya éxito o no, iremos a index
-    ob_end_flush();//ahora mostramos todo lo que estaba en el buffer, se mandará todo a la vez, por lo que la siguiente linea no pillará la página a medio crear
+    ob_get_contents();//ahora mostramos todo lo que estaba en el buffer, se mandará todo a la vez, por lo que la siguiente linea no pillará la página a medio crear
+    ob_end_flush();//no dejamos nada en el el buffer y lo cerramos 
     header("Location: /index.php");
     exit;
 }
