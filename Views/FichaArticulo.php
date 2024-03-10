@@ -2,9 +2,10 @@
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //NO PROTEGER
 include("header.php");
+include_once("../Controllers/ArticuloBUSCARController.php");
+
 if(isset($_GET["codigo"])){
     $codigo = $_GET["codigo"];
-    include_once("../Controllers/ArticuloBUSCARController.php");
     $articulo = getArticuloByCodigo($codigo);
     $codigo = $articulo->getCodigo();
     $nombre = $articulo->getNombre();
