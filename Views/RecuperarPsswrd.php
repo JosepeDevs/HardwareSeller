@@ -2,6 +2,7 @@
 include_once("header.php");
 //NO PROTEGER
 ?>
+<h1> Recuperación de contraseña</h1>
     <form id="recuperarpsswrd" action="../Controllers/UpdatePsswrd.php" method="POST">
         <label>Email:</label> <br><input type="email" name="mail"><br><br>
         <label>Incluya su DNI para validar su identidad: </label><br><input type="text" id="dni" name="dni"><br><br><br><br>
