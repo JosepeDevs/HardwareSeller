@@ -161,8 +161,12 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         $arrayPedido = false;
     }
 
-    if( $arrayPedido== false ){
+    if( $arrayPedido == false ){
         print'adiosssssssssssssssssssssss';
+    } else{
+        print($arrayPedido);
+        print'<br>';
+        print_r($arrayPedido);
     }
         $arrayAtributos = getArrayAtributosPedido();
     if( $arrayPedido !== false ){
