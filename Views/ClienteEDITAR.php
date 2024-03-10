@@ -141,10 +141,6 @@ echo"<table>";
                         }
                     }
         echo "</tr>
-            <tr>
-                <th>Consejos</th>
-                <td colspan=8> Puede dejar la contraseña sin rellenar para mantener la misma que tenía.</td>
-            </tr>
    </table>";
     echo "<div class='finForm'><h2><input type='submit' value='Guardar'></h2>";
     echo "</form>";
