@@ -25,8 +25,10 @@ if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "false" ){
     exit;
 }else if(isset($_GET['idPedido']) && isset($_GET['confirmacion']) && $_GET['confirmacion']== "true" && $estadoCancelable) {
     print($_GET['confirmacion']);
-    $operacionConfirmada = borradoLogicoPedido($idPedido);
-    $_SESSION['PedidoCanceladoExitoso'] = true;
+    $operacionExitosa = borradoLogicoPedido($idPedido);
+    if($operacionExitosa !== false){
+        $_SESSION['PedidoCanceladoExitoso'] = true;
+    }
     header("Location: PedidosLISTAR.php");
     exit;
 }
