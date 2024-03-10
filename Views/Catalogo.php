@@ -12,9 +12,11 @@ include_once("../Controllers/ArticulosLISTARController.php");
 if(isset($_GET["codigo"])) {
     include_once("../Models/Articulo.php");
     //para que no puedan ver el precio de lo que quieran vamos a poner la comprobación antes del get para revisar que esté activo el producto, si no lo está no lo metemos.
-    $articulo = getArticuloByCodigo($codigo);
-    $activo = $articulo->getActivo();
-    if($activo == 1){
+   //no tengo tiempo de revisarlo, le pongo a todo nombres distintos a los que puede que haya usado más abajo.
+    $codigoParaCheckActivo = isset($_GET['codigo']) ? $_GET['codigo']:null;
+    $articuloParaCheckActivo = getArticuloByCodigo($codigoParaCheckActivo);
+    $activoParaCheck = $articuloParaCheckActivo->getActivo();
+    if($activoParaCheckactivoParaCheck == 1){
         $codigoParaCarrito = $_GET["codigo"] ;
         //mira si existe ya el producto, si ya existe añade 1 , si no existe, guarda 1
         $_SESSION['productos']["$codigoParaCarrito"] = array_key_exists($codigoParaCarrito, $_SESSION['productos']) ? $_SESSION['productos']["$codigoParaCarrito"] + 1 : 1;
