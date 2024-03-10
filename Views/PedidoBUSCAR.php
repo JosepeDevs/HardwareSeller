@@ -167,7 +167,10 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         //si llega un array con el indice 0 pero dentro hay texto vacio es que no encontró pedidos, lo ponemos como false para que diga que no se encontraron pedidos
         $arrayPedido = false;
     }
-    print"hola";
+    if($arrayPedido == false){
+        print"hola";
+
+    }
     print_r($arrayPedido);
     $arrayAtributos = getArrayAtributosPedido();
     if( $arrayPedido !== false ) {
