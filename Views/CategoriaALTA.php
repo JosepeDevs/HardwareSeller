@@ -6,7 +6,7 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "Categorias alta dice: no está user en session";
+    print "Categorias alta dice: no está user en session";
     header("Location: /index.php");
     exit;
 
@@ -15,7 +15,7 @@ $rol = GetRolDeSession();
 if( $rol == "admin" || $rol == "empleado" ){
 } else{
     session_destroy();
-    echo "Articulos alta dice: no está user en session";
+    print "Articulos alta dice: no está user en session";
     header("Location: /index.php");
     exit;
 
@@ -23,7 +23,7 @@ if( $rol == "admin" || $rol == "empleado" ){
 
 
 include("header.php");
-echo"<h1>Alta de Categoría</h1>";
+print"<h1>Alta de Categoría</h1>";
 ////print_r($_SESSION);;
 
 $_SESSION["nuevoCategoria"]="true";//ponemos esto a true para que cuando vaya a validar datos lo trate como un insert
@@ -62,11 +62,11 @@ include_once("../Controllers/CategoriaMensajes.php");
 $arrayMensajes=getArrayMensajesCategorias();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
-        echo "<h3>$mensaje</h3>";
+        print "<h3>$mensaje</h3>";
     }
 };
 
-echo"<h2><a class='cerrar'  href='CategoriasLISTAR.php'>Volver a la tabla de Categorias.</a></h2>";
+print"<h2><a class='cerrar'  href='CategoriasLISTAR.php'>Volver a la tabla de Categorias.</a></h2>";
 
 include("footer.php");
 ?>

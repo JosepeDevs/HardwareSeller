@@ -6,7 +6,7 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "PedidosLISTAR dice: no está user en session";
+    print "PedidosLISTAR dice: no está user en session";
     header("Location: ../index.php");
     exit;
 }
@@ -21,7 +21,7 @@ include_once("BreadCrumbsAreaCliente.php");
 $rol = GetRolDeSession();
 $dni = GetDniByEmail($_SESSION['user']);
 //NAVEGACION
-echo"<div id='EnlacesArriba'>";
+print"<div id='EnlacesArriba'>";
 if(GetRolDeSession() == "empleado" || GetRolDeSession() == "admin" ){
     ?>
 
@@ -44,20 +44,20 @@ if(GetRolDeSession() == "empleado" || GetRolDeSession() == "admin" ){
         </a>
     </h2>
 <?
-echo"</div>";
+print"</div>";
 //TABLA LISTANDO Pedidos
-echo"<table>";
-        echo"<tr>";
+print"<table>";
+        print"<tr>";
             //ENCABEZADOS
             include_once("../Controllers/PedidosLISTARController.php");
             $arrayAtributos = getArrayAtributosPedido();
             if($arrayAtributos == false){
-                echo"</tr><tr><td>Sin Pedidos</td></tr>";
+                print"</tr><tr><td>Sin Pedidos</td></tr>";
             } else{
                 foreach ($arrayAtributos as $atributo) {
                     $nombreAtributo = $atributo;
                     if($nombreAtributo == "estado"){
-                        echo"<th>
+                        print"<th>
                                 $nombreAtributo 
                                 <br>Ordenar por este atributo:<br>
                                 <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
@@ -65,13 +65,13 @@ echo"<table>";
                             </th>";
                     } else if(( $rol == "admin" || $rol == "empleado" ) && ( $nombreAtributo == "activo" ||$nombreAtributo == "codUsuario" ) ){
                         //estos atributos solo los podrán ver admin y empleados
-                        echo"<th>
+                        print"<th>
                         $nombreAtributo <br>Ordenar por este atributo:<br>
                         <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
                         <a class='ordenar' href='PedidosLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
                         </th>";
                     } else{
-                        echo"<th>
+                        print"<th>
                         $nombreAtributo <br>Ordenar por este atributo:<br>
                         <a class='ordenar' href='PedidosLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
                         <a class='ordenar' href='PedidosLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
@@ -80,15 +80,15 @@ echo"<table>";
                 }
                 include_once("../Controllers/OperacionesSession.php");//get rol
                 if(GetRolDeSession() == "empleado" || GetRolDeSession() == "admin" ){
-                    echo"
+                    print"
                     <th>Ver y Editar contenido</th>
                     <th>Desactivar</th>";
                 } else{
-                    echo"
+                    print"
                     <th>Ver contenido del pedido</th>
                     <th>Cancelar pedido</th>";
                 }
-                echo"</tr>";
+                print"</tr>";
             }
 
         //PREPARAR ARRAYS CON OBJETOS
@@ -121,10 +121,10 @@ echo"<table>";
         //llamamos dinámicamente los getters de la clase habiendo guardado previamente el array con los nombresd de los atributos
         //hay que recorrer todos los atributos en todos los objetos
         if(count($arrayAImprimir)==0){
-            echo'<tr><td colspan="6">No hay pedidos que listar</td></tr>';
+            print'<tr><td colspan="6">No hay pedidos que listar</td></tr>';
         } else{
             foreach($arrayAImprimir as $Pedido){
-                echo("<tr>");
+                print("<tr>");
                 foreach ($arrayAtributos as $atributo) {
                     $nombreAtributo = $atributo;//p.e. codigo, nombre...
                     $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
@@ -132,45 +132,45 @@ echo"<table>";
                 
                     if($nombreAtributo == "idPedido"){
                         $idPedido = $Pedido->getIdPedido();//guardamos el código para que esté disponible fuera de este bucle
-                        echo "<td>".$valor."</td>";
+                        print "<td>".$valor."</td>";
                     } else if($nombreAtributo == "estado"){
                         $estado = $Pedido->getEstado();//guardamos  fuera de este bucle (para los enlaces)
-                        echo "<td>".$estado."</td>";
+                        print "<td>".$estado."</td>";
                     } else if(( $rol == "admin" || $rol == "empleado" ) && ( $nombreAtributo == "activo"  ) ){
                        //estos datos solo los podrán ver admin y empleados
-                       echo "
+                       print "
                         <td>
                             <select id='activo' name='activo' required>";
                             if($valor == 0){
-                                echo"
+                                print"
                                     <option value='0' selected>Inactivo</option>
                                     <option value='1' >Activo</option>
                                 </select>";
                             } else{
-                                echo"
+                                print"
                                     <option value='0' >Inactivo</option>
                                     <option value='1' selected>Activo</option>
                                 </select>";
                             }
-                        echo"</td>";
+                        print"</td>";
                     }else if(( $rol == "admin" || $rol == "empleado" ) && ( $nombreAtributo == "codUsuario" ) ){
                         //estos datos solo los podrán ver admin y empleados
-                        echo "<td>".$valor."</td>";
+                        print "<td>".$valor."</td>";
                      }else{
-                        echo "<td>".$valor."</td>";
+                        print "<td>".$valor."</td>";
                     }
                 }
                 if(GetRolDeSession() ==  "admin" || GetRolDeSession() == "empleado"  ){
-                    echo"
+                    print"
                     <td><a href='ContenidoPedidoEDITAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar pedido' /></td>
                     <td><a href='PedidoBORRAR.php?idPedido=$idPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar Pedido' /></td>";
                 } else{
-                    echo "<td><a href='ContenidoPedidoBUSCAR.php?numPedido=".$idPedido."'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
+                    print "<td><a href='ContenidoPedidoBUSCAR.php?numPedido=".$idPedido."'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
                     <td><a href='PedidoBORRAR.php?idPedido=$idPedido&estado=$estado'><img class='icon' src='../Resources/minusAr.png' alt='cancelar Pedido' /></td>";
                 }
             }
         }
-        echo("</tr>
+        print("</tr>
         <tr>
             <td>Información sobre estado</td>
             <td colspan='6'>  
@@ -246,7 +246,7 @@ include_once("../Controllers/PedidosMensajes.php");
             $arrayMensajes=getArrayMensajesPedidos();
             if(is_array($arrayMensajes)){
                 foreach($arrayMensajes as $mensaje) {
-                    echo "<h3>$mensaje</h3>";
+                    print "<h3>$mensaje</h3>";
                 }
             };
 //tras printear los mensajes de error/confirmación "reseteamos" session

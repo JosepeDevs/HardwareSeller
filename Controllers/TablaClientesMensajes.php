@@ -6,7 +6,7 @@ checkAdminOEmpleado();
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "TablaClientesMensajes dice: shit no está user en session";
+    print "TablaClientesMensajes dice: shit no está user en session";
     header("Location: index.php");
     exit;
 }

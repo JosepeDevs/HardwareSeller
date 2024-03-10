@@ -9,13 +9,13 @@ print'
         $codigoCategoria = $_GET["categoria"];
         include_once("../Controllers/CategoriaBUSCARController.php");
         $categoria = getCategoriaByCodigo($codigoCategoria);
-        $nombreCategoria = $categoria->getNombre(); 
-        echo'<p class="breadcrumb-item active"><a href="Catalogo.php?categoria='.$codigoCategoria.'"> '.$nombreCategoria.' / </a></p>
+        $nombreCategoria = $categoria->getNombre();  
+        print'<p class="breadcrumb-item active"><a href="Catalogo.php?categoria='.$codigoCategoria.'"> '.$nombreCategoria.' / </a></p>
         ';
     }
     if(isset($_REQUEST['codigo']) && !empty($_REQUEST['codigo']) ){
       //entonces estamos ya en ficha cliente
-      echo'
+      print'
           <p><a class="breadcrumb-item " href="FichaArticulo.php?codigo='.$_REQUEST['codigo'].'">
               Artículo ='.$_REQUEST['codigo'].'  /
           </a></p>

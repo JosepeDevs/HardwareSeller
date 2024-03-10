@@ -36,10 +36,10 @@ if(! isset($_GET['pag'])){
         $paginaActual = 0;
     }
 }
-echo"<h3>Atributos para filtrar</h3>";
-echo'<div class="col-lg-9 col-md-11 col-12">';
-    echo"<table>";
-            echo"<tr>";
+print"<h3>Atributos para filtrar</h3>";
+print'<div class="col-lg-9 col-md-11 col-12">';
+    print"<table>";
+            print"<tr>";
             //ENCABEZADOS
             include_once("../Controllers/ArticulosLISTARController.php");
             $arrayAtributos = getArrayAtributosArticulo();
@@ -49,7 +49,7 @@ echo'<div class="col-lg-9 col-md-11 col-12">';
                     if($atributo !==  "imagen" && $atributo !==  "descripcion"){
                         //la descripción en catálogo no se ve y filtrar por imagen es inutil, dejamos por código para los clientes que quieran revisar referencias (codigo) conocidas
 
-                        echo"<th>
+                        print"<th>
                         $nombreAtributo <br>Ordenar por este atributo:<br>
                         <a class='ordenar' href='?orden=ASC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."&pag='.($paginaActual+1)'>ASC</a>
                         <a class='ordenar' href='?orden=DESC&atributo=$nombreAtributo&categoria=".$categoriaFiltrada."&pag='.($paginaActual+1)'>DESC</a>
@@ -57,9 +57,9 @@ echo'<div class="col-lg-9 col-md-11 col-12">';
                     }
                 }
             }
-            echo"</tr>";
-    echo"</table>";
-echo'</div>';
+            print"</tr>";
+    print"</table>";
+print'</div>';
 
         
 //PREPARAR ARRAYS CON OBJETOS
@@ -80,14 +80,14 @@ include_once("../Controllers/ArticulosLISTARController.php");
 $arrayAImprimir = getArrayPaginadoArticulos($arrayArticulos, $articulosAMostrar, $paginaActual);
 
 //TABLA LISTANDO ARTICULOS
-echo"<div class='col-lg-9 col-md-11 col-12'>
+print"<div class='col-lg-9 col-md-11 col-12'>
         <table>";
             for( $i = 0; $i < count($arrayAImprimir); $i++ ){
                 if($i==0 || $i==3 || $i==6 || $i==9 ){ //si es un múltiplo de 3 crear línea nueva
-                    echo'<div class="container">
+                    print'<div class="container">
                         <tr>';
                 }
-                echo'
+                print'
                             <td>
                                 <div class="row">
                                     <div class="col-12 col-lg-6 col-sm-1">
@@ -97,30 +97,30 @@ echo"<div class='col-lg-9 col-md-11 col-12'>
                                         <h2>Nombre: '.$arrayAImprimir[$i]->getNombre().'</h2>
                 ';
                                         if($arrayAImprimir[$i]->getActivo() == 0){
-                                            echo '<p>Articulo actualmente descatalogado o no disponible en este momento.</p>';
+                                            print '<p>Articulo actualmente descatalogado o no disponible en este momento.</p>';
                                         } else{
                                             //si está activo mostrar precio, descuento y permitir añadirlo al carrito
                                             if($arrayAImprimir[$i]->getDescuento() !== 0){
-                                                echo'
+                                                print'
                                                     <h4 style="text-decoration: line-through;">Precio: '.$arrayAImprimir[$i]->getPrecio().' € </h4>
                                                     <h2">Descuento: '.$arrayAImprimir[$i]->getDescuento().' % </h2>
                                                 ';
                                             }
-                                          echo'  <h2>Precio: '. round($arrayAImprimir[$i]->getPrecio() * (1 - ($arrayAImprimir[$i]->getDescuento()/100)), 2).' € </h2>
+                                          print'  <h2>Precio: '. round($arrayAImprimir[$i]->getPrecio() * (1 - ($arrayAImprimir[$i]->getDescuento()/100)), 2).' € </h2>
                                             <button><a href="?codigo='.$arrayAImprimir[$i]->getCodigo().'&pag='.($paginaActual+1).'&orden='.$orden.'&atributo='.$nombreAtributo.'&categoria='.$categoriaFiltrada.'">Añadir al carrito  <i class="lni lni-cart-full" alt="Añadir al carrito"></i></a></button>
                                             ';
                                         }
-                                        echo'
+                                        print'
                                     </div>
                                 </div>
                             </td>
                 ';
                 if($i==2 || $i==5 || $i==8 ){ //si es un múltiplo de 3 crear línea nueva
-                        echo'</tr>
+                        print'</tr>
                         </div>';//fin del div row
                 }
                 if($i==count( $arrayAImprimir) -1){
-                     echo '</table>';
+                     print '</table>';
                 }
             }
    //PAGINACIÓN

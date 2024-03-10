@@ -15,7 +15,7 @@ include_once("BreadCrumbsAreaCliente.php");
 //DISTINTAS VISTAS SEGÚN ENLACE
 if(isset($_GET["PedidoConfirmado"])){
     //llegan de hacer un pedido, vamos a mostrarles los datos del pedido y darles instrucciones para próximos pasos
-    echo'
+    print'
     <br><br>
     <h1>
         Pedido recibido
@@ -37,14 +37,14 @@ if(isset($_GET["PedidoConfirmado"])){
 
 } else if(!empty($_GET) && !isset($_GET["PedidoConfirmado"])) {
     //han buscado un pedido, dar opción de buscar otro
-    echo'
+    print'
     <h1>
         Datos del pedido
     </h1>';
-    echo'<br><h2><a class="finForm" href="PedidoBUSCAR.php?"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Buscar otro pedido</a></h2>
+    print'<br><h2><a class="finForm" href="PedidoBUSCAR.php?"><img src="../Resources/arrow.png" alt="listar ContenidoPedido" />Buscar otro pedido</a></h2>
     <br>';
 }else{
-    echo'
+    print'
     <h1>
         Buscar pedido ...
     </h1>
@@ -57,18 +57,18 @@ if(isset($_GET["PedidoConfirmado"])){
                 <th><h2><label for="estado">Busqueda por estado<br> Estado del pedido:(0=envío a direccion)(1=pedido en carrito)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago y recogida en tienda)
                 (6=pago confirmado)(7=pedido enviado)(8=pedido recibido)(9=finalizado o cancelado)</label></h2></th>';
             if($rol= "admin" || $rol == "empleado"){
-                echo'<th><h2><label for="codUsuario">Codigo usuario (DNI)</label></h2></th>';
+                print'<th><h2><label for="codUsuario">Codigo usuario (DNI)</label></h2></th>';
             }
-            echo'</tr>
+            print'</tr>
             <tr>
                 <td><input type="text" name="idPedido" ><br><br></td>
                 <td><input type="date" name="fechaInicio" autofocus><br><br></td>
                 <td><input type="date" name="fechaFin" ><br><br></td>
                 <td><input type="number" name="estado"><br><br></td>';
                 if($rol= "admin" || $rol == "empleado"){
-                    echo'<td><input type="text" name="codUsuario"><br><br></td>';
+                    print'<td><input type="text" name="codUsuario"><br><br></td>';
                 }        
-           echo' </tr>
+           print' </tr>
         </table>
 
         <br>
@@ -79,7 +79,7 @@ if(isset($_GET["PedidoConfirmado"])){
 
 ';
 }
-echo'<br>';
+print'<br>';
 
 //que consiga el dni de alguna de estas dos formas, por user (registrados y logeados) o de session dni (sin registrrarse)
 if(isset($_SESSION['user'])){
@@ -161,49 +161,49 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
 
     $arrayAtributos = getArrayAtributosPedido();
     if( $arrayPedido !== false ){
-        echo"<table>";
-        echo"<tr>";
+        print"<table>";
+        print"<tr>";
         //ENCABEZADOS
         foreach ($arrayAtributos as $atributo) {
              if(( $rol == "user") && ( $atributo == "activo" || $atributo == "codUsuario" ) ){
-                echo'';//si es user tanto el atributo "activo" como "coduusuario" no se muestran 
+                print'';//si es user tanto el atributo "activo" como "coduusuario" no se muestran 
             }else{
-                echo "<th>$atributo</th>";
+                print "<th>$atributo</th>";
             }
         }
-        echo "</tr>";
+        print "</tr>";
         //DATOS DEL OBJETO O LOS OBJETOS
             foreach($arrayPedido as $Pedido){
-                echo "<tr>";
+                print "<tr>";
                 foreach ($arrayAtributos as $atributo) {
                     $getter = 'get' . ucfirst($atributo);
                     $valor = $Pedido->$getter();
                     if($atributo == "idPedido"){
                         $idPedido = $Pedido->getIdPedido();//guardamos el código para que esté disponible fuera de este bucle
-                        echo "<td>".$valor."</td>";
+                        print "<td>".$valor."</td>";
                     } else if(( $rol == "user" ) && ( $atributo == "activo" ||$atributo == "codUsuario" ) ){
-                        echo'';//si es user tanto el atributo "activo" como "coduusuario" no se muestran a rol=user
+                        print'';//si es user tanto el atributo "activo" como "coduusuario" no se muestran a rol=user
                     }else{
-                        echo "<td>".$valor."</td>";
+                        print "<td>".$valor."</td>";
                     }
                 }
-                echo "</tr>";
+                print "</tr>";
             }
-        echo "</table>";
+        print "</table>";
     } else{
-        echo "<h3>No se encontraron pedidos con los datos proporcionados.</h3>";
+        print "<h3>No se encontraron pedidos con los datos proporcionados.</h3>";
     }
 
     include_once("../Controllers/PedidosMensajes.php");
     $arrayMensajes=getArrayMensajesPedidos();
     if(is_array($arrayMensajes)){
         foreach($arrayMensajes as $mensaje) {
-            echo "<h3>$mensaje</h3>";
+            print "<h3>$mensaje</h3>";
         }
     };
 }
 if(isset($_REQUEST['idPedido']) && ( $rol == "admin" || $rol == "empleado") ){
-    echo'
+    print'
         <h2><a class="finForm" href="ContenidoPedidoBUSCAR.php?numPedido='.$idPedido.'"><img src="../Resources/arrow.png" alt="listar Pedido" />Ver contenidos de este pedido</a></h2>
         <h2><a class="finForm" href="PedidoEDITAR.php?idPedido='.$idPedido.'""><img src="../Resources/arrow.png" alt="listar Pedido" />Editar pedido</a></h2>
     ';

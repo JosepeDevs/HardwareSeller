@@ -15,7 +15,7 @@ $rol = GetRolDeSession();
 if( $rol == "admin" || $rol == "empleado" ){
 } else{
     session_destroy();
-    echo "Articulos alta dice: no está user en session";
+    print "Articulos alta dice: no está user en session";
     header("Location: /index.php");
     exit;
 } 

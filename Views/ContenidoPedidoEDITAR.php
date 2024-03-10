@@ -6,7 +6,7 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ContenidoPedidoEDITAR dice: no está user en session";
+    print "ContenidoPedidoEDITAR dice: no está user en session";
     header("Location: ../index.php");
     exit;
 }
@@ -35,93 +35,93 @@ include_once("../Controllers/PedidoEDITARController.php");
 $pedido = getPedidoByIdPedido($numPedidoOriginal);
 $arrayAtributosPedido = getArrayAtributosPedido();
 //ENCABEZADOS
-echo '<form action="../Controllers/PedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
-echo"<table>";
-echo"<tr><th>Atributos:</th>";
+print '<form action="../Controllers/PedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
+print"<table>";
+print"<tr><th>Atributos:</th>";
         foreach ($arrayAtributosPedido as $index => $atributo) {
             $nombreAtributo = $atributo;
             if($nombreAtributo == "activo"){
-                echo "<th>$nombreAtributo<br> Más adelante esta cambio se aplicará también a todas las lineas de contenido pedido, ahora mismo son independientes</th>";
+                print "<th>$nombreAtributo<br> Más adelante esta cambio se aplicará también a todas las lineas de contenido pedido, ahora mismo son independientes</th>";
             } else {
-                echo "<th>$nombreAtributo</th>";
+                print "<th>$nombreAtributo</th>";
             }
         }
-        echo "</tr>";
+        print "</tr>";
                 //datos ACTUALES OBJETO (estaticos, para que se vean siempre los actuales) 
                 if($pedido == false){
                     //no había o no llegó numPedido por url u otr forma
-                    echo'<p>Ocurrió un error</p>';
+                    print'<p>Ocurrió un error</p>';
                 } else {
-                    echo"<tr><th>Datos actuales:</th>";
+                    print"<tr><th>Datos actuales:</th>";
                     foreach ($arrayAtributosPedido as $index => $atributo) {
                         $nombreAtributo = $atributo;
                         $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
                         $valor = $pedido->$getter();//lo llamamos para obtener el valor
                         if($nombreAtributo == "activo") {
                             if($valor==0){
-                                echo"<td>Desactivado</td>";
+                                print"<td>Desactivado</td>";
                             }else{
-                                echo"<td>Activado</td>";
+                                print"<td>Activado</td>";
                             }
                         } else {
-                            echo "<td>$valor</td>";
+                            print "<td>$valor</td>";
                         }
                     }
-                    echo "</tr>";
+                    print "</tr>";
                 }
                 //FORMULARIO para EDITAR PRERELLENADO para que se mantengan los datos si no cambia nada
-                        echo"<tr><th>Nuevos datos:</th>";
+                        print"<tr><th>Nuevos datos:</th>";
                         foreach ($arrayAtributosPedido as $atributo) {
                             $nombreAtributo = $atributo;
                             $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
                             $valor = $pedido->$getter();//lo llamamos para obtener el valor
                             if($nombreAtributo == "idPedido" ){
                                 $_SESSION['idPedido'] = $valor;//lo subimos a session idpedido porque hace falta para identificar el pedido, pero no dejamos editarlo
-                                echo "<td>$valor</td>";//idPedido lo genera la BBDD, no dejamos editarlo, igual que no dejeamos editar el codUsuario
+                                print "<td>$valor</td>";//idPedido lo genera la BBDD, no dejamos editarlo, igual que no dejeamos editar el codUsuario
                             }else if($nombreAtributo == "fecha" ){
-                                echo "<td><input type='date' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
+                                print "<td><input type='date' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
                             }else if($nombreAtributo == "total" ){
                                 $_SESSION['total'] = $valor;
-                                echo "<td>$valor</td>";                            } else if( $nombreAtributo == "estado" ){
-                                echo "<td><input type='number' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
+                                print "<td>$valor</td>";                            } else if( $nombreAtributo == "estado" ){
+                                print "<td><input type='number' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
                             }else  if($nombreAtributo == "codUsuario" ){
                                 $_SESSION['codUsuario'] = $valor;
-                                echo "<td>$valor</td>";
+                                print "<td>$valor</td>";
                             }else if($nombreAtributo == "activo") {
-                                echo "
+                                print "
                                     <td>
                                         <select id='activo' name='activo' required>";
                                         if($valor == 0){
-                                            echo"
+                                            print"
                                                 <option value='0' selected>Inactivo</option>
                                                 <option value='1' >Activo</option>
                                             </select>";
                                         } else{
-                                            echo"
+                                            print"
                                                 <option value='0' >Inactivo</option>
                                                 <option value='1' selected>Activo</option>
                                             </select>";
                                         }
-                                    echo"</td>";
+                                    print"</td>";
                             } else{
                                 //de este no hay ninguno pero si alguna vez cambiara los atributos de pedido los vería con esta línea
-                                //echo "<td><input type='text' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
+                                //print "<td><input type='text' id='$nombreAtributo' name='".$nombreAtributo."' value='$valor'></td>";
                             }
                         }
-                        echo "</tr>";
-        echo "</table>";
-        echo" <div class='finForm'><h2><input type='submit' value='Guardar datos pedido'></h2></div>";
-    echo "</form>";
+                        print "</tr>";
+        print "</table>";
+        print" <div class='finForm'><h2><input type='submit' value='Guardar datos pedido'></h2></div>";
+    print "</form>";
 
-echo"<div id='errores'>";
+print"<div id='errores'>";
 include_once("../Controllers/PedidosMensajes.php");
 $arrayMensajes=getArrayMensajesPedidos();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
-        echo "<h3>$mensaje</h3>";
+        print "<h3>$mensaje</h3>";
     }
 };
-echo"</div>";
+print"</div>";
 
     ///////////////////////////PARTE DE  CONTENIDO PEDIDO
 
@@ -131,104 +131,104 @@ include_once("../Controllers/ContenidoPedidoEDITARController.php");
 $arrayAtributos = getArrayAtributosContenidoPedido();
 
 //ENCABEZADOS
-echo '<form action="../Controllers/ContenidoPedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
-echo"<table id='tablaContenidoPedido'>";
-echo"<tr><th>Atributos:</th>";
+print '<form action="../Controllers/ContenidoPedidoVALIDAR.php" method="POST">';//ENVIAREMOS MEDIANTE $_POST EL NUEVO (SI LO HA EDITADO)
+print"<table id='tablaContenidoPedido'>";
+print"<tr><th>Atributos:</th>";
         foreach ($arrayAtributos as $index => $atributo) {
             $nombreAtributo = $atributo;
             if($nombreAtributo == "activo"){
-                echo "<th>$nombreAtributo<br> Cambios en este atributo solo se aplicará a las líneas modificadas y no a todo el pedido</th>";
+                print "<th>$nombreAtributo<br> Cambios en este atributo solo se aplicará a las líneas modificadas y no a todo el pedido</th>";
             } else {
-                echo "<th>$nombreAtributo</th>";
+                print "<th>$nombreAtributo</th>";
             }
         }
-        echo "</tr>";
+        print "</tr>";
 
         //datos ACTUALES OBJETO (estaticos, para que se vean siempre los actuales) PUEDEN SER VARIAS LINEAS
                 $arrayContenidoPedido = GetContenidoPedidoByBusquedaNumPedido($numPedidoOriginal);
 
                 if($arrayContenidoPedido == false){
                     //no había o no llegó numPedido por url u otr forma
-                    echo'<p>Ocurrió un error</p>';
+                    print'<p>Ocurrió un error</p>';
                 } else {
 
                     //arrayContenidoPedido puede conntener de 0 a vete tu a saber cuantos ContenidoPedido
                     foreach($arrayContenidoPedido as $index => $numLinea) {
-                        echo"<tr><th>Datos actuales:</th>";
+                        print"<tr><th>Datos actuales:</th>";
                         foreach ($arrayAtributos as $atributo) {
                             $nombreAtributo = $atributo;
                             $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
                             $valor = $numLinea->$getter();//lo llamamos para obtener el valor
                             if($nombreAtributo == "activo") {
                                 if($valor==0){
-                                    echo"<td>Desactivado</td>";
+                                    print"<td>Desactivado</td>";
                                 }else{
-                                   echo"<td>Activado</td>";
+                                   print"<td>Activado</td>";
                                 }
                             } else {
-                                echo "<td>$valor</td>";
+                                print "<td>$valor</td>";
                             }
                         }
-                        echo "</tr>";
+                        print "</tr>";
                     }
                 //FORMULARIO para EDITAR PRERELLENADO para que se mantengan los datos si no cambia nada
                     foreach($arrayContenidoPedido as $index => $numLinea) {
-                        echo"<tr><th>Nuevos datos:</th>";
+                        print"<tr><th>Nuevos datos:</th>";
                         foreach ($arrayAtributos as $atributo) {
                             $nombreAtributo = $atributo;
                             $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
                             $valor = $numLinea->$getter();//lo llamamos para obtener el valor
                             if( $nombreAtributo == "numPedido"){
                                 $_SESSION['numPedido'] = $valor;//lo subimos a session porque lo necsitamos para ubicar el pedio al que pertenece este contenido
-                                echo "<td>$valor</td>";//no dejamos editar el  Numero Pedido
+                                print "<td>$valor</td>";//no dejamos editar el  Numero Pedido
                             } else if($nombreAtributo == "activo") {
-                                echo "
+                                print "
                                     <td>
                                         <select id='activo' name='activo' required>";
                                         if($valor == 0){
-                                            echo"
+                                            print"
                                                 <option value='0' selected>Inactivo</option>
                                                 <option value='1' >Activo</option>
                                             </select>";
                                         } else{
-                                            echo"
+                                            print"
                                                 <option value='0' >Inactivo</option>
                                                 <option value='1' selected>Activo</option>
                                             </select>";
                                         }
-                                    echo"</td>";
+                                    print"</td>";
                             }else if($nombreAtributo == "cantidad"){
-                                echo "<td><input type='number' id='$nombreAtributo' name='".$nombreAtributo.$index."' value='$valor'></td>";
+                                print "<td><input type='number' id='$nombreAtributo' name='".$nombreAtributo.$index."' value='$valor'></td>";
                             }else if($nombreAtributo == "precio" || $nombreAtributo == "descuento"){
-                                echo "<td><input type='number' step='0.01' id='$nombreAtributo' name='".$nombreAtributo.$index."' value='$valor'></td>";
+                                print "<td><input type='number' step='0.01' id='$nombreAtributo' name='".$nombreAtributo.$index."' value='$valor'></td>";
                             } else{
-                                echo "<td><input type='text' id='$nombreAtributo' name='".$nombreAtributo.$index."' value='$valor'></td>";
+                                print "<td><input type='text' id='$nombreAtributo' name='".$nombreAtributo.$index."' value='$valor'></td>";
                             }
                         }
-                        echo "</tr>";
+                        print "</tr>";
                     }
-        echo "</table>";
-    echo "<div class='finForm'>";
-            echo'<button type="button" onclick="addLineaPedidoTodoDisponible()">Añadir una fila al pedido</button>
+        print "</table>";
+    print "<div class='finForm'>";
+            print'<button type="button" onclick="addLineaPedidoTodoDisponible()">Añadir una fila al pedido</button>
             <button type="button" onclick="removeLineaPedido()">Quitar una fila al pedido</button>';
-            echo"<h2><input type='submit' value='Guardar contenido del pedido'></h2>
+            print"<h2><input type='submit' value='Guardar contenido del pedido'></h2>
         </div>";
-    echo "</form>";
+    print "</form>";
 
 }
-echo"<div id='errores'>";
+print"<div id='errores'>";
 include_once("../Controllers/ContenidoPedidoMensajes.php");
 $arrayMensajes=getArrayMensajesContenidoPedido();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
-        echo "<h3>$mensaje</h3>";
+        print "<h3>$mensaje</h3>";
     }
 };
-echo"</div>";
+print"</div>";
 
-echo"<div>";
-    echo("<h2><a class='cerrar' a href='AreaCliente.php'>Ir al área personal</a></h2>");
-echo"</div>";
+print"<div>";
+    print("<h2><a class='cerrar' a href='AreaCliente.php'>Ir al área personal</a></h2>");
+print"</div>";
 include_once("footer.php");
 ?>
 

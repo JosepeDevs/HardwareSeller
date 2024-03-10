@@ -4,7 +4,7 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ClientesBuscar dice: shit no está user en session";
+    print "ClientesBuscar dice: shit no está user en session";
     header("Location: index.php");
     exit;
 }
@@ -12,7 +12,7 @@ $rol = GetRolDeSession();
 if( $rol == "admin" || $rol == "empleado" ){
 } else{
     session_destroy();
-    echo "Articulos alta dice: no está user en session";
+    print "Articulos alta dice: no está user en session";
     header("Location: /index.php");
     exit;
 
@@ -59,32 +59,32 @@ if(isset($_POST["dni"])) {
 if($clienteEncontrado){
             //ENCABEZADOS obtenidos de la clase, por si más adelante añadimos atributos
             //https://www.php.net/manual/en/class.reflectionproperty.php
-            echo"<table>";
-                    echo"<tr><th>Atributos:</th>";
+            print"<table>";
+                    print"<tr><th>Atributos:</th>";
                                 foreach ($arrayAtributos as $atributo) {
                                     $nombreAtributo = $atributo;
-                                    echo "<th>$nombreAtributo</th>";
+                                    print "<th>$nombreAtributo</th>";
                                 }
-                    echo "</tr>";
-                    echo"<tr><th>Datos del cliente consultado:</th>";
+                    print "</tr>";
+                    print"<tr><th>Datos del cliente consultado:</th>";
             //datos actuales del objeto Cliente
                         foreach ($arrayAtributos as $index => $atributo) {
                             $nombreAtributo = $atributo;
                             $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
                             $valor = $cliente->$getter();//lo llamamos para obtener el valor
                             if($nombreAtributo == "psswrd"){
-                                echo "<td>***</td>";//admin no debe poder ver contraseñas, por eso no lo ponemos.
+                                print "<td>***</td>";//admin no debe poder ver contraseñas, por eso no lo ponemos.
                             } else if($nombreAtributo == "activo"){
                                 if($valor == 1){
-                                    echo "<td>Activo (1)</td>";
+                                    print "<td>Activo (1)</td>";
                                 } else{
-                                    echo "<td>Inactivo (0) </td>";
+                                    print "<td>Inactivo (0) </td>";
                                 }
                             } else {
-                                echo "<td>$valor</td>";
+                                print "<td>$valor</td>";
                             }
                         }
-                    echo "</tr>
+                    print "</tr>
                 </table>";
     }
 
@@ -92,7 +92,7 @@ include_once("../Controllers/ClienteBUSCARMensajes.php");
 $arrayMensajes=getArrayMensajesBuscar();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
-        echo "<h3>$mensaje</h3>";
+        print "<h3>$mensaje</h3>";
     }
 };
 

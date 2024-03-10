@@ -7,7 +7,7 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "Pedido alta dice: no está user en session";
+    print "Pedido alta dice: no está user en session";
     header("Location: /index.php");
     exit;
 
@@ -16,14 +16,14 @@ $rol = GetRolDeSession();
 if( $rol == "admin" || $rol == "empleado" ){
 } else{
     session_destroy();
-    echo "Articulos alta dice: no está user en session";
+    print "Articulos alta dice: no está user en session";
     header("Location: /index.php");
     exit;
 
 }
 
 include("header.php");
-echo"<h1>Alta de Contenido de pedido</h1>";
+print"<h1>Alta de Contenido de pedido</h1>";
 
 
 $_SESSION["nuevoPedido"]="true";//ponemos esto a true para que cuando vaya a validar datos lo trate como un insert
@@ -72,11 +72,11 @@ include_once("../Controllers/PedidosMensajes.php");
 $arrayMensajes=getArrayMensajesPedidos();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
-        echo "<h3>$mensaje</h3>";
+        print "<h3>$mensaje</h3>";
     }
 };
 
-echo"<h2><a class='cerrar'  href='PedidoLISTAR.php'>Volver a la tabla de Pedido.</a></h2>";
+print"<h2><a class='cerrar'  href='PedidoLISTAR.php'>Volver a la tabla de Pedido.</a></h2>";
 
 include("footer.php");
 ?>

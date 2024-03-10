@@ -331,8 +331,8 @@ public function setActivo($activo) {
                     WHERE `numPedido` = :numPedidoOriginal "
             ;
         }
-        echo "<br>UpdateContenidoPedido says: numPedido nuevo: $numPedido"." y numPedido original: ".$numPedidoOriginal."<br>";
-        echo "<br>UpdateContenidoPedido says:".$sqlQuery;
+        print "<br>UpdateContenidoPedido says: numPedido nuevo: $numPedido"." y numPedido original: ".$numPedidoOriginal."<br>";
+        print "<br>UpdateContenidoPedido says:".$sqlQuery;
         $statement= $conPDO->prepare($sqlQuery);
 
         if($mantienennumPedido){
@@ -352,7 +352,7 @@ public function setActivo($activo) {
         $operacionRealizada = $statement->execute();
 
         if($operacionRealizada == false && $statement->rowCount() <= 0 ){
-            //si SQL no se ejecuta, hay que deshacer lo hecho (solo queremos borrar si estamos subiendo imagen nueva, la que ya tenía no hay que borrarla)
+            //si SQL no se ejecuta, hay que deshacer lo hprint (solo queremos borrar si estamos subiendo imagen nueva, la que ya tenía no hay que borrarla)
             $_SESSION['GoodUpdateContenidoPedido']= false;
             $_SESSION['BadUpdateContenidoPedido']= true;
             return false;

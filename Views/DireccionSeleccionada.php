@@ -3,7 +3,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //ESTA PÁGINA NO SE DEBE PROTEGER, ACCESIBLE A TODOS LOS NAVEGANTES
 //HEADER Y TITULO
 include_once("../Views/header.php");
-echo'<h1>Datos de la dirección de envío</h1>';
+print'<h1>Datos de la dirección de envío</h1>';
 //print_r($_SESSION);;
 //RECIBIMOS POR POST LOS DATOS 
    
@@ -11,7 +11,7 @@ echo'<h1>Datos de la dirección de envío</h1>';
     if(isset($_SESSION['user'])) {
         include_once('../Controllers/ClienteBUSCARController.php');
         $usuario = getClienteByEmail($_SESSION['user']);
-        echo"
+        print"
         <h2>Datos usuario y dirección de envío</h2>
         <br>
         <p>Nombre: ".$usuario->getNombre()."</p>
@@ -24,18 +24,18 @@ echo'<h1>Datos de la dirección de envío</h1>';
     } else{
 ////////////////////QUE MOSTRAR SI NO ESTAN REGISTRADOS////////////////////
         $_SESSION["nuevoCliente"] = "true";
-        echo '
+        print '
         <h2>Datos de contacto y dirección de envío</h2>
         <br>
         <h3>Si ya tiene cuenta puede hacer login ahora para pasar a la selección del método de pago ↑↑↑</h3>
         <br>';
         if(isset($_SESSION['sinCuenta']) && $_SESSION['sinCuenta'] == true){
-            echo'
+            print'
             <h4>Ha seleccionado no crear cuenta con los datos que nos va a facilitar</h4>';
         } else{
             $_SESSION['RegistroDurantePedido'] = 1;
         }
-        echo'
+        print'
         <form action="../Controllers/ValidarDatosCliente.php" method="post">
             <table>
                 <tr>
@@ -81,7 +81,7 @@ echo'<h1>Datos de la dirección de envío</h1>';
         $arrayMensajes=getArrayMensajesNuevo();
         if(is_array($arrayMensajes)){
             foreach($arrayMensajes as $mensaje) {
-                echo "<h3>$mensaje</h3>";
+                print "<h3>$mensaje</h3>";
             }
         };
         ?>

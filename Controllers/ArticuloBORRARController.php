@@ -7,7 +7,7 @@ checkAdminOEmpleado();
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ArticulosLISTARMensajes dice: no está user en session";
+    print "ArticulosLISTARMensajes dice: no está user en session";
     header("Location: index.php");
     exit;
 }

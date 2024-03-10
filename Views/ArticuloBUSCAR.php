@@ -44,7 +44,7 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
         $articulo = getArticuloByCodigo($codigo);
         if($articulo == false){
             $_SESSION['CodigoNotFound'] = true;
-            echo "<script>history.back();</script>";
+            print "<script>history.back();</script>";
             exit;
         }
         $arrayArticulos[] = $articulo;
@@ -55,32 +55,32 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
         $arrayArticulos = GetArticulosByBusquedaNombre($nombre);
         if($arrayArticulos == false){
             $_SESSION['NombreNotFound'] = true;
-            echo "<script>history.back();</script>";
+            print "<script>history.back();</script>";
             exit;
         }
     }
 
     $arrayAtributos = getArrayAtributosArticulo();
     if( $arrayArticulos !== false){
-        echo"<table>";
-        echo"<tr><th>Atributos:</th>";
+        print"<table>";
+        print"<tr><th>Atributos:</th>";
         //ENCABEZADOS
 
         foreach ($arrayAtributos as $atributo) {
             $nombreAtributo = $atributo;
-            echo "<th>$nombreAtributo</th>";
+            print "<th>$nombreAtributo</th>";
         }
         if($rol !== null || $rol == "admin" || $rol == "empleado" || $rol == "editor"){
-            echo "<th>Editar</th>";
+            print "<th>Editar</th>";
         }
 
         //DATOS DEL OBJETO O LOS OBJETOS
-        echo "</tr>";
+        print "</tr>";
 
 
         //arrayArticulos puede conntener de 0 a vete tu a saber cuantos articulos
         foreach($arrayArticulos as $articulo) {
-            echo"<tr><th>Datos del artículo encontrado:</th>";
+            print"<tr><th>Datos del artículo encontrado:</th>";
             foreach ($arrayAtributos as $index => $atributo) {
                 $nombreAtributo = $atributo;
                 $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
@@ -88,32 +88,32 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
                 if($nombreAtributo == "imagen"){
                     $directorio = "/Resources/ImagenesArticulos/";
                     $ruta=$directorio.$valor;
-                    echo " <td><a href='../Views/FichaArticulo.php?codigo=$codigo'><img class='imagenes' src='{$ruta}' width='200' height='200'/><br>$valor</a></td>";
+                    print " <td><a href='../Views/FichaArticulo.php?codigo=$codigo'><img class='imagenes' src='{$ruta}' width='200' height='200'/><br>$valor</a></td>";
                 } else if($nombreAtributo == "activo"){
                     if($valor == 1){
-                        echo "<td>Activo (1)</td>";
+                        print "<td>Activo (1)</td>";
                     } else{
-                        echo "<td>Inactivo (0)</td>";
+                        print "<td>Inactivo (0)</td>";
                     }
                 } else if($nombreAtributo == "codigo"){
                     $codigo = $valor;
-                    echo "<td>$valor</td>";
+                    print "<td>$valor</td>";
                 }else {
-                    echo "<td>$valor</td>";
+                    print "<td>$valor</td>";
                 }
             }
             if($rol !== null || $rol == "admin" || $rol == "empleado" || $rol == "editor"){
-                echo "<td> 
+                print "<td> 
                         <a href='ArticuloEDITAR.php?codigo=$codigo'>
                             <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' />
                         </a>
                     </td>";
             }
-            echo "</tr>";
+            print "</tr>";
         }
-        echo "</table>";
+        print "</table>";
     } else{
-        echo "<h3>No se encontraron coincidencias.</h3>";
+        print "<h3>No se encontraron coincidencias.</h3>";
     }
 
 
@@ -121,15 +121,15 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
     $arrayMensajes=getArrayMensajesArticulos();
     if(is_array($arrayMensajes)){
         foreach($arrayMensajes as $mensaje) {
-            echo "<h3>$mensaje</h3>";
+            print "<h3>$mensaje</h3>";
         }
     };
 }
-echo'
+print'
         <h2><a class="cerrar" href="../Views/Catalogo.php"><img src="../Resources/arrow.png" alt="listar articulos" />Volver al catálogo</a></h2>';
 $rol = GetRolDeSession();
 if($rol == "admin" || $rol == "editor" || $rol == "empleado") {
-    echo("<h2><a class='cerrar' a href='AreaCliente.php'>Ir al área personal</a></h2>");
+    print("<h2><a class='cerrar' a href='AreaCliente.php'>Ir al área personal</a></h2>");
 } 
 
 

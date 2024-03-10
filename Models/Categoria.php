@@ -264,8 +264,8 @@ public function setCodCategoriaPadre($codCategoriaPadre) {
                     WHERE `codigo` = :codigoOriginal "
             ;
         }
-        echo "<br>UpdateCategoria says: codigo nuevo: $codigo"." y codigo original: ".$codigoOriginal."<br>";
-        echo "<br>UpdateCategoria says:".$sqlQuery;
+        print "<br>UpdateCategoria says: codigo nuevo: $codigo"." y codigo original: ".$codigoOriginal."<br>";
+        print "<br>UpdateCategoria says:".$sqlQuery;
         $statement= $conPDO->prepare($sqlQuery);
         $statement->bindParam(':nombre', $nombre);
 

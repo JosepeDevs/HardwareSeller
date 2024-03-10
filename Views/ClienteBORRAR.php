@@ -4,7 +4,7 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ClienteBORRRAR dice: no está user en session";
+    print "ClienteBORRRAR dice: no está user en session";
     header("Location: ../index.php");
     exit;
 }
@@ -20,7 +20,7 @@ $estaMirandoSuPropioDni=($dni===$dniUsuario);//comprobamos si son iguales y guar
 if(!$estaMirandoSuPropioDni && $rol !== "admin"){
     session_destroy();
     $_SESSION['NoBorrarDniAjeno'] = true;
-   // echo "ClienteBorrar dice: estaba intentando mirara algo que no debería";
+   // print "ClienteBorrar dice: estaba intentando mirara algo que no debería";
     header("Location: /index.php");
     exit;
 
@@ -56,8 +56,8 @@ if(( $_SESSION['operacionCancelada'] !== null)){
 ?>
 <h1>¿Está seguro de que desea desactivar/borrar este cliente?</h1>
         <div class="finForm">
-            <h2><a href="ClienteBORRAR.php?dni=<?php echo $dni;?>&confirmacion=true">Sí, borrar el cliente (Borrado lógico).</a></h2>
-            <h2><a href="ClienteBORRAR.php?dni=<?php echo $dni;?>&confirmacion=false">Cancelar borrado.</a></h2>
+            <h2><a href="ClienteBORRAR.php?dni=<?php print $dni;?>&confirmacion=true">Sí, borrar el cliente (Borrado lógico).</a></h2>
+            <h2><a href="ClienteBORRAR.php?dni=<?php print $dni;?>&confirmacion=false">Cancelar borrado.</a></h2>
         </div>
 <?php
 include_once("footer.php");

@@ -6,7 +6,7 @@ $usuarioLogeado = UserEstablecido();
 
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ContenidoPedidoLISTAR dice: no está user en session";
+    print "ContenidoPedidoLISTAR dice: no está user en session";
     header("Location: ../index.php");
     exit;
 }
@@ -37,17 +37,17 @@ print("<h1>Gestionar Contenido de los Pedidos</h1>");
 </div>
 <?php
 //TABLA LISTANDO ContenidoPedido
-echo"<table>";
-        echo"<tr>";
+print"<table>";
+        print"<tr>";
             //ENCABEZADOS
             include_once("../Controllers/ContenidoPedidoLISTARController.php");
             $arrayAtributos = getArrayAtributosContenidoPedido();
             if($arrayAtributos == false){
-                echo"</tr><tr><td>Sin Contenido de pedidos</td></tr>";
+                print"</tr><tr><td>Sin Contenido de pedidos</td></tr>";
             } else{
                 foreach ($arrayAtributos as $atributo) {
                     $nombreAtributo = $atributo;
-                    echo"<th>
+                    print"<th>
                             $nombreAtributo <br>Ordenar por este atributo:<br>
                             <a class='ordenar' href='ContenidoPedidoLISTAR.php?orden=ASC&atributo=$nombreAtributo'>ASC</a>
                             <a class='ordenar' href='ContenidoPedidoLISTAR.php?orden=DESC&atributo=$nombreAtributo'>DESC</a>
@@ -55,11 +55,11 @@ echo"<table>";
                 }
                 include_once("../Controllers/OperacionesSession.php");//get rol
                 if(GetRolDeSession() == "admin" ){ //solo el admin puede modificar el contenido de los pedidos
-                    echo"
+                    print"
                     <th>Editar</th>
                     <th>Desactivar</th>";
                 }
-                echo"</tr>";
+                print"</tr>";
             }
 
         //PREPARAR ARRAYS CON OBJETOS
@@ -91,25 +91,25 @@ echo"<table>";
         //llamamos dinámicamente los getters de la clase habiendo guardado previamente el array con los nombresd de los atributos
         //hay que recorrer todos los atributos en todos los objetos
         foreach($arrayAImprimir as $ContenidoPedido){
-            echo("<tr>");
+            print("<tr>");
             foreach ($arrayAtributos as $atributo) {
                 $nombreAtributo = $atributo;//p.e. numpedido numlinena, dto, etc.
                 $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
                 $valor = call_user_func([$ContenidoPedido, $nombreMetodo]);
                 if($nombreAtributo == "numPedido"){
                     $numPedido = $ContenidoPedido->getNumPedido();//guardamos el código para que esté disponible fuerra de este bucle llamando al getter que interese
-                    echo "<td>$valor</td>";
+                    print "<td>$valor</td>";
                 } else{
-                    echo "<td>$valor</td>";
+                    print "<td>$valor</td>";
                 }
             }
             if(GetRolDeSession() == "admin"){
-                echo"
+                print"
                 <td><a href='ContenidoPedidoEDITAR.php?numPedido=$numPedido'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
                 <td><a href='ContenidoPedidoBORRAR.php?numPedido=$numPedido'><img class='icon' src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
             }
         }
-        echo("</tr>
+        print("</tr>
     </table>");
 
    //PAGINACIÓN
@@ -174,13 +174,13 @@ include_once("../Controllers/ContenidoPedidoMensajes.php");
             $arrayMensajes=getArrayMensajesContenidoPedido();
             if(is_array($arrayMensajes)){
                 foreach($arrayMensajes as $mensaje) {
-                    echo "<h3>$mensaje</h3>";
+                    print "<h3>$mensaje</h3>";
                 }
             };
 //tras printear los mensajes de error/confirmación "reseteamos" session
 include_once("../Controllers/OperacionesSession.php");
 ResetearSesion();
 
-echo("<h2><a class='cerrar' a href='AreaCliente.php'>Ir al área personal</a></h2>");
+print("<h2><a class='cerrar' a href='AreaCliente.php'>Ir al área personal</a></h2>");
 
 include_once("footer.php");

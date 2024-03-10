@@ -36,7 +36,7 @@ if(isset($_GET["codArticulo"])) {
 
 $directorio = "/Resources/ImagenesArticulos/";
 
-echo'<h1>Ficha artículo:'.$nombre.'</h1>';
+print'<h1>Ficha artículo:'.$nombre.'</h1>';
 include_once("BreadCrumbsCatalogo.php");
 
 include_once("aside.php");
@@ -44,12 +44,12 @@ include_once("aside.php");
 <br>
 
 <section class="imagen-ficha-articulo">
-    <? echo' <a href="FichaArticulo.php?codigo='.$codigo.'">
+    <? print' <a href="FichaArticulo.php?codigo='.$codigo.'">
                 <img src="'.$directorio .$imagen.'" class="img-fluid" alt="'.$codigo." ".$imagen.'">
             </a>'?>
 </section>
 <?if($activo==1){
-echo'
+print'
     <section class="Precio-carrito">
         <div id="precio">
             <h4 style="text-decoration: line-through;">Precio: '.$precio.' € </h4>
@@ -63,16 +63,16 @@ echo'
     </div>  
 </section>';
 } else{
-    echo'<p>Prodcuto actualmente descatalogado</p>';
+    print'<p>Prodcuto actualmente descatalogado</p>';
 }?> 
 <br>
 <br>
 <section id="descripcion">
-    <p>Descripción del producto:<? echo$descripcion?></p><br><br>
+    <p>Descripción del producto:<? print$descripcion?></p><br><br>
 </section>
 <br>
 <section id="categoria">
-    <p>Categoria del producto:<? echo$categoriaInt?></p><br><br>
+    <p>Categoria del producto:<? print$categoriaInt?></p><br><br>
 </section>
 <section>
     <button type='button'><a href='javascript:history.back()' class='btn btn-warning'><i class='lni lni-chevron-left'></i><i class='lni lni-chevron-left'></i>Seguir navegando</a></button>
@@ -88,7 +88,7 @@ echo'
             <?
             $arrayArticulosRelacionados = GerArticulosRelacionadosByCodigo($articulo->getCodigo());
             if($arrayArticulosRelacionados == false){
-                echo'<td colspan="12">No se han encontrado productos relacionados.</td>';
+                print'<td colspan="12">No se han encontrado productos relacionados.</td>';
             }    
             if($arrayArticulosRelacionados !== false){
                 //todo hacerlo carousel y poder meter más de los que caben en pantalla 
@@ -96,8 +96,8 @@ echo'
                     if($arrayArticulosRelacionados[$i]->getCodigo() == $codigo){
                         continue;//no dejaremos que se muestre el propio item como relacionado
                     }
-                    echo'<td class="col-12 col-lg-1 col-sm-1">';
-                    echo'
+                    print'<td class="col-12 col-lg-1 col-sm-1">';
+                    print'
                     <div>
                         <a href=?categoria='.$arrayArticulosRelacionados[$i]->getCategoria().'&codigo='.$arrayArticulosRelacionados[$i]->getCodigo().'>
                             <img src="'.$directorio.$arrayArticulosRelacionados[$i]->getImagen().'" alt="'.$arrayArticulosRelacionados[$i]->getNombre().'"/>
@@ -109,19 +109,19 @@ echo'
                     <br>
                     ';
                     if($arrayArticulosRelacionados[$i]->getActivo() == 1){
-                        echo'
+                        print'
                         <div>
                             <p>Precio: '.$arrayArticulosRelacionados[$i]->getPrecio().' €</p>
                         </div>
                         ';
                     } else{
-                        echo'
+                        print'
                         <div>
                             <p>Precio: Producto descatalogado</p>
                         </div>
                         ';
                     }
-                    echo'</td>';
+                    print'</td>';
                 }
             }
             ?>

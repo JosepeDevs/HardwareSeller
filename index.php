@@ -5,7 +5,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
     $arrayMensajes=getArrayMensajesIndex();
     if(is_array($arrayMensajes)){
         foreach($arrayMensajes as $mensaje) {
-            echo "<br><br><h3>$mensaje</h3>";
+            print "<br><br><h3>$mensaje</h3>";
         }
     };
     include_once("Controllers/OperacionesSession.php");
@@ -98,7 +98,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
                 <div class="section-title">
                     <span class="wow fadeInDown" data-wow-delay=".2s">Planes de precio</span>
                     <h2 class="wow fadeInUp" data-wow-delay=".4s">Adaptamos el presupuesto a tus necesidades y nunca al revés.</h2>
-                    <p class="wow fadeInUp" data-wow-delay=".6s">Disponemos de multiples opciones para que encuentres la solución perfecta a tu presupuesto. No importa cuán grande sea tu proyecto, hay un plan que está hecho para ti, por el precio que estás buscando.</p>
+                    <p class="wow fadeInUp" data-wow-delay=".6s">Disponemos de multiples opciones para que encuentres la solución perfecta a tu presupuesto. No importa cuán grande sea tu proyecto, hay un plan que está hprint para ti, por el precio que estás buscando.</p>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "CategoriaBUSCAR dice: no está user en session";
+    print "CategoriaBUSCAR dice: no está user en session";
     header("Location: /index.php");
     exit;
 
@@ -13,7 +13,7 @@ $rol = GetRolDeSession();
 if( $rol == "admin" || $rol == "empleado" ){
 } else{
     session_destroy();
-    echo "Articulos alta dice: no está user en session";
+    print "Articulos alta dice: no está user en session";
     header("Location: /index.php");
     exit;
 
@@ -58,7 +58,7 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
         $Categoria = getCategoriaByCodigo($codigo);
         if($Categoria == false){
             $_SESSION['CodigoNotFound'] = true;
-            echo "<script>history.back();</script>";
+            print "<script>history.back();</script>";
             exit;
         }
         $arrayCategorias[] = $Categoria;
@@ -69,47 +69,47 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
         $arrayCategorias = GetCategoriasByBusquedaNombre($nombre);
         if($arrayCategorias == false){
             $_SESSION['NombreNotFound'] = true;
-            echo "<script>history.back();</script>";
+            print "<script>history.back();</script>";
             exit;
         }
     }
 
     $arrayAtributos = getArrayAtributosCategoria();
     if( $arrayCategorias !== false){
-        echo"<table>";
-        echo"<tr><th>Atributos:</th>";
+        print"<table>";
+        print"<tr><th>Atributos:</th>";
         //ENCABEZADOS
 
         foreach ($arrayAtributos as $atributo) {
             $nombreAtributo = $atributo;
-            echo "<th>$nombreAtributo</th>";
+            print "<th>$nombreAtributo</th>";
         }
         //DATOS DEL OBJETO O LOS OBJETOS
-        echo "</tr>";
+        print "</tr>";
 
 
         //arrayCategorias puede conntener de 0 a vete tu a saber cuantos Categorias
         foreach($arrayCategorias as $Categoria) {
-            echo"<tr><th>Datos del Categoria encontrado:</th>";
+            print"<tr><th>Datos del Categoria encontrado:</th>";
             foreach ($arrayAtributos as $index => $atributo) {
                 $nombreAtributo = $atributo;
                 $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
                 $valor = $Categoria->$getter();//lo llamamos para obtener el valor
                  if($nombreAtributo == "activo"){
                     if($valor == 1){
-                        echo "<td>Activo (1)</td>";
+                        print "<td>Activo (1)</td>";
                     } else{
-                        echo "<td>Inactivo (0)</td>";
+                        print "<td>Inactivo (0)</td>";
                     }
                 } else {
-                    echo "<td>$valor</td>";
+                    print "<td>$valor</td>";
                 }
             }
-            echo "</tr>";
+            print "</tr>";
         }
-        echo "</table>";
+        print "</table>";
     } else{
-        echo "<h3>No se encontraron coincidencias.</h3>";
+        print "<h3>No se encontraron coincidencias.</h3>";
     }
 
 
@@ -117,19 +117,19 @@ if(isset($_POST["codigo"]) || isset($_POST["nombre"])) {
     $arrayMensajes=getArrayMensajesCategorias();
     if(is_array($arrayMensajes)){
         foreach($arrayMensajes as $mensaje) {
-            echo "<h3>$mensaje</h3>";
+            print "<h3>$mensaje</h3>";
         }
     };
 }
-    echo'
+    print'
     <h2><a class="cerrar" href="CategoriasLISTAR.php"><img src="../Resources/arrow.png" alt="listar Categorias" />Volver a la tabla de Categorias</a></h2>';
     $rol = GetRolDeSession();
     if($rol == "admin" || $rol == "editor" || $rol == "empleado") {
-        echo '<h2><a class="cerrar"  href="TablaClientes.php">Ver usuarios</a></h2>';
+        print '<h2><a class="cerrar"  href="TablaClientes.php">Ver usuarios</a></h2>';
     } else{
         $email = GetEmailDeSession();
         $dni = GetDniByEmail($email);
-        echo"<h2>
+        print"<h2>
                 <a class='enlace' href='ClienteEDITAR.php?dni=$dni'>
                     <img src='../Resources/edit.png' alt='editar datos user'/> Editar mis datos $email
                 </a>

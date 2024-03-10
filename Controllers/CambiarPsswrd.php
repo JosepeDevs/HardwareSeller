@@ -7,7 +7,7 @@ include_once("OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "Articulo dice: no está user en session";
+    print "Articulo dice: no está user en session";
     header("Location: index.php");
     exit;
 }
@@ -25,9 +25,9 @@ try {
         $query->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Cliente');
 
         if ($query->fetch()) {
-            echo '<form action="CambiarPsswrd.php" method="POST">';
-            echo '<label>Escriba su nueva contraseña</label><br><br><input type="text" name="newpsswrd"><br><br>';
-            echo '<br><br><input type="submit" value="Submit"></form>';
+            print '<form action="CambiarPsswrd.php" method="POST">';
+            print '<label>Escriba su nueva contraseña</label><br><br><input type="text" name="newpsswrd"><br><br>';
+            print '<br><br><input type="submit" value="Submit"></form>';
         } else {
             $_SESSION['ClienteNoExiste'] =true;
             header("Location: RecuperarPsswrd.php");
@@ -44,15 +44,15 @@ try {
 
         if ( ( $query->rowCount() ) > 0) {
             $_SESSION['PsswrdActualizada'] = true;
-            echo "psswrd actualizada";
+            print "psswrd actualizada";
             header("Location: Index.php");
         } else {
             $_SESSION['PsswrdSeQuedaIgual'] = true;
-            echo "psswrd NO actualizada";
+            print "psswrd NO actualizada";
             header("Location: RecuperarPsswrd.php");
         }
     }
 } catch(Exception $e){
-    echo '<h2>Hubo algun problema, es posible que con la conexión a la base de datos.</h2>';
+    print '<h2>Hubo algun problema, es posible que con la conexión a la base de datos.</h2>';
 }
 ?>

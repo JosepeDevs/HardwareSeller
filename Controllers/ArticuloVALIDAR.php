@@ -7,7 +7,7 @@ checkAdminOEmpleado();
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ArticuloVALIDAR dice: no está user en session";
+    print "ArticuloVALIDAR dice: no está user en session";
    header("Location: /index.php");
    exit;
 }
@@ -89,7 +89,7 @@ if( isset($_SESSION["editandoArticulo"]) && $_SESSION["editandoArticulo"] == "tr
 if(isset($_FILES["imagen"]) && $_FILES["imagen"]["size"] !== 0){
 //si han subido algún archivo entonces...
     $imagen = $_FILES["imagen"];
-    //echo"<br>____________si que hay una imagen:_________";
+    //print"<br>____________si que hay una imagen:_________";
     $imagenValida = Articulo::ValidaImagen();//comprobamos peso, tamaño y formato aquí, se sube a session los errores encontrados
 
     $nombreArchivo = $_FILES['imagen']['name'];//este es el nombre con el que se sube el archivo (como lo nombra el usuario)
@@ -114,11 +114,11 @@ if(isset($_FILES["imagen"]) && $_FILES["imagen"]["size"] !== 0){
         $imagen= $articulo->getImagen();
         $_SESSION['imagenReciclada'] = $imagen;
         $nombreArchivoDestino=$imagen;
-        echo "<br>articuloValidar dice: imagen vale= ".$imagen;
+        print "<br>articuloValidar dice: imagen vale= ".$imagen;
     } else{
         $_SESSION['CodigoNotFound'] = true;
       //  print"<br>no se encontro el codigo <br>";
-        echo "<script>history.back();</script>";
+        print "<script>history.back();</script>";
         exit;
     }
 }
@@ -143,7 +143,7 @@ if(
     //algo dio error, go back para que allí de donde venga se muestre el error
    // print"nombre ={$_SESSION['LongNombre']},BadCodigo ={$_SESSION['BadCodigo']},CodigoAlreadyExists ={$_SESSION['CodigoAlreadyExists']},LongDescripcion ={$_SESSION['LongDescripcion']},LongCategoria ={$_SESSION['LongCategoria']},LongPrecio ={$_SESSION['LongPrecio']},LongImagen ={$_SESSION['LongImagen']},ImagenPesada ={$_SESSION['ImagenPesada']},FileAlreadyExists ={$_SESSION['FileAlreadyExists']},ImagenGrande ={$_SESSION['ImagenGrande']},ActivoGrande ={$_SESSION['ActivoGrande']},FileBadFormat ={$_SESSION['FileBadFormat']},,BadDescuento ={$_SESSION['BadDescuento']},";
 
-    //   echo "<script>history.back();</script>";
+    //   print "<script>history.back();</script>";
         exit;
 } else {
     $_SESSION["nombre"] = $nombre;
@@ -165,10 +165,10 @@ if( isset($_SESSION["editandoArticulo"]) && $_SESSION["editandoArticulo"] == "tr
         if ( move_uploaded_file($_FILES['imagen']['tmp_name'], $directorio) ) { //esto es ruta absoluta porque lo guardamos en el pc
             $_SESSION['MoveDone']= true;
             $_SESSION["imagen"] = $nombreArchivoDestino; //guardamos el nombre relativo, estilo "hemerotecaBD\tacocat--a-cat-made-of-taco-body.png"
-            echo "<br>la imagen se movió a $directorio";
+            print "<br>la imagen se movió a $directorio";
         } else {
             $_SESSION['MoveFailed']= true;
-            echo "<br>la imagen __NO__ se movió al directorio";
+            print "<br>la imagen __NO__ se movió al directorio";
         }
     }
 
@@ -198,10 +198,10 @@ if( isset($_SESSION["editandoArticulo"]) && $_SESSION["editandoArticulo"] == "tr
         if ( isset($_FILES['imagen']) && $_FILES["imagen"]["size"] !== 0 && move_uploaded_file($_FILES['imagen']['tmp_name'], $directorio) ) { //ruta absoluta lo guardamos en el pc
             $_SESSION['MoveDone']= true;
             $_SESSION["imagen"] = $nombreArchivoDestino; //guardamos el nombre relativo, estilo "hemerotecaBD\tacocat--a-cat-made-of-taco-body.png"
-            echo "<br>la imagen se movió a $directorio";
+            print "<br>la imagen se movió a $directorio";
         } else {
             $_SESSION['MoveFailed']= true;
-            echo "<br>la imagen __NO__ se movió a $directorio";
+            print "<br>la imagen __NO__ se movió a $directorio";
         }
 
     $_SESSION["codigo"]=$codigo;

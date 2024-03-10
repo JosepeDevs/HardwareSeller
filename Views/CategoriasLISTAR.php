@@ -12,7 +12,7 @@ $rol = GetRolDeSession();
 if( $rol == "admin" || $rol == "empleado" ){
 } else{
     session_destroy();
-    echo "Articulos alta dice: no está user en session";
+    print "Articulos alta dice: no está user en session";
     header("Location: /index.php");
     exit;
 
@@ -27,7 +27,7 @@ print("<h1>Administrar categorias</h1>");
 //NAVEGACION
 include_once("../Controllers/OperacionesSession.php");
 if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ||GetRolDeSession() == "empleado"){
-    echo"
+    print"
     <div id='EnlacesArriba'>
         <h2>
             <a href='CategoriaALTA.php'>
@@ -36,14 +36,14 @@ if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ||GetRolDeSessi
         </h2>";
 }
 if(GetRolDeSession() == "admin" ){
-    echo"<h2>
+    print"<h2>
             <a href='ArticulosLISTAR.php'>
                 <img class='iconArribaTabla' src='../Resources/buscaAr.png' alt='añadir' /> Administrar artículos
             </a>
         </h2>";
 } else {
     //solo entrará aquí si es editor o empleado
-    echo"<h2>
+    print"<h2>
             <a href='CategoriaALTA.php'>
                 <img class='iconArribaTabla' src='../Resources/addAr.png' alt='añadir' /> Crear categoría nueva
             </a>
@@ -63,25 +63,25 @@ if(GetRolDeSession() == "admin" ){
 </div>
 <?php
 //TABLA LISTANDO CategoriaS
-echo"<table>";
-        echo"<tr>";
+print"<table>";
+        print"<tr>";
             //ENCABEZADOS
             include_once("../Controllers/CategoriasLISTARController.php");
             $arrayAtributos = getArrayAtributosCategoria();
             if($arrayAtributos == false){
-                echo"</tr><tr><td>Sin Categorias</td></tr>";
+                print"</tr><tr><td>Sin Categorias</td></tr>";
             } else{
                 foreach ($arrayAtributos as $atributo) {
                     $nombreAtributo = $atributo;
-                    echo "<th>$nombreAtributo</th>";
+                    print "<th>$nombreAtributo</th>";
                 }
                 include_once("../Controllers/OperacionesSession.php");//get rol
                 if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin"||GetRolDeSession() == "empleado" ){
-                    echo"
+                    print"
                     <th>Editar</th>
                     <th>Desactivar</th>";
                 }
-                echo"</tr>";
+                print"</tr>";
             }
 
         //PREPARAR ARRAYS CON OBJETOS
@@ -107,26 +107,26 @@ echo"<table>";
         //llamamos dinámicamente los getters de la clase habiendo guardado previamente el array con los nombresd de los atributos
         //hay que recorrer todos los atributos en todos los objetos
         foreach($arrayAImprimir as $Categoria) {
-            echo"<tr>";
+            print"<tr>";
             foreach ($arrayAtributos as $index => $atributo) {
                 $nombreAtributo = $atributo;
                 $getter = 'get' . ucfirst($nombreAtributo);//montamos dinámicamente el getter
                 $valor = $Categoria->$getter();//lo llamamos para obtener el valor
                 if($nombreAtributo == "activo"){
                     if($valor == 1){
-                        echo "<td>Activo (1)</td>";
+                        print "<td>Activo (1)</td>";
                     } else{
-                        echo "<td>Inactivo (0)</td>";
+                        print "<td>Inactivo (0)</td>";
                     }
                 } else if($nombreAtributo == "codigo"){
                     $codigo=$valor;
-                    echo "<td>$valor</td>";
+                    print "<td>$valor</td>";
                 } else {
-                    echo "<td>$valor</td>";
+                    print "<td>$valor</td>";
                 }
             }
             if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ||GetRolDeSession() == "empleado"){
-                echo"
+                print"
                 <td>
                     <a  href='CategoriaEDITAR.php?codigo=$codigo'>
                     <img class='icon' src='../Resources/editAr.png' alt='Editar Categoria' />
@@ -136,9 +136,9 @@ echo"<table>";
                     <img class='icon' src='../Resources/minusAr.png' alt='Desactivar Categoria' />
                 </td>";
             }
-            echo "</tr>";
+            print "</tr>";
         }
-        echo("</table>");
+        print("</table>");
 
    //PAGINACIÓN
    print "<div class='paginacion'>";
@@ -202,7 +202,7 @@ include_once("../Controllers/CategoriaMensajes.php");
             $arrayMensajes=getArrayMensajesCategorias();
             if(is_array($arrayMensajes)){
                 foreach($arrayMensajes as $mensaje) {
-                    echo "<h3>$mensaje</h3>";
+                    print "<h3>$mensaje</h3>";
                 }
             };
 //tras printear los mensajes de error/confirmación "reseteamos" session

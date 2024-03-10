@@ -19,7 +19,7 @@ include_once("../Controllers/RecuperarPsswrdMensajes.php");
 $arrayMensajes=getArrayMensajes();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
-        echo "<h3>$mensaje</h3>";
+        print "<h3>$mensaje</h3>";
     }
 };
 

@@ -39,7 +39,7 @@ include_once("header.php");
                 $cantidad = $arrayDatosArticulo["cantidad"];
                 $subTotal=($precio*(1-($descuento/100)))*$cantidad;
                 if($articulo !== false){
-                    echo'
+                    print'
                     <tr>
                         <td><input class="disabled" name="numLinea'.$index.'" value="'.$index.'" disabled></input></td>
                         <td><input class="disabled" name="codigo'.$index.'" disabled value="'.$codigo.'"></input></td>
@@ -85,7 +85,7 @@ include_once("header.php");
                     $descuento=round($articulo->getDescuento(), 2);
                     $cantidad = $arrayItems[$codigo];
                     $subTotal=($precio*(1-($descuento/100)))*$cantidad;
-                    echo'
+                    print'
                     <tr>
                         <td><input class="disabled" name="numLinea'.$indice.'" value="'.$indice.'" disabled></input></td>
                         <td><input class="disabled" name="codigo'.$indice.'" disabled value="'.$codigo.'"></input></td>
@@ -109,39 +109,39 @@ include_once("header.php");
             } 
 
         }
-        echo'
+        print'
         <tfoot>
             <tr>';
                 //SI hay solapamiento cuando no hay items
                 if( isset($_SESSION['productos'])  &&  isset($_SESSION['CarritoConfirmado']) && count($_SESSION['productos']) > 0 && count($_SESSION['CarritoConfirmado']) > 0 ){
-                    echo'
+                    print'
                         <td colspan="3"><h4> TOTAL (€) (IVA no incluido): </h4></td>
                         <td colspan="4"><h2><b class="total">'.round($total,2).'</b></h2></td>
                         <br>';
                 } else if( isset($_SESSION['productos']) && count($_SESSION['productos']) > 0  ){
-                    echo'
+                    print'
                         <td colspan="3"><h4> TOTAL (€) (IVA no incluido): </h4></td>
                         <td colspan="4"><h2><b class="total">'.round($total,2).'</b></h2></td>
                         <br>';
                 } else if( isset($_SESSION['CarritoConfirmado']) && count($_SESSION['CarritoConfirmado']) > 0 ){
-                    echo'
+                    print'
                         <td colspan="3"><h4> TOTAL (€) (IVA no incluido): </h4></td>
                         <td colspan="4"><h2><b class="total">'.round($total,2).'</b></h2></td>
                         <br>';
                 }
-        echo'
+        print'
             </tr>
         </tfoot>';
 
         //SI hay solapamiento cuando no hay items
         if( isset($_SESSION['productos'])  &&  isset($_SESSION['CarritoConfirmado']) && count($_SESSION['productos']) == 0 && count($_SESSION['CarritoConfirmado'])==0 ){
-               echo '<tr><td colspan="7"><p>Carrito sin artículos (carrito vacío)</p></td>'; 
+               print '<tr><td colspan="7"><p>Carrito sin artículos (carrito vacío)</p></td>'; 
         } else if( isset($_SESSION['productos']) && count($_SESSION['productos']) == 0  ){
             //SI es su primera visita al carrito
-            echo '<tr><td colspan="7"><p>Carrito sin artículos (carrito vacío)</p></td>';
+            print '<tr><td colspan="7"><p>Carrito sin artículos (carrito vacío)</p></td>';
         } else if( isset($_SESSION['CarritoConfirmado']) && count($_SESSION['CarritoConfirmado']) == 0 ){
             //SI vuelven tras confirmar carrito
-            echo '<tr><td colspan="7"><p>Carrito sin artículos (carrito vacío)</p></td>';
+            print '<tr><td colspan="7"><p>Carrito sin artículos (carrito vacío)</p></td>';
         }
             ?>
     </tbody>

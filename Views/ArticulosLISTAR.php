@@ -6,7 +6,7 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ArticulosLISTAR dice: no está user en session";
+    print "ArticulosLISTAR dice: no está user en session";
     header("Location: ../index.php");
     exit;
 
@@ -16,7 +16,7 @@ $rol = GetRolDeSession();
 if( $rol == "admin" || $rol == "empleado" ){
 } else{
     session_destroy();
-    echo "Articulos alta dice: no está user en session";
+    print "Articulos alta dice: no está user en session";
     header("Location: /index.php");
     exit;
 
@@ -31,7 +31,7 @@ print("<h1>Gestionar artículos</h1>");
 //NAVEGACION
 include_once("../Controllers/OperacionesSession.php");
 if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ||GetRolDeSession()=="empleado" ){
-    echo"
+    print"
     <div id='EnlacesArriba'>
         <h2>
             <a href='ArticuloALTA.php'>
@@ -40,7 +40,7 @@ if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" ||GetRolDeSessi
         </h2>";
 }
 if(GetRolDeSession() == "admin" ){
-    echo"<h2>
+    print"<h2>
             <a href='CategoriasLISTAR.php'>
                 <img class='iconArribaTabla' src='../Resources/buscaAr.png' alt='añadir' /> Ver categorías
             </a>
@@ -51,13 +51,13 @@ if(GetRolDeSession() == "admin" ){
     $dni=GetDniByEmail($email);
     if($dni == null ){
         $_SESSION['OperationFailed'] = true;
-        echo"<h2>
+        print"<h2>
                 <a href='ClienteBUSCAR.php'>
                     <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' /> Buscar cliente
                 </a>
             </h2>";
     } else{
-        echo"<h2>
+        print"<h2>
                 <a href='ClienteEDITAR.php?dni=$dni'>
                     <img class='iconArribaTabla' src='../Resources/search.png' alt='añadir' /> Editar mis datos de usuario $email
                 </a>
@@ -78,25 +78,25 @@ if(GetRolDeSession() == "admin" ){
 </div>
 <?php
 //TABLA LISTANDO ARTICULOS
-echo"<table>";
-        echo"<tr>";
+print"<table>";
+        print"<tr>";
             //ENCABEZADOS
             include_once("../Controllers/ArticulosLISTARController.php");
             $arrayAtributos = getArrayAtributosArticulo();
             if($arrayAtributos == false){
-                echo"</tr><tr><td>Sin articulos</td></tr>";
+                print"</tr><tr><td>Sin articulos</td></tr>";
             } else{
                 foreach ($arrayAtributos as $atributo) {
                     $nombreAtributo = $atributo;
-                    echo "<th>$nombreAtributo</th>";
+                    print "<th>$nombreAtributo</th>";
                 }
                 include_once("../Controllers/OperacionesSession.php");//get rol
                 if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" || GetRolDeSession() == "empleado"){
-                    echo"
+                    print"
                     <th>Editar</th>
                     <th>Desactivar</th>";
                 }
-                echo"</tr>";
+                print"</tr>";
             }
 
         //PREPARAR ARRAYS CON OBJETOS
@@ -122,30 +122,30 @@ echo"<table>";
         //llamamos dinámicamente los getters de la clase habiendo guardado previamente el array con los nombresd de los atributos
         //hay que recorrer todos los atributos en todos los objetos
         foreach($arrayAImprimir as $articulo){
-            echo("<tr>");
+            print("<tr>");
             foreach ($arrayAtributos as $atributo) {
                 $nombreAtributo = $atributo;//p.e. codigo, nombre...
                 $nombreMetodo = 'get' . ucfirst($nombreAtributo); //montamos el nombre del método a llamar
                 $valor = call_user_func([$articulo, $nombreMetodo]);
                 if($nombreAtributo == "codigo"){
                     $codigo = $articulo->getCodigo();//guardamos el código para que esté disponible fuerra de este bucle
-                    echo "<td>$valor</td>";
+                    print "<td>$valor</td>";
                 } else if($nombreAtributo == "imagen"){
                     include_once("../Controllers/Directorio.php");
                     $directorio = "/Resources/ImagenesArticulos/";
                     $rutaAbsoluta = $directorio . $valor;
-                    echo"<td><img class='imagenes' src='{$rutaAbsoluta}' width='200' height='200'/></td>";
+                    print"<td><img class='imagenes' src='{$rutaAbsoluta}' width='200' height='200'/></td>";
                 }else{
-                    echo "<td>$valor</td>";
+                    print "<td>$valor</td>";
                 }
             }
             if(GetRolDeSession() == "editor" || GetRolDeSession() == "admin" || GetRolDeSession() == "empleado"){
-                echo"
+                print"
                 <td><a href='ArticuloEDITAR.php?codigo=$codigo'><img class='icon' src='../Resources/editAr.png' alt='Editar artículo' /></td>
                 <td><a href='ArticuloBORRAR.php?codigo=$codigo'><img class='icon' src='../Resources/minusAr.png' alt='Borrar artículo' /></td>";
             }
         }
-        echo("</tr>
+        print("</tr>
     </table>");
 
    //PAGINACIÓN
@@ -210,7 +210,7 @@ include_once("../Controllers/ArticulosMensajes.php");
 $arrayMensajes=getArrayMensajesArticulos();
             if(is_array($arrayMensajes)){
                 foreach($arrayMensajes as $mensaje) {
-                    echo "<h3>$mensaje</h3>";
+                    print "<h3>$mensaje</h3>";
                 }
             };
 //tras printear los mensajes de error/confirmación "reseteamos" session

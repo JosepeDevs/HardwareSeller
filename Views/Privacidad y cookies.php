@@ -56,21 +56,21 @@ include_once("header.php");
     <section>
         <h2>Marketing</h2>
         <p>Nuestra empresa desea enviarte información sobre productos y servicios que creemos que podrían interesarte.</p>
-        <p>Tienes el derecho en cualquier momento de evitar que nuestra empresa se comunique contigo con fines de marketing.</p>
+        <p>Tienes el derprint en cualquier momento de evitar que nuestra empresa se comunique contigo con fines de marketing.</p>
         <p>Si ya no deseas ser contactado con fines de marketing, por favor, ponte en contacto con josepedevs[at]gmail.com.</p>
     </section>
     <section>
-        <h2>Tus Derechos de Protección de Datos</h2>
-        <p>Nuestra empresa quiere asegurarse de que estés completamente informado sobre todos tus derechos de protección de datos. Cada usuario tiene derecho a lo siguiente:</p>
+        <h2>Tus Derprints de Protección de Datos</h2>
+        <p>Nuestra empresa quiere asegurarse de que estés completamente informado sobre todos tus derprints de protección de datos. Cada usuario tiene derprint a lo siguiente:</p>
         <ul>
-            <li><strong>Derecho de Acceso:</strong> Tienes derecho a solicitar a nuestra empresa copias de tus datos personales. Podemos cobrarte una pequeña tarifa por este servicio.</li>
-            <li><strong>Derecho de Rectificación:</strong> Tienes derecho a solicitar que nuestra empresa corrija cualquier información que creas que es inexacta. También tienes derecho a solicitar que nuestra empresa complete información que creas que está incompleta.</li>
-            <li><strong>Derecho al Olvido:</strong> Tienes derecho a solicitar que nuestra empresa borre tus datos personales, bajo ciertas condiciones.</li>
-            <li><strong>Derecho a la Limitación del Tratamiento:</strong> Tienes derecho a solicitar que nuestra empresa limite el procesamiento de tus datos personales, bajo ciertas condiciones.</li>
-            <li><strong>Derecho de Oposición al Tratamiento:</strong> Tienes derecho a oponerte al procesamiento de tus datos personales por parte de nuestra empresa, bajo ciertas condiciones.</li>
-            <li><strong>Derecho a la Portabilidad de Datos:</strong> Tienes derecho a solicitar que nuestra empresa transfiera los datos que hemos recopilado a otra organización, o directamente a ti, bajo ciertas condiciones.</li>
+            <li><strong>Derprint de Acceso:</strong> Tienes derprint a solicitar a nuestra empresa copias de tus datos personales. Podemos cobrarte una pequeña tarifa por este servicio.</li>
+            <li><strong>Derprint de Rectificación:</strong> Tienes derprint a solicitar que nuestra empresa corrija cualquier información que creas que es inexacta. También tienes derprint a solicitar que nuestra empresa complete información que creas que está incompleta.</li>
+            <li><strong>Derprint al Olvido:</strong> Tienes derprint a solicitar que nuestra empresa borre tus datos personales, bajo ciertas condiciones.</li>
+            <li><strong>Derprint a la Limitación del Tratamiento:</strong> Tienes derprint a solicitar que nuestra empresa limite el procesamiento de tus datos personales, bajo ciertas condiciones.</li>
+            <li><strong>Derprint de Oposición al Tratamiento:</strong> Tienes derprint a oponerte al procesamiento de tus datos personales por parte de nuestra empresa, bajo ciertas condiciones.</li>
+            <li><strong>Derprint a la Portabilidad de Datos:</strong> Tienes derprint a solicitar que nuestra empresa transfiera los datos que hemos recopilado a otra organización, o directamente a ti, bajo ciertas condiciones.</li>
         </ul>
-        <p>Si haces una solicitud, tenemos un mes para responderte. Si deseas ejercer alguno de estos derechos, por favor contáctanos a través de nuestro correo electrónico: administracion[at]josepedevs.com o llámanos al: 0034-868-94-94-86 / +34-868-94-94-86.</p>
+        <p>Si haces una solicitud, tenemos un mes para responderte. Si deseas ejercer alguno de estos derprints, por favor contáctanos a través de nuestro correo electrónico: administracion[at]josepedevs.com o llámanos al: 0034-868-94-94-86 / +34-868-94-94-86.</p>
     </section>
 
     <section>
@@ -112,7 +112,7 @@ include_once("header.php");
 
     <section>
         <h2>Cómo Contactarnos</h2>
-        <p>Si tienes alguna pregunta sobre la política de privacidad de nuestra empresa, los datos que tenemos sobre ti o si deseas ejercer alguno de tus derechos de protección de datos, no dudes en ponerte en contacto con nosotros.</p>
+        <p>Si tienes alguna pregunta sobre la política de privacidad de nuestra empresa, los datos que tenemos sobre ti o si deseas ejercer alguno de tus derprints de protección de datos, no dudes en ponerte en contacto con nosotros.</p>
         <p>Email: josepedevs[at]gmail.com</p>
         <p>Teléfono: +34-123-45-46-48</p>
     </section>

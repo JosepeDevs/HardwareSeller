@@ -67,7 +67,7 @@ if($emailRepetido == true && $emailOriginal == $email){
     //print("<br>estamos comparando >$emailOriginal< y >$email< <br>");
     $_SESSION['EmailAlreadyExists']= false;
 } else if($emailRepetido == true && ($emailOriginal !== $email)) {//entonces es que está intentando cambiarse el correo y ha puesto uno que ya existe
-   // echo" <br>Se quiere cambiar el correo y estamos comparando $emailOriginal y $email porque el email está repetido:$emailRepetido<br>";
+   // print" <br>Se quiere cambiar el correo y estamos comparando $emailOriginal y $email porque el email está repetido:$emailRepetido<br>";
     $_SESSION['EmailAlreadyExists']= true;
 }
 
@@ -99,10 +99,10 @@ if(isset($_SESSION['dni'])) {
     //print("dni original".$dniOriginal);
     $formatoDni = Cliente::ValidaDni($dniOriginal);
     if($formatoDni == false) {
-       // echo "el dni de edit (recibido por session) estaba mal";
+       // print "el dni de edit (recibido por session) estaba mal";
         $_SESSION['DniBadFormat']= true;
     } else {
-       // echo "el dni estaba bien";
+       // print "el dni estaba bien";
         $_SESSION['DniBadFormat']= false;
     }
 }
@@ -135,7 +135,7 @@ if(
     ( isset($_SESSION['EmailAlreadyExists']) && $_SESSION['EmailAlreadyExists'] == true )
 ){
     //algo dio error, go back para que allí de donde venga se muestre el error
-   echo "<script>history.back();</script>";
+   print "<script>history.back();</script>";
     exit;
 } 
 
@@ -182,9 +182,9 @@ if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true
 }else if( isset($_SESSION["nuevoCliente"]) && $_SESSION["nuevoCliente"] == "true" ){
     
     $_SESSION["dni"]=$dniNuevo;
-    //echo "<p>'insertando cliente...espere infinito...datos que estamos pasando: $dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo</p>";
+    //print "<p>'insertando cliente...espere infinito...datos que estamos pasando: $dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo</p>";
     $operacionExitosa = Cliente::InsertCliente($dniNuevo, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo);
-    // echo"<br>la operacion ha sido existosa??$operacionExitosa<br>";
+    // print"<br>la operacion ha sido existosa??$operacionExitosa<br>";
     if($operacionExitosa == true){
         $_SESSION['GoodInsertCliente']= true;
     } else{

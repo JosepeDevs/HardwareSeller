@@ -55,7 +55,7 @@ if(
     ( isset($_SESSION['ClienteNoExiste']) && $_SESSION['ClienteNoExiste'] == true )
 ){
     //algo dio error, go back para que allí de donde venga se muestre el error
-   echo "<script>history.back();</script>";
+   print "<script>history.back();</script>";
     exit;
 } 
  

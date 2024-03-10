@@ -7,7 +7,7 @@ checkAdminOEmpleado();
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "CategoriaVALIDAR dice: no está user en session";
+    print "CategoriaVALIDAR dice: no está user en session";
    header("Location: /index.php");
    exit;
 }
@@ -75,7 +75,7 @@ if(
     ( isset( $_SESSION['codPadreNoExiste']) && $_SESSION['codPadreNoExiste']== true )
 ){
     //algo dio error, go back para que allí de donde venga se muestre el error
-    echo "<script>history.back();</script>";
+    print "<script>history.back();</script>";
     exit;
 } else {
     //no han habido errores

@@ -59,7 +59,7 @@ foreach ($contenidoPedido as $index => $array) {
         ( isset( $_SESSION['LongActivo']) && $_SESSION['LongActivo']== true )
     ){
         //algo dio error, go back para que allí de donde venga se muestre el error
-        echo "<script>history.back();</script>";
+        print "<script>history.back();</script>";
         exit;
     } else {
         //array con objetos "contenidopedido",ahora en cada indice con todos los datos que me hacen falta para dar de alta el contenidoPedido 
@@ -82,7 +82,7 @@ foreach ($contenidoPedido as $index => $array) {
             if($numPedidoOriginalDeberiaExistir == true) { 
                 //si es true debemos subir error, porque debería existir
                 $_SESSION['numPedidoDeberiaExistir'] = true;
-                echo "<script>history.back();</script>";
+                print "<script>history.back();</script>";
                 exit;
             } 
         }          
@@ -94,7 +94,7 @@ foreach ($contenidoPedido as $index => $array) {
             if($numPedidoLibre == false) {
                 //si no está libre subimos errro y retrocedemos
                 $_SESSION['numPedidoAlreadyExists']= true;
-                echo "<script>history.back();</script>";
+                print "<script>history.back();</script>";
                 exit;
             }
         }
@@ -150,7 +150,7 @@ if(isset($_SESSION["CarritoConfirmado"])){
     header("Location: ../Views/PedidoBUSCAR.php?idPedido=$numPedido&PedidoConfirmado=true");
 }else{
     //venimos de estar editando o dando de alta un pedido como admins
-    echo "<script>history.back();</script>";
+    print "<script>history.back();</script>";
     exit;
 }
 exit;

@@ -4,7 +4,7 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ArticulosBORRARMensajes dice: no está user en session";
+    print "ArticulosBORRARMensajes dice: no está user en session";
     header("Location: /index.php");
     exit;
 
@@ -13,7 +13,7 @@ $rol = GetRolDeSession();
 if( $rol == "admin" || $rol == "empleado" ){
 } else{
     session_destroy();
-    echo "Articulos alta dice: no está user en session";
+    print "Articulos alta dice: no está user en session";
     header("Location: /index.php");
     exit;
 
@@ -37,8 +37,8 @@ if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  'false' ){
 ?>
         <h1>¿Está seguro de que desea desactivar este artículo?</h1>
         <div class="finForm">
-            <h2><a href="ArticuloBORRAR.php?codigo=<?php echo $codigo;?>&confirmacion=true">Sí, borrar el artículo (Borrado lógico).</a></h2>
-            <h2><a href="ArticuloBORRAR.php?codigo=<?php echo $codigo;?>&confirmacion=false">Cancelar borrado.</a></h2>
+            <h2><a href="ArticuloBORRAR.php?codigo=<?php print $codigo;?>&confirmacion=true">Sí, borrar el artículo (Borrado lógico).</a></h2>
+            <h2><a href="ArticuloBORRAR.php?codigo=<?php print $codigo;?>&confirmacion=false">Cancelar borrado.</a></h2>
         </div>
 <?php
 include_once("footer.php");

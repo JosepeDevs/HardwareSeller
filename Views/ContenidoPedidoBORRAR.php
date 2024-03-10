@@ -6,7 +6,7 @@ include_once("../Controllers/OperacionesSession.php");
 $usuarioLogeado = UserEstablecido();
 if( $usuarioLogeado == false){
     session_destroy();
-    echo "ContenidoPedidoBORRARMensajes dice: no está user en session";
+    print "ContenidoPedidoBORRARMensajes dice: no está user en session";
     header("Location: /index.php");
     exit;
 
@@ -15,7 +15,7 @@ $rol = GetRolDeSession();
 if( $rol == "admin" || $rol == "empleado" ){
 } else{
     session_destroy();
-    echo "Articulos alta dice: no está user en session";
+    print "Articulos alta dice: no está user en session";
     header("Location: /index.php");
     exit;
 
@@ -40,8 +40,8 @@ if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  'false' ){
 ?>
         <h1>¿Está seguro de que desea desactivar el contenido de este pedido?</h1>
         <div class="finForm">
-            <h2><a href="ContenidoPedidoBORRAR.php?numPedido=<? echo $numPedido;?>&confirmacion=true">Sí, desactivar la linea del pedido seleccionada (Borrado lógico).</a></h2>
-            <h2><a href="ContenidoPedidoBORRAR.php?numPedido=<? echo $numPedido;?>&confirmacion=false">Cancelar desactivación.</a></h2>
+            <h2><a href="ContenidoPedidoBORRAR.php?numPedido=<? print $numPedido;?>&confirmacion=true">Sí, desactivar la linea del pedido seleccionada (Borrado lógico).</a></h2>
+            <h2><a href="ContenidoPedidoBORRAR.php?numPedido=<? print $numPedido;?>&confirmacion=false">Cancelar desactivación.</a></h2>
         </div>
 <?php
 include_once("footer.php");

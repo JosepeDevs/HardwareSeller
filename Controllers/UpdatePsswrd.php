@@ -8,10 +8,10 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
     $_SESSION['dni'] = $dni;
     $clienteExiste = checkClientByEmailAndDni($email, $dni);
     if( $clienteExiste) {
-        echo '<form action="UpdatePsswrd.php" method="POST">';
-        echo '<h1>Recuperación de contraseña</h1>';
-        echo '<h2><label>Escriba su nueva contraseña</label></h2><br><br><input type="text" name="newpsswrd"><br><br>';
-        echo '<br><input type="submit" value="Submit"></form>';
+        print '<form action="UpdatePsswrd.php" method="POST">';
+        print '<h1>Recuperación de contraseña</h1>';
+        print '<h2><label>Escriba su nueva contraseña</label></h2><br><br><input type="text" name="newpsswrd"><br><br>';
+        print '<br><input type="submit" value="Submit"></form>';
     } else {
         $_SESSION['ClienteNoExiste'] =true;
        header("Location: /index.php");
@@ -21,10 +21,10 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
     $newpsswrd = $_POST['newpsswrd'];
     $newpsswrd = password_hash($newpsswrd, PASSWORD_BCRYPT);
     $dni = $_SESSION['dni'];
-   echo"entramos a actualizar la contraseña";
+   print"entramos a actualizar la contraseña";
     $operacionExitosa = updatePasswrdUsingDni($dni, $newpsswrd);
 if ($operacionExitosa) {
-    echo"la operacion ha sido $operacionExitosa";
+    print"la operacion ha sido $operacionExitosa";
     $_SESSION['PsswrdActualizada'] = true;
 }
 //haya éxito o no iremos a index

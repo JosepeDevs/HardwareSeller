@@ -33,7 +33,7 @@ unset($_SESSION['dni']);
                 <th><label for="email">email:</label></th>
                 <th><label for="dni">DNI:</label></th>
                 <th><label for="psswrd">contraseña:</label></th>
-                <?php if($rol == "admin"){echo'<th><label for="rol">Rol (User/Editor/Admin/Empleado):</label></th>';}?>
+                <?php if($rol == "admin"){print'<th><label for="rol">Rol (User/Editor/Admin/Empleado):</label></th>';}?>
             </tr>
             <td><input type="text" name="nombre" id="nombre" required><br><br></td>
             <td><input type="text" name="direccion" id="direccion" required ><br><br></td>
@@ -43,7 +43,7 @@ unset($_SESSION['dni']);
             <td><input type="email" name="email" id="email" required><br><br>
             <td><input type="text" name="dni" id="dni" required pattern="^\d{8}\w{1}$"><br><br></td>
             <td><input type="password" name="psswrd" id="pssword" required><br><br>
-            <?php if($rol == "admin"){ echo "
+            <?php if($rol == "admin"){ print "
                     <td>
                         <select id='rol' name='rol' required>
                             <option value='user'>User</option>
@@ -68,20 +68,20 @@ include_once("../Controllers/ClienteALTAMensajes.php");
 $arrayMensajes=getArrayMensajesNuevo();
 if(is_array($arrayMensajes)){
     foreach($arrayMensajes as $mensaje) {
-        echo "<h3>$mensaje</h3>";
+        print "<h3>$mensaje</h3>";
     }
 };
 if(isset($_GET["dni"]) && !empty($_GET["dni"])){
-    echo "<h3>Usuario añadido correctamente.</h3>";
+    print "<h3>Usuario añadido correctamente.</h3>";
 }
 
 //todo: poner que si intentan registrar un usuario, si este está desactivado que dé la opción de activarlo en lugar de darlo de alta de nuevo.
 
 
 if($rol == "admin"){
-    echo"<button id='cerrar'><a href='TablaClientes.php'>Cancelar / volver a la tabla</a></button>";
+    print"<button id='cerrar'><a href='TablaClientes.php'>Cancelar / volver a la tabla</a></button>";
 }else{
-    echo"<button id='cerrar'><a href='/index.php'>Volver al inicio</a></button>";
+    print"<button id='cerrar'><a href='/index.php'>Volver al inicio</a></button>";
 }
 
 include("footer.php");

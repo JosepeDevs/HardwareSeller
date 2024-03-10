@@ -3,7 +3,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 //ESTA PÁGINA NO SE DEBE PROTEGER, ACCESIBLE A TODOS LOS NAVEGANTES
 //HEADER Y TITULO
 include_once("header.php");
-echo'<h1>Dirección de envío</h1>';
+print'<h1>Dirección de envío</h1>';
 
 //RECIBIMOS POR POST LOS DATOS DE CONTENIDOPEDIDO
 if(isset( $_POST['numLinea1'] )){

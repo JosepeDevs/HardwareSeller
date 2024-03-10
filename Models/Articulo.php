@@ -314,8 +314,8 @@ class Articulo {
                     WHERE `codigo` = :codigoOriginal "
             ;
         }
-        echo "<br>UpdateArticulo says: codigo nuevo: $codigo"." y codigo original: ".$codigoOriginal."<br>";
-        echo "<br>UpdateArticulo says:".$sqlQuery;
+        print "<br>UpdateArticulo says: codigo nuevo: $codigo"." y codigo original: ".$codigoOriginal."<br>";
+        print "<br>UpdateArticulo says:".$sqlQuery;
         $statement= $conPDO->prepare($sqlQuery);
         $statement->bindParam(':nombre', $nombre);
 
@@ -342,10 +342,10 @@ class Articulo {
         $operacionRealizada = $statement->execute();
 
         if($operacionRealizada == false && $statement->rowCount() <= 0 && !$estamosReciclandoImagen){
-            //si SQL no se ejecuta, hay que deshacer lo hecho (solo queremos borrar si estamos subiendo imagen nueva, la que ya tenía no hay que borrarla)
+            //si SQL no se ejecuta, hay que deshacer lo hprint (solo queremos borrar si estamos subiendo imagen nueva, la que ya tenía no hay que borrarla)
             if (file_exists($imagen)) {//si llegó imagen cmo aquí ya se había movido la borramos
                 $_SESSION['BadUpdateArticulo']= true;
-                echo "<br>nos cargamos la imagen.";
+                print "<br>nos cargamos la imagen.";
                 unlink($imagen);
             }
             return false;
@@ -466,7 +466,7 @@ class Articulo {
             }
 
             if($arrayInfoImagen[0] > 200 || $arrayInfoImagen[1] > 200) { //en el indice 0 tenemos el ancho y en el indice 1 tenemos el alto
-                echo"<br>ValidaImagenes says: el ancho es $arrayInfoImagen[0] y el alto es $arrayInfoImagen[1]";
+                print"<br>ValidaImagenes says: el ancho es $arrayInfoImagen[0] y el alto es $arrayInfoImagen[1]";
                 $_SESSION['ImagenGrande'] = true;
             }
 
@@ -479,7 +479,7 @@ class Articulo {
             }
             $tamaño = $_FILES['imagen']['size'];
             if($_FILES['imagen']['size'] > 300 * 1024) { //el 1024 es para pasar los Bits a Kilobits
-                echo"<br>ValidaImagenes says: el tamaño del archivo es $tamaño";
+                print"<br>ValidaImagenes says: el tamaño del archivo es $tamaño";
                 $_SESSION['ImagenPesada'] = true;
             }
 
@@ -515,27 +515,27 @@ class Articulo {
     $codigo4= TransformarCodigo($codigo4);
     $codigo5= TransformarCodigo($codigo5);
 
-    if(EsFormatoCodigoCorrecto($codigo1)==true){echo "good1 ";}else{echo "bad ";};// test OK
-    if(EsFormatoCodigoCorrecto($codigo2)==true){echo "good ";}else{echo "BAD1 ";};// test OK
-    if(EsFormatoCodigoCorrecto($codigo3)==true){echo "good1 ";}else{echo "bad ";};// test OK
-    if(EsFormatoCodigoCorrecto($codigo4)==true){echo "good1 ";}else{echo "bad ";};// test OK
-    if(EsFormatoCodigoCorrecto($codigo5)==true){echo "good1 ";}else{echo "bad ";};// test OK
+    if(EsFormatoCodigoCorrecto($codigo1)==true){print "good1 ";}else{print "bad ";};// test OK
+    if(EsFormatoCodigoCorrecto($codigo2)==true){print "good ";}else{print "BAD1 ";};// test OK
+    if(EsFormatoCodigoCorrecto($codigo3)==true){print "good1 ";}else{print "bad ";};// test OK
+    if(EsFormatoCodigoCorrecto($codigo4)==true){print "good1 ";}else{print "bad ";};// test OK
+    if(EsFormatoCodigoCorrecto($codigo5)==true){print "good1 ";}else{print "bad ";};// test OK
 
 
-        if(CodigoLibre($codigo1)==true){echo "good1 ";}else{echo "bad ";};// test OK
-        if(CodigoLibre($codigo2)==true){echo "good1 ";}else{echo "bad ";};// test OK
-        if(CodigoLibre($codigo3)==true){echo "good ";}else{echo "BAD1 ";};// test OK
-        if(CodigoLibre($codigo4)==true){echo "good1 ";}else{echo "bad ";};// test OK
-        if(CodigoLibre($codigo5)==true){echo "good1 ";}else{echo "bad ";};// test OK
+        if(CodigoLibre($codigo1)==true){print "good1 ";}else{print "bad ";};// test OK
+        if(CodigoLibre($codigo2)==true){print "good1 ";}else{print "bad ";};// test OK
+        if(CodigoLibre($codigo3)==true){print "good ";}else{print "BAD1 ";};// test OK
+        if(CodigoLibre($codigo4)==true){print "good1 ";}else{print "bad ";};// test OK
+        if(CodigoLibre($codigo5)==true){print "good1 ";}else{print "bad ";};// test OK
 
         $codigo6="cat";
         $codigo7="cat123456";
         $codigo6= TransformarCodigo($codigo6);
         $codigo7= TransformarCodigo($codigo7);
-        if(EsFormatoCodigoCorrecto($codigo6)==false){echo "good1a ";}else{echo "bad ";};// test OK (NO SE EJECUTA)=OK
-        if(EsFormatoCodigoCorrecto($codigo7)==false){echo "good1a ";}else{echo "bad ";};// test OK(NO SE EJECUTA)=OK
-        if(CodigoLibre($codigo6)==true){echo "good1a ";}else{echo "bad ";};// test OK(NO SE EJECUTA)=OK
-        if(CodigoLibre($codigo7)==true){echo "good1a ";}else{echo "bad ";};// test OK(NO SE EJECUTA)=OK
+        if(EsFormatoCodigoCorrecto($codigo6)==false){print "good1a ";}else{print "bad ";};// test OK (NO SE EJECUTA)=OK
+        if(EsFormatoCodigoCorrecto($codigo7)==false){print "good1a ";}else{print "bad ";};// test OK(NO SE EJECUTA)=OK
+        if(CodigoLibre($codigo6)==true){print "good1a ";}else{print "bad ";};// test OK(NO SE EJECUTA)=OK
+        if(CodigoLibre($codigo7)==true){print "good1a ";}else{print "bad ";};// test OK(NO SE EJECUTA)=OK
 
         $float1 ="55.2";
         $float2 ="55,2";
