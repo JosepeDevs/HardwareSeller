@@ -1,7 +1,7 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 if(isset($_SESSION['CarritoConfirmado']) && !empty($_SESSION['CarritoConfirmado']) && !isset($_SESSION['sinCuenta'])){
-    header("Location: ../Controllers/MetodoDePago.php");
+    header("Location: ../Views/MetodoDePago.php");
     exit;
 }
 include_once("header.php");
