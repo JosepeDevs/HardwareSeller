@@ -164,6 +164,8 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
     if( is_array($arrayPedido) ){
         print'adiosssssssssssssssssssssss';
         print_r($arrayPedido);
+        $arraytest= array();
+        print("veamos:".$arraytest==$arrayPedido);
     } else{
         print($arrayPedido);
         print'<br>';
