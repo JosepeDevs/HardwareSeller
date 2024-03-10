@@ -141,7 +141,18 @@
     </div>
     </form>
     <div id="carrito-header">
-    <small><? if( isset($_SESSION['productos']) && !empty($_SESSION['productos']) ){print count($_SESSION['productos']);}?></small>
+        <small><? if( isset($_SESSION['productos']) && !empty($_SESSION['productos']) ){print count($_SESSION['productos']);}?></small>
+        <small>
+            <?  
+                $sumaTotal = 0;
+                if(isset($_SESSION['precios']) && !empty($_SESSION['precios'])) {
+                    foreach($_SESSION['precios'] as $precio) {
+                        $sumaTotal += $precio;
+                    }
+                }
+                print $sumaTotal."€";
+            ?>
+        </small>
         <a href="/Views/Carrito.php"><i class="lni lni-cart"></i></a>
     </div>
 </header>

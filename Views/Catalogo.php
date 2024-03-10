@@ -16,10 +16,15 @@ if(isset($_GET["codigo"])) {
     $codigoParaCheckActivo = isset($_GET['codigo']) ? $_GET['codigo']:null;
     $articuloParaCheckActivo = getArticuloByCodigo($codigoParaCheckActivo);
     $activoParaCheck = $articuloParaCheckActivo->getActivo();
+    $precioParaCarrito = $articuloParaCheckActivo->getPrecio();
+    $descuentoParaCarrito = $articuloParaCheckActivo->getDescuento();
+    $precioParaCarrito = $precioParaCarrito * (1-($descuentoParaCarrito/100));
     if($activoParaCheck == 1){
         $codigoParaCarrito = $_GET["codigo"] ;
         //mira si existe ya el producto, si ya existe añade 1 , si no existe, guarda 1
-        $_SESSION['productos']["$codigoParaCarrito"] = array_key_exists($codigoParaCarrito, $_SESSION['productos']) ? $_SESSION['productos']["$codigoParaCarrito"] + 1 : 1;
+        $_SESSION['productos']["$codigoParaCarrito"] = array_key_exists($codigoParaCarrito, $_SESSION['productos'])    ? $_SESSION['productos']["$codigoParaCarrito"] + 1 : 1;
+        //mira en el array precios si ya existe el codigo del artículo, si no existe, añade el precio, si ya existe miramos el dato guardado y le sumamos lo que toque del articulo que acabamos de añadir
+        $_SESSION['precios']["$codigoParaCarrito"] = array_key_exists($codigoParaCarrito, $_SESSION['precios'])    ? $_SESSION['precios']["$codigoParaCarrito"]+$precioParaCarrito : $precioParaCarrito;
     }
 }
 
