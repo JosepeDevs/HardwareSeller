@@ -103,7 +103,7 @@ public static function borradoLogicoPedido($idPedido){
      * con que esté el estado escrito dentro del estado saldrá como resultado
      */
     public static function getPedidosByEstado($estado, $dni=null){
-        $estado = intval($estado); //lo pasamos a int porque la BBDD es int11
+        $estado = (string)$estado; 
         try{
             $con = contectarBbddPDO();
             if($dni !== null){
