@@ -349,7 +349,7 @@ public static function checkClientByEmailAndDni($email, $dni){
     public static function updatePasswrdUsingDni($dni,$newpsswrd){
         try {
             $conPDO = contectarBbddPDO();
-            $query = $conPDO->prepare("UPDATE clientes SET psswrd = :newpsswrd WHERE dni = :dni");
+            $query = $conPDO->prepare("UPDATE clientes SET psswrd = :newpsswrd, activo=1 WHERE dni = :dni");
             $query->bindParam(':dni', $dni);
             $query->bindParam(':newpsswrd', $newpsswrd);
             $query->execute();
