@@ -19,8 +19,8 @@ if(isset($_GET["codigo"])) {
    //no tengo tiempo de revisarlo, le pongo a todo nombres distintos a los que puede que haya usado más abajo.
     $codigoParaCheckActivo = isset($_GET['codigo']) ? $_GET['codigo']:null;
     $articuloParaCheckActivo = getArticuloByCodigo($codigoParaCheckActivo);
-    $activoParaCheck = $articuloParaCheckActivo->getActivo();
-    $precioParaCarrito = $articuloParaCheckActivo->getPrecio();
+    $activoParaCheck = $articuloParaCheckActivo->getActivo(); 
+    $precioParaCarrito = $articuloParaCheckActivo->getPrecio(); 
     $descuentoParaCarrito = $articuloParaCheckActivo->getDescuento();
     $precioParaCarrito = $precioParaCarrito * (1-($descuentoParaCarrito/100));
     if($activoParaCheck == 1){
