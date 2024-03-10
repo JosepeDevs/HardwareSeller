@@ -3,6 +3,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("../Views/header.php");
 include_once("../Controllers/ClienteBUSCARController.php");
 $operacionExitosa=false;
+print_r($_SESSION);
 if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']) ) {
     $email = $_POST['mail'];
     $_SESSION['mail'] = $email;
