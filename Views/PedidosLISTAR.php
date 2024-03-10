@@ -18,6 +18,7 @@ print("<h1>Lista de Pedidos</h1>");
 include_once("BreadCrumbsAreaCliente.php");
 print('<br>');
 
+print_r($_SESSION);
 
 $rol = GetRolDeSession();
 $dni = GetDniByEmail($_SESSION['user']);

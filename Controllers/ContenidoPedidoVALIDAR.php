@@ -5,7 +5,6 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("OperacionesSession.php");
 
 include_once("../Models/ContenidoPedido.php");
-//print_r($_SESSION);;
 
 $numPedido = isset($_SESSION["numPedido"]) ? $_SESSION["numPedido"] : null;
 $contenidoPedido = isset($_SESSION["CarritoConfirmado"]) ? $_SESSION["CarritoConfirmado"] : null;
@@ -59,7 +58,7 @@ foreach ($contenidoPedido as $index => $array) {
         ( isset( $_SESSION['LongActivo']) && $_SESSION['LongActivo']== true )
     ){
         //algo dio error, go back para que allí de donde venga se muestre el error
-        print "<script>history.back();</script>";
+        //print "<script>history.back();</script>";
         exit;
     } else {
         //array con objetos "contenidopedido",ahora en cada indice con todos los datos que me hacen falta para dar de alta el contenidoPedido 
@@ -82,7 +81,7 @@ foreach ($contenidoPedido as $index => $array) {
             if($numPedidoOriginalDeberiaExistir == true) { 
                 //si es true debemos subir error, porque debería existir
                 $_SESSION['numPedidoDeberiaExistir'] = true;
-                print "<script>history.back();</script>";
+                //print "<script>history.back();</script>";
                 exit;
             } 
         }          
@@ -94,7 +93,7 @@ foreach ($contenidoPedido as $index => $array) {
             if($numPedidoLibre == false) {
                 //si no está libre subimos errro y retrocedemos
                 $_SESSION['numPedidoAlreadyExists']= true;
-                print "<script>history.back();</script>";
+                //print "<script>history.back();</script>";
                 exit;
             }
         }
@@ -143,14 +142,15 @@ foreach ($contenidoPedido as $index => $array) {
             }
         }
     };
+    print_r($_SESSION);
 
 ////////////ROUTER para ver donde vamos    
 if(isset($_SESSION["CarritoConfirmado"])){
     //si existe carrito confirmado es que venimos de confirmar el pedido, hay que mostrar los datos de pedido
-    header("Location: ../Views/PedidoBUSCAR.php?idPedido=$numPedido&PedidoConfirmado=true");
+   // header("Location: ../Views/PedidoBUSCAR.php?idPedido=$numPedido&PedidoConfirmado=true");
 }else{
     //venimos de estar editando o dando de alta un pedido como admins
-    print "<script>history.back();</script>";
+    //print "<script>history.back();</script>";
     exit;
 }
 exit;

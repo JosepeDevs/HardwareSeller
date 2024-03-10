@@ -10,7 +10,7 @@ if( $usuarioLogeado == false){
     exit;
 
 }
-
+ 
 include_once("header.php");
 include_once("../Controllers/PedidoBORRARController.php");
 
