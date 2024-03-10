@@ -13,7 +13,6 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
         print '<h1>Recuperación de contraseña</h1>';
         print '<h2><label>Escriba su nueva contraseña</label></h2><br><br><input type="password" name="newpsswrd"><br><br>';
         print '<br><input type="submit" value="Submit"></form>';
-        $atras =false; 
     } else {
         $atras= true;
     }
@@ -27,8 +26,6 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
        // print"la operacion ha sido $operacionExitosa";
         $_SESSION['PsswrdActualizada'] = true;
         $todoOK =true;
-    } else{
-        $todoOK =false;
     }
 }
 
