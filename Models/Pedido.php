@@ -79,7 +79,7 @@ public static function borradoLogicoPedido($idPedido){
         $desactivaContenidoPedidoConfirmado = borradoLogicoContenidoPedido($idPedido);
 
         if($desactivaContenidoPedidoConfirmado == false){
-            $_SESSION['FalloBorrandoContenidoPedido'];
+            $_SESSION['FalloBorrandoContenidoPedido'] = true;
         }
 
         $conPDO=contectarBbddPDO();
@@ -91,7 +91,7 @@ public static function borradoLogicoPedido($idPedido){
         $desactivaPedidoConfirmado= $statement->fetch();
 
         if($desactivaPedidoConfirmado == false){
-            $_SESSION['falloBorrandoElPropioPedido'];
+            $_SESSION['falloBorrandoElPropioPedido'] = true;
         } 
 
         if($desactivaPedidoConfirmado !== false && $desactivaContenidoPedidoConfirmado !== false){
