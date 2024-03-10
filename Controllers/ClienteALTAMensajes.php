@@ -62,7 +62,7 @@ Function getArrayMensajesNuevo(){
     }
 
     if(isset($_SESSION['DniBadFormat']) && $_SESSION['DniBadFormat'] == true){
-        $mensajes[] =  "El formato del DNI no es correcto";
+        $mensajes[] =  "El formato del DNI no es válido (la letra y el número no se corresponden)";
         unset($_SESSION['DniBadFormat']);
     }
 
