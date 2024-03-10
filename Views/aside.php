@@ -64,7 +64,6 @@
 </div>
 
 <script>
-/*
 document.addEventListener("DOMContentLoaded", function() {
 
     document.querySelectorAll(".revelador").forEach(function(button) {//con esto seleccionamos todos los elements y aplicamos una funcion en cada item
@@ -83,5 +82,5 @@ document.addEventListener("DOMContentLoaded", function() {
             enlace.classList.toggle('visible');  
         }        
     )};
-});*/
+});
 </script>
