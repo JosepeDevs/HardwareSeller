@@ -77,12 +77,12 @@ public function setCodCategoriaPadre($codCategoriaPadre) {
     }
 
     /**
-     * @return array|bool devuelve false si no encuentra más de un resultado, si los encuentra devuelve un array con las subcategorias
+     * @return array|bool devuelve false si no encuentra más de un resultado, si los encuentra devuelve un array con las subcategorias (solo las activadas)
      */
     public static function getSubCategorias($codigoCategoria){
         try{
             $con = contectarBbddPDO();
-            $sqlQuery="SELECT * FROM  `categorias` WHERE codigo LIKE CONCAT('%', :categoria, '%');";
+            $sqlQuery="SELECT * FROM  `categorias` WHERE codigo LIKE CONCAT('%', :categoria, '%') AND activo=1;";
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':categoria', $codigoCategoria);
             $statement->execute();
