@@ -103,7 +103,7 @@ if(isset($_SESSION['user'])) {
         //si encontramos un 5 en algun sitio de estadoEnvio es que querían recogida en tienda
         print"<h2>Han seleccionado Recogida del pedido en tienda.</h2><br><h3>El stock se reservará un máximo de 3 días.</h3>";
         $_SESSION['estado'] = ($_SESSION['estado'] . "5"); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
-    } else if (strpos($estadoEnvio,"0") !== false){
+    } else if (strpos($estadoEnvio,"1") !== false){
         //si es 0 es envío,  leemos sus datos
         print"<h2>Han seleccionado la opción de envío a esta dirección.</h2>";
         print"
@@ -130,7 +130,7 @@ if(isset($_SESSION['user'])) {
         //si encontramos un 5 es que querían recogida en tienda
         print"<h2>Han seleccionado Recogida del pedido en tienda.</h2>";
         $_SESSION['estado'] = ($_SESSION['estado'] . "5"); //metemos esto en el session de estado para indicar que es envío a dirección del cliente}if ($estado =="direccionYcuenta"){
-    } else if (strpos($estadoEnvio,"0") !== false){
+    } else if (strpos($estadoEnvio,"1") !== false){
         //si es 0 es envío, decimos leemos sus datos
         print"<h2>Han seleccionado la opción de envío. La dirección de envío es:</h2>";
         print("<p>Dirección de envío:

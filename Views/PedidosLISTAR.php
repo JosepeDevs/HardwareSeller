@@ -175,7 +175,7 @@ print"<table>";
         <tr>
             <td>Información sobre estado</td>
             <td colspan='6'>  
-                Estado del pedido:(0=envío a direccion)(1=pedido en carrito)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago y recogida en tienda)
+                Estado del pedido:(0=pedido en carrito, pendiente implementación)(1=envío a dirección del cliente)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago y recogida en tienda)
                 (6=pago confirmado)(7=pedido enviado)(8=pedido recibido)(9=finalizado o cancelado)                            
                 <br>
                 El estado puede tener más de 1 digito, por ejemplo: 1 es que esta en el carrito y nada más, 236 es que el pedio es en firme pagará por transferencia y 

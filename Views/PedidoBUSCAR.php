@@ -52,7 +52,7 @@ if(isset($_GET["PedidoConfirmado"])){
                 <th><h2><label for="idPedido">Id pedido</label></h2></th>
                 <th><h2><label for="fecha">Fecha inicio</label></h2></th>
                 <th><h2><label for="fecha">Fecha fin</label></h2></th>
-                <th><h2><label for="estado">Busqueda por estado<br> Estado del pedido:(0=envío a direccion)(1=pedido en carrito)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago y recogida en tienda)
+                <th><h2><label for="estado">Busqueda por estado<br> Estado del pedido:(0=pedido en carrito (pendiente implementación)(1=envío a direccion dew cliente)(2=pedido realizado)(3=pago por transferencia)(4= pago por tarjeta)(5=pago y recogida en tienda)
                 (6=pago confirmado)(7=pedido enviado)(8=pedido recibido)(9=finalizado o cancelado)</label></h2></th>';
             if($rol == "admin" || $rol == "empleado"){
                 print'<th><h2><label for="codUsuario">Codigo usuario (DNI)</label></h2></th>';
