@@ -25,7 +25,7 @@ if(isset($_GET['confirmacion']) && $_GET['confirmacion'] ==  "false" ){
     exit;
 }else if(isset($_GET['idPedido']) && isset($_GET['confirmacion']) && $_GET['confirmacion']== "true" && $estadoCancelable) {
     print($_GET['confirmacion']);
-    if($estadoCancelable !== false){
+    if($estadoCancelable == true){
         $operacionExitosa = borradoLogicoPedido($idPedido);
         $_SESSION['PedidoCanceladoExitoso'] = true;
     }
