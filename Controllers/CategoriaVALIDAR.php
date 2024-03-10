@@ -13,7 +13,7 @@ if( $usuarioLogeado == false){
 }
 
 include_once("../Models/Categoria.php");
-print_r($_SESSION);
+//print_r($_SESSION);;
 
 $codigo = isset($_POST["codigo"]) ? $_POST["codigo"] : null;
 $codigoOriginal = isset($_SESSION["codigo"]) ? $_SESSION["codigo"] : null;

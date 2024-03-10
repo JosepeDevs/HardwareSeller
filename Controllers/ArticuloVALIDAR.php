@@ -13,7 +13,7 @@ if( $usuarioLogeado == false){
 }
 
 include_once("../Models/Articulo.php");
-print_r($_SESSION);
+//print_r($_SESSION);;
 
 $nombre = isset($_POST["nombre"]) ? $_POST["nombre"] : null;
 $descripcion = isset($_POST["descripcion"]) ? $_POST["descripcion"] : null;//por post llegaría el posible nuevo código

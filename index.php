@@ -14,7 +14,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
     if(isset($_GET["Destroy"]) && $_GET["Destroy"] =="Y" ){
         session_destroy();
     }
-   // print_r($_SESSION);
+   // //print_r($_SESSION);;
 ?>
     <!-- Start Hero Area -->
     <section id="hero-area" class="hero-area">

@@ -5,7 +5,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("OperacionesSession.php");
 
 include_once("../Models/ContenidoPedido.php");
-print_r($_SESSION);
+//print_r($_SESSION);;
 
 $numPedido = isset($_SESSION["numPedido"]) ? $_SESSION["numPedido"] : null;
 $contenidoPedido = isset($_SESSION["CarritoConfirmado"]) ? $_SESSION["CarritoConfirmado"] : null;

@@ -8,7 +8,7 @@
  */
 Function getArrayMensajes(){
     if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-    //print_r($_SESSION);
+    ////print_r($_SESSION);;
     $mensajes=[];
 
     if(isset($_SESSION['ClienteNoExiste']) && $_SESSION['ClienteNoExiste'] == true){

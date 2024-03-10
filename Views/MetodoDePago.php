@@ -5,7 +5,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 include_once("header.php");
 
 echo'<h1>Seleccione el método de pago</h1>';
-//print_r($_SESSION);
+////print_r($_SESSION);;
 ?>
 <form action="../Views/RevisionPedido.php" method="POST">
     <h2>

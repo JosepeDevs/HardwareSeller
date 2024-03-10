@@ -41,7 +41,7 @@ if(
             $_SESSION['usuario']=$email; //no es lo mismo que session de user
             $_SESSION['auth'] = "OK";
             $_SESSION['rol'] = $rol;
-            //print_r($_SESSION);
+            ////print_r($_SESSION);;
             if( ( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1 ) ||
                 ( isset($_SESSION["CarritoConfirmado"]) && !empty($_SESSION["CarritoConfirmado"])) 
             ){
@@ -84,7 +84,7 @@ if(
             $_SESSION['usuario']=$usuario; //no es lo mismo que session de user
             $_SESSION['auth'] = "OK";
             $_SESSION['rol'] = $rol;
-           // print_r($_SESSION);
+           // //print_r($_SESSION);;
            if( ( isset($_SESSION["RegistroDurantePedido"]) && $_SESSION["RegistroDurantePedido"] == 1 ) ||
            ( isset($_SESSION["CarritoConfirmado"]) && !empty($_SESSION["CarritoConfirmado"])) 
        ){         //       echo'vamos a medoto de pago';
