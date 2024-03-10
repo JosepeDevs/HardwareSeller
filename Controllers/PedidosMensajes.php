@@ -33,10 +33,12 @@ Function getArrayMensajesPedidos(){
         $mensajes[] =  "No es posible cancelar el pedido, tal vez el estado no sea adecuado (enviados, pago realizado, recibidos, finalizads...) Contacte con nosotros si cree que es un error.";
         unset($_SESSION['FalloBorrandoPedido']);
     }
+    /*
     if(isset($_SESSION['FalloBorrandoContenidoPedido']) && $_SESSION['FalloBorrandoContenidoPedido'] == true){
         $mensajes[] =  "No se pudo borrar/cancelar los contenidos del pedido seleccionado. Contacte con nosotros si cree que es un error.";
         unset($_SESSION['FalloBorrandoContenidoPedido']);
-    }
+    }*/
+    
     if(isset($_SESSION['SinNumero']) && $_SESSION['SinNumero'] == true){
         $mensajes[] =  "El idPedido que escribió le faltaba la parte numérica.";
         unset($_SESSION['SinNumero']);
@@ -159,10 +161,10 @@ Function getArrayMensajesPedidos(){
         unset($_SESSION['FalloBorrandoPedidoY-OsuContenido'] );
         $mensajes[]= "el pedido o el contenido del pedido no se pudieron cancelar correctamente.Contacte con nosotros si cree que es un error.";
     }
-    if(isset($_SESSION['falloBorrandoElPropioPedido']) && ($_SESSION['falloBorrandoElPropioPedido'] == true)) {
+    /*if(isset($_SESSION['falloBorrandoElPropioPedido']) && ($_SESSION['falloBorrandoElPropioPedido'] == true)) {
         unset($_SESSION['falloBorrandoElPropioPedido'] );
         $mensajes[]= "no se pudo cancelar el propio pedido (el contenido del pedido no lanzó error).Contacte con nosotros si cree que es un error.";
-    }
+    }*/
     if(isset($_SESSION['BadEstadoParaCancelar']) && ($_SESSION['BadEstadoParaCancelar'] == true)) {
         unset($_SESSION['BadEstadoParaCancelar'] );
         $mensajes[]= "El pedido que ha intentado cancelar tiene un estado que actualmente no se puede cancelar. Si cree que esto puede ser un error por favor contacte con nosotros.";

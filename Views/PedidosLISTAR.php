@@ -236,7 +236,7 @@ print"<table>";
    "</select><br>
    </form>
    </div>";
-   print_r($_SESSION);
+  // print_r($_SESSION);
 
 //SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
 include_once("../Controllers/PedidosMensajes.php");
