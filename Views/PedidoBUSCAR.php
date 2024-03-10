@@ -161,18 +161,8 @@ if( isset($_REQUEST["idPedido"]) || isset($_REQUEST["fechaInicio"]) ||isset($_RE
         $arrayPedido = false;
     }
 
-    if( is_array($arrayPedido) ){
-        print'adiosssssssssssssssssssssss';
-        print_r($arrayPedido);
-        $arraytest= array();
-        $booleano= $arraytest==$arrayPedido;
-        print("veamos:".$booleano);
-    } else{
-        print($arrayPedido);
-        print'<br>';
-    }
         $arrayAtributos = getArrayAtributosPedido();
-    if( $arrayPedido !== false ){
+    if( $arrayPedido !== false || ( isset($array[0]) && ($array[0] !== "") ) ) {//si llega un array con el indice 0 pero dentro hay texto vacio es que no encontró pedidos
         print"<table>";
         print"<tr>";
         //ENCABEZADOS
