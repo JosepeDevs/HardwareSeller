@@ -13,7 +13,7 @@ if( $usuarioLogeado == false){
 }
 
 $rol = GetRolDeSession();
-if( $rol == "admin" || $rol == "empleado" ){
+if( $rol == "admin" || $rol == "empleado" || $rol == "editor"){
 } else{
     session_destroy();
     print "Articulos alta dice: no está user en session";
