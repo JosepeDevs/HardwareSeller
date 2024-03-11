@@ -15,6 +15,7 @@ $provincia = isset($_POST["provincia"]) ? $_POST["provincia"] : null;
 $telefono = isset($_POST["telefono"]) ? $_POST["telefono"] : null;
 $email = isset($_POST["email"]) ? $_POST["email"]:null;
 $rol = isset($_POST["rol"]) ? $_POST["rol"]: "user";
+$rol = isset($_POST["activo"]) ? $_POST["activo"]: 1;
 
 if(in_array(strtolower($rol), array("user", "admin", "editor", "empleado"))){
     //se ha enviado un rol correcto, no validamos longitud porque ha cumplido con el enum
@@ -54,8 +55,6 @@ if($provinciaValida == false) { $_SESSION['LongProvincia']= true;}
 $activoValido = Cliente::ComprobarLongitud($activo,1);
 if($activoValido == false && ($activo !== "1" || $activo !== "0")) { $_SESSION['LongActivo']= true;}
 //print("activo valido:".$activoValido);
-
-
 
 //////print_r($_SESSION);;
 $emailOriginal = isset($_SESSION['email']) ? $_SESSION['email'] : null; //aquí estamos recibiendo el email original del cliente
