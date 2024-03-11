@@ -46,7 +46,6 @@ if(GetRolDeSession() == "admin" ){
             </a>
         </h2>";
 } else {
-    include_once("../Controllers/GetEmailByDniController.php");
     $email = GetEmailDeSession();
     $dni=GetDniByEmail($email);
     if($dni == null ){
