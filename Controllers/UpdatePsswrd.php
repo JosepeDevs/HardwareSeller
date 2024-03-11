@@ -72,7 +72,7 @@ if( ! isset($_POST['newpsswrd']) && isset($_POST['mail']) && isset($_POST['dni']
         print "<script>history.go(-3);</script>";
         exit;
     };
-} 
+}
 
 include_once("../Views/footer.php");
 ?>

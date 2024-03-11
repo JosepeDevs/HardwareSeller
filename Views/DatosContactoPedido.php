@@ -4,7 +4,6 @@ include_once("../Controllers/OperacionesSession.php");
 //HEADER Y TITULO
 include_once("header.php");
 print("<h1>Datos de contacto para pedido sin registro</h1><br>");
-print_r($_SESSION);
 ?>
 <form action="../Controllers/ValidarDatosClienteMinimos.php" method="post">
     <table>
@@ -31,7 +30,13 @@ print_r($_SESSION);
 </form>
 <?
 
-
+include_once("../Controllers/ClienteALTAMensajes.php");
+$arrayMensajes=getArrayMensajesNuevo();
+if(is_array($arrayMensajes)){
+    foreach($arrayMensajes as $mensaje) {
+        print "<h3>$mensaje</h3>";
+    }
+};
 
 
 include_once("footer.php");
