@@ -26,6 +26,10 @@
                     //así solo se mostrarán categorias (2 digitos) y subcategorias (3 digitos)
                     continue;
                 }
+                if(strlen($codigoCategoria)=1){
+                    //no vamos a mostrar los padres superiores
+                    continue;
+                }
                 include_once("../Controllers/CategoriaBUSCARController.php");
                 $subcategorias = $categoria->getSubCategorias($codigoCategoria); 
                 if ($subcategorias !== false) {
