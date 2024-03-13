@@ -10,7 +10,7 @@
                 <i class="lni lni-eraser"></i> Limpiar filtros
             </a>';
         }
-
+ 
         // PREPARAR ARRAYS CON CATEGORIAS
         include_once("../Controllers/OrdenarCategoriasController.php");
         $orden="";
@@ -54,8 +54,10 @@
                     print '</ul>';
                     print '</div>';
                 } else {
+                    $ordenFiltrado = isset($_SESSION['orden'])? $_SESSION['orden'] : null;
+                    $nombreAtributoFiltrado = isset($_SESSION['atributo'])? $_SESSION['atributo'] : null;
                     //Si alguno no tiene subcategorias dejaremos un enlace con el nombre de la propia categoria, sin dropdown
-                    print'<a  id="'.$codigoSubCategoria.'" href="Catalogo.php?categoria='.$codigoSubCategoria.'&orden='.$ordenFiltrado.'&atributo='.$nombreAtributoFiltrado.'">'.$nombreSubCategoria.'</a>';
+                    print'<a  id="'.$codigoCategoria.'" href="Catalogo.php?categoria='.$codigoCategoria.'&orden='.$ordenFiltrado.'&atributo='.$nombreAtributoFiltrado.'">'.$nombreSubCategoria.'</a>';
                 }
             }
         }  
