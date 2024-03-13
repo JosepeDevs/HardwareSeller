@@ -103,7 +103,7 @@ if( isset($_SESSION["editandoCategoria"]) && $_SESSION["editandoCategoria"] == "
     if($operacionExitosa){
         $_SESSION['GoodUpdateCategoria']= true;
     }
-  //  header("Location: ../Views/CategoriasLISTAR.php");
+    header("Location: ../Views/CategoriasLISTAR.php");
     exit;
 }else if( isset($_SESSION["nuevoCategoria"]) && $_SESSION["nuevoCategoria"] == "true" && $codigoLibre == true){
 
