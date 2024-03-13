@@ -97,11 +97,12 @@ if( isset($_SESSION["editandoCategoria"]) && $_SESSION["editandoCategoria"] == "
 
     $codigo = ( isset($_GET["codigo"]) ? $_GET["codigo"] : null ); //por la URL llega el código NUEVO
     $categoria = new Categoria();
+    print($nombre. $codigo. $codigoOriginal. $activo. $codCategoriaPadre);
     $operacionExitosa = $categoria->updateCategoria($nombre, $codigo, $codigoOriginal, $activo, $codCategoriaPadre);
     if($operacionExitosa){
         $_SESSION['GoodUpdateCategoria']= true;
     }
-    header("Location: ../Views/CategoriasLISTAR.php");
+  //  header("Location: ../Views/CategoriasLISTAR.php");
     exit;
 }else if( isset($_SESSION["nuevoCategoria"]) && $_SESSION["nuevoCategoria"] == "true" && $codigoLibre == true){
 
