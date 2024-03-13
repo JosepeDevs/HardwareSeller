@@ -14,7 +14,7 @@ if( $usuarioLogeado == false){
 
 include_once("header.php");
 print("<h1>Modificar Pedido</h1>");
-////print_r($_SESSION);;
+//////print_r($_SESSION);;
 //ponemos "editando" en true para que cuando lo mandemos a ValidarDatos lo trate como update
 $_SESSION["editandoContenidoPedido"]="true";
 $_SESSION["editandoPedido"]="true";

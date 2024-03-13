@@ -18,7 +18,7 @@ print("<h1>Lista de Pedidos</h1>");
 include_once("BreadCrumbsAreaCliente.php");
 print('<br>');
 
-////print_r($_SESSION);
+//////print_r($_SESSION);
 
 $rol = GetRolDeSession();
 $dni = GetDniByEmail($_SESSION['user']);
@@ -236,7 +236,7 @@ print"<table>";
    "</select><br>
    </form>
    </div>";
-  // //print_r($_SESSION);
+  // ////print_r($_SESSION);
 
 //SECCION DE IMPRIMIR MENSAJE DE ERROR/CONFIRMACIÓN
 include_once("../Controllers/PedidosMensajes.php");

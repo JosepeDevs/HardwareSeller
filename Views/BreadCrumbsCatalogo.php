@@ -9,9 +9,14 @@ print'
         $codigoCategoria = $_GET["categoria"];
         include_once("../Controllers/CategoriaBUSCARController.php");
         $categoria = getCategoriaByCodigo($codigoCategoria);
-        $nombreCategoria = $categoria->getNombre();  
-        print'<p class="breadcrumb-item active"><a href="Catalogo.php?categoria='.$codigoCategoria.'"> '.$nombreCategoria.' / </a></p>
-        ';
+        if($categoria !== false){
+          $nombreCategoria = $categoria->getNombre();  
+          print'<p class="breadcrumb-item active"><a href="Catalogo.php?categoria='.$codigoCategoria.'"> '.$nombreCategoria.' / </a></p>
+          ';
+        }else{
+          print'<p class="breadcrumb-item active"><a href="Catalogo.php"> categoria_inexistente / </a></p>
+          ';
+        }
     }
     if(isset($_REQUEST['codigo']) && !empty($_REQUEST['codigo']) ){
       //entonces estamos ya en ficha cliente

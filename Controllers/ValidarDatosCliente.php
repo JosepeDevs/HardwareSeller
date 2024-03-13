@@ -56,7 +56,7 @@ $activoValido = Cliente::ComprobarLongitud($activo,1);
 if($activoValido == false && ($activo !== "1" || $activo !== "0")) { $_SESSION['LongActivo']= true;}
 //print("activo valido:".$activoValido);
 
-//////print_r($_SESSION);;
+////////print_r($_SESSION);;
 $emailOriginal = isset($_SESSION['email']) ? $_SESSION['email'] : null; //aquí estamos recibiendo el email original del cliente
 //print("email sin usar :".$emailOriginal);
 
@@ -160,7 +160,7 @@ if( isset($_SESSION["editandoCliente"]) && $_SESSION["editandoCliente"] == "true
         
     $_SESSION["dni"]=$dniOriginal;
     //print "<p>'actualizando cliente...espere infinito...</p>";
-    //////print_r($_SESSION);;
+    ////////print_r($_SESSION);;
     //print "<p>'editando cliente...espere infinito...datos que estamos pasando: $dniOriginal, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $noPsswrd</p>";
     
     $operacionExitosa = Cliente::UpdateCliente($dniOriginal, $nombre, $direccion, $localidad, $provincia, $telefono, $email, $psswrd, $rol, $activo, $noPsswrd);//le pasamos el DniOoriginal porque no permitimos el cambio del dni
