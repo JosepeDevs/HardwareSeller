@@ -82,7 +82,7 @@ public function setCodCategoriaPadre($codCategoriaPadre) {
     public static function getSubCategorias($codigoCategoria){
         try{
             $con = contectarBbddPDO();
-            $sqlQuery="SELECT * FROM  `categorias` WHERE codigo LIKE CONCAT('%', :categoria, '%') AND activo=1;";
+            $sqlQuery="SELECT * FROM  `categorias` WHERE codigo LIKE CONCAT(:categoria, '%') AND activo=1;";
             $statement=$con->prepare($sqlQuery);
             $statement->bindParam(':categoria', $codigoCategoria);
             $statement->execute();
@@ -126,7 +126,7 @@ public function setCodCategoriaPadre($codCategoriaPadre) {
         }
     }
 
-
+ 
     public static function ComprobarLongitud($string, $longitud) {
         if(strlen($string) > $longitud) {
             return false;
@@ -264,8 +264,8 @@ public function setCodCategoriaPadre($codCategoriaPadre) {
                     WHERE `codigo` = :codigoOriginal "
             ;
         }
-        print "<br>UpdateCategoria says: codigo nuevo: $codigo"." y codigo original: ".$codigoOriginal."<br>";
-        print "<br>UpdateCategoria says:".$sqlQuery;
+        //print "<br>UpdateCategoria says: codigo nuevo: $codigo"." y codigo original: ".$codigoOriginal."<br>";
+        //print "<br>UpdateCategoria says:".$sqlQuery;
         $statement= $conPDO->prepare($sqlQuery);
         $statement->bindParam(':nombre', $nombre);
 
