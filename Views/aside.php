@@ -21,6 +21,7 @@
             if($categoria->getActivo() ==  1){
                 // Ver si hay subcategorias las que tengamos desactivadas existen pero no se muestran aquí
                 $codigoCategoria = $categoria->getCodigo();
+                $nombreCategoria = $categoria->getNombre();
                 if(strlen($codigoCategoria)>=3){
                     //así solo se mostrarán categorias (2 digitos) y subcategorias (3 digitos)
                     continue;
@@ -33,7 +34,7 @@
                     //atributo para bootstrap data-bs-toggle="dropdown" para decirle que el botón trigger el dropdown
                     //dropdown-toggle para que reconozca  lo de abajo como dropdown
                     print '<button class="btn btn-secondary dropdown-toggle revelador" type="button" data-bs-toggle="dropdown" >';
-                    print $categoria->getNombre().'<i class="lni lni-chevron-down"></i>';
+                    print $nombreCategoria.'<i class="lni lni-chevron-down"></i>';
                     print '</button>';
                     //la clase dropdown-menu es lo que da a una lista el formato de dropdown
                     print '<ul class="dropdown-menu">';
@@ -54,10 +55,11 @@
                     print '</ul>';
                     print '</div>';
                 } else {
+                    $nombreCategoria = $categoria->getNombre();
                     $ordenFiltrado = isset($_SESSION['orden'])? $_SESSION['orden'] : null;
                     $nombreAtributoFiltrado = isset($_SESSION['atributo'])? $_SESSION['atributo'] : null;
                     //Si alguno no tiene subcategorias dejaremos un enlace con el nombre de la propia categoria, sin dropdown
-                    print'<a  id="'.$codigoCategoria.'" href="Catalogo.php?categoria='.$codigoCategoria.'&orden='.$ordenFiltrado.'&atributo='.$nombreAtributoFiltrado.'">'.$nombreSubCategoria.'</a>';
+                    print'<a  id="'.$codigoCategoria.'" href="Catalogo.php?categoria='.$codigoCategoria.'&orden='.$ordenFiltrado.'&atributo='.$nombreAtributoFiltrado.'">'.$nombreCategoria.'</a>';
                 }
             }
         }  
