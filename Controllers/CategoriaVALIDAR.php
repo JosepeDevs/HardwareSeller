@@ -95,7 +95,7 @@ if( isset($_SESSION["editandoCategoria"]) && $_SESSION["editandoCategoria"] == "
     $activo = ( isset($_SESSION["activo"]) ? $_SESSION["activo"] : 1 );
     $codCategoriaPadre = ( isset($_SESSION["codCategoriaPadre"]) ? $_SESSION["codCategoriaPadre"] : null );//por session llega el código ORIGINAL
 
-    $codigo = ( isset($_SESSION["codigo"]) ? $_SESSION["codigo"] : null ); //por la URL llega el código NUEVO
+    $codigo = ( isset($_POST["codigo"]) ? $_POST["codigo"] : null ); //por la URL llega el código NUEVO
 
     $categoria = new Categoria();
     print($nombre. $codigo. $codigoOriginal. $activo. $codCategoriaPadre);
