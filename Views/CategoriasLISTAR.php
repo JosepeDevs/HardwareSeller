@@ -18,6 +18,7 @@ if( $rol == "admin" || $rol == "empleado" || $rol == "editor"){
 
 }
 
+print_r($_SESSION);
 
 
 //HEADER Y TITULO
